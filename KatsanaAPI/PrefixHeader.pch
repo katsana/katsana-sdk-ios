@@ -1,0 +1,36 @@
+//
+//  PrefixHeader.pch
+//  KatsanaAPI
+//
+//  Created by Wan Ahmad Lutfi on 29/08/2016.
+//  Copyright © 2016 pixelated. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define KNOT_TO_KMH 1.852
+
+@import UIKit;
+@import CoreLocation;
+
+typedef void (^ImageCompletionBlock)(UIImage *image);
+
+#import "KMConstant.h"
+
+#import <FastCoding/FastCoder.h>
+#import <CocoaLumberjack/CocoaLumberjack.h>
+
+#import "KMTimeTransformer.h"
+#import "KMAddress.h"
+
+#import "KMCacheManager.h"
+#import "KMUserManager.h"
+
+
+
+
+#define CLCOORDINATE_EPSILON 0.005f
+#define CLCOORDINATES_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)
+
+#endif /* PrefixHeader_pch */
