@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C75105011D7422BF00F4C341 /* KatsanaAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = C75105001D7422BF00F4C341 /* KatsanaAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C75105081D7422BF00F4C341 /* KatsanaAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaAPI.framework */; };
+		C75105081D7422BF00F4C341 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
 		C751050D1D7422BF00F4C341 /* KatsanaAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C751050C1D7422BF00F4C341 /* KatsanaAPITests.m */; };
 		C75105341D742B3500F4C341 /* KMActivityObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C751051A1D742B3500F4C341 /* KMActivityObject.h */; };
 		C75105351D742B3500F4C341 /* KMActivityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C751051B1D742B3500F4C341 /* KMActivityObject.m */; };
@@ -53,6 +53,7 @@
 		C78B22121D757441002E25C3 /* KMConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = C78B22101D757441002E25C3 /* KMConstant.h */; };
 		C78B22131D757441002E25C3 /* KMConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = C78B22111D757441002E25C3 /* KMConstant.m */; };
 		C78B22151D75754B002E25C3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
+		C78B22171D757FC2002E25C3 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C78B22161D757FC2002E25C3 /* libRestKit.a */; };
 		DBCE1D85E23A5FC9EF45F557 /* libPods-KatsanaAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5BB0684F387F475DA521FF /* libPods-KatsanaAPI.a */; };
 /* End PBXBuildFile section */
 
@@ -70,10 +71,10 @@
 		1A5BB0684F387F475DA521FF /* libPods-KatsanaAPI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KatsanaAPI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D786442C2AB6D4BE27A725B /* Pods-KatsanaAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KatsanaAPI/Pods-KatsanaAPI.debug.xcconfig"; sourceTree = "<group>"; };
 		A88E055993D55DACBBEBFEB3 /* Pods-KatsanaAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-KatsanaAPI/Pods-KatsanaAPI.release.xcconfig"; sourceTree = "<group>"; };
-		C75104FD1D7422BF00F4C341 /* KatsanaAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75105001D7422BF00F4C341 /* KatsanaAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KatsanaAPI.h; sourceTree = "<group>"; };
 		C75105021D7422BF00F4C341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C75105071D7422BF00F4C341 /* KatsanaAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C75105071D7422BF00F4C341 /* KatsanaSDK.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDK.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C751050C1D7422BF00F4C341 /* KatsanaAPITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KatsanaAPITests.m; sourceTree = "<group>"; };
 		C751050E1D7422BF00F4C341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C751051A1D742B3500F4C341 /* KMActivityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMActivityObject.h; sourceTree = "<group>"; };
@@ -120,6 +121,7 @@
 		C78B22101D757441002E25C3 /* KMConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMConstant.h; sourceTree = "<group>"; };
 		C78B22111D757441002E25C3 /* KMConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMConstant.m; sourceTree = "<group>"; };
 		C78B22141D75754B002E25C3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		C78B22161D757FC2002E25C3 /* libRestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRestKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/KatsanaAPI-hhzibggatksltkaygchrmhgwylbh/Build/Products/Debug-iphonesimulator/RestKit/libRestKit.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C78B22171D757FC2002E25C3 /* libRestKit.a in Frameworks */,
 				C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */,
 				C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */,
 				C751054F1D742B5F00F4C341 /* MapKit.framework in Frameworks */,
@@ -138,7 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C75105081D7422BF00F4C341 /* KatsanaAPI.framework in Frameworks */,
+				C75105081D7422BF00F4C341 /* KatsanaSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +151,7 @@
 		5DD901B866D20EE7A742A486 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C78B22161D757FC2002E25C3 /* libRestKit.a */,
 				C75105631D742D8600F4C341 /* CoreLocation.framework */,
 				C751055F1D742D0500F4C341 /* UIKit.framework */,
 				C751055D1D742CE100F4C341 /* CoreGraphics.framework */,
@@ -189,8 +193,8 @@
 		C75104FE1D7422BF00F4C341 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C75104FD1D7422BF00F4C341 /* KatsanaAPI.framework */,
-				C75105071D7422BF00F4C341 /* KatsanaAPITests.xctest */,
+				C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */,
+				C75105071D7422BF00F4C341 /* KatsanaSDK.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -326,9 +330,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C75104FC1D7422BF00F4C341 /* KatsanaAPI */ = {
+		C75104FC1D7422BF00F4C341 /* KatsanaSDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C75105111D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaAPI" */;
+			buildConfigurationList = C75105111D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaSDK" */;
 			buildPhases = (
 				A385557CB25E1C96AB9F9F19 /* 📦 Check Pods Manifest.lock */,
 				C75104F81D7422BF00F4C341 /* Sources */,
@@ -341,14 +345,14 @@
 			);
 			dependencies = (
 			);
-			name = KatsanaAPI;
+			name = KatsanaSDK;
 			productName = KatsanaAPI;
-			productReference = C75104FD1D7422BF00F4C341 /* KatsanaAPI.framework */;
+			productReference = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C75105061D7422BF00F4C341 /* KatsanaAPITests */ = {
+		C75105061D7422BF00F4C341 /* KatsanaSDKTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C75105141D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaAPITests" */;
+			buildConfigurationList = C75105141D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaSDKTests" */;
 			buildPhases = (
 				C75105031D7422BF00F4C341 /* Sources */,
 				C75105041D7422BF00F4C341 /* Frameworks */,
@@ -359,9 +363,9 @@
 			dependencies = (
 				C751050A1D7422BF00F4C341 /* PBXTargetDependency */,
 			);
-			name = KatsanaAPITests;
+			name = KatsanaSDKTests;
 			productName = KatsanaAPITests;
-			productReference = C75105071D7422BF00F4C341 /* KatsanaAPITests.xctest */;
+			productReference = C75105071D7422BF00F4C341 /* KatsanaSDK.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -381,7 +385,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C75104F71D7422BF00F4C341 /* Build configuration list for PBXProject "KatsanaAPI" */;
+			buildConfigurationList = C75104F71D7422BF00F4C341 /* Build configuration list for PBXProject "KatsanaSDK" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -393,8 +397,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C75104FC1D7422BF00F4C341 /* KatsanaAPI */,
-				C75105061D7422BF00F4C341 /* KatsanaAPITests */,
+				C75104FC1D7422BF00F4C341 /* KatsanaSDK */,
+				C75105061D7422BF00F4C341 /* KatsanaSDKTests */,
 			);
 		};
 /* End PBXProject section */
@@ -490,7 +494,7 @@
 /* Begin PBXTargetDependency section */
 		C751050A1D7422BF00F4C341 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C75104FC1D7422BF00F4C341 /* KatsanaAPI */;
+			target = C75104FC1D7422BF00F4C341 /* KatsanaSDK */;
 			targetProxy = C75105091D7422BF00F4C341 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -599,7 +603,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaAPI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KatsanaSDK;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -617,7 +621,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaAPI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KatsanaSDK;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -628,7 +632,7 @@
 				INFOPLIST_FILE = KatsanaAPITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaAPITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KatsanaSDK;
 			};
 			name = Debug;
 		};
@@ -638,14 +642,14 @@
 				INFOPLIST_FILE = KatsanaAPITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaAPITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KatsanaSDK;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C75104F71D7422BF00F4C341 /* Build configuration list for PBXProject "KatsanaAPI" */ = {
+		C75104F71D7422BF00F4C341 /* Build configuration list for PBXProject "KatsanaSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C751050F1D7422BF00F4C341 /* Debug */,
@@ -654,7 +658,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C75105111D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaAPI" */ = {
+		C75105111D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C75105121D7422BF00F4C341 /* Debug */,
@@ -663,7 +667,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C75105141D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaAPITests" */ = {
+		C75105141D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaSDKTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C75105151D7422BF00F4C341 /* Debug */,

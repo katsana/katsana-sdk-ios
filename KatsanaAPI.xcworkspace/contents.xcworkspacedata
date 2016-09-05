@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:KatsanaAPI.xcodeproj">
+      location = "group:/Users/Lutfi/Documents/Xcode/Project/Katsana/KatsanaAPI/KatsanaSDK.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

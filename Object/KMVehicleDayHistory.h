@@ -45,9 +45,5 @@
 - (BOOL)dateEqualToVehicleDayHistory:(KMVehicleDayHistory*)history;
 - (BOOL)isEqual:(id)object;
 
-#pragma mark - Custom type
-//!Set if need indicator this object is custom type;
-@property (nonatomic, assign) BOOL customType;
-- (void)setupCustomTypeDetailFromDayHistories:(NSArray*)dayHistories;
 
 @end

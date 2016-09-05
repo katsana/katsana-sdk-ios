@@ -33,7 +33,7 @@
 
 @property (nonatomic, assign) BOOL showAtActivityScreen;
 
-
+- (void)reloadDataWithVehicle:(KMVehicle*)vehicle;
 - (void)carImageWithBlock:(void (^)(UIImage *image))completion;
 //!Get car image with size {40, 40} the image already masked round without border. It can save performace because the car image will have too be regenerated multiple times in different screens.
 //- (void)maskedCarImageWithBlock:(void (^)(UIImage *image))completion;

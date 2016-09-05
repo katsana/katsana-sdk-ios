@@ -7,7 +7,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "KMUserManager.h"
 
 @interface KatsanaAPITests : XCTestCase
 

@@ -20,6 +20,22 @@
     BOOL _loadingImage;
 }
 
+- (void)reloadDataWithVehicle:(KMVehicle*)vehicle{
+    self.vehicleDescription = vehicle.description;
+    self.mode = vehicle.mode;
+    self.current = vehicle.current;
+    self.currentPosition = vehicle.currentPosition;
+    self.avatarURLPath = vehicle.avatarURLPath;
+    self.marker = vehicle.marker;
+    self.todayMaxSpeed = vehicle.todayMaxSpeed;
+    self.speedLimit = vehicle.speedLimit;
+    self.odometer = vehicle.odometer;
+    self.subscriptionEnd = vehicle.subscriptionEnd;
+    self.websocket = vehicle.websocket;
+    self.currentAddress = vehicle.currentAddress;
+    self.carImage = vehicle.carImage;
+}
+
 - (NSString*)todayMaxSpeedString{
     return [NSString stringWithFormat:@"%.0f km/h", self.todayMaxSpeed * KNOT_TO_KMH];
 }

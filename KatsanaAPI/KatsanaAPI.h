@@ -17,3 +17,7 @@ FOUNDATION_EXPORT const unsigned char KatsanaAPIVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <KatsanaAPI/PublicHeader.h>
 
 #import <RestKit/RestKit.h>
+//#import <KatsanaAPI/CDGeneratorParser.h>
+//#import <CodeGenerator/CDClassObject.h>
+//#import <CodeGenerator/CDCodeGenerator.h>
+//#import <CodeGenerator/CDMethodObject.h>

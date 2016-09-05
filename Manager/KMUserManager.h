@@ -33,7 +33,7 @@ static NSString* KMVehicleLocationUpdatedNotification  = @"vehicleLocationUpdate
 @property (nonatomic, strong) KMVehiclePosition *lastVehiclePosition;
 @property (nonatomic, strong) NSDate *lastUpdateToken;
 
-
+- (BOOL)websocketSupported;
 - (BOOL)haveOnlyOneVehicle;
 - (NSString*)lastVehicleId;
 - (NSArray*)lastVehicleIds;
@@ -73,10 +73,6 @@ static NSString* KMVehicleLocationUpdatedNotification  = @"vehicleLocationUpdate
 //Notifications
 -(void)loadNotificationSettings:(void (^)(KMNotificationSettings *))success failure:(void (^)(NSError *error))failure;
 - (void)saveServerNotificationSettings:(void (^)(BOOL success))success forTypeKeypath:(NSString*)typeKeypath;
-
-
-//Other
--(void)setParkModeForVehicleId:(NSString*)vehicleId park:(BOOL)park success:(void (^)(KMVehicle*))success failure:(void (^)(NSError *error))failure;
 
 - (void)logoutCurrentUser;
 

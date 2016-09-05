@@ -131,18 +131,25 @@
     [oper setCompletionBlockWithSuccess:^(AFRKHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
         NSString *token = json[@"token"];
-        _token = token;
-        _lastUpdateToken = [NSDate date];
-        [weakSelf.HTTPClient setDefaultHeader:@"Authorization" value:[@"Bearer " stringByAppendingString:token]];
-        [weakSelf loadAuthenticatedUser:^(KMUser *user) {
-            weakSelf.currentUser = user;
-            success(user);
-//            [FIRAnalytics setUserID:user.userId];
-            
-        } failure:^(NSError *error) {
+        if (token) {
+            _token = token;
+            _lastUpdateToken = [NSDate date];
+            [weakSelf.HTTPClient setDefaultHeader:@"Authorization" value:[@"Bearer " stringByAppendingString:token]];
+            [weakSelf loadAuthenticatedUser:^(KMUser *user) {
+                weakSelf.currentUser = user;
+                success(user);
+            } failure:^(NSError *error) {
+                failure(error);
+                NSLog(@"%@", error);
+            }];
+        }else{
+            NSMutableDictionary* details = [NSMutableDictionary dictionary];
+            if (json[@"error"]) {
+                [details setValue:json[@"error"] forKey:NSLocalizedDescriptionKey];
+            }
+            NSError *error = [NSError errorWithDomain:@"KMKatsanaDomain" code:101 userInfo:details];
             failure(error);
-            NSLog(@"%@", error);
-        }];
+        }
     } failure:^(AFRKHTTPRequestOperation *operation, NSError *error) {
         failure(error);
         DDLogError(@"%@", error.localizedDescription);
@@ -150,7 +157,7 @@
     [oper start];
 }
 
-- (void) loadFirebaseUserToken:(void (^)(NSString *token))success failure:(void (^)(RKObjectRequestOperation *oper, NSError *error))failure {
+- (void) loadFirebaseUserToken:(void (^)(NSString *token))success failure:(void (^)(NSError *error))failure {
     [self getObjectsAtPath:@"firebase/token" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if (success) {
             NSError *error;
@@ -160,7 +167,7 @@
                 NSString *token = json[@"token"];
                 success(token);
             }else{
-                failure(operation, nil);
+                failure(nil);
                 DDLogError(@"Error loading firebase token: %@", @"No response data");
             }
             
@@ -177,7 +184,7 @@
         }else{
             if (failure) {
                 DDLogError(@"Error loading firebase token: %@", error.localizedDescription);
-                failure(operation, error);
+                failure(error);
             }
         }
     }];
@@ -823,6 +830,17 @@
     }
     return NO;
 }
+
+- (BOOL)websocketSupported{
+    BOOL supported = NO;
+    for (KMVehicle *vehicle in self.vehicles) {
+        if (vehicle.websocket) {
+            supported = YES;
+        }
+    }
+    return supported;
+}
+
 
 
 @end
