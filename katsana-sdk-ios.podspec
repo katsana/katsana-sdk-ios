@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = "katsana-sdk-ios"
-s.version      = "0.5.3"
+s.version      = "0.5.4"
 s.summary      = "Katsana sdk to access Katsana API"
 
 s.description  = <<-DESC
@@ -11,9 +11,9 @@ s.homepage     = "https://github.com/katsana/katsana-sdk-ios"
 s.license      = {:type => 'apache'}
 s.author       = { "Wan Ahmad Lutfi" => "lutfime_2000@yahoo.com" }
 s.platform     = :ios, '7.0'
-s.source_files  = 'KatsanaSDK', 'KatsanaSDK/**/*.{h,m}'
-s.public_header_files = 'KatsanaSDK/**/*.h'
-#s.resources    = "KatsanaSDK/*.png"
+s.source_files  = 'KatsanaAPI', 'KatsanaAPI/**/*.{h,m}'
+s.public_header_files = 'KatsanaAPI/**/*.h'
+#s.resources    = "KatsanaAPI/*.png"
 s.framework    = 'CoreLocation'
 s.requires_arc = true
 s.source       = { :git => "https://github.com/katsana/katsana-sdk-ios.git", :tag => "#{s.version}" }

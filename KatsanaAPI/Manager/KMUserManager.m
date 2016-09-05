@@ -17,11 +17,35 @@
 #import "KMNotificationSettingsObject.h"
 #import "KMAvatar.h"
 #import "UIImage+Extension.h"
+#import "KMObjectManager.h"
+#import "KMObjectManager.h"
+
+@interface KMUserManager ()
+
+@property (nonatomic, strong) KMObjectManager *manager;
+
+- (NSURL*)baseURL;
+
+@end
 
 @implementation KMUserManager{
     NSDate *_lastLoadAllVehiclesDate;
     NSArray *_lastVehicleIds;
     NSArray *_lastVehicleImeis;
+}
+
+#pragma mark - Getter
+
+static KMUserManager *sharedPeerToPeer = nil;
++ (instancetype) sharedInstance {
+    if (!sharedPeerToPeer) {
+        sharedPeerToPeer = [[[self class] alloc] init];
+    }
+    return sharedPeerToPeer;
+}
+
+- (NSURL*)baseURL{
+    return self.manager.baseURL;
 }
 
 #pragma mark - Setter
@@ -80,7 +104,7 @@
         NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&errorJson];
         if (responseDict[@"token"]) {
             _token = responseDict[@"token"];
-            [self.HTTPClient setDefaultHeader:@"Authorization" value:[@"Bearer " stringByAppendingString:responseDict[@"token"]]];
+            [self.manager.HTTPClient setDefaultHeader:@"Authorization" value:[@"Bearer " stringByAppendingString:responseDict[@"token"]]];
             _lastUpdateToken = [NSDate date];
             if (success) success(YES);
         }else{
@@ -97,7 +121,7 @@
 
 - (void) loadAuthenticatedUser:(void (^)(KMUser *))success failure:(void (^)(NSError * error))failure {
     __weak typeof(self) weakSelf = self;
-    [self getObjectsAtPath:@"profile" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.manager getObjectsAtPath:@"profile" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if (success) {
             KMUser *currentUser = (KMUser *)[mappingResult.array firstObject];
             success(currentUser);
@@ -113,6 +137,7 @@
 
 -(void)loginWithUserName:(NSString *)email password:(NSString*)password user:(void (^)(KMUser *user))success failure:(void (^)(NSError *error))failure{
     __weak typeof(self) weakSelf = self;
+    KMObjectManager *manager = self.manager;
     
 //    BOOL devMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"devMode"];
 //    if (devMode || [email.lowercaseString containsString:@"lutfime_2000"]) {
@@ -134,7 +159,7 @@
         if (token) {
             _token = token;
             _lastUpdateToken = [NSDate date];
-            [weakSelf.HTTPClient setDefaultHeader:@"Authorization" value:[@"Bearer " stringByAppendingString:token]];
+            [manager.HTTPClient setDefaultHeader:@"Authorization" value:[@"Bearer " stringByAppendingString:token]];
             [weakSelf loadAuthenticatedUser:^(KMUser *user) {
                 weakSelf.currentUser = user;
                 success(user);
@@ -158,7 +183,7 @@
 }
 
 - (void) loadFirebaseUserToken:(void (^)(NSString *token))success failure:(void (^)(NSError *error))failure {
-    [self getObjectsAtPath:@"firebase/token" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.manager getObjectsAtPath:@"firebase/token" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if (success) {
             NSError *error;
             id response = operation.HTTPRequestOperation.responseData;
@@ -193,7 +218,7 @@
 - (void)saveUserProfile:(void (^)(BOOL success, NSDictionary *responseError))success {
     KMUser *user = self.currentUser;
     
-    [self patchObject:user path:@"profile" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.manager patchObject:user path:@"profile" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         KMUser *updatedUser = (KMUser *)[mappingResult.array firstObject];
         
         success(updatedUser, nil);
@@ -243,14 +268,14 @@
     
     KMAvatar *avatar = [[KMAvatar alloc] init];
     avatar.file = image;
-    NSMutableURLRequest *request = [self multipartFormRequestWithObject:avatar method:RKRequestMethodPOST path:@"profile/avatar" parameters:nil constructingBodyWithBlock:^(id<AFRKMultipartFormData> formData) {
+    NSMutableURLRequest *request = [self.manager multipartFormRequestWithObject:avatar method:RKRequestMethodPOST path:@"profile/avatar" parameters:nil constructingBodyWithBlock:^(id<AFRKMultipartFormData> formData) {
         [formData appendPartWithFileData:UIImageJPEGRepresentation(image, 0.8)
                                     name:@"file"
                                 fileName:@"avatar.png"
                                 mimeType:@"image/jpeg"];
     }];
     
-    RKObjectRequestOperation *operation = [self objectRequestOperationWithRequest:request success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    RKObjectRequestOperation *operation = [self.manager objectRequestOperationWithRequest:request success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success(YES);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSData *data = operation.HTTPRequestOperation.responseData ;
@@ -268,7 +293,7 @@
             success(NO);
         }
     }];
-    [self enqueueObjectRequestOperation:operation];
+    [self.manager enqueueObjectRequestOperation:operation];
 }
 
 - (void)saveVehicleProfile:(NSString*)vehicleId success:(void (^)(BOOL success, NSDictionary *responseError))success {
@@ -279,7 +304,7 @@
     }
     
     NSString *path = [NSString stringWithFormat:@"vehicles/%@", vehicleId];
-    [self patchObject:vehicle path:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.manager patchObject:vehicle path:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         KMVehicle *updatedVehicle = (KMVehicle *)[mappingResult.array firstObject];
         
         success(updatedVehicle, nil);
@@ -329,14 +354,14 @@
     KMAvatar *avatar = [[KMAvatar alloc] init];
     avatar.file = image;
     NSString *path = [NSString stringWithFormat:@"vehicles/%@/avatar", vehicleId];
-    NSMutableURLRequest *request = [self multipartFormRequestWithObject:avatar method:RKRequestMethodPOST path:path parameters:nil constructingBodyWithBlock:^(id<AFRKMultipartFormData> formData) {
+    NSMutableURLRequest *request = [self.manager multipartFormRequestWithObject:avatar method:RKRequestMethodPOST path:path parameters:nil constructingBodyWithBlock:^(id<AFRKMultipartFormData> formData) {
         [formData appendPartWithFileData:UIImageJPEGRepresentation(image, 0.8)
                                     name:@"file"
                                 fileName:@"avatar.png"
                                 mimeType:@"image/jpeg"];
     }];
     
-    RKObjectRequestOperation *operation = [self objectRequestOperationWithRequest:request success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    RKObjectRequestOperation *operation = [self.manager objectRequestOperationWithRequest:request success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success(YES);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSData *data = operation.HTTPRequestOperation.responseData ;
@@ -354,7 +379,7 @@
             success(NO);
         }
     }];
-    [self enqueueObjectRequestOperation:operation];
+    [self.manager enqueueObjectRequestOperation:operation];
 }
 
 
@@ -371,7 +396,7 @@
     
     NSString *path = [NSString stringWithFormat:@"vehicles/%@", vehicleId];
     __weak typeof(self) weakSelf = self;
-    [self getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.manager getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if (success) {
             KMVehicle *vehicle = (KMVehicle *)[mappingResult.array firstObject];
             weakSelf.vehicle = vehicle;
@@ -393,7 +418,7 @@
     }
     __weak typeof(self) weakSelf = self;
     NSString *path = [NSString stringWithFormat:@"vehicles/%@/location", vehicleId];
-    [self getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.manager getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if (success) {
             KMVehiclePosition *pos = (KMVehiclePosition *)[mappingResult.array firstObject];
             weakSelf.lastVehiclePosition = pos;
@@ -438,7 +463,7 @@
     }
     
     __weak typeof(self) weakSelf = self;
-    [self getObjectsAtPath:@"vehicles" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.manager getObjectsAtPath:@"vehicles" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if (success) {
             
             NSArray *vehicles = mappingResult.array;
@@ -501,7 +526,7 @@
     NSString *dateStr = [NSString stringWithFormat:@"%lu/%lu/%lu", (long)theDateComps.year, (long)theDateComps.month, (long)theDateComps.day];
     
     NSString *path = [NSString stringWithFormat:@"vehicles/%@/travels/%@", vehicleId, dateStr];
-    [self getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.manager getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if (success) {
             KMVehicleDayHistory *history = (KMVehicleDayHistory *)[mappingResult.array firstObject];
             history.historyDate = date;
@@ -520,7 +545,7 @@
 
 - (void)loadTripSummaryTodayForVehicleId:(NSString*)vehicleId success:(void (^)(KMVehicleDayHistory *dayHistory))success{
     NSString *path = [NSString stringWithFormat:@"vehicles/%@/summaries/today", vehicleId];
-    [self getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.manager getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if (success) {
             KMVehicleDayHistory *history = (KMVehicleDayHistory *)mappingResult.array.firstObject;
             success(history);
@@ -587,7 +612,7 @@
     NSString *path = [NSString stringWithFormat:@"vehicles/%@/summaries/duration", vehicleId];
     NSDictionary *params = @{@"start" : fromDateStr, @"end" : toDateStr};
     //    __weak typeof(self) weakSelf = self;
-    [self getObjectsAtPath:path parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.manager getObjectsAtPath:path parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if (success) {
             NSArray *theHistories = (NSArray *)mappingResult.array ;
 //            history.historyDate = date;
@@ -649,7 +674,7 @@
             success(address);
         }else{
             NSDictionary *params = @{@"latitude" : @(location.latitude), @"longitude" : @(location.longitude)};
-            [self getObjectsAtPath:@"address" parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+            [self.manager getObjectsAtPath:@"address" parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                 if (success) {
                     KMAddress *address = (KMAddress *)[mappingResult.array firstObject];
                     address.latitude = location.latitude; //The location result may different, so need to make it equal
@@ -695,7 +720,7 @@
 
 -(void)loadNotificationSettings:(void (^)(KMNotificationSettings *notificationSettings))success failure:(void (^)(NSError *error))failure{
     __weak typeof(self) weakSelf = self;
-    [self getObjectsAtPath:@"notifications/settings" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [self.manager getObjectsAtPath:@"notifications/settings" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if (success) {
             KMNotificationSettings *notfSettings = [mappingResult.array firstObject];
             weakSelf.notificationSettings = notfSettings;
@@ -718,7 +743,7 @@
     NSString *path = [NSString stringWithFormat:@"notifications/settings/%@", typeKeypath];
     if (needUpdateAll) {
         NSDictionary *dicto = @{@"enabled" : @(needUpdateBoolValue)}.mutableCopy;
-        [self patchObject:dicto path:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        [self.manager patchObject:dicto path:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             success(YES);
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:operation.HTTPRequestOperation.responseData options:0 error:&error];
@@ -741,7 +766,7 @@
                 continue;
             }
             NSDictionary *dicto = @{@"device_id" : settingsObj.vehicleId, @"enabled" : @(settingsObj.enabled)}.mutableCopy;
-            [self patchObject:dicto path:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+            [self.manager patchObject:dicto path:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                 success(YES);
             } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                 //Due to how json passed from server, there seems no way to use normal RestKit API to patch object. So we result to using json approach, the good thing is the patch to server does work, only  returned json cannot be passed to app using normal RestKit method.
@@ -764,7 +789,7 @@
 #pragma mark - Setup Helpers
 
 - (void) setupResponseDescriptors {
-    [super setupResponseDescriptors];
+    [self.manager setupResponseDescriptors];
     
     RKResponseDescriptor *authenticatedUserResponseDescriptors = [RKResponseDescriptor responseDescriptorWithMapping:[KMMappingProvider userMapping] method:RKRequestMethodGET pathPattern:@"profile" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
@@ -805,8 +830,8 @@
                                                                                rootKeyPath:nil method:RKRequestMethodPOST];
 
     
-    [self addRequestDescriptorsFromArray:@[profileRequest, avatarRequest, vehicleRequest, vehicleAvatarRequest, notificationSettingsRequest]];
-    [self addResponseDescriptorsFromArray:@[authenticatedUserResponseDescriptors, vehicleResponse, locationResponse, vehiclesResponse, vehicleHistoryResponse, addressResponse, notificationSettingsResponse, vehicleSummaryResponse, vehicleSummaryTodayResponse]];
+    [self.manager addRequestDescriptorsFromArray:@[profileRequest, avatarRequest, vehicleRequest, vehicleAvatarRequest, notificationSettingsRequest]];
+    [self.manager addResponseDescriptorsFromArray:@[authenticatedUserResponseDescriptors, vehicleResponse, locationResponse, vehiclesResponse, vehicleHistoryResponse, addressResponse, notificationSettingsResponse, vehicleSummaryResponse, vehicleSummaryTodayResponse]];
 
 }
 

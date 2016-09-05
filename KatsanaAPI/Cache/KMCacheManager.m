@@ -167,7 +167,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
 }
 
 - (KMActivityObject*)latestCachedActivityObject{
-    KMUser *user = [KMUserManager sharedManager].currentUser;
+    KMUser *user = [KMUserManager sharedInstance].currentUser;
     NSMutableArray *activities;
     if (user.userId) {
         activities = self.activities[user.userId];
@@ -179,7 +179,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
 }
 
 - (NSArray*)activityObjects{
-    KMUser *user = [KMUserManager sharedManager].currentUser;
+    KMUser *user = [KMUserManager sharedInstance].currentUser;
     NSMutableArray *activities;
     if (user.userId) {
         activities = self.activities[user.userId.copy];
@@ -301,7 +301,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
     if (!self.activities) {
         self.activities = [NSMutableDictionary dictionary];
     }
-    KMUser *user = [KMUserManager sharedManager].currentUser;
+    KMUser *user = [KMUserManager sharedInstance].currentUser;
     if (!user || ![identifier isEqualToString:user.userId]) {
         return;
     }

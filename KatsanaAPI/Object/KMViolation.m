@@ -26,7 +26,7 @@
 
 - (KMVehicle*)vehicle{
     if (!_vehicle) {
-        _vehicle = [[KMUserManager sharedManager] vehicleWithVehicleId:self.deviceId];
+        _vehicle = [[KMUserManager sharedInstance] vehicleWithVehicleId:self.deviceId];
     }
     return _vehicle;
 }
@@ -37,7 +37,7 @@
         completion(@"");
         return;
     }
-    [[KMUserManager sharedManager] loadAddressWithLocation:CLLocationCoordinate2DMake(self.latitude, self.longitude) address:^(KMAddress *address) {
+    [[KMUserManager sharedInstance] loadAddressWithLocation:CLLocationCoordinate2DMake(self.latitude, self.longitude) address:^(KMAddress *address) {
         _address = address.optimizedAddress;
         completion(_address);
     } failure:^(NSError *error) {

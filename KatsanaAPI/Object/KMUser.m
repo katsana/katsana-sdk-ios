@@ -11,6 +11,7 @@
 //#import "NSDate+Compare.h"
 #import "KMActivityObject.h"
 #import <objc/runtime.h>
+#import <RestKit/RestKit.h>
 
 @interface KMUser ()
 

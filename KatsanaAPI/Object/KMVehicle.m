@@ -7,6 +7,7 @@
 //
 
 #import "KMVehicle.h"
+#import <RestKit/RestKit.h>
 //#import "KMCarImageRasterView.h"
 
 @interface KMVehicle ()
@@ -113,7 +114,7 @@
     }
     
     if (coord.latitude !=0 && coord.longitude != 0) {
-        [[KMUserManager sharedManager] loadAddressWithLocation:coord address:^(KMAddress *address) {
+        [[KMUserManager sharedInstance] loadAddressWithLocation:coord address:^(KMAddress *address) {
             self.currentAddress = address;
             _lastCoordinate = self.current.coordinate;
             completion(address);

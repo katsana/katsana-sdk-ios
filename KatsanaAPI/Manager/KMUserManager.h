@@ -6,8 +6,6 @@
 //  Copyright © 2015 bijokmind. All rights reserved.
 //
 
-#import "KMObjectManager.h"
-
 static NSString* KMUserLogonSuccessNotification  = @"userLogonSuccessNotf";
 static NSString* KMUserWillLogoutNotification  = @"userWillLogoutNotf";
 static NSString* KMUserLogoutNotification  = @"userLogoutNotf";
@@ -20,7 +18,7 @@ static NSString* KMVehicleLocationUpdatedNotification  = @"vehicleLocationUpdate
 @class KMVehiclePosition;
 @class KMNotificationSettings;
 
-@interface KMUserManager : KMObjectManager
+@interface KMUserManager : NSObject;
 
 //@property (nonatomic, strong) NSString *baseURL;
 
@@ -32,6 +30,8 @@ static NSString* KMVehicleLocationUpdatedNotification  = @"vehicleLocationUpdate
 
 @property (nonatomic, strong) KMVehiclePosition *lastVehiclePosition;
 @property (nonatomic, strong) NSDate *lastUpdateToken;
+
++ (instancetype) sharedInstance;
 
 - (BOOL)websocketSupported;
 - (BOOL)haveOnlyOneVehicle;

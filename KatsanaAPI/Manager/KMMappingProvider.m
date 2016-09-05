@@ -16,6 +16,7 @@
 #import "KMTrip.h"
 #import "KMNotificationSettings.h"
 #import "KMNotificationSettingsObject.h"
+#import <RestKit/RestKit.h>
 
 @implementation KMMappingProvider
 
