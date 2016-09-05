@@ -18,6 +18,7 @@ typedef void (^ImageCompletionBlock)(UIImage *image);
 
 #import "KMConstant.h"
 
+#import <CoreLocation/CoreLocation.h>
 #import <FastCoding/FastCoder.h>
 #import <CocoaLumberjack/CocoaLumberjack.h>
 

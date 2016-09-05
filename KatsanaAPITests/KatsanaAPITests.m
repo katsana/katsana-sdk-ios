@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <KatsanaSDK/KatsanaSDK.h>
 
 @interface KatsanaAPITests : XCTestCase
 
