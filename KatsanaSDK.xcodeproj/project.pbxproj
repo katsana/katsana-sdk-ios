@@ -587,6 +587,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3D786442C2AB6D4BE27A725B /* Pods-KatsanaAPI.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -605,6 +606,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A88E055993D55DACBBEBFEB3 /* Pods-KatsanaAPI.release.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

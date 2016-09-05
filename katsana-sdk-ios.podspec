@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = "katsana-sdk-ios"
-s.version      = "0.5.0"
+s.version      = "0.5.2"
 s.summary      = "Katsana sdk to access Katsana API"
 
 s.description  = <<-DESC
