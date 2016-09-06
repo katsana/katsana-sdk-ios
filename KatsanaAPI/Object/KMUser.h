@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *address;
-@property (nonatomic, strong) NSString *phoneNumber;
+@property (nonatomic, strong) NSString *phoneHome;
 @property (nonatomic, strong) NSString *phoneMobile;
 @property (nonatomic, strong) NSString *identification;
 @property (nonatomic, strong) NSString *fullname;

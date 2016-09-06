@@ -17,6 +17,7 @@ static NSString* KMVehicleLocationUpdatedNotification  = @"vehicleLocationUpdate
 @class KMAddress;
 @class KMVehiclePosition;
 @class KMNotificationSettings;
+@import CoreLocation;
 
 @interface KMUserManager : NSObject;
 

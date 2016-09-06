@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import <KatsanaSDK/KatsanaSDK.h>
+#import "XCTestCase+AsyncTesting.h"
 
 @interface KatsanaAPITests : XCTestCase
 
@@ -38,11 +39,12 @@
 }
 
 - (void)testLogin {
-    [[KMUserManager sharedManager] loginWithUserName:@"test@yahoo.com" password:@"test" user:^(KMUser *user) {
+    [[KMUserManager sharedInstance] loginWithUserName:@"" password:@"" user:^(KMUser *user) {
         NSLog(@"%@", user);
     } failure:^(NSError *error) {
        
     }];
+    [self XCA_waitForTimeout:5];
 }
 
 @end

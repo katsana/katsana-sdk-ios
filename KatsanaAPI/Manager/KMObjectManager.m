@@ -10,17 +10,15 @@
 
 static KMObjectManager *sharedManager = nil;
 
-@implementation KMObjectManager{
-    NSString *_privateBaseURL;
-}
+@implementation KMObjectManager
 
-static KMObjectManager *sharedPeerToPeer = nil;
+static NSString *privateURLPath = nil;
 
-+ (instancetype)privateInstance {
-    if (!sharedPeerToPeer) {
-        sharedPeerToPeer = [[[self class] alloc] init];
++ (NSString*)privateURLPath {
+    if (!privateURLPath) {
+        privateURLPath = [NSString string];
     }
-    return sharedPeerToPeer;
+    return privateURLPath;
 }
 
 + (instancetype)sharedManager {
@@ -70,15 +68,16 @@ static KMObjectManager *sharedPeerToPeer = nil;
 }
 
 + (NSString*)defaultBaseURL{
-    NSString *baseURL = [KMObjectManager privateInstance]->_privateBaseURL;
-    if (!baseURL) {
-        baseURL = @"https://api.katsana.com/";
+    NSString *baseURL = privateURLPath;
+    if (baseURL.length == 0) {
+        privateURLPath = @"https://api.katsana.com/";
+        baseURL = privateURLPath;
     }
     return baseURL;
 }
 
 + (void)resetWithBaseURL:(NSString*)baseURL{
-    [KMObjectManager privateInstance]->_privateBaseURL = baseURL;
+    privateURLPath = baseURL;
     [self resetSharedManager];
 }
 

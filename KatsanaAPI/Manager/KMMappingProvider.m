@@ -25,7 +25,7 @@
     NSDictionary *mappingDictionary = @{@"email": @"email",
                                         @"id": @"userId",
                                         @"address": @"address",
-                                        @"phone_number": @"phoneNumber",
+                                        @"phone_home": @"phoneHome",
                                         @"phone_mobile": @"phoneMobile",
                                         @"identification": @"identification",
                                         @"fullname": @"fullname",
@@ -235,7 +235,7 @@
     
     RKObjectMapping *mapping = [RKObjectMapping requestMapping];
     NSDictionary *mappingDictionary = @{@"address": @"address",
-                                        @"phone_number": @"phoneNumber",
+                                        @"phone_home": @"phoneHome",
                                         @"phone_mobile": @"phoneMobile",
                                         @"fullname": @"fullname",
                                         @"meta.emergency.fullname": @"emergencyFullName",

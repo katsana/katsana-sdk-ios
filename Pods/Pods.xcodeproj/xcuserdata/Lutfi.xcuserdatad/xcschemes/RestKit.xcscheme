@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'EAC8364CC6E2F389CFBDA5F8817C2517'
+               BlueprintIdentifier = 'BCBB43967B660584B4556F4D0D2F464C'
                BlueprintName = 'RestKit'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libRestKit.a'>

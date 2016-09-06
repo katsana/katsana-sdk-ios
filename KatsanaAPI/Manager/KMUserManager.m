@@ -48,6 +48,10 @@ static KMUserManager *sharedPeerToPeer = nil;
     return self.manager.baseURL;
 }
 
+- (KMObjectManager*)manager{
+    return [KMObjectManager sharedManager];
+}
+
 #pragma mark - Setter
 
 - (void)setVehicle:(KMVehicle *)vehicle{
@@ -221,7 +225,7 @@ static KMUserManager *sharedPeerToPeer = nil;
     [self.manager patchObject:user path:@"profile" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         KMUser *updatedUser = (KMUser *)[mappingResult.array firstObject];
         
-        success(updatedUser, nil);
+        success(YES, nil);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         
         NSData *data = operation.HTTPRequestOperation.responseData ;
@@ -229,7 +233,7 @@ static KMUserManager *sharedPeerToPeer = nil;
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
             if (json[@"id"]) {
                 //If inside json has id, means that it has been saved succesfully
-                success(self.currentUser, nil);
+                success(YES, nil);
             }else{
                 success(NO, json);
                 DDLogError(@"Error saving user profile: %@", error.localizedDescription);
@@ -305,9 +309,9 @@ static KMUserManager *sharedPeerToPeer = nil;
     
     NSString *path = [NSString stringWithFormat:@"vehicles/%@", vehicleId];
     [self.manager patchObject:vehicle path:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        KMVehicle *updatedVehicle = (KMVehicle *)[mappingResult.array firstObject];
+//        KMVehicle *updatedVehicle = (KMVehicle *)[mappingResult.array firstObject];
         
-        success(updatedVehicle, nil);
+        success(YES, nil);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         
         NSData *data = operation.HTTPRequestOperation.responseData ;
@@ -315,7 +319,7 @@ static KMUserManager *sharedPeerToPeer = nil;
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
             if (json[@"device"]) {
                 //If inside json has id, means that it has been saved succesfully
-                success(vehicle, nil);
+                success(YES, nil);
             }else{
                 success(NO, json);
                 DDLogError(@"Error saving vehicle profile: %@", error.localizedDescription);

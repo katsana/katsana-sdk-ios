@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+@import CoreLocation;
+
 @class KMVehicleDayHistory;
 @class KMActivityObject;
 

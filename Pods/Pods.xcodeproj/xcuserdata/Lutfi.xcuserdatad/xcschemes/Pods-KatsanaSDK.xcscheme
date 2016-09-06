@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6206A3D40DF0E500175AAECCD3131FD2'
-               BlueprintName = 'Pods-KatsanaAPI'
+               BlueprintIdentifier = '6CD85E3376E095F8FC3FEFDC822597FD'
+               BlueprintName = 'Pods-KatsanaSDK'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-KatsanaAPI.a'>
+               BuildableName = 'libPods-KatsanaSDK.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
