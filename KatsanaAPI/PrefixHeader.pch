@@ -26,7 +26,7 @@ typedef void (^ImageCompletionBlock)(UIImage *image);
 #import "KMAddress.h"
 
 #import "KMCacheManager.h"
-#import "KMUserManager.h"
+#import "KMKatsana.h"
 
 #define CLCOORDINATE_EPSILON 0.005f
 #define CLCOORDINATES_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)

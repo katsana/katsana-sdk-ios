@@ -12,7 +12,7 @@
 
 + (instancetype) sharedManager;
 + (void)resetSharedManager;
-+ (void)resetWithBaseURL:(NSString*)baseURL;
++ (void)resetWithBaseURL:(NSURL*)baseURL;
 
 - (void) setupRequestDescriptors;
 - (void) setupResponseDescriptors;

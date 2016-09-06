@@ -211,4 +211,8 @@
     self.idleDuration = idleDuration;
 }
 
+- (NSString*)description{
+    return [NSString stringWithFormat:@"%@, trips:%@, maxSpeed:%.1f, date:%@", [super description], self.trips, self.maxSpeed, self.historyDate];
+}
+
 @end

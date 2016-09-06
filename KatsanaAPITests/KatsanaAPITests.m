@@ -12,12 +12,40 @@
 
 @interface KatsanaAPITests : XCTestCase
 
+@property (nonatomic, strong) NSString *token;
+@property (nonatomic, strong) KMUser *user;
+@property (nonatomic, strong) NSArray *vehicles;
+@property (nonatomic, strong) NSArray *vehicle;
+
 @end
 
 @implementation KatsanaAPITests
 
 - (void)setUp {
     [super setUp];
+    if (!self.user) {
+        NSString *path = @"/Users/Lutfi/testCredential.plist"; //Path to credential
+        NSDictionary *dicto = [NSDictionary dictionaryWithContentsOfFile:path];
+        
+        NSString *email = dicto[@"username"];
+        NSString *pass = dicto[@"password"];
+        NSString *baseURL = dicto[@"baseURL"];
+        if (baseURL) {
+            [KMKatsana resetBaseURL:[NSURL URLWithString:baseURL]];
+        }
+        
+        
+        [[KMKatsana sharedInstance] loginWithUserName:email password:pass user:^(KMUser *user) {
+            self.token = [KMKatsana sharedInstance].token;
+            self.user = user;
+            NSLog(@"%@", user);
+            [self XCA_notify:XCTAsyncTestCaseStatusSucceeded];
+        } failure:^(NSError *error) {
+            [self XCA_notify:XCTAsyncTestCaseStatusFailed];
+        }];
+        [self XCA_waitForTimeout:5];
+    }
+
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -38,13 +66,37 @@
     }];
 }
 
-- (void)testLogin {
-    [[KMUserManager sharedInstance] loginWithUserName:@"" password:@"" user:^(KMUser *user) {
-        NSLog(@"%@", user);
+- (void)testLoadVehicles {
+    [[KMKatsana sharedInstance] loadVehicles:^(NSArray *vehicles) {
+        NSLog(@"%@", vehicles);
+        [self XCA_notify:XCTAsyncTestCaseStatusSucceeded];
     } failure:^(NSError *error) {
-       
+        
+        [self XCA_notify:XCTAsyncTestCaseStatusFailed];
     }];
     [self XCA_waitForTimeout:5];
 }
+
+- (void)testLoadVehicle{
+    [[KMKatsana sharedInstance] loadVehicleWithId:@"34" vehicle:^(KMVehicle *vehicle) {
+        NSLog(@"%@", vehicle);
+        [self XCA_notify:XCTAsyncTestCaseStatusSucceeded];
+    } failure:^(NSError *error) {
+        [self XCA_notify:XCTAsyncTestCaseStatusFailed];
+    }];
+    [self XCA_waitForTimeout:5];
+}
+
+- (void)tests{
+    [[KMKatsana sharedInstance] loadVehicleHistoryWithId:@"34" date:[NSDate date] vehicle:^(KMVehicleDayHistory *dayHistory) {
+        NSLog(@"%@", dayHistory);
+        [self XCA_notify:XCTAsyncTestCaseStatusSucceeded];
+    } failure:^(NSError *error) {
+        [self XCA_notify:XCTAsyncTestCaseStatusFailed];
+    }];
+    [self XCA_waitForTimeout:5];
+}
+
+
 
 @end

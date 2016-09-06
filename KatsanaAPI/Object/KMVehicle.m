@@ -114,13 +114,17 @@
     }
     
     if (coord.latitude !=0 && coord.longitude != 0) {
-        [[KMUserManager sharedInstance] loadAddressWithLocation:coord address:^(KMAddress *address) {
+        [[KMKatsana sharedInstance] loadAddressWithLocation:coord address:^(KMAddress *address) {
             self.currentAddress = address;
             _lastCoordinate = self.current.coordinate;
             completion(address);
         } failure:^(NSError *error) {
         }];
     }
+}
+
+- (NSString*)description{
+    return [NSString stringWithFormat:@"%@, vehicleNumber:%@, vehicleId:%@, odometer:%.0f", [super description], self.vehicleNumber, self.vehicleId, self.odometer];
 }
 
 @end

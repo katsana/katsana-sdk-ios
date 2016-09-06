@@ -12,11 +12,11 @@ static KMObjectManager *sharedManager = nil;
 
 @implementation KMObjectManager
 
-static NSString *privateURLPath = nil;
+static NSURL *privateURLPath = nil;
 
-+ (NSString*)privateURLPath {
++ (NSURL*)privateURLPath {
     if (!privateURLPath) {
-        privateURLPath = [NSString string];
+        privateURLPath = [[NSURL alloc] init];
     }
     return privateURLPath;
 }
@@ -24,7 +24,7 @@ static NSString *privateURLPath = nil;
 + (instancetype)sharedManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSURL *url = [NSURL URLWithString:[self defaultBaseURL]];
+        NSURL *url = [self defaultBaseURL];
         
         sharedManager = [self managerWithBaseURL:url];
         sharedManager.requestSerializationMIMEType = RKMIMETypeJSON;
@@ -43,7 +43,7 @@ static NSString *privateURLPath = nil;
 }
 
 + (void)resetSharedManager{
-    NSURL *url = [NSURL URLWithString:[self defaultBaseURL]];
+    NSURL *url = [self defaultBaseURL];
     sharedManager.HTTPClient = [AFRKHTTPClient clientWithBaseURL:url];
     
     [sharedManager.HTTPClient registerHTTPOperationClass:[AFRKJSONRequestOperation class]];
@@ -67,16 +67,16 @@ static NSString *privateURLPath = nil;
 - (void) setupResponseDescriptors {
 }
 
-+ (NSString*)defaultBaseURL{
-    NSString *baseURL = privateURLPath;
-    if (baseURL.length == 0) {
-        privateURLPath = @"https://api.katsana.com/";
++ (NSURL*)defaultBaseURL{
+    NSURL *baseURL = privateURLPath;
+    if (baseURL.path.length == 0) {
+        privateURLPath = [NSURL URLWithString:@"https://api.katsana.com/"];
         baseURL = privateURLPath;
     }
     return baseURL;
 }
 
-+ (void)resetWithBaseURL:(NSString*)baseURL{
++ (void)resetWithBaseURL:(NSURL*)baseURL{
     privateURLPath = baseURL;
     [self resetSharedManager];
 }

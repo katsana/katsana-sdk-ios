@@ -19,7 +19,7 @@ static NSString* KMVehicleLocationUpdatedNotification  = @"vehicleLocationUpdate
 @class KMNotificationSettings;
 @import CoreLocation;
 
-@interface KMUserManager : NSObject;
+@interface KMKatsana : NSObject;
 
 //@property (nonatomic, strong) NSString *baseURL;
 
@@ -33,7 +33,10 @@ static NSString* KMVehicleLocationUpdatedNotification  = @"vehicleLocationUpdate
 @property (nonatomic, strong) NSDate *lastUpdateToken;
 
 + (instancetype) sharedInstance;
+//!Change to other base url
++ (void)resetBaseURL:(NSURL*)url;
 
+- (NSURL*)baseURL;
 - (BOOL)websocketSupported;
 - (BOOL)haveOnlyOneVehicle;
 - (NSString*)lastVehicleId;
@@ -42,7 +45,7 @@ static NSString* KMVehicleLocationUpdatedNotification  = @"vehicleLocationUpdate
 - (KMVehicle*)vehicleWithVehicleId:(NSString*)vehicleId;
 
 - (void)refreshToken:(void (^)(BOOL))success;
-- (void)loginWithUserName:(NSString *)email password:(NSString*)password user:(void (^)(KMUser *))success failure:(void (^)(NSError *error))failure;
+- (void)loginWithUserName:(NSString *)email password:(NSString*)password user:(void (^)(KMUser *user))success failure:(void (^)(NSError *error))failure;
 - (void)loadFirebaseUserToken:(void (^)(NSString *token))success failure:(void (^)(NSError *error))failure;
 
 //Profile
@@ -52,24 +55,24 @@ static NSString* KMVehicleLocationUpdatedNotification  = @"vehicleLocationUpdate
 - (void)saveVehicleProfileImage:(UIImage*)image vehicleId:(NSString*)vehicleId success:(void (^)(BOOL success))success;
 
 //Vehicle
--(void)loadVehicleWithId:(NSString*)vehicleId vehicle:(void (^)(KMVehicle *))success failure:(void (^)(NSError *error))failure;
--(void)loadVehicles:(void (^)(NSArray *))success failure:(void (^)(NSError *error))failure;
--(void)loadVehicles:(void (^)(NSArray *))success forceLoad:(BOOL)forceLoad failure:(void (^)(NSError *error))failure;
-- (void)loadFirstVehicle:(void (^)(KMVehicle *))success failure:(void (^)(NSError *error))failure;;
+-(void)loadVehicleWithId:(NSString*)vehicleId vehicle:(void (^)(KMVehicle *vehicle))success failure:(void (^)(NSError *error))failure;
+-(void)loadVehicles:(void (^)(NSArray *vehicles))success failure:(void (^)(NSError *error))failure;
+-(void)loadVehicles:(void (^)(NSArray *vehicles))success forceLoad:(BOOL)forceLoad failure:(void (^)(NSError *error))failure;
+-(void)loadFirstVehicle:(void (^)(KMVehicle *vehicle))success failure:(void (^)(NSError *error))failure;;
 
 //Vehicle Location
--(void)loadVehicleLocationWithId:(NSString*)vehicleId vehicle:(void (^)(KMVehiclePosition *))success failure:(void (^)(NSError *error))failure;
+-(void)loadVehicleLocationWithId:(NSString*)vehicleId vehicle:(void (^)(KMVehiclePosition *pos))success failure:(void (^)(NSError *error))failure;
 -(void)loadAllVehicleLocations:(void (^)(NSArray *))success failure:(void (^)(NSError *error))failure;
 
 //History
--(void)loadVehicleHistoryWithId:(NSString*)vehicleId date:(NSDate*)date vehicle:(void (^)(KMVehicleDayHistory *))success failure:(void (^)(NSError *error))failure;
+-(void)loadVehicleHistoryWithId:(NSString*)vehicleId date:(NSDate*)date vehicle:(void (^)(KMVehicleDayHistory *dayHistory))success failure:(void (^)(NSError *error))failure;
 //!Load trip history, if no cached data, get summary data
 -(void)loadVehicleHistoriesWithId:(NSString*)vehicleId fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate histories:(void (^)(NSArray *histories))success failure:(void (^)(NSError *error))failure;
--(void)loadVehicleHistoryWithId:(NSString*)vehicleId date:(NSDate*)date forceLoad:(BOOL)forceLoad UTCDate:(BOOL)useUTCDate vehicle:(void (^)(KMVehicleDayHistory *))success failure:(void (^)(NSError *error))failure;
+-(void)loadVehicleHistoryWithId:(NSString*)vehicleId date:(NSDate*)date forceLoad:(BOOL)forceLoad UTCDate:(BOOL)useUTCDate vehicle:(void (^)(KMVehicleDayHistory *dayHistory))success failure:(void (^)(NSError *error))failure;
 - (void)loadTripSummaryTodayForVehicleId:(NSString*)vehicleId success:(void (^)(KMVehicleDayHistory *dayHistory))success;
 
 //Address
--(void)loadAddressWithLocation:(CLLocationCoordinate2D)location address:(void (^)(KMAddress *))success failure:(void (^)(NSError *error))failure;
+-(void)loadAddressWithLocation:(CLLocationCoordinate2D)location address:(void (^)(KMAddress *address))success failure:(void (^)(NSError *error))failure;
 
 //Notifications
 -(void)loadNotificationSettings:(void (^)(KMNotificationSettings *))success failure:(void (^)(NSError *error))failure;

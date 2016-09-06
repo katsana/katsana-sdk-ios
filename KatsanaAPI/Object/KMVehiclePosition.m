@@ -61,7 +61,7 @@ static NSDateFormatter *sharedDateFormatter = nil;
         return;
     }
     
-    [[KMUserManager sharedInstance] loadAddressWithLocation:CLLocationCoordinate2DMake(self.latitude, self.longitude) address:^(KMAddress *address) {
+    [[KMKatsana sharedInstance] loadAddressWithLocation:CLLocationCoordinate2DMake(self.latitude, self.longitude) address:^(KMAddress *address) {
         if (useCountry) {
             _address = address.optimizedAddressWithCountry;
         }else{

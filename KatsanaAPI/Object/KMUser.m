@@ -224,4 +224,8 @@
     return NO;
 }
 
+- (NSString*)description{
+    return [NSString stringWithFormat:@"%@, email:%@, id:%@", [super description], self.email, self.userId];
+}
+
 @end

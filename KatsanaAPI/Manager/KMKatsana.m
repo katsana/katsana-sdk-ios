@@ -6,7 +6,7 @@
 //  Copyright © 2015 bijokmind. All rights reserved.
 //
 
-#import "KMUserManager.h"
+#import "KMKatsana.h"
 #import "KMUser.h"
 #import "KMVehicle.h"
 #import "KMVehicleDayHistory.h"
@@ -20,7 +20,7 @@
 #import "KMObjectManager.h"
 #import "KMObjectManager.h"
 
-@interface KMUserManager ()
+@interface KMKatsana ()
 
 @property (nonatomic, strong) KMObjectManager *manager;
 
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation KMUserManager{
+@implementation KMKatsana{
     NSDate *_lastLoadAllVehiclesDate;
     NSArray *_lastVehicleIds;
     NSArray *_lastVehicleImeis;
@@ -36,12 +36,18 @@
 
 #pragma mark - Getter
 
-static KMUserManager *sharedPeerToPeer = nil;
+static KMKatsana *sharedPeerToPeer = nil;
 + (instancetype) sharedInstance {
     if (!sharedPeerToPeer) {
         sharedPeerToPeer = [[[self class] alloc] init];
+        [sharedPeerToPeer setupResponseDescriptors];
     }
     return sharedPeerToPeer;
+}
+
++ (void)resetBaseURL:(NSURL*)url{
+    [KMObjectManager resetWithBaseURL:url];
+    [[self sharedInstance] setupResponseDescriptors];
 }
 
 - (NSURL*)baseURL{
