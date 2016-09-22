@@ -74,6 +74,9 @@ static NSString* KMVehicleLocationUpdatedNotification  = @"vehicleLocationUpdate
 //Address
 -(void)loadAddressWithLocation:(CLLocationCoordinate2D)location address:(void (^)(KMAddress *address))success failure:(void (^)(NSError *error))failure;
 
+//Image
+-(void)loadImageWithURL:(NSURL*)url success:(void (^)(UIImage *image))success failure:(void (^)(NSError *error))failure;
+
 //Notifications
 -(void)loadNotificationSettings:(void (^)(KMNotificationSettings *))success failure:(void (^)(NSError *error))failure;
 - (void)saveServerNotificationSettings:(void (^)(BOOL success))success forTypeKeypath:(NSString*)typeKeypath;

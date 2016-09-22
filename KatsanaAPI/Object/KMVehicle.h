@@ -20,7 +20,7 @@
 @property (nonatomic, strong) KMVehiclePosition *currentPosition;
 @property (nonatomic, strong) KMVehiclePosition *current;
 @property (nonatomic, strong) NSString *avatarURLPath;
-@property (nonatomic, strong) NSString *marker;
+@property (nonatomic, strong) NSString *markerURLPath;
 @property (nonatomic, assign) CGFloat todayMaxSpeed;
 @property (nonatomic, assign) CGFloat speedLimit;
 @property (nonatomic, assign) CGFloat odometer;
@@ -29,17 +29,23 @@
 
 @property (nonatomic, strong) KMAddress *currentAddress;
 @property (nonatomic, strong) UIImage *carImage;
-//@property (nonatomic, strong) UIImage *maskedCarImage;
+@property (nonatomic, strong) UIImage *carThumbImage;
+@property (nonatomic, strong) UIImage *maskedCarImage;
 
 @property (nonatomic, assign) BOOL showAtActivityScreen;
 
-- (void)reloadDataWithVehicle:(KMVehicle*)vehicle;
+
 - (void)carImageWithBlock:(void (^)(UIImage *image))completion;
+- (void)carThumbImageWithBlock:(void (^)(UIImage *image))completion;
+
 //!Get car image with size {40, 40} the image already masked round without border. It can save performace because the car image will have too be regenerated multiple times in different screens.
-//- (void)maskedCarImageWithBlock:(void (^)(UIImage *image))completion;
+- (void)maskedCarImageWithBlock:(void (^)(UIImage *image))completion;
 
 - (void)currentAddressWithBlock:(void (^)(KMAddress *address))completion;
 
 - (NSString*)todayMaxSpeedString;
+
+- (void)reloadDataWithVehicle:(KMVehicle*)vehicle;
+- (void)reloadBlockImage;
 
 @end

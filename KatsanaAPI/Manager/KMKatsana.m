@@ -23,6 +23,7 @@
 @interface KMKatsana ()
 
 @property (nonatomic, strong) KMObjectManager *manager;
+@property (nonatomic, strong) NSOperationQueue *imageOperationQueue;
 
 - (NSURL*)baseURL;
 
@@ -32,6 +33,7 @@
     NSDate *_lastLoadAllVehiclesDate;
     NSArray *_lastVehicleIds;
     NSArray *_lastVehicleImeis;
+    NSDate *_lastLoadLastThreeDaySummaryDate;
 }
 
 #pragma mark - Getter
@@ -61,9 +63,11 @@ static KMKatsana *sharedPeerToPeer = nil;
 #pragma mark - Setter
 
 - (void)setVehicle:(KMVehicle *)vehicle{
-    _vehicle = vehicle;
-    [[NSUserDefaults standardUserDefaults] setObject:vehicle.vehicleId forKey:@"lastVehicleId"];
-    
+    if (![_vehicle isEqual:vehicle]) {
+        _vehicle = vehicle;
+        _lastLoadLastThreeDaySummaryDate = nil;
+        [[NSUserDefaults standardUserDefaults] setObject:vehicle.vehicleId forKey:@"lastVehicleId"];
+    }
 }
 
 - (void)setVehicles:(NSArray *)vehicles{
@@ -579,7 +583,7 @@ static KMKatsana *sharedPeerToPeer = nil;
     if ([fromDate timeIntervalSinceDate:[NSDate date]] > 0) {
         fromDate = [NSDate date];
     }
-
+    
     __block NSMutableArray *histories = [NSMutableArray array];
     NSDate *originalFromDate = fromDate;
     
@@ -588,15 +592,26 @@ static KMKatsana *sharedPeerToPeer = nil;
     NSDate *loopDate = fromDate;
     NSInteger totalCount = 0;
     BOOL canUpdateFromDate = YES;
-//    NSTimeInterval timeZoneOffset = [[NSTimeZone systemTimeZone] secondsFromGMTForDate:loopDate];
-//    loopDate = [loopDate dateByAddingTimeInterval:-timeZoneOffset];
+    
+    //Save histories that need reupdate, or latest 3 days if needed
+    NSMutableArray *reupdateHistories = [NSMutableArray array];
+    
+    CGFloat dayDuration = 60*60*24 *3; //3 days
     
     //Get total count and add cached history
     while ([loopDate compare:toDate] == NSOrderedAscending || [loopDate compare:toDate] == NSOrderedSame){
         KMVehicleDayHistory *history = [[KMCacheManager sharedInstance] vehicleDayHistoryForDate:loopDate vehicleId:vehicleId];
+        if ([[NSDate date] timeIntervalSinceDate:history.historyDate] < dayDuration && (!_lastLoadLastThreeDaySummaryDate || [[NSDate date] timeIntervalSinceDate:_lastLoadLastThreeDaySummaryDate] > 60*5 )){
+            //Save date only if history date is today so wont
+            if ([[NSCalendar currentCalendar] isDate:history.historyDate inSameDayAsDate:[NSDate date]]) {
+                _lastLoadLastThreeDaySummaryDate = [NSDate date];
+            }
+            [reupdateHistories addObject:history];
+            history = nil;
+        }
+        
         
         loopDate = [[NSCalendar currentCalendar] dateByAddingComponents:oneDay toDate:loopDate options:0];
-        
         if (history) {
             [histories addObject:history];
             if (canUpdateFromDate) {
@@ -608,8 +623,34 @@ static KMKatsana *sharedPeerToPeer = nil;
         }
         totalCount ++;
     }
+    
+    //Get total count and add cached history
+    loopDate = toDate;
+    BOOL canUpdateToDate = YES;
+    while ([loopDate compare:fromDate] == NSOrderedDescending || [loopDate compare:fromDate] == NSOrderedSame){
+        KMVehicleDayHistory *history = [[KMCacheManager sharedInstance] vehicleDayHistoryForDate:loopDate vehicleId:vehicleId];
+        if ([[NSDate date] timeIntervalSinceDate:history.historyDate] < dayDuration) {
+            history = nil;
+        }
+        
+        loopDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:-1 toDate:loopDate options:0];
+        if (history) {
+            //Can add only if still dont have
+            if (![histories containsObject:history]) [histories addObject:history];
+            if (canUpdateToDate) {
+                toDate = loopDate;
+            }
+        }else{
+            //If not cached history found, will need to fetch from server, so from update must not change anymore
+            canUpdateToDate = NO;
+        }
+        totalCount ++;
+    }
+    
     if (histories.count == totalCount && totalCount > 0) {
         histories = [[histories reverseObjectEnumerator] allObjects].mutableCopy;
+        
+        
         success(histories);
         return;
     }
@@ -625,8 +666,7 @@ static KMKatsana *sharedPeerToPeer = nil;
     [self.manager getObjectsAtPath:path parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if (success) {
             NSArray *theHistories = (NSArray *)mappingResult.array ;
-//            history.historyDate = date;
-//            [[KMCacheManager sharedInstance] cacheData:history identifier:vehicleId];
+            
             for (KMVehicleDayHistory *history in theHistories) {
                 history.needLoadTripHistory = YES;
                 
@@ -643,7 +683,21 @@ static KMKatsana *sharedPeerToPeer = nil;
                     [histories removeObject:needRemoveHistory];
                 }
                 
-                [[KMCacheManager sharedInstance] cacheData:history identifier:vehicleId];
+                //Check if trip summary can recache
+                BOOL canCache = YES;
+                KMVehicleDayHistory *reupdatedHistory;
+                for (KMVehicleDayHistory *reupdateHistory in reupdateHistories) {
+                    if ([[NSCalendar currentCalendar] isDate:history.historyDate inSameDayAsDate:reupdateHistory.historyDate]) {
+                        canCache = NO;
+                        reupdatedHistory = reupdateHistory;
+                    }
+                }
+                [reupdateHistories removeObject:reupdatedHistory];
+                
+                if (canCache) {
+                    [[KMCacheManager sharedInstance] cacheData:history identifier:vehicleId];
+                }
+                
             }
             [histories addObjectsFromArray:theHistories];
             [histories sortUsingSelector:@selector(compare:)];
@@ -674,7 +728,7 @@ static KMKatsana *sharedPeerToPeer = nil;
             DDLogWarn(@"Error getting vehicle history %@: %@", fromDateStr, error.localizedDescription);
         }
     }];
-
+    
     return;
 }
 
@@ -720,6 +774,30 @@ static KMKatsana *sharedPeerToPeer = nil;
                 if (failure) {
                     failure(error);
                 }
+                DDLogWarn(@"Error getting address for coordinate %@", [NSString stringWithFormat:@"(%.f, %.f", location.latitude, location.longitude]);
+            }];
+        }
+    }];
+}
+
+-(void)loadImageWithURL:(NSURL*)url success:(void (^)(UIImage *image))success failure:(void (^)(NSError *error))failure{
+    UIImage *image = [[KMCacheManager sharedInstance] imageForIdentifier:url.path.lastPathComponent];
+    if (image) {
+        success (image);
+        return;
+    }
+    if (!self.imageOperationQueue) {
+        self.imageOperationQueue = [[NSOperationQueue alloc] init];
+        self.imageOperationQueue.maxConcurrentOperationCount = 5;
+        
+    }
+    
+    [self.imageOperationQueue addOperationWithBlock:^{
+        UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+        if (img != nil) {
+            [[KMCacheManager sharedInstance] cacheData:img identifier:url.path.lastPathComponent];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                success(img);
             }];
         }
     }];
@@ -842,7 +920,6 @@ static KMKatsana *sharedPeerToPeer = nil;
     
     [self.manager addRequestDescriptorsFromArray:@[profileRequest, avatarRequest, vehicleRequest, vehicleAvatarRequest, notificationSettingsRequest]];
     [self.manager addResponseDescriptorsFromArray:@[authenticatedUserResponseDescriptors, vehicleResponse, locationResponse, vehiclesResponse, vehicleHistoryResponse, addressResponse, notificationSettingsResponse, vehicleSummaryResponse, vehicleSummaryTodayResponse]];
-
 }
 
 #pragma mark - 

@@ -78,6 +78,8 @@ static KMCacheManager *sharedPeerToPeer = nil;
 
         DDLogInfo(@"cache path: %@", path);
         
+        [self clearOldActivityCacheIfNeeded];
+        
         DDLogInfo(@"Total addresses cached: %lu", (unsigned long)self.addresses.count);
         DDLogInfo(@"Total activities cached: %lu", (unsigned long)self.activities.count);
         DDLogInfo(@"Total day histories cached: %lu", [self.dataDictionaries[@"KMVehicleDayHistory"] count]);
@@ -424,12 +426,31 @@ static KMCacheManager *sharedPeerToPeer = nil;
     [self.activities removeAllObjects];
 }
 
-- (void)clearCacheIfNeededForCurrentUser{
-//    KMActivityObject *activity = self.activities.firstObject;
-//    NSArray *vehicles = [
-//    if (!activity.vehicle && activity) {
-//        [self clearActivityCache];
-//    }
+- (void)clearOldActivityCacheIfNeeded{
+    NSDate *lastPurgeDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"lastPurgeActivityDate"];
+    if (lastPurgeDate) {
+        if ([[NSDate date] timeIntervalSinceDate:lastPurgeDate] > 60*60*24* 10) { //Purge data each 10 days
+            NSDate *purgeDate = [[NSDate date] dateByAddingTimeInterval: -60*60*24*30]; //Need purge date more than 30 days old
+            
+            [self.activities enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                NSMutableArray *activities = obj;
+                __block NSInteger purgeIndex = NSNotFound;
+                [activities enumerateObjectsUsingBlock:^(KMActivityObject *act, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([act.startTime timeIntervalSinceDate:purgeDate] < 0) {
+                        purgeIndex = idx;
+                        *stop = YES;
+                    }
+                }];
+                if (purgeIndex != NSNotFound) {
+                    [activities removeObjectsInRange:NSMakeRange(purgeIndex, activities.count-purgeIndex)];
+                }
+            }];
+            [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:@"lastPurgeActivityDate"];
+            [self autoSaveActivities];
+        }
+    }else{
+        [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:@"lastPurgeActivityDate"];
+    }
 }
 
 @end

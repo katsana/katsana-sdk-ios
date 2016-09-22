@@ -54,7 +54,7 @@
                                         @"imei": @"imei",
                                         @"mode": @"mode",
                                         @"avatar": @"avatarURLPath",
-                                        @"marker": @"marker",
+                                        @"marker": @"markerURLPath",
                                         @"today_max_speed": @"todayMaxSpeed",
                                         @"speed_limit" : @"speedLimit",
                                         @"odometer" : @"odometer",

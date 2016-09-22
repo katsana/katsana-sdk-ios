@@ -7,18 +7,18 @@
 //
 
 #import "KMVehicle.h"
-#import <RestKit/RestKit.h>
-//#import "KMCarImageRasterView.h"
 
 @interface KMVehicle ()
 
 @property (nonatomic, strong) NSMutableArray *carImageBlocks;
+@property (nonatomic, strong) NSMutableArray *carThumbImageBlocks;
 
 @end
 
 @implementation KMVehicle{
     CLLocationCoordinate2D _lastCoordinate;
     BOOL _loadingImage;
+    BOOL _loadingMarkerImage;
 }
 
 - (void)reloadDataWithVehicle:(KMVehicle*)vehicle{
@@ -27,7 +27,7 @@
     self.current = vehicle.current;
     self.currentPosition = vehicle.currentPosition;
     self.avatarURLPath = vehicle.avatarURLPath;
-    self.marker = vehicle.marker;
+    self.markerURLPath = vehicle.markerURLPath;
     self.todayMaxSpeed = vehicle.todayMaxSpeed;
     self.speedLimit = vehicle.speedLimit;
     self.odometer = vehicle.odometer;
@@ -35,6 +35,7 @@
     self.websocket = vehicle.websocket;
     self.currentAddress = vehicle.currentAddress;
     self.carImage = vehicle.carImage;
+    self.maskedCarImage = vehicle.maskedCarImage;
 }
 
 - (NSString*)todayMaxSpeedString{
@@ -48,6 +49,40 @@
     return _carImageBlocks;
 }
 
+- (NSMutableArray*)carThumbImageBlocks{
+    if (!_carThumbImageBlocks) {
+        _carThumbImageBlocks = [NSMutableArray array];
+    }
+    return _carThumbImageBlocks;
+}
+
+- (void)carThumbImageWithBlock:(void (^)(UIImage *image))completion{
+    if (!_carThumbImage) {
+        if (_loadingMarkerImage) {
+            @synchronized (self.carThumbImageBlocks) {
+                [self.carThumbImageBlocks addObject:completion];
+            }
+            return;
+        }else{
+            [self.carThumbImageBlocks addObject:completion];
+        }
+        _loadingMarkerImage = YES;
+        [[KMKatsana sharedInstance] loadImageWithURL:[NSURL URLWithString:self.avatarURLPath] success:^(UIImage *image) {
+            _carThumbImage = image;
+            _maskedCarImage = nil;
+            _loadingMarkerImage = NO;
+            
+            for (ImageCompletionBlock block in self.carThumbImageBlocks) {
+                block(image);
+            }
+        } failure:^(NSError *error) {
+            _loadingMarkerImage = NO;
+        }];
+    }else{
+        completion(self.carThumbImage);
+    }
+}
+
 - (void)carImageWithBlock:(void (^)(UIImage *image))completion{
     if (!_carImage) {
         if (_loadingImage) {
@@ -55,56 +90,24 @@
                 [self.carImageBlocks addObject:completion];
             }
             return;
-        }
-        
-        UIImage *image = [[KMCacheManager sharedInstance] imageForIdentifier:self.avatarURLPath.lastPathComponent];
-        if (image) {
-            _carImage = image;
-            completion (image);
         }else{
-            _loadingImage = YES;
-            NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] init] ;
-            [urlRequest setURL:[NSURL URLWithString:self.avatarURLPath]];
-            [urlRequest setHTTPMethod:@"GET"];
-            AFRKImageRequestOperation *requestOperation = [[AFRKImageRequestOperation alloc] initWithRequest:urlRequest];
-            [requestOperation setCompletionBlockWithSuccess:^(AFRKHTTPRequestOperation *operation, id responseObject) {
-                completion(responseObject);
-                [[KMCacheManager sharedInstance] cacheData:responseObject identifier:self.avatarURLPath.lastPathComponent];
-                _carImage = responseObject;
-//                _maskedCarImage = nil;
-                _loadingImage = NO;
-                
-                for (ImageCompletionBlock block in self.carImageBlocks) {
-                    block(responseObject);
-                }
-            } failure:^(AFRKHTTPRequestOperation *operation, NSError *error) {
-                _loadingImage = NO;
-            }];
-            [requestOperation start];
+            [self.carImageBlocks addObject:completion];
         }
-        
-        
+        _loadingImage = YES;
+        [[KMKatsana sharedInstance] loadImageWithURL:[NSURL URLWithString:self.markerURLPath] success:^(UIImage *image) {
+            _carImage = image;
+            _loadingImage = NO;
+            
+            for (ImageCompletionBlock block in self.carImageBlocks) {
+                block(image);
+            }
+        } failure:^(NSError *error) {
+            _loadingImage = NO;
+        }];
     }else{
         completion(self.carImage);
     }
 }
-
-//- (void)maskedCarImageWithBlock:(void (^)(UIImage *image))completion{
-//    if (_maskedCarImage) {
-//        completion (_maskedCarImage);
-//        return;
-//    }
-//    
-//    CGSize defaultSize = CGSizeMake(40, 40);
-//    
-//    [self carImageWithBlock:^(UIImage *image) {
-//        KMCarImageRasterView *imageView = [[KMCarImageRasterView alloc] initWithFrame:CGRectMake(0, 0, defaultSize.width, defaultSize.height)];
-//        imageView.carImageView.borderWidth = 0;
-//        imageView.image = image;
-//        _maskedCarImage = imageView.image;
-//        completion(_maskedCarImage);
-//    }];
-//}
 
 - (void)currentAddressWithBlock:(void (^)(KMAddress *address))completion{
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(self.current.latitude, self.current.longitude);
@@ -123,8 +126,10 @@
     }
 }
 
-- (NSString*)description{
-    return [NSString stringWithFormat:@"%@, vehicleNumber:%@, vehicleId:%@, odometer:%.0f", [super description], self.vehicleNumber, self.vehicleId, self.odometer];
+- (void)reloadBlockImage{
+    for (ImageCompletionBlock block in self.carImageBlocks) {
+        block(self.carImage);
+    }
 }
 
 @end

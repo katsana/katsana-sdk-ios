@@ -53,7 +53,6 @@
 		C79DA0151D7D19CF0003E7A8 /* KMTimeTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FF21D7D19CF0003E7A8 /* KMTimeTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C79DA0161D7D19CF0003E7A8 /* KMTimeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FF31D7D19CF0003E7A8 /* KMTimeTransformer.m */; };
 		C7AD3B4D1D7E521B00006ACA /* XCTestCase+AsyncTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AD3B4C1D7E521B00006ACA /* XCTestCase+AsyncTesting.m */; };
-		DBCE1D85E23A5FC9EF45F557 /* libPods-KatsanaAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5BB0684F387F475DA521FF /* libPods-KatsanaAPI.a */; };
 		F4C9AF76A2A1774A6EABADEE /* libPods-KatsanaSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9D11AA6DD8BCDD032635E5 /* libPods-KatsanaSDK.a */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +67,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A5BB0684F387F475DA521FF /* libPods-KatsanaAPI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KatsanaAPI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		350B8BC5EDDACD9F73CB3591 /* Pods-KatsanaSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		921A465674DC0028DA7FA142 /* Pods-KatsanaSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK.release.xcconfig"; sourceTree = "<group>"; };
 		C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,7 +132,6 @@
 				C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */,
 				C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */,
 				C751054F1D742B5F00F4C341 /* MapKit.framework in Frameworks */,
-				DBCE1D85E23A5FC9EF45F557 /* libPods-KatsanaAPI.a in Frameworks */,
 				F4C9AF76A2A1774A6EABADEE /* libPods-KatsanaSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,7 +155,6 @@
 				C751055F1D742D0500F4C341 /* UIKit.framework */,
 				C751055D1D742CE100F4C341 /* CoreGraphics.framework */,
 				C751054E1D742B5F00F4C341 /* MapKit.framework */,
-				1A5BB0684F387F475DA521FF /* libPods-KatsanaAPI.a */,
 				EA9D11AA6DD8BCDD032635E5 /* libPods-KatsanaSDK.a */,
 			);
 			name = Frameworks;
