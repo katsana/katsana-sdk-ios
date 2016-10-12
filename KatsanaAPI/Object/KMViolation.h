@@ -23,6 +23,7 @@ typedef NS_ENUM(NSInteger, KMViolationPolicyTypeId) {
     
     KMViolationPolicyTypeHarshBrake,
     KMViolationPolicyTypeHarshAccelerate,
+    KMViolationPolicyTypeHarshCorner,
     
     KMViolationPolicyTypeSpeedSummary,
     KMViolationPolicyTypeLockdown

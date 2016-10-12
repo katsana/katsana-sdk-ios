@@ -601,9 +601,10 @@ static KMKatsana *sharedPeerToPeer = nil;
     //Get total count and add cached history
     while ([loopDate compare:toDate] == NSOrderedAscending || [loopDate compare:toDate] == NSOrderedSame){
         KMVehicleDayHistory *history = [[KMCacheManager sharedInstance] vehicleDayHistoryForDate:loopDate vehicleId:vehicleId];
-        if ([[NSDate date] timeIntervalSinceDate:history.historyDate] < dayDuration && (!_lastLoadLastThreeDaySummaryDate || [[NSDate date] timeIntervalSinceDate:_lastLoadLastThreeDaySummaryDate] > 60*5 )){
+        if (([[NSDate date] timeIntervalSinceDate:history.historyDate] < dayDuration && (!_lastLoadLastThreeDaySummaryDate || [[NSDate date] timeIntervalSinceDate:_lastLoadLastThreeDaySummaryDate] > 60*5 )) ||
+            ([[NSDate date] timeIntervalSinceDate:history.historyDate] < dayDuration && history.trips.count == 0)){
             //Save date only if history date is today so wont
-            if ([[NSCalendar currentCalendar] isDate:history.historyDate inSameDayAsDate:[NSDate date]]) {
+            if ([history.historyDate isDayEqualToDate:[NSDate date]]) {
                 _lastLoadLastThreeDaySummaryDate = [NSDate date];
             }
             [reupdateHistories addObject:history];

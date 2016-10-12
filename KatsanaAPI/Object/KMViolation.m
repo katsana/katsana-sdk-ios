@@ -75,6 +75,9 @@
     else if ([self.policyType isEqualToString:@"harsh-accelerate"]) {
         type = KMViolationPolicyTypeHarshAccelerate;
     }
+    else if ([self.policyType isEqualToString:@"harsh-corner"]) {
+        type = KMViolationPolicyTypeHarshCorner;
+    }
     else if ([self.policyType isEqualToString:@"checkpoint"]) {
         type = KMViolationPolicyCheckpoint;
     }
@@ -155,6 +158,10 @@
         }
         case KMViolationPolicyTypeHarshAccelerate: {
             type = @"harsh accelerate alerts";
+            break;
+        }
+        case KMViolationPolicyTypeHarshCorner: {
+            type = @"harsh corner alerts";
             break;
         }
         case KMViolationPolicyCheckpoint: {
