@@ -59,8 +59,7 @@ public class KatsanaAPI: NSObject {
     
     func setupTransformer() -> Void {
         API.configureTransformer("vehicles/*") {
-            
-            KMVehicle.fromJSON($0.content)
+            ObjectJSONTransformer.UserObject(json: $0.content)
         }
         API.configureTransformer("profile") {
             ObjectJSONTransformer.UserObject(json: $0.content)

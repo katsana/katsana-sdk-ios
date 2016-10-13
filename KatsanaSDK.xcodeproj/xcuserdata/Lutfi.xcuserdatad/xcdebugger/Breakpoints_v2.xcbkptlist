@@ -41,22 +41,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KatsanaTest/ViewController.swift"
-            timestampString = "498011865.980495"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "test()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "KatsanaAPI/Manager/KMKatsanaAPI+Login.swift"
             timestampString = "498012584.512825"
             startingColumnNumber = "9223372036854775807"
@@ -89,22 +73,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KatsanaAPI/Manager/KatsanaAPI+Vehicle.swift"
-            timestampString = "498020641.35623"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "requestVehicle(vehicleId:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "KatsanaAPI/Object/KMUser.m"
             timestampString = "498029766.646219"
             startingColumnNumber = "9223372036854775807"
@@ -121,13 +89,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KatsanaAPI/Manager/KatsanaAPI.swift"
-            timestampString = "498030738.726546"
+            filePath = "KatsanaAPI/Manager/KatsanaAPI+Login.swift"
+            timestampString = "498031814.110867"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "setupTransformer()"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "login(email:password:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KatsanaAPI/Manager/KatsanaAPI+Login.swift"
+            timestampString = "498031814.964666"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "login(email:password:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

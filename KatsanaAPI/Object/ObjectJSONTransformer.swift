@@ -29,5 +29,34 @@ class ObjectJSONTransformer: NSObject {
         
         return user
     }
+    
+    class func VehicleObject(json : JSON) -> KMVehicle {
+        let vehicle = KMVehicle()
+        vehicle.userId = json["email"].string
+        vehicle.vehicleId = json["id"].string
+        vehicle.vehicleDescription = json["address"].string
+        vehicle.vehicleNumber = json["phone_home"].string
+        vehicle.imei = json["phone_mobile"].string
+        vehicle.mode = json["fullname"].string
+        
+        vehicle.todayMaxSpeed = CGFloat(json["meta"]["phone"]["home"].floatValue)
+        vehicle.markerURLPath = json["meta"]["phone"]["mobile"].string
+        vehicle.avatarURLPath = json["avatar"]["url"].string
+        vehicle.speedLimit = CGFloat(json["avatar"]["url"].floatValue)
+        vehicle.odometer = CGFloat(json["avatar"]["url"].floatValue)
+        vehicle.subscriptionEnd = json["avatar"]["url"].string
+        vehicle.websocket = json["avatar"]["url"].string
+        
+        
+        vehicle.current = json["meta"]["fullname"].string
+        
+        let createdAt = json["created_at"].string
+        let updatedAt = json["updated_at"].string
+        
+        
+        return vehicle
+    }
 }
+
+
 

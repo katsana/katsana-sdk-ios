@@ -23,14 +23,14 @@ class ViewController: UIViewController {
     }
     
     func test() {
-        KatsanaAPI.sharedInstance.login(email: "hello@katsana.com", password: "katsini!") { (KMUser) in
+        KatsanaAPI.sharedInstance.login(email: "", password: "") { (KMUser) in
             print("sdf")
         }
     }
 
 
     @IBAction func clicked(_ sender: AnyObject) {
-        KatsanaAPI.sharedInstance.test()
+//        KatsanaAPI.sharedInstance.test()
 //        let test =  KatsanaAPI.sharedInstance.API.resource("vehicles");
 //        print(test)
     }

@@ -20,12 +20,9 @@ extension KatsanaAPI {
         let path = "vehicles/" + vehicleId
         API.resource(path).addObserver(owner: self) {
             [weak self] resource, _ in
-            
-//            self?.nameLabel.text = resource.jsonDict["name"] as? String
-//            self?.colorLabel.text = resource.jsonDict["favoriteColor"] as? String
-//            
-//            self?.errorLabel.text = resource.latestError?.userMessage
-        }
+            let vehicle : KMVehicle? = resource.typedContent()
+            self?.currentVehicle = vehicle;
+        }.loadIfNeeded()
     }
     
 }
