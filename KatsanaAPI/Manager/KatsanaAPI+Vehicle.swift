@@ -16,13 +16,27 @@ extension KatsanaAPI {
             currentVehicle = vehicle!;
         }
         
-        
         let path = "vehicles/" + vehicleId
-        API.resource(path).addObserver(owner: self) {
-            [weak self] resource, _ in
+        let resource = API.resource(path);
+        resource.loadIfNeeded()?.onSuccess({ [weak self] (entity) in
             let vehicle : KMVehicle? = resource.typedContent()
             self?.currentVehicle = vehicle;
-        }.loadIfNeeded()
+            completion(vehicle, nil)
+        }).onFailure({ (error) in
+            completion(nil, error)
+        })
+    }
+    
+    public func requestAllVehicles(completion: @escaping ([KMVehicle]?, Error?) -> Void) -> Void {
+        let path = "vehicles"
+        let resource = API.resource(path);
+        resource.loadIfNeeded()?.onSuccess({ [weak self] (entity) in
+            let vehicles : [KMVehicle]? = resource.typedContent()
+            self?.vehicles = vehicles
+            completion(vehicles, nil)
+            }).onFailure({ (error) in
+                completion(nil, error)
+            })
     }
     
 }

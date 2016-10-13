@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class KMVehicle;
 
-@interface KMVehicleDayHistory : NSObject
+@interface KMTravelHistory : NSObject
 
 //@property (nonatomic, strong) NSDate *startDate;
 //@property (nonatomic, strong) NSDate *endDate;
@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSDate *historyDate;
 @property (nonatomic, assign) CGFloat idleDuration;
 @property (nonatomic, assign) CGFloat duration;
+
+@property (nonatomic, strong) NSDate *lastUpdate;
 
 //!Trip count from trip history;
 @property (nonatomic, assign) NSInteger tripCount;
@@ -42,7 +44,7 @@
 - (NSString*)totalDurationString;
 - (NSAttributedString*)totalDurationAttributedString;
 
-- (BOOL)dateEqualToVehicleDayHistory:(KMVehicleDayHistory*)history;
+- (BOOL)dateEqualToVehicleDayHistory:(KMTravelHistory*)history;
 - (BOOL)isEqual:(id)object;
 
 

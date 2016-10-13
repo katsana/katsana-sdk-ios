@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @import CoreLocation;
 
-@class KMVehicleDayHistory;
+@class KMTravelHistory;
 @class KMActivityObject;
 
 @interface KMCacheManager : NSObject
@@ -20,7 +20,7 @@
 
 - (void)cacheData:(id)data identifier:(NSString*)identifier;
 
-- (KMVehicleDayHistory*)vehicleDayHistoryForDate:(NSDate*)date vehicleId:(NSString*)vehicleId;
+- (KMTravelHistory*)vehicleDayHistoryForDate:(NSDate*)date vehicleId:(NSString*)vehicleId;
 - (UIImage*)imageForIdentifier:(NSString*)identifier;
 - (void)addressForCoordinate:(CLLocationCoordinate2D)coord completionBlock:(void (^)(KMAddress *address))completion;
 - (KMActivityObject*)latestCachedActivityObject;

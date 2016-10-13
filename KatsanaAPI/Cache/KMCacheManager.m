@@ -7,7 +7,7 @@
 //
 
 #import "KMCacheManager.h"
-#import "KMVehicleDayHistory.h"
+#import "KMTravelHistory.h"
 #import "KMAddress.h"
 #import "KMActivityObject.h"
 #import "KMUser.h"
@@ -82,7 +82,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
 //        
 //        DDLogInfo(@"Total addresses cached: %lu", (unsigned long)self.addresses.count);
 //        DDLogInfo(@"Total activities cached: %lu", (unsigned long)self.activities.count);
-//        DDLogInfo(@"Total day histories cached: %lu", [self.dataDictionaries[@"KMVehicleDayHistory"] count]);
+//        DDLogInfo(@"Total day histories cached: %lu", [self.dataDictionaries[@"KMTravelHistory"] count]);
 //    }
 //    return self;
 //}
@@ -108,7 +108,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
 //
 //#pragma mark -
 //
-//- (KMVehicleDayHistory*)vehicleDayHistoryForDate:(NSDate*)date vehicleId:(NSString*)vehicleId{
+//- (KMTravelHistory*)vehicleDayHistoryForDate:(NSDate*)date vehicleId:(NSString*)vehicleId{
 //    //Always need load latest data if today
 //    NSDate *today = [NSDate date];
 //    if ([[NSCalendar currentCalendar] isDate:date equalToDate:today toUnitGranularity:NSCalendarUnitDay]) {
@@ -119,10 +119,10 @@ static KMCacheManager *sharedPeerToPeer = nil;
 //        }
 //    }
 //    
-//    NSString *classStr = NSStringFromClass([KMVehicleDayHistory class]);
+//    NSString *classStr = NSStringFromClass([KMTravelHistory class]);
 //    NSMutableArray *dataArray = [self.dataDictionaries valueForKey:classStr];
 //    for (NSDictionary* dicto in dataArray) {
-//        KMVehicleDayHistory *obj = dicto[@"data"];
+//        KMTravelHistory *obj = dicto[@"data"];
 //        NSString *theId = dicto[@"id"];
 //        
 //        if ([[NSCalendar currentCalendar] isDate:obj.historyDate equalToDate:date toUnitGranularity:NSCalendarUnitDay] && [theId isEqualToString:vehicleId]) {
@@ -237,7 +237,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
 //        id obj = dicto[@"data"];
 //        NSString *theId = dicto[@"id"];
 //        
-//        if ([data isKindOfClass:[KMVehicleDayHistory class]] && [obj isKindOfClass:[KMVehicleDayHistory class]]) {
+//        if ([data isKindOfClass:[KMTravelHistory class]] && [obj isKindOfClass:[KMTravelHistory class]]) {
 //            if ([obj dateEqualToVehicleDayHistory:data] && [identifier isEqualToString:theId]) {
 //                
 //                if (![obj isEqual:data]) {

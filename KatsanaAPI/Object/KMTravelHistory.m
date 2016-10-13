@@ -6,7 +6,7 @@
 //  Copyright © 2015 bijokmind. All rights reserved.
 //
 
-#import "KMVehicleDayHistory.h"
+#import "KMTravelHistory.h"
 #import "KMVehiclePosition.h"
 #import "KMVehicle.h"
 #import "KMTrip.h"
@@ -14,7 +14,7 @@
 #import "KMTimeTransformer.h"
 #import "KMVehicle.h"
 
-@implementation KMVehicleDayHistory{
+@implementation KMTravelHistory{
     NSArray *_routeTrips;
 }
 
@@ -169,18 +169,18 @@
     _trips = trips;
 }
 
-- (BOOL)dateEqualToVehicleDayHistory:(KMVehicleDayHistory*)history{
+- (BOOL)dateEqualToVehicleDayHistory:(KMTravelHistory*)history{
     return [[NSCalendar currentCalendar] isDate:self.historyDate equalToDate:history.historyDate toUnitGranularity:NSCalendarUnitDay];;
 }
 
-- (BOOL)isEqual:(KMVehicleDayHistory*)object{
+- (BOOL)isEqual:(KMTravelHistory*)object{
     if ([self dateEqualToVehicleDayHistory:object] && self.trips.count == object.trips.count && self.distance == object.distance) {
         return YES;
     }
     return NO;
 }
 
-- (NSComparisonResult)compare:(KMVehicleDayHistory *)object{
+- (NSComparisonResult)compare:(KMTravelHistory *)object{
     return [self.historyDate compare:object.historyDate];
 }
 
@@ -201,7 +201,7 @@
     CGFloat distance = 0;
     CGFloat idleDuration = 0;
     
-    for (KMVehicleDayHistory *history in dayHistories) {
+    for (KMTravelHistory *history in dayHistories) {
         duration += history.duration;
         distance += history.distance;
         idleDuration += history.idleDuration;
