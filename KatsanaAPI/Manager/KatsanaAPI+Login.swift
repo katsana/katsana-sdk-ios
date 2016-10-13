@@ -13,7 +13,6 @@ import Siesta
 extension KatsanaAPI {
     
     public func login(email: String, password: String, completion: (_ user: String) -> Void) -> Void {
-
         let path = self.baseURL().absoluteString + "auth"
         var request = URLRequest(url: URL(string: path)!)
         request.httpMethod = "POST"
@@ -33,82 +32,19 @@ extension KatsanaAPI {
             let json = JSON(data: data)
             let token = json["token"].string
             if token != nil {
-                
-                //Set token
-                if (Thread.isMainThread) {
+                DispatchQueue.main.async {
                     self.authToken = token
                     self.API.resource("profile").addObserver(owner: self) {
-                        [weak self] resource, _ in
+                        [weak self] resource, event in
+                        let user : KMUser? = resource.typedContent()
+                        self?.currentUser = user;
                         
-                        let user : KMUser = resource.typedContent()!
-                        print(user)
-                    }
-                }else{
-                    DispatchQueue.main.async {
-                        self.authToken = token
-                        self.API.resource("profile").load().onSuccess({data in
-                            
-                            
-                            print("sdf")
-                        })
+                    }.loadIfNeeded()?.onFailure({ (error) in
                         
-                        
-//                        addObserver(owner: self) {
-//                            [weak self] resource, event in
-//                            let test = resource.jsonArray
-//                            let test2 = resource.jsonDict
-//                            let test3 = resource.text
-//                            let latest = resource.latestData
-////                            let user : KMUser? = resource.typedContent()!
-//                            
-//                            print(resource.latestError)
-//                            print(test)
-//                            
-//                            
-//                        }
-                        
-                    }
+                    })
                 }
             }
         }
         task.resume()
     }
-    
-    public func test() {
-        let resource = API.resource("vehicles").load();
-//        let test = resource.jsonArray
-//        let test2 = resource.jsonDict
-//        let test3 = resource.text
-        print(resource)
-    }
-    
-    func resourceChanged(resource: Resource, event: ResourceEvent) {
-        let test = resource.jsonArray
-        let test2 = resource.jsonDict
-        let test3 = resource.text
-        //                            let user : KMUser? = resource.typedContent()!
-        print(resource.latestError)
-        print(test)
-    }
-
 }
-
-
-
-
-
-//- (void) loadAuthenticatedUser:(void (^)(KMUser *))success failure:(void (^)(RKObjectRequestOperation *, NSError *))failure {
-//    __weak typeof(self) weakSelf = self;
-//    [self getObjectsAtPath:@"profile" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-//        if (success) {
-//            KMUser *currentUser = (KMUser *)[mappingResult.array firstObject];
-//            success(currentUser);
-//            weakSelf.currentUser = currentUser;
-//        }
-//    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-//        if (failure) {
-//            failure(operation, error);
-//            DDLogError(@"Error getting user profile: %@", error.localizedDescription);
-//        }
-//    }];
-//}

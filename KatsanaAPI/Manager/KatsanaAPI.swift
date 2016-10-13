@@ -15,9 +15,9 @@ public class KatsanaAPI: NSObject {
     public static let sharedInstance = KatsanaAPI()
     public var API : Service!
     
-    private(set) public var currentUser: KMUser!
+    internal(set) public var currentUser: KMUser!
     public              var currentVehicle: KMVehicle!
-    private(set) public var vehicles: [KMVehicle]!
+    internal(set) public var vehicles: [KMVehicle]!
     
     private let SwiftyJSONTransformer = ResponseContentTransformer { JSON($0.content as AnyObject) }
     
@@ -45,7 +45,7 @@ public class KatsanaAPI: NSObject {
         API = Service(baseURL: "https://carbon.api.katsana.com/")
         
         configure()
-//        setupTransformer()
+        setupTransformer()
     }
     
     func configure() {
@@ -59,10 +59,11 @@ public class KatsanaAPI: NSObject {
     
     func setupTransformer() -> Void {
         API.configureTransformer("vehicles/*") {
+            
             KMVehicle.fromJSON($0.content)
         }
         API.configureTransformer("profile") {
-            KMUser.fromJSON($0.content)
+            ObjectJSONTransformer.UserObject(json: $0.content)
         }
 //        APIManager.configureTransformer(ConfigurationPatternConvertible) { (Entity<I>) -> O? in
 //

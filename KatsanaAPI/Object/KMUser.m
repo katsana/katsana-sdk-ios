@@ -27,7 +27,10 @@
 }
 
 + (KMUser*)fromJSON:(id)json{
+    NSDictionary *dicto = json;
+    
     KMUser *user = [[KMUser alloc] init];
+    user.email = json[@"email"];
     
     return user;
 }
