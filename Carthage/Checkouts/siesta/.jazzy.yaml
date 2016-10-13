@@ -1,0 +1,79 @@
+module: Siesta
+author: Bust Out Solutions
+author_url: http://bustoutsolutions.com
+github_url: https://github.com/bustoutsolutions/siesta
+exclude:
+  - "**/*-ObjC.swift"
+  - "**/*Deprecations.swift"
+  - "Source/Siesta/Support/Siesta-ObjC.swift"     # until Cocoadocs gets https://github.com/realm/jazzy/pull/640
+  - "Source/SiestaUI/SiestaUI-ObjC.swift"         # ditto
+  - "Source/Siesta/Support/Ω_Deprecations.swift"  # ditto
+
+copyright: '© 2016 [Bust Out Solutions](http://bustoutsolutions.com) under [open source license](https://github.com/bustoutsolutions/siesta/blob/master/LICENSE).'
+
+# swift_version: 3.0  # disabled due to https://github.com/realm/jazzy/issues/656
+
+theme: fullwidth
+
+custom_categories:
+  - name: Resources
+    children:
+    - Service
+    - Resource
+    - Entity
+    - Configuration
+    - ConfigurationPatternConvertible
+    - TypedContentAccessors
+
+  - name: Observing Resources
+    children:
+    - ResourceObserver
+    - ResourceObserverClosure
+    - ResourceEvent
+
+  - name: Requests
+    children:
+    - Request
+    - RequestMethod
+    - RequestError
+    - Response
+    - ResponseInfo
+    - RequestChainAction
+
+  - name: Response Pipeline
+    children:
+    - Pipeline
+    - PipelineStage
+    - PipelineStageKey
+    - ResponseTransformer
+    - ResponseContentTransformer
+    - InputTypeMismatchAction
+    - JSONResponseTransformer(_:)
+    - TextResponseTransformer(_:)
+    - ImageResponseTransformer(_:)
+
+  - name: Caching
+    children:
+    - EntityCache
+
+  - name: UI Helpers
+    children:
+    - ResourceStatusOverlay
+    - RemoteImageView
+
+  - name: Network Layer
+    children:
+    - NetworkingProvider
+    - NetworkingProviderConvertible
+    - RequestNetworking
+    - RequestNetworkingCompletionCallback
+    - RequestTransferMetrics
+    - NSURLSessionProvider
+    - SessionTaskContainer
+    - AlamofireProvider
+
+  - name: Logging
+    children:
+    - enabledLogCategories
+    - LogCategory
+    - logger

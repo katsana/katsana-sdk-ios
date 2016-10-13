@@ -6,8 +6,6 @@
 //  Copyright © 2016 bijokmind. All rights reserved.
 //
 
-#import "KMViolation.h"
-
 @interface KMActivityObject : KMViolation
 
 @property (nonatomic, strong) NSString *identifier;

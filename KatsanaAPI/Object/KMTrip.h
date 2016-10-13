@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KMVehiclePosition.h"
 
 @interface KMTrip : NSObject
 

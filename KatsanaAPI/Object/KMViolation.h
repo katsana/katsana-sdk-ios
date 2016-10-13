@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KMVehicle.h"
 @import CoreLocation;
 
 typedef NS_ENUM(NSInteger, KMViolationPolicyTypeId) {

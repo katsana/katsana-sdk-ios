@@ -11,7 +11,7 @@
 //#import "NSDate+Compare.h"
 #import "KMActivityObject.h"
 #import <objc/runtime.h>
-#import <RestKit/RestKit.h>
+//#import <RestKit/RestKit.h>
 
 @interface KMUser ()
 
@@ -24,6 +24,12 @@
     NSDate *_firstUpdateActivitesDate;
     NSDate *_lastAddActivityDate;
     BOOL _loadingImage;
+}
+
++ (KMUser*)fromJSON:(id)json{
+    KMUser *user = [[KMUser alloc] init];
+    
+    return user;
 }
 
 - (dispatch_queue_t)queue{
@@ -60,27 +66,27 @@
             completion (image);
         }else{
             _loadingImage = YES;
-            NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] init] ;
-            [urlRequest setURL:[NSURL URLWithString:self.avatarURLPath]];
-            [urlRequest setHTTPMethod:@"GET"];
-            AFRKImageRequestOperation *requestOperation = [[AFRKImageRequestOperation alloc] initWithRequest:urlRequest];
-            [requestOperation setCompletionBlockWithSuccess:^(AFRKHTTPRequestOperation *operation, id responseObject) {
-                completion(responseObject);
-                [[KMCacheManager sharedInstance] cacheData:responseObject identifier:self.avatarURLPath.lastPathComponent];
-                _avatarImage = responseObject;
-//                _maskedCarImage = nil;
-                _loadingImage = NO;
-                
-                for (ImageCompletionBlock block in self.avatarImageBlocks) {
-                    block(responseObject);
-                }
-            } failure:^(AFRKHTTPRequestOperation *operation, NSError *error) {
-                for (ImageCompletionBlock block in self.avatarImageBlocks) {
-                    block(nil);
-                }
-                _loadingImage = NO;
-            }];
-            [requestOperation start];
+//            NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] init] ;
+//            [urlRequest setURL:[NSURL URLWithString:self.avatarURLPath]];
+//            [urlRequest setHTTPMethod:@"GET"];
+//            AFRKImageRequestOperation *requestOperation = [[AFRKImageRequestOperation alloc] initWithRequest:urlRequest];
+//            [requestOperation setCompletionBlockWithSuccess:^(AFRKHTTPRequestOperation *operation, id responseObject) {
+//                completion(responseObject);
+//                [[KMCacheManager sharedInstance] cacheData:responseObject identifier:self.avatarURLPath.lastPathComponent];
+//                _avatarImage = responseObject;
+////                _maskedCarImage = nil;
+//                _loadingImage = NO;
+//                
+//                for (ImageCompletionBlock block in self.avatarImageBlocks) {
+//                    block(responseObject);
+//                }
+//            } failure:^(AFRKHTTPRequestOperation *operation, NSError *error) {
+//                for (ImageCompletionBlock block in self.avatarImageBlocks) {
+//                    block(nil);
+//                }
+//                _loadingImage = NO;
+//            }];
+//            [requestOperation start];
         }
         
         

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KMNotificationSettingsObject.h"
+
 
 @interface KMNotificationSettings : NSObject
 

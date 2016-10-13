@@ -7,31 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C74B06C71D7D22A40074B10B /* KMObjectManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FD61D7D19CF0003E7A8 /* KMObjectManager.h */; };
 		C75105011D7422BF00F4C341 /* KatsanaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C75105001D7422BF00F4C341 /* KatsanaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C75105081D7422BF00F4C341 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
-		C751050D1D7422BF00F4C341 /* KatsanaAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C751050C1D7422BF00F4C341 /* KatsanaAPITests.m */; };
 		C751054F1D742B5F00F4C341 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751054E1D742B5F00F4C341 /* MapKit.framework */; };
 		C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751055F1D742D0500F4C341 /* UIKit.framework */; };
 		C75105621D742D4700F4C341 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C75105611D742D4700F4C341 /* PrefixHeader.pch */; };
 		C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75105631D742D8600F4C341 /* CoreLocation.framework */; };
+		C75945671DAE217400774FAD /* KMObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C75945651DAE217400774FAD /* KMObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C76B86B81DAF16EC005F6751 /* KatsanaAPI+Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B86B71DAF16EC005F6751 /* KatsanaAPI+Vehicle.swift */; };
+		C76B86BA1DAF1B56005F6751 /* KatsanaAPI+Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B86B91DAF1B56005F6751 /* KatsanaAPI+Logic.swift */; };
+		C76B86BC1DAF2379005F6751 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C76B86BB1DAF2379005F6751 /* SwiftyJSON.framework */; };
+		C76B86BD1DAF32BE005F6751 /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C76B86BB1DAF2379005F6751 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C773C96F1D98B02C00FC698E /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C773C96D1D98B02C00FC698E /* FastCoder.h */; };
 		C773C9701D98B02C00FC698E /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C773C96E1D98B02C00FC698E /* FastCoder.m */; };
-		C773C9721D98B2A200FC698E /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C773C9711D98B2A200FC698E /* CocoaLumberjack.framework */; };
-		C773C9741D98B37C00FC698E /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C773C9731D98B37C00FC698E /* RestKit.framework */; };
 		C78B22121D757441002E25C3 /* KMConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = C78B22101D757441002E25C3 /* KMConstant.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C78B22131D757441002E25C3 /* KMConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = C78B22111D757441002E25C3 /* KMConstant.m */; };
 		C78B22151D75754B002E25C3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
-		C78B22171D757FC2002E25C3 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C78B22161D757FC2002E25C3 /* libRestKit.a */; };
+		C797D5A01DAE521B00138ACE /* Siesta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C797D59F1DAE521A00138ACE /* Siesta.framework */; };
+		C79C76431DADF507003A7DEF /* KatsanaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C76421DADF507003A7DEF /* KatsanaAPI.swift */; };
+		C79C76451DADF933003A7DEF /* KatsanaAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C76441DADF933003A7DEF /* KatsanaAPI+Login.swift */; };
 		C79D9FF51D7D19CF0003E7A8 /* KMCacheManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FCE1D7D19CF0003E7A8 /* KMCacheManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C79D9FF61D7D19CF0003E7A8 /* KMCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FCF1D7D19CF0003E7A8 /* KMCacheManager.m */; };
 		C79D9FF71D7D19CF0003E7A8 /* UIImage+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FD11D7D19CF0003E7A8 /* UIImage+Extension.h */; };
 		C79D9FF81D7D19CF0003E7A8 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FD21D7D19CF0003E7A8 /* UIImage+Extension.m */; };
-		C79D9FF91D7D19CF0003E7A8 /* KMMappingProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FD41D7D19CF0003E7A8 /* KMMappingProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C79D9FFA1D7D19CF0003E7A8 /* KMMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FD51D7D19CF0003E7A8 /* KMMappingProvider.m */; };
-		C79D9FFC1D7D19CF0003E7A8 /* KMObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FD71D7D19CF0003E7A8 /* KMObjectManager.m */; };
-		C79D9FFD1D7D19CF0003E7A8 /* KMKatsana.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FD81D7D19CF0003E7A8 /* KMKatsana.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C79D9FFE1D7D19CF0003E7A8 /* KMKatsana.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FD91D7D19CF0003E7A8 /* KMKatsana.m */; };
 		C79D9FFF1D7D19CF0003E7A8 /* KMActivityObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FDB1D7D19CF0003E7A8 /* KMActivityObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C79DA0001D7D19CF0003E7A8 /* KMActivityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FDC1D7D19CF0003E7A8 /* KMActivityObject.m */; };
 		C79DA0011D7D19CF0003E7A8 /* KMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FDD1D7D19CF0003E7A8 /* KMAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,49 +53,85 @@
 		C79DA0141D7D19CF0003E7A8 /* KMViolation.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FF01D7D19CF0003E7A8 /* KMViolation.m */; };
 		C79DA0151D7D19CF0003E7A8 /* KMTimeTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FF21D7D19CF0003E7A8 /* KMTimeTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C79DA0161D7D19CF0003E7A8 /* KMTimeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FF31D7D19CF0003E7A8 /* KMTimeTransformer.m */; };
-		C7AD3B4D1D7E521B00006ACA /* XCTestCase+AsyncTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AD3B4C1D7E521B00006ACA /* XCTestCase+AsyncTesting.m */; };
+		C7A4BF781DAF077E007E90B8 /* KatsanaSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */; };
+		C7A4BF7A1DAF077E007E90B8 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
+		C7A4BF871DAF0C32007E90B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4BF861DAF0C32007E90B8 /* AppDelegate.swift */; };
+		C7A4BF891DAF0C32007E90B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4BF881DAF0C32007E90B8 /* ViewController.swift */; };
+		C7A4BF8C1DAF0C32007E90B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7A4BF8A1DAF0C32007E90B8 /* Main.storyboard */; };
+		C7A4BF8E1DAF0C32007E90B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7A4BF8D1DAF0C32007E90B8 /* Assets.xcassets */; };
+		C7A4BF911DAF0C32007E90B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7A4BF8F1DAF0C32007E90B8 /* LaunchScreen.storyboard */; };
+		C7A4BF961DAF0ECB007E90B8 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
+		C7A4BF971DAF0ECB007E90B8 /* KatsanaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C7A4BF9C1DAF0F12007E90B8 /* Siesta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C797D59F1DAE521A00138ACE /* Siesta.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C75105091D7422BF00F4C341 /* PBXContainerItemProxy */ = {
+		C7A4BF7B1DAF077E007E90B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C75104F41D7422BF00F4C341 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C75104FC1D7422BF00F4C341;
-			remoteInfo = KatsanaAPI;
+			remoteInfo = KatsanaSDK;
+		};
+		C7A4BF981DAF0ECB007E90B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C75104F41D7422BF00F4C341 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C75104FC1D7422BF00F4C341;
+			remoteInfo = KatsanaSDK;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C7A4BF9A1DAF0ECB007E90B8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C7A4BF971DAF0ECB007E90B8 /* KatsanaSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7A4BF9B1DAF0F0B007E90B8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C76B86BD1DAF32BE005F6751 /* SwiftyJSON.framework in CopyFiles */,
+				C7A4BF9C1DAF0F12007E90B8 /* Siesta.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75105001D7422BF00F4C341 /* KatsanaSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KatsanaSDK.h; sourceTree = "<group>"; };
 		C75105021D7422BF00F4C341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C75105071D7422BF00F4C341 /* KatsanaSDK.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDK.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C751050C1D7422BF00F4C341 /* KatsanaAPITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KatsanaAPITests.m; sourceTree = "<group>"; };
-		C751050E1D7422BF00F4C341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C751054E1D742B5F00F4C341 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C751055D1D742CE100F4C341 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C751055F1D742D0500F4C341 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C75105611D742D4700F4C341 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C75105631D742D8600F4C341 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C75945651DAE217400774FAD /* KMObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMObject.h; sourceTree = "<group>"; };
+		C76B86B71DAF16EC005F6751 /* KatsanaAPI+Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Vehicle.swift"; sourceTree = "<group>"; };
+		C76B86B91DAF1B56005F6751 /* KatsanaAPI+Logic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Logic.swift"; sourceTree = "<group>"; };
+		C76B86BB1DAF2379005F6751 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		C773C96D1D98B02C00FC698E /* FastCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastCoder.h; sourceTree = "<group>"; };
 		C773C96E1D98B02C00FC698E /* FastCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCoder.m; sourceTree = "<group>"; };
-		C773C9711D98B2A200FC698E /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = "<group>"; };
-		C773C9731D98B37C00FC698E /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RestKit.framework; sourceTree = "<group>"; };
 		C78B22101D757441002E25C3 /* KMConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMConstant.h; sourceTree = "<group>"; };
 		C78B22111D757441002E25C3 /* KMConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMConstant.m; sourceTree = "<group>"; };
 		C78B22141D75754B002E25C3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		C78B22161D757FC2002E25C3 /* libRestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRestKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/KatsanaAPI-hhzibggatksltkaygchrmhgwylbh/Build/Products/Debug-iphonesimulator/RestKit/libRestKit.a"; sourceTree = "<group>"; };
+		C797D59F1DAE521A00138ACE /* Siesta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Siesta.framework; path = Carthage/Build/iOS/Siesta.framework; sourceTree = "<group>"; };
+		C79C76421DADF507003A7DEF /* KatsanaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatsanaAPI.swift; sourceTree = "<group>"; };
+		C79C76441DADF933003A7DEF /* KatsanaAPI+Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Login.swift"; sourceTree = "<group>"; };
 		C79D9FCE1D7D19CF0003E7A8 /* KMCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCacheManager.h; sourceTree = "<group>"; };
 		C79D9FCF1D7D19CF0003E7A8 /* KMCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCacheManager.m; sourceTree = "<group>"; };
 		C79D9FD11D7D19CF0003E7A8 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		C79D9FD21D7D19CF0003E7A8 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
-		C79D9FD41D7D19CF0003E7A8 /* KMMappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMMappingProvider.h; sourceTree = "<group>"; };
-		C79D9FD51D7D19CF0003E7A8 /* KMMappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMappingProvider.m; sourceTree = "<group>"; };
-		C79D9FD61D7D19CF0003E7A8 /* KMObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMObjectManager.h; sourceTree = "<group>"; };
-		C79D9FD71D7D19CF0003E7A8 /* KMObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMObjectManager.m; sourceTree = "<group>"; };
-		C79D9FD81D7D19CF0003E7A8 /* KMKatsana.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMKatsana.h; sourceTree = "<group>"; };
-		C79D9FD91D7D19CF0003E7A8 /* KMKatsana.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMKatsana.m; sourceTree = "<group>"; };
 		C79D9FDB1D7D19CF0003E7A8 /* KMActivityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMActivityObject.h; sourceTree = "<group>"; };
 		C79D9FDC1D7D19CF0003E7A8 /* KMActivityObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMActivityObject.m; sourceTree = "<group>"; };
 		C79D9FDD1D7D19CF0003E7A8 /* KMAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMAddress.h; sourceTree = "<group>"; };
@@ -123,8 +156,16 @@
 		C79D9FF01D7D19CF0003E7A8 /* KMViolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMViolation.m; sourceTree = "<group>"; };
 		C79D9FF21D7D19CF0003E7A8 /* KMTimeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTimeTransformer.h; sourceTree = "<group>"; };
 		C79D9FF31D7D19CF0003E7A8 /* KMTimeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTimeTransformer.m; sourceTree = "<group>"; };
-		C7AD3B4B1D7E521B00006ACA /* XCTestCase+AsyncTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+AsyncTesting.h"; sourceTree = "<group>"; };
-		C7AD3B4C1D7E521B00006ACA /* XCTestCase+AsyncTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+AsyncTesting.m"; sourceTree = "<group>"; };
+		C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKTests.swift; sourceTree = "<group>"; };
+		C7A4BF791DAF077E007E90B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7A4BF841DAF0C32007E90B8 /* KatsanaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KatsanaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7A4BF861DAF0C32007E90B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C7A4BF881DAF0C32007E90B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C7A4BF8B1DAF0C32007E90B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C7A4BF8D1DAF0C32007E90B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C7A4BF901DAF0C32007E90B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C7A4BF921DAF0C32007E90B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,20 +173,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C78B22171D757FC2002E25C3 /* libRestKit.a in Frameworks */,
+				C797D5A01DAE521B00138ACE /* Siesta.framework in Frameworks */,
 				C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */,
-				C773C9721D98B2A200FC698E /* CocoaLumberjack.framework in Frameworks */,
 				C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */,
 				C751054F1D742B5F00F4C341 /* MapKit.framework in Frameworks */,
-				C773C9741D98B37C00FC698E /* RestKit.framework in Frameworks */,
+				C76B86BC1DAF2379005F6751 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C75105041D7422BF00F4C341 /* Frameworks */ = {
+		C7A4BF721DAF077E007E90B8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C75105081D7422BF00F4C341 /* KatsanaSDK.framework in Frameworks */,
+				C7A4BF7A1DAF077E007E90B8 /* KatsanaSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7A4BF811DAF0C32007E90B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7A4BF961DAF0ECB007E90B8 /* KatsanaSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,10 +203,9 @@
 		5DD901B866D20EE7A742A486 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C773C9731D98B37C00FC698E /* RestKit.framework */,
-				C773C9711D98B2A200FC698E /* CocoaLumberjack.framework */,
+				C76B86BB1DAF2379005F6751 /* SwiftyJSON.framework */,
+				C797D59F1DAE521A00138ACE /* Siesta.framework */,
 				C773C96C1D98B02C00FC698E /* FastCoder */,
-				C78B22161D757FC2002E25C3 /* libRestKit.a */,
 				C75105631D742D8600F4C341 /* CoreLocation.framework */,
 				C751055F1D742D0500F4C341 /* UIKit.framework */,
 				C751055D1D742CE100F4C341 /* CoreGraphics.framework */,
@@ -180,7 +227,8 @@
 				C78B22111D757441002E25C3 /* KMConstant.m */,
 				C78B22141D75754B002E25C3 /* LICENSE */,
 				C75104FF1D7422BF00F4C341 /* KatsanaSDK */,
-				C751050B1D7422BF00F4C341 /* KatsanaAPITests */,
+				C7A4BF761DAF077E007E90B8 /* KatsanaSDKTests */,
+				C7A4BF851DAF0C32007E90B8 /* KatsanaTest */,
 				C75104FE1D7422BF00F4C341 /* Products */,
 				5DD901B866D20EE7A742A486 /* Frameworks */,
 			);
@@ -190,7 +238,8 @@
 			isa = PBXGroup;
 			children = (
 				C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */,
-				C75105071D7422BF00F4C341 /* KatsanaSDK.xctest */,
+				C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */,
+				C7A4BF841DAF0C32007E90B8 /* KatsanaTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -204,17 +253,6 @@
 			);
 			name = KatsanaSDK;
 			path = KatsanaAPI;
-			sourceTree = "<group>";
-		};
-		C751050B1D7422BF00F4C341 /* KatsanaAPITests */ = {
-			isa = PBXGroup;
-			children = (
-				C7AD3B4B1D7E521B00006ACA /* XCTestCase+AsyncTesting.h */,
-				C7AD3B4C1D7E521B00006ACA /* XCTestCase+AsyncTesting.m */,
-				C751050C1D7422BF00F4C341 /* KatsanaAPITests.m */,
-				C751050E1D7422BF00F4C341 /* Info.plist */,
-			);
-			path = KatsanaAPITests;
 			sourceTree = "<group>";
 		};
 		C773C96C1D98B02C00FC698E /* FastCoder */ = {
@@ -249,12 +287,10 @@
 		C79D9FD31D7D19CF0003E7A8 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				C79D9FD41D7D19CF0003E7A8 /* KMMappingProvider.h */,
-				C79D9FD51D7D19CF0003E7A8 /* KMMappingProvider.m */,
-				C79D9FD61D7D19CF0003E7A8 /* KMObjectManager.h */,
-				C79D9FD71D7D19CF0003E7A8 /* KMObjectManager.m */,
-				C79D9FD81D7D19CF0003E7A8 /* KMKatsana.h */,
-				C79D9FD91D7D19CF0003E7A8 /* KMKatsana.m */,
+				C79C76421DADF507003A7DEF /* KatsanaAPI.swift */,
+				C79C76441DADF933003A7DEF /* KatsanaAPI+Login.swift */,
+				C76B86B71DAF16EC005F6751 /* KatsanaAPI+Vehicle.swift */,
+				C76B86B91DAF1B56005F6751 /* KatsanaAPI+Logic.swift */,
 			);
 			name = Manager;
 			path = KatsanaAPI/Manager;
@@ -263,6 +299,7 @@
 		C79D9FDA1D7D19CF0003E7A8 /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				C75945651DAE217400774FAD /* KMObject.h */,
 				C79D9FDB1D7D19CF0003E7A8 /* KMActivityObject.h */,
 				C79D9FDC1D7D19CF0003E7A8 /* KMActivityObject.m */,
 				C79D9FDD1D7D19CF0003E7A8 /* KMAddress.h */,
@@ -308,6 +345,28 @@
 			path = KatsanaAPI/View;
 			sourceTree = "<group>";
 		};
+		C7A4BF761DAF077E007E90B8 /* KatsanaSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */,
+				C7A4BF791DAF077E007E90B8 /* Info.plist */,
+			);
+			path = KatsanaSDKTests;
+			sourceTree = "<group>";
+		};
+		C7A4BF851DAF0C32007E90B8 /* KatsanaTest */ = {
+			isa = PBXGroup;
+			children = (
+				C7A4BF861DAF0C32007E90B8 /* AppDelegate.swift */,
+				C7A4BF881DAF0C32007E90B8 /* ViewController.swift */,
+				C7A4BF8A1DAF0C32007E90B8 /* Main.storyboard */,
+				C7A4BF8D1DAF0C32007E90B8 /* Assets.xcassets */,
+				C7A4BF8F1DAF0C32007E90B8 /* LaunchScreen.storyboard */,
+				C7A4BF921DAF0C32007E90B8 /* Info.plist */,
+			);
+			path = KatsanaTest;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -316,7 +375,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C79DA0071D7D19CF0003E7A8 /* KMNotificationSettingsObject.h in Headers */,
-				C79D9FF91D7D19CF0003E7A8 /* KMMappingProvider.h in Headers */,
 				C79DA0111D7D19CF0003E7A8 /* KMVehiclePosition.h in Headers */,
 				C79DA0131D7D19CF0003E7A8 /* KMViolation.h in Headers */,
 				C79DA0091D7D19CF0003E7A8 /* KMTrip.h in Headers */,
@@ -326,16 +384,15 @@
 				C79DA0151D7D19CF0003E7A8 /* KMTimeTransformer.h in Headers */,
 				C79DA0011D7D19CF0003E7A8 /* KMAddress.h in Headers */,
 				C79DA00D1D7D19CF0003E7A8 /* KMVehicle.h in Headers */,
+				C75945671DAE217400774FAD /* KMObject.h in Headers */,
 				C79DA00B1D7D19CF0003E7A8 /* KMUser.h in Headers */,
 				C79D9FFF1D7D19CF0003E7A8 /* KMActivityObject.h in Headers */,
 				C79DA0051D7D19CF0003E7A8 /* KMNotificationSettings.h in Headers */,
-				C79D9FFD1D7D19CF0003E7A8 /* KMKatsana.h in Headers */,
 				C75105621D742D4700F4C341 /* PrefixHeader.pch in Headers */,
 				C79D9FF71D7D19CF0003E7A8 /* UIImage+Extension.h in Headers */,
 				C78B22121D757441002E25C3 /* KMConstant.h in Headers */,
 				C75105011D7422BF00F4C341 /* KatsanaSDK.h in Headers */,
 				C773C96F1D98B02C00FC698E /* FastCoder.h in Headers */,
-				C74B06C71D7D22A40074B10B /* KMObjectManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +407,7 @@
 				C75104F91D7422BF00F4C341 /* Frameworks */,
 				C75104FA1D7422BF00F4C341 /* Headers */,
 				C75104FB1D7422BF00F4C341 /* Resources */,
+				C7A4BF9B1DAF0F0B007E90B8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -360,23 +418,42 @@
 			productReference = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C75105061D7422BF00F4C341 /* KatsanaSDKTests */ = {
+		C7A4BF741DAF077E007E90B8 /* KatsanaSDKTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C75105141D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaSDKTests" */;
+			buildConfigurationList = C7A4BF7D1DAF077E007E90B8 /* Build configuration list for PBXNativeTarget "KatsanaSDKTests" */;
 			buildPhases = (
-				C75105031D7422BF00F4C341 /* Sources */,
-				C75105041D7422BF00F4C341 /* Frameworks */,
-				C75105051D7422BF00F4C341 /* Resources */,
+				C7A4BF711DAF077E007E90B8 /* Sources */,
+				C7A4BF721DAF077E007E90B8 /* Frameworks */,
+				C7A4BF731DAF077E007E90B8 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C751050A1D7422BF00F4C341 /* PBXTargetDependency */,
+				C7A4BF7C1DAF077E007E90B8 /* PBXTargetDependency */,
 			);
 			name = KatsanaSDKTests;
-			productName = KatsanaAPITests;
-			productReference = C75105071D7422BF00F4C341 /* KatsanaSDK.xctest */;
+			productName = KatsanaSDKTests;
+			productReference = C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C7A4BF831DAF0C32007E90B8 /* KatsanaTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7A4BF931DAF0C32007E90B8 /* Build configuration list for PBXNativeTarget "KatsanaTest" */;
+			buildPhases = (
+				C7A4BF801DAF0C32007E90B8 /* Sources */,
+				C7A4BF811DAF0C32007E90B8 /* Frameworks */,
+				C7A4BF821DAF0C32007E90B8 /* Resources */,
+				C7A4BF9A1DAF0ECB007E90B8 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C7A4BF991DAF0ECB007E90B8 /* PBXTargetDependency */,
+			);
+			name = KatsanaTest;
+			productName = KatsanaTest;
+			productReference = C7A4BF841DAF0C32007E90B8 /* KatsanaTest.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -384,14 +461,24 @@
 		C75104F41D7422BF00F4C341 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = pixelated;
 				TargetAttributes = {
 					C75104FC1D7422BF00F4C341 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 47CF2FS3SX;
+						LastSwiftMigration = 0800;
 					};
-					C75105061D7422BF00F4C341 = {
-						CreatedOnToolsVersion = 7.3.1;
+					C7A4BF741DAF077E007E90B8 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 47CF2FS3SX;
+						ProvisioningStyle = Automatic;
+					};
+					C7A4BF831DAF0C32007E90B8 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 47CF2FS3SX;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -401,6 +488,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = C75104F31D7422BF00F4C341;
 			productRefGroup = C75104FE1D7422BF00F4C341 /* Products */;
@@ -408,7 +496,8 @@
 			projectRoot = "";
 			targets = (
 				C75104FC1D7422BF00F4C341 /* KatsanaSDK */,
-				C75105061D7422BF00F4C341 /* KatsanaSDKTests */,
+				C7A4BF741DAF077E007E90B8 /* KatsanaSDKTests */,
+				C7A4BF831DAF0C32007E90B8 /* KatsanaTest */,
 			);
 		};
 /* End PBXProject section */
@@ -422,10 +511,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C75105051D7422BF00F4C341 /* Resources */ = {
+		C7A4BF731DAF077E007E90B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7A4BF821DAF0C32007E90B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7A4BF911DAF0C32007E90B8 /* LaunchScreen.storyboard in Resources */,
+				C7A4BF8E1DAF0C32007E90B8 /* Assets.xcassets in Resources */,
+				C7A4BF8C1DAF0C32007E90B8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,20 +536,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				C79D9FF81D7D19CF0003E7A8 /* UIImage+Extension.m in Sources */,
-				C79D9FFA1D7D19CF0003E7A8 /* KMMappingProvider.m in Sources */,
-				C79D9FFC1D7D19CF0003E7A8 /* KMObjectManager.m in Sources */,
 				C79DA0081D7D19CF0003E7A8 /* KMNotificationSettingsObject.m in Sources */,
 				C79DA0001D7D19CF0003E7A8 /* KMActivityObject.m in Sources */,
 				C79DA00C1D7D19CF0003E7A8 /* KMUser.m in Sources */,
 				C79DA0141D7D19CF0003E7A8 /* KMViolation.m in Sources */,
+				C76B86BA1DAF1B56005F6751 /* KatsanaAPI+Logic.swift in Sources */,
 				C79DA0041D7D19CF0003E7A8 /* KMAvatar.m in Sources */,
 				C79DA0061D7D19CF0003E7A8 /* KMNotificationSettings.m in Sources */,
 				C79DA0101D7D19CF0003E7A8 /* KMVehicleDayHistory.m in Sources */,
+				C79C76431DADF507003A7DEF /* KatsanaAPI.swift in Sources */,
 				C79DA0021D7D19CF0003E7A8 /* KMAddress.m in Sources */,
 				C79D9FF61D7D19CF0003E7A8 /* KMCacheManager.m in Sources */,
 				C79DA0121D7D19CF0003E7A8 /* KMVehiclePosition.m in Sources */,
 				C79DA00E1D7D19CF0003E7A8 /* KMVehicle.m in Sources */,
-				C79D9FFE1D7D19CF0003E7A8 /* KMKatsana.m in Sources */,
+				C79C76451DADF933003A7DEF /* KatsanaAPI+Login.swift in Sources */,
+				C76B86B81DAF16EC005F6751 /* KatsanaAPI+Vehicle.swift in Sources */,
 				C79DA00A1D7D19CF0003E7A8 /* KMTrip.m in Sources */,
 				C773C9701D98B02C00FC698E /* FastCoder.m in Sources */,
 				C79DA0161D7D19CF0003E7A8 /* KMTimeTransformer.m in Sources */,
@@ -458,24 +558,56 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C75105031D7422BF00F4C341 /* Sources */ = {
+		C7A4BF711DAF077E007E90B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7AD3B4D1D7E521B00006ACA /* XCTestCase+AsyncTesting.m in Sources */,
-				C751050D1D7422BF00F4C341 /* KatsanaAPITests.m in Sources */,
+				C7A4BF781DAF077E007E90B8 /* KatsanaSDKTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7A4BF801DAF0C32007E90B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7A4BF891DAF0C32007E90B8 /* ViewController.swift in Sources */,
+				C7A4BF871DAF0C32007E90B8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C751050A1D7422BF00F4C341 /* PBXTargetDependency */ = {
+		C7A4BF7C1DAF077E007E90B8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C75104FC1D7422BF00F4C341 /* KatsanaSDK */;
-			targetProxy = C75105091D7422BF00F4C341 /* PBXContainerItemProxy */;
+			targetProxy = C7A4BF7B1DAF077E007E90B8 /* PBXContainerItemProxy */;
+		};
+		C7A4BF991DAF0ECB007E90B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C75104FC1D7422BF00F4C341 /* KatsanaSDK */;
+			targetProxy = C7A4BF981DAF0ECB007E90B8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C7A4BF8A1DAF0C32007E90B8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C7A4BF8B1DAF0C32007E90B8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C7A4BF8F1DAF0C32007E90B8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C7A4BF901DAF0C32007E90B8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C751050F1D7422BF00F4C341 /* Debug */ = {
@@ -492,8 +624,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -540,8 +674,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -561,6 +697,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -573,13 +710,16 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 47CF2FS3SX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREFIX_HEADER = KatsanaAPI/PrefixHeader.pch;
 				INFOPLIST_FILE = KatsanaAPI/Info.plist;
@@ -589,6 +729,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDK;
 				PRODUCT_NAME = KatsanaSDK;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -597,13 +739,16 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 47CF2FS3SX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREFIX_HEADER = KatsanaAPI/PrefixHeader.pch;
 				INFOPLIST_FILE = KatsanaAPI/Info.plist;
@@ -613,26 +758,75 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDK;
 				PRODUCT_NAME = KatsanaSDK;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
-		C75105151D7422BF00F4C341 /* Debug */ = {
+		C7A4BF7E1DAF077E007E90B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = KatsanaAPITests/Info.plist;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 47CF2FS3SX;
+				INFOPLIST_FILE = KatsanaSDKTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaAPITests;
-				PRODUCT_NAME = KatsanaSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		C75105161D7422BF00F4C341 /* Release */ = {
+		C7A4BF7F1DAF077E007E90B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = KatsanaAPITests/Info.plist;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 47CF2FS3SX;
+				INFOPLIST_FILE = KatsanaSDKTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaAPITests;
-				PRODUCT_NAME = KatsanaSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		C7A4BF941DAF0C32007E90B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 47CF2FS3SX;
+				INFOPLIST_FILE = KatsanaTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		C7A4BF951DAF0C32007E90B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 47CF2FS3SX;
+				INFOPLIST_FILE = KatsanaTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -657,11 +851,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C75105141D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaSDKTests" */ = {
+		C7A4BF7D1DAF077E007E90B8 /* Build configuration list for PBXNativeTarget "KatsanaSDKTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C75105151D7422BF00F4C341 /* Debug */,
-				C75105161D7422BF00F4C341 /* Release */,
+				C7A4BF7E1DAF077E007E90B8 /* Debug */,
+				C7A4BF7F1DAF077E007E90B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7A4BF931DAF0C32007E90B8 /* Build configuration list for PBXNativeTarget "KatsanaTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7A4BF941DAF0C32007E90B8 /* Debug */,
+				C7A4BF951DAF0C32007E90B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -21,6 +21,12 @@
     BOOL _loadingMarkerImage;
 }
 
++ (KMVehicle*)fromJSON:(id)json{
+    KMVehicle *vehicle = [[KMVehicle alloc] init];
+    
+    return vehicle;
+}
+
 - (void)reloadDataWithVehicle:(KMVehicle*)vehicle{
     self.vehicleDescription = vehicle.description;
     self.mode = vehicle.mode;
@@ -67,17 +73,17 @@
             [self.carThumbImageBlocks addObject:completion];
         }
         _loadingMarkerImage = YES;
-        [[KMKatsana sharedInstance] loadImageWithURL:[NSURL URLWithString:self.avatarURLPath] success:^(UIImage *image) {
-            _carThumbImage = image;
-            _maskedCarImage = nil;
-            _loadingMarkerImage = NO;
-            
-            for (ImageCompletionBlock block in self.carThumbImageBlocks) {
-                block(image);
-            }
-        } failure:^(NSError *error) {
-            _loadingMarkerImage = NO;
-        }];
+//        [[KMKatsana sharedInstance] loadImageWithURL:[NSURL URLWithString:self.avatarURLPath] success:^(UIImage *image) {
+//            _carThumbImage = image;
+//            _maskedCarImage = nil;
+//            _loadingMarkerImage = NO;
+//            
+//            for (ImageCompletionBlock block in self.carThumbImageBlocks) {
+//                block(image);
+//            }
+//        } failure:^(NSError *error) {
+//            _loadingMarkerImage = NO;
+//        }];
     }else{
         completion(self.carThumbImage);
     }
@@ -94,16 +100,16 @@
             [self.carImageBlocks addObject:completion];
         }
         _loadingImage = YES;
-        [[KMKatsana sharedInstance] loadImageWithURL:[NSURL URLWithString:self.markerURLPath] success:^(UIImage *image) {
-            _carImage = image;
-            _loadingImage = NO;
-            
-            for (ImageCompletionBlock block in self.carImageBlocks) {
-                block(image);
-            }
-        } failure:^(NSError *error) {
-            _loadingImage = NO;
-        }];
+//        [[KMKatsana sharedInstance] loadImageWithURL:[NSURL URLWithString:self.markerURLPath] success:^(UIImage *image) {
+//            _carImage = image;
+//            _loadingImage = NO;
+//            
+//            for (ImageCompletionBlock block in self.carImageBlocks) {
+//                block(image);
+//            }
+//        } failure:^(NSError *error) {
+//            _loadingImage = NO;
+//        }];
     }else{
         completion(self.carImage);
     }
@@ -117,12 +123,12 @@
     }
     
     if (coord.latitude !=0 && coord.longitude != 0) {
-        [[KMKatsana sharedInstance] loadAddressWithLocation:coord address:^(KMAddress *address) {
-            self.currentAddress = address;
-            _lastCoordinate = self.current.coordinate;
-            completion(address);
-        } failure:^(NSError *error) {
-        }];
+//        [[KMKatsana sharedInstance] loadAddressWithLocation:coord address:^(KMAddress *address) {
+//            self.currentAddress = address;
+//            _lastCoordinate = self.current.coordinate;
+//            completion(address);
+//        } failure:^(NSError *error) {
+//        }];
     }
 }
 

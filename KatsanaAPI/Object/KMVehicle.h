@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KMVehiclePosition.h"
 
 @interface KMVehicle : NSObject
 
@@ -47,5 +46,7 @@
 
 - (void)reloadDataWithVehicle:(KMVehicle*)vehicle;
 - (void)reloadBlockImage;
+
++ (KMVehicle*)fromJSON:(id)json;
 
 @end

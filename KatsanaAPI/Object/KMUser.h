@@ -57,4 +57,6 @@
 - (BOOL)isLoadingActivities;
 - (void)avatarImageWithBlock:(void (^)(UIImage *image))completion;
 
++ (KMUser*)fromJSON:(id)json;
+
 @end

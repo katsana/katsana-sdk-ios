@@ -61,17 +61,17 @@ static NSDateFormatter *sharedDateFormatter = nil;
         return;
     }
     
-    [[KMKatsana sharedInstance] loadAddressWithLocation:CLLocationCoordinate2DMake(self.latitude, self.longitude) address:^(KMAddress *address) {
-        if (useCountry) {
-            _address = address.optimizedAddressWithCountry;
-        }else{
-            _address = address.optimizedAddress;
-        }
-        _lastCoord = self.coordinate;
-        completion(_address);
-    } failure:^(NSError *error) {
-        
-    }];
+//    [[KMKatsana sharedInstance] loadAddressWithLocation:CLLocationCoordinate2DMake(self.latitude, self.longitude) address:^(KMAddress *address) {
+//        if (useCountry) {
+//            _address = address.optimizedAddressWithCountry;
+//        }else{
+//            _address = address.optimizedAddress;
+//        }
+//        _lastCoord = self.coordinate;
+//        completion(_address);
+//    } failure:^(NSError *error) {
+//        
+//    }];
 }
 
 - (NSString*)address{

@@ -10,11 +10,11 @@
 
 @implementation KMConstant
 
-int ddLogLevel =
-#ifdef DEBUG
-DDLogLevelVerbose;
-#else
-DDLogLevelInfo;
-#endif
+//int ddLogLevel =
+//#ifdef DEBUG
+//DDLogLevelVerbose;
+//#else
+//DDLogLevelInfo;
+//#endif
 
 @end

@@ -1,0 +1,10 @@
+framework module SiestaUI {
+  umbrella header "SiestaUI.h"
+
+  export *
+  module * { export * }
+}
+
+module SiestaUI.Swift {
+    header "SiestaUI-Swift.h"
+}

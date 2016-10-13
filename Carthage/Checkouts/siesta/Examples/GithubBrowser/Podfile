@@ -1,0 +1,8 @@
+platform :ios, '9.0'
+
+target 'GithubBrowser' do
+  use_frameworks!
+
+  pod 'Siesta/UI', path: '../..'
+  pod 'SwiftyJSON', git: 'https://github.com/BaiduHiDeviOS/SwiftyJSON.git', branch: 'swift3'
+end
