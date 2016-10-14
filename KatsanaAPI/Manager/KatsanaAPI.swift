@@ -12,7 +12,7 @@ import SwiftyJSON
 
 public class KatsanaAPI: NSObject {
     
-    public static let sharedInstance = KatsanaAPI()
+    public static let shared = KatsanaAPI()
     public var API : Service!
     
     internal(set) public var currentUser: KMUser!
@@ -23,29 +23,17 @@ public class KatsanaAPI: NSObject {
     
     internal var authToken: String! {
         didSet {
-            
             // Rerun existing configuration closure using new value
             API.invalidateConfiguration()
-////            // Wipe any Siesta’s cached state if auth token changes
-//            API.wipeResources()
-//            configure()
+            // Wipe any Siesta’s cached state if auth token changes
+            API.wipeResources()
         }
     }
-    
-    func baseURL() -> URL {
-        return API.baseURL!;
-    }
 
-    override init() {
-        super.init()
-        setup()
-    }
-    
-    public func setup(){
-        API = Service(baseURL: "https://carbon.api.katsana.com/")
-        
-        configure()
-        setupTransformer()
+    public class func configureShared(baseURL : URL) -> Void {
+        shared.API = Service(baseURL: baseURL)
+        shared.configure()
+        shared.setupTransformer()
     }
     
     func configure() {
@@ -53,32 +41,30 @@ public class KatsanaAPI: NSObject {
             $0.headers["Accept"] = "application/json"
             $0.pipeline[.parsing].add(self.SwiftyJSONTransformer, contentTypes: ["*/json"])
             $0.headers["Authorization"] = "Bearer " + self.authToken
-            
         }
     }
     
     func setupTransformer() -> Void {
-        API.configureTransformer("vehicles/*") {
-            ObjectJSONTransformer.UserObject(json: $0.content)
+        API.configureTransformer("vehicles") {
+            ObjectJSONTransformer.VehiclesObject(json: $0.content)
         }
+        API.configureTransformer("vehicles/*") {
+            ObjectJSONTransformer.VehicleObject(json: $0.content)
+        }
+        
         API.configureTransformer("profile") {
             ObjectJSONTransformer.UserObject(json: $0.content)
         }
-//        APIManager.configureTransformer(ConfigurationPatternConvertible) { (Entity<I>) -> O? in
-//
-//        }
+        
+        API.configureTransformer("vehicles/*/summaries/*") {
+            ObjectJSONTransformer.TravelHistoryObject(json: $0.content)
+        }
+        API.configureTransformer("vehicles/*/travels/***") {
+            ObjectJSONTransformer.TravelHistoryObject(json: $0.content)
+        }
     }
     
- //   public func resourceChanged(_ resource: Siesta.Resource, event: Siesta.ResourceEvent){
-        
-//    }
-//    public func resourceRequestProgress(for resource: Siesta.Resource, progress: Double){
-//
-//    }
-//    public func stoppedObserving(resource: Siesta.Resource){
-        
- //   }
- //   public var observerIdentity: AnyHashable{
- //       return nil;
- //   }
+    func baseURL() -> URL {
+        return API.baseURL!;
+    }
 }

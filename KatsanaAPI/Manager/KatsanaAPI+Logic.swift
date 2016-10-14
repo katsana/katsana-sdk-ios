@@ -11,7 +11,11 @@ import Foundation
 extension KatsanaAPI {
 
     func vehicleWith(vehicleId: String) -> KMVehicle! {
-        for vehicle in vehicles {
+        guard (vehicles != nil) else {
+            return nil
+        }
+        
+        for vehicle in vehicles{
             if vehicle.vehicleId == vehicleId {
                 return vehicle
             }

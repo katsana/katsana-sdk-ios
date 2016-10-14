@@ -16,13 +16,13 @@
 @property (nonatomic, weak) KMVehicle *owner;
 
 @property (nonatomic, strong) NSArray *trips;
-@property (nonatomic, assign) CGFloat maxSpeed;
-@property (nonatomic, assign) CGFloat distance;
+@property (nonatomic, assign) float maxSpeed;
+@property (nonatomic, assign) double distance;
 @property (nonatomic, assign) NSInteger violationCount;
-@property (nonatomic, strong) NSDate *historyDate;
-@property (nonatomic, assign) CGFloat idleDuration;
-@property (nonatomic, assign) CGFloat duration;
+@property (nonatomic, assign) double idleDuration;
+@property (nonatomic, assign) double duration;
 
+@property (nonatomic, strong) NSDate *historyDate;
 @property (nonatomic, strong) NSDate *lastUpdate;
 
 //!Trip count from trip history;

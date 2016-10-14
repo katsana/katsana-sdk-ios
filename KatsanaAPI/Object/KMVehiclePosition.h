@@ -11,13 +11,13 @@
 
 @interface KMVehiclePosition : NSObject
 
-@property (nonatomic, assign) CGFloat altitude;
-@property (nonatomic, assign) CGFloat course;
-@property (nonatomic, assign) CGFloat latitude;
-@property (nonatomic, assign) CGFloat longitude;
-@property (nonatomic, assign) CGFloat speed;
-@property (nonatomic, assign) CGFloat distance;
-@property (nonatomic, assign) CGFloat fuelPercentage;
+//@property (nonatomic, assign) double altitude;
+//@property (nonatomic, assign) double course;
+@property (nonatomic, assign) double latitude;
+@property (nonatomic, assign) double longitude;
+@property (nonatomic, assign) float speed;
+//@property (nonatomic, assign) float distance;
+//@property (nonatomic, assign) float fuelPercentage;
 
 @property (nonatomic, strong) NSString *state;
 @property (nonatomic, strong) NSString *voltage;

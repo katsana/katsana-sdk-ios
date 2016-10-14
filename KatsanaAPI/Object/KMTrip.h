@@ -12,13 +12,15 @@
 
 @property (nonatomic, strong) KMVehiclePosition *start;
 @property (nonatomic, strong) KMVehiclePosition *end;
-@property (nonatomic, assign) CGFloat distance;
-@property (nonatomic, assign) CGFloat duration;
-@property (nonatomic, assign) CGFloat maxSpeed;
-@property (nonatomic, assign) CGFloat averageSpeed;
-@property (nonatomic, assign) CGFloat idleDuration;
+@property (nonatomic, assign) double distance;
+@property (nonatomic, assign) double duration;
+@property (nonatomic, assign) float maxSpeed;
+@property (nonatomic, assign) float averageSpeed;
+@property (nonatomic, assign) double idleDuration;
+
 @property (nonatomic, strong) NSArray *histories;
 @property (nonatomic, strong) NSArray *violations;
+@property (nonatomic, strong) NSArray *idles;
 
 @property (nonatomic, weak) KMTrip *nextTrip;
 @property (nonatomic, weak) KMTrip *prevTrip;

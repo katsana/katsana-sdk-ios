@@ -20,9 +20,8 @@
 @property (nonatomic, strong) KMVehiclePosition *current;
 @property (nonatomic, strong) NSString *avatarURLPath;
 @property (nonatomic, strong) NSString *markerURLPath;
-@property (nonatomic, assign) CGFloat todayMaxSpeed;
-@property (nonatomic, assign) CGFloat speedLimit;
-@property (nonatomic, assign) CGFloat odometer;
+@property (nonatomic, assign) float todayMaxSpeed;
+@property (nonatomic, assign) float odometer;
 @property (nonatomic, strong) NSDate *subscriptionEnd;
 @property (nonatomic, assign) BOOL websocket;
 

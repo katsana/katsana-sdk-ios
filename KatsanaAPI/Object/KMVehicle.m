@@ -35,7 +35,7 @@
     self.avatarURLPath = vehicle.avatarURLPath;
     self.markerURLPath = vehicle.markerURLPath;
     self.todayMaxSpeed = vehicle.todayMaxSpeed;
-    self.speedLimit = vehicle.speedLimit;
+//    self.speedLimit = vehicle.speedLimit;
     self.odometer = vehicle.odometer;
     self.subscriptionEnd = vehicle.subscriptionEnd;
     self.websocket = vehicle.websocket;
@@ -136,6 +136,10 @@
     for (ImageCompletionBlock block in self.carImageBlocks) {
         block(self.carImage);
     }
+}
+
+- (NSString*)description{
+    return [NSString stringWithFormat:@"%@, id:%@, userId:%@, vehicleNumber:%@, vehicleDesc:%@", [super description], self.vehicleId, self.userId, self.vehicleNumber, self.vehicleDescription];
 }
 
 @end

@@ -12,7 +12,7 @@ import Siesta
 
 extension KatsanaAPI {
     
-    public func login(email: String, password: String, completion: (_ user: String) -> Void) -> Void {
+    public func login(email: String, password: String, completion: @escaping (_ user: KMUser?) -> Void) -> Void {
         let path = self.baseURL().absoluteString + "auth"
         var request = URLRequest(url: URL(string: path)!)
         request.httpMethod = "POST"
@@ -34,13 +34,13 @@ extension KatsanaAPI {
             if token != nil {
                 DispatchQueue.main.async {
                     self.authToken = token
-                    self.API.resource("profile").addObserver(owner: self) {
-                        [weak self] resource, event in
+                    let resource = self.API.resource("profile")
+                    resource.loadIfNeeded()?.onSuccess({ (entity) in
                         let user : KMUser? = resource.typedContent()
-                        self?.currentUser = user;
-                        
-                    }.loadIfNeeded()?.onFailure({ (error) in
-                        
+                        self.currentUser = user
+                        completion(user)
+                    }).onFailure({ (error) in
+                        completion(nil)
                     })
                 }
             }

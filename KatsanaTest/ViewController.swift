@@ -23,9 +23,21 @@ class ViewController: UIViewController {
     }
     
     func test() {
-        KatsanaAPI.sharedInstance.login(email: "", password: "") { (KMUser) in
-            print("sdf")
+        let path = "/Users/Lutfi/testCredential.plist"
+        let credential = NSDictionary(contentsOfFile: path)
+        if credential != nil {
+            let email = credential?["username"] as! String
+            let pass =  credential?["password"] as! String
+            let baseURLPath = credential?["baseURL"] as! String
+            let baseURL = URL(string: baseURLPath)
+            KatsanaAPI.configureShared(baseURL: baseURL!)
+            
+            KatsanaAPI.sharedInstance.login(email: "", password: "") { (KMUser) in
+                print("sdf")
+            }
         }
+        
+        
     }
 
 
