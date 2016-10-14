@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 @import CoreLocation;
 
-@class KMTravelHistory;
-@class KMActivityObject;
-
 @interface KMCacheManager : NSObject
 
 @property (nonatomic, assign) CGFloat addressCacheDayDuration;
@@ -20,7 +17,7 @@
 
 - (void)cacheData:(id)data identifier:(NSString*)identifier;
 
-- (KMTravelHistory*)vehicleDayHistoryForDate:(NSDate*)date vehicleId:(NSString*)vehicleId;
+- (KMTravelHistory*)travelHistoryForDate:(NSDate*)date vehicleId:(NSString*)vehicleId;
 - (UIImage*)imageForIdentifier:(NSString*)identifier;
 - (void)addressForCoordinate:(CLLocationCoordinate2D)coord completionBlock:(void (^)(KMAddress *address))completion;
 - (KMActivityObject*)latestCachedActivityObject;

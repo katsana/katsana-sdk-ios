@@ -17,6 +17,7 @@
 		C76538BB1DB08B2B001E1788 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C76538B91DB08B2B001E1788 /* UIImage+Extension.m */; };
 		C76538C11DB08C74001E1788 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C01DB08C73001E1788 /* DateHelper.swift */; };
 		C76538C31DB08ECF001E1788 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C21DB08ECF001E1788 /* Date+Extension.swift */; };
+		C76538C51DB099EA001E1788 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C41DB099EA001E1788 /* CacheManager.swift */; };
 		C76B86B81DAF16EC005F6751 /* KatsanaAPI+Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B86B71DAF16EC005F6751 /* KatsanaAPI+Vehicle.swift */; };
 		C76B86BA1DAF1B56005F6751 /* KatsanaAPI+Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B86B91DAF1B56005F6751 /* KatsanaAPI+Logic.swift */; };
 		C76B86BC1DAF2379005F6751 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C76B86BB1DAF2379005F6751 /* SwiftyJSON.framework */; };
@@ -126,6 +127,7 @@
 		C76538B91DB08B2B001E1788 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		C76538C01DB08C73001E1788 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		C76538C21DB08ECF001E1788 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		C76538C41DB099EA001E1788 /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		C76B86B71DAF16EC005F6751 /* KatsanaAPI+Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Vehicle.swift"; sourceTree = "<group>"; };
 		C76B86B91DAF1B56005F6751 /* KatsanaAPI+Logic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Logic.swift"; sourceTree = "<group>"; };
 		C76B86BB1DAF2379005F6751 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 			children = (
 				C79D9FCE1D7D19CF0003E7A8 /* KMCacheManager.h */,
 				C79D9FCF1D7D19CF0003E7A8 /* KMCacheManager.m */,
+				C76538C41DB099EA001E1788 /* CacheManager.swift */,
 			);
 			name = Cache;
 			path = KatsanaAPI/Cache;
@@ -550,6 +553,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C76538C51DB099EA001E1788 /* CacheManager.swift in Sources */,
 				C76538C31DB08ECF001E1788 /* Date+Extension.swift in Sources */,
 				C79DA0081D7D19CF0003E7A8 /* KMNotificationSettingsObject.m in Sources */,
 				C79DA0001D7D19CF0003E7A8 /* KMActivityObject.m in Sources */,

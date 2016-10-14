@@ -108,7 +108,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
 
 #pragma mark -
 
-- (KMTravelHistory*)vehicleDayHistoryForDate:(NSDate*)date vehicleId:(NSString*)vehicleId{
+- (KMTravelHistory*)travelHistoryForDate:(NSDate*)date vehicleId:(NSString*)vehicleId{
     //Always need load latest data if today
     NSDate *today = [NSDate date];
     if ([[NSCalendar currentCalendar] isDate:date equalToDate:today toUnitGranularity:NSCalendarUnitDay]) {
@@ -305,27 +305,27 @@ static KMCacheManager *sharedPeerToPeer = nil;
     if (!self.activities) {
         self.activities = [NSMutableDictionary dictionary];
     }
-//    KMUser *user = [KMKatsana sharedInstance].currentUser;
-//    if (!user || ![identifier isEqualToString:user.userId]) {
-//        return;
-//    }
-//    
-//    NSMutableArray *activities = self.activities[user.userId.copy];
-//    if (!activities) {
-//        activities = [NSMutableArray array];
-//        self.activities[user.userId.copy] = activities;
-//    }
-//    
-//    for (KMActivityObject *act in activities) {
-//        if ([act.startTime isEqual:activity.startTime] && act.policyTypeId == activity.policyTypeId) {
-//            needAdd = NO;
-//            break;
-//        }
-//    }
-//    if (needAdd) {
-//        [activities addObject:activity];
-//        [self autoSaveActivities];
-//    }
+    KMUser *user = [KatsanaAPI shared].currentUser;
+    if (!user || ![identifier isEqualToString:user.userId]) {
+        return;
+    }
+    
+    NSMutableArray *activities = self.activities[user.userId.copy];
+    if (!activities) {
+        activities = [NSMutableArray array];
+        self.activities[user.userId.copy] = activities;
+    }
+    
+    for (KMActivityObject *act in activities) {
+        if ([act.startTime isEqual:activity.startTime] && act.policyTypeId == activity.policyTypeId) {
+            needAdd = NO;
+            break;
+        }
+    }
+    if (needAdd) {
+        [activities addObject:activity];
+        [self autoSaveActivities];
+    }
 }
 
 - (void)cacheImage:(UIImage*)image withIdentifier:(NSString*)identifier{
