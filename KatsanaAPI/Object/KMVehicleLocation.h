@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @import CoreLocation;
 
-@interface KMVehiclePosition : NSObject
+@interface KMVehicleLocation : NSObject
 
 //@property (nonatomic, assign) double altitude;
 //@property (nonatomic, assign) double course;
@@ -37,11 +37,11 @@
 - (NSString*)updatedDateString;
 - (NSString*)speedString;
 
-- (CGFloat)distanceToPosition:(KMVehiclePosition*)pos;
+- (CGFloat)distanceToPosition:(KMVehicleLocation*)pos;
 - (CGFloat)distanceToCoordinate:(CLLocationCoordinate2D)coord;
-- (BOOL)locationEqualToVehiclePosition:(KMVehiclePosition*)otherPos;
+- (BOOL)locationEqualToVehiclePosition:(KMVehicleLocation*)otherPos;
 - (BOOL)locationEqualToCoordinate:(CLLocationCoordinate2D)coord;
 
-+ (KMVehiclePosition*)vehiclePositionFromDictionary:(NSDictionary*)dicto;
++ (KMVehicleLocation*)vehiclePositionFromDictionary:(NSDictionary*)dicto;
 
 @end

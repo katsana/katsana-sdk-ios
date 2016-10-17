@@ -55,8 +55,8 @@
 		C79DA00E1D7D19CF0003E7A8 /* KMVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FEA1D7D19CF0003E7A8 /* KMVehicle.m */; };
 		C79DA00F1D7D19CF0003E7A8 /* KMTravelHistory.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FEB1D7D19CF0003E7A8 /* KMTravelHistory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C79DA0101D7D19CF0003E7A8 /* KMTravelHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FEC1D7D19CF0003E7A8 /* KMTravelHistory.m */; };
-		C79DA0111D7D19CF0003E7A8 /* KMVehiclePosition.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FED1D7D19CF0003E7A8 /* KMVehiclePosition.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C79DA0121D7D19CF0003E7A8 /* KMVehiclePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FEE1D7D19CF0003E7A8 /* KMVehiclePosition.m */; };
+		C79DA0111D7D19CF0003E7A8 /* KMVehicleLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FED1D7D19CF0003E7A8 /* KMVehicleLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C79DA0121D7D19CF0003E7A8 /* KMVehicleLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FEE1D7D19CF0003E7A8 /* KMVehicleLocation.m */; };
 		C79DA0131D7D19CF0003E7A8 /* KMViolation.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FEF1D7D19CF0003E7A8 /* KMViolation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C79DA0141D7D19CF0003E7A8 /* KMViolation.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FF01D7D19CF0003E7A8 /* KMViolation.m */; };
 		C79DA0151D7D19CF0003E7A8 /* KMTimeTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FF21D7D19CF0003E7A8 /* KMTimeTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -166,8 +166,8 @@
 		C79D9FEA1D7D19CF0003E7A8 /* KMVehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMVehicle.m; sourceTree = "<group>"; };
 		C79D9FEB1D7D19CF0003E7A8 /* KMTravelHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTravelHistory.h; sourceTree = "<group>"; };
 		C79D9FEC1D7D19CF0003E7A8 /* KMTravelHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTravelHistory.m; sourceTree = "<group>"; };
-		C79D9FED1D7D19CF0003E7A8 /* KMVehiclePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMVehiclePosition.h; sourceTree = "<group>"; };
-		C79D9FEE1D7D19CF0003E7A8 /* KMVehiclePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMVehiclePosition.m; sourceTree = "<group>"; };
+		C79D9FED1D7D19CF0003E7A8 /* KMVehicleLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMVehicleLocation.h; sourceTree = "<group>"; };
+		C79D9FEE1D7D19CF0003E7A8 /* KMVehicleLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMVehicleLocation.m; sourceTree = "<group>"; };
 		C79D9FEF1D7D19CF0003E7A8 /* KMViolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMViolation.h; sourceTree = "<group>"; };
 		C79D9FF01D7D19CF0003E7A8 /* KMViolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMViolation.m; sourceTree = "<group>"; };
 		C79D9FF21D7D19CF0003E7A8 /* KMTimeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTimeTransformer.h; sourceTree = "<group>"; };
@@ -341,8 +341,8 @@
 				C79D9FEA1D7D19CF0003E7A8 /* KMVehicle.m */,
 				C79D9FEB1D7D19CF0003E7A8 /* KMTravelHistory.h */,
 				C79D9FEC1D7D19CF0003E7A8 /* KMTravelHistory.m */,
-				C79D9FED1D7D19CF0003E7A8 /* KMVehiclePosition.h */,
-				C79D9FEE1D7D19CF0003E7A8 /* KMVehiclePosition.m */,
+				C79D9FED1D7D19CF0003E7A8 /* KMVehicleLocation.h */,
+				C79D9FEE1D7D19CF0003E7A8 /* KMVehicleLocation.m */,
 				C79D9FEF1D7D19CF0003E7A8 /* KMViolation.h */,
 				C79D9FF01D7D19CF0003E7A8 /* KMViolation.m */,
 				C76B86C21DAF569B005F6751 /* ObjectJSONTransformer.swift */,
@@ -399,7 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C79DA0071D7D19CF0003E7A8 /* KMNotificationSettingsObject.h in Headers */,
-				C79DA0111D7D19CF0003E7A8 /* KMVehiclePosition.h in Headers */,
+				C79DA0111D7D19CF0003E7A8 /* KMVehicleLocation.h in Headers */,
 				C79DA0131D7D19CF0003E7A8 /* KMViolation.h in Headers */,
 				C79DA0091D7D19CF0003E7A8 /* KMTrip.h in Headers */,
 				C79D9FF51D7D19CF0003E7A8 /* KMCacheManager.h in Headers */,
@@ -573,7 +573,7 @@
 				C79DA0021D7D19CF0003E7A8 /* KMAddress.m in Sources */,
 				C79D9FF61D7D19CF0003E7A8 /* KMCacheManager.m in Sources */,
 				C7578B491DB462E400C964DB /* KatsanaAPI+Profile.swift in Sources */,
-				C79DA0121D7D19CF0003E7A8 /* KMVehiclePosition.m in Sources */,
+				C79DA0121D7D19CF0003E7A8 /* KMVehicleLocation.m in Sources */,
 				C7578B4B1DB46A9A00C964DB /* UIImage+Extension.swift in Sources */,
 				C76B86C51DAF8A48005F6751 /* KatsanaAPI+Trip.swift in Sources */,
 				C79DA00E1D7D19CF0003E7A8 /* KMVehicle.m in Sources */,

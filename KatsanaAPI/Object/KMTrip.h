@@ -10,8 +10,8 @@
 
 @interface KMTrip : NSObject
 
-@property (nonatomic, strong) KMVehiclePosition *start;
-@property (nonatomic, strong) KMVehiclePosition *end;
+@property (nonatomic, strong) KMVehicleLocation *start;
+@property (nonatomic, strong) KMVehicleLocation *end;
 @property (nonatomic, assign) double distance;
 @property (nonatomic, assign) double duration;
 @property (nonatomic, assign) float maxSpeed;

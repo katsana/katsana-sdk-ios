@@ -7,7 +7,6 @@
 //
 
 #import "KMTravelHistory.h"
-#import "KMVehiclePosition.h"
 #import "KMVehicle.h"
 #import "KMTrip.h"
 //#import "NSDate+Compare.h"

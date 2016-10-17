@@ -63,8 +63,8 @@
 
 - (CGFloat)medianSpeed{
     NSMutableArray *speeds = [NSMutableArray arrayWithCapacity:self.histories.count];
-    __block KMVehiclePosition *prevPos = self.start;
-    [self.histories enumerateObjectsUsingBlock:^(KMVehiclePosition *pos, NSUInteger idx, BOOL * _Nonnull stop) {
+    __block KMVehicleLocation *prevPos = self.start;
+    [self.histories enumerateObjectsUsingBlock:^(KMVehicleLocation *pos, NSUInteger idx, BOOL * _Nonnull stop) {
         CGFloat speed = 0;
         
         CGFloat distance = [pos distanceToPosition:prevPos]/1000.0f;

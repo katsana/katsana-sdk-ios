@@ -39,6 +39,21 @@ extension KatsanaAPI {
             })
     }
     
+    public func requestVehicleLocation(vehicleId: String, completion: @escaping (KMVehicleLocation?, Error?) -> Void) -> Void {
+        let path = "vehicles/" + vehicleId + "/location"
+        let resource = API.resource(path);
+        resource.loadIfNeeded()?.onSuccess({ [weak self] (entity) in
+            let location : KMVehicleLocation? = resource.typedContent()
+            completion(location, nil)
+            }).onFailure({ (error) in
+                completion(nil, error)
+            })
+    }
+    
+    // MARK: Logic
+    
+    
+    
 }
 
 //- (void)refreshToken:(void (^)(BOOL))success;

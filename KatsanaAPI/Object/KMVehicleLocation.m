@@ -1,15 +1,15 @@
 //
-//  KMVehiclePosition.m
+//  KMVehicleLocation.m
 //  KatsanaMap
 //
 //  Created by Wan Ahmad Lutfi on 12/17/15.
 //  Copyright © 2015 bijokmind. All rights reserved.
 //
 
-#import "KMVehiclePosition.h"
+#import "KMVehicleLocation.h"
 #import "KMAddress.h"
 
-@implementation KMVehiclePosition
+@implementation KMVehicleLocation
 {
     NSString *_address;
     CLLocationCoordinate2D _lastCoord;
@@ -26,11 +26,11 @@ static NSDateFormatter *sharedDateFormatter = nil;
     return sharedDateFormatter;
 }
 
-+ (KMVehiclePosition*)vehiclePositionFromDictionary:(NSDictionary*)dicto{
-    KMVehiclePosition *pos;
++ (KMVehicleLocation*)vehiclePositionFromDictionary:(NSDictionary*)dicto{
+    KMVehicleLocation *pos;
     if (dicto[@"data"]) {
         NSDictionary *current = dicto[@"data"][@"current"];
-        pos = [[KMVehiclePosition alloc] init];
+        pos = [[KMVehicleLocation alloc] init];
         pos.latitude = [current[@"latitude"] doubleValue];
         pos.longitude = [current[@"longitude"] doubleValue];
         pos.speed = [current[@"speed"] floatValue];
@@ -38,7 +38,7 @@ static NSDateFormatter *sharedDateFormatter = nil;
         pos.voltage = current[@"voltage"];
         
         NSString *dateStr = current[@"tracked_at"];
-        pos.trackedAt = [[KMVehiclePosition sharedDateFormatter] dateFromString:dateStr];
+        pos.trackedAt = [[KMVehicleLocation sharedDateFormatter] dateFromString:dateStr];
         
 //        pos.voltage =
         
@@ -105,7 +105,7 @@ static NSDateFormatter *sharedDateFormatter = nil;
     return str;
 }
 
-- (BOOL)locationEqualToVehiclePosition:(KMVehiclePosition*)otherPos{
+- (BOOL)locationEqualToVehiclePosition:(KMVehicleLocation*)otherPos{
     if (!otherPos) {
         return NO;
     }
@@ -123,7 +123,7 @@ static NSDateFormatter *sharedDateFormatter = nil;
     return NO;
 }
 
-- (CGFloat)distanceToPosition:(KMVehiclePosition*)pos{
+- (CGFloat)distanceToPosition:(KMVehicleLocation*)pos{
     CLLocation *current = [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
     CLLocation *itemLoc = [[CLLocation alloc] initWithLatitude:pos.latitude longitude:pos.longitude];
     CLLocationDistance itemDist = [itemLoc distanceFromLocation:current];

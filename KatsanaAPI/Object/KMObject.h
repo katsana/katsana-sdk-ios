@@ -12,7 +12,7 @@
 #import "KMAvatar.h"
 #import "KMNotificationSettingsObject.h"
 #import "KMNotificationSettings.h"
-#import "KMVehiclePosition.h"
+#import "KMVehicleLocation.h"
 #import "KMTrip.h"
 #import "KMVehicle.h"
 #import "KMTravelHistory.h"

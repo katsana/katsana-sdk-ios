@@ -22,10 +22,12 @@ extension KatsanaAPI {
                         self?.appleGeoAddress(from: location, completion: { (appleAddress) in
                             address = appleAddress
                             completion(address, nil)
+                            //Save requested address to cache
                             KMCacheManager.sharedInstance().cacheData(address, identifier: nil)
                         })
                     }else{
                         completion(address, nil)
+                        //Save requested address to cache
                         KMCacheManager.sharedInstance().cacheData(address, identifier: nil)
                     }
                     }).onFailure({ (error) in

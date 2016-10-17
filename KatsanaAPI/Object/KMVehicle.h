@@ -16,8 +16,8 @@
 @property (nonatomic, strong) NSString *vehicleNumber;
 @property (nonatomic, strong) NSString *imei;
 @property (nonatomic, strong) NSString *mode;
-@property (nonatomic, strong) KMVehiclePosition *currentPosition;
-@property (nonatomic, strong) KMVehiclePosition *current;
+@property (nonatomic, strong) KMVehicleLocation *currentPosition;
+@property (nonatomic, strong) KMVehicleLocation *current;
 @property (nonatomic, strong) NSString *avatarURLPath;
 @property (nonatomic, strong) NSString *markerURLPath;
 @property (nonatomic, assign) float todayMaxSpeed;

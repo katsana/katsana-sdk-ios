@@ -68,8 +68,8 @@ class ObjectJSONTransformer: NSObject {
         return vehicle
     }
     
-    class func VehiclePositionObject(json : JSON) -> KMVehiclePosition {
-        let pos = KMVehiclePosition()
+    class func VehiclePositionObject(json : JSON) -> KMVehicleLocation {
+        let pos = KMVehicleLocation()
 //        pos.altitude = json["altitude"].doubleValue
 //        pos.course = json["course"].string
         pos.latitude = json["latitude"].doubleValue
