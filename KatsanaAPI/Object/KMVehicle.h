@@ -16,7 +16,6 @@
 @property (nonatomic, strong) NSString *vehicleNumber;
 @property (nonatomic, strong) NSString *imei;
 @property (nonatomic, strong) NSString *mode;
-@property (nonatomic, strong) KMVehicleLocation *currentPosition;
 @property (nonatomic, strong) KMVehicleLocation *current;
 @property (nonatomic, strong) NSString *avatarURLPath;
 @property (nonatomic, strong) NSString *markerURLPath;
@@ -46,6 +45,6 @@
 - (void)reloadDataWithVehicle:(KMVehicle*)vehicle;
 - (void)reloadBlockImage;
 
-+ (KMVehicle*)fromJSON:(id)json;
+- (NSDictionary*)jsonPatchDictionary;
 
 @end

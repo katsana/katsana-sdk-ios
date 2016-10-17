@@ -12,7 +12,7 @@ import KatsanaSDK
 class KatsanaSDKTests: XCTestCase {
     
     var asyncExpect:XCTestExpectation?
-    var vehicleId = "34"
+    var vehicleId = "772"
     
     override func setUp() {
         super.setUp()
@@ -78,9 +78,9 @@ class KatsanaSDKTests: XCTestCase {
     
     func testTripHistoryToday() {
         asyncExpect = expectation(description: "longRunningFunction")
-        KatsanaAPI.shared.requestTripHistoryToday(vehicleId: vehicleId) { (history, error) in
-            print("trip history today \(history)")
-        }
+//        KatsanaAPI.shared.requestTripHistoryToday(vehicleId: vehicleId) { (history, error) in
+//            print("trip history today \(history)")
+//        }
         waitForExpectations(timeout: 5, handler: nil)
     }
     
@@ -90,6 +90,20 @@ class KatsanaSDKTests: XCTestCase {
             print("trip history at date \(history)")
         }
         waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    func testUploadProfileImage() {
+        let path = "/Users/Lutfi/test.jpg"
+        let image = UIImage(contentsOfFile: path)
+        asyncExpect = expectation(description: "longRunningFunction")
+        KatsanaAPI.shared.saveCurrentUserProfileImage(image: image) { (user, error) in
+            if error == nil{
+                print("Image saved")
+            }
+        }
+        
+        
+        waitForExpectations(timeout: 15, handler: nil)
     }
     
     

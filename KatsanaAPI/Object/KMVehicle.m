@@ -21,17 +21,18 @@
     BOOL _loadingMarkerImage;
 }
 
-+ (KMVehicle*)fromJSON:(id)json{
-    KMVehicle *vehicle = [[KMVehicle alloc] init];
-    
-    return vehicle;
+- (NSDictionary*)jsonPatchDictionary{
+    NSMutableDictionary *dicto = @{}.mutableCopy;
+    if (self.vehicleDescription) dicto[@"description"] = self.vehicleDescription;
+    if (self.vehicleNumber) dicto[@"vehicle_number"] = self.vehicleNumber;
+    return dicto;
 }
+
 
 - (void)reloadDataWithVehicle:(KMVehicle*)vehicle{
     self.vehicleDescription = vehicle.description;
     self.mode = vehicle.mode;
     self.current = vehicle.current;
-    self.currentPosition = vehicle.currentPosition;
     self.avatarURLPath = vehicle.avatarURLPath;
     self.markerURLPath = vehicle.markerURLPath;
     self.todayMaxSpeed = vehicle.todayMaxSpeed;

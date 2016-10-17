@@ -42,7 +42,7 @@ extension KatsanaAPI {
     public func requestVehicleLocation(vehicleId: String, completion: @escaping (KMVehicleLocation?, Error?) -> Void) -> Void {
         let path = "vehicles/" + vehicleId + "/location"
         let resource = API.resource(path);
-        resource.loadIfNeeded()?.onSuccess({ [weak self] (entity) in
+        resource.loadIfNeeded()?.onSuccess({ (entity) in
             let location : KMVehicleLocation? = resource.typedContent()
             completion(location, nil)
             }).onFailure({ (error) in
@@ -50,9 +50,39 @@ extension KatsanaAPI {
             })
     }
     
+    public func requestAllVehicleLocations(completion: @escaping ([KMVehicle]?, Error?) -> Void) -> Void {
+        guard vehicles != nil else{
+            return
+        }
+        
+        for vehicle in vehicles {
+            let vehicleId = vehicle.vehicleId
+            var count = 0
+            requestVehicleLocation(vehicleId: vehicleId!, completion: { (vehicleLocation, error) in
+                vehicle.current = vehicleLocation
+                count += 1
+                
+                if count == self.vehicles.count{
+                    completion(self.vehicles, nil)
+                }
+            })
+        }
+    }
+    
     // MARK: Logic
     
-    
+    public func vehicleWith(vehicleId: String) -> KMVehicle! {
+        guard (vehicles != nil) else {
+            return nil
+        }
+        
+        for vehicle in vehicles{
+            if vehicle.vehicleId == vehicleId {
+                return vehicle
+            }
+        }
+        return nil
+    }
     
 }
 

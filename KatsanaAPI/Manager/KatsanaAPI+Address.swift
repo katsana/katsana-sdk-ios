@@ -9,7 +9,7 @@ import CoreLocation
 
 extension KatsanaAPI {
     
-    func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (KMAddress?, Error?) -> Void) -> Void {
+    public func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (KMAddress?, Error?) -> Void) -> Void {
         KMCacheManager.sharedInstance().address(for: location) { (address) in
             if address != nil{
                 completion(address, nil)
