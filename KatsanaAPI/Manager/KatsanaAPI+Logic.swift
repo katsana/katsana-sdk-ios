@@ -9,7 +9,6 @@
 import Foundation
 
 extension KatsanaAPI {
-
     func vehicleWith(vehicleId: String) -> KMVehicle! {
         guard (vehicles != nil) else {
             return nil
@@ -22,5 +21,4 @@ extension KatsanaAPI {
         }
         return nil
     }
-    
 }

@@ -58,5 +58,6 @@
 - (void)avatarImageWithBlock:(void (^)(UIImage *image))completion;
 
 + (KMUser*)fromJSON:(id)json;
+- (NSDictionary*)jsonPatchDictionary;
 
 @end

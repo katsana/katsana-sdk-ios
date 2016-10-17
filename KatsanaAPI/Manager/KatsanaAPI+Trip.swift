@@ -9,7 +9,7 @@
 import UIKit
 
 extension KatsanaAPI {
-    static let maxDaySummary = 3;
+    @nonobjc static let maxDaySummary = 3;
     
     public func requestTripSummaryToday(vehicleId: String, completion: @escaping (KMTravelHistory?, Error?) -> Void) -> Void {
         let path = "vehicles/" + vehicleId + "/summaries/today"
@@ -101,7 +101,7 @@ extension KatsanaAPI {
         return (theFromDate, theToDate)
     }
     
-    //!Check required date range from given dates that require to update data from server
+    //!Check required date range from given dates that require to update data from server. Basically give date range by user, cached data is checked if already available, the dates then filtered based on the cached data. However if it is latest dates, need check more condition because the latest data may still not uploaded to the server from the vechle itself.
     func requiredRangeToRequestTripSummary(fromDate : Date, toDate : Date, vehicleId : String) -> (fromDate : Date, toDate : Date, cachedHistories : [KMTravelHistory]) {
         var histories = [KMTravelHistory]()
         var dates : (fromDate : Date, toDate : Date, cachedHistories : [KMTravelHistory])
@@ -143,6 +143,7 @@ extension KatsanaAPI {
             loopDate = loopDate.dateBySubtractingDays(1)
         }
         dates.toDate = loopDate
+        dates.cachedHistories = histories
         return dates
     }
 }
