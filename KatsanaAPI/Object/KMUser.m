@@ -26,18 +26,6 @@
     BOOL _loadingImage;
 }
 
-- (NSDictionary*)jsonPatchDictionary{
-    NSMutableDictionary *dicto = @{}.mutableCopy;
-    if (self.address) dicto[@"address"] = self.address;
-    if (self.phoneHome) dicto[@"phone_home"] = self.phoneHome;
-    if (self.fullname) dicto[@"fullname"] = self.fullname;
-    if (self.emergencyFullName) dicto[@"meta.emergency.fullname"] = self.emergencyFullName;
-    if (self.emergencyPhoneHome) dicto[@"meta.emergency.phone.home"] = self.emergencyPhoneHome;
-    if (self.emergencyPhoneMobile) dicto[@"meta.emergency.phone.mobile"] = self.emergencyPhoneMobile;
-    return dicto;
-}
-
-
 - (dispatch_queue_t)queue{
     if (!_queue) {
         _queue = dispatch_queue_create("activityLock", DISPATCH_QUEUE_SERIAL);
@@ -65,37 +53,15 @@
             }
             return;
         }
-        
-        UIImage *image = [[KMCacheManager sharedInstance] imageForIdentifier:self.avatarURLPath.lastPathComponent];
-        if (image) {
+        _loadingImage = YES;
+        [[ImageRequest shared] requestImageWithPath:self.avatarURLPath completion:^(UIImage * image, NSError * error) {
             _avatarImage = image;
-            completion (image);
-        }else{
-            _loadingImage = YES;
-//            NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] init] ;
-//            [urlRequest setURL:[NSURL URLWithString:self.avatarURLPath]];
-//            [urlRequest setHTTPMethod:@"GET"];
-//            AFRKImageRequestOperation *requestOperation = [[AFRKImageRequestOperation alloc] initWithRequest:urlRequest];
-//            [requestOperation setCompletionBlockWithSuccess:^(AFRKHTTPRequestOperation *operation, id responseObject) {
-//                completion(responseObject);
-//                [[KMCacheManager sharedInstance] cacheData:responseObject identifier:self.avatarURLPath.lastPathComponent];
-//                _avatarImage = responseObject;
-////                _maskedCarImage = nil;
-//                _loadingImage = NO;
-//                
-//                for (ImageCompletionBlock block in self.avatarImageBlocks) {
-//                    block(responseObject);
-//                }
-//            } failure:^(AFRKHTTPRequestOperation *operation, NSError *error) {
-//                for (ImageCompletionBlock block in self.avatarImageBlocks) {
-//                    block(nil);
-//                }
-//                _loadingImage = NO;
-//            }];
-//            [requestOperation start];
-        }
-        
-        
+            _loadingImage = NO;
+            for (ImageCompletionBlock block in self.avatarImageBlocks) {
+                block(image);
+            }
+            completion(image);
+        }];
     }else{
         completion(self.avatarImage);
     }

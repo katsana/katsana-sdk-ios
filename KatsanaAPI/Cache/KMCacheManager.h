@@ -30,6 +30,4 @@
 - (void)clearAllCache;
 - (void)clearActivityCache;
 
-- (void)clearCacheIfNeededForCurrentUser;
-
 @end

@@ -9,6 +9,8 @@
 import UIKit
 import SwiftyJSON
 
+
+/// Class to convert Swifty JSON to API object
 class ObjectJSONTransformer: NSObject {
     class func UserObject(json : JSON) -> KMUser {
         let user = KMUser()
@@ -23,10 +25,8 @@ class ObjectJSONTransformer: NSObject {
         user.emergencyPhoneMobile = json["meta"]["phone"]["mobile"].string
         user.avatarURLPath = json["avatar"]["url"].string
         
-        let createdAt = json["created_at"].string
-        let updatedAt = json["updated_at"].string
-        
-        
+        user.createdAt = json["created_at"].date
+        user.updatedAt = json["updated_at"].date
         return user
     }
     
@@ -57,18 +57,12 @@ class ObjectJSONTransformer: NSObject {
         vehicle.odometer = dicto["odometer"].floatValue
         vehicle.websocket = dicto["meta"]["websocket"].boolValue
         
-        let subscriptionEnd = dicto["ends_at"].string
-//        vehicle.subscriptionEnd =
-
-        vehicle.current = self.VehiclePositionObject(json: json["current"])
-        
-        let createdAt = dicto["created_at"].string
-        let updatedAt = dicto["updated_at"].string
-        
+        vehicle.subscriptionEnd = dicto["ends_at"].date
+        vehicle.current = self.VehicleLocationObject(json: json["current"])
         return vehicle
     }
     
-    class func VehiclePositionObject(json : JSON) -> KMVehicleLocation {
+    class func VehicleLocationObject(json : JSON) -> KMVehicleLocation {
         let pos = KMVehicleLocation()
 //        pos.altitude = json["altitude"].doubleValue
 //        pos.course = json["course"].string
@@ -82,9 +76,21 @@ class ObjectJSONTransformer: NSObject {
         pos.gsm = json["gsm"].string
         pos.ignitionState = json["ignition"].string
 
-        let trackedAt = json["tracked_at"].string
+        pos.trackedAt = json["tracked_at"].date
         
         return pos
+    }
+    
+    class func TravelSummaryObject(json : JSON) -> KMTravelHistory {
+        let history = KMTravelHistory()
+        history.maxSpeed = json["max_speed"].floatValue
+        history.distance = json["distance"].doubleValue
+        history.violationCount = json["violation"].intValue
+        history.tripCount = json["trip"].intValue
+        history.duration = json["duration"].doubleValue
+        history.idleDuration = json["idle_duration"].doubleValue
+        history.historyDate = json["date"].date
+        return history
     }
     
     class func TravelHistoryObject(json : JSON) -> KMTravelHistory {
@@ -94,8 +100,7 @@ class ObjectJSONTransformer: NSObject {
         history.violationCount = json["summary"]["violation"].intValue
         history.trips = json["trips"].arrayValue.map{TripObject(json: $0)}
         
-        let historyDate = json["duration"]["from"]
-
+        history.historyDate = json["duration"]["from"].date
         return history
     }
     
@@ -107,9 +112,9 @@ class ObjectJSONTransformer: NSObject {
         trip.averageSpeed = json["average_speed"].floatValue
         trip.idleDuration = json["idle_duration"].doubleValue
         
-        trip.start = VehiclePositionObject(json: json["start"])
-        trip.end = VehiclePositionObject(json: json["end"])
-        trip.idles = json["idles"].arrayValue.map{VehiclePositionObject(json: $0)}
+        trip.start = VehicleLocationObject(json: json["start"])
+        trip.end = VehicleLocationObject(json: json["end"])
+        trip.idles = json["idles"].arrayValue.map{VehicleLocationObject(json: $0)}
         return trip
     }
 }

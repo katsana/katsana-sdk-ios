@@ -12,7 +12,7 @@ import KatsanaSDK
 class KatsanaSDKTests: XCTestCase {
     
     var asyncExpect:XCTestExpectation?
-    var vehicleId = "772"
+    var vehicleId = "105"
     
     override func setUp() {
         super.setUp()
@@ -31,7 +31,7 @@ class KatsanaSDKTests: XCTestCase {
                 print("logon")
                 self.asyncExpect?.fulfill()
             }
-            waitForExpectations(timeout: 5, handler: nil)
+            waitForExpectations(timeout: 10, handler: nil)
         }
     }
     
@@ -48,7 +48,7 @@ class KatsanaSDKTests: XCTestCase {
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
-            // Put the code you want to measure the time of here.
+            // Put the code you want to measur  e the time of here.
         }
     }
     
@@ -60,22 +60,24 @@ class KatsanaSDKTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
     
-//    func testvehicle() {
-//        asyncExpect = expectation(description: "longRunningFunction")
-//        KatsanaAPI.shared.requestVehicle(vehicleId: vehicleId) { (vehicle, error) in
-//            print("vehicle test success \(vehicle)")
-//        }
-//        waitForExpectations(timeout: 5, handler: nil)
-//    }
-//    
-//    func testSummaryToday() {
-//        asyncExpect = expectation(description: "longRunningFunction")
-//        KatsanaAPI.shared.requestTripSummaryToday(vehicleId: vehicleId) { (history, error) in
-//            print("trip summary today \(history)")
-//        }
-//        waitForExpectations(timeout: 5, handler: nil)
-//    }
-//    
+    func testvehicle() {
+        asyncExpect = expectation(description: "longRunningFunction")
+        KatsanaAPI.shared.requestVehicle(vehicleId: vehicleId) { (vehicle, error) in
+            print("vehicle test success \(vehicle)")
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    func testSummaryToday() {
+        asyncExpect = expectation(description: "longRunningFunction")
+        KatsanaAPI.shared.requestTripSummaryToday(vehicleId: vehicleId) { (history, error) in
+            let test = history?.durationStringNew()
+            
+            print("trip summary today \(history)")
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+//
 //    func testTripHistoryToday() {
 //        asyncExpect = expectation(description: "longRunningFunction")
 ////        KatsanaAPI.shared.requestTripHistoryToday(vehicleId: vehicleId) { (history, error) in
@@ -84,27 +86,27 @@ class KatsanaSDKTests: XCTestCase {
 //        waitForExpectations(timeout: 5, handler: nil)
 //    }
 //    
-//    func testTripHistoryForDate() {
-//        asyncExpect = expectation(description: "longRunningFunction")
-//        KatsanaAPI.shared.requestTripHistory(for: Date(), vehicleId: vehicleId) { (history, error) in
-//            print("trip history at date \(history)")
-//        }
-//        waitForExpectations(timeout: 5, handler: nil)
-//    }
-//    
-//    func testUploadProfileImage() {
-//        let path = "/Users/Lutfi/test.jpg"
-//        let image = UIImage(contentsOfFile: path)
-//        asyncExpect = expectation(description: "longRunningFunction")
-//        KatsanaAPI.shared.saveCurrentUserProfileImage(image: image) { (user, error) in
-//            if error == nil{
-//                print("Image saved")
-//            }
-//        }
-//        
-//        
-//        waitForExpectations(timeout: 15, handler: nil)
-//    }
+    func testTripHistoryForDate() {
+        asyncExpect = expectation(description: "longRunningFunction")
+        KatsanaAPI.shared.requestTripHistory(for: Date(), vehicleId: vehicleId) { (history, error) in
+            print("trip history at date \(history)")
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+//
+    func testUploadProfileImage() {
+        let path = "/Users/Lutfi/test.jpg"
+        let image = UIImage(contentsOfFile: path)
+        asyncExpect = expectation(description: "longRunningFunction")
+        KatsanaAPI.shared.saveCurrentUserProfileImage(image: image) { (user, error) in
+            if error == nil{
+                print("Image saved")
+            }
+        }
+        
+        
+        waitForExpectations(timeout: 15, handler: nil)
+    }
     
     func testUploadVehicleProfileImage() {
         let path = "/Users/Lutfi/test.jpg"

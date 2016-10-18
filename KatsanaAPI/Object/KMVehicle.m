@@ -74,17 +74,16 @@
             [self.carThumbImageBlocks addObject:completion];
         }
         _loadingMarkerImage = YES;
-//        [[KMKatsana sharedInstance] loadImageWithURL:[NSURL URLWithString:self.avatarURLPath] success:^(UIImage *image) {
-//            _carThumbImage = image;
-//            _maskedCarImage = nil;
-//            _loadingMarkerImage = NO;
-//            
-//            for (ImageCompletionBlock block in self.carThumbImageBlocks) {
-//                block(image);
-//            }
-//        } failure:^(NSError *error) {
-//            _loadingMarkerImage = NO;
-//        }];
+        [[ImageRequest shared] requestImageWithPath:self.avatarURLPath completion:^(UIImage * image, NSError * error) {
+            _carThumbImage = image;
+            _maskedCarImage = nil;
+            _loadingMarkerImage = NO;
+
+            for (ImageCompletionBlock block in self.carThumbImageBlocks) {
+                block(image);
+            }
+            completion(image);
+        }];
     }else{
         completion(self.carThumbImage);
     }
@@ -101,16 +100,15 @@
             [self.carImageBlocks addObject:completion];
         }
         _loadingImage = YES;
-//        [[KMKatsana sharedInstance] loadImageWithURL:[NSURL URLWithString:self.markerURLPath] success:^(UIImage *image) {
-//            _carImage = image;
-//            _loadingImage = NO;
-//            
-//            for (ImageCompletionBlock block in self.carImageBlocks) {
-//                block(image);
-//            }
-//        } failure:^(NSError *error) {
-//            _loadingImage = NO;
-//        }];
+        [[ImageRequest shared] requestImageWithPath:self.markerURLPath completion:^(UIImage * image, NSError * error) {
+            _carImage = image;
+            _loadingImage = NO;
+            
+            for (ImageCompletionBlock block in self.carImageBlocks) {
+                block(image);
+            }
+            completion(image);
+        }];
     }else{
         completion(self.carImage);
     }

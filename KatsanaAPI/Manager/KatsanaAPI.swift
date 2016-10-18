@@ -15,6 +15,7 @@ public class KatsanaAPI: NSObject {
     public static let shared = KatsanaAPI()
     public var API : Service!
     
+    
     internal(set) public var tokenRefreshDate: Date!
     internal(set) public var currentUser: KMUser!
     public               var currentVehicle: KMVehicle!{
@@ -55,6 +56,13 @@ public class KatsanaAPI: NSObject {
             $0.pipeline[.parsing].add(self.SwiftyJSONTransformer, contentTypes: ["*/json"])
             $0.headers["Authorization"] = "Bearer " + self.authToken
         }
+        
+        API.configure("vehicles/*/location") {
+            $0.expirationTime = 5
+        }
+        API.configure("vehicles/*/summaries/*") {
+            $0.expirationTime = 3*60
+        }
     }
     
     func setupTransformer() -> Void {
@@ -70,10 +78,13 @@ public class KatsanaAPI: NSObject {
         }
         
         API.configureTransformer("vehicles/*/summaries/*") {
-            ObjectJSONTransformer.TravelHistoryObject(json: $0.content)
+            ObjectJSONTransformer.TravelSummaryObject(json: $0.content)
         }
         API.configureTransformer("vehicles/*/travels/***") {
             ObjectJSONTransformer.TravelHistoryObject(json: $0.content)
+        }
+        API.configureTransformer("vehicles/*/location") {
+            ObjectJSONTransformer.VehicleLocationObject(json: $0.content)
         }
     }
     

@@ -16,7 +16,7 @@ extension KatsanaAPI{
             data: ["token": self.authToken],
             files: ["file": .data("avatar.png", data, "image/jpeg")]
         ) { r in
-            let strData = NSString(data: r.content!, encoding: String.Encoding.utf8.rawValue)
+//            let strData = NSString(data: r.content!, encoding: String.Encoding.utf8.rawValue)
             if r.ok {
                 completion(true, nil)
             }else{

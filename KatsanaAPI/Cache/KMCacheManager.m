@@ -216,6 +216,10 @@ static KMCacheManager *sharedPeerToPeer = nil;
         [self cacheActivity:data identifier:identifier];
         return;
     }
+    else if ([data isKindOfClass:[UIImage class]]){
+        [self cacheImage:data withIdentifier:identifier];
+        return;
+    }
     
     BOOL dataChanged = NO;
     //Create cache array if data for given class still empty
@@ -249,9 +253,6 @@ static KMCacheManager *sharedPeerToPeer = nil;
                 
                 break;
             }
-        }
-        else if ([data isKindOfClass:[UIImage class]]){
-            [self cacheImage:data withIdentifier:identifier];
         }
         else{
             if ([identifier isEqualToString:theId]) {
