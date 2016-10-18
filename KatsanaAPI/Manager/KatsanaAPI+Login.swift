@@ -47,4 +47,27 @@ extension KatsanaAPI {
         }
         task.resume()
     }
+    
+    public func refreshToken(completion: @escaping (_ success: Bool, Error?) -> Void) -> Void {
+        guard self.authToken != nil else {
+            completion(false, nil)
+            return
+        }
+        
+        let path = "auth/refresh"
+        let resource = API.resource(path);
+        resource.load().onSuccess({ (entity) in
+            let content = entity.content as? JSON
+            let dicto = content?.rawValue as? [String : String]
+            if dicto != nil{
+                let token = dicto?["token"]
+                self.authToken = token
+                completion(true, nil)
+            }else{
+                completion(false, nil)
+            }
+        }).onFailure({ (error) in
+            completion(false, error)
+        })
+    }
 }

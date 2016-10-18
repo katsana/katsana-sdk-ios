@@ -44,12 +44,12 @@ class ObjectJSONTransformer: NSObject {
         }
         
         let vehicle = KMVehicle()
-        vehicle.userId = dicto["user_id"].string
-        vehicle.vehicleId = dicto["id"].string
+        vehicle.userId = dicto["user_id"].rawString()
+        vehicle.vehicleId = dicto["id"].rawString()
         vehicle.vehicleDescription = dicto["description"].string
-        vehicle.vehicleNumber = dicto["vehicle_number"].string
-        vehicle.imei = dicto["imei"].string
-        vehicle.mode = dicto["mode"].string
+        vehicle.vehicleNumber = dicto["vehicle_number"].rawString()
+        vehicle.imei = dicto["imei"].rawString()
+        vehicle.mode = dicto["mode"].rawString()
         
         vehicle.todayMaxSpeed = dicto["today_max_speed"].floatValue
         vehicle.markerURLPath = dicto["marker"].string

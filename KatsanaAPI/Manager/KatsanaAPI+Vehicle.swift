@@ -9,7 +9,11 @@
 import Foundation
 
 extension KatsanaAPI {
-    
+
+    /// Request vehicle given vehicleId. currentVehicle variable will be set from vehicle requested
+    ///
+    /// - parameter vehicleId:  vehicle id
+    /// - parameter completion: completion
     public func requestVehicle(vehicleId: String, completion: @escaping (KMVehicle?, Error?) -> Void) -> Void {
         let vehicle = vehicleWith(vehicleId: vehicleId)
         if (vehicle != nil) {
@@ -27,6 +31,9 @@ extension KatsanaAPI {
         })
     }
     
+    /// Request all vehicles. vehicles variable will be set from the vehicles requested
+    ///
+    /// - parameter completion: completion
     public func requestAllVehicles(completion: @escaping ([KMVehicle]?, Error?) -> Void) -> Void {
         let path = "vehicles"
         let resource = API.resource(path);
@@ -85,18 +92,3 @@ extension KatsanaAPI {
     }
     
 }
-
-//- (void)refreshToken:(void (^)(BOOL))success;
-//- (void)loginWithUserName:(NSString *)email password:(NSString*)password user:(void (^)(KMUser *))success failure:(void (^)(RKObjectRequestOperation *, NSError *))failure;
-//
-////Profile
-//- (void)saveUserProfile:(void (^)(BOOL success, NSDictionary *responseError))success;
-//- (void)saveUserProfileImage:(UIImage*)image success:(void (^)(BOOL success))success;
-//- (void)saveVehicleProfile:(NSString*)vehicleId success:(void (^)(BOOL success, NSDictionary *responseError))success;
-//- (void)saveVehicleProfileImage:(UIImage*)image vehicleId:(NSString*)vehicleId success:(void (^)(BOOL success))success;
-//
-////Vehicle
-//-(void)loadVehicleWithId:(NSString*)vehicleId vehicle:(void (^)(KMVehicle *))success failure:(void (^)(RKObjectRequestOperation *, NSError *))failure;
-//-(void)loadVehicles:(void (^)(NSArray *))success failure:(void (^)(RKObjectRequestOperation *, NSError *))failure;
-//-(void)loadVehicles:(void (^)(NSArray *))success forceLoad:(BOOL)forceLoad failure:(void (^)(RKObjectRequestOperation *, NSError *))failure;
-//- (void)loadFirstVehicle:(void (^)(KMVehicle *))success failure:(void (^)(RKObjectRequestOperation *, NSError *))failure;;

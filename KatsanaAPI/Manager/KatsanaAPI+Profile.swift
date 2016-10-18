@@ -50,9 +50,6 @@ extension KatsanaAPI {
             }
         }
     }
-
-    
-    
 }
 
 

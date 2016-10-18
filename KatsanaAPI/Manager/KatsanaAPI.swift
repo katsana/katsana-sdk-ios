@@ -15,10 +15,20 @@ public class KatsanaAPI: NSObject {
     public static let shared = KatsanaAPI()
     public var API : Service!
     
+    internal(set) public var tokenRefreshDate: Date!
     internal(set) public var currentUser: KMUser!
-    public              var currentVehicle: KMVehicle!
-    internal(set) public var vehicles: [KMVehicle]!
-    
+    public               var currentVehicle: KMVehicle!{
+        willSet{
+            if (currentVehicle != nil) {lastVehicleId = currentVehicle.vehicleId}
+        }
+    }
+    internal(set) public var vehicles: [KMVehicle]!{
+        willSet{
+            lastVehicleImeis = vehicles.map({ $0.imei})
+        }
+    }
+    private(set) public var lastVehicleId: String!
+    private(set) public var lastVehicleImeis: [String]!
     private let SwiftyJSONTransformer = ResponseContentTransformer { JSON($0.content as AnyObject) }
     
     internal var authToken: String! {
@@ -27,8 +37,11 @@ public class KatsanaAPI: NSObject {
             API.invalidateConfiguration()
             // Wipe any Siesta’s cached state if auth token changes
             API.wipeResources()
+            if authToken != nil {tokenRefreshDate = Date()}
         }
     }
+    
+    // MARK: Lifecycle
 
     public class func configureShared(baseURL : URL) -> Void {
         shared.API = Service(baseURL: baseURL)

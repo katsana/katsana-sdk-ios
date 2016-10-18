@@ -25,6 +25,11 @@ extension KatsanaAPI {
         }
     }
     
+    /// Save vehicle profile image. Function requestAllVehicles must be called first and the vehicle must be in the vehicle list
+    ///
+    /// - parameter vehicleId:  vehicle id
+    /// - parameter image:      image to save
+    /// - parameter completion: return vehicle
     public func saveVehicleProfileImage(vehicleId: String, image : UIImage?, completion: @escaping (KMVehicle?, Error?) -> Void) -> Void {
         let vehicle = vehicleWith(vehicleId: vehicleId)
         guard vehicle != nil else {
