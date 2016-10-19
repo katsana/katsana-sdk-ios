@@ -57,14 +57,19 @@ public class KatsanaAPI: NSObject {
             $0.headers["Authorization"] = "Bearer " + self.authToken
         }
         
-        //Vehicle location will request new data at least 5 seconds
+        //Vehicle location will request new data only after 5 seconds
         API.configure("vehicles/*/location") {
             $0.expirationTime = 5
         }
         
-        //Vehicle summary will request new data at least 3 minutes
+        //Vehicle summary will request new data only after 3 minutes
         API.configure("vehicles/*/summaries/*") {
             $0.expirationTime = 3*60
+        }
+        
+        //Vehicle travel will request new data only after 1 minute
+        API.configure("vehicles/*/travels/***") {
+            $0.expirationTime = 1*60
         }
     }
     
@@ -93,5 +98,17 @@ public class KatsanaAPI: NSObject {
     
     func baseURL() -> URL {
         return API.baseURL!;
+    }
+    
+    ///Check if web socket supported or not, if any vehicle support websocket, other vehicles also considered to support it
+    func websocketSupported() -> Bool {
+        var supported = false
+        for vehicle in vehicles {
+            if vehicle.websocket {
+                supported = true
+                break
+            }
+        }
+        return supported
     }
 }

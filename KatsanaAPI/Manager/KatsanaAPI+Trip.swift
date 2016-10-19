@@ -38,9 +38,14 @@ extension KatsanaAPI {
                 var duplicateHistoryNeedRemove : KMTravelHistory!
                 for history in histories{
                     if summary.historyDate.isEqualToDateIgnoringTime(history.historyDate){
+                        if summary.tripCount > history.trips.count{
+                            summary.needLoadTripHistory = true
+                        }else{
+                            summary.needLoadTripHistory = false
+                        }
                         summary.trips = history.trips
                         duplicateHistoryNeedRemove = history
-                        summary.needLoadTripHistory = false
+                        
                     }
                 }
                 if duplicateHistoryNeedRemove != nil{
@@ -69,6 +74,15 @@ extension KatsanaAPI {
     
     //!Request trip history will download histories for that particular date
     public func requestTripHistory(for date: Date, vehicleId: String, completion: @escaping (_ history: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        
+        let history = KMCacheManager.sharedInstance().travelHistory(for: date, vehicleId: vehicleId)
+        if history != nil && history?.needLoadTripHistory == false{
+            
+            history?.owner = vehicleWith(vehicleId: vehicleId)
+            completion(history)
+            return
+        }
+        
         let path = "vehicles/" + vehicleId + "/travels/" + date.toStringWithYearMonthDay()
         let resource = API.resource(path);
         resource.loadIfNeeded()?.onSuccess({(entity) in
