@@ -40,10 +40,6 @@
 		C79DA0001D7D19CF0003E7A8 /* KMActivityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FDC1D7D19CF0003E7A8 /* KMActivityObject.m */; };
 		C79DA0011D7D19CF0003E7A8 /* KMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FDD1D7D19CF0003E7A8 /* KMAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C79DA0021D7D19CF0003E7A8 /* KMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FDE1D7D19CF0003E7A8 /* KMAddress.m */; };
-		C79DA0051D7D19CF0003E7A8 /* KMNotificationSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FE11D7D19CF0003E7A8 /* KMNotificationSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C79DA0061D7D19CF0003E7A8 /* KMNotificationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FE21D7D19CF0003E7A8 /* KMNotificationSettings.m */; };
-		C79DA0071D7D19CF0003E7A8 /* KMNotificationSettingsObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FE31D7D19CF0003E7A8 /* KMNotificationSettingsObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C79DA0081D7D19CF0003E7A8 /* KMNotificationSettingsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FE41D7D19CF0003E7A8 /* KMNotificationSettingsObject.m */; };
 		C79DA0091D7D19CF0003E7A8 /* KMTrip.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FE51D7D19CF0003E7A8 /* KMTrip.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C79DA00A1D7D19CF0003E7A8 /* KMTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FE61D7D19CF0003E7A8 /* KMTrip.m */; };
 		C79DA00B1D7D19CF0003E7A8 /* KMUser.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FE71D7D19CF0003E7A8 /* KMUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -154,10 +150,6 @@
 		C79D9FDC1D7D19CF0003E7A8 /* KMActivityObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMActivityObject.m; sourceTree = "<group>"; };
 		C79D9FDD1D7D19CF0003E7A8 /* KMAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMAddress.h; sourceTree = "<group>"; };
 		C79D9FDE1D7D19CF0003E7A8 /* KMAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMAddress.m; sourceTree = "<group>"; };
-		C79D9FE11D7D19CF0003E7A8 /* KMNotificationSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMNotificationSettings.h; sourceTree = "<group>"; };
-		C79D9FE21D7D19CF0003E7A8 /* KMNotificationSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMNotificationSettings.m; sourceTree = "<group>"; };
-		C79D9FE31D7D19CF0003E7A8 /* KMNotificationSettingsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMNotificationSettingsObject.h; sourceTree = "<group>"; };
-		C79D9FE41D7D19CF0003E7A8 /* KMNotificationSettingsObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMNotificationSettingsObject.m; sourceTree = "<group>"; };
 		C79D9FE51D7D19CF0003E7A8 /* KMTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTrip.h; sourceTree = "<group>"; };
 		C79D9FE61D7D19CF0003E7A8 /* KMTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTrip.m; sourceTree = "<group>"; };
 		C79D9FE71D7D19CF0003E7A8 /* KMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMUser.h; sourceTree = "<group>"; };
@@ -338,10 +330,6 @@
 				C79D9FDC1D7D19CF0003E7A8 /* KMActivityObject.m */,
 				C79D9FDD1D7D19CF0003E7A8 /* KMAddress.h */,
 				C79D9FDE1D7D19CF0003E7A8 /* KMAddress.m */,
-				C79D9FE11D7D19CF0003E7A8 /* KMNotificationSettings.h */,
-				C79D9FE21D7D19CF0003E7A8 /* KMNotificationSettings.m */,
-				C79D9FE31D7D19CF0003E7A8 /* KMNotificationSettingsObject.h */,
-				C79D9FE41D7D19CF0003E7A8 /* KMNotificationSettingsObject.m */,
 				C79D9FE51D7D19CF0003E7A8 /* KMTrip.h */,
 				C79D9FE61D7D19CF0003E7A8 /* KMTrip.m */,
 				C79D9FE71D7D19CF0003E7A8 /* KMUser.h */,
@@ -423,7 +411,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C79DA0071D7D19CF0003E7A8 /* KMNotificationSettingsObject.h in Headers */,
 				C79DA0111D7D19CF0003E7A8 /* KMVehicleLocation.h in Headers */,
 				C79DA0131D7D19CF0003E7A8 /* KMViolation.h in Headers */,
 				C79DA0091D7D19CF0003E7A8 /* KMTrip.h in Headers */,
@@ -436,7 +423,6 @@
 				C76538BA1DB08B2B001E1788 /* UIImage+Extension.h in Headers */,
 				C79DA00B1D7D19CF0003E7A8 /* KMUser.h in Headers */,
 				C79D9FFF1D7D19CF0003E7A8 /* KMActivityObject.h in Headers */,
-				C79DA0051D7D19CF0003E7A8 /* KMNotificationSettings.h in Headers */,
 				C75105621D742D4700F4C341 /* PrefixHeader.pch in Headers */,
 				C78B22121D757441002E25C3 /* KMConstant.h in Headers */,
 				C75105011D7422BF00F4C341 /* KatsanaSDK.h in Headers */,
@@ -585,14 +571,12 @@
 			files = (
 				C76538C31DB08ECF001E1788 /* Date+Extension.swift in Sources */,
 				C76538C71DB0DD00001E1788 /* KatsanaAPI+Address.swift in Sources */,
-				C79DA0081D7D19CF0003E7A8 /* KMNotificationSettingsObject.m in Sources */,
 				C7DFF3971DB4C7FA004751B6 /* Just.swift in Sources */,
 				C79DA0001D7D19CF0003E7A8 /* KMActivityObject.m in Sources */,
 				C79DA00C1D7D19CF0003E7A8 /* KMUser.m in Sources */,
 				C79DA0141D7D19CF0003E7A8 /* KMViolation.m in Sources */,
 				C76715EE1DB5BF1A0044D8E2 /* JSON+Date.swift in Sources */,
 				C7F4B0221DB5FA0600AC3838 /* ImageRequest.swift in Sources */,
-				C79DA0061D7D19CF0003E7A8 /* KMNotificationSettings.m in Sources */,
 				C79DA0101D7D19CF0003E7A8 /* KMTravelHistory.m in Sources */,
 				C79C76431DADF507003A7DEF /* KatsanaAPI.swift in Sources */,
 				C79DA0021D7D19CF0003E7A8 /* KMAddress.m in Sources */,

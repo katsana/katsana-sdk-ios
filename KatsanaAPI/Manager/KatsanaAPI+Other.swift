@@ -32,9 +32,22 @@ extension KatsanaAPI{
     /// - parameter path:       path to append to current endpoint
     /// - parameter completion: completion
     public func requestResponse(for path: String, completion: @escaping (_ response: Dictionary<String, Any>?, _ error: Error?) -> Void) -> Void {
+        let fullPath = self.baseURL().absoluteString + path
         Just.get(
-            path,
+            fullPath,
             data: ["token": self.authToken]
+        ) { r in
+            let json = JSON(data: r.content!)
+            let dicto = json.dictionaryObject
+            completion(dicto, r.error)
+        }
+    }
+    
+    public func requestResponseUsing(fullPath: String, defaultHeaders: Dictionary<String, String> = [:], parameters:Dictionary<String, String> = [:], completion: @escaping (_ response: Dictionary<String, Any>?, _ error: Error?) -> Void) -> Void {
+        Just.get(
+            fullPath,
+            params:  parameters,
+            headers: defaultHeaders
         ) { r in
             let json = JSON(data: r.content!)
             let dicto = json.dictionaryObject

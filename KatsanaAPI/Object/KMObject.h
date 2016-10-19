@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #import "KMAddress.h"
-#import "KMNotificationSettingsObject.h"
-#import "KMNotificationSettings.h"
 #import "KMTravelHistory.h"
 #import "KMVehicleLocation.h"
 #import "KMTrip.h"

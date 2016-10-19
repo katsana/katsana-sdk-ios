@@ -23,5 +23,6 @@
 - (NSString*)dateString;
 
 + (NSDateFormatter*)sharedDateFormatter3;
+- (CGFloat)localizedSpeed;
 
 @end

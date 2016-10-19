@@ -10,11 +10,15 @@ import UIKit
 import Siesta
 import SwiftyJSON
 
+
 public class KatsanaAPI: NSObject {
+    //Notifications
+    static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
+    static let userDidLogoutNotification = Notification.Name(rawValue: "KMUserDidLogoutNotification")
+    
     
     public static let shared = KatsanaAPI()
     public var API : Service!
-    
     
     internal(set) public var tokenRefreshDate: Date!
     internal(set) public var currentUser: KMUser!
@@ -25,14 +29,16 @@ public class KatsanaAPI: NSObject {
     }
     internal(set) public var vehicles: [KMVehicle]!{
         willSet{
-            lastVehicleImeis = vehicles.map({ $0.imei})
+            if vehicles != nil {
+                lastVehicleImeis = vehicles.map({ $0.imei})
+            }
         }
     }
     private(set) public var lastVehicleId: String!
     private(set) public var lastVehicleImeis: [String]!
     private let SwiftyJSONTransformer = ResponseContentTransformer { JSON($0.content as AnyObject) }
     
-    internal var authToken: String! {
+    internal(set) public var authToken: String! {
         didSet {
             // Rerun existing configuration closure using new value
             API.invalidateConfiguration()
@@ -60,6 +66,11 @@ public class KatsanaAPI: NSObject {
         //Vehicle location will request new data only after 5 seconds
         API.configure("vehicles/*/location") {
             $0.expirationTime = 5
+        }
+        
+        //Vehicle location will request new data only after 10 seconds
+        API.configure("vehicles/*") {
+            $0.expirationTime = 10
         }
         
         //Vehicle summary will request new data only after 3 minutes

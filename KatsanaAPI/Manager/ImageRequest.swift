@@ -22,7 +22,7 @@ public class ImageRequest: NSObject {
     }
 
     func configure() {
-        let sessionConfig = URLSessionConfiguration()
+        let sessionConfig = URLSessionConfiguration.default
         sessionConfig.httpMaximumConnectionsPerHost = 5
         API = Service(networking:sessionConfig)
         API.configure("**") {

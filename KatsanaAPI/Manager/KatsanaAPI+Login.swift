@@ -12,7 +12,7 @@ import Siesta
 
 extension KatsanaAPI {
     
-    public func login(email: String, password: String, completion: @escaping (_ user: KMUser?) -> Void) -> Void {
+    public func login(email: String, password: String, completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let path = self.baseURL().absoluteString + "auth"
         var request = URLRequest(url: URL(string: path)!)
         request.httpMethod = "POST"
@@ -21,6 +21,7 @@ extension KatsanaAPI {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
                 print("error=\(error)")
+                failure(error)
                 return
             }
             
@@ -40,12 +41,21 @@ extension KatsanaAPI {
                         self.currentUser = user
                         completion(user)
                     }).onFailure({ (error) in
-                        completion(nil)
+                        failure(error)
                     })
                 }
             }
         }
         task.resume()
+    }
+    
+    public func logout() -> Void {
+        NotificationCenter.default.post(name: KatsanaAPI.userWillLogoutNotification, object: nil)
+        currentVehicle = nil;
+        vehicles = nil
+        currentUser = nil
+        authToken = nil
+        NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
     }
     
     public func refreshToken(completion: @escaping (_ success: Bool) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
