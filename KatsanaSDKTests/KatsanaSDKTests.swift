@@ -130,5 +130,12 @@ class KatsanaSDKTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
     
+    func testAddress() -> Void {
+        asyncExpect = expectation(description: "longRunningFunction")
+        KatsanaAPI.shared.requestAddress(for: CLLocationCoordinate2DMake(3.162919, 101.6030795)) { (address, error) in
+            print(address)
+        }
+        waitForExpectations(timeout: 15, handler: nil)
+    }
     
 }

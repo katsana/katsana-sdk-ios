@@ -14,15 +14,15 @@ import SwiftyJSON
 class ObjectJSONTransformer: NSObject {
     class func UserObject(json : JSON) -> KMUser {
         let user = KMUser()
-        user.email = json["email"].string
-        user.userId = json["id"].string
-        user.address = json["address"].string
-        user.phoneHome = json["phone_home"].string
-        user.phoneMobile = json["phone_mobile"].string
-        user.fullname = json["fullname"].string
-        user.emergencyFullName = json["meta"]["fullname"].string
-        user.emergencyPhoneHome = json["meta"]["phone"]["home"].string
-        user.emergencyPhoneMobile = json["meta"]["phone"]["mobile"].string
+        user.email = json["email"].rawString()
+        user.userId = json["id"].rawString()
+        user.address = json["address"].rawString()
+        user.phoneHome = json["phone_home"].rawString()
+        user.phoneMobile = json["phone_mobile"].rawString()
+        user.fullname = json["fullname"].rawString()
+        user.emergencyFullName = json["meta"]["fullname"].rawString()
+        user.emergencyPhoneHome = json["meta"]["phone"]["home"].rawString()
+        user.emergencyPhoneMobile = json["meta"]["phone"]["mobile"].rawString()
         user.avatarURLPath = json["avatar"]["url"].string
         
         user.createdAt = json["created_at"].date
@@ -117,20 +117,19 @@ class ObjectJSONTransformer: NSObject {
         trip.idles = json["idles"].arrayValue.map{VehicleLocationObject(json: $0)}
         return trip
     }
+    
+    class func AddressObject(json : JSON) -> KMAddress {
+        let address = KMAddress()
+        address.latitude = json["latitude"].doubleValue
+        address.longitude = json["longitude"].doubleValue
+        address.streetNumber = json["street_number"].rawString()
+        address.streetName = json["street_name"].rawString()
+        address.locality = json["locality"].rawString()
+        address.sublocality = json["sublocality"].rawString()
+        address.postcode = json["postcode"].intValue
+        address.country = json["country"].rawString()
+        address.address = json["address"].rawString()
+
+        return address
+    }
 }
-
-//@property (nonatomic, strong) KMVehiclePosition *start;
-//@property (nonatomic, strong) KMVehiclePosition *end;
-//@property (nonatomic, assign) CGFloat distance;
-//@property (nonatomic, assign) CGFloat duration;
-//@property (nonatomic, assign) CGFloat maxSpeed;
-//@property (nonatomic, assign) CGFloat averageSpeed;
-//@property (nonatomic, assign) CGFloat idleDuration;
-//@property (nonatomic, strong) NSArray *histories;
-//@property (nonatomic, strong) NSArray *violations;
-//
-//@property (nonatomic, weak) KMTrip *nextTrip;
-//@property (nonatomic, weak) KMTrip *prevTrip;
-
-
-

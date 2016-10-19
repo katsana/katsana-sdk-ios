@@ -26,6 +26,17 @@
     BOOL _loadingImage;
 }
 
+- (NSDictionary*)jsonPatchDictionary{
+    NSMutableDictionary *dicto = @{}.mutableCopy;
+    if (self.address) dicto[@"address"] = self.address;
+    if (self.phoneHome) dicto[@"phone_home"] = self.phoneHome;
+    if (self.fullname) dicto[@"fullname"] = self.fullname;
+    if (self.emergencyFullName) dicto[@"meta.emergency.fullname"] = self.emergencyFullName;
+    if (self.emergencyPhoneHome) dicto[@"meta.emergency.phone.home"] = self.emergencyPhoneHome;
+    if (self.emergencyPhoneMobile) dicto[@"meta.emergency.phone.mobile"] = self.emergencyPhoneMobile;
+    return dicto;
+}
+
 - (dispatch_queue_t)queue{
     if (!_queue) {
         _queue = dispatch_queue_create("activityLock", DISPATCH_QUEUE_SERIAL);
