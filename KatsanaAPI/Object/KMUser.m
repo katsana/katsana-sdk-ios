@@ -65,13 +65,14 @@
             return;
         }
         _loadingImage = YES;
-        [[ImageRequest shared] requestImageWithPath:self.avatarURLPath completion:^(UIImage * image, NSError * error) {
+        [[ImageRequest shared] requestImageWithPath:self.avatarURLPath completion:^(UIImage * image) {
             _avatarImage = image;
             _loadingImage = NO;
             for (ImageCompletionBlock block in self.avatarImageBlocks) {
                 block(image);
             }
             completion(image);
+        } failure:^(NSError * error) {
         }];
     }else{
         completion(self.avatarImage);

@@ -48,9 +48,9 @@ extension KatsanaAPI {
         task.resume()
     }
     
-    public func refreshToken(completion: @escaping (_ success: Bool, Error?) -> Void) -> Void {
+    public func refreshToken(completion: @escaping (_ success: Bool) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         guard self.authToken != nil else {
-            completion(false, nil)
+            failure(nil)
             return
         }
         
@@ -62,12 +62,12 @@ extension KatsanaAPI {
             if dicto != nil{
                 let token = dicto?["token"]
                 self.authToken = token
-                completion(true, nil)
+                completion(true)
             }else{
-                completion(false, nil)
+                failure(nil)
             }
         }).onFailure({ (error) in
-            completion(false, error)
+            failure(error)
         })
     }
 }

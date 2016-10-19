@@ -8,18 +8,18 @@
 //import Alamofire
 
 extension KatsanaAPI {
-    public func saveCurrentUserProfile(completion: @escaping (KMUser?, Error?) -> Void) -> Void {
+    public func saveCurrentUserProfile(completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let resource = self.API.resource("profile")
         
         let json = self.currentUser.jsonPatchDictionary()
         resource.request(.patch, json: json!).onSuccess { (_) in
-            print("success")
+            completion(self.currentUser)
         }.onFailure { (error) in
-            completion(nil, error)
+            failure(error)
         }
     }
     
-   public func saveCurrentUserProfileImage(image : UIImage?, completion: @escaping (KMUser?, Error?) -> Void) -> Void {
+   public func saveCurrentUserProfileImage(image : UIImage?, completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         var finalImage = image! as UIImage
         if image == nil {
             finalImage = UIImage(color: UIColor.white)!
@@ -44,9 +44,9 @@ extension KatsanaAPI {
         let path = self.baseURL().absoluteString + "profile/avatar"
         uploadImage(image: finalImage, path: path) { (success, error) in
             if success{
-                completion(self.currentUser, nil)
+                completion(self.currentUser)
             }else{
-                completion(nil, nil)
+                failure(error)
             }
         }
     }

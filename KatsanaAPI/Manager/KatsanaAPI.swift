@@ -57,9 +57,12 @@ public class KatsanaAPI: NSObject {
             $0.headers["Authorization"] = "Bearer " + self.authToken
         }
         
+        //Vehicle location will request new data at least 5 seconds
         API.configure("vehicles/*/location") {
             $0.expirationTime = 5
         }
+        
+        //Vehicle summary will request new data at least 3 minutes
         API.configure("vehicles/*/summaries/*") {
             $0.expirationTime = 3*60
         }

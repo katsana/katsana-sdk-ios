@@ -41,9 +41,9 @@
 
 //- (CGFloat)averageSpeed{
 //    __block CGFloat totalSpeed = 0;
-//    __block KMVehiclePosition *prevPos = self.start;
+//    __block KMVehicleLocation *prevPos = self.start;
 //    __block NSInteger count = 0;
-//    [self.histories enumerateObjectsUsingBlock:^(KMVehiclePosition *pos, NSUInteger idx, BOOL * _Nonnull stop) {
+//    [self.histories enumerateObjectsUsingBlock:^(KMVehicleLocation *pos, NSUInteger idx, BOOL * _Nonnull stop) {
 //        CGFloat speed = 0;
 //        
 //        CGFloat distance = [pos distanceToPosition:prevPos]/1000.0f;
@@ -85,8 +85,8 @@
 
 //- (CGFloat)maxSpeed{
 //    __block CGFloat maxSpeed = 0;
-//    __block KMVehiclePosition *prevPos = self.start;
-//    [self.histories enumerateObjectsUsingBlock:^(KMVehiclePosition *pos, NSUInteger idx, BOOL * _Nonnull stop) {
+//    __block KMVehicleLocation *prevPos = self.start;
+//    [self.histories enumerateObjectsUsingBlock:^(KMVehicleLocation *pos, NSUInteger idx, BOOL * _Nonnull stop) {
 //        CGFloat speed = 0;
 //        
 //        CGFloat distance = [pos distanceToPosition:prevPos];

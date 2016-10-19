@@ -1,5 +1,5 @@
 //
-//  KMVehiclePosition.h
+//  KMVehicleLocation.h
 //  KatsanaMap
 //
 //  Created by Wan Ahmad Lutfi on 12/17/15.

@@ -11,19 +11,19 @@ import UIKit
 extension KatsanaAPI {
     @nonobjc static let maxDaySummary = 3;
     
-    public func requestTripSummaryToday(vehicleId: String, completion: @escaping (KMTravelHistory?, Error?) -> Void) -> Void {
+    public func requestTripSummaryToday(vehicleId: String, completion: @escaping (_ summary: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let path = "vehicles/" + vehicleId + "/summaries/today"
         let resource = API.resource(path);
         resource.loadIfNeeded()?.onSuccess({(entity) in
             let summary : KMTravelHistory? = resource.typedContent()
-            completion(summary, nil)
+            completion(summary)
             }).onFailure({ (error) in
-                completion(nil, error)
+                failure(error)
             })
     }
     
     //!Request trip summary between dates. Only load trip count without actual trip details to minimize data usage,
-    public func requestTripSummary(with vehicleId: String, fromDate: Date!, toDate: Date, completion: @escaping ([KMTravelHistory]?, Error?) -> Void) -> Void {
+    public func requestTripSummary(vehicleId: String, fromDate: Date!, toDate: Date, completion: @escaping (_ summaries:[KMTravelHistory]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let dates = validateRange(fromDate: fromDate, toDate: toDate)
         let datesWithHistory = requiredRangeToRequestTripSummary(fromDate: dates.fromDate, toDate: dates.toDate, vehicleId: vehicleId)
         
@@ -61,14 +61,14 @@ extension KatsanaAPI {
             
             
 
-            completion(summaries, nil)
+            completion(summaries)
         }).onFailure({ (error) in
-            completion(nil, error)
+            failure(error)
         })
     }
     
     //!Request trip history will download histories for that particular date
-    public func requestTripHistory(for date: Date, vehicleId: String, completion: @escaping (KMTravelHistory?, Error?) -> Void) -> Void {
+    public func requestTripHistory(for date: Date, vehicleId: String, completion: @escaping (_ history: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let path = "vehicles/" + vehicleId + "/travels/" + date.toStringWithYearMonthDay()
         let resource = API.resource(path);
         resource.loadIfNeeded()?.onSuccess({(entity) in
@@ -76,9 +76,9 @@ extension KatsanaAPI {
             history?.lastUpdate = Date() //Set last update date
             history?.historyDate = date
             KMCacheManager.sharedInstance().cacheData(history, identifier: vehicleId) //Cache history
-            completion(history, nil)
+            completion(history)
         }).onFailure({ (error) in
-            completion(nil, error)
+            failure(error)
         })
     }
 

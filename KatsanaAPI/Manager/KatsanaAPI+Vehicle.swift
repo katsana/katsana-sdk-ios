@@ -14,7 +14,7 @@ extension KatsanaAPI {
     ///
     /// - parameter vehicleId:  vehicle id
     /// - parameter completion: completion
-    public func requestVehicle(vehicleId: String, completion: @escaping (KMVehicle?, Error?) -> Void) -> Void {
+    public func requestVehicle(vehicleId: String, completion: @escaping (_ vehicle: KMVehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let vehicle = vehicleWith(vehicleId: vehicleId)
         if (vehicle != nil) {
             currentVehicle = vehicle!;
@@ -25,39 +25,39 @@ extension KatsanaAPI {
         resource.loadIfNeeded()?.onSuccess({ [weak self] (entity) in
             let vehicle : KMVehicle? = resource.typedContent()
             self?.currentVehicle = vehicle;
-            completion(vehicle, nil)
+            completion(vehicle)
         }).onFailure({ (error) in
-            completion(nil, error)
+            failure(error)
         })
     }
     
     /// Request all vehicles. vehicles variable will be set from the vehicles requested
     ///
     /// - parameter completion: completion
-    public func requestAllVehicles(completion: @escaping ([KMVehicle]?, Error?) -> Void) -> Void {
+    public func requestAllVehicles(completion: @escaping (_ vehicles: [KMVehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let path = "vehicles"
         let resource = API.resource(path);
         resource.loadIfNeeded()?.onSuccess({ [weak self] (entity) in
             let vehicles : [KMVehicle]? = resource.typedContent()
             self?.vehicles = vehicles
-            completion(vehicles, nil)
+            completion(vehicles)
             }).onFailure({ (error) in
-                completion(nil, error)
+                failure(error)
             })
     }
     
-    public func requestVehicleLocation(vehicleId: String, completion: @escaping (KMVehicleLocation?, Error?) -> Void) -> Void {
+    public func requestVehicleLocation(vehicleId: String, completion: @escaping (_ vehicleLocation: KMVehicleLocation?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let path = "vehicles/" + vehicleId + "/location"
         let resource = API.resource(path);
         resource.loadIfNeeded()?.onSuccess({ (entity) in
             let location : KMVehicleLocation? = resource.typedContent()
-            completion(location, nil)
+            completion(location)
             }).onFailure({ (error) in
-                completion(nil, error)
+                failure(error)
             })
     }
     
-    public func requestAllVehicleLocations(completion: @escaping ([KMVehicle]?, Error?) -> Void) -> Void {
+    public func requestAllVehicleLocations(completion: @escaping (_ vehicles: [KMVehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         guard vehicles != nil else{
             return
         }
@@ -65,12 +65,12 @@ extension KatsanaAPI {
         for vehicle in vehicles {
             let vehicleId = vehicle.vehicleId
             var count = 0
-            requestVehicleLocation(vehicleId: vehicleId!, completion: { (vehicleLocation, error) in
+            requestVehicleLocation(vehicleId: vehicleId!, completion: { (vehicleLocation) in
                 vehicle.current = vehicleLocation
                 count += 1
                 
                 if count == self.vehicles.count{
-                    completion(self.vehicles, nil)
+                    completion(self.vehicles)
                 }
             })
         }

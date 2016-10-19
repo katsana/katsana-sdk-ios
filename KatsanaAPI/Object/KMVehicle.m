@@ -74,15 +74,16 @@
             [self.carThumbImageBlocks addObject:completion];
         }
         _loadingMarkerImage = YES;
-        [[ImageRequest shared] requestImageWithPath:self.avatarURLPath completion:^(UIImage * image, NSError * error) {
+        [[ImageRequest shared] requestImageWithPath:self.avatarURLPath completion:^(UIImage * image) {
             _carThumbImage = image;
             _maskedCarImage = nil;
             _loadingMarkerImage = NO;
-
+            
             for (ImageCompletionBlock block in self.carThumbImageBlocks) {
                 block(image);
             }
             completion(image);
+        } failure:^(NSError * error) {
         }];
     }else{
         completion(self.carThumbImage);
@@ -100,7 +101,7 @@
             [self.carImageBlocks addObject:completion];
         }
         _loadingImage = YES;
-        [[ImageRequest shared] requestImageWithPath:self.markerURLPath completion:^(UIImage * image, NSError * error) {
+        [[ImageRequest shared] requestImageWithPath:self.markerURLPath completion:^(UIImage * image) {
             _carImage = image;
             _loadingImage = NO;
             
@@ -108,6 +109,7 @@
                 block(image);
             }
             completion(image);
+        } failure:^(NSError * error) {
         }];
     }else{
         completion(self.carImage);
@@ -122,12 +124,14 @@
     }
     
     if (coord.latitude !=0 && coord.longitude != 0) {
-//        [[KMKatsana sharedInstance] loadAddressWithLocation:coord address:^(KMAddress *address) {
-//            self.currentAddress = address;
-//            _lastCoordinate = self.current.coordinate;
-//            completion(address);
-//        } failure:^(NSError *error) {
-//        }];
+        [[KatsanaAPI shared] requestAddressFor:coord completion:^(KMAddress * address) {
+            self.currentAddress = address;
+            _lastCoordinate = self.current.coordinate;
+            completion(address);
+
+        } failure:^(NSError * error) {
+            
+        }];
     }
 }
 

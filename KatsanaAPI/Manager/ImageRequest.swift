@@ -30,11 +30,11 @@ public class ImageRequest: NSObject {
         }
     }
     
-    public func requestImage(path : String, completion: @escaping (_ image: UIImage?, _ error: Error?) -> Void) -> Void {
+    public func requestImage(path : String, completion: @escaping (_ image: UIImage?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let url = NSURL(string: path)
         let image = KMCacheManager.sharedInstance().image(forIdentifier: url?.lastPathComponent)
         if image != nil {
-            completion(image, nil)
+            completion(image)
             return
         }
         
@@ -43,12 +43,12 @@ public class ImageRequest: NSObject {
             let image : UIImage? = resource.typedContent()
             if image != nil{
                 KMCacheManager.sharedInstance().cacheData(image, identifier: url?.lastPathComponent)
-                completion (image, nil)
+                completion (image)
             }else{
-                completion (nil, nil)
+                completion (nil)
             }
         }).onFailure({ (error) in
-            completion(nil, error)
+            failure(error)
         })
     }
     

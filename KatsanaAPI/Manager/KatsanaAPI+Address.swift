@@ -8,9 +8,13 @@
 import CoreLocation
 
 extension KatsanaAPI {
-    public func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (KMAddress?, Error?) -> Void) -> Void {
+    public func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (KMAddress?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         AddressRequest.requestAddress(for: location) { (address, error) in
-            completion(address, error)
+            if error != nil{
+                failure(error)
+            }else{
+                completion(address)
+            }
         }
     }
 }
