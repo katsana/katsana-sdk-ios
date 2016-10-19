@@ -5,6 +5,7 @@
 //  Created by Wan Ahmad Lutfi on 17/10/2016.
 //  Copyright © 2016 pixelated. All rights reserved.
 //
+import SwiftyJSON
 
 extension KatsanaAPI{
     
@@ -22,6 +23,22 @@ extension KatsanaAPI{
             }else{
                 completion(false, r.error)
             }
+        }
+    }
+    
+    
+    /// Request custom response from other application using current KatsanaAPI endpoint.
+    ///
+    /// - parameter path:       path to append to current endpoint
+    /// - parameter completion: completion
+    public func requestResponse(for path: String, completion: @escaping (_ response: Dictionary<String, Any>?, _ error: Error?) -> Void) -> Void {
+        Just.get(
+            path,
+            data: ["token": self.authToken]
+        ) { r in
+            let json = JSON(data: r.content!)
+            let dicto = json.dictionaryObject
+            completion(dicto, r.error)
         }
     }
 }

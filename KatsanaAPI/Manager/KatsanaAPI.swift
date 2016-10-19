@@ -101,7 +101,7 @@ public class KatsanaAPI: NSObject {
     }
     
     ///Check if web socket supported or not, if any vehicle support websocket, other vehicles also considered to support it
-    func websocketSupported() -> Bool {
+    public func websocketSupported() -> Bool {
         var supported = false
         for vehicle in vehicles {
             if vehicle.websocket {
