@@ -17,9 +17,9 @@
     NSArray *_routeTrips;
 }
 
-- (NSDate*)localTimezoneHistoryDate{
-    NSTimeInterval timeZoneOffset = [[NSTimeZone systemTimeZone] secondsFromGMTForDate:self.historyDate];
-    NSDate *date = [self.historyDate dateByAddingTimeInterval:-timeZoneOffset];
+- (NSDate*)localTimezoneDate{
+    NSTimeInterval timeZoneOffset = [[NSTimeZone systemTimeZone] secondsFromGMTForDate:self.date];
+    NSDate *date = [self.date dateByAddingTimeInterval:-timeZoneOffset];
     return date;
 }
 
@@ -169,7 +169,7 @@
 }
 
 - (BOOL)dateEqualToVehicleDayHistory:(KMTravelHistory*)history{
-    return [[NSCalendar currentCalendar] isDate:self.historyDate equalToDate:history.historyDate toUnitGranularity:NSCalendarUnitDay];;
+    return [[NSCalendar currentCalendar] isDate:self.date equalToDate:history.date toUnitGranularity:NSCalendarUnitDay];;
 }
 
 - (BOOL)isEqual:(KMTravelHistory*)object{
@@ -180,7 +180,7 @@
 }
 
 - (NSComparisonResult)compare:(KMTravelHistory *)object{
-    return [self.historyDate compare:object.historyDate];
+    return [self.date compare:object.date];
 }
 
 #pragma mark - Custom type
@@ -193,8 +193,8 @@
     NSArray *sorted = [dayHistories sortedArrayUsingSelector:@selector(compare:)];
     NSDateComponents *components = [[NSDateComponents alloc] init] ;
     [components setDay:-1];
-    NSDate *yesterday = [[NSCalendar currentCalendar] dateByAddingComponents:components toDate:[sorted.firstObject historyDate] options:0];
-    self.historyDate = yesterday;
+    NSDate *yesterday = [[NSCalendar currentCalendar] dateByAddingComponents:components toDate:[sorted.firstObject date] options:0];
+    self.date = yesterday;
     
     CGFloat duration = 0;
     CGFloat distance = 0;
@@ -211,7 +211,7 @@
 }
 
 - (NSString*)description{
-    return [NSString stringWithFormat:@"%@, trips:%@, maxSpeed:%.1f, date:%@", [super description], self.trips, self.maxSpeed, self.historyDate];
+    return [NSString stringWithFormat:@"%@, trips:%@, maxSpeed:%.1f, date:%@", [super description], self.trips, self.maxSpeed, self.date];
 }
 
 @end

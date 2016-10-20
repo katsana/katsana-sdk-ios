@@ -29,15 +29,16 @@ extension KatsanaAPI {
         
         var histories = datesWithHistory.cachedHistories
         
-        let path = "vehicles/" + vehicleId + "/summaries/today"
-        let resource = API.resource(path);
+        let path = "vehicles/" + vehicleId + "/summaries/duration"
+        
+        let resource = API.resource(path).withParam("start", datesWithHistory.fromDate.toStringWithYearMonthDay()).withParam("end",datesWithHistory.toDate.toStringWithYearMonthDay());
         resource.loadIfNeeded()?.onSuccess({(entity) in
             let summaries : [KMTravelHistory] = resource.typedContent()!
             for summary in summaries{
                 //Remove duplicate history
                 var duplicateHistoryNeedRemove : KMTravelHistory!
                 for history in histories{
-                    if summary.historyDate.isEqualToDateIgnoringTime(history.historyDate){
+                    if summary.date.isEqualToDateIgnoringTime(history.date){
                         if summary.tripCount > history.trips.count{
                             summary.needLoadTripHistory = true
                         }else{
@@ -57,12 +58,12 @@ extension KatsanaAPI {
                 summary.lastUpdate = Date()
                 
                 //Cache history for days more than maxDaySummary, because it may already contain trip but still not finalized on the server
-                if Date().daysAfterDate((summary.historyDate)!) > KatsanaAPI.maxDaySummary{
+                if Date().daysAfterDate((summary.date)!) > KatsanaAPI.maxDaySummary{
                     KMCacheManager.sharedInstance().cacheData(summary, identifier: vehicleId)
                 }
             }
             histories.append(contentsOf: summaries)
-            histories.sort(by: { $0.historyDate > $1.historyDate })
+            histories.sort(by: { $0.date > $1.date })
             
             
 
@@ -88,7 +89,7 @@ extension KatsanaAPI {
         resource.loadIfNeeded()?.onSuccess({(entity) in
             let history : KMTravelHistory? = resource.typedContent()
             history?.lastUpdate = Date() //Set last update date
-            history?.historyDate = date
+            history?.date = date
             KMCacheManager.sharedInstance().cacheData(history, identifier: vehicleId) //Cache history
             completion(history)
         }).onFailure({ (error) in
@@ -130,7 +131,7 @@ extension KatsanaAPI {
             //If have cached history, add to array if pass other condition
             if history != nil {
                 //Check if last 3 day
-                if Date().daysAfterDate((history?.historyDate)!) <= KatsanaAPI.maxDaySummary {
+                if Date().daysAfterDate((history?.date)!) <= KatsanaAPI.maxDaySummary {
                     //Check if current date is 5 minutes than last try update date and trips is 0
                     if Date().minutesAfterDate((history?.lastUpdate)!) > 5 && history?.trips.count == 0 {
                         break

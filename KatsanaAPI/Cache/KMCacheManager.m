@@ -23,7 +23,7 @@
 @end
 
 @implementation KMCacheManager{
-    NSDate *_lastAccessTodayHistoryDate;
+    NSDate *_lastAccessTodaydate;
     NSString *_lastAccessTodayHistoryVehicleId;
     NSDate *_lastSavedCache;
     NSDate *_lastSavedAddressCache;
@@ -75,7 +75,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
             }];
             self.activities = newActivitiesDicto;
         }
-
+        NSLog(@"cache path: %@", path);
 //        DDLogInfo(@"cache path: %@", path);
         
         [self clearOldActivityCacheIfNeeded];
@@ -112,9 +112,9 @@ static KMCacheManager *sharedPeerToPeer = nil;
     //Always need load latest data if today
     NSDate *today = [NSDate date];
     if ([[NSCalendar currentCalendar] isDate:date equalToDate:today toUnitGranularity:NSCalendarUnitDay]) {
-        if (![_lastAccessTodayHistoryVehicleId isEqualToString:vehicleId] || (_lastAccessTodayHistoryDate && [today timeIntervalSinceDate:_lastAccessTodayHistoryDate] > 60*4)) {
+        if (![_lastAccessTodayHistoryVehicleId isEqualToString:vehicleId] || (_lastAccessTodaydate && [today timeIntervalSinceDate:_lastAccessTodaydate] > 60*4)) {
             _lastAccessTodayHistoryVehicleId = vehicleId;
-            _lastAccessTodayHistoryDate = [NSDate date];
+            _lastAccessTodaydate = [NSDate date];
             return nil;
         }
     }
@@ -125,7 +125,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
         KMTravelHistory *obj = dicto[@"data"];
         NSString *theId = dicto[@"id"];
         
-        if ([[NSCalendar currentCalendar] isDate:obj.historyDate equalToDate:date toUnitGranularity:NSCalendarUnitDay] && [theId isEqualToString:vehicleId]) {
+        if ([[NSCalendar currentCalendar] isDate:obj.date equalToDate:date toUnitGranularity:NSCalendarUnitDay] && [theId isEqualToString:vehicleId]) {
             return obj;
         }
     }
@@ -139,7 +139,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
         for (KMAddress *address in dataArray) {
             if (CLCOORDINATES_EQUAL2(address.coordinate, coord)) {
                 if ([[NSDate date] timeIntervalSinceDate:address.updateDate] < 60*60*24*self.addressCacheDayDuration) {
-                    dispatch_sync(dispatch_get_main_queue(), ^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         completion(address);
                     });
                     

@@ -22,7 +22,7 @@
 @property (nonatomic, assign) double idleDuration;
 @property (nonatomic, assign) double duration;
 
-@property (nonatomic, strong) NSDate *historyDate;
+@property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSDate *lastUpdate;
 
 //!Trip count from trip history;
@@ -35,7 +35,7 @@
 - (CGFloat)totalDuration;
 - (CGFloat)averageSpeed;
 //!Return local timezone history date
-- (NSDate*)localTimezoneHistoryDate;
+- (NSDate*)localTimezoneDate;
 
 - (NSString*)idleDurationString;
 - (NSString*)averageSpeedString;

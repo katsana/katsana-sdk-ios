@@ -32,6 +32,8 @@ extension KatsanaAPI{
     /// - parameter path:       path to append to current endpoint
     /// - parameter completion: completion
     public func requestResponse(for path: String, completion: @escaping (_ response: Dictionary<String, Any>?, _ error: Error?) -> Void) -> Void {
+        
+        
         let fullPath = self.baseURL().absoluteString + path
         Just.get(
             fullPath,

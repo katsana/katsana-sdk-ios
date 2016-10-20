@@ -8,7 +8,7 @@
 
 import UIKit
 import Siesta
-
+import SwiftyJSON
 
 /// Class to request image from server. It is not included with KatsanaAPI because image request need a max async connection because the data is bigger tha json
 public class ImageRequest: NSObject {
@@ -38,18 +38,18 @@ public class ImageRequest: NSObject {
             return
         }
         
-        let resource = API.resource(path);
-        resource.loadIfNeeded()?.onSuccess({(entity) in
-            let image : UIImage? = resource.typedContent()
-            if image != nil{
+        Just.get(
+            path
+        ) { r in
+            if r.ok {
+                let content = r.content
+                let image = UIImage(data: content!)
                 KMCacheManager.sharedInstance().cacheData(image, identifier: url?.lastPathComponent)
-                completion (image)
+                completion(image)
             }else{
-                completion (nil)
+                failure(r.error)
             }
-        }).onFailure({ (error) in
-            failure(error)
-        })
+        }
     }
     
 }

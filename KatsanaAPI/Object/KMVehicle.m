@@ -84,6 +84,8 @@
             }
             completion(image);
         } failure:^(NSError * error) {
+            _loadingMarkerImage = NO;
+            NSLog(@"Error get image: %@", error);
         }];
     }else{
         completion(self.carThumbImage);

@@ -81,6 +81,16 @@ class ObjectJSONTransformer: NSObject {
         return pos
     }
     
+    class func TravelSummariesObject(json : JSON) -> [KMTravelHistory] {
+        var summaries = [KMTravelHistory]()
+        let array = json.arrayValue
+        for jsonObj in array {
+            let history = TravelSummaryObject(json: jsonObj)
+            summaries.append(history)
+        }
+        return summaries
+    }
+    
     class func TravelSummaryObject(json : JSON) -> KMTravelHistory {
         let history = KMTravelHistory()
         history.maxSpeed = json["max_speed"].floatValue
@@ -89,7 +99,7 @@ class ObjectJSONTransformer: NSObject {
         history.tripCount = json["trip"].intValue
         history.duration = json["duration"].doubleValue
         history.idleDuration = json["idle_duration"].doubleValue
-        history.historyDate = json["date"].date
+        history.date = json["date"].date
         return history
     }
     
@@ -100,7 +110,7 @@ class ObjectJSONTransformer: NSObject {
         history.violationCount = json["summary"]["violation"].intValue
         history.trips = json["trips"].arrayValue.map{TripObject(json: $0)}
         
-        history.historyDate = json["duration"]["from"].date
+        history.date = json["duration"]["from"].date
         return history
     }
     
@@ -122,13 +132,14 @@ class ObjectJSONTransformer: NSObject {
         let address = KMAddress()
         address.latitude = json["latitude"].doubleValue
         address.longitude = json["longitude"].doubleValue
-        address.streetNumber = json["street_number"].rawString()
-        address.streetName = json["street_name"].rawString()
-        address.locality = json["locality"].rawString()
-        address.sublocality = json["sublocality"].rawString()
+        let streetNumber = json["street_number"].string
+        address.streetNumber = streetNumber
+        address.streetName = json["street_name"].string
+        address.locality = json["locality"].string
+        address.sublocality = json["sublocality"].string
         address.postcode = json["postcode"].intValue
-        address.country = json["country"].rawString()
-        address.address = json["address"].rawString()
+        address.country = json["country"].string
+        address.address = json["address"].string
 
         return address
     }
