@@ -99,7 +99,7 @@ class ObjectJSONTransformer: NSObject {
         history.tripCount = json["trip"].intValue
         history.duration = json["duration"].doubleValue
         history.idleDuration = json["idle_duration"].doubleValue
-        history.date = json["date"].date
+        history.date = json["date"].dateWithoutTime
         return history
     }
     

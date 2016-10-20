@@ -19,6 +19,17 @@ extension JSON {
         }
     }
     
+    public var dateWithoutTime: Date? {
+        get {
+            switch self.type {
+            case .string:
+                return Formatter.jsonDateWithoutTimeFormatter.date(from: (self.object as! String))
+            default:
+                return nil
+            }
+        }
+    }
+    
     public var dateTime: Date? {
         get {
             switch self.type {
@@ -35,6 +46,7 @@ extension JSON {
 class Formatter {
     
     private static var internalJsonDateFormatter: DateFormatter?
+    private static var internalJsonDateWithoutTimeFormatter: DateFormatter?
     private static var internalJsonDateTimeFormatter: DateFormatter?
     
     static var jsonDateFormatter: DateFormatter {
@@ -46,6 +58,17 @@ class Formatter {
         }
         return internalJsonDateFormatter!
     }
+    
+    static var jsonDateWithoutTimeFormatter: DateFormatter {
+        if (internalJsonDateWithoutTimeFormatter == nil) {
+            internalJsonDateWithoutTimeFormatter = DateFormatter()
+            internalJsonDateWithoutTimeFormatter!.dateFormat = "yyyy-MM-dd"
+            
+            //            2013-11-18 03:31:02
+        }
+        return internalJsonDateWithoutTimeFormatter!
+    }
+    
     
     
     static var jsonDateTimeFormatter: DateFormatter {
