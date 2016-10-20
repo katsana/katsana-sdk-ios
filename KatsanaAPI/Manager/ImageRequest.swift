@@ -45,9 +45,9 @@ public class ImageRequest: NSObject {
                 let content = r.content
                 let image = UIImage(data: content!)
                 KMCacheManager.sharedInstance().cacheData(image, identifier: url?.lastPathComponent)
-                completion(image)
+                DispatchQueue.main.sync{completion(image)}
             }else{
-                failure(r.error)
+                DispatchQueue.main.sync{failure(r.error)}
             }
         }
     }
