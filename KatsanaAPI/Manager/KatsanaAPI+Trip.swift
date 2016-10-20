@@ -67,7 +67,7 @@ extension KatsanaAPI {
             
             
 
-            completion(summaries)
+            completion(histories)
         }).onFailure({ (error) in
             failure(error)
         })

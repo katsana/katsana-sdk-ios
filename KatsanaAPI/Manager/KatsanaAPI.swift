@@ -34,8 +34,22 @@ public class KatsanaAPI: NSObject {
             }
         }
     }
-    private(set) public var lastVehicleId: String!
-    private(set) public var lastVehicleImeis: [String]!
+    private(set) public var lastVehicleId: String!{
+        set{
+            UserDefaults.standard.set(newValue, forKey: "lastVehicleId")
+        }
+        get{
+            return  UserDefaults.standard.value(forKey: "lastVehicleId") as! String!
+        }
+    }
+    private(set) public var lastVehicleImeis: [String]!{
+        set{
+            UserDefaults.standard.set(newValue, forKey: "lastVehicleImeis")
+        }
+        get{
+            return  UserDefaults.standard.value(forKey: "lastVehicleImeis") as! [String]!
+        }
+    }
     private let SwiftyJSONTransformer = ResponseContentTransformer { JSON($0.content as AnyObject) }
     
     internal(set) public var authToken: String! {

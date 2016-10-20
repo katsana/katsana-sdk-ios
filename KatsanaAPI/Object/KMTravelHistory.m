@@ -17,6 +17,10 @@
     NSArray *_routeTrips;
 }
 
++ (NSArray*)fastCodingKeys{
+    return @[@"trips", @"maxSpeed", @"distance", @"violationCount", @"date", @"idleDuration", @"duration", @"tripCount", @"needLoadTripHistory"];
+}
+
 - (NSDate*)localTimezoneDate{
     NSTimeInterval timeZoneOffset = [[NSTimeZone systemTimeZone] secondsFromGMTForDate:self.date];
     NSDate *date = [self.date dateByAddingTimeInterval:-timeZoneOffset];

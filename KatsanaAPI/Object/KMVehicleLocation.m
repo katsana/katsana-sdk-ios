@@ -61,17 +61,19 @@ static NSDateFormatter *sharedDateFormatter = nil;
         return;
     }
     
-//    [[KMKatsana sharedInstance] loadAddressWithLocation:CLLocationCoordinate2DMake(self.latitude, self.longitude) address:^(KMAddress *address) {
-//        if (useCountry) {
-//            _address = address.optimizedAddressWithCountry;
-//        }else{
-//            _address = address.optimizedAddress;
-//        }
-//        _lastCoord = self.coordinate;
-//        completion(_address);
-//    } failure:^(NSError *error) {
-//        
-//    }];
+    [[KatsanaAPI shared] requestAddressFor:CLLocationCoordinate2DMake(self.latitude, self.longitude) completion:^(KMAddress * address) {
+        if (useCountry) {
+            _address = address.optimizedAddressWithCountry;
+        }else{
+            _address = address.optimizedAddress;
+        }
+        _lastCoord = self.coordinate;
+        completion(_address);
+
+
+    } failure:^(NSError * err) {
+        
+    }];
 }
 
 - (NSString*)address{
