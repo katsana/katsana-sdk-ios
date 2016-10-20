@@ -87,9 +87,14 @@ public class KatsanaAPI: NSObject {
             $0.expirationTime = 10
         }
         
-        //Vehicle summary will request new data only after 3 minutes
-        API.configure("vehicles/*/summaries/*") {
-            $0.expirationTime = 3*60
+        //Vehicle summary today will request new data only after 4 minutes
+        API.configure("vehicles/*/summaries/today") {
+            $0.expirationTime = 4*60
+        }
+        
+        //Vehicle summary duration will request new data only after 15 seconds
+        API.configure("vehicles/*/summaries/duration") {
+            $0.expirationTime = 15
         }
         
         //Vehicle travel will request new data only after 1 minute
