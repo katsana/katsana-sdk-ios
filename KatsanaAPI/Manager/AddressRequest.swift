@@ -30,20 +30,20 @@ class AddressRequest: NSObject {
                             if (address.optimizedAddress().characters.count) <= 10{
                                 self.appleGeoAddress(from: location, completion: { (appleAddress) in
                                     address = appleAddress!
-                                    completion(address, nil)
+                                    DispatchQueue.main.sync{completion(address, nil)}
                                     //Save requested address to cache
                                     KMCacheManager.sharedInstance().cacheData(address, identifier: nil)
                                 })
                             }else{
                                 KMCacheManager.sharedInstance().cacheData(address, identifier: nil)
-                                completion(address, nil)
+                                DispatchQueue.main.sync{completion(address, nil)}
                             }
                         }else{
-                            completion(nil, nil)
+                            DispatchQueue.main.sync{completion(nil, nil)}
                         }
                         
                     }else{
-                        completion(nil, r.error)
+                        DispatchQueue.main.sync{completion(address, r.error)}
                     }
                 }
             }
