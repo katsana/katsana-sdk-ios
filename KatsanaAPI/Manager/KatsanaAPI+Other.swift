@@ -33,15 +33,20 @@ extension KatsanaAPI{
     /// - parameter completion: completion
     public func requestResponse(for path: String, completion: @escaping (_ response: Dictionary<String, Any>?, _ error: Error?) -> Void) -> Void {
         
+        let resource = API.resource(path);
+        let request = resource.loadIfNeeded()
+        request?.onSuccess({(entity) in
+            let json = entity.content as? JSON
+            let dicto = json?.dictionaryObject
+            completion(dicto, nil)
+        }).onFailure({ (error) in
+            completion(nil, error)
+        })
         
-        let fullPath = self.baseURL().absoluteString + path
-        Just.get(
-            fullPath,
-            data: ["token": self.authToken]
-        ) { r in
-            let json = JSON(data: r.content!)
-            let dicto = json.dictionaryObject
-            completion(dicto, r.error)
+        if request == nil {
+            let json = resource.latestData?.content as? JSON
+            let dicto = json?.dictionaryObject
+            completion(dicto, nil)
         }
     }
     
