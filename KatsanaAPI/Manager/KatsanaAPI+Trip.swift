@@ -14,12 +14,20 @@ extension KatsanaAPI {
     public func requestTripSummaryToday(vehicleId: String, completion: @escaping (_ summary: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let path = "vehicles/" + vehicleId + "/summaries/today"
         let resource = API.resource(path);
-        resource.loadIfNeeded()?.onSuccess({(entity) in
+        let request = resource.loadIfNeeded()
+        
+        
+        request?.onSuccess({(entity) in
             let summary : KMTravelHistory? = resource.typedContent()
             completion(summary)
             }).onFailure({ (error) in
                 failure(error)
             })
+        
+        if request == nil {
+            let summary : KMTravelHistory? = resource.typedContent()
+            completion(summary)
+        }
     }
     
     //!Request trip summary between dates. Only load trip count without actual trip details to minimize data usage,
@@ -32,7 +40,9 @@ extension KatsanaAPI {
         let path = "vehicles/" + vehicleId + "/summaries/duration"
         
         let resource = API.resource(path).withParam("start", datesWithHistory.fromDate.toStringWithYearMonthDay()).withParam("end",datesWithHistory.toDate.toStringWithYearMonthDay());
-        resource.loadIfNeeded()?.onSuccess({(entity) in
+        let request = resource.loadIfNeeded()
+        
+        func handleResource() -> Void {
             let summaries : [KMTravelHistory] = resource.typedContent()!
             for summary in summaries{
                 //Remove duplicate history
@@ -64,13 +74,19 @@ extension KatsanaAPI {
             }
             histories.append(contentsOf: summaries)
             histories.sort(by: { $0.date > $1.date })
-            
-            
-
             completion(histories)
+        }
+        
+        request?.onSuccess({(entity) in
+            handleResource()
         }).onFailure({ (error) in
             failure(error)
         })
+        if request == nil {
+            handleResource()
+        }
+        
+        
     }
     
     //!Request trip history will download histories for that particular date
@@ -86,15 +102,25 @@ extension KatsanaAPI {
         
         let path = "vehicles/" + vehicleId + "/travels/" + date.toStringWithYearMonthDay()
         let resource = API.resource(path);
-        resource.loadIfNeeded()?.onSuccess({(entity) in
+        
+        func handleResource() -> Void{
             let history : KMTravelHistory? = resource.typedContent()
             history?.lastUpdate = Date() //Set last update date
             history?.date = date
             KMCacheManager.sharedInstance().cacheData(history, identifier: vehicleId) //Cache history
             completion(history)
+        }
+        
+        let request = resource.loadIfNeeded()
+        request?.onSuccess({(entity) in
+            handleResource()
         }).onFailure({ (error) in
             failure(error)
         })
+        
+        if request == nil {
+            handleResource()
+        }
     }
 
 // MARK: Logic

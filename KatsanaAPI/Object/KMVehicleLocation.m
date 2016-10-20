@@ -145,5 +145,9 @@ static NSDateFormatter *sharedDateFormatter = nil;
     return date;
 }
 
+//- (NSString*)description{
+//    return [NSString stringWithFormat:@"%@, voltage: %@", [super description], self.voltage];
+//}
+
 
 @end

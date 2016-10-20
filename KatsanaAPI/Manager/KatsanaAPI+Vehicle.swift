@@ -22,13 +22,22 @@ extension KatsanaAPI {
         
         let path = "vehicles/" + vehicleId
         let resource = API.resource(path);
-        resource.loadIfNeeded()?.onSuccess({ [weak self] (entity) in
+        let request = resource.loadIfNeeded()
+        
+        func handleResource() -> Void {
             let vehicle : KMVehicle? = resource.typedContent()
-            self?.currentVehicle = vehicle;
+            self.currentVehicle = vehicle;
             completion(vehicle)
+        }
+        
+        request?.onSuccess({(entity) in
+            handleResource()
         }).onFailure({ (error) in
             failure(error)
         })
+        
+        if request == nil { handleResource()}
+        
     }
     
     /// Request all vehicles. vehicles variable will be set from the vehicles requested
@@ -37,24 +46,39 @@ extension KatsanaAPI {
     public func requestAllVehicles(completion: @escaping (_ vehicles: [KMVehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let path = "vehicles"
         let resource = API.resource(path);
-        resource.loadIfNeeded()?.onSuccess({ [weak self] (entity) in
+        let request = resource.loadIfNeeded()
+        
+        func handleResource() -> Void {
             let vehicles : [KMVehicle]? = resource.typedContent()
-            self?.vehicles = vehicles
+            self.vehicles = vehicles
             completion(vehicles)
+        }
+        
+        request?.onSuccess({ (entity) in
+            handleResource()
             }).onFailure({ (error) in
                 failure(error)
             })
+        
+        if request == nil { handleResource()}
     }
     
     public func requestVehicleLocation(vehicleId: String, completion: @escaping (_ vehicleLocation: KMVehicleLocation?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let path = "vehicles/" + vehicleId + "/location"
         let resource = API.resource(path);
-        resource.loadIfNeeded()?.onSuccess({ (entity) in
+        let request = resource.loadIfNeeded()
+        
+        request?.onSuccess({ (entity) in
             let location : KMVehicleLocation? = resource.typedContent()
             completion(location)
             }).onFailure({ (error) in
                 failure(error)
             })
+        
+        if request == nil {
+            let location : KMVehicleLocation? = resource.typedContent()
+            completion(location)
+        }
     }
     
     public func requestAllVehicleLocations(completion: @escaping (_ vehicles: [KMVehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {

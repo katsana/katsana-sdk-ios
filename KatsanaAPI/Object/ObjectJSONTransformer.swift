@@ -72,9 +72,9 @@ class ObjectJSONTransformer: NSObject {
 //        pos.fuelPercentage = json["mode"].string
         
         pos.state = json["state"].string
-        pos.voltage = json["voltage"].string
-        pos.gsm = json["gsm"].string
-        pos.ignitionState = json["ignition"].string
+        pos.voltage = json["voltage"].rawString()
+        pos.gsm = json["gsm"].rawString()
+        pos.ignitionState = json["ignition"].rawString()
 
         pos.trackedAt = json["tracked_at"].date
         
