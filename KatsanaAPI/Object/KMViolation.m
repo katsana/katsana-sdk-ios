@@ -24,26 +24,26 @@
 }
 
 
-//- (KMVehicle*)vehicle{
-//    if (!_vehicle) {
-//        _vehicle = [[KMKatsana sharedInstance] vehicleWithVehicleId:self.deviceId];
-//    }
-//    return _vehicle;
-//}
+- (KMVehicle*)vehicle{
+    if (!_vehicle) {
+        _vehicle = [[KatsanaAPI shared] vehicleWithVehicleId:self.deviceId];
+    }
+    return _vehicle;
+}
 
-//-(void)addressWithCompletionBlock:(void (^)(NSString *address))completion
-//{
-//    if (self.latitude == 0) {
-//        completion(@"");
-//        return;
-//    }
-//    [[KMKatsana sharedInstance] loadAddressWithLocation:CLLocationCoordinate2DMake(self.latitude, self.longitude) address:^(KMAddress *address) {
-//        _address = address.optimizedAddress;
-//        completion(_address);
-//    } failure:^(NSError *error) {
-//        
-//    }];
-//}
+-(void)addressWithCompletionBlock:(void (^)(NSString *address))completion
+{
+    if (self.latitude == 0) {
+        completion(@"");
+        return;
+    }
+    [[KatsanaAPI shared] requestAddressFor:CLLocationCoordinate2DMake(self.latitude, self.longitude) completion:^(KMAddress * address) {
+        _address = address.optimizedAddress;
+        completion(_address);
+    } failure:^(NSError * err) {
+        
+    }];
+}
 
 - (void)setPolicyType:(NSString *)policyType{
     KMViolationPolicyTypeId type = 0;

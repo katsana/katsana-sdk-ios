@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, KMViolationPolicyTypeId) {
 
 @interface KMViolation : NSObject
 
+//!Owner
 @property (nonatomic, weak) KMVehicle *vehicle;
 
 @property (nonatomic, strong) NSString *deviceId;

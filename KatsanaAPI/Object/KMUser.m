@@ -156,7 +156,7 @@
     NSArray *activities = [[theActivities sortedArrayUsingSelector:@selector(compare:)] reverseObjectEnumerator].allObjects;
     NSDate *currentDate;
     for (KMViolation *violation in activities) {
-        if (![[NSCalendar currentCalendar] isDate:currentDate inSameDayAsDate:violation.startTime]) {
+        if (!currentDate || ![[NSCalendar currentCalendar] isDate:currentDate inSameDayAsDate:violation.startTime]) {
             currentDate = violation.startTime;
             currentDayGroup = [NSMutableArray array];
             [group addObject:currentDayGroup];
