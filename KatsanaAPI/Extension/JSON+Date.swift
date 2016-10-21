@@ -69,8 +69,6 @@ class Formatter {
         return internalJsonDateWithoutTimeFormatter!
     }
     
-    
-    
     static var jsonDateTimeFormatter: DateFormatter {
         if (internalJsonDateTimeFormatter == nil) {
             internalJsonDateTimeFormatter = DateFormatter()

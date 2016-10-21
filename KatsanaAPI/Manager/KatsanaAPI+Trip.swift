@@ -30,7 +30,8 @@ extension KatsanaAPI {
         }
     }
     
-    //!Request trip summary between dates. Only load trip count without actual trip details to minimize data usage,
+    ///Request trip summary between dates. Only load trip count without actual trip details to minimize data usage,
+    
     public func requestTripSummaries(vehicleId: String, fromDate: Date!, toDate: Date, completion: @escaping (_ summaries:[KMTravelHistory]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let dates = validateRange(fromDate: fromDate, toDate: toDate)
         let datesWithHistory = requiredRangeToRequestTripSummary(fromDate: dates.fromDate, toDate: dates.toDate, vehicleId: vehicleId)

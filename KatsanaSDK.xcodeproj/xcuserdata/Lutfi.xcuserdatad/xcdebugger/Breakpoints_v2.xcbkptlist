@@ -50,13 +50,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KatsanaSDKTests/KatsanaSDKTests.swift"
-            timestampString = "498459231.50118"
+            timestampString = "498718167.678045"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "testSummaryToday()"
-            landmarkType = "7">
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "KatsanaSDKTests"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

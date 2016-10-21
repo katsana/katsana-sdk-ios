@@ -34,6 +34,13 @@
     return _tripCount;
 }
 
+- (NSDate*)lastUpdate{
+    if (!_lastUpdate) {
+        _lastUpdate = [NSDate dateWithTimeIntervalSinceNow:-60*60*24*30];
+    }
+    return _lastUpdate;
+}
+
 - (CGFloat)totalDuration{
     __block CGFloat duration = 0;
     if (self.trips.count == 0 || _duration > 0) {

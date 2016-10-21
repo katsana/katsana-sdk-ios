@@ -15,10 +15,15 @@ public class KatsanaAPI: NSObject {
     //Notifications
     static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
     static let userDidLogoutNotification = Notification.Name(rawValue: "KMUserDidLogoutNotification")
+    static let defaultBaseURL = URL(string: "https://api.katsana.com/")! as URL
     
     
     public static let shared = KatsanaAPI()
     public var API : Service!
+    internal(set) var clientId : String = ""
+    internal(set) var clientSecret: String = ""
+    internal(set) var grantType: String = ""
+    internal(set) var authTokenExpired: Date!
     
     internal(set) public var tokenRefreshDate: Date!
     internal(set) public var currentUser: KMUser!
@@ -54,20 +59,27 @@ public class KatsanaAPI: NSObject {
     
     internal(set) public var authToken: String! {
         didSet {
-            // Rerun existing configuration closure using new value
-            API.invalidateConfiguration()
+            
+            if authToken != nil {
+                tokenRefreshDate = Date()
+                // Rerun existing configuration closure using new value
+                API.invalidateConfiguration()
+            }
+            
             // Wipe any Siesta’s cached state if auth token changes
             API.wipeResources()
-            if authToken != nil {tokenRefreshDate = Date()}
         }
     }
     
     // MARK: Lifecycle
 
-    public class func configureShared(baseURL : URL) -> Void {
+    public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, clientId : String! = nil, clientSecret: String! = nil, grantType: String = "password") -> Void {
         shared.API = Service(baseURL: baseURL)
         shared.configure()
         shared.setupTransformer()
+        shared.clientId = clientId
+        shared.clientSecret = clientSecret
+        shared.grantType = grantType
     }
     
     func configure() {
