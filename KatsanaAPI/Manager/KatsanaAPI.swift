@@ -73,13 +73,25 @@ public class KatsanaAPI: NSObject {
     
     // MARK: Lifecycle
 
-    public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, clientId : String! = nil, clientSecret: String! = nil, grantType: String = "password") -> Void {
+    public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL) -> Void {
+        configure(baseURL: baseURL, clientId: nil, clientSecret: nil)
+    }
+    
+    public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, clientId : String! = nil, clientSecret: String! = nil, grantType: String! = "password") -> Void {
         shared.API = Service(baseURL: baseURL)
         shared.configure()
         shared.setupTransformer()
-        shared.clientId = clientId
-        shared.clientSecret = clientSecret
-        shared.grantType = grantType
+        if clientId != nil {
+            shared.clientId = clientId
+        }
+        if clientSecret != nil {
+            shared.clientSecret = clientSecret
+        }
+        if grantType == nil {
+            shared.grantType = "password"
+        }else{
+            shared.grantType = grantType
+        }
     }
     
     func configure() {

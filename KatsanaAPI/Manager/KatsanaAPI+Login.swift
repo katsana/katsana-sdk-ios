@@ -14,18 +14,21 @@ extension KatsanaAPI {
     
     
     public func login(email: String, password: String, completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        let path = self.baseURL().absoluteString + "oauth/token"
         
-        let useOAuth2 = true
+        
+        let useOAuth2 = false
         var data : Dictionary<String,String>
         var tokenKey = "token"
+        var authPath = "auth"
         if useOAuth2 {
             tokenKey = "access_token"
+            authPath = "oauth/token"
             data = ["username" : email, "password" : password, "client_id" : self.clientId, "client_secret" : self.clientSecret, "scope" : "*", "grant_type": self.grantType]
         }else{
             data = ["email" : email, "password" : password]
         }
 
+        let path = self.baseURL().absoluteString + authPath
         Just.post(
             path,
             data: data
