@@ -74,7 +74,7 @@
             [self.carThumbImageBlocks addObject:completion];
         }
         _loadingMarkerImage = YES;
-        [[ImageRequest shared] requestImageWithPath:self.avatarURLPath completion:^(UIImage * image) {
+        [[ImageRequest shared] requestImageWithPath:self.markerURLPath completion:^(UIImage * image) {
             _carThumbImage = image;
             _maskedCarImage = nil;
             _loadingMarkerImage = NO;
@@ -103,7 +103,7 @@
             [self.carImageBlocks addObject:completion];
         }
         _loadingImage = YES;
-        [[ImageRequest shared] requestImageWithPath:self.markerURLPath completion:^(UIImage * image) {
+        [[ImageRequest shared] requestImageWithPath:self.avatarURLPath completion:^(UIImage * image) {
             _carImage = image;
             _loadingImage = NO;
             
