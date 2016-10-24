@@ -58,7 +58,7 @@ class ObjectJSONTransformer: NSObject {
         vehicle.websocket = dicto["meta"]["websocket"].boolValue
         
         vehicle.subscriptionEnd = dicto["ends_at"].date
-        vehicle.current = self.VehicleLocationObject(json: json["current"])
+        vehicle.current = self.VehicleLocationObject(json: dicto["current"])
         return vehicle
     }
     
