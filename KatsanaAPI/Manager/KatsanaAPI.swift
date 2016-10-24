@@ -98,7 +98,9 @@ public class KatsanaAPI: NSObject {
         API.configure("**") {
             $0.headers["Accept"] = "application/json"
             $0.pipeline[.parsing].add(self.SwiftyJSONTransformer, contentTypes: ["*/json"])
-            $0.headers["Authorization"] = "Bearer " + self.authToken
+            if self.authToken != nil{
+                $0.headers["Authorization"] = "Bearer " + self.authToken
+            }
         }
         
         //Vehicle location will request new data only after 5 seconds
@@ -159,6 +161,10 @@ public class KatsanaAPI: NSObject {
     
     ///Check if web socket supported or not, if any vehicle support websocket, other vehicles also considered to support it
     public func websocketSupported() -> Bool {
+        guard vehicles != nil else {
+            return false
+        }
+        
         var supported = false
         for vehicle in vehicles {
             if vehicle.websocket {

@@ -12,13 +12,13 @@
 
 - (NSString*)optimizedAddress{
     NSMutableArray *address = [NSMutableArray array];
-    if (self.streetNumber) {
+    if (self.streetNumber.length > 0) {
         [address addObject:self.streetNumber];
     }
-    if (self.streetName) {
+    if (self.streetName.length > 0) {
         [address addObject:self.streetName];
     }
-    if (self.sublocality) {
+    if (self.sublocality.length > 0) {
         [address addObject:self.sublocality];
     }
     NSString *str = [address componentsJoinedByString:@", "];
@@ -31,13 +31,13 @@
 
 - (NSString*)optimizedAddressWithCountry{
     NSMutableArray *address = [NSMutableArray array];
-    if (self.streetNumber) {
+    if (self.streetNumber.length > 0) {
         [address addObject:self.streetNumber];
     }
-    if (self.streetName) {
+    if (self.streetName.length > 0) {
         [address addObject:self.streetName];
     }
-    if (self.sublocality) {
+    if (self.sublocality.length > 0) {
         [address addObject:self.sublocality];
     }
     
