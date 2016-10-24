@@ -13,14 +13,14 @@ extension KatsanaAPI {
         guard vehicle != nil else {
             return
         }
-        
+
         let path = "vehicles/" + vehicleId
         let resource = self.API.resource(path)
         
         let json = vehicle?.jsonPatchDictionary()
-        resource.request(.patch, json: json!).onSuccess { (_) in
+        resource.request(.patch, json: json!).onSuccess { entity in
             completion(vehicle)
-            }.onFailure { (error) in
+        }.onFailure { (error) in
                 failure(error)
         }
     }

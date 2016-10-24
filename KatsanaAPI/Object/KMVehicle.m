@@ -147,4 +147,12 @@
     return [NSString stringWithFormat:@"%@, id:%@, userId:%@, vehicleNumber:%@, vehicleDesc:%@", [super description], self.vehicleId, self.userId, self.vehicleNumber, self.vehicleDescription];
 }
 
+#pragma mark - Setter
+
+- (void)setVehicleNumber:(NSString *)vehicleNumber{
+    if (vehicleNumber.length > 0) {
+        _vehicleNumber = vehicleNumber;
+    }
+}
+
 @end
