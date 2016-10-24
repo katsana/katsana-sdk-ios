@@ -25,8 +25,8 @@ class ObjectJSONTransformer: NSObject {
         user.emergencyPhoneMobile = json["meta"]["phone"]["mobile"].rawString()
         user.avatarURLPath = json["avatar"]["url"].string
         
-        user.createdAt = json["created_at"].date
-        user.updatedAt = json["updated_at"].date
+        user.createdAt = json["created_at"].date(gmt: 0)
+        user.updatedAt = json["updated_at"].date(gmt: 0)
         return user
     }
     
@@ -75,8 +75,7 @@ class ObjectJSONTransformer: NSObject {
         pos.voltage = json["voltage"].rawString()
         pos.gsm = json["gsm"].rawString()
         pos.ignitionState = json["ignition"].rawString()
-
-        pos.trackedAt = json["tracked_at"].date
+        pos.trackedAt = json["tracked_at"].date(gmt: 0)
         
         return pos
     }
@@ -100,6 +99,7 @@ class ObjectJSONTransformer: NSObject {
         history.duration = json["duration"].doubleValue
         history.idleDuration = json["idle_duration"].doubleValue
         history.date = json["date"].dateWithoutTime
+//        /change date to local date and check UTC time again
         return history
     }
     
@@ -110,7 +110,7 @@ class ObjectJSONTransformer: NSObject {
         history.violationCount = json["summary"]["violation"].intValue
         history.trips = json["trips"].arrayValue.map{TripObject(json: $0)}
         
-        history.date = json["duration"]["from"].date
+        history.date = json["duration"]["from"].date(gmt: 0)
         return history
     }
     

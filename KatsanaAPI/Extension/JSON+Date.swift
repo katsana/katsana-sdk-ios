@@ -8,6 +8,16 @@
 import SwiftyJSON
 
 extension JSON {
+    
+    func date(gmt: Float) -> Date? {
+        switch self.type {
+        case .string:
+            return Formatter.jsonDateFormatter(gmt: gmt).date(from: (self.object as! String))
+        default:
+            return nil
+        }
+    }
+    
     public var date: Date? {
         get {
             switch self.type {
@@ -46,8 +56,20 @@ extension JSON {
 class Formatter {
     
     private static var internalJsonDateFormatter: DateFormatter?
+    private static var internalJsonDateGMTFormatter: DateFormatter?
     private static var internalJsonDateWithoutTimeFormatter: DateFormatter?
     private static var internalJsonDateTimeFormatter: DateFormatter?
+    
+    static func jsonDateFormatter(gmt: Float) -> DateFormatter {
+        if (internalJsonDateGMTFormatter == nil) {
+            internalJsonDateGMTFormatter = DateFormatter()
+            internalJsonDateGMTFormatter!.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            internalJsonDateGMTFormatter?.timeZone = Foundation.TimeZone(secondsFromGMT: 0)!
+            //            2013-11-18 03:31:02
+        }
+        internalJsonDateGMTFormatter?.timeZone = Foundation.TimeZone(secondsFromGMT: Int(gmt * 60*60))!
+        return internalJsonDateGMTFormatter!
+    }
     
     static var jsonDateFormatter: DateFormatter {
         if (internalJsonDateFormatter == nil) {
