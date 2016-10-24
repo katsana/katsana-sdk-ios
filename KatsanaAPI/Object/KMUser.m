@@ -30,6 +30,7 @@
     NSMutableDictionary *dicto = @{}.mutableCopy;
     if (self.address.length > 0) dicto[@"address"] = self.address;
     if (self.phoneHome.length > 0) dicto[@"phone_home"] = self.phoneHome;
+    if (self.phoneMobile.length > 0) dicto[@"phone_mobile"] = self.phoneMobile;
     if (self.fullname.length > 0) dicto[@"fullname"] = self.fullname;
     if (self.emergencyFullName.length > 0) dicto[@"meta.emergency.fullname"] = self.emergencyFullName;
     if (self.emergencyPhoneHome.length > 0) dicto[@"meta.emergency.phone.home"] = self.emergencyPhoneHome;
@@ -79,6 +80,43 @@
     }
 }
 
+#pragma mark - Setter
+
+- (void)setPhoneHome:(NSString *)phoneHome{
+    if ([self isPhoneNumberForString:phoneHome]) {
+        if (![phoneHome hasPrefix:@"6"]) {
+            phoneHome = [@"6" stringByAppendingString:phoneHome];
+        }
+        _phoneHome = phoneHome;
+    }
+}
+
+- (void)setPhoneMobile:(NSString *)phoneMobile{
+    if ([self isPhoneNumberForString:phoneMobile]) {
+        if (![phoneMobile hasPrefix:@"6"]) {
+            phoneMobile = [@"6" stringByAppendingString:phoneMobile];
+        }
+        _phoneMobile = phoneMobile;
+    }
+}
+
+- (void)setEmergencyPhoneHome:(NSString *)emergencyPhoneHome{
+    if ([self isPhoneNumberForString:emergencyPhoneHome]) {
+        if (![emergencyPhoneHome hasPrefix:@"6"]) {
+            emergencyPhoneHome = [@"6" stringByAppendingString:emergencyPhoneHome];
+        }
+        _emergencyPhoneHome = emergencyPhoneHome;
+    }
+}
+
+- (void)setEmergencyPhoneMobile:(NSString *)emergencyPhoneMobile{
+    if ([self isPhoneNumberForString:emergencyPhoneMobile]) {
+        if (![emergencyPhoneMobile hasPrefix:@"6"]) {
+            emergencyPhoneMobile = [@"6" stringByAppendingString:emergencyPhoneMobile];
+        }
+        _emergencyPhoneMobile = emergencyPhoneMobile;
+    }
+}
 
 #pragma mark -
 
@@ -216,6 +254,18 @@
 
 - (NSString*)description{
     return [NSString stringWithFormat:@"%@, email:%@, id:%@", [super description], self.email, self.userId];
+}
+
+#pragma mark - Logic
+
+- (BOOL)isPhoneNumberForString:(NSString*)str{
+    if (str.length < 3) {
+        return NO;
+    }
+    
+    NSMutableCharacterSet *carSet = [NSMutableCharacterSet characterSetWithCharactersInString:@"+0123456789 "];
+    BOOL isNumber = [[str stringByTrimmingCharactersInSet:carSet] isEqualToString:@""];
+    return isNumber;
 }
 
 @end
