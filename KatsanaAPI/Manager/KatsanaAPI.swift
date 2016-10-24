@@ -32,7 +32,7 @@ public class KatsanaAPI: NSObject {
             if (currentVehicle != nil) {lastVehicleId = currentVehicle.vehicleId}
         }
     }
-    internal(set) public var vehicles: [KMVehicle]!{
+    internal(set) dynamic public var vehicles: [KMVehicle]!{
         willSet{
             if vehicles != nil {
                 lastVehicleImeis = vehicles.map({ $0.imei})
