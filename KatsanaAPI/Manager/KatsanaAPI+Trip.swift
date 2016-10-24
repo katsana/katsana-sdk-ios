@@ -124,6 +124,7 @@ extension KatsanaAPI {
         }
     }
     
+    //!Request trip history using given summary. Summary only give duration and trip count, if cached history is different from the summary, reload and return it
     public func requestTripHistoryUsing(summary: KMTravelHistory, vehicleId: String, completion: @escaping (_ history: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         
         let history = KMCacheManager.sharedInstance().travelHistory(for: summary.date, vehicleId: vehicleId)
@@ -135,7 +136,7 @@ extension KatsanaAPI {
             let theHistory = history!
             //If duration from summary and history more than 10 seconds, make need load trip
             let totalDuration = theHistory.totalDuration()
-            if fabs(summary.duration - Double(totalDuration)) > 10 {
+            if fabs(summary.totalDuration() - totalDuration) > 10 {
                 history?.needLoadTripHistory = true
             }
         }
