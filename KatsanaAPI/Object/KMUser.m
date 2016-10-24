@@ -28,12 +28,12 @@
 
 - (NSDictionary*)jsonPatchDictionary{
     NSMutableDictionary *dicto = @{}.mutableCopy;
-    if (self.address) dicto[@"address"] = self.address;
-    if (self.phoneHome) dicto[@"phone_home"] = self.phoneHome;
-    if (self.fullname) dicto[@"fullname"] = self.fullname;
-    if (self.emergencyFullName) dicto[@"meta.emergency.fullname"] = self.emergencyFullName;
-    if (self.emergencyPhoneHome) dicto[@"meta.emergency.phone.home"] = self.emergencyPhoneHome;
-    if (self.emergencyPhoneMobile) dicto[@"meta.emergency.phone.mobile"] = self.emergencyPhoneMobile;
+    if (self.address.length > 0) dicto[@"address"] = self.address;
+    if (self.phoneHome.length > 0) dicto[@"phone_home"] = self.phoneHome;
+    if (self.fullname.length > 0) dicto[@"fullname"] = self.fullname;
+    if (self.emergencyFullName.length > 0) dicto[@"meta.emergency.fullname"] = self.emergencyFullName;
+    if (self.emergencyPhoneHome.length > 0) dicto[@"meta.emergency.phone.home"] = self.emergencyPhoneHome;
+    if (self.emergencyPhoneMobile.length > 0) dicto[@"meta.emergency.phone.mobile"] = self.emergencyPhoneMobile;
     return dicto;
 }
 

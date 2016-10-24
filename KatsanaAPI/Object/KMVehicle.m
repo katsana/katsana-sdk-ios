@@ -155,4 +155,21 @@
     }
 }
 
+- (void)setCarImage:(UIImage *)carImage{
+    if (carImage && ![_carImage isEqual:carImage]) {
+        _carImage = carImage;
+        _carThumbImage = carImage;
+        _maskedCarImage = nil;
+        
+        //If new image set, automatically reload blocks
+        for (ImageCompletionBlock block in self.carImageBlocks) {
+            block(carImage);
+        }
+        for (ImageCompletionBlock block in self.carThumbImageBlocks) {
+            block(carImage);
+        }
+    }
+    
+}
+
 @end

@@ -15,9 +15,9 @@ extension KatsanaAPI {
     /// - parameter vehicleId:  vehicle id
     /// - parameter completion: completion
     public func requestVehicle(vehicleId: String, completion: @escaping (_ vehicle: KMVehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        let vehicle = vehicleWith(vehicleId: vehicleId)
-        if (vehicle != nil) {
-            currentVehicle = vehicle!;
+        let cachedVehicle = vehicleWith(vehicleId: vehicleId)
+        if (cachedVehicle != nil) {
+            currentVehicle = cachedVehicle!;
         }
         
         let path = "vehicles/" + vehicleId
@@ -26,8 +26,13 @@ extension KatsanaAPI {
         
         func handleResource() -> Void {
             let vehicle : KMVehicle? = resource.typedContent()
-            self.currentVehicle = vehicle;
-            completion(vehicle)
+            if cachedVehicle != nil {
+                cachedVehicle?.reloadData(with: vehicle)
+                currentVehicle = cachedVehicle!;
+                completion(cachedVehicle)
+            }else{
+                completion(vehicle)
+            }
         }
         
         request?.onSuccess({(entity) in

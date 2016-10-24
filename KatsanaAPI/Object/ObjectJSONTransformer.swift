@@ -14,16 +14,16 @@ import SwiftyJSON
 class ObjectJSONTransformer: NSObject {
     class func UserObject(json : JSON) -> KMUser {
         let user = KMUser()
-        user.email = json["email"].rawString()
-        user.userId = json["id"].rawString()
-        user.address = json["address"].rawString()
-        user.phoneHome = json["phone_home"].rawString()
-        user.phoneMobile = json["phone_mobile"].rawString()
-        user.fullname = json["fullname"].rawString()
-        user.emergencyFullName = json["meta"]["fullname"].rawString()
-        user.emergencyPhoneHome = json["meta"]["phone"]["home"].rawString()
-        user.emergencyPhoneMobile = json["meta"]["phone"]["mobile"].rawString()
-        user.avatarURLPath = json["avatar"]["url"].string
+        user.email = json["email"].stringValue
+        user.userId = json["id"].stringValue
+        user.address = json["address"].stringValue
+        user.phoneHome = json["phone_home"].stringValue
+        user.phoneMobile = json["phone_mobile"].stringValue
+        user.fullname = json["fullname"].stringValue
+        user.emergencyFullName = json["meta"]["fullname"].stringValue
+        user.emergencyPhoneHome = json["meta"]["phone"]["home"].stringValue
+        user.emergencyPhoneMobile = json["meta"]["phone"]["mobile"].stringValue
+        user.avatarURLPath = json["avatar"]["url"].stringValue
         
         user.createdAt = json["created_at"].date(gmt: 0)
         user.updatedAt = json["updated_at"].date(gmt: 0)
@@ -44,16 +44,16 @@ class ObjectJSONTransformer: NSObject {
         }
         
         let vehicle = KMVehicle()
-        vehicle.userId = dicto["user_id"].rawString()
-        vehicle.vehicleId = dicto["id"].rawString()
-        vehicle.vehicleDescription = dicto["description"].string
-        vehicle.vehicleNumber = dicto["vehicle_number"].rawString()
-        vehicle.imei = dicto["imei"].rawString()
-        vehicle.mode = dicto["mode"].rawString()
+        vehicle.userId = dicto["user_id"].stringValue
+        vehicle.vehicleId = dicto["id"].stringValue
+        vehicle.vehicleDescription = dicto["description"].stringValue
+        vehicle.vehicleNumber = dicto["vehicle_number"].stringValue
+        vehicle.imei = dicto["imei"].stringValue
+        vehicle.mode = dicto["mode"].stringValue
         
         vehicle.todayMaxSpeed = dicto["today_max_speed"].floatValue
-        vehicle.markerURLPath = dicto["marker"].string
-        vehicle.avatarURLPath = dicto["avatar"].string
+        vehicle.markerURLPath = dicto["marker"].stringValue
+        vehicle.avatarURLPath = dicto["avatar"].stringValue
         vehicle.odometer = dicto["odometer"].floatValue
         vehicle.websocket = dicto["meta"]["websocket"].boolValue
         
@@ -72,9 +72,9 @@ class ObjectJSONTransformer: NSObject {
 //        pos.fuelPercentage = json["mode"].string
         
         pos.state = json["state"].string
-        pos.voltage = json["voltage"].rawString()
-        pos.gsm = json["gsm"].rawString()
-        pos.ignitionState = json["ignition"].rawString()
+        pos.voltage = json["voltage"].stringValue
+        pos.gsm = json["gsm"].stringValue
+        pos.ignitionState = json["ignition"].stringValue
         pos.trackedAt = json["tracked_at"].date(gmt: 0)
         
         return pos
@@ -134,14 +134,14 @@ class ObjectJSONTransformer: NSObject {
         let address = KMAddress()
         address.latitude = json["latitude"].doubleValue
         address.longitude = json["longitude"].doubleValue
-        let streetNumber = json["street_number"].string
+        let streetNumber = json["street_number"].stringValue
         address.streetNumber = streetNumber
-        address.streetName = json["street_name"].string
-        address.locality = json["locality"].string
-        address.sublocality = json["sublocality"].string
+        address.streetName = json["street_name"].stringValue
+        address.locality = json["locality"].stringValue
+        address.sublocality = json["sublocality"].stringValue
         address.postcode = json["postcode"].intValue
-        address.country = json["country"].string
-        address.address = json["address"].string
+        address.country = json["country"].stringValue
+        address.address = json["address"].stringValue
 
         return address
     }
