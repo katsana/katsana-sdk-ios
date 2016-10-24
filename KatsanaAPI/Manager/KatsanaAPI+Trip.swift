@@ -123,6 +123,32 @@ extension KatsanaAPI {
             handleResource()
         }
     }
+    
+    public func requestTripHistoryUsing(summary: KMTravelHistory, vehicleId: String, completion: @escaping (_ history: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        
+        let history = KMCacheManager.sharedInstance().travelHistory(for: summary.date, vehicleId: vehicleId)
+        if history != nil && history?.needLoadTripHistory == false{
+            //If trip count is different, make need load trip
+            if summary.tripCount != history?.trips.count {
+                history?.needLoadTripHistory = true
+            }
+            let theHistory = history!
+            //If duration from summary and history more than 10 seconds, make need load trip
+            let totalDuration = theHistory.totalDuration()
+            if fabs(summary.duration - Double(totalDuration)) > 10 {
+                history?.needLoadTripHistory = true
+            }
+        }
+        requestTripHistory(for: summary.date, vehicleId: vehicleId, completion: {history in
+            summary.needLoadTripHistory = false
+            summary.trips = history?.trips
+            history?.needLoadTripHistory = false
+            completion(history)
+            }, failure: { (error) in
+                failure(error)
+        })
+        
+    }
 
 // MARK: Logic
     
