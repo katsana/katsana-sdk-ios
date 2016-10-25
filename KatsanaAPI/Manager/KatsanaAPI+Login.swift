@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
-import Siesta
 
 extension KatsanaAPI {
     
@@ -71,80 +69,7 @@ extension KatsanaAPI {
             }
         }
     }
-    
-    public func login() -> Void {
-        let headers = [
-            "content-type": "multipart/form-data; boundary=---011000010111000001101001",
-            "accept": "application/vnd.KATSANA.v1+json"
-        ]
-        let parameters = [
-            [
-                "name": "client_id",
-                "value": "2"
-            ],
-            [
-                "name": "client_secret",
-                "value": "1JLd2k0X6RBqRmJuJiZmXulMCc3WQyqnCgeoYdpE"
-            ],
-            [
-                "name": "grant_type",
-                "value": "password"
-            ],
-            [
-                "name": "username",
-                "value": "hello@katsana.com"
-            ],
-            [
-                "name": "password",
-                "value": "katsini!"
-            ],
-            [
-                "name": "scope",
-                "value": "*"
-            ]
-        ]
         
-        let boundary = "---011000010111000001101001"
-        
-        var body = ""
-        var error: NSError? = nil
-        for param in parameters {
-            let paramName = param["name"]!
-            body += "--\(boundary)\r\n"
-            body += "Content-Disposition:form-data; name=\"\(paramName)\""
-            if let filename = param["fileName"] {
-                let contentType = param["content-type"]!
-                let fileContent = try? String(contentsOfFile: filename, encoding: String.Encoding.utf8)
-                body += "; filename=\"\(filename)\"\r\n"
-                body += "Content-Type: \(contentType)\r\n\r\n"
-                body += fileContent!
-            } else if let paramValue = param["value"] {
-                body += "\r\n\r\n\(paramValue)"
-            }
-        }
-        
-        var request = URLRequest(url: NSURL(string: "https://carbon.api.katsana.com/oauth/token")! as URL,
-                                          cachePolicy: .useProtocolCachePolicy,
-                                          timeoutInterval: 10.0)
-        request.httpMethod = "POST"
-        request.allHTTPHeaderFields = headers
-        request.httpBody = body.data(using: String.Encoding.utf8)
-        
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
-            if (error != nil) {
-                print(error)
-            } else {
-                let httpResponse = response
-                let json = JSON(data: data!)
-                print(httpResponse)
-            }
-        })
-        
-        dataTask.resume()
-    }
-    
-    
     public func logout() -> Void {
         NotificationCenter.default.post(name: KatsanaAPI.userWillLogoutNotification, object: nil)
         currentVehicle = nil;

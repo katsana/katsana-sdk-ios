@@ -8,7 +8,6 @@
 
 import UIKit
 import Siesta
-import SwiftyJSON
 
 
 public class KatsanaAPI: NSObject {

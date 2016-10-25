@@ -49,6 +49,10 @@ static KMCacheManager *sharedPeerToPeer = nil;
         
         @try {
             self.dataDictionaries = [FastCoder objectWithData:data];
+            if ([self.dataDictionaries isKindOfClass:[NSDictionary class]]) {
+                self.dataDictionaries = self.dataDictionaries.mutableCopy;
+            }
+            
         } @catch (NSException *exception) {
 //            DDLogError(@"Error reading cached data");
         } @finally {

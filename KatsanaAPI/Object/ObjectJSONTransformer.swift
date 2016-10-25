@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 
 /// Class to convert Swifty JSON to API object
