@@ -51,21 +51,27 @@ extension KatsanaAPI {
                 }
             }else{
                 let json = JSON(data: r.content!)
-                var errorString = json["error"].string
-                let status : Int = r.statusCode!
-                print(errorString)
-                switch status {
-                case 401:
-                    errorString = "Invalid login details"
-                default:
-                    ()
+                var errorString = json["error"].stringValue
+                if let status : Int = r.statusCode{
+                    print(errorString)
+                    switch status {
+                    case 401:
+                        errorString = "Invalid login details"
+                    default:
+                        ()
+                    }
+                    print(status)
+                    let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  errorString, NSLocalizedFailureReasonErrorKey : json["error"].string!]
+                    let error = NSError(domain: APIError.domain, code: status, userInfo: userInfo)
+                    DispatchQueue.main.sync {
+                        failure(error)
+                    }
+                }else{
+                    DispatchQueue.main.sync {
+                        failure(nil)
+                    }
                 }
                 
-                let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  errorString!, NSLocalizedFailureReasonErrorKey : json["error"].string!]
-                let error = NSError(domain: APIError.domain, code: status, userInfo: userInfo)
-                DispatchQueue.main.sync {
-                    failure(error)
-                }
             }
         }
     }

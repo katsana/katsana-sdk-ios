@@ -9,7 +9,6 @@
 import UIKit
 import Siesta
 
-
 public class KatsanaAPI: NSObject {
     //Notifications
     static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")

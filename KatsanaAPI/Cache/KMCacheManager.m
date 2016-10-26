@@ -173,26 +173,24 @@ static KMCacheManager *sharedPeerToPeer = nil;
 }
 
 - (KMActivityObject*)latestCachedActivityObject{
-//    KMUser *user = [KMKatsana sharedInstance].currentUser;
-//    NSMutableArray *activities;
-//    if (user.userId) {
-//        activities = self.activities[user.userId];
-//    }
+    KMUser *user = [KatsanaAPI shared].currentUser;
+    NSMutableArray *activities;
+    if (user.userId) {
+        activities = self.activities[user.userId];
+    }
 
     //Just return first object and assume it is latest
-//    KMActivityObject *act = activities.firstObject;
-//    return act;
-    return nil;
+    KMActivityObject *act = activities.firstObject;
+    return act;
 }
 
 - (NSArray*)activityObjects{
-//    KMUser *user = [KMKatsana sharedInstance].currentUser;
-//    NSMutableArray *activities;
-//    if (user.userId) {
-//        activities = self.activities[user.userId.copy];
-//    }
-//    return activities.copy;
-    return nil;
+    KMUser *user = [KatsanaAPI shared].currentUser;
+    NSMutableArray *activities;
+    if (user.userId) {
+        activities = self.activities[user.userId.copy];
+    }
+    return activities.copy;
 }
 
 

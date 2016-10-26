@@ -125,6 +125,7 @@ class ObjectJSONTransformer: NSObject {
         trip.end = VehicleLocationObject(json: json["end"])
         trip.idles = json["idles"].arrayValue.map{VehicleLocationObject(json: $0)}
         trip.histories = json["histories"].arrayValue.map {VehicleLocationObject(json: $0)}
+        trip.violations = json["violations"].arrayValue.map {ViolationObject(json: $0)}
         
         return trip
     }
@@ -144,4 +145,42 @@ class ObjectJSONTransformer: NSObject {
 
         return address
     }
+    
+    class func ViolationObject(json : JSON) -> KMViolation {
+        let violation = KMViolation()
+        violation.violationId = json["id"].intValue
+        violation.policyId = json["policy_id"].intValue
+        violation.message = json["description"].stringValue
+        violation.address = json["address"].stringValue
+        violation.distance = json["distance"].floatValue
+        violation.duration = json["duration"].floatValue
+        violation.latitude = json["latitude"].doubleValue
+        violation.longitude = json["longitude"].doubleValue
+        violation.startTime = json["start_time"].date(gmt: 0)
+        violation.endTime = json["end_time"].date(gmt: 0)
+        violation.startPosition = json["start_position"].intValue
+        violation.endPosition = json["end_position"].intValue
+        violation.maxSpeed = json["max_speed"].floatValue
+        violation.averageSpeed = json["average_speed"].floatValue
+        
+        return violation
+    }
+    
+//    @{@"id": @"violationId",
+//    @"policy_id": @"policyId",
+//    @"policy_type": @"policyType",
+//    @"description": @"message",
+//    @"address": @"address",
+//    @"distance": @"distance",
+//    @"duration": @"duration",
+//    @"latitude": @"latitude",
+//    @"longitude": @"longitude",
+//    @"start_time": @"startTime",
+//    @"end_time": @"endTime",
+//    @"start_position": @"startPosition",
+//    @"end_position": @"endPosition",
+//    @"max_speed" : @"maxSpeed",
+//    @"average_speed" : @"averageSpeed",
+//    @"idle_duration" : @"idleDuration"
+//    };
 }

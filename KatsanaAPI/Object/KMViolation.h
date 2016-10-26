@@ -39,10 +39,10 @@ typedef NS_ENUM(NSInteger, KMViolationPolicyTypeId) {
 @property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) NSString *address;
 
-@property (nonatomic, assign) CGFloat distance;
-@property (nonatomic, assign) CGFloat duration;
-@property (nonatomic, assign) CGFloat latitude;
-@property (nonatomic, assign) CGFloat longitude;
+@property (nonatomic, assign) float distance;
+@property (nonatomic, assign) float duration;
+@property (nonatomic, assign) double latitude;
+@property (nonatomic, assign) double longitude;
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic, assign) NSInteger startPosition;
@@ -52,8 +52,8 @@ typedef NS_ENUM(NSInteger, KMViolationPolicyTypeId) {
 @property (nonatomic, assign) NSInteger policyId;
 
 
-@property (nonatomic, assign) CGFloat maxSpeed;
-@property (nonatomic, assign) CGFloat averageSpeed;
+@property (nonatomic, assign) float maxSpeed;
+@property (nonatomic, assign) float averageSpeed;
 
 - (NSString*)violationType;
 + (NSArray*)violationTypes;

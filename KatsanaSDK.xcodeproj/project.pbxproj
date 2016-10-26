@@ -32,6 +32,9 @@
 		C79ACCEB1DBF18CC000607A6 /* Siesta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79ACCDE1DBF18BA000607A6 /* Siesta.framework */; };
 		C79ACCEC1DBF18D4000607A6 /* Siesta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C79ACCDE1DBF18BA000607A6 /* Siesta.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C79ACD091DBF1A0E000607A6 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79ACD081DBF1A0E000607A6 /* SwiftyJSON.swift */; };
+		C79ACD101DBF2AC2000607A6 /* VehicleActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79ACD0F1DBF2AC2000607A6 /* VehicleActivity.swift */; };
+		C79ACD141DBF5825000607A6 /* VehicleActivity+Violation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79ACD131DBF5825000607A6 /* VehicleActivity+Violation.swift */; };
+		C79ACD161DBF59E2000607A6 /* VehicleActivity+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79ACD151DBF59E2000607A6 /* VehicleActivity+Stream.swift */; };
 		C79C76431DADF507003A7DEF /* KatsanaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C76421DADF507003A7DEF /* KatsanaAPI.swift */; };
 		C79C76451DADF933003A7DEF /* KatsanaAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C76441DADF933003A7DEF /* KatsanaAPI+Login.swift */; };
 		C79D9FF51D7D19CF0003E7A8 /* KMCacheManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FCE1D7D19CF0003E7A8 /* KMCacheManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -190,6 +193,9 @@
 		C78B22141D75754B002E25C3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C79ACCD31DBF18BA000607A6 /* Siesta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Siesta.xcodeproj; path = Libraries/Siesta/Siesta.xcodeproj; sourceTree = "<group>"; };
 		C79ACD081DBF1A0E000607A6 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		C79ACD0F1DBF2AC2000607A6 /* VehicleActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleActivity.swift; sourceTree = "<group>"; };
+		C79ACD131DBF5825000607A6 /* VehicleActivity+Violation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VehicleActivity+Violation.swift"; sourceTree = "<group>"; };
+		C79ACD151DBF59E2000607A6 /* VehicleActivity+Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VehicleActivity+Stream.swift"; sourceTree = "<group>"; };
 		C79C76421DADF507003A7DEF /* KatsanaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatsanaAPI.swift; sourceTree = "<group>"; };
 		C79C76441DADF933003A7DEF /* KatsanaAPI+Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Login.swift"; sourceTree = "<group>"; };
 		C79D9FCE1D7D19CF0003E7A8 /* KMCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCacheManager.h; sourceTree = "<group>"; };
@@ -389,6 +395,11 @@
 			children = (
 				C7F4B01A1DB5DC5100AC3838 /* Extension */,
 				C75945651DAE217400774FAD /* KMObject.h */,
+				C79ACD0F1DBF2AC2000607A6 /* VehicleActivity.swift */,
+				C79ACD131DBF5825000607A6 /* VehicleActivity+Violation.swift */,
+				C79ACD151DBF59E2000607A6 /* VehicleActivity+Stream.swift */,
+				C79D9FEF1D7D19CF0003E7A8 /* KMViolation.h */,
+				C79D9FF01D7D19CF0003E7A8 /* KMViolation.m */,
 				C79D9FDB1D7D19CF0003E7A8 /* KMActivityObject.h */,
 				C79D9FDC1D7D19CF0003E7A8 /* KMActivityObject.m */,
 				C79D9FDD1D7D19CF0003E7A8 /* KMAddress.h */,
@@ -403,8 +414,6 @@
 				C79D9FEC1D7D19CF0003E7A8 /* KMTravelHistory.m */,
 				C79D9FED1D7D19CF0003E7A8 /* KMVehicleLocation.h */,
 				C79D9FEE1D7D19CF0003E7A8 /* KMVehicleLocation.m */,
-				C79D9FEF1D7D19CF0003E7A8 /* KMViolation.h */,
-				C79D9FF01D7D19CF0003E7A8 /* KMViolation.m */,
 				C76B86C21DAF569B005F6751 /* ObjectJSONTransformer.swift */,
 			);
 			name = Object;
@@ -692,12 +701,14 @@
 			files = (
 				C76538C31DB08ECF001E1788 /* Date+Extension.swift in Sources */,
 				C76538C71DB0DD00001E1788 /* KatsanaAPI+Address.swift in Sources */,
+				C79ACD101DBF2AC2000607A6 /* VehicleActivity.swift in Sources */,
 				C7DFF3971DB4C7FA004751B6 /* Just.swift in Sources */,
 				C79DA0001D7D19CF0003E7A8 /* KMActivityObject.m in Sources */,
 				C79DA00C1D7D19CF0003E7A8 /* KMUser.m in Sources */,
 				C79DA0141D7D19CF0003E7A8 /* KMViolation.m in Sources */,
 				C76715EE1DB5BF1A0044D8E2 /* JSON+Date.swift in Sources */,
 				C7F4B0221DB5FA0600AC3838 /* ImageRequest.swift in Sources */,
+				C79ACD141DBF5825000607A6 /* VehicleActivity+Violation.swift in Sources */,
 				C79DA0101D7D19CF0003E7A8 /* KMTravelHistory.m in Sources */,
 				C79C76431DADF507003A7DEF /* KatsanaAPI.swift in Sources */,
 				C79DA0021D7D19CF0003E7A8 /* KMAddress.m in Sources */,
@@ -711,6 +722,7 @@
 				C76B86C51DAF8A48005F6751 /* KatsanaAPI+Trip.swift in Sources */,
 				C79DA00E1D7D19CF0003E7A8 /* KMVehicle.m in Sources */,
 				C76B86C31DAF569B005F6751 /* ObjectJSONTransformer.swift in Sources */,
+				C79ACD161DBF59E2000607A6 /* VehicleActivity+Stream.swift in Sources */,
 				C76538BB1DB08B2B001E1788 /* UIImage+Extension.m in Sources */,
 				C79C76451DADF933003A7DEF /* KatsanaAPI+Login.swift in Sources */,
 				C76B86B81DAF16EC005F6751 /* KatsanaAPI+Vehicle.swift in Sources */,
