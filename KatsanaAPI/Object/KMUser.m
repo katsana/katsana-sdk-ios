@@ -7,9 +7,7 @@
 //
 
 #import "KMUser.h"
-#import "KMViolation.h"
 //#import "NSDate+Compare.h"
-#import "KMActivityObject.h"
 #import <objc/runtime.h>
 //#import <RestKit/RestKit.h>
 
@@ -120,7 +118,7 @@
 
 #pragma mark -
 
-- (void)addActivityObject:(KMActivityObject *)activity{
+- (void)addActivityObject:(VehicleActivity *)activity{
     __weak typeof(self) weakSelf = self;
     dispatch_async(self.queue, ^{
         NSMutableArray *activities = weakSelf.activities.mutableCopy;
@@ -169,12 +167,12 @@
     _filteredActivities = activities;
     [self didChangeValueForKey:@"filteredActivities"];
     
-    KMActivityObject *act = [[KMCacheManager sharedInstance] latestCachedActivityObject];
+    VehicleActivity *act = [[KMCacheManager sharedInstance] latestCachedActivityObject];
     if (!act) {
         [[KMCacheManager sharedInstance] cacheData:self.activities identifier:self.userId];
     }else{
         NSMutableArray *insertedActivities = [NSMutableArray array];
-        for (KMActivityObject *activity in self.activities) {
+        for (VehicleActivity *activity in self.activities) {
             if ([activity.startTime timeIntervalSinceDate:act.startTime] > 0) {
                 [insertedActivities addObject:activity];
             }else{
@@ -193,7 +191,7 @@
     
     NSArray *activities = [[theActivities sortedArrayUsingSelector:@selector(compare:)] reverseObjectEnumerator].allObjects;
     NSDate *currentDate;
-    for (KMViolation *violation in activities) {
+    for (VehicleActivity *violation in activities) {
         if (!currentDate || ![[NSCalendar currentCalendar] isDate:currentDate inSameDayAsDate:violation.startTime]) {
             currentDate = violation.startTime;
             currentDayGroup = [NSMutableArray array];

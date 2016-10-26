@@ -12,6 +12,7 @@
 		C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751055F1D742D0500F4C341 /* UIKit.framework */; };
 		C75105621D742D4700F4C341 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C75105611D742D4700F4C341 /* PrefixHeader.pch */; };
 		C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75105631D742D8600F4C341 /* CoreLocation.framework */; };
+		C756108C1DC03FC700925222 /* KatsanaFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C756108B1DC03FC700925222 /* KatsanaFormatter.swift */; };
 		C7578B491DB462E400C964DB /* KatsanaAPI+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7578B481DB462E400C964DB /* KatsanaAPI+Profile.swift */; };
 		C7578B4B1DB46A9A00C964DB /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7578B4A1DB46A9A00C964DB /* UIImage+Extension.swift */; };
 		C75945671DAE217400774FAD /* KMObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C75945651DAE217400774FAD /* KMObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,8 +40,6 @@
 		C79C76451DADF933003A7DEF /* KatsanaAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C76441DADF933003A7DEF /* KatsanaAPI+Login.swift */; };
 		C79D9FF51D7D19CF0003E7A8 /* KMCacheManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FCE1D7D19CF0003E7A8 /* KMCacheManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C79D9FF61D7D19CF0003E7A8 /* KMCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FCF1D7D19CF0003E7A8 /* KMCacheManager.m */; };
-		C79D9FFF1D7D19CF0003E7A8 /* KMActivityObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FDB1D7D19CF0003E7A8 /* KMActivityObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C79DA0001D7D19CF0003E7A8 /* KMActivityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FDC1D7D19CF0003E7A8 /* KMActivityObject.m */; };
 		C79DA0011D7D19CF0003E7A8 /* KMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FDD1D7D19CF0003E7A8 /* KMAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C79DA0021D7D19CF0003E7A8 /* KMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FDE1D7D19CF0003E7A8 /* KMAddress.m */; };
 		C79DA0091D7D19CF0003E7A8 /* KMTrip.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FE51D7D19CF0003E7A8 /* KMTrip.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -53,8 +52,6 @@
 		C79DA0101D7D19CF0003E7A8 /* KMTravelHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FEC1D7D19CF0003E7A8 /* KMTravelHistory.m */; };
 		C79DA0111D7D19CF0003E7A8 /* KMVehicleLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FED1D7D19CF0003E7A8 /* KMVehicleLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C79DA0121D7D19CF0003E7A8 /* KMVehicleLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FEE1D7D19CF0003E7A8 /* KMVehicleLocation.m */; };
-		C79DA0131D7D19CF0003E7A8 /* KMViolation.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FEF1D7D19CF0003E7A8 /* KMViolation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C79DA0141D7D19CF0003E7A8 /* KMViolation.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FF01D7D19CF0003E7A8 /* KMViolation.m */; };
 		C79DA0151D7D19CF0003E7A8 /* KMTimeTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = C79D9FF21D7D19CF0003E7A8 /* KMTimeTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C79DA0161D7D19CF0003E7A8 /* KMTimeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FF31D7D19CF0003E7A8 /* KMTimeTransformer.m */; };
 		C7A4BF781DAF077E007E90B8 /* KatsanaSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */; };
@@ -174,6 +171,7 @@
 		C751055F1D742D0500F4C341 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C75105611D742D4700F4C341 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C75105631D742D8600F4C341 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C756108B1DC03FC700925222 /* KatsanaFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatsanaFormatter.swift; sourceTree = "<group>"; };
 		C7578B481DB462E400C964DB /* KatsanaAPI+Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Profile.swift"; sourceTree = "<group>"; };
 		C7578B4A1DB46A9A00C964DB /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		C75945651DAE217400774FAD /* KMObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMObject.h; sourceTree = "<group>"; };
@@ -200,8 +198,6 @@
 		C79C76441DADF933003A7DEF /* KatsanaAPI+Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Login.swift"; sourceTree = "<group>"; };
 		C79D9FCE1D7D19CF0003E7A8 /* KMCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCacheManager.h; sourceTree = "<group>"; };
 		C79D9FCF1D7D19CF0003E7A8 /* KMCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCacheManager.m; sourceTree = "<group>"; };
-		C79D9FDB1D7D19CF0003E7A8 /* KMActivityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMActivityObject.h; sourceTree = "<group>"; };
-		C79D9FDC1D7D19CF0003E7A8 /* KMActivityObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMActivityObject.m; sourceTree = "<group>"; };
 		C79D9FDD1D7D19CF0003E7A8 /* KMAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMAddress.h; sourceTree = "<group>"; };
 		C79D9FDE1D7D19CF0003E7A8 /* KMAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMAddress.m; sourceTree = "<group>"; };
 		C79D9FE51D7D19CF0003E7A8 /* KMTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTrip.h; sourceTree = "<group>"; };
@@ -214,8 +210,6 @@
 		C79D9FEC1D7D19CF0003E7A8 /* KMTravelHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTravelHistory.m; sourceTree = "<group>"; };
 		C79D9FED1D7D19CF0003E7A8 /* KMVehicleLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMVehicleLocation.h; sourceTree = "<group>"; };
 		C79D9FEE1D7D19CF0003E7A8 /* KMVehicleLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMVehicleLocation.m; sourceTree = "<group>"; };
-		C79D9FEF1D7D19CF0003E7A8 /* KMViolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMViolation.h; sourceTree = "<group>"; };
-		C79D9FF01D7D19CF0003E7A8 /* KMViolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMViolation.m; sourceTree = "<group>"; };
 		C79D9FF21D7D19CF0003E7A8 /* KMTimeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTimeTransformer.h; sourceTree = "<group>"; };
 		C79D9FF31D7D19CF0003E7A8 /* KMTimeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTimeTransformer.m; sourceTree = "<group>"; };
 		C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -385,6 +379,7 @@
 				C7F4B0211DB5FA0600AC3838 /* ImageRequest.swift */,
 				C7F4B0231DB600DC00AC3838 /* AddressRequest.swift */,
 				C7B0C9201DB9A5780008B60D /* APIError.swift */,
+				C756108B1DC03FC700925222 /* KatsanaFormatter.swift */,
 			);
 			name = Manager;
 			path = KatsanaAPI/Manager;
@@ -398,10 +393,6 @@
 				C79ACD0F1DBF2AC2000607A6 /* VehicleActivity.swift */,
 				C79ACD131DBF5825000607A6 /* VehicleActivity+Violation.swift */,
 				C79ACD151DBF59E2000607A6 /* VehicleActivity+Stream.swift */,
-				C79D9FEF1D7D19CF0003E7A8 /* KMViolation.h */,
-				C79D9FF01D7D19CF0003E7A8 /* KMViolation.m */,
-				C79D9FDB1D7D19CF0003E7A8 /* KMActivityObject.h */,
-				C79D9FDC1D7D19CF0003E7A8 /* KMActivityObject.m */,
 				C79D9FDD1D7D19CF0003E7A8 /* KMAddress.h */,
 				C79D9FDE1D7D19CF0003E7A8 /* KMAddress.m */,
 				C79D9FE51D7D19CF0003E7A8 /* KMTrip.h */,
@@ -484,7 +475,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C79DA0111D7D19CF0003E7A8 /* KMVehicleLocation.h in Headers */,
-				C79DA0131D7D19CF0003E7A8 /* KMViolation.h in Headers */,
 				C79DA0091D7D19CF0003E7A8 /* KMTrip.h in Headers */,
 				C79D9FF51D7D19CF0003E7A8 /* KMCacheManager.h in Headers */,
 				C79DA00F1D7D19CF0003E7A8 /* KMTravelHistory.h in Headers */,
@@ -494,7 +484,6 @@
 				C75945671DAE217400774FAD /* KMObject.h in Headers */,
 				C76538BA1DB08B2B001E1788 /* UIImage+Extension.h in Headers */,
 				C79DA00B1D7D19CF0003E7A8 /* KMUser.h in Headers */,
-				C79D9FFF1D7D19CF0003E7A8 /* KMActivityObject.h in Headers */,
 				C75105621D742D4700F4C341 /* PrefixHeader.pch in Headers */,
 				C78B22121D757441002E25C3 /* KMConstant.h in Headers */,
 				C75105011D7422BF00F4C341 /* KatsanaSDK.h in Headers */,
@@ -703,9 +692,7 @@
 				C76538C71DB0DD00001E1788 /* KatsanaAPI+Address.swift in Sources */,
 				C79ACD101DBF2AC2000607A6 /* VehicleActivity.swift in Sources */,
 				C7DFF3971DB4C7FA004751B6 /* Just.swift in Sources */,
-				C79DA0001D7D19CF0003E7A8 /* KMActivityObject.m in Sources */,
 				C79DA00C1D7D19CF0003E7A8 /* KMUser.m in Sources */,
-				C79DA0141D7D19CF0003E7A8 /* KMViolation.m in Sources */,
 				C76715EE1DB5BF1A0044D8E2 /* JSON+Date.swift in Sources */,
 				C7F4B0221DB5FA0600AC3838 /* ImageRequest.swift in Sources */,
 				C79ACD141DBF5825000607A6 /* VehicleActivity+Violation.swift in Sources */,
@@ -729,6 +716,7 @@
 				C79DA00A1D7D19CF0003E7A8 /* KMTrip.m in Sources */,
 				C773C9701D98B02C00FC698E /* FastCoder.m in Sources */,
 				C7F4B01C1DB5DC6600AC3838 /* KMTravelHistory+Extension.swift in Sources */,
+				C756108C1DC03FC700925222 /* KatsanaFormatter.swift in Sources */,
 				C76538C11DB08C74001E1788 /* DateHelper.swift in Sources */,
 				C7DFF3941DB4917F004751B6 /* KatsanaAPI+Other.swift in Sources */,
 				C79DA0161D7D19CF0003E7A8 /* KMTimeTransformer.m in Sources */,

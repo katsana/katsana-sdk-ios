@@ -13,6 +13,4 @@
 #import "KMVehicleLocation.h"
 #import "KMTrip.h"
 #import "KMVehicle.h"
-#import "KMViolation.h"
-#import "KMActivityObject.h"
 #import "KMUser.h"

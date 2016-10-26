@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class KMActivityObject;
+@class VehicleActivity;
 
 
 @interface KMUser : NSObject
@@ -46,7 +46,7 @@
 //!Predicate to filter activities
 @property (nonatomic, strong) NSPredicate *activitiesFilterPredicate;
 
-- (void)addActivityObject:(KMActivityObject*)activity;
+- (void)addActivityObject:(VehicleActivity*)activity;
 - (NSArray*)activitiesSeparatedByDaysForActivities:(NSArray*)theActivities;
 
 //!Update user with latest data loaded. For example after load profile API

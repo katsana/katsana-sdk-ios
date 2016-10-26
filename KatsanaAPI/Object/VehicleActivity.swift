@@ -34,30 +34,44 @@ import UIKit
 //@property (nonatomic, strong) NSString *serverTimeText;
 
 public class VehicleActivity: NSObject {
-    var vehicleId: String!
-    var message: String!
-    var attributedMessage: NSAttributedString!
-    var address: String!
+    public var vehicleId: String!
+    public var message: String!
+    public var attributedMessage: NSAttributedString!{
+        set{
+        }
+        get{
+            //Implement function updateAttributedMessage in extension for lazy attributed message initialization
+            if self.attributedMessage == nil {
+                if responds(to: Selector(("updateAttributedMessage"))) {
+                    perform(Selector(("updateAttributedMessage")))
+                }
+            }
+            return self.attributedMessage
+        }
+    }
+    public var address: String!
     
-    var distance: Float!
-    var duration: Float!
-    var latitude: Double!
-    var longitude: Double!
-    var altitude: Double!
-    var course: Double!
+    public var distance: Float!
+    public var duration: Float!
+    public var latitude: Double!
+    public var longitude: Double!
+    public var altitude: Double!
+    public var course: Double!
     
-    var speed: Double!
-    var maxSpeed: Float!
-    var averageSpeed: Float!
+    public var speed: Double!
+    public var maxSpeed: Float!
+    public var averageSpeed: Float!
     
-    var timeString : String!
-    var startTime: Date!
-    var endTime: Date!
-    var startPosition: Int!
-    var endPosition: Int!
-    var violationId: Int!
-    var policyId: Int!
-    public var activityType: ActivityType = .none
+    public var timeString : String!
+    public var startTime: Date!
+    public var endTime: Date!
+    public var startPosition: Int!
+    public var endPosition: Int!
+    
+    public var identifier : String!
+    public var violationId: Int!
+    public var policyId: Int!
+    public var type: ActivityType = .none
     
     /// Policy string from server
     var policyKey: String!{
@@ -87,7 +101,7 @@ public class VehicleActivity: NSObject {
             default:
                 print("Policy" + policyKey + "not handled")
             }
-            activityType = type
+            self.type = type
         }
     }
     
@@ -113,8 +127,8 @@ public class VehicleActivity: NSObject {
         })
     }
     
-    func localizedSpeedString() -> String {
-        
+    public func speedString() -> String {
+        return KatsanaFormatter.speedStringFrom(knot: speed)
     }
     
 }

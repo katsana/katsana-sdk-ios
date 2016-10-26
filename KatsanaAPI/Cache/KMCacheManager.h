@@ -20,7 +20,7 @@
 - (KMTravelHistory*)travelHistoryForDate:(NSDate*)date vehicleId:(NSString*)vehicleId;
 - (UIImage*)imageForIdentifier:(NSString*)identifier;
 - (void)addressForCoordinate:(CLLocationCoordinate2D)coord completionBlock:(void (^)(KMAddress *address))completion;
-- (KMActivityObject*)latestCachedActivityObject;
+- (VehicleActivity*)latestCachedActivityObject;
 - (NSArray*)activityObjects;
 
 //Used to save and get again table row that expanded

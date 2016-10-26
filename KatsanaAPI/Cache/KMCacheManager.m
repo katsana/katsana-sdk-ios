@@ -9,7 +9,6 @@
 #import "KMCacheManager.h"
 #import "KMTravelHistory.h"
 #import "KMAddress.h"
-#import "KMActivityObject.h"
 #import "KMUser.h"
 
 @interface KMCacheManager ()
@@ -172,7 +171,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
     return image;
 }
 
-- (KMActivityObject*)latestCachedActivityObject{
+- (VehicleActivity*)latestCachedActivityObject{
     KMUser *user = [KatsanaAPI shared].currentUser;
     NSMutableArray *activities;
     if (user.userId) {
@@ -180,7 +179,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
     }
 
     //Just return first object and assume it is latest
-    KMActivityObject *act = activities.firstObject;
+    VehicleActivity *act = activities.firstObject;
     return act;
 }
 
@@ -207,14 +206,14 @@ static KMCacheManager *sharedPeerToPeer = nil;
     }
     else if ([data isKindOfClass:[NSArray class]]) {
         id obj = [data firstObject];
-        if ([obj class] == [KMActivityObject class]) {
-            for (KMActivityObject *act in data) {
+        if ([obj class] == [VehicleActivity class]) {
+            for (VehicleActivity *act in data) {
                 [self cacheActivity:act identifier:identifier];
             }
             return;
         }
     }
-    else if ([data isKindOfClass:[KMActivityObject class]]) {
+    else if ([data isKindOfClass:[VehicleActivity class]]) {
         [self cacheActivity:data identifier:identifier];
         return;
     }
@@ -303,7 +302,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
     }
 }
 
-- (void)cacheActivity:(KMActivityObject*)activity identifier:(NSString*)identifier{
+- (void)cacheActivity:(VehicleActivity*)activity identifier:(NSString*)identifier{
     BOOL needAdd = YES;
     if (!self.activities) {
         self.activities = [NSMutableDictionary dictionary];
@@ -319,8 +318,8 @@ static KMCacheManager *sharedPeerToPeer = nil;
         self.activities[user.userId.copy] = activities;
     }
     
-    for (KMActivityObject *act in activities) {
-        if ([act.startTime isEqual:activity.startTime] && act.policyTypeId == activity.policyTypeId) {
+    for (VehicleActivity *act in activities) {
+        if ([act.startTime isEqual:activity.startTime] && act.type == activity.type) {
             needAdd = NO;
             break;
         }
@@ -440,7 +439,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
             [self.activities enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 NSMutableArray *activities = obj;
                 __block NSInteger purgeIndex = NSNotFound;
-                [activities enumerateObjectsUsingBlock:^(KMActivityObject *act, NSUInteger idx, BOOL * _Nonnull stop) {
+                [activities enumerateObjectsUsingBlock:^(VehicleActivity *act, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([act.startTime timeIntervalSinceDate:purgeDate] < 0) {
                         purgeIndex = idx;
                         *stop = YES;

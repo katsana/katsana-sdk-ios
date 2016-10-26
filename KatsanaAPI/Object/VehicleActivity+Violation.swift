@@ -12,7 +12,7 @@ extension VehicleActivity{
     
     func violationTitle() -> String{
         var text = ""
-        switch activityType {
+        switch type {
         case .speed:
             text = "OVERSPEEDING"
         case .time:

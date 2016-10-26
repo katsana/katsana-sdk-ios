@@ -7,7 +7,6 @@
 //
 
 #import "KMTrip.h"
-#import "KMViolation.h"
 
 @implementation KMTrip
 

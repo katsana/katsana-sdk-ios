@@ -125,7 +125,7 @@ class ObjectJSONTransformer: NSObject {
         trip.end = VehicleLocationObject(json: json["end"])
         trip.idles = json["idles"].arrayValue.map{VehicleLocationObject(json: $0)}
         trip.histories = json["histories"].arrayValue.map {VehicleLocationObject(json: $0)}
-        trip.violations = json["violations"].arrayValue.map {ViolationObject(json: $0)}
+        trip.violations = json["violations"].arrayValue.map {VehicleActivityObject(json: $0)}
         
         return trip
     }
@@ -146,8 +146,8 @@ class ObjectJSONTransformer: NSObject {
         return address
     }
     
-    class func ViolationObject(json : JSON) -> KMViolation {
-        let violation = KMViolation()
+    class func VehicleActivityObject(json : JSON) -> VehicleActivity {
+        let violation = VehicleActivity()
         violation.violationId = json["id"].intValue
         violation.policyId = json["policy_id"].intValue
         violation.message = json["description"].stringValue
