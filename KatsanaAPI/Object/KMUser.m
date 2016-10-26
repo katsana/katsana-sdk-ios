@@ -129,7 +129,7 @@
             [activities addObject:activity];
         }
         
-        NSSortDescriptor* sortOrder = [NSSortDescriptor sortDescriptorWithKey: @"self"
+        NSSortDescriptor* sortOrder = [NSSortDescriptor sortDescriptorWithKey: @"self.startTime"
                                                                     ascending: NO];
         [activities sortUsingDescriptors:@[sortOrder]];
         
@@ -188,8 +188,9 @@
 - (NSArray*)activitiesSeparatedByDaysForActivities:(NSArray*)theActivities{
     NSMutableArray *group = [NSMutableArray array];
     NSMutableArray *currentDayGroup;
-    
-    NSArray *activities = [[theActivities sortedArrayUsingSelector:@selector(compare:)] reverseObjectEnumerator].allObjects;
+    NSSortDescriptor* sortOrder = [NSSortDescriptor sortDescriptorWithKey: @"self.startTime"
+                                                                ascending: NO];
+    NSArray *activities = [theActivities sortedArrayUsingDescriptors:@[sortOrder]];
     NSDate *currentDate;
     for (VehicleActivity *violation in activities) {
         if (!currentDate || ![[NSCalendar currentCalendar] isDate:currentDate inSameDayAsDate:violation.startTime]) {

@@ -150,7 +150,6 @@ class ObjectJSONTransformer: NSObject {
         let violation = VehicleActivity()
         violation.violationId = json["id"].intValue
         violation.policyId = json["policy_id"].intValue
-        violation.message = json["description"].stringValue
         violation.address = json["address"].stringValue
         violation.distance = json["distance"].floatValue
         violation.duration = json["duration"].floatValue
@@ -162,25 +161,8 @@ class ObjectJSONTransformer: NSObject {
         violation.endPosition = json["end_position"].intValue
         violation.maxSpeed = json["max_speed"].floatValue
         violation.averageSpeed = json["average_speed"].floatValue
+        violation.message = json["description"].stringValue
         
         return violation
     }
-    
-//    @{@"id": @"violationId",
-//    @"policy_id": @"policyId",
-//    @"policy_type": @"policyType",
-//    @"description": @"message",
-//    @"address": @"address",
-//    @"distance": @"distance",
-//    @"duration": @"duration",
-//    @"latitude": @"latitude",
-//    @"longitude": @"longitude",
-//    @"start_time": @"startTime",
-//    @"end_time": @"endTime",
-//    @"start_position": @"startPosition",
-//    @"end_position": @"endPosition",
-//    @"max_speed" : @"maxSpeed",
-//    @"average_speed" : @"averageSpeed",
-//    @"idle_duration" : @"idleDuration"
-//    };
 }

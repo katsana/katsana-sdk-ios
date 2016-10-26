@@ -188,6 +188,11 @@ static KMCacheManager *sharedPeerToPeer = nil;
     NSMutableArray *activities;
     if (user.userId) {
         activities = self.activities[user.userId.copy];
+        if ([activities.firstObject isKindOfClass:[NSDictionary class]]) {
+            self.activities = nil;
+            activities = nil;
+        }
+        
     }
     return activities.copy;
 }

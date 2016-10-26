@@ -22,6 +22,7 @@ import UIKit
     case harshAccelerate
     case harshCorner
     case speedSummary
+    case doorAjar
     //More can be added
 }
 
@@ -34,19 +35,22 @@ import UIKit
 //@property (nonatomic, strong) NSString *serverTimeText;
 
 public class VehicleActivity: NSObject {
+    internal var privateAttributedMessage: NSAttributedString!
+    
     public var vehicleId: String!
     public var message: String!
     public var attributedMessage: NSAttributedString!{
         set{
+            privateAttributedMessage = newValue
         }
         get{
             //Implement function updateAttributedMessage in extension for lazy attributed message initialization
-            if self.attributedMessage == nil {
-                if responds(to: Selector(("updateAttributedMessage"))) {
+            if privateAttributedMessage == nil {
+                if self.responds(to: Selector(("updateAttributedMessage"))) {
                     perform(Selector(("updateAttributedMessage")))
                 }
             }
-            return self.attributedMessage
+            return privateAttributedMessage
         }
     }
     public var address: String!
@@ -71,54 +75,60 @@ public class VehicleActivity: NSObject {
     public var identifier : String!
     public var violationId: Int = 0
     public var policyId: Int = 0
-    public var type: ActivityType = .none
+    public lazy var type: ActivityType = {
+        var type : ActivityType = .none
+        switch self.policyKey {
+        case "speed":
+            type = .speed
+        case "movement":
+            type = .time
+        case "area":
+            type = .area
+        case "battery-cutoff":
+            type = .batteryCutoff
+        case "trip-start":
+            type = .tripStart
+        case "speed-summary":
+            type = .speedSummary
+        case "harsh-brake":
+            type = .harshBrake
+        case "harsh-accelerate":
+            type = .harshAccelerate
+        case "harsh-corner":
+            type = .harshCorner
+        case "checkpoint":
+            type = .checkpoint
+        case "door-ajar":
+            type = .doorAjar
+        default:
+            print("Policy " + self.policyKey + " not handled")
+        }
+        return type
+    }()
     
     /// Policy string from server
-    var policyKey: String!{
-        didSet{
-            var type : ActivityType!
-            switch policyKey {
-            case "speed":
-                type = .speed
-            case "movement":
-                type = .time
-            case "area":
-                type = .area
-            case "battery-cutoff":
-                type = .batteryCutoff
-            case "trip-start":
-                type = .tripStart
-            case "speed-summary":
-                type = .speedSummary
-            case "harsh-brake":
-                type = .harshBrake
-            case "harsh-accelerate":
-                type = .harshAccelerate
-            case "harsh-corner":
-                type = .harshCorner
-            case "checkpoint":
-                type = .checkpoint
-            default:
-                print("Policy" + policyKey + "not handled")
-            }
-            self.type = type
-        }
-    }
+    var policyKey: String!
+
     
     class func fastCodingKeys() -> [String]! {
-        return ["deviceId", "message", "distance", "duration", "latitude", "longitude", "startTime", "endTime", "startPosition", "endPosition", "violationId", "policyId", "policyKey", "maxSpeed", "averageSpeed", "identifier", "altitude", "course", "speed", "timeString"]
+        return ["vehicleId", "message", "distance", "duration", "latitude", "longitude", "startTime", "endTime", "startPosition", "endPosition", "violationId", "policyId", "policyKey", "maxSpeed", "averageSpeed", "identifier", "altitude", "course", "speed", "timeString"]
+    }
+    
+    convenience override init() {
+        self.init(dictionary: nil, identifier: nil)
     }
     
     public init(dictionary:[String : Any]! = nil, identifier:String! = nil) {
+        super.init()
         if dictionary != nil {
             self.policyKey = dictionary["type"] as? String
-            self.vehicleId = dictionary["device_id"] as? String
+            self.vehicleId = (dictionary["device_id"] as? NSNumber)?.stringValue
             self.message = dictionary["message"] as? String
             self.timeString = dictionary["time"] as? String
             self.startTime = (dictionary["time"] as? String)?.date(gmt: 0)
             self.identifier = identifier
         }        
-        super.init()
+        
     }
 
     public func coordinate() -> CLLocationCoordinate2D {
@@ -138,6 +148,8 @@ public class VehicleActivity: NSObject {
             completion(address?.optimizedAddress())
         })
     }
+
+    // MARK: Display
     
     public func speedString() -> String {
         return KatsanaFormatter.speedStringFrom(knot: Double(speed))
@@ -147,4 +159,7 @@ public class VehicleActivity: NSObject {
         return KatsanaFormatter.speedStringFrom(knot: Double(maxSpeed))
     }
     
+//    class public func allTypes() -> [String] {
+//        return ["speed", "movement", "area", "battery-cutoff", "trip-start", "speed-summary", "harsh-brake", "harsh-accelerate", "harsh-corner", "checkpoint"]
+//    }
 }
