@@ -80,7 +80,7 @@ public class KatsanaAPI: NSObject {
         let documentsPath : String = NSSearchPathForDirectoriesInDomains(.cachesDirectory,.userDomainMask,true)[0]
         let path = documentsPath.appending("/KatsanaSDK.log")
         logPath = path
-        self.log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: path, fileLevel: .debug)
+        self.log.setup(level: .error, showFunctionName:false, showThreadName: true, showLevel: false, showFileNames: true, showLineNumbers: true, writeToFile: path, fileLevel: .debug)
     }
 
     public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL) -> Void {

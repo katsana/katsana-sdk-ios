@@ -97,7 +97,7 @@ extension KatsanaAPI {
         
         let history = KMCacheManager.sharedInstance().travelHistory(for: date, vehicleId: vehicleId)
         if history != nil && history?.needLoadTripHistory == false{
-            self.log.debug("Get trip history from cached data vehicle id \(vehicleId), date \(date), \(error)")
+            self.log.debug("Get trip history from cached data vehicle id \(vehicleId), date \(date)")
             history?.owner = vehicleWith(vehicleId: vehicleId)
             completion(history)
             return

@@ -32,6 +32,7 @@ extension KatsanaAPI {
                 completion(cachedVehicle)
                 self.log.warning("Getting new instance of KMVehicle because vehicle list still not loaded")
             }else{
+                currentVehicle = vehicle!;
                 completion(vehicle)
             }
         }
@@ -81,7 +82,7 @@ extension KatsanaAPI {
             completion(location)
             }).onFailure({ (error) in
                 failure(error)
-                self.log.error("Error getting vehicle location \(vehicleId), \(error)")
+                self.log.error("Error getting vehicle location vehicle id \(vehicleId), \(error)")
             })
         
         if request == nil {
