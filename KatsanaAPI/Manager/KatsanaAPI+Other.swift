@@ -18,9 +18,15 @@ extension KatsanaAPI{
         ) { r in
 //            let strData = NSString(data: r.content!, encoding: String.Encoding.utf8.rawValue)
             if r.ok {
-                completion(true, nil)
+                DispatchQueue.main.sync {
+                    completion(true, nil)
+                }
+                
             }else{
-                completion(false, r.error)
+                DispatchQueue.main.sync {
+                    completion(false, r.error)
+                }
+                
             }
         }
     }
@@ -57,7 +63,9 @@ extension KatsanaAPI{
         ) { r in
             let json = JSON(data: r.content!)
             let dicto = json.dictionaryObject
-            completion(dicto, r.error)
+            DispatchQueue.main.sync {
+                completion(dicto, r.error)
+            }
         }
     }
 }
