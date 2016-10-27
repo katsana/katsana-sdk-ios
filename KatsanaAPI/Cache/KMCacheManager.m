@@ -69,7 +69,6 @@ static KMCacheManager *sharedPeerToPeer = nil;
             
         }
         
-
         NSString *addressPath = [[self cacheDirectory] stringByAppendingPathComponent:[self cacheAddressDataFilename]];
         data = [NSData dataWithContentsOfFile:addressPath];
         self.addresses = [FastCoder objectWithData:data];

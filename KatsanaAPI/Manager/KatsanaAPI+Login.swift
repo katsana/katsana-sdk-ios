@@ -7,13 +7,12 @@
 //
 
 import Foundation
+import XCGLogger
 
 extension KatsanaAPI {
     
     
     public func login(email: String, password: String, completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        
-        
         let useOAuth2 = false
         var data : Dictionary<String,String>
         var tokenKey = "token"

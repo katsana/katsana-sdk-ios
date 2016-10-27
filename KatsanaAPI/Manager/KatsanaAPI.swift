@@ -8,13 +8,14 @@
 
 import UIKit
 import Siesta
+import XCGLogger
 
 public class KatsanaAPI: NSObject {
     //Notifications
     static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
     static let userDidLogoutNotification = Notification.Name(rawValue: "KMUserDidLogoutNotification")
     static let defaultBaseURL = URL(string: "https://api.katsana.com/")! as URL
-    
+    let log = XCGLogger.default
     
     public static let shared = KatsanaAPI()
     public var API : Service!
@@ -22,6 +23,7 @@ public class KatsanaAPI: NSObject {
     internal(set) var clientSecret: String = ""
     internal(set) var grantType: String = ""
     internal(set) var authTokenExpired: Date!
+    internal(set) var logPath: String!
     
     internal(set) public var tokenRefreshDate: Date!
     internal(set) public var currentUser: KMUser!
@@ -70,6 +72,13 @@ public class KatsanaAPI: NSObject {
     }
     
     // MARK: Lifecycle
+    
+    override init() {
+        let documentsPath : String = NSSearchPathForDirectoriesInDomains(.cachesDirectory,.userDomainMask,true)[0]
+        let path = documentsPath.appending("/KatsanaSDK.log")
+        logPath = path
+        self.log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: path, fileLevel: .debug)
+    }
 
     public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL) -> Void {
         configure(baseURL: baseURL, clientId: nil, clientSecret: nil)
