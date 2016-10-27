@@ -37,6 +37,10 @@ import UIKit
 public class VehicleActivity: NSObject {
     internal var privateAttributedMessage: NSAttributedString!
     
+    class func fastCodingKeys() -> [String]! {
+        return ["vehicleId", "message", "distance", "duration", "latitude", "longitude", "startTime", "endTime", "startPosition", "endPosition", "violationId", "policyId", "policyKey", "maxSpeed", "averageSpeed", "identifier", "altitude", "course", "speed", "timeString"]
+    }
+    
     public var vehicleId: String!
     public var message: String!
     public var attributedMessage: NSAttributedString!{
@@ -108,11 +112,6 @@ public class VehicleActivity: NSObject {
     
     /// Policy string from server
     var policyKey: String!
-
-    
-    class func fastCodingKeys() -> [String]! {
-        return ["vehicleId", "message", "distance", "duration", "latitude", "longitude", "startTime", "endTime", "startPosition", "endPosition", "violationId", "policyId", "policyKey", "maxSpeed", "averageSpeed", "identifier", "altitude", "course", "speed", "timeString"]
-    }
     
     convenience override init() {
         self.init(dictionary: nil, identifier: nil)

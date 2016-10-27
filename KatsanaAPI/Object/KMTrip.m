@@ -10,6 +10,10 @@
 
 @implementation KMTrip
 
++ (NSArray*)fastCodingKeys{
+    return @[@"start", @"end", @"distance", @"duration", @"maxSpeed", @"averageSpeed", @"idleDuration", @"histories", @"violations", @"idles"];
+}
+
 - (CGFloat)tripStopDuration{
     if (self.nextTrip) {
         CGFloat duration = [self.nextTrip.start.trackedAt timeIntervalSinceDate:self.end.trackedAt];

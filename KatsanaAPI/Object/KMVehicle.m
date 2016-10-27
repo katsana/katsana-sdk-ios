@@ -21,6 +21,10 @@
     BOOL _loadingMarkerImage;
 }
 
++ (NSArray*)fastCodingKeys{
+    return @[@"userId", @"vehicleId", @"vehicleDescription", @"vehicleNumber", @"imei", @"mode", @"avatarURLPath", @"markerURLPath", @"subscriptionEnd", @"websocket"];
+}
+
 - (NSDictionary*)jsonPatchDictionary{
     NSMutableDictionary *dicto = @{}.mutableCopy;
     if (self.vehicleDescription) dicto[@"description"] = self.vehicleDescription;
