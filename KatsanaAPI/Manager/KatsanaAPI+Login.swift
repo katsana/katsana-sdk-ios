@@ -41,6 +41,7 @@ extension KatsanaAPI {
                             let user : KMUser? = resource.typedContent()
                             self.currentUser = user
                             completion(user)
+                            self.log.info("Logged in user \(user?.userId), \(user?.email)")
                         }).onFailure({ (error) in
                             failure(error)
                         })
@@ -82,6 +83,7 @@ extension KatsanaAPI {
         currentUser = nil
         authToken = nil
         NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
+        log.info("Logged out user \(self.currentUser?.userId), \(self.currentUser?.email)")
     }
     
     public func refreshToken(completion: @escaping (_ success: Bool) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {

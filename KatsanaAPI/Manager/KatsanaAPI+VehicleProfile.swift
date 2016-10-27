@@ -21,7 +21,8 @@ extension KatsanaAPI {
         resource.request(.patch, json: json!).onSuccess { entity in
             completion(vehicle)
         }.onFailure { (error) in
-                failure(error)
+            failure(error)
+            self.log.error("Error save vehicle profile \(vehicleId), \(error)")
         }
     }
     
@@ -62,6 +63,7 @@ extension KatsanaAPI {
             if success{
                 completion(vehicle)
             }else{
+                self.log.error("Error save vehicle profile image \(vehicleId), \(error)")
                 failure(error)
             }
         }

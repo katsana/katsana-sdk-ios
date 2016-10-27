@@ -29,7 +29,10 @@ public class KatsanaAPI: NSObject {
     internal(set) public var currentUser: KMUser!
     public               var currentVehicle: KMVehicle!{
         willSet{
-            if (currentVehicle != nil) {lastVehicleId = currentVehicle.vehicleId}
+            if (currentVehicle != nil) {
+                log.info("Current selected vehicle \(self.currentVehicle.vehicleId)")
+                lastVehicleId = currentVehicle.vehicleId
+            }
         }
     }
     internal(set) dynamic public var vehicles: [KMVehicle]!{
@@ -179,6 +182,7 @@ public class KatsanaAPI: NSObject {
                 break
             }
         }
+        log.verbose("Websocket /(supported)")
         return supported
     }
 }

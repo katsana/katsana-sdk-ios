@@ -16,6 +16,7 @@ extension KatsanaAPI {
             completion(self.currentUser)
         }.onFailure { (error) in
             failure(error)
+            self.log.error("Error save user profile \(error)")
         }
     }
     
@@ -47,6 +48,7 @@ extension KatsanaAPI {
                 completion(self.currentUser)
             }else{
                 failure(error)
+                self.log.error("Error save user profile image \(error)")
             }
         }
     }

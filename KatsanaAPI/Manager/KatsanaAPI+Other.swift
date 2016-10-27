@@ -46,6 +46,7 @@ extension KatsanaAPI{
             completion(dicto, nil)
         }).onFailure({ (error) in
             completion(nil, error)
+            self.log.error("Error request custom response for path \(path), \(error)")
         })
         
         if request == nil {

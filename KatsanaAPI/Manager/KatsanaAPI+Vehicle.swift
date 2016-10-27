@@ -30,6 +30,7 @@ extension KatsanaAPI {
                 cachedVehicle?.reloadData(with: vehicle)
                 currentVehicle = cachedVehicle!;
                 completion(cachedVehicle)
+                self.log.warning("Getting new instance of KMVehicle because vehicle list still not loaded")
             }else{
                 completion(vehicle)
             }
@@ -39,6 +40,7 @@ extension KatsanaAPI {
             handleResource()
         }).onFailure({ (error) in
             failure(error)
+            self.log.error("Error getting vehicle id \(vehicleId), \(error)")
         })
         
         if request == nil { handleResource()}
@@ -63,6 +65,7 @@ extension KatsanaAPI {
             handleResource()
             }).onFailure({ (error) in
                 failure(error)
+                self.log.error("Error getting all vehicle list \(error)")
             })
         
         if request == nil { handleResource()}
@@ -78,6 +81,7 @@ extension KatsanaAPI {
             completion(location)
             }).onFailure({ (error) in
                 failure(error)
+                self.log.error("Error getting vehicle location \(vehicleId), \(error)")
             })
         
         if request == nil {
@@ -109,6 +113,7 @@ extension KatsanaAPI {
     
     public func vehicleWith(vehicleId: String) -> KMVehicle! {
         guard (vehicles != nil) else {
+            self.log.warning("No vehicle given vehicle id \(vehicleId)")
             return nil
         }
         

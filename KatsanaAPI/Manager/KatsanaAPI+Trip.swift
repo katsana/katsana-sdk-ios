@@ -22,6 +22,7 @@ extension KatsanaAPI {
             completion(summary)
             }).onFailure({ (error) in
                 failure(error)
+                self.log.error("Error getting trip summary today vehicle id \(vehicleId), \(error)")
             })
         
         if request == nil {
@@ -82,6 +83,7 @@ extension KatsanaAPI {
             handleResource()
         }).onFailure({ (error) in
             failure(error)
+            self.log.error("Error getting trip summaries with original from \(fromDate) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error)")
         })
         if request == nil {
             handleResource()
@@ -95,7 +97,7 @@ extension KatsanaAPI {
         
         let history = KMCacheManager.sharedInstance().travelHistory(for: date, vehicleId: vehicleId)
         if history != nil && history?.needLoadTripHistory == false{
-            
+            self.log.debug("Get trip history from cached data vehicle id \(vehicleId), date \(date), \(error)")
             history?.owner = vehicleWith(vehicleId: vehicleId)
             completion(history)
             return
@@ -117,6 +119,7 @@ extension KatsanaAPI {
             handleResource()
         }).onFailure({ (error) in
             failure(error)
+            self.log.error("Error getting trip history today vehicle id \(vehicleId), date \(date), \(error)")
         })
         
         if request == nil {
@@ -132,12 +135,14 @@ extension KatsanaAPI {
             //If trip count is different, make need load trip
             if summary.tripCount != history?.trips.count {
                 history?.needLoadTripHistory = true
+                self.log.debug("Need load trip history from summary because summary trip count (\(summary.tripCount)) != history trip count (\(history?.trips.count)), vehicle id \(vehicleId)")
             }
             let theHistory = history!
             //If duration from summary and history more than 10 seconds, make need load trip
             let totalDuration = theHistory.totalDuration()
             if fabs(summary.totalDuration() - totalDuration) > 10 {
                 history?.needLoadTripHistory = true
+                self.log.debug("Need load trip history from summary because summary duration (\(summary.totalDuration())) != history duration (\(totalDuration)), vehicle id \(vehicleId)")
             }
         }
         requestTripHistory(for: summary.date, vehicleId: vehicleId, completion: {history in
@@ -147,6 +152,7 @@ extension KatsanaAPI {
             completion(history)
             }, failure: { (error) in
                 failure(error)
+                self.log.error("Error getting trip history vehicle id \(vehicleId), using summary with date \(summary.date), \(error)")
         })
         
     }
