@@ -18,6 +18,7 @@
 		C7578B4B1DB46A9A00C964DB /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7578B4A1DB46A9A00C964DB /* UIImage+Extension.swift */; };
 		C75945671DAE217400774FAD /* KMObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C75945651DAE217400774FAD /* KMObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C75A3A661DC1E22400F8E0BF /* XCGLogger.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C75A3A571DC1E1D600F8E0BF /* XCGLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C75A3A681DC1FE0600F8E0BF /* KatsanaAPI+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75A3A671DC1FE0600F8E0BF /* KatsanaAPI+Log.swift */; };
 		C76538BA1DB08B2B001E1788 /* UIImage+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = C76538B81DB08B2B001E1788 /* UIImage+Extension.h */; };
 		C76538BB1DB08B2B001E1788 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C76538B91DB08B2B001E1788 /* UIImage+Extension.m */; };
 		C76538C11DB08C74001E1788 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C01DB08C73001E1788 /* DateHelper.swift */; };
@@ -232,6 +233,7 @@
 		C7578B4A1DB46A9A00C964DB /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		C75945651DAE217400774FAD /* KMObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMObject.h; sourceTree = "<group>"; };
 		C75A3A441DC1E1D600F8E0BF /* XCGLogger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XCGLogger.xcodeproj; path = XCGLogger/Sources/XCGLogger.xcodeproj; sourceTree = "<group>"; };
+		C75A3A671DC1FE0600F8E0BF /* KatsanaAPI+Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Log.swift"; sourceTree = "<group>"; };
 		C76538B81DB08B2B001E1788 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		C76538B91DB08B2B001E1788 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		C76538C01DB08C73001E1788 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				C76B86C41DAF8A48005F6751 /* KatsanaAPI+Trip.swift */,
 				C76538C61DB0DD00001E1788 /* KatsanaAPI+Address.swift */,
 				C7DFF3931DB4917F004751B6 /* KatsanaAPI+Other.swift */,
+				C75A3A671DC1FE0600F8E0BF /* KatsanaAPI+Log.swift */,
 				C7F4B0211DB5FA0600AC3838 /* ImageRequest.swift */,
 				C7F4B0231DB600DC00AC3838 /* AddressRequest.swift */,
 				C7B0C9201DB9A5780008B60D /* APIError.swift */,
@@ -841,6 +844,7 @@
 				C76B86C31DAF569B005F6751 /* ObjectJSONTransformer.swift in Sources */,
 				C76538BB1DB08B2B001E1788 /* UIImage+Extension.m in Sources */,
 				C79C76451DADF933003A7DEF /* KatsanaAPI+Login.swift in Sources */,
+				C75A3A681DC1FE0600F8E0BF /* KatsanaAPI+Log.swift in Sources */,
 				C76B86B81DAF16EC005F6751 /* KatsanaAPI+Vehicle.swift in Sources */,
 				C79DA00A1D7D19CF0003E7A8 /* KMTrip.m in Sources */,
 				C773C9701D98B02C00FC698E /* FastCoder.m in Sources */,

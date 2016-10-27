@@ -66,6 +66,8 @@ extension KatsanaAPI {
                     DispatchQueue.main.sync {
                         failure(error)
                     }
+                    
+                    self.log.info("Error logon \(error)")
                 }else{
                     DispatchQueue.main.sync {
                         failure(nil)
