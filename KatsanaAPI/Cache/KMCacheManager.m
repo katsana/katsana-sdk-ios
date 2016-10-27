@@ -11,6 +11,8 @@
 #import "KMAddress.h"
 #import "KMUser.h"
 
+static NSString *CACHE_VERSION = @"1.0";
+
 @interface KMCacheManager ()
 
 @property (nonatomic, strong) NSMutableDictionary *dataDictionaries;
@@ -43,6 +45,15 @@ static KMCacheManager *sharedPeerToPeer = nil;
     self = [super init];
     if (self) {
         self.addressCacheDayDuration = 30*3; //Keep address cache for 3 months
+        NSString *versionPath = [[self cacheDirectory] stringByAppendingPathComponent:@"version.txt"];
+        NSString *version = [[NSString alloc] initWithContentsOfFile:versionPath encoding:NSASCIIStringEncoding error:nil];
+        if (![version isEqualToString:CACHE_VERSION]) {
+            [CACHE_VERSION writeToFile:versionPath atomically:YES encoding:NSASCIIStringEncoding error:nil];
+            [self clearAllCache];
+            return self;
+        }
+        
+        [CACHE_VERSION writeToFile:versionPath atomically:YES encoding:NSASCIIStringEncoding error:nil];
         NSString *path = [[self cacheDirectory] stringByAppendingPathComponent:[self cacheDataFilename]];
         NSData *data = [NSData dataWithContentsOfFile:path];
         
