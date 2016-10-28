@@ -32,7 +32,7 @@ extension KatsanaAPI {
         ) { r in
             if r.ok {
                 let json = JSON(data: r.content!)
-                let token = json[tokenKey].string
+                let token = json[tokenKey].stringValue
                 if token != nil {
                     DispatchQueue.main.sync {
                         self.authToken = token
@@ -86,6 +86,32 @@ extension KatsanaAPI {
         authToken = nil
         NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
         log.info("Logged out user \(self.currentUser?.userId), \(self.currentUser?.email)")
+    }
+    
+    public func verify(password:String, completion: @escaping (_ success: Bool) -> Void) -> Void {
+        guard self.authToken != nil else {
+            completion(false)
+            return
+        }
+
+        let path = self.baseURL().absoluteString + "auth/verify"
+        Just.post(
+            path,
+            data: ["password" : password],
+            headers: ["Authorization" : ("Bearer " + self.authToken)]
+        ) { r in
+            if r.ok{
+                let json = JSON(data: r.content!)
+                let success = json["success"].boolValue
+                DispatchQueue.main.sync {
+                    completion(success)
+                }
+            }else{
+                DispatchQueue.main.sync {
+                    completion(false)
+                }
+            }
+        }
     }
     
     public func refreshToken(completion: @escaping (_ success: Bool) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {

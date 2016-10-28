@@ -26,8 +26,8 @@ public class KatsanaAPI: NSObject {
     internal(set) public var logPath: String!
     
     internal(set) public var tokenRefreshDate: Date!
-    internal(set) public var currentUser: KMUser!
-    public               var currentVehicle: KMVehicle!{
+    internal(set) dynamic public var currentUser: KMUser!
+    public        dynamic        var currentVehicle: KMVehicle!{
         willSet{
             if (currentVehicle != nil) {
                 log.info("Current selected vehicle \(self.currentVehicle.vehicleId)")
@@ -42,7 +42,7 @@ public class KatsanaAPI: NSObject {
             }
         }
     }
-    private(set) public var lastVehicleId: String!{
+    private(set) dynamic public var lastVehicleId: String!{
         set{
             UserDefaults.standard.set(newValue, forKey: "lastVehicleId")
         }
@@ -50,7 +50,7 @@ public class KatsanaAPI: NSObject {
             return  UserDefaults.standard.value(forKey: "lastVehicleId") as! String!
         }
     }
-    private(set) public var lastVehicleImeis: [String]!{
+    private(set) dynamic public var lastVehicleImeis: [String]!{
         set{
             UserDefaults.standard.set(newValue, forKey: "lastVehicleImeis")
         }
@@ -125,6 +125,11 @@ public class KatsanaAPI: NSObject {
             $0.expirationTime = 10
         }
         
+        //All vehicles will request new data only after 1 minute
+        API.configure("vehicles") {
+            $0.expirationTime = 10
+        }
+        
         //Vehicle summary today will request new data only after 4 minutes
         API.configure("vehicles/*/summaries/today") {
             $0.expirationTime = 4*60
@@ -140,10 +145,7 @@ public class KatsanaAPI: NSObject {
             $0.expirationTime = 1*60
         }
         
-        //All vehicles will request new data only after 1 minute
-        API.configure("vehicles") {
-            $0.expirationTime = 10
-        }
+        
     }
     
     func setupTransformer() -> Void {
