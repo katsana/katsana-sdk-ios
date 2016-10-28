@@ -121,6 +121,7 @@ class ObjectJSONTransformer: NSObject {
         trip.averageSpeed = json["average_speed"].floatValue
         trip.idleDuration = json["idle_duration"].doubleValue
         
+        
         trip.start = VehicleLocationObject(json: json["start"])
         trip.end = VehicleLocationObject(json: json["end"])
         trip.idles = json["idles"].arrayValue.map{VehicleLocationObject(json: $0)}
@@ -150,6 +151,7 @@ class ObjectJSONTransformer: NSObject {
         let violation = VehicleActivity()
         violation.violationId = json["id"].intValue
         violation.policyId = json["policy_id"].intValue
+        violation.policyKey = json["policy_type"].stringValue
         violation.address = json["address"].stringValue
         violation.distance = json["distance"].floatValue
         violation.duration = json["duration"].floatValue

@@ -80,6 +80,10 @@ public class VehicleActivity: NSObject {
     public var violationId: Int = 0
     public var policyId: Int = 0
     public lazy var type: ActivityType = {
+        guard self.policyKey != nil else{
+            return .none
+        }
+        
         var type : ActivityType = .none
         switch self.policyKey {
         case "speed":

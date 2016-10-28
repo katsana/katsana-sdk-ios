@@ -11,7 +11,7 @@
 #import "KMAddress.h"
 #import "KMUser.h"
 
-static NSString *CACHE_VERSION = @"1.0";
+static NSString *CACHE_VERSION = @"1.01";
 
 @interface KMCacheManager ()
 
