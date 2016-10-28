@@ -83,6 +83,10 @@ public class KatsanaAPI: NSObject {
 
     public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL) -> Void {
         configure(baseURL: baseURL, clientId: nil, clientSecret: nil)
+        //Extend KatsanaAPI and add configureExternal function to add more configuration
+//        if self.responds(to: Selector(("configureExternal"))) {
+//            perform(Selector(("configureExternal")))
+//        }
     }
     
     public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, clientId : String! = nil, clientSecret: String! = nil, grantType: String! = "password") -> Void {
@@ -134,6 +138,11 @@ public class KatsanaAPI: NSObject {
         //Vehicle travel will request new data only after 1 minute
         API.configure("vehicles/*/travels/***") {
             $0.expirationTime = 1*60
+        }
+        
+        //All vehicles will request new data only after 1 minute
+        API.configure("vehicles") {
+            $0.expirationTime = 10
         }
     }
     

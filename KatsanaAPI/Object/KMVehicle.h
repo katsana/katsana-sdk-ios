@@ -28,7 +28,8 @@
 @property (nonatomic, strong) UIImage *carImage;
 @property (nonatomic, strong) UIImage *carThumbImage;
 @property (nonatomic, strong) UIImage *maskedCarImage;
-
+//!Externally set
+@property (nonatomic, strong) id beacon;
 @property (nonatomic, assign) BOOL showAtActivityScreen;
 
 

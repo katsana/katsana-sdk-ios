@@ -162,7 +162,9 @@
 
 - (void)updateFilterActivities{
     NSArray *activities = self.activities;
-    activities = [activities filteredArrayUsingPredicate:self.activitiesFilterPredicate];
+    if (self.activitiesFilterPredicate) {
+        activities = [activities filteredArrayUsingPredicate:self.activitiesFilterPredicate];
+    }
     [self willChangeValueForKey:@"filteredActivities"];
     _filteredActivities = activities;
     [self didChangeValueForKey:@"filteredActivities"];

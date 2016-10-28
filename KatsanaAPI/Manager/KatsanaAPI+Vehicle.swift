@@ -69,7 +69,9 @@ extension KatsanaAPI {
                 self.log.error("Error getting all vehicle list \(error)")
             })
         
-        if request == nil { handleResource()}
+        if request == nil {
+            handleResource()
+        }
     }
     
     public func requestVehicleLocation(vehicleId: String, completion: @escaping (_ vehicleLocation: KMVehicleLocation?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
