@@ -143,7 +143,7 @@ public class VehicleActivity: NSObject {
     }
     
     public func address(completion: @escaping (String?) -> Void) -> Void {
-        guard latitude == 0 || longitude == 0 else {
+        guard latitude != 0 || longitude != 0 else {
             completion("")
             return
         }

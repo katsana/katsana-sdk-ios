@@ -50,7 +50,7 @@
 }
 
 - (NSString*)todayMaxSpeedString{
-    return [NSString stringWithFormat:@"%.0f km/h", self.todayMaxSpeed * KNOT_TO_KMH];
+    return [KatsanaFormatter speedStringFromKnot:self.todayMaxSpeed];
 }
 
 - (NSMutableArray*)carImageBlocks{

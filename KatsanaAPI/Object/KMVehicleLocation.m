@@ -103,8 +103,7 @@ static NSDateFormatter *sharedDateFormatter = nil;
 }
 
 - (NSString*)speedString{
-    NSString *str = [NSString stringWithFormat:@"%.0f km/h", self.speed * KNOT_TO_KMH];
-    return str;
+    return [KatsanaFormatter speedStringFromKnot:self.speed];
 }
 
 - (BOOL)locationEqualToVehiclePosition:(KMVehicleLocation*)otherPos{

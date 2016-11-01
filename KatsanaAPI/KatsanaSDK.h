@@ -19,6 +19,7 @@ FOUNDATION_EXPORT const unsigned char KatsanaAPIVersionString[];
 #import <KatsanaSDK/KMConstant.h>
 #import <KatsanaSDK/KMObject.h>
 #import <KatsanaSDK/KMCacheManager.h>
+#import <KatsanaSDK/KMTimeTransformer.h>
 
 
 //#import <KatsanaSDK/KMKatsanaAPI.swift>

@@ -77,8 +77,7 @@
 }
 
 - (NSString*)averageSpeedString{
-    NSString *str = [NSString stringWithFormat:@"%.0f km/h", self.averageSpeed * KNOT_TO_KMH];
-    return str;
+    return [KatsanaFormatter speedStringFromKnot:self.averageSpeed];
 }
 
 - (NSString*)idleDurationString{
@@ -89,24 +88,15 @@
     if (duration == 0) {
         duration = self.idleDuration;
     }
-    
-    NSString *str = [[[KMTimeTransformer alloc] init] transformedValue:@(duration)];
-    return str;
+    return [KatsanaFormatter durationStringFromSeconds:duration];
 }
 
 - (NSString*)todayMaxSpeedString{
-    CGFloat maxSpeed = self.maxSpeed;
-    maxSpeed *= KNOT_TO_KMH;
-    return [NSString stringWithFormat:@"%.0f km/h", maxSpeed];
+    return [KatsanaFormatter speedStringFromKnot:self.maxSpeed];
 }
 
 - (NSString*)totalDistanceString{
-    CGFloat distance = self.distance;
-    if (distance < 1000) {
-        return [NSString stringWithFormat:@"%.0f m", distance];
-    }else{
-        return [NSString stringWithFormat:@"%.0f km", distance/1000.0f];
-    }
+    return [KatsanaFormatter distanceStringFromMeter:self.distance];
 }
 
 - (NSString*)totalDurationString{

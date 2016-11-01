@@ -136,4 +136,10 @@ extension KatsanaAPI {
             failure(error)
         })
     }
+    
+    // MARK:
+    
+//    func loginErrorMessage(error: Error, isRequestUserError: Bool) -> Error {
+//        <#function body#>
+//    }
 }

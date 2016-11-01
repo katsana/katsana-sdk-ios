@@ -24,22 +24,7 @@
 
 - (NSString*)tripStopDurationString{
     CGFloat duration = [self tripStopDuration];
-    
-    CGFloat minute = duration/60.0f;
-    
-    NSString *durationStr;
-    if (minute >= 60) {
-        CGFloat hour = floor(minute/60.0f);
-        minute = (minute/60.0f - floor(minute/60.0f)) * 60;
-        durationStr = [NSString stringWithFormat:@"%.0f hours %.0f minutes", hour, minute];
-    }else{
-        if (isnan(minute)) {
-            durationStr = @"";
-        }else{
-            durationStr = [NSString stringWithFormat:@"%.0f minutes", minute];
-        }
-    }
-    return durationStr;
+    return [KatsanaFormatter durationStringUsingFormatWithFormat:DisplayFormatFull knot:duration];
 }
 
 //- (CGFloat)averageSpeed{
@@ -107,13 +92,11 @@
 
 
 - (NSString*)maxSpeedString{
-    NSString *str = [NSString stringWithFormat:@"%.0f km/h", self.maxSpeed * KNOT_TO_KMH];
-    return str;
+    return [KatsanaFormatter speedStringFromKnot:self.maxSpeed];
 }
 
 - (NSString*)averageSpeedString{
-    NSString *str = [NSString stringWithFormat:@"%.0f km/h", self.averageSpeed * KNOT_TO_KMH];
-    return str;
+    return [KatsanaFormatter speedStringFromKnot:self.averageSpeed];
 }
 
 
