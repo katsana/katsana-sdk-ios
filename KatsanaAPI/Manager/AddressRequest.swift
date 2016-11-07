@@ -24,7 +24,7 @@ class AddressRequest: NSObject {
                     if r.ok {
                         let content = r.content
                         let json = JSON(data: content!)
-                        if json != nil{
+                        if json != JSON.null{
                             var address = ObjectJSONTransformer.AddressObject(json: json)
                             if (address.optimizedAddress().characters.count) <= 10{
                                 self.appleGeoAddress(from: location, completion: { (appleAddress) in

@@ -52,6 +52,11 @@ extension KatsanaAPI {
     ///
     /// - parameter completion: completion
     public func requestAllVehicles(completion: @escaping (_ vehicles: [KMVehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        guard self.currentUser != nil else {
+            failure(nil)
+            return
+        }
+        
         let path = "vehicles"
         let resource = API.resource(path);
         let request = resource.loadIfNeeded()

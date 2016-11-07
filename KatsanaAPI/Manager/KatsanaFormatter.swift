@@ -24,6 +24,15 @@ public class KatsanaFormatter: NSObject {
     
     static var distanceFormat : DistanceFormat = .kilometer
     static var displayFormat : DisplayFormat = .short
+    static var numberDistanceFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = ","
+        formatter.usesGroupingSeparator = true
+        formatter.decimalSeparator = "."
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 0
+        return formatter
+    }()
     
     public class func speedStringFrom(knot: Double) -> String {
         return convertKnot(speed: knot, format: distanceFormat)
@@ -44,9 +53,9 @@ public class KatsanaFormatter: NSObject {
         }else{
             switch distanceFormat {
             case .kilometer:
-                distance = String(format: "%.0f km", meter/1000.0)
+                distance = String(format: "%@ km", numberDistanceFormatter.string(from: NSNumber(value: meter/1000.0))!)
             case .miles:
-                distance = String(format: "%.0f mi", meter*0.000621371)
+                distance = String(format: "%@ mi", numberDistanceFormatter.string(from: NSNumber(value: meter*0.000621371))!)
             }
         }
         return distance

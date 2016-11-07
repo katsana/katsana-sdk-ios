@@ -33,7 +33,7 @@ extension KatsanaAPI {
             if r.ok {
                 let json = JSON(data: r.content!)
                 let token = json[tokenKey].stringValue
-                if token != nil {
+                if token.characters.count > 0 {
                     DispatchQueue.main.sync {
                         self.authToken = token
                         let resource = self.API.resource("profile")
@@ -41,6 +41,7 @@ extension KatsanaAPI {
                             let user : KMUser? = resource.typedContent()
                             self.currentUser = user
                             completion(user)
+                            NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
                             self.log.info("Logged in user \(user?.userId), \(user?.email)")
                         }).onFailure({ (error) in
                             failure(error)
@@ -58,7 +59,7 @@ extension KatsanaAPI {
                     case 401:
                         errorString = "Invalid login details"
                     default:
-                        ()
+                        errorString = statusCodeDescriptions[status]!
                     }
                     print(status)
                     let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  errorString, NSLocalizedFailureReasonErrorKey : json["error"].string!]
@@ -70,7 +71,7 @@ extension KatsanaAPI {
                     self.log.info("Error logon \(error)")
                 }else{
                     DispatchQueue.main.sync {
-                        failure(nil)
+                        failure(r.error)
                     }
                 }
                 
