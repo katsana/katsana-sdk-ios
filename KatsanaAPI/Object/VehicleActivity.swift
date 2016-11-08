@@ -23,6 +23,7 @@ import UIKit
     case harshCorner
     case speedSummary
     case doorAjar
+    case intrusion
     //More can be added
 }
 
@@ -108,6 +109,8 @@ public class VehicleActivity: NSObject {
             type = .checkpoint
         case "door-ajar":
             type = .doorAjar
+        case "intrusion":
+            type = .intrusion
         default:
             print("Policy " + self.policyKey + " not handled")
         }
