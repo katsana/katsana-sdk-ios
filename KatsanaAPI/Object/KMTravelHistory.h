@@ -15,7 +15,7 @@
 //@property (nonatomic, strong) NSDate *endDate;
 @property (nonatomic, weak) KMVehicle *owner;
 
-@property (nonatomic, strong) NSArray *trips;
+@property (nonatomic, strong) NSArray <KMTrip*> *trips;
 @property (nonatomic, assign) float maxSpeed;
 @property (nonatomic, assign) double distance;
 @property (nonatomic, assign) NSInteger violationCount;
@@ -46,6 +46,8 @@
 
 - (BOOL)dateEqualToVehicleDayHistory:(KMTravelHistory*)history;
 - (BOOL)isEqual:(id)object;
+//!Get trip contains given time
+- (KMTrip*)tripAtTime:(NSDate*)time;
 
 
 @end

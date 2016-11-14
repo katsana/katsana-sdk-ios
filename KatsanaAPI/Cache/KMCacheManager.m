@@ -448,8 +448,8 @@ static KMCacheManager *sharedPeerToPeer = nil;
 - (void)clearOldActivityCacheIfNeeded{
     NSDate *lastPurgeDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"lastPurgeActivityDate"];
     if (lastPurgeDate) {
-        if ([[NSDate date] timeIntervalSinceDate:lastPurgeDate] > 60*60*24* 10) { //Purge data each 10 days
-            NSDate *purgeDate = [[NSDate date] dateByAddingTimeInterval: -60*60*24*30]; //Need purge date more than 30 days old
+        if ([[NSDate date] timeIntervalSinceDate:lastPurgeDate] > 60*60*24* 7) { //Purge data each 7 days
+            NSDate *purgeDate = [[NSDate date] dateByAddingTimeInterval: -60*60*24*7]; //Need purge date more than 7 days old
             
             [self.activities enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 NSMutableArray *activities = obj;

@@ -30,6 +30,7 @@
 
 - (NSString*)address;
 
+- (CGFloat)localizedSpeed;
 - (NSDate*)localizedTrackedAt;
 - (CLLocationCoordinate2D)coordinate;
 - (void)addressWithCompletionBlock:(void (^)(NSString *address))completion;

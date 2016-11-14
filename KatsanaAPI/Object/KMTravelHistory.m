@@ -184,6 +184,15 @@
     return [self.date compare:object.date];
 }
 
+- (KMTrip*)tripAtTime:(NSDate*)time{
+    for (KMTrip *trip in self.trips) {
+        if ([time timeIntervalSinceDate:trip.start.trackedAt] >= 0 && [trip.end.trackedAt timeIntervalSinceDate:time] >= 0) {
+            return trip;
+        }
+    }
+    return nil;
+}
+
 #pragma mark - Custom type
 
 - (void)setupCustomTypeDetailFromDayHistories:(NSArray*)dayHistories{

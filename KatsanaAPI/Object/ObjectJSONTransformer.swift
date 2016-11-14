@@ -69,8 +69,8 @@ class ObjectJSONTransformer: NSObject {
         pos.longitude = json["longitude"].doubleValue
 //        pos.distance = json["distance"].floatValue
 //        pos.fuelPercentage = json["mode"].string
-        
-        pos.state = json["state"].string
+        pos.speed = json["speed"].floatValue
+        pos.state = json["state"].stringValue
         pos.voltage = json["voltage"].stringValue
         pos.gsm = json["gsm"].stringValue
         pos.ignitionState = json["ignition"].stringValue

@@ -144,6 +144,11 @@ static NSDateFormatter *sharedDateFormatter = nil;
     return date;
 }
 
+- (CGFloat)localizedSpeed{
+    CGFloat speed = [KatsanaFormatter localizedSpeedWithKnot:self.speed];
+    return speed;
+}
+
 //- (NSString*)description{
 //    return [NSString stringWithFormat:@"%@, voltage: %@", [super description], self.voltage];
 //}

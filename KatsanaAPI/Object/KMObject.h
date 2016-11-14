@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #import "KMAddress.h"
-#import "KMTravelHistory.h"
 #import "KMVehicleLocation.h"
 #import "KMTrip.h"
+#import "KMTravelHistory.h"
 #import "KMVehicle.h"
 #import "KMUser.h"
