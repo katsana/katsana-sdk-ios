@@ -51,7 +51,7 @@
     return _avatarImageBlocks;
 }
 
-- (void)avatarImageWithBlock:(void (^)(UIImage *image))completion{
+- (void)avatarImageWithBlock:(void (^)(KMImage *image))completion{
     if (!self.avatarURLPath) {
         completion(nil);
     }
@@ -64,7 +64,7 @@
             return;
         }
         _loadingImage = YES;
-        [[ImageRequest shared] requestImageWithPath:self.avatarURLPath completion:^(UIImage * image) {
+        [[ImageRequest shared] requestImageWithPath:self.avatarURLPath completion:^(KMImage * image) {
             _avatarImage = image;
             _loadingImage = NO;
             for (ImageCompletionBlock block in self.avatarImageBlocks) {

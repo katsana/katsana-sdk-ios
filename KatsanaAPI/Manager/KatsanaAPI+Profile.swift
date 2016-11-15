@@ -7,6 +7,15 @@
 //
 //import Alamofire
 
+#if os(iOS)
+    public typealias KMColor = UIColor
+    public typealias KMImage = UIImage
+#elseif os(OSX)
+    public typealias KMColor = NSColor
+    public typealias KMImage = NSImage
+#endif
+
+
 extension KatsanaAPI {
     public func saveCurrentUserProfile(completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let resource = self.API.resource("profile")
@@ -20,15 +29,20 @@ extension KatsanaAPI {
         }
     }
     
-   public func saveCurrentUserProfileImage(image : UIImage?, completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        var finalImage = image! as UIImage
+   public func saveCurrentUserProfileImage(image : KMImage?, completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        var finalImage = image! as KMImage
         if image == nil {
-            finalImage = UIImage(color: UIColor.white)!
+            finalImage = KMImage(color: KMColor.white)!
         }
         finalImage = finalImage.fixOrientation()
         
         var maxSize : CGFloat = 600
+    #if os(iOS)
         let scale = UIScreen.main.scale
+    #elseif os(OSX)
+        let scale = (NSScreen.main()?.backingScaleFactor)! as CGFloat
+    #endif
+    
         if scale > 1 {maxSize /= scale}
         
         if ((finalImage.size.width) > maxSize || (finalImage.size.height) > maxSize) {

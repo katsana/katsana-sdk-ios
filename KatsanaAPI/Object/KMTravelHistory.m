@@ -115,10 +115,10 @@
         hour = floor(hour);
         minutes = floor(minutes);
         
-        NSAttributedString *hourValAttrStr = [[NSAttributedString alloc] initWithString:@(hour).stringValue attributes:@{NSFontAttributeName : [UIFont fontWithName:@"Karla-Bold" size:14]}];
-        NSAttributedString *minuteValAttrStr = [[NSAttributedString alloc] initWithString:@(minutes).stringValue attributes:@{NSFontAttributeName : [UIFont fontWithName:@"Karla-Bold" size:14]}];
-        NSAttributedString *hourAttrStr = [[NSAttributedString alloc] initWithString:@" hr" attributes:@{NSFontAttributeName : [UIFont fontWithName:@"Karla-Regular" size:14]}];
-        NSAttributedString *minuteAttrStr = [[NSAttributedString alloc] initWithString:@" min" attributes:@{NSFontAttributeName : [UIFont fontWithName:@"Karla-Regular" size:14]}];
+        NSAttributedString *hourValAttrStr = [[NSAttributedString alloc] initWithString:@(hour).stringValue attributes:@{NSFontAttributeName : [KMFont fontWithName:@"Karla-Bold" size:14]}];
+        NSAttributedString *minuteValAttrStr = [[NSAttributedString alloc] initWithString:@(minutes).stringValue attributes:@{NSFontAttributeName : [KMFont fontWithName:@"Karla-Bold" size:14]}];
+        NSAttributedString *hourAttrStr = [[NSAttributedString alloc] initWithString:@" hr" attributes:@{NSFontAttributeName : [KMFont fontWithName:@"Karla-Regular" size:14]}];
+        NSAttributedString *minuteAttrStr = [[NSAttributedString alloc] initWithString:@" min" attributes:@{NSFontAttributeName : [KMFont fontWithName:@"Karla-Regular" size:14]}];
         
         [fullStr appendAttributedString:hourValAttrStr];
         [fullStr appendAttributedString:hourAttrStr];
@@ -128,15 +128,15 @@
     }else{
 //        if (minutes < 1) {
 //            CGFloat secs = minutes * 60;
-//            NSAttributedString *minuteValAttrStr = [[NSAttributedString alloc] initWithString:@(secs).stringValue attributes:@{NSFontAttributeName : [UIFont fontWithName:@"Karla-Bold" size:14]}];
-//            NSAttributedString *minuteAttrStr = [[NSAttributedString alloc] initWithString:@" secs" attributes:@{NSFontAttributeName : [UIFont fontWithName:@"Karla-Regular" size:14]}];
+//            NSAttributedString *minuteValAttrStr = [[NSAttributedString alloc] initWithString:@(secs).stringValue attributes:@{NSFontAttributeName : [KMFont fontWithName:@"Karla-Bold" size:14]}];
+//            NSAttributedString *minuteAttrStr = [[NSAttributedString alloc] initWithString:@" secs" attributes:@{NSFontAttributeName : [KMFont fontWithName:@"Karla-Regular" size:14]}];
 //            
 //            [fullStr appendAttributedString:minuteValAttrStr];
 //            [fullStr appendAttributedString:minuteAttrStr];
 //        }else{
             minutes = ceil(minutes);
-            NSAttributedString *minuteValAttrStr = [[NSAttributedString alloc] initWithString:@(minutes).stringValue attributes:@{NSFontAttributeName : [UIFont fontWithName:@"Karla-Bold" size:14]}];
-            NSAttributedString *minuteAttrStr = [[NSAttributedString alloc] initWithString:@" min" attributes:@{NSFontAttributeName : [UIFont fontWithName:@"Karla-Regular" size:14]}];
+            NSAttributedString *minuteValAttrStr = [[NSAttributedString alloc] initWithString:@(minutes).stringValue attributes:@{NSFontAttributeName : [KMFont fontWithName:@"Karla-Bold" size:14]}];
+            NSAttributedString *minuteAttrStr = [[NSAttributedString alloc] initWithString:@" min" attributes:@{NSFontAttributeName : [KMFont fontWithName:@"Karla-Regular" size:14]}];
             
             [fullStr appendAttributedString:minuteValAttrStr];
             [fullStr appendAttributedString:minuteAttrStr];

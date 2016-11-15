@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+
+
 @interface KMVehicle : NSObject
 
 @property (nonatomic, strong) NSString *userId;
@@ -25,19 +27,19 @@
 @property (nonatomic, assign) BOOL websocket;
 
 @property (nonatomic, strong) KMAddress *currentAddress;
-@property (nonatomic, strong) UIImage *carImage;
-@property (nonatomic, strong) UIImage *carThumbImage;
-@property (nonatomic, strong) UIImage *maskedCarImage;
+@property (nonatomic, strong) KMImage *carImage;
+@property (nonatomic, strong) KMImage *carThumbImage;
+@property (nonatomic, strong) KMImage *maskedCarImage;
 //!Externally set
 @property (nonatomic, strong) id beacon;
 @property (nonatomic, assign) BOOL showAtActivityScreen;
 
 
-- (void)carImageWithBlock:(void (^)(UIImage *image))completion;
-- (void)carThumbImageWithBlock:(void (^)(UIImage *image))completion;
+- (void)carImageWithBlock:(void (^)(KMImage *image))completion;
+- (void)carThumbImageWithBlock:(void (^)(KMImage *image))completion;
 
 //!Get car image with size {40, 40} the image already masked round without border. It can save performace because the car image will have too be regenerated multiple times in different screens.
-- (void)maskedCarImageWithBlock:(void (^)(UIImage *image))completion;
+- (void)maskedCarImageWithBlock:(void (^)(KMImage *image))completion;
 
 - (void)currentAddressWithBlock:(void (^)(KMAddress *address))completion;
 

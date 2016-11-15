@@ -6,6 +6,7 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
+#if os(iOS)
 ///Currently, this extension no need to be used because ios <10 cannot use Measurement
 extension KMTravelHistory{
 
@@ -54,3 +55,4 @@ extension KMTravelHistory{
     }
     
 }
+#endif

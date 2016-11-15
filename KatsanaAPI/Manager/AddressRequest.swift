@@ -6,7 +6,6 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
-import UIKit
 
 /// Class to request address from server. We are not using Siesta API because Siesta automatically cache response. Address may be called multiple times and need not cached because the address is checked with KMCacheManager
 class AddressRequest: NSObject {

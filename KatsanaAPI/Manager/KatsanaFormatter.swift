@@ -6,7 +6,6 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
-import UIKit
 
 @objc public enum DistanceFormat : Int {
     case kilometer

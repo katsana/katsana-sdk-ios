@@ -6,7 +6,6 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
-import UIKit
 import Siesta
 
 
@@ -30,7 +29,7 @@ public class ImageRequest: NSObject {
         }
     }
     
-    public func requestImage(path : String, completion: @escaping (_ image: UIImage?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestImage(path : String, completion: @escaping (_ image: KMImage?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let url = NSURL(string: path)
         let image = KMCacheManager.sharedInstance().image(forIdentifier: url?.lastPathComponent)
         if image != nil {
@@ -43,7 +42,12 @@ public class ImageRequest: NSObject {
         ) { r in
             if r.ok {
                 let content = r.content
+                #if os(iOS)
                 let image = UIImage(data: content!)
+                #elseif os(OSX)
+                let image = NSImage(data: content!)
+                #endif
+                
                 KMCacheManager.sharedInstance().cacheData(image, identifier: url?.lastPathComponent)
                 DispatchQueue.main.sync{completion(image)}
             }else{

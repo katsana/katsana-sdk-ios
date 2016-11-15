@@ -172,12 +172,20 @@ static KMCacheManager *sharedPeerToPeer = nil;
     
 }
 
-- (UIImage*)imageForIdentifier:(NSString*)identifier{
+- (KMImage*)imageForIdentifier:(NSString*)identifier{
     NSString *dir = [self cacheDirectory];
     NSString *dataPath = [dir stringByAppendingPathComponent:@"/Images"];
     dataPath = [[dataPath stringByAppendingPathComponent:identifier] stringByAppendingPathExtension:@"dat"];
     NSData *data = [[NSData alloc] initWithContentsOfFile:dataPath];
-    UIImage *image = [UIImage imageWithData:data];
+    
+#if TARGET_OS_IPHONE
+    KMImage *image = [KMImage imageWithData:data];
+    
+#elif TARGET_OS_MAC
+    KMImage *image = [[NSImage alloc] initWithData:data];
+    
+#endif
+    
     return image;
 }
 
@@ -232,7 +240,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
         [self cacheActivity:data identifier:identifier];
         return;
     }
-    else if ([data isKindOfClass:[UIImage class]]){
+    else if ([data isKindOfClass:[KMImage class]]){
         [self cacheImage:data withIdentifier:identifier];
         return;
     }
@@ -345,7 +353,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
     }
 }
 
-- (void)cacheImage:(UIImage*)image withIdentifier:(NSString*)identifier{
+- (void)cacheImage:(KMImage*)image withIdentifier:(NSString*)identifier{
     NSString *dir = [self cacheDirectory];
     NSString *dataPath = [dir stringByAppendingPathComponent:@"/Images"];
     
@@ -353,7 +361,14 @@ static KMCacheManager *sharedPeerToPeer = nil;
         [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil];
     
     dataPath = [[dataPath stringByAppendingPathComponent:identifier] stringByAppendingPathExtension:@"dat"];
+    
+#if TARGET_OS_IPHONE
     NSData *data = UIImagePNGRepresentation(image);
+    
+#elif TARGET_OS_MAC
+    NSData *data = image.TIFFRepresentation;
+#endif
+    
     [data writeToFile:dataPath atomically:YES];
 }
 

@@ -8,9 +8,14 @@
 
 extension KatsanaAPI{
     
-    func uploadImage(image : UIImage, path : String, completion : @escaping (Bool, Error?) -> Void) -> Void {
+    func uploadImage(image : KMImage, path : String, completion : @escaping (Bool, Error?) -> Void) -> Void {
         //        let path = self.baseURL().absoluteString + "profile/avatar"
-        let data = UIImageJPEGRepresentation(image, 0.9)! //Change to data
+        #if os(iOS)
+            let data = UIImageJPEGRepresentation(image, 0.9)! //Change to data
+        #elseif os(OSX)
+            let data = image.tiffRepresentation(using: .JPEG, factor: 0.9)! //Change to data
+        #endif
+        
         Just.post(
             path,
             data: ["token": self.authToken],

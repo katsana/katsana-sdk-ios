@@ -67,7 +67,7 @@
     return _carThumbImageBlocks;
 }
 
-- (void)carThumbImageWithBlock:(void (^)(UIImage *image))completion{
+- (void)carThumbImageWithBlock:(void (^)(KMImage *image))completion{
     if (!_carThumbImage) {
         if (_loadingMarkerImage) {
             @synchronized (self.carThumbImageBlocks) {
@@ -78,7 +78,7 @@
             [self.carThumbImageBlocks addObject:completion];
         }
         _loadingMarkerImage = YES;
-        [[ImageRequest shared] requestImageWithPath:self.markerURLPath completion:^(UIImage * image) {
+        [[ImageRequest shared] requestImageWithPath:self.markerURLPath completion:^(KMImage * image) {
             _carThumbImage = image;
             _maskedCarImage = nil;
             _loadingMarkerImage = NO;
@@ -96,7 +96,7 @@
     }
 }
 
-- (void)carImageWithBlock:(void (^)(UIImage *image))completion{
+- (void)carImageWithBlock:(void (^)(KMImage *image))completion{
     if (!_carImage) {
         if (_loadingImage) {
             @synchronized (self.carImageBlocks) {
@@ -107,7 +107,7 @@
             [self.carImageBlocks addObject:completion];
         }
         _loadingImage = YES;
-        [[ImageRequest shared] requestImageWithPath:self.avatarURLPath completion:^(UIImage * image) {
+        [[ImageRequest shared] requestImageWithPath:self.avatarURLPath completion:^(KMImage * image) {
             _carImage = image;
             _loadingImage = NO;
             
@@ -159,7 +159,7 @@
     }
 }
 
-- (void)setCarImage:(UIImage *)carImage{
+- (void)setCarImage:(KMImage *)carImage{
     if (carImage && ![_carImage isEqual:carImage]) {
         _carImage = carImage;
         _carThumbImage = carImage;

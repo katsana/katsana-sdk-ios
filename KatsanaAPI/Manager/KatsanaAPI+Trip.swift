@@ -6,7 +6,6 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
-import UIKit
 
 extension KatsanaAPI {
     @nonobjc static let maxDaySummary = 3;

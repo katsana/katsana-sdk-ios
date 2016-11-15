@@ -18,7 +18,7 @@
 - (void)cacheData:(id)data identifier:(NSString*)identifier;
 
 - (KMTravelHistory*)travelHistoryForDate:(NSDate*)date vehicleId:(NSString*)vehicleId;
-- (UIImage*)imageForIdentifier:(NSString*)identifier;
+- (KMImage*)imageForIdentifier:(NSString*)identifier;
 - (void)addressForCoordinate:(CLLocationCoordinate2D)coord completionBlock:(void (^)(KMAddress *address))completion;
 - (VehicleActivity*)latestCachedActivityObject;
 - (NSArray*)activityObjects;

@@ -31,20 +31,24 @@ extension KatsanaAPI {
     /// - parameter vehicleId:  vehicle id
     /// - parameter image:      image to save
     /// - parameter completion: return vehicle
-    public func saveVehicleProfileImage(vehicleId: String, image : UIImage?, completion: @escaping (_ vehicle: KMVehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func saveVehicleProfileImage(vehicleId: String, image : KMImage?, completion: @escaping (_ vehicle: KMVehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let vehicle = vehicleWith(vehicleId: vehicleId)
         guard vehicle != nil else {
             return
         }
         
-        var finalImage = image! as UIImage
+        var finalImage = image! as KMImage
         if image == nil {
-            finalImage = UIImage(color: UIColor.white)!
+            finalImage = KMImage(color: KMColor.white)!
         }
         finalImage = finalImage.fixOrientation()
         
         var maxSize : CGFloat = 600
-        let scale = UIScreen.main.scale
+        #if os(iOS)
+            let scale = UIScreen.main.scale
+        #elseif os(OSX)
+            let scale = (NSScreen.main()?.backingScaleFactor)! as CGFloat
+        #endif
         if scale > 1 {maxSize /= scale}
         
         if ((finalImage.size.width) > maxSize || (finalImage.size.height) > maxSize) {

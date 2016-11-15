@@ -37,7 +37,7 @@
 @property (nonatomic, strong) NSString *subscriptionDateString;
 
 @property (nonatomic, strong) NSString *avatarURLPath;
-@property (nonatomic, strong) UIImage *avatarImage;
+@property (nonatomic, strong) KMImage *avatarImage;
 
 //@property (nonatomic, strong) NSString *meta;
 
@@ -55,7 +55,7 @@
 
 //!Return YES if firebase still loading activities. Indicator that activity is still loading, useful when app first opened but have many backlogs data
 - (BOOL)isLoadingActivities;
-- (void)avatarImageWithBlock:(void (^)(UIImage *image))completion;
+- (void)avatarImageWithBlock:(void (^)(KMImage *image))completion;
 
 - (NSDictionary*)jsonPatchDictionary;
 

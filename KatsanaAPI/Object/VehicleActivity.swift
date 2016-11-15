@@ -6,7 +6,6 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
-import UIKit
 
 @objc public enum ActivityType : Int {
     case none

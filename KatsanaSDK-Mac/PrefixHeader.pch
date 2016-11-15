@@ -1,21 +1,14 @@
 //
 //  PrefixHeader.pch
-//  KatsanaAPI
+//  KatsanaSDK
 //
-//  Created by Wan Ahmad Lutfi on 29/08/2016.
+//  Created by Wan Ahmad Lutfi on 15/11/2016.
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
-#ifndef PrefixHeader_pch
-#define PrefixHeader_pch
-
-//#define KNOT_TO_KMH 1.852
-
-@import UIKit;
 @import CoreLocation;
-
 #import <CoreLocation/CoreLocation.h>
-#import <KatsanaSDK/KatsanaSDK-Swift.h>
+#import <KatsanaSDKMac/KatsanaSDKMac-Swift.h>
 #import "FastCoder.h"
 
 #import "SharedPlatform.h"
@@ -24,5 +17,3 @@
 
 #import "KMTimeTransformer.h"
 #import "KMCacheManager.h"
-
-#endif /* PrefixHeader_pch */
