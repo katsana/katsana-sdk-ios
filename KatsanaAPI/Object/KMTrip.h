@@ -10,6 +10,8 @@
 
 @interface KMTrip : NSObject
 
+//@property (nonatomic, strong) NSString *vehicleId;
+
 @property (nonatomic, strong) KMVehicleLocation *start;
 @property (nonatomic, strong) KMVehicleLocation *end;
 @property (nonatomic, assign) double distance;

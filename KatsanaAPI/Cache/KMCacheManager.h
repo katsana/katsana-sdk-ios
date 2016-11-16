@@ -12,6 +12,7 @@
 @interface KMCacheManager : NSObject
 
 @property (nonatomic, assign) CGFloat addressCacheDayDuration;
+@property (nonatomic, readonly) NSString *cachePath;
 
 + (instancetype) sharedInstance;
 

@@ -11,7 +11,7 @@
 #import "KMAddress.h"
 #import "KMUser.h"
 
-static NSString *CACHE_VERSION = @"1.01";
+static NSString *CACHE_VERSION = @"1.02";
 
 @interface KMCacheManager ()
 
@@ -88,6 +88,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
             }];
             self.activities = newActivitiesDicto;
         }
+        _cachePath = path;
         NSLog(@"cache path: %@", path);
 //        DDLogInfo(@"cache path: %@", path);
         

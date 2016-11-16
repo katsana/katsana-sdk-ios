@@ -154,6 +154,7 @@ extension KatsanaAPI {
             summary.needLoadTripHistory = false
             summary.trips = history?.trips
             history?.needLoadTripHistory = false
+            history?.vehicleId = summary.vehicleId
             completion(history)
             }, failure: { (error) in
                 failure(error)
