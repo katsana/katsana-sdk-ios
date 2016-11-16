@@ -43,6 +43,7 @@ extension KatsanaAPI {
                             completion(user)
                             NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
                             self.log.info("Logged in user \(user?.userId), \(user?.email)")
+                            KMCacheManager.sharedInstance().cacheData(user, identifier: "")
                         }).onFailure({ (error) in
                             failure(error)
                         })

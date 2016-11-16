@@ -122,6 +122,16 @@ static KMCacheManager *sharedPeerToPeer = nil;
 
 #pragma mark -
 
+- (KMUser*)lastUser{
+    KMUser *user = [self.dataDictionaries valueForKey:NSStringFromClass([KMUser class])];
+    return user;
+}
+
+- (NSArray <KMVehicle*> *)lastVehicles{
+    NSArray *vehicles = [self.dataDictionaries valueForKey:NSStringFromClass([KMVehicle class])];
+    return vehicles;
+}
+
 - (KMTravelHistory*)travelHistoryForDate:(NSDate*)date vehicleId:(NSString*)vehicleId{
     //Always need load latest data if today
     NSDate *today = [NSDate date];
@@ -236,6 +246,11 @@ static KMCacheManager *sharedPeerToPeer = nil;
             }
             return;
         }
+        else if ([obj class] == [KMVehicle class]) {
+            [self.dataDictionaries setValue:data forKey:NSStringFromClass([obj class])];
+            [self autoSave];
+            return;
+        }
     }
     else if ([data isKindOfClass:[VehicleActivity class]]) {
         [self cacheActivity:data identifier:identifier];
@@ -243,6 +258,11 @@ static KMCacheManager *sharedPeerToPeer = nil;
     }
     else if ([data isKindOfClass:[KMImage class]]){
         [self cacheImage:data withIdentifier:identifier];
+        return;
+    }
+    else if ([data isKindOfClass:[KMUser class]]){
+        [self.dataDictionaries setValue:data forKey:NSStringFromClass([data class])];
+        [self autoSave];
         return;
     }
     
@@ -353,6 +373,7 @@ static KMCacheManager *sharedPeerToPeer = nil;
         [self autoSaveActivities];
     }
 }
+
 
 - (void)cacheImage:(KMImage*)image withIdentifier:(NSString*)identifier{
     NSString *dir = [self cacheDirectory];

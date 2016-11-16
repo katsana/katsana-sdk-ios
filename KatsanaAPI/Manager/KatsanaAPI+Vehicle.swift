@@ -64,6 +64,7 @@ extension KatsanaAPI {
         func handleResource() -> Void {
             let vehicles : [KMVehicle]? = resource.typedContent()
             self.vehicles = vehicles
+            KMCacheManager.sharedInstance().cacheData(vehicles, identifier: "")
             completion(vehicles)
         }
         

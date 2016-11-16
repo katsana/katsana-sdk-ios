@@ -24,6 +24,10 @@
     BOOL _loadingImage;
 }
 
++ (NSArray*)fastCodingKeys{
+    return @[@"userId", @"email", @"address", @"phoneHome", @"phoneMobile", @"fullname", @"status", @"createdAt", @"updatedAt", @"avatarURLPath"];
+}
+
 - (NSDictionary*)jsonPatchDictionary{
     NSMutableDictionary *dicto = @{}.mutableCopy;
     if (self.address.length > 0) dicto[@"address"] = self.address;

@@ -194,4 +194,12 @@ public class KatsanaAPI: NSObject {
         log.verbose("Websocket /(supported)")
         return supported
     }
+    
+    ///Load last logon user for offline viewing
+    public func loadLastUserOffline() -> Void {
+        let user = KMCacheManager.sharedInstance().lastUser();
+        let vehicles = KMCacheManager.sharedInstance().lastVehicles();
+        self.currentUser = user
+        self.vehicles = vehicles
+    }
 }

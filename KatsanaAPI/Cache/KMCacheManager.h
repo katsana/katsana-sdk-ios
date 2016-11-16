@@ -18,6 +18,8 @@
 
 - (void)cacheData:(id)data identifier:(NSString*)identifier;
 
+- (KMUser*)lastUser;
+- (NSArray <KMVehicle*> *)lastVehicles;
 - (KMTravelHistory*)travelHistoryForDate:(NSDate*)date vehicleId:(NSString*)vehicleId;
 - (KMImage*)imageForIdentifier:(NSString*)identifier;
 - (void)addressForCoordinate:(CLLocationCoordinate2D)coord completionBlock:(void (^)(KMAddress *address))completion;
