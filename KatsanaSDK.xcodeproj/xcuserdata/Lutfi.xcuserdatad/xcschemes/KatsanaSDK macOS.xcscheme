@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C74927851DDA831600A0767E"
-               BuildableName = "KatsanaSDKMac.framework"
-               BlueprintName = "KatsanaSDKMac"
+               BuildableName = "KatsanaSDK macOS.framework"
+               BlueprintName = "KatsanaSDK macOS"
                ReferencedContainer = "container:KatsanaSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C74927851DDA831600A0767E"
-            BuildableName = "KatsanaSDKMac.framework"
-            BlueprintName = "KatsanaSDKMac"
+            BuildableName = "KatsanaSDK macOS.framework"
+            BlueprintName = "KatsanaSDK macOS"
             ReferencedContainer = "container:KatsanaSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C74927851DDA831600A0767E"
-            BuildableName = "KatsanaSDKMac.framework"
-            BlueprintName = "KatsanaSDKMac"
+            BuildableName = "KatsanaSDK macOS.framework"
+            BlueprintName = "KatsanaSDK macOS"
             ReferencedContainer = "container:KatsanaSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

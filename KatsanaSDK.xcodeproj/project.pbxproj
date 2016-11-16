@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C749278A1DDA831600A0767E /* KatsanaSDKMac.h in Headers */ = {isa = PBXBuildFile; fileRef = C74927881DDA831600A0767E /* KatsanaSDKMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72773781DDBF59A00312F90 /* Cocoa.framework */; };
+		C749278A1DDA831600A0767E /* KatsanaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C74927881DDA831600A0767E /* KatsanaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C749279E1DDA86A400A0767E /* KMCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FCF1D7D19CF0003E7A8 /* KMCacheManager.m */; };
 		C74927A01DDA86BB00A0767E /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C21DB08ECF001E1788 /* Date+Extension.swift */; };
 		C74927A11DDA86BB00A0767E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7578B4A1DB46A9A00C964DB /* UIImage+Extension.swift */; };
@@ -41,7 +42,6 @@
 		C74927BD1DDA8A2300A0767E /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75A3AEF1DC2266800F8E0BF /* XCGLogger.framework */; };
 		C74927BF1DDA8A3200A0767E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927BE1DDA8A3200A0767E /* CoreLocation.framework */; };
 		C74927C11DDA8A3D00A0767E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927C01DDA8A3D00A0767E /* MapKit.framework */; };
-		C74927C31DDA8AF300A0767E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927C21DDA8AF300A0767E /* Foundation.framework */; };
 		C74927C41DDA8D4000A0767E /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79ACD081DBF1A0E000607A6 /* SwiftyJSON.swift */; };
 		C74927C51DDA8D4200A0767E /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DFF3961DB4C7FA004751B6 /* Just.swift */; };
 		C74927C61DDA8D4500A0767E /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C01DB08C73001E1788 /* DateHelper.swift */; };
@@ -271,8 +271,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C74927861DDA831600A0767E /* KatsanaSDKMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaSDKMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C74927881DDA831600A0767E /* KatsanaSDKMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KatsanaSDKMac.h; sourceTree = "<group>"; };
+		C72773781DDBF59A00312F90 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		C74927861DDA831600A0767E /* KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C74927881DDA831600A0767E /* KatsanaSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KatsanaSDK.h; sourceTree = "<group>"; };
 		C74927891DDA831600A0767E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C74927BE1DDA8A3200A0767E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 		C74927C01DDA8A3D00A0767E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -353,7 +354,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C74927C31DDA8AF300A0767E /* Foundation.framework in Frameworks */,
+				C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */,
 				C74927C11DDA8A3D00A0767E /* MapKit.framework in Frameworks */,
 				C74927BF1DDA8A3200A0767E /* CoreLocation.framework in Frameworks */,
 				C74927BD1DDA8A2300A0767E /* XCGLogger.framework in Frameworks */,
@@ -395,6 +396,7 @@
 		5DD901B866D20EE7A742A486 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C72773781DDBF59A00312F90 /* Cocoa.framework */,
 				C74927C21DDA8AF300A0767E /* Foundation.framework */,
 				C74927C01DDA8A3D00A0767E /* MapKit.framework */,
 				C74927BE1DDA8A3200A0767E /* CoreLocation.framework */,
@@ -412,13 +414,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C74927871DDA831600A0767E /* KatsanaSDK-Mac */ = {
+		C74927871DDA831600A0767E /* KatsanaSDK-macOS */ = {
 			isa = PBXGroup;
 			children = (
-				C74927881DDA831600A0767E /* KatsanaSDKMac.h */,
+				C74927881DDA831600A0767E /* KatsanaSDK.h */,
 				C74927891DDA831600A0767E /* Info.plist */,
 				C74927C71DDA943B00A0767E /* PrefixHeader.pch */,
 			);
+			name = "KatsanaSDK-macOS";
 			path = "KatsanaSDK-Mac";
 			sourceTree = "<group>";
 		};
@@ -438,7 +441,7 @@
 				C75104FF1D7422BF00F4C341 /* KatsanaSDK */,
 				C7A4BF761DAF077E007E90B8 /* KatsanaSDKTests */,
 				C7A4BF851DAF0C32007E90B8 /* KatsanaTest */,
-				C74927871DDA831600A0767E /* KatsanaSDK-Mac */,
+				C74927871DDA831600A0767E /* KatsanaSDK-macOS */,
 				C75104FE1D7422BF00F4C341 /* Products */,
 				5DD901B866D20EE7A742A486 /* Frameworks */,
 			);
@@ -450,7 +453,7 @@
 				C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */,
 				C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */,
 				C7A4BF841DAF0C32007E90B8 /* KatsanaTest.app */,
-				C74927861DDA831600A0767E /* KatsanaSDKMac.framework */,
+				C74927861DDA831600A0767E /* KatsanaSDK.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -637,7 +640,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C74927CD1DDA968800A0767E /* KMTravelHistory.h in Headers */,
-				C749278A1DDA831600A0767E /* KatsanaSDKMac.h in Headers */,
+				C749278A1DDA831600A0767E /* KatsanaSDK.h in Headers */,
 				C7587CDD1DDAC48F00357BF7 /* SharedPlatform.h in Headers */,
 				C74927CE1DDA968800A0767E /* KMVehicleLocation.h in Headers */,
 				C74927CC1DDA968800A0767E /* KMVehicle.h in Headers */,
@@ -678,9 +681,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C74927851DDA831600A0767E /* KatsanaSDKMac */ = {
+		C74927851DDA831600A0767E /* KatsanaSDK macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C749279C1DDA831600A0767E /* Build configuration list for PBXNativeTarget "KatsanaSDKMac" */;
+			buildConfigurationList = C749279C1DDA831600A0767E /* Build configuration list for PBXNativeTarget "KatsanaSDK macOS" */;
 			buildPhases = (
 				C74927811DDA831600A0767E /* Sources */,
 				C74927821DDA831600A0767E /* Frameworks */,
@@ -691,9 +694,9 @@
 			);
 			dependencies = (
 			);
-			name = KatsanaSDKMac;
+			name = "KatsanaSDK macOS";
 			productName = "KatsanaSDK-Mac";
-			productReference = C74927861DDA831600A0767E /* KatsanaSDKMac.framework */;
+			productReference = C74927861DDA831600A0767E /* KatsanaSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C75104FC1D7422BF00F4C341 /* KatsanaSDK */ = {
@@ -808,7 +811,7 @@
 			projectRoot = "";
 			targets = (
 				C75104FC1D7422BF00F4C341 /* KatsanaSDK */,
-				C74927851DDA831600A0767E /* KatsanaSDKMac */,
+				C74927851DDA831600A0767E /* KatsanaSDK macOS */,
 				C7A4BF741DAF077E007E90B8 /* KatsanaSDKTests */,
 				C7A4BF831DAF0C32007E90B8 /* KatsanaTest */,
 			);
@@ -1110,8 +1113,9 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pixelated.KatsanaSDK-Mac";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pixelated.KatsanaSDK-macOS";
+				PRODUCT_MODULE_NAME = KatsanaSDK;
+				PRODUCT_NAME = KatsanaSDK;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1138,8 +1142,9 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pixelated.KatsanaSDK-Mac";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pixelated.KatsanaSDK-macOS";
+				PRODUCT_MODULE_NAME = KatsanaSDK;
+				PRODUCT_NAME = KatsanaSDK;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -1373,7 +1378,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C749279C1DDA831600A0767E /* Build configuration list for PBXNativeTarget "KatsanaSDKMac" */ = {
+		C749279C1DDA831600A0767E /* Build configuration list for PBXNativeTarget "KatsanaSDK macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C749278B1DDA831600A0767E /* Debug */,

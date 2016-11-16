@@ -16,8 +16,8 @@ FOUNDATION_EXPORT const unsigned char KatsanaSDK_MacVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <KatsanaSDK_Mac/PublicHeader.h>
 typedef void (^ImageCompletionBlock)(NSImage *image);
-#import <KatsanaSDKMac/SharedPlatform.h>
-#import <KatsanaSDKMac/KMConstant.h>
-#import <KatsanaSDKMac/KMObject.h>
-#import <KatsanaSDKMac/KMCacheManager.h>
-#import <KatsanaSDKMac/KMTimeTransformer.h>
+#import <KatsanaSDK/SharedPlatform.h>
+#import <KatsanaSDK/KMConstant.h>
+#import <KatsanaSDK/KMObject.h>
+#import <KatsanaSDK/KMCacheManager.h>
+#import <KatsanaSDK/KMTimeTransformer.h>

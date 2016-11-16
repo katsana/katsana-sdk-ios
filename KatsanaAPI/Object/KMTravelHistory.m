@@ -15,10 +15,19 @@
 
 @implementation KMTravelHistory{
     NSArray *_routeTrips;
+    __weak KMVehicle *_vehicle;
 }
 
 + (NSArray*)fastCodingKeys{
-    return @[@"trips", @"maxSpeed", @"distance", @"violationCount", @"date", @"idleDuration", @"duration", @"tripCount", @"needLoadTripHistory"];
+    return @[@"trips", @"maxSpeed", @"distance", @"violationCount", @"date", @"idleDuration", @"duration", @"tripCount", @"needLoadTripHistory", @"vehicleId"];
+}
+
+- (KMVehicle*)owner{
+    if (!_vehicle) {
+        KMVehicle *vehicle = [[KatsanaAPI shared] vehicleWithVehicleId:self.vehicleId];
+        _vehicle = vehicle;
+    }
+    return _vehicle;
 }
 
 - (NSDate*)localTimezoneDate{

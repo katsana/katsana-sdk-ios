@@ -108,6 +108,7 @@ public extension UIImage {
 }
     
 #elseif os(OSX)
+//    import Cocoa
     
     public extension NSImage {
         public convenience init?(color: NSColor, size: CGSize = CGSize(width: 1, height: 1)) {

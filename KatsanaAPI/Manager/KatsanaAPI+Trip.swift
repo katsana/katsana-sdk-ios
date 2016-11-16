@@ -18,6 +18,7 @@ extension KatsanaAPI {
         
         request?.onSuccess({(entity) in
             let summary : KMTravelHistory? = resource.typedContent()
+            summary?.vehicleId = vehicleId
             completion(summary)
             }).onFailure({ (error) in
                 failure(error)
@@ -67,6 +68,7 @@ extension KatsanaAPI {
                 
                 summary.needLoadTripHistory = true //Always need load trip summary if loaded from summary API
                 summary.lastUpdate = Date()
+                summary.vehicleId = vehicleId
                 
                 //Cache history for days more than maxDaySummary, because it may already contain trip but still not finalized on the server
                 if Date().daysAfterDate((summary.date)!) > KatsanaAPI.maxDaySummary{
@@ -97,7 +99,7 @@ extension KatsanaAPI {
         let history = KMCacheManager.sharedInstance().travelHistory(for: date, vehicleId: vehicleId)
         if history != nil && history?.needLoadTripHistory == false{
             self.log.debug("Get trip history from cached data vehicle id \(vehicleId), date \(date)")
-            history?.owner = vehicleWith(vehicleId: vehicleId)
+            history?.vehicleId = vehicleId
             completion(history)
             return
         }
@@ -127,7 +129,11 @@ extension KatsanaAPI {
     }
     
     //!Request trip history using given summary. Summary only give duration and trip count, if cached history is different from the summary, reload and return it
-    public func requestTripHistoryUsing(summary: KMTravelHistory, vehicleId: String, completion: @escaping (_ history: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTripHistoryUsing(summary: KMTravelHistory, completion: @escaping (_ history: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        let vehicleId = summary.vehicleId
+        guard vehicleId != nil else {
+            return
+        }
         
         let history = KMCacheManager.sharedInstance().travelHistory(for: summary.date, vehicleId: vehicleId)
         if history != nil && history?.needLoadTripHistory == false{
@@ -144,7 +150,7 @@ extension KatsanaAPI {
                 self.log.debug("Need load trip history from summary because summary duration (\(summary.totalDuration())) != history duration (\(totalDuration)), vehicle id \(vehicleId)")
             }
         }
-        requestTripHistory(for: summary.date, vehicleId: vehicleId, completion: {history in
+        requestTripHistory(for: summary.date, vehicleId: vehicleId!, completion: {history in
             summary.needLoadTripHistory = false
             summary.trips = history?.trips
             history?.needLoadTripHistory = false

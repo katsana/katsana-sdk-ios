@@ -13,7 +13,7 @@
 
 //@property (nonatomic, strong) NSDate *startDate;
 //@property (nonatomic, strong) NSDate *endDate;
-@property (nonatomic, weak) KMVehicle *owner;
+@property (nonatomic, strong) NSString *vehicleId;
 
 @property (nonatomic, strong) NSArray <KMTrip*> *trips;
 @property (nonatomic, assign) float maxSpeed;
@@ -31,7 +31,7 @@
 @property (nonatomic, assign) BOOL needLoadTripHistory;
 
 
-
+- (KMVehicle*)owner;
 - (CGFloat)totalDuration;
 - (CGFloat)averageSpeed;
 //!Return local timezone history date
