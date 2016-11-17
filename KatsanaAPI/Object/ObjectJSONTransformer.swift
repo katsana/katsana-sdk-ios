@@ -125,6 +125,7 @@ class ObjectJSONTransformer: NSObject {
         trip.idles = json["idles"].arrayValue.map{VehicleLocationObject(json: $0)}
         trip.histories = json["histories"].arrayValue.map {VehicleLocationObject(json: $0)}
         trip.violations = json["violations"].arrayValue.map {VehicleActivityObject(json: $0)}
+        trip.score = json["score"].floatValue
         
         return trip
     }

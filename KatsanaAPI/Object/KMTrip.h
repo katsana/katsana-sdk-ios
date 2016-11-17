@@ -19,6 +19,7 @@
 @property (nonatomic, assign) float maxSpeed;
 @property (nonatomic, assign) float averageSpeed;
 @property (nonatomic, assign) double idleDuration;
+@property (nonatomic, assign) float score;
 
 @property (nonatomic, strong) NSArray *histories;
 @property (nonatomic, strong) NSArray *violations;
