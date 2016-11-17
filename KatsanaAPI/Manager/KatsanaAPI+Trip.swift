@@ -93,7 +93,7 @@ extension KatsanaAPI {
         
     }
     
-    //!Request trip history will download histories for that particular date
+    ///Request trip history will download histories for that particular date
     public func requestTripHistory(for date: Date, vehicleId: String, completion: @escaping (_ history: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         
         let history = KMCacheManager.sharedInstance().travelHistory(for: date, vehicleId: vehicleId)
@@ -128,7 +128,7 @@ extension KatsanaAPI {
         }
     }
     
-    //!Request trip history using given summary. Summary only give duration and trip count, if cached history is different from the summary, reload and return it
+    ///Request trip history using given summary. Summary only give duration and trip count, if cached history is different from the summary, reload and return it
     public func requestTripHistoryUsing(summary: KMTravelHistory, completion: @escaping (_ history: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let vehicleId = summary.vehicleId
         guard vehicleId != nil else {
@@ -160,7 +160,19 @@ extension KatsanaAPI {
                 failure(error)
                 self.log.error("Error getting trip history vehicle id \(vehicleId), using summary with date \(summary.date), \(error)")
         })
-        
+    }
+    
+    ///Get latest cached travel histories from give day count
+    public func latestCachedTripHistories(vehicleId : String, dayCount : Int) -> [KMTravelHistory]! {
+        var date = Date()
+        var travelhistories = [KMTravelHistory]()
+        for _ in 0..<dayCount {
+            if let history = KMCacheManager.sharedInstance().travelHistory(for: date, vehicleId: vehicleId){
+                travelhistories.append(history)
+            }
+            date = date.dateBySubtractingDays(1)
+        }
+        return travelhistories
     }
 
 // MARK: Logic
