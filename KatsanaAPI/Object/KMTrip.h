@@ -21,7 +21,7 @@
 @property (nonatomic, assign) double idleDuration;
 @property (nonatomic, assign) float score;
 
-@property (nonatomic, strong) NSArray *histories;
+@property (nonatomic, strong) NSArray <KMVehicleLocation*> *histories;
 @property (nonatomic, strong) NSArray *violations;
 @property (nonatomic, strong) NSArray *idles;
 

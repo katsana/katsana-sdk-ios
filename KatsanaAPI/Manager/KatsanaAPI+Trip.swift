@@ -111,6 +111,7 @@ extension KatsanaAPI {
             let history : KMTravelHistory? = resource.typedContent()
             history?.lastUpdate = Date() //Set last update date
             history?.date = date
+            history?.vehicleId = vehicleId
             KMCacheManager.sharedInstance().cacheData(history, identifier: vehicleId) //Cache history
             completion(history)
         }

@@ -82,8 +82,10 @@ extension KatsanaAPI {
         
     public func logout() -> Void {
         NotificationCenter.default.post(name: KatsanaAPI.userWillLogoutNotification, object: nil)
-        currentVehicle = nil;
-        vehicles = nil
+        currentVehicle = nil
+        if vehicles != nil {
+            vehicles = nil
+        }
         currentUser = nil
         authToken = nil
         NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)

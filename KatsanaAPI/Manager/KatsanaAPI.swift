@@ -202,4 +202,9 @@ public class KatsanaAPI: NSObject {
         self.currentUser = user
         self.vehicles = vehicles
     }
+    
+    //Update to new token. You must know what you are doing!
+    public func updateToken(newToken: String) -> Void {
+        authToken = newToken
+    }
 }
