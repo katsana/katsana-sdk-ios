@@ -20,20 +20,29 @@ extension KatsanaAPI {
     public func saveCurrentUserProfile(completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let resource = self.API.resource("profile")
         
-        let json = self.currentUser.jsonPatchDictionary()
-        resource.request(.patch, json: json!).onSuccess { (_) in
-            completion(self.currentUser)
-        }.onFailure { (error) in
-            failure(error)
-            self.log.error("Error save user profile \(error)")
+        if let json = self.currentUser.jsonPatchDictionary(){
+            resource.request(.patch, json: json).onSuccess { (_) in
+                completion(self.currentUser)
+                }.onFailure { (error) in
+                    failure(error)
+                    self.log.error("Error save user profile \(error)")
+            }
+        }else{
+            failure(nil)
+            self.log.error("Error save user profile")
         }
+        
     }
     
    public func saveCurrentUserProfileImage(image : KMImage?, completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        var finalImage = image! as KMImage
+    
+        var finalImage : KMImage!
         if image == nil {
             finalImage = KMImage(color: KMColor.white)!
+        }else{
+            finalImage = image
         }
+    
         finalImage = finalImage.fixOrientation()
         
         var maxSize : CGFloat = 600
