@@ -25,6 +25,7 @@
 - (void)addressForCoordinate:(CLLocationCoordinate2D)coord completionBlock:(void (^)(KMAddress *address))completion;
 - (VehicleActivity*)latestCachedActivityObject;
 - (NSArray*)activityObjects;
+- (id)liveShareForUserId:(NSString*)userId deviceId:(NSString*)deviceId;
 
 //Used to save and get again table row that expanded
 - (void)setExpandedTableVehicleIdHistory:(NSString*)vehicleId date:(NSDate*)date;

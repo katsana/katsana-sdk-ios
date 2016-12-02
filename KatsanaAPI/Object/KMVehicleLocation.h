@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSString *state;
 @property (nonatomic, strong) NSString *voltage;
 @property (nonatomic, strong) NSString *gsm;
-@property (nonatomic, strong) NSString *ignitionState;
+@property (nonatomic, assign) BOOL ignitionState;
 
 @property (nonatomic, strong) NSDate *trackedAt;
 @property (nonatomic, strong) NSDate *updatedAt;

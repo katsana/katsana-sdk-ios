@@ -71,7 +71,7 @@ class ObjectJSONTransformer: NSObject {
         pos.state = json["state"].stringValue
         pos.voltage = json["voltage"].stringValue
         pos.gsm = json["gsm"].stringValue
-        pos.ignitionState = json["ignition"].stringValue
+        pos.ignitionState = json["ignition"].boolValue
         pos.trackedAt = json["tracked_at"].date(gmt: 0)
         
         return pos
@@ -165,5 +165,22 @@ class ObjectJSONTransformer: NSObject {
         violation.message = json["description"].stringValue
         
         return violation
+    }
+    
+    class func LiveShareObject(json : JSON) -> LiveShare {
+        var dicto = json["device_share"]
+        
+        let share = LiveShare()
+        share.deviceId = dicto["device_id"].stringValue
+        share.userId = dicto["user_id"].stringValue
+        share.token = dicto["token"].stringValue
+        share.type = dicto["type"].stringValue
+        share.shareDescription = dicto["description"].stringValue
+        share.startAt = dicto["started_at"].date(gmt: 0)
+        share.endAt = dicto["ended_at"].date(gmt: 0)
+        share.updatedAt = dicto["updated_at"].date(gmt: 0)
+        share.shareId = dicto["id"].stringValue
+        share.durationText = dicto["duration"].stringValue
+        return share
     }
 }

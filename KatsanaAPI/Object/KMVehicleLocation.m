@@ -36,6 +36,8 @@ static NSDateFormatter *sharedDateFormatter = nil;
         pos.speed = [current[@"speed"] floatValue];
         pos.state = current[@"state"];
         pos.voltage = current[@"voltage"];
+        pos.gsm = current[@"gsm"];
+        pos.ignitionState = [current[@"ignition"] boolValue];
         
         NSString *dateStr = current[@"tracked_at"];
         pos.trackedAt = [[KMVehicleLocation sharedDateFormatter] dateFromString:dateStr];

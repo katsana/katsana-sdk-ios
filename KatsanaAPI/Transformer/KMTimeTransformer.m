@@ -35,7 +35,7 @@
             if (hour >= 24) {
                 CGFloat day = hour/24.0f;
                 hour = (day - floor(day)) * 24;
-                hour = floor(hour);
+                hour = ceil(hour);
                 timeStr = [NSString stringWithFormat:@"%.0f day %.0f hours", day, hour];
             }else{
                 timeStr = [NSString stringWithFormat:@"%.0f hr %.0f min", hour, minutes];

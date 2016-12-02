@@ -11,34 +11,31 @@ import Foundation
 
 extension KatsanaAPI {
     
-    public func requestLiveShareLink(vehicleId: String, duration: CGFloat, completion: @escaping (_ vehicle: KMVehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    
+    /// Request live share link. Duration is in minute format
+    ///
+    /// - Returns: Return live share
+    public func requestLiveShareLink(vehicleId: String, duration: CGFloat, completion: @escaping (_ liveShare: LiveShare?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
 
         let path = "vehicles/" + vehicleId + "/sharing"
-//        let resource = API.resource(path);
-//        resource.request(.post, json: ["duration" : "23H"]).onSuccess { (entity) in
-//            let data = resource.jsonDict
-//            print(data)
-//        }.onFailure { (error) in
-//            print(error.localizedDescription)
-//            print("sdfsdf")
-//        }
+        let durationText = String(format: "%.0fi", duration)
         
         let fullPath = self.baseURL().absoluteString + path
         Just.post(
             fullPath,
-//            data: ["token": self.authToken],
-            json: ["duration" : "23H"],
+            json: ["duration" : durationText],
             headers: ["Authorization" : ("Bearer " + self.authToken)]
-//            files: ["file": .data("avatar.png", data, "image/jpeg")]
         ) { r in
-            //            let strData = NSString(data: r.content!, encoding: String.Encoding.utf8.rawValue)
             if r.ok {
+                let json = JSON(data: r.content!)
+                let liveShare = ObjectJSONTransformer.LiveShareObject(json: json)
                 DispatchQueue.main.sync {
-                    completion( nil)
+                    completion(liveShare)
                 }
                 
             }else{
                 DispatchQueue.main.sync {
+                    self.log.error("Error requesting live share link \(vehicleId), \(r.error)")
                     failure( r.error)
                 }
                 

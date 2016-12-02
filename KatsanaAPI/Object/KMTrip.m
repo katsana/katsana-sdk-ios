@@ -24,7 +24,7 @@
 
 - (NSString*)tripStopDurationString{
     CGFloat duration = [self tripStopDuration];
-    return [KatsanaFormatter durationStringUsingFormatWithFormat:DisplayFormatFull knot:duration];
+    return [KatsanaFormatter durationStringUsingFormatWithFormat:DisplayFormatFull duration:duration];
 }
 
 //- (CGFloat)averageSpeed{

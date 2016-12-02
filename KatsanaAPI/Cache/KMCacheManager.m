@@ -20,6 +20,7 @@ static NSString *CACHE_VERSION = @"1.03";
 //!Key is vehicle id, value is date
 @property (nonatomic, strong) NSDictionary *expandedVehicleHistory;
 @property (nonatomic, strong) NSMutableDictionary *activities;
+@property (nonatomic, strong) NSMutableArray *liveShares;
 
 @end
 
@@ -108,6 +109,13 @@ static KMCacheManager *sharedPeerToPeer = nil;
     return _dataDictionaries;
 }
 
+- (NSMutableArray*)liveShares{
+    if (!_liveShares) {
+        _liveShares = [NSMutableArray array];
+    }
+    return _liveShares;
+}
+
 - (NSString*)cacheDataFilename{
     return @"cacheData.dat";
 }
@@ -118,6 +126,10 @@ static KMCacheManager *sharedPeerToPeer = nil;
 
 - (NSString*)cacheActivitiesDataFilename{
     return @"cacheActivities.dat";
+}
+
+- (NSString*)cacheLiveShareFilename{
+    return @"cacheLiveShare.dat";
 }
 
 #pragma mark -
@@ -180,7 +192,15 @@ static KMCacheManager *sharedPeerToPeer = nil;
             });
         }
     });
-    
+}
+
+- (LiveShare*)liveShareForUserId:(NSString*)userId deviceId:(NSString*)deviceId{
+    for (LiveShare *liveshare in self.liveShares) {
+        if ([liveshare.deviceId isEqualToString:deviceId] && [liveshare.userId isEqualToString:userId]) {
+            return liveshare;
+        }
+    }
+    return nil;
 }
 
 - (KMImage*)imageForIdentifier:(NSString*)identifier{
@@ -264,6 +284,9 @@ static KMCacheManager *sharedPeerToPeer = nil;
         [self.dataDictionaries setValue:data forKey:NSStringFromClass([data class])];
         [self autoSave];
         return;
+    }
+    else if ([data isKindOfClass:[LiveShare class]]){
+        [self cacheLiveShare:data];
     }
     
     BOOL dataChanged = NO;
@@ -372,6 +395,14 @@ static KMCacheManager *sharedPeerToPeer = nil;
         [activities addObject:activity];
         [self autoSaveActivities];
     }
+}
+
+- (void)cacheLiveShare:(LiveShare*)liveshare{
+    NSString *path = [[self cacheDirectory] stringByAppendingPathComponent:[self cacheLiveShareFilename]];
+    [self.liveShares addObject:liveshare];
+    
+    NSData *data = [FastCoder dataWithRootObject:self.liveShares];
+    [data writeToFile:path atomically:YES];
 }
 
 

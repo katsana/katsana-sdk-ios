@@ -63,8 +63,8 @@ public class KatsanaFormatter: NSObject {
         return convertTime(seconds: seconds, displayFormat: displayFormat)
     }
     
-    public class func durationStringUsingFormat(format:DisplayFormat,  knot: Double) -> String {
-        return convertTime(seconds: knot, displayFormat: displayFormat)
+    public class func durationStringUsingFormat(format:DisplayFormat,  duration: Double) -> String {
+        return convertTime(seconds: duration, displayFormat: format)
     }
     
     public class func distanceStringFrom(meter: Double) -> String {
