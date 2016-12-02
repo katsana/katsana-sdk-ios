@@ -11,20 +11,20 @@ public class LiveShare: NSObject {
     public var deviceId : String!
     public var userId : String!
     public var token : String!
-    public var type : String!
+//    public var type : String!
     public var shareDescription: String!
-    public var durationText : String!{
-        didSet{
-            if durationText != nil {
-                let text = durationText.replacingOccurrences(of: "i", with: "")
-                duration = Int(text)!
-            }
-        }
-    }
-    private (set) public var duration : Int = 0
+//    public var durationText : String!{
+//        didSet{
+//            if durationText != nil {
+//                let text = durationText.replacingOccurrences(of: "i", with: "")
+//                duration = Int(text)!
+//            }
+//        }
+//    }
+    public var duration : Int = 0
     public var startAt : Date!
     public var endAt : Date!
-    public var updatedAt : Date!
+//    public var updatedAt : Date!
     public var createdAt : Date!
     public var shareId : String!
     

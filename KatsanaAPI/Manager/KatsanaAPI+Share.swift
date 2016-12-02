@@ -29,14 +29,22 @@ extension KatsanaAPI {
             if r.ok {
                 let json = JSON(data: r.content!)
                 let liveShare = ObjectJSONTransformer.LiveShareObject(json: json)
+                liveShare.duration = Int(duration)
                 DispatchQueue.main.sync {
                     completion(liveShare)
                 }
                 
             }else{
                 DispatchQueue.main.sync {
+//                    let text = r.reason
+//                    if let content = r.content{
+//                        let text = String(data: r.content!, encoding: .utf8)
+//                        print(text)
+//                    }
+//                    let error = NSError(
+                    
                     self.log.error("Error requesting live share link \(vehicleId), \(r.error)")
-                    failure( r.error)
+                    failure(r.error)
                 }
                 
             }

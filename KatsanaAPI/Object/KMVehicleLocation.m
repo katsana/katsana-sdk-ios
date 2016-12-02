@@ -36,13 +36,20 @@ static NSDateFormatter *sharedDateFormatter = nil;
         pos.speed = [current[@"speed"] floatValue];
         pos.state = current[@"state"];
         pos.voltage = current[@"voltage"];
-        pos.gsm = current[@"gsm"];
-        pos.ignitionState = [current[@"ignition"] boolValue];
         
+        NSNumber *gsm = current[@"gsm"];
+        if ([gsm isKindOfClass:[NSNumber class]]) {
+            pos.gsm = gsm.stringValue;
+        }else{
+            pos.gsm = current[@"gsm"];
+        }
+        
+        NSString *ignition = current[@"ignition"];
+        if ([ignition isKindOfClass:[NSNumber class]] || [ignition isKindOfClass:[NSString class]]) {
+            pos.ignitionState = [current[@"ignition"] boolValue];
+        }
         NSString *dateStr = current[@"tracked_at"];
         pos.trackedAt = [[KMVehicleLocation sharedDateFormatter] dateFromString:dateStr];
-        
-//        pos.voltage =
         
     }
     return pos;

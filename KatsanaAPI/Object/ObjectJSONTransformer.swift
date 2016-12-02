@@ -174,13 +174,13 @@ class ObjectJSONTransformer: NSObject {
         share.deviceId = dicto["device_id"].stringValue
         share.userId = dicto["user_id"].stringValue
         share.token = dicto["token"].stringValue
-        share.type = dicto["type"].stringValue
+//        share.type = dicto["type"].stringValue
         share.shareDescription = dicto["description"].stringValue
         share.startAt = dicto["started_at"].date(gmt: 0)
         share.endAt = dicto["ended_at"].date(gmt: 0)
-        share.updatedAt = dicto["updated_at"].date(gmt: 0)
+//        share.updatedAt = dicto["updated_at"].date(gmt: 0)
         share.shareId = dicto["id"].stringValue
-        share.durationText = dicto["duration"].stringValue
+//        share.durationText = dicto["duration"].stringValue
         return share
     }
 }
