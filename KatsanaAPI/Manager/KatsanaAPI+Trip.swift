@@ -45,39 +45,42 @@ extension KatsanaAPI {
         let request = resource.loadIfNeeded()
         
         func handleResource() -> Void {
-            let summaries : [KMTravelHistory] = resource.typedContent()!
-            for summary in summaries{
-                //Remove duplicate history
-                var duplicateHistoryNeedRemove : KMTravelHistory!
-                for history in histories{
-                    if summary.date.isEqualToDateIgnoringTime(history.date){
-                        if summary.tripCount > history.trips.count{
-                            summary.needLoadTripHistory = true
-                        }else{
-                            summary.needLoadTripHistory = false
+            if let summaries : [KMTravelHistory] = resource.typedContent(){
+                for summary in summaries{
+                    //Remove duplicate history
+                    var duplicateHistoryNeedRemove : KMTravelHistory!
+                    for history in histories{
+                        if summary.date.isEqualToDateIgnoringTime(history.date){
+                            if summary.tripCount > history.trips.count{
+                                summary.needLoadTripHistory = true
+                            }else{
+                                summary.needLoadTripHistory = false
+                            }
+                            summary.trips = history.trips
+                            duplicateHistoryNeedRemove = history
+                            
                         }
-                        summary.trips = history.trips
-                        duplicateHistoryNeedRemove = history
-                        
+                    }
+                    if duplicateHistoryNeedRemove != nil{
+                        histories.remove(at: histories.index(of: duplicateHistoryNeedRemove)!)
+                    }
+                    
+                    
+                    summary.needLoadTripHistory = true //Always need load trip summary if loaded from summary API
+                    summary.lastUpdate = Date()
+                    summary.vehicleId = vehicleId
+                    
+                    //Cache history for days more than maxDaySummary, because it may already contain trip but still not finalized on the server
+                    if Date().daysAfterDate((summary.date)!) > KatsanaAPI.maxDaySummary{
+                        KMCacheManager.sharedInstance().cacheData(summary, identifier: vehicleId)
                     }
                 }
-                if duplicateHistoryNeedRemove != nil{
-                    histories.remove(at: histories.index(of: duplicateHistoryNeedRemove)!)
-                }
-                
-                
-                summary.needLoadTripHistory = true //Always need load trip summary if loaded from summary API
-                summary.lastUpdate = Date()
-                summary.vehicleId = vehicleId
-                
-                //Cache history for days more than maxDaySummary, because it may already contain trip but still not finalized on the server
-                if Date().daysAfterDate((summary.date)!) > KatsanaAPI.maxDaySummary{
-                    KMCacheManager.sharedInstance().cacheData(summary, identifier: vehicleId)
-                }
+                histories.append(contentsOf: summaries)
+                histories.sort(by: { $0.date > $1.date })
+                completion(histories)
+            }else{
+                failure(nil)
             }
-            histories.append(contentsOf: summaries)
-            histories.sort(by: { $0.date > $1.date })
-            completion(histories)
         }
         
         request?.onSuccess({(entity) in

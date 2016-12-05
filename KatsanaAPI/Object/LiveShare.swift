@@ -38,6 +38,17 @@ public class LiveShare: NSObject {
         let url = URL(string: path)
         return url!
     }
+    
+    
+    let dateFormatter : DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM yyyy / H:mm a"
+        return formatter
+    }()
+    public func expirationInfo() -> String {
+        let info = "Live share will expire on " + dateFormatter.string(from: endAt)
+        return info
+    }
 }
 
 //{\"device_share\":{\"device_id\":105,\"user_id\":5,\"token\":\"DZKTmdXpGm\",\"type\":\"live\",\"description\":null,\"duration\":\"321i\",\"started_at\":\"2016-11-30 03:38:36\",\"ended_at\":\"2016-11-30 08:59:36\",\"updated_at\":\"2016-11-30 03:38:36\",\"created_at\":\"2016-11-30 03:38:36\",\"id\":76}}"	0x00007fded1e5e890

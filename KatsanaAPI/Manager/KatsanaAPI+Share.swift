@@ -50,4 +50,38 @@ extension KatsanaAPI {
             }
         }
     }
+    
+    /// Request live share link. Duration is in minute format
+    ///
+    /// - Returns: Return live share
+    public func requestLiveShareLinksInfo(vehicleId: String, completion: @escaping (_ liveShares: [LiveShare]) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        
+        let path = "vehicles/" + vehicleId + "/sharing"
+        let fullPath = self.baseURL().absoluteString + path
+        Just.get(
+            fullPath,
+            headers: ["Authorization" : ("Bearer " + self.authToken)]
+        ) { r in
+            if r.ok {
+                let json = JSON(data: r.content!)
+                let array = json.arrayValue
+                var liveShares = [LiveShare]()
+                for aJson in array{
+                    let liveShare = ObjectJSONTransformer.LiveShareObject(json: aJson)
+                    liveShares.append(liveShare)
+                }
+                
+                DispatchQueue.main.sync {
+                    completion(liveShares)
+                }
+                
+            }else{
+                DispatchQueue.main.sync {
+                    self.log.error("Error requesting live share link info \(vehicleId), \(r.error)")
+                    failure(r.error)
+                }
+                
+            }
+        }
+    }
 }

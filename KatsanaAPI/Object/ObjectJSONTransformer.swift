@@ -168,19 +168,17 @@ class ObjectJSONTransformer: NSObject {
     }
     
     class func LiveShareObject(json : JSON) -> LiveShare {
-        var dicto = json["device_share"]
-        
         let share = LiveShare()
-        share.deviceId = dicto["device_id"].stringValue
-        share.userId = dicto["user_id"].stringValue
-        share.token = dicto["token"].stringValue
-//        share.type = dicto["type"].stringValue
-        share.shareDescription = dicto["description"].stringValue
-        share.startAt = dicto["started_at"].date(gmt: 0)
-        share.endAt = dicto["ended_at"].date(gmt: 0)
-//        share.updatedAt = dicto["updated_at"].date(gmt: 0)
-        share.shareId = dicto["id"].stringValue
-//        share.durationText = dicto["duration"].stringValue
+        share.deviceId = json["device_id"].stringValue
+        share.userId = json["user_id"].stringValue
+        share.token = json["token"].stringValue
+//        share.type = json["type"].stringValue
+        share.shareDescription = json["description"].stringValue
+        share.startAt = json["started_at"].date(gmt: 0)
+        share.endAt = json["ended_at"].date(gmt: 0)
+//        share.updatedAt = json["updated_at"].date(gmt: 0)
+        share.shareId = json["id"].stringValue
+//        share.durationText = json1["duration"].stringValue
         return share
     }
 }

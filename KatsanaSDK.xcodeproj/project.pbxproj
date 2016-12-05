@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72773781DDBF59A00312F90 /* Cocoa.framework */; };
+		C728E0D81DF3BDC7007752FE /* Siesta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C728E0CB1DF3BDB4007752FE /* Siesta.framework */; };
+		C728E0D91DF3BDCE007752FE /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C728E0B11DF3BD9C007752FE /* XCGLogger.framework */; };
+		C728E0DA1DF3BDD7007752FE /* Siesta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C728E0CD1DF3BDB4007752FE /* Siesta.framework */; };
+		C728E0DB1DF3BDDC007752FE /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C728E0B31DF3BD9C007752FE /* XCGLogger.framework */; };
 		C749278A1DDA831600A0767E /* KatsanaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C74927881DDA831600A0767E /* KatsanaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C749279E1DDA86A400A0767E /* KMCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C79D9FCF1D7D19CF0003E7A8 /* KMCacheManager.m */; };
 		C74927A01DDA86BB00A0767E /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C21DB08ECF001E1788 /* Date+Extension.swift */; };
@@ -113,8 +117,6 @@
 		C7A4BF961DAF0ECB007E90B8 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
 		C7A4BF971DAF0ECB007E90B8 /* KatsanaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C7B0C9211DB9A5780008B60D /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0C9201DB9A5780008B60D /* APIError.swift */; };
-		C7D0D6CA1DEC1C19001AA2E0 /* Siesta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7442E551DEAF2F10008EB2F /* Siesta.framework */; };
-		C7D0D6CB1DEC1C1F001AA2E0 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7442E6E1DEAF32B0008EB2F /* XCGLogger.framework */; };
 		C7DFF3901DB49121004751B6 /* KatsanaAPI+VehicleProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DFF38F1DB49121004751B6 /* KatsanaAPI+VehicleProfile.swift */; };
 		C7DFF3941DB4917F004751B6 /* KatsanaAPI+Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DFF3931DB4917F004751B6 /* KatsanaAPI+Other.swift */; };
 		C7DFF3971DB4C7FA004751B6 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DFF3961DB4C7FA004751B6 /* Just.swift */; };
@@ -128,110 +130,110 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C7442E541DEAF2F10008EB2F /* PBXContainerItemProxy */ = {
+		C728E0B01DF3BD9C007752FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C7442E4A1DEAF2F10008EB2F /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA336E4F1B2E6DDB006F702A;
-			remoteInfo = "Siesta iOS";
-		};
-		C7442E561DEAF2F10008EB2F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C7442E4A1DEAF2F10008EB2F /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9F2FB51E1C28645E0068DFFA;
-			remoteInfo = "Siesta macOS";
-		};
-		C7442E581DEAF2F10008EB2F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C7442E4A1DEAF2F10008EB2F /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DAC0B3AA1D651CB500D25C44;
-			remoteInfo = "SiestaUI iOS";
-		};
-		C7442E5A1DEAF2F10008EB2F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C7442E4A1DEAF2F10008EB2F /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DAC0B3D61D651CC700D25C44;
-			remoteInfo = "SiestaUI macOS";
-		};
-		C7442E5C1DEAF2F10008EB2F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C7442E4A1DEAF2F10008EB2F /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA336E591B2E6DDB006F702A;
-			remoteInfo = "SiestaTests iOS";
-		};
-		C7442E5E1DEAF2F10008EB2F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C7442E4A1DEAF2F10008EB2F /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9F0FAFAC1D033FCD00CE1B61;
-			remoteInfo = "SiestaTests macOS";
-		};
-		C7442E601DEAF2F10008EB2F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C7442E4A1DEAF2F10008EB2F /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA19D06E1D9ADC1800D15F3A;
-			remoteInfo = "SiestaPerformanceTests macOS";
-		};
-		C7442E6D1DEAF32B0008EB2F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C7442E621DEAF32B0008EB2F /* XCGLogger.xcodeproj */;
+			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 55E3EE4519D76F280068C3A7;
 			remoteInfo = "XCGLogger (iOS)";
 		};
-		C7442E6F1DEAF32B0008EB2F /* PBXContainerItemProxy */ = {
+		C728E0B21DF3BD9C007752FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C7442E621DEAF32B0008EB2F /* XCGLogger.xcodeproj */;
+			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 554DF41719D76FE7005708BE;
 			remoteInfo = "XCGLogger (OS X)";
 		};
-		C7442E711DEAF32B0008EB2F /* PBXContainerItemProxy */ = {
+		C728E0B41DF3BD9C007752FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C7442E621DEAF32B0008EB2F /* XCGLogger.xcodeproj */;
+			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 70CB94201B99E728007802FF;
 			remoteInfo = "XCGLogger (watchOS)";
 		};
-		C7442E731DEAF32B0008EB2F /* PBXContainerItemProxy */ = {
+		C728E0B61DF3BD9C007752FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C7442E621DEAF32B0008EB2F /* XCGLogger.xcodeproj */;
+			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 5515A3DF1BA119FA0047BA31;
 			remoteInfo = "XCGLogger (tvOS)";
 		};
-		C7442E751DEAF32B0008EB2F /* PBXContainerItemProxy */ = {
+		C728E0B81DF3BD9C007752FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C7442E621DEAF32B0008EB2F /* XCGLogger.xcodeproj */;
+			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 55E3EE5019D76F280068C3A7;
 			remoteInfo = XCGLoggerTests_iOS;
 		};
-		C7442E771DEAF32B0008EB2F /* PBXContainerItemProxy */ = {
+		C728E0BA1DF3BD9C007752FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C7442E621DEAF32B0008EB2F /* XCGLogger.xcodeproj */;
+			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 55BB1F011B79DC7500709779;
 			remoteInfo = XCGLoggerTests_OSX;
 		};
-		C7442E791DEAF32B0008EB2F /* PBXContainerItemProxy */ = {
+		C728E0BC1DF3BD9C007752FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C7442E621DEAF32B0008EB2F /* XCGLogger.xcodeproj */;
+			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 558EEB851D6BAC61006A9C7A;
 			remoteInfo = XCGLoggerTests_watchOS;
 		};
-		C7442E7B1DEAF32B0008EB2F /* PBXContainerItemProxy */ = {
+		C728E0BE1DF3BD9C007752FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C7442E621DEAF32B0008EB2F /* XCGLogger.xcodeproj */;
+			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 558EEB921D6BAC66006A9C7A;
 			remoteInfo = XCGLoggerTests_tvOS;
+		};
+		C728E0CA1DF3BDB4007752FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA336E4F1B2E6DDB006F702A;
+			remoteInfo = "Siesta iOS";
+		};
+		C728E0CC1DF3BDB4007752FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9F2FB51E1C28645E0068DFFA;
+			remoteInfo = "Siesta macOS";
+		};
+		C728E0CE1DF3BDB4007752FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DAC0B3AA1D651CB500D25C44;
+			remoteInfo = "SiestaUI iOS";
+		};
+		C728E0D01DF3BDB4007752FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DAC0B3D61D651CC700D25C44;
+			remoteInfo = "SiestaUI macOS";
+		};
+		C728E0D21DF3BDB4007752FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA336E591B2E6DDB006F702A;
+			remoteInfo = "SiestaTests iOS";
+		};
+		C728E0D41DF3BDB4007752FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9F0FAFAC1D033FCD00CE1B61;
+			remoteInfo = "SiestaTests macOS";
+		};
+		C728E0D61DF3BDB4007752FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA19D06E1D9ADC1800D15F3A;
+			remoteInfo = "SiestaPerformanceTests macOS";
 		};
 		C7A4BF7B1DAF077E007E90B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -274,8 +276,8 @@
 
 /* Begin PBXFileReference section */
 		C72773781DDBF59A00312F90 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		C7442E4A1DEAF2F10008EB2F /* Siesta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Siesta.xcodeproj; path = "../../siesta-master/Siesta.xcodeproj"; sourceTree = "<group>"; };
-		C7442E621DEAF32B0008EB2F /* XCGLogger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XCGLogger.xcodeproj; path = "../../XCGLogger-master/Sources/XCGLogger.xcodeproj"; sourceTree = "<group>"; };
+		C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XCGLogger.xcodeproj; path = XCGLogger/Sources/XCGLogger.xcodeproj; sourceTree = "<group>"; };
+		C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Siesta.xcodeproj; path = Libraries/Siesta/Siesta.xcodeproj; sourceTree = "<group>"; };
 		C74927861DDA831600A0767E /* KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74927881DDA831600A0767E /* KatsanaSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KatsanaSDK.h; sourceTree = "<group>"; };
 		C74927891DDA831600A0767E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -358,6 +360,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C728E0DB1DF3BDDC007752FE /* XCGLogger.framework in Frameworks */,
+				C728E0DA1DF3BDD7007752FE /* Siesta.framework in Frameworks */,
 				C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */,
 				C74927C11DDA8A3D00A0767E /* MapKit.framework in Frameworks */,
 				C74927BF1DDA8A3200A0767E /* CoreLocation.framework in Frameworks */,
@@ -368,8 +372,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7D0D6CB1DEC1C1F001AA2E0 /* XCGLogger.framework in Frameworks */,
-				C7D0D6CA1DEC1C19001AA2E0 /* Siesta.framework in Frameworks */,
+				C728E0D91DF3BDCE007752FE /* XCGLogger.framework in Frameworks */,
+				C728E0D81DF3BDC7007752FE /* Siesta.framework in Frameworks */,
 				C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */,
 				C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */,
 				C751054F1D742B5F00F4C341 /* MapKit.framework in Frameworks */,
@@ -398,8 +402,8 @@
 		5DD901B866D20EE7A742A486 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C7442E621DEAF32B0008EB2F /* XCGLogger.xcodeproj */,
-				C7442E4A1DEAF2F10008EB2F /* Siesta.xcodeproj */,
+				C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */,
+				C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */,
 				C72773781DDBF59A00312F90 /* Cocoa.framework */,
 				C74927C21DDA8AF300A0767E /* Foundation.framework */,
 				C74927C01DDA8A3D00A0767E /* MapKit.framework */,
@@ -416,31 +420,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C7442E4B1DEAF2F10008EB2F /* Products */ = {
+		C728E0A61DF3BD9C007752FE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C7442E551DEAF2F10008EB2F /* Siesta.framework */,
-				C7442E571DEAF2F10008EB2F /* Siesta.framework */,
-				C7442E591DEAF2F10008EB2F /* SiestaUI.framework */,
-				C7442E5B1DEAF2F10008EB2F /* SiestaUI.framework */,
-				C7442E5D1DEAF2F10008EB2F /* SiestaTests.xctest */,
-				C7442E5F1DEAF2F10008EB2F /* SiestaTests.xctest */,
-				C7442E611DEAF2F10008EB2F /* SiestaPerformanceTests macOS.xctest */,
+				C728E0B11DF3BD9C007752FE /* XCGLogger.framework */,
+				C728E0B31DF3BD9C007752FE /* XCGLogger.framework */,
+				C728E0B51DF3BD9C007752FE /* XCGLogger.framework */,
+				C728E0B71DF3BD9C007752FE /* XCGLogger.framework */,
+				C728E0B91DF3BD9C007752FE /* XCGLoggerTests_iOS.xctest */,
+				C728E0BB1DF3BD9C007752FE /* XCGLoggerTests (OS X).xctest */,
+				C728E0BD1DF3BD9C007752FE /* XCGLoggerTests_watchOS.xctest */,
+				C728E0BF1DF3BD9C007752FE /* XCGLoggerTests_tvOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C7442E631DEAF32B0008EB2F /* Products */ = {
+		C728E0C11DF3BDB4007752FE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C7442E6E1DEAF32B0008EB2F /* XCGLogger.framework */,
-				C7442E701DEAF32B0008EB2F /* XCGLogger.framework */,
-				C7442E721DEAF32B0008EB2F /* XCGLogger.framework */,
-				C7442E741DEAF32B0008EB2F /* XCGLogger.framework */,
-				C7442E761DEAF32B0008EB2F /* XCGLoggerTests_iOS.xctest */,
-				C7442E781DEAF32B0008EB2F /* XCGLoggerTests (OS X).xctest */,
-				C7442E7A1DEAF32B0008EB2F /* XCGLoggerTests_watchOS.xctest */,
-				C7442E7C1DEAF32B0008EB2F /* XCGLoggerTests_tvOS.xctest */,
+				C728E0CB1DF3BDB4007752FE /* Siesta.framework */,
+				C728E0CD1DF3BDB4007752FE /* Siesta.framework */,
+				C728E0CF1DF3BDB4007752FE /* SiestaUI.framework */,
+				C728E0D11DF3BDB4007752FE /* SiestaUI.framework */,
+				C728E0D31DF3BDB4007752FE /* SiestaTests.xctest */,
+				C728E0D51DF3BDB4007752FE /* SiestaTests.xctest */,
+				C728E0D71DF3BDB4007752FE /* SiestaPerformanceTests macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -805,12 +809,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = C7442E4B1DEAF2F10008EB2F /* Products */;
-					ProjectRef = C7442E4A1DEAF2F10008EB2F /* Siesta.xcodeproj */;
+					ProductGroup = C728E0C11DF3BDB4007752FE /* Products */;
+					ProjectRef = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
 				},
 				{
-					ProductGroup = C7442E631DEAF32B0008EB2F /* Products */;
-					ProjectRef = C7442E621DEAF32B0008EB2F /* XCGLogger.xcodeproj */;
+					ProductGroup = C728E0A61DF3BD9C007752FE /* Products */;
+					ProjectRef = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -824,109 +828,109 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		C7442E551DEAF2F10008EB2F /* Siesta.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Siesta.framework;
-			remoteRef = C7442E541DEAF2F10008EB2F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C7442E571DEAF2F10008EB2F /* Siesta.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Siesta.framework;
-			remoteRef = C7442E561DEAF2F10008EB2F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C7442E591DEAF2F10008EB2F /* SiestaUI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SiestaUI.framework;
-			remoteRef = C7442E581DEAF2F10008EB2F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C7442E5B1DEAF2F10008EB2F /* SiestaUI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SiestaUI.framework;
-			remoteRef = C7442E5A1DEAF2F10008EB2F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C7442E5D1DEAF2F10008EB2F /* SiestaTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SiestaTests.xctest;
-			remoteRef = C7442E5C1DEAF2F10008EB2F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C7442E5F1DEAF2F10008EB2F /* SiestaTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SiestaTests.xctest;
-			remoteRef = C7442E5E1DEAF2F10008EB2F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C7442E611DEAF2F10008EB2F /* SiestaPerformanceTests macOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SiestaPerformanceTests macOS.xctest";
-			remoteRef = C7442E601DEAF2F10008EB2F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C7442E6E1DEAF32B0008EB2F /* XCGLogger.framework */ = {
+		C728E0B11DF3BD9C007752FE /* XCGLogger.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = XCGLogger.framework;
-			remoteRef = C7442E6D1DEAF32B0008EB2F /* PBXContainerItemProxy */;
+			remoteRef = C728E0B01DF3BD9C007752FE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C7442E701DEAF32B0008EB2F /* XCGLogger.framework */ = {
+		C728E0B31DF3BD9C007752FE /* XCGLogger.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = XCGLogger.framework;
-			remoteRef = C7442E6F1DEAF32B0008EB2F /* PBXContainerItemProxy */;
+			remoteRef = C728E0B21DF3BD9C007752FE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C7442E721DEAF32B0008EB2F /* XCGLogger.framework */ = {
+		C728E0B51DF3BD9C007752FE /* XCGLogger.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = XCGLogger.framework;
-			remoteRef = C7442E711DEAF32B0008EB2F /* PBXContainerItemProxy */;
+			remoteRef = C728E0B41DF3BD9C007752FE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C7442E741DEAF32B0008EB2F /* XCGLogger.framework */ = {
+		C728E0B71DF3BD9C007752FE /* XCGLogger.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = XCGLogger.framework;
-			remoteRef = C7442E731DEAF32B0008EB2F /* PBXContainerItemProxy */;
+			remoteRef = C728E0B61DF3BD9C007752FE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C7442E761DEAF32B0008EB2F /* XCGLoggerTests_iOS.xctest */ = {
+		C728E0B91DF3BD9C007752FE /* XCGLoggerTests_iOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = XCGLoggerTests_iOS.xctest;
-			remoteRef = C7442E751DEAF32B0008EB2F /* PBXContainerItemProxy */;
+			remoteRef = C728E0B81DF3BD9C007752FE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C7442E781DEAF32B0008EB2F /* XCGLoggerTests (OS X).xctest */ = {
+		C728E0BB1DF3BD9C007752FE /* XCGLoggerTests (OS X).xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "XCGLoggerTests (OS X).xctest";
-			remoteRef = C7442E771DEAF32B0008EB2F /* PBXContainerItemProxy */;
+			remoteRef = C728E0BA1DF3BD9C007752FE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C7442E7A1DEAF32B0008EB2F /* XCGLoggerTests_watchOS.xctest */ = {
+		C728E0BD1DF3BD9C007752FE /* XCGLoggerTests_watchOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = XCGLoggerTests_watchOS.xctest;
-			remoteRef = C7442E791DEAF32B0008EB2F /* PBXContainerItemProxy */;
+			remoteRef = C728E0BC1DF3BD9C007752FE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C7442E7C1DEAF32B0008EB2F /* XCGLoggerTests_tvOS.xctest */ = {
+		C728E0BF1DF3BD9C007752FE /* XCGLoggerTests_tvOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = XCGLoggerTests_tvOS.xctest;
-			remoteRef = C7442E7B1DEAF32B0008EB2F /* PBXContainerItemProxy */;
+			remoteRef = C728E0BE1DF3BD9C007752FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C728E0CB1DF3BDB4007752FE /* Siesta.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Siesta.framework;
+			remoteRef = C728E0CA1DF3BDB4007752FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C728E0CD1DF3BDB4007752FE /* Siesta.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Siesta.framework;
+			remoteRef = C728E0CC1DF3BDB4007752FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C728E0CF1DF3BDB4007752FE /* SiestaUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SiestaUI.framework;
+			remoteRef = C728E0CE1DF3BDB4007752FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C728E0D11DF3BDB4007752FE /* SiestaUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SiestaUI.framework;
+			remoteRef = C728E0D01DF3BDB4007752FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C728E0D31DF3BDB4007752FE /* SiestaTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SiestaTests.xctest;
+			remoteRef = C728E0D21DF3BDB4007752FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C728E0D51DF3BDB4007752FE /* SiestaTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SiestaTests.xctest;
+			remoteRef = C728E0D41DF3BDB4007752FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C728E0D71DF3BDB4007752FE /* SiestaPerformanceTests macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SiestaPerformanceTests macOS.xctest";
+			remoteRef = C728E0D61DF3BDB4007752FE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
