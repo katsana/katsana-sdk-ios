@@ -42,7 +42,7 @@ public class LiveShare: NSObject {
     
     let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMM yyyy / H:mm a"
+        formatter.dateFormat = "d MMM yyyy / H:mm a"
         return formatter
     }()
     public func expirationInfo() -> String {

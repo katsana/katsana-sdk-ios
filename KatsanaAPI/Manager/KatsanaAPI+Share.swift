@@ -51,9 +51,6 @@ extension KatsanaAPI {
         }
     }
     
-    /// Request live share link. Duration is in minute format
-    ///
-    /// - Returns: Return live share
     public func requestLiveShareLinksInfo(vehicleId: String, completion: @escaping (_ liveShares: [LiveShare]) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         
         let path = "vehicles/" + vehicleId + "/sharing"
@@ -79,6 +76,29 @@ extension KatsanaAPI {
                 DispatchQueue.main.sync {
                     self.log.error("Error requesting live share link info \(vehicleId), \(r.error)")
                     failure(r.error)
+                }
+                
+            }
+        }
+    }
+    
+    public func deleteLiveShareLink(vehicleId: String, liveShareId: String, completion: @escaping (_ success: Bool) -> Void) -> Void {
+        
+        let path = "vehicles/" + vehicleId + "/sharing/" + liveShareId
+        let fullPath = self.baseURL().absoluteString + path
+        Just.delete(
+            fullPath,
+            headers: ["Authorization" : ("Bearer " + self.authToken)]
+        ) { r in
+            if r.ok {
+                DispatchQueue.main.sync {
+                    completion(true)
+                }
+                
+            }else{
+                DispatchQueue.main.sync {
+                    self.log.error("Error deleting live share link \(vehicleId), \(r.error)")
+                    completion(false)
                 }
                 
             }
