@@ -33,7 +33,12 @@ public class LiveShare: NSObject {
     }
     
     public func shareURL() -> URL {
-        let base = KatsanaAPI.shared.baseURL().absoluteString.replacingOccurrences(of: "api.", with: "")
+        var base = KatsanaAPI.shared.baseURL().absoluteString
+        if base.contains("/api.") {
+            base = base.replacingOccurrences(of: "api.", with: "my.")
+        }else{
+            base = base.replacingOccurrences(of: "api.", with: "my.")
+        }
         let path = base + "shares/" + token
         let url = URL(string: path)
         return url!

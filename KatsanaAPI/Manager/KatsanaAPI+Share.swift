@@ -36,14 +36,11 @@ extension KatsanaAPI {
                 
             }else{
                 DispatchQueue.main.sync {
-//                    let text = r.reason
-//                    if let content = r.content{
-//                        let text = String(data: r.content!, encoding: .utf8)
-//                        print(text)
-//                    }
-//                    let error = NSError(
-                    
-                    self.log.error("Error requesting live share link \(vehicleId), \(r.error)")
+                    var text = r.reason
+                    if let content = r.content{
+                        text = String(data: content, encoding: .utf8)!
+                    }
+                    self.log.error("Error requesting live share link \(vehicleId), error: \(text)")
                     failure(r.error)
                 }
                 
@@ -74,7 +71,11 @@ extension KatsanaAPI {
                 
             }else{
                 DispatchQueue.main.sync {
-                    self.log.error("Error requesting live share link info \(vehicleId), \(r.error)")
+                    var text = r.reason
+                    if let content = r.content{
+                        text = String(data: content, encoding: .utf8)!
+                    }
+                    self.log.error("Error requesting live share link info \(vehicleId), \(text)")
                     failure(r.error)
                 }
                 
@@ -83,7 +84,6 @@ extension KatsanaAPI {
     }
     
     public func deleteLiveShareLink(vehicleId: String, liveShareId: String, completion: @escaping (_ success: Bool) -> Void) -> Void {
-        
         let path = "vehicles/" + vehicleId + "/sharing/" + liveShareId
         let fullPath = self.baseURL().absoluteString + path
         Just.delete(
@@ -97,7 +97,12 @@ extension KatsanaAPI {
                 
             }else{
                 DispatchQueue.main.sync {
-                    self.log.error("Error deleting live share link \(vehicleId), \(r.error)")
+                    var text = r.reason
+                    if let content = r.content{
+                        text = String(data: content, encoding: .utf8)!
+                    }
+                    
+                    self.log.error("Error deleting live share link \(vehicleId), \(text)")
                     completion(false)
                 }
                 
