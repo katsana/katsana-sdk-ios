@@ -13,14 +13,6 @@ public class LiveShare: NSObject {
     public var token : String!
 //    public var type : String!
     public var shareDescription: String!
-//    public var durationText : String!{
-//        didSet{
-//            if durationText != nil {
-//                let text = durationText.replacingOccurrences(of: "i", with: "")
-//                duration = Int(text)!
-//            }
-//        }
-//    }
     public var duration : Int = 0
     public var startAt : Date!
     public var endAt : Date!
@@ -50,9 +42,8 @@ public class LiveShare: NSObject {
         formatter.dateFormat = "d MMM yyyy / H:mm a"
         return formatter
     }()
-    public func expirationInfo() -> String {
-        let info = "Live share will expire on " + dateFormatter.string(from: endAt)
-        return info
+    public func dateString() -> String {
+        return dateFormatter.string(from: endAt)
     }
 }
 
