@@ -96,7 +96,11 @@
 }
 
 - (NSString*)averageSpeedString{
-    return [KatsanaFormatter speedStringFromKnot:self.averageSpeed];
+    CGFloat speed = self.averageSpeed;
+    if (speed < 0) {
+        speed = 0;
+    }
+    return [KatsanaFormatter speedStringFromKnot:speed];
 }
 
 

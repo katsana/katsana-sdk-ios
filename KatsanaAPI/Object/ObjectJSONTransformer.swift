@@ -172,6 +172,8 @@ class ObjectJSONTransformer: NSObject {
         share.deviceId = json["device_id"].stringValue
         share.userId = json["user_id"].stringValue
         share.token = json["token"].stringValue
+        let urlPath = json["url"].stringValue
+        share.url = URL(string: urlPath)
 //        share.type = json["type"].stringValue
         share.shareDescription = json["description"].stringValue
         share.startAt = json["started_at"].date(gmt: 0)

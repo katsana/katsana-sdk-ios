@@ -11,11 +11,11 @@ public class LiveShare: NSObject {
     public var deviceId : String!
     public var userId : String!
     public var token : String!
-//    public var type : String!
     public var shareDescription: String!
     public var duration : Int = 0
     public var startAt : Date!
     public var endAt : Date!
+    public var url : URL!
 //    public var updatedAt : Date!
     public var createdAt : Date!
     public var shareId : String!
@@ -23,19 +23,6 @@ public class LiveShare: NSObject {
     class func fastCodingKeys() -> [String]! {
         return ["deviceId", "userId", "token", "type", "shareDescription", "durationText", "startAt", "endAt", "updatedAt", "createdAt"]
     }
-    
-    public func shareURL() -> URL {
-        var base = KatsanaAPI.shared.baseURL().absoluteString
-        if base.contains("/api.") {
-            base = base.replacingOccurrences(of: "api.", with: "my.")
-        }else{
-            base = base.replacingOccurrences(of: "api.", with: "my.")
-        }
-        let path = base + "shares/" + token
-        let url = URL(string: path)
-        return url!
-    }
-    
     
     let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
