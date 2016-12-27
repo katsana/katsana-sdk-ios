@@ -66,10 +66,6 @@ extension KatsanaAPI{
         
         // Add basic app info, version info etc, to the start of the logs
         log.logAppDetails()
-        
-        
-        
-        
     }
     
 }

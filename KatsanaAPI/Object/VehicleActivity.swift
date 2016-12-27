@@ -23,6 +23,7 @@
     case speedSummary
     case doorAjar
     case intrusion
+    case tripScore
     //More can be added
 }
 
@@ -110,6 +111,8 @@ public class VehicleActivity: NSObject {
             type = .doorAjar
         case "intrusion":
             type = .intrusion
+        case "trip-score":
+            type = .tripScore
         default:
             print("Policy " + self.policyKey + " not handled")
         }
