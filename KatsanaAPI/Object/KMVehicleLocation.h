@@ -22,7 +22,8 @@
 //@property (nonatomic, assign) float fuelPercentage;
 
 ///Accuracy of the location, if unavailable will always return 0
-@property (nonatomic, assign) float accuracy;
+@property (nonatomic, assign) float verticalAccuracy;
+@property (nonatomic, assign) float horizontalAccuracy;
 
 @property (nonatomic, strong) NSString *state;
 @property (nonatomic, strong) NSString *voltage;
