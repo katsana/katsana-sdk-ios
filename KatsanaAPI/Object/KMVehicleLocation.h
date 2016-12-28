@@ -21,6 +21,9 @@
 @property (nonatomic, assign) float distance;
 //@property (nonatomic, assign) float fuelPercentage;
 
+///Accuracy of the location, if unavailable will always return 0
+@property (nonatomic, assign) float accuracy;
+
 @property (nonatomic, strong) NSString *state;
 @property (nonatomic, strong) NSString *voltage;
 @property (nonatomic, strong) NSString *gsm;
