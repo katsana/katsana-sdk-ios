@@ -20,7 +20,7 @@ public class LiveShare: NSObject {
     public var createdAt : Date!
     public var shareId : String!
     
-    class func fastCodingKeys() -> [String]! {
+    override public class func fastCodingKeys() -> [Any]! {
         return ["deviceId", "userId", "token", "type", "shareDescription", "durationText", "startAt", "endAt", "updatedAt", "createdAt"]
     }
     

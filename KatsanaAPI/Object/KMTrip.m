@@ -11,7 +11,7 @@
 @implementation KMTrip
 
 + (NSArray*)fastCodingKeys{
-    return @[@"start", @"end", @"distance", @"duration", @"maxSpeed", @"averageSpeed", @"idleDuration", @"histories", @"violations", @"idles", @"score"];
+    return @[@"start", @"end", @"distance", @"duration", @"maxSpeed", @"averageSpeed", @"idleDuration", @"histories", @"violations", @"idles", @"score", @"extraData"];
 }
 
 - (CGFloat)tripStopDuration{

@@ -16,6 +16,7 @@ FOUNDATION_EXPORT const unsigned char KatsanaAPIVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <KatsanaAPI/PublicHeader.h>
 
+#import <KatsanaSDK/FastCoder.h>
 #import <KatsanaSDK/SharedPlatform.h>
 #import <KatsanaSDK/KMConstant.h>
 #import <KatsanaSDK/KMObject.h>
