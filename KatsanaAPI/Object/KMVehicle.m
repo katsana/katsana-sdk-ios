@@ -32,9 +32,8 @@
     return dicto;
 }
 
-
 - (void)reloadDataWithVehicle:(KMVehicle*)vehicle{
-    self.vehicleDescription = vehicle.description;
+    self.vehicleDescription = vehicle.vehicleDescription;
     self.mode = vehicle.mode;
     self.current = vehicle.current;
     self.avatarURLPath = vehicle.avatarURLPath;

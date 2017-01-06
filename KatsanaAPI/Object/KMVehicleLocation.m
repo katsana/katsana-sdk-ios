@@ -15,6 +15,11 @@
     CLLocationCoordinate2D _lastCoord;
 }
 
+//+ (NSArray*)fastCodingKeys{
+//    return @[@"latitude", @"longitude", @"speed", @"altitude", @"altitude", @"course", @"distance", @"verticalAccuracy", @"horizontalAccuracy", @"state", @"voltage", @"gsm", @"ignitionState", @"trackedAt"];
+//}
+
+
 static NSDateFormatter *sharedDateFormatter = nil;
 + (NSDateFormatter*)sharedDateFormatter {
     if (!sharedDateFormatter) {
