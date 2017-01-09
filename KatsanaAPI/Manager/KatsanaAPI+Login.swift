@@ -139,34 +139,4 @@ extension KatsanaAPI {
             failure(error)
         })
     }
-    
-    
-    /// Request JWT token. Used for compatability purpose
-    ///
-    public func requestJWTToken(completion: @escaping (_ token: String) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        guard self.authToken != nil else {
-            failure(nil)
-            return
-        }
-        
-        if jwtToken != nil && jwtToken.characters.count > 0{
-            completion(jwtToken)
-            return
-        }
-        
-        let path = "auth/tokenize"
-        let resource = API.resource(path);
-        resource.request(.post).onSuccess({ (entity) in
-            let content = entity.content as? JSON
-            let dicto = content?.rawValue as? [String : String]
-            if dicto != nil{
-                let token = dicto?["token"]
-                self.jwtToken = token
-            }else{
-                failure(nil)
-            }
-        }).onFailure({ (error) in
-            failure(error)
-        })
-    }
 }

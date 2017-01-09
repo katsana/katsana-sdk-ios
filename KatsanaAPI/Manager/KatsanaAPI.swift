@@ -73,10 +73,7 @@ public class KatsanaAPI: NSObject {
             API.wipeResources()
         }
     }
-    
-    /// JWT Token, need to request the token using requestJWTToken, for compatibilty purpose
-    internal(set) public var jwtToken: String!
-    
+
     /// Token to refresh access token
     internal(set) public var refreshToken: String!
     
