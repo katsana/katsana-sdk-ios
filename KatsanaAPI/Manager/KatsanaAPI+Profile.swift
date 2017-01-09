@@ -5,7 +5,6 @@
 //  Created by Wan Ahmad Lutfi on 17/10/2016.
 //  Copyright © 2016 pixelated. All rights reserved.
 //
-//import Alamofire
 
 #if os(iOS)
     public typealias KMColor = UIColor

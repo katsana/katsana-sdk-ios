@@ -13,17 +13,11 @@ extension KatsanaAPI {
     
     
     public func login(email: String, password: String, completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        let useOAuth2 = false
         var data : Dictionary<String,String>
-        var tokenKey = "token"
-        var authPath = "auth"
-        if useOAuth2 {
-            tokenKey = "access_token"
-            authPath = "oauth/token"
-            data = ["username" : email, "password" : password, "client_id" : self.clientId, "client_secret" : self.clientSecret, "scope" : "*", "grant_type": self.grantType]
-        }else{
-            data = ["email" : email, "password" : password]
-        }
+        var tokenKey = "access_token"
+        var authPath = "oauth/token"
+
+        data = ["username" : email, "password" : password, "client_id" : self.clientId, "client_secret" : self.clientSecret, "scope" : "*", "grant_type": self.grantType]
 
         let path = self.baseURL().absoluteString + authPath
         Just.post(
@@ -32,10 +26,13 @@ extension KatsanaAPI {
         ) { r in
             if r.ok {
                 let json = JSON(data: r.content!)
-                let token = json[tokenKey].stringValue
+                let token = json["access_token"].stringValue
+                let refreshToken = json["refresh_token"].stringValue
+                
                 if token.characters.count > 0 {
                     DispatchQueue.main.sync {
                         self.authToken = token
+                        self.refreshToken = refreshToken
                         let resource = self.API.resource("profile")
                         resource.loadIfNeeded()?.onSuccess({ (entity) in
                             let user : KMUser? = resource.typedContent()
@@ -89,6 +86,7 @@ extension KatsanaAPI {
         }
         currentUser = nil
         authToken = nil
+        jwtToken = nil
         NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
         log.info("Logged out user \(self.currentUser?.userId), \(self.currentUser?.email)")
     }
@@ -142,9 +140,33 @@ extension KatsanaAPI {
         })
     }
     
-    // MARK:
     
-//    func loginErrorMessage(error: Error, isRequestUserError: Bool) -> Error {
-//        <#function body#>
-//    }
+    /// Request JWT token. Used for compatability purpose
+    ///
+    public func requestJWTToken(completion: @escaping (_ token: String) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        guard self.authToken != nil else {
+            failure(nil)
+            return
+        }
+        
+        if jwtToken != nil && jwtToken.characters.count > 0{
+            completion(jwtToken)
+            return
+        }
+        
+        let path = "auth/tokenize"
+        let resource = API.resource(path);
+        resource.request(.post).onSuccess({ (entity) in
+            let content = entity.content as? JSON
+            let dicto = content?.rawValue as? [String : String]
+            if dicto != nil{
+                let token = dicto?["token"]
+                self.jwtToken = token
+            }else{
+                failure(nil)
+            }
+        }).onFailure({ (error) in
+            failure(error)
+        })
+    }
 }

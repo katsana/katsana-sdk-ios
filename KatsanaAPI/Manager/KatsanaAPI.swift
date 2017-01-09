@@ -60,9 +60,9 @@ public class KatsanaAPI: NSObject {
     }
     private let SwiftyJSONTransformer = ResponseContentTransformer { JSON($0.content as AnyObject) }
     
+    //Access token to the server
     internal(set) public var authToken: String! {
         didSet {
-            
             if authToken != nil {
                 tokenRefreshDate = Date()
                 // Rerun existing configuration closure using new value
@@ -73,6 +73,12 @@ public class KatsanaAPI: NSObject {
             API.wipeResources()
         }
     }
+    
+    /// JWT Token, need to request the token using requestJWTToken, for compatibilty purpose
+    internal(set) public var jwtToken: String!
+    
+    /// Token to refresh access token
+    internal(set) public var refreshToken: String!
     
     // MARK: Lifecycle
     

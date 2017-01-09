@@ -8,6 +8,10 @@
 
 extension KatsanaAPI {
 
+    
+    /// Save vehicle profile data
+    ///
+    /// 
     public func saveVehicleProfile(vehicleId: String, completion: @escaping (_ vehicle: KMVehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let vehicle = vehicleWith(vehicleId: vehicleId)
         guard vehicle != nil else {

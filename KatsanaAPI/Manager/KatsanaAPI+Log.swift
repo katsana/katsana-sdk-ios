@@ -11,6 +11,7 @@ import XCGLogger
 
 extension KatsanaAPI{
     
+    /// Setup logging for KatsanaAPI
     func setupLog() -> Void {
         // Create a logger object with no destinations
         self.log = XCGLogger(identifier: "advancedLogger", includeDefaultDestinations: false)
@@ -67,5 +68,4 @@ extension KatsanaAPI{
         // Add basic app info, version info etc, to the start of the logs
         log.logAppDetails()
     }
-    
 }
