@@ -85,10 +85,10 @@ public class KatsanaAPI: NSObject {
     }
 
     public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL) -> Void {
-        configure(baseURL: baseURL, clientId: nil, clientSecret: nil, grantType: nil)
+        configure(baseURL: baseURL)
     }
     
-    public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, clientId : String! = nil, clientSecret: String! = nil, grantType: String!) -> Void {
+    public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, clientId : String = "", clientSecret: String = "", grantType: String = "") -> Void {
         shared.API = Service(baseURL: baseURL)
         shared.configure()
         shared.setupTransformer()
