@@ -85,14 +85,10 @@ public class KatsanaAPI: NSObject {
     }
 
     public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL) -> Void {
-        configure(baseURL: baseURL, clientId: nil, clientSecret: nil)
-        //Extend KatsanaAPI and add configureExternal function to add more configuration
-//        if self.responds(to: Selector(("configureExternal"))) {
-//            perform(Selector(("configureExternal")))
-//        }
+        configure(baseURL: baseURL, clientId: nil, clientSecret: nil, grantType: nil)
     }
     
-    public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, clientId : String! = nil, clientSecret: String! = nil, grantType: String! = "password") -> Void {
+    public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, clientId : String! = nil, clientSecret: String! = nil, grantType: String!) -> Void {
         shared.API = Service(baseURL: baseURL)
         shared.configure()
         shared.setupTransformer()
@@ -102,11 +98,7 @@ public class KatsanaAPI: NSObject {
         if clientSecret != nil {
             shared.clientSecret = clientSecret
         }
-        if grantType == nil {
-            shared.grantType = "password"
-        }else{
-            shared.grantType = grantType
-        }
+        shared.grantType = grantType
     }
     
     func configure() {

@@ -86,7 +86,6 @@ extension KatsanaAPI {
         }
         currentUser = nil
         authToken = nil
-        jwtToken = nil
         NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
         log.info("Logged out user \(self.currentUser?.userId), \(self.currentUser?.email)")
     }
