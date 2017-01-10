@@ -34,6 +34,7 @@
 @property (nonatomic, strong) NSDate *updatedAt;
 @property (nonatomic, strong) NSDate *createdAt;
 
+
 - (NSString*)address;
 
 - (CGFloat)localizedSpeed;

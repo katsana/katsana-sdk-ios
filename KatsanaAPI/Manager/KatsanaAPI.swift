@@ -85,7 +85,8 @@ public class KatsanaAPI: NSObject {
     }
 
     public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL) -> Void {
-        configure(baseURL: baseURL)
+        
+        configure(baseURL : baseURL, clientId: "", clientSecret:"", grantType: "")
     }
     
     public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, clientId : String = "", clientSecret: String = "", grantType: String = "") -> Void {
