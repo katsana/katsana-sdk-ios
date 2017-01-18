@@ -7,7 +7,7 @@
 //
 
 
-/// Class to request address from server. We are not using Siesta API because Siesta automatically cache response. Address may be called multiple times and need not cached because the address is checked with KMCacheManager
+/// Class to request address from server. We are not using Siesta API because Siesta cache response in memory. Address may be called multiple times and we need to cache in KMCacheManager to save it in hdd
 class AddressRequest: NSObject {
 
    class func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (KMAddress?, Error?) -> Void) -> Void {

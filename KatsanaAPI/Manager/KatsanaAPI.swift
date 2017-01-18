@@ -11,9 +11,9 @@ import XCGLogger
 
 public class KatsanaAPI: NSObject {
     //Notifications
-    static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserSuccessLogonNotification")
-    static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
-    static let userDidLogoutNotification = Notification.Name(rawValue: "KMUserDidLogoutNotification")
+    public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserSuccessLogonNotification")
+    public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
+    public static let userDidLogoutNotification = Notification.Name(rawValue: "KMUserDidLogoutNotification")
     static let defaultBaseURL = URL(string: "https://api.katsana.com/")! as URL
     internal(set) var log : XCGLogger!
     

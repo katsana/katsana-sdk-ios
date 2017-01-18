@@ -34,6 +34,8 @@
 @property (nonatomic, strong) NSDate *updatedAt;
 @property (nonatomic, strong) NSDate *createdAt;
 
+@property (nonatomic, strong) NSDictionary *extraData;
+
 
 - (NSString*)address;
 
