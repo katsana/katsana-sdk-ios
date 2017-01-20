@@ -39,7 +39,6 @@ class AddressRequest: NSObject {
                         }else{
                             DispatchQueue.main.sync{completion(nil, nil)}
                         }
-                        
                     }else{
                         DispatchQueue.main.sync{completion(address, r.error)}
                     }

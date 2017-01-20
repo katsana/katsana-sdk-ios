@@ -4,11 +4,13 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CD1557C3AE966BEDF3490D85F9712687801B146C" : 9223372036854775807,
     "0566F996E8234DD2584E8ED3365258045D324CA1" : 9223372036854775807,
     "B6E16A6BE5489C8A768B73EF44C6CBBE77F988FD" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6AB33454-FD47-481E-A080-E7F50E4FA3DF",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CD1557C3AE966BEDF3490D85F9712687801B146C" : "KatsanaAPI\/XCGLogger\/",
     "0566F996E8234DD2584E8ED3365258045D324CA1" : "KatsanaAPI\/",
     "B6E16A6BE5489C8A768B73EF44C6CBBE77F988FD" : "KatsanaAPI\/Libraries\/Siesta\/"
   },
@@ -25,6 +27,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/bustoutsolutions\/siesta.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B6E16A6BE5489C8A768B73EF44C6CBBE77F988FD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/DaveWoodCom\/XCGLogger.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CD1557C3AE966BEDF3490D85F9712687801B146C"
     }
   ]
 }

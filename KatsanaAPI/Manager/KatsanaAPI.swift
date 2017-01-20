@@ -139,9 +139,7 @@ public class KatsanaAPI: NSObject {
         //Vehicle travel will request new data only after 1 minute
         API.configure("vehicles/*/travels/***") {
             $0.expirationTime = 1*60
-        }
-        
-        
+        }        
     }
     
     func setupTransformer() -> Void {
