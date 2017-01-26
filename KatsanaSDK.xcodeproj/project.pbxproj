@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C71D17851E39A4E2005CDC99 /* Travel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17841E39A4E2005CDC99 /* Travel.swift */; };
+		C71D17951E39A4E6005CDC99 /* Travel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17841E39A4E2005CDC99 /* Travel.swift */; };
+		C71D17971E39A513005CDC99 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17961E39A513005CDC99 /* Trip.swift */; };
+		C71D17991E39A761005CDC99 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17981E39A761005CDC99 /* Vehicle.swift */; };
+		C71D179B1E39AC5C005CDC99 /* VehicleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D179A1E39AC5C005CDC99 /* VehicleLocation.swift */; };
+		C71D179C1E39AC5C005CDC99 /* VehicleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D179A1E39AC5C005CDC99 /* VehicleLocation.swift */; };
+		C71D179D1E39B765005CDC99 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17961E39A513005CDC99 /* Trip.swift */; };
 		C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72773781DDBF59A00312F90 /* Cocoa.framework */; };
 		C728E0D81DF3BDC7007752FE /* Siesta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C728E0CB1DF3BDB4007752FE /* Siesta.framework */; };
 		C728E0D91DF3BDCE007752FE /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C728E0B11DF3BD9C007752FE /* XCGLogger.framework */; };
@@ -275,6 +282,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C71D17841E39A4E2005CDC99 /* Travel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Travel.swift; sourceTree = "<group>"; };
+		C71D17961E39A513005CDC99 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		C71D17981E39A761005CDC99 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		C71D179A1E39AC5C005CDC99 /* VehicleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocation.swift; sourceTree = "<group>"; };
 		C72773781DDBF59A00312F90 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XCGLogger.xcodeproj; path = XCGLogger/Sources/XCGLogger.xcodeproj; sourceTree = "<group>"; };
 		C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Siesta.xcodeproj; path = Libraries/Siesta/Siesta.xcodeproj; sourceTree = "<group>"; };
@@ -564,6 +575,10 @@
 			children = (
 				C7F4B01A1DB5DC5100AC3838 /* Extension */,
 				C75945651DAE217400774FAD /* KMObject.h */,
+				C71D17841E39A4E2005CDC99 /* Travel.swift */,
+				C71D17961E39A513005CDC99 /* Trip.swift */,
+				C71D17981E39A761005CDC99 /* Vehicle.swift */,
+				C71D179A1E39AC5C005CDC99 /* VehicleLocation.swift */,
 				C79ACD0F1DBF2AC2000607A6 /* VehicleActivity.swift */,
 				C7E2ADC61DEE82670098F7E2 /* LiveShare.swift */,
 				C79D9FDD1D7D19CF0003E7A8 /* KMAddress.h */,
@@ -770,7 +785,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = pixelated;
 				TargetAttributes = {
 					C74927851DDA831600A0767E = {
@@ -985,8 +1000,10 @@
 				C74927A61DDA86BB00A0767E /* KatsanaAPI+Profile.swift in Sources */,
 				C7E2ADC81DEE82670098F7E2 /* LiveShare.swift in Sources */,
 				C74927C61DDA8D4500A0767E /* DateHelper.swift in Sources */,
+				C71D179D1E39B765005CDC99 /* Trip.swift in Sources */,
 				C74927A71DDA86BB00A0767E /* KatsanaAPI+Vehicle.swift in Sources */,
 				C74927A81DDA86BB00A0767E /* KatsanaAPI+VehicleProfile.swift in Sources */,
+				C71D179C1E39AC5C005CDC99 /* VehicleLocation.swift in Sources */,
 				C74927C51DDA8D4200A0767E /* Just.swift in Sources */,
 				C74927A91DDA86BB00A0767E /* KatsanaAPI+Trip.swift in Sources */,
 				C74927AA1DDA86BB00A0767E /* KatsanaAPI+Address.swift in Sources */,
@@ -1008,6 +1025,7 @@
 				C74927B71DDA86BB00A0767E /* KMTravelHistory.m in Sources */,
 				C74927B81DDA86BB00A0767E /* KMVehicleLocation.m in Sources */,
 				C74927B91DDA86BB00A0767E /* ObjectJSONTransformer.swift in Sources */,
+				C71D17951E39A4E6005CDC99 /* Travel.swift in Sources */,
 				C74927BA1DDA86BB00A0767E /* KMTimeTransformer.m in Sources */,
 				C74927BB1DDA86BB00A0767E /* KMConstant.m in Sources */,
 			);
@@ -1017,6 +1035,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C71D17991E39A761005CDC99 /* Vehicle.swift in Sources */,
 				C76538C31DB08ECF001E1788 /* Date+Extension.swift in Sources */,
 				C76538C71DB0DD00001E1788 /* KatsanaAPI+Address.swift in Sources */,
 				C79ACD101DBF2AC2000607A6 /* VehicleActivity.swift in Sources */,
@@ -1026,11 +1045,14 @@
 				C7F4B0221DB5FA0600AC3838 /* ImageRequest.swift in Sources */,
 				C79DA0101D7D19CF0003E7A8 /* KMTravelHistory.m in Sources */,
 				C7E2ADB51DED5A330098F7E2 /* KatsanaAPI+Share.swift in Sources */,
+				C71D17851E39A4E2005CDC99 /* Travel.swift in Sources */,
+				C71D17971E39A513005CDC99 /* Trip.swift in Sources */,
 				C79C76431DADF507003A7DEF /* KatsanaAPI.swift in Sources */,
 				C79DA0021D7D19CF0003E7A8 /* KMAddress.m in Sources */,
 				C75610971DC0615800925222 /* String+Date.swift in Sources */,
 				C79ACD091DBF1A0E000607A6 /* SwiftyJSON.swift in Sources */,
 				C79D9FF61D7D19CF0003E7A8 /* KMCacheManager.m in Sources */,
+				C71D179B1E39AC5C005CDC99 /* VehicleLocation.swift in Sources */,
 				C7B0C9211DB9A5780008B60D /* APIError.swift in Sources */,
 				C7578B491DB462E400C964DB /* KatsanaAPI+Profile.swift in Sources */,
 				C79DA0121D7D19CF0003E7A8 /* KMVehicleLocation.m in Sources */,
@@ -1264,7 +1286,7 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 47CF2FS3SX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1296,7 +1318,7 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 47CF2FS3SX;
 				DYLIB_COMPATIBILITY_VERSION = 1;

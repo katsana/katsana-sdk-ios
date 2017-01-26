@@ -71,25 +71,6 @@
     return median.floatValue;
 }
 
-//- (CGFloat)maxSpeed{
-//    __block CGFloat maxSpeed = 0;
-//    __block KMVehicleLocation *prevPos = self.start;
-//    [self.histories enumerateObjectsUsingBlock:^(KMVehicleLocation *pos, NSUInteger idx, BOOL * _Nonnull stop) {
-//        CGFloat speed = 0;
-//        
-//        CGFloat distance = [pos distanceToPosition:prevPos];
-//        distance /= 1000.0f;
-//        CGFloat time = [pos.trackedAt timeIntervalSinceDate:prevPos.trackedAt];
-//        time = time/(60*60);
-//        speed = distance/time;
-//        if (speed > maxSpeed && time > 0) {
-//            maxSpeed = speed;
-//        }
-//        prevPos = pos;
-//    }];
-//    return maxSpeed;
-//}
-
 
 - (NSString*)maxSpeedString{
     return [KatsanaFormatter speedStringFromKnot:self.maxSpeed];
