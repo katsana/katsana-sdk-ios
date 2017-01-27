@@ -8,14 +8,15 @@
 
 import UIKit
 
+///Vehicle travel data for a day
 public class Travel: NSObject {
-    var vehicleId : String!
-    var maxSpeed : Float = 0
-    var distance : Double = 0
-    var idleDuration : Double = 0
+    public var vehicleId : String!
+    public var maxSpeed : Float = 0
+    public var distance : Double = 0
+    public var idleDuration : Double = 0
     
     private var _duration : Double = 0
-    var duration : Double{
+    public var duration : Double{
         set{
             _duration = newValue
         }
@@ -24,7 +25,7 @@ public class Travel: NSObject {
         }
     }
     
-    var trips = [Trip](){
+    public var trips = [Trip](){
         didSet{
             //Set trip count explicitly
             tripCount = trips.count
@@ -48,13 +49,13 @@ public class Travel: NSObject {
         }
     }
     
-    var date : Date!
-    var lastUpdate : Date!
+    public var date : Date!
+    public var lastUpdate : Date!
     
-    var violationCount : Int = 0
-    var tripCount : Int = 0
+    public var violationCount : Int = 0
+    public var tripCount : Int = 0
 
-    var needLoadTripHistory = false
+    public var needLoadTripHistory = false
     
     class func fastCodingKeys() -> [Any?] {
         return ["trips", "maxSpeed", "distance", "violationCount", "date", "idleDuration", "duration", "tripCount", "needLoadTripHistory", "vehicleId"]
@@ -63,7 +64,7 @@ public class Travel: NSObject {
     
     // MARK: Helper
     
-    var _vehicle : Vehicle!
+    public var _vehicle : Vehicle!
     func owner() -> Vehicle {
         if _vehicle == nil {
 //            _vehicle = KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)

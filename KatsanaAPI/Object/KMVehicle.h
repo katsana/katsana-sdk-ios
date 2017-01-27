@@ -32,7 +32,6 @@
 @property (nonatomic, strong) KMImage *maskedCarImage;
 //!Externally set
 @property (nonatomic, strong) id beacon;
-@property (nonatomic, assign) BOOL showAtActivityScreen;
 
 
 - (void)carImageWithBlock:(void (^)(KMImage *image))completion;

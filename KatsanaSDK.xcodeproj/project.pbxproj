@@ -124,6 +124,12 @@
 		C7A4BF961DAF0ECB007E90B8 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
 		C7A4BF971DAF0ECB007E90B8 /* KatsanaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C7B0C9211DB9A5780008B60D /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0C9201DB9A5780008B60D /* APIError.swift */; };
+		C7D5F47C1E3B0168004CBEA4 /* CLLocationCoordinate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D5F47B1E3B0168004CBEA4 /* CLLocationCoordinate+Extension.swift */; };
+		C7D5F47D1E3B0168004CBEA4 /* CLLocationCoordinate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D5F47B1E3B0168004CBEA4 /* CLLocationCoordinate+Extension.swift */; };
+		C7D5F48E1E3B0B3E004CBEA4 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D5F48D1E3B0B3E004CBEA4 /* Address.swift */; };
+		C7D5F48F1E3B0B3E004CBEA4 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D5F48D1E3B0B3E004CBEA4 /* Address.swift */; };
+		C7D5F4911E3B3905004CBEA4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D5F4901E3B3905004CBEA4 /* User.swift */; };
+		C7D5F4921E3B3905004CBEA4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D5F4901E3B3905004CBEA4 /* User.swift */; };
 		C7DFF3901DB49121004751B6 /* KatsanaAPI+VehicleProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DFF38F1DB49121004751B6 /* KatsanaAPI+VehicleProfile.swift */; };
 		C7DFF3941DB4917F004751B6 /* KatsanaAPI+Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DFF3931DB4917F004751B6 /* KatsanaAPI+Other.swift */; };
 		C7DFF3971DB4C7FA004751B6 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DFF3961DB4C7FA004751B6 /* Just.swift */; };
@@ -356,6 +362,9 @@
 		C7A4BF901DAF0C32007E90B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7A4BF921DAF0C32007E90B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7B0C9201DB9A5780008B60D /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		C7D5F47B1E3B0168004CBEA4 /* CLLocationCoordinate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate+Extension.swift"; sourceTree = "<group>"; };
+		C7D5F48D1E3B0B3E004CBEA4 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		C7D5F4901E3B3905004CBEA4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C7DFF38F1DB49121004751B6 /* KatsanaAPI+VehicleProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+VehicleProfile.swift"; sourceTree = "<group>"; };
 		C7DFF3931DB4917F004751B6 /* KatsanaAPI+Other.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Other.swift"; sourceTree = "<group>"; };
 		C7DFF3961DB4C7FA004751B6 /* Just.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Just.swift; sourceTree = "<group>"; };
@@ -524,6 +533,7 @@
 				C7578B4A1DB46A9A00C964DB /* UIImage+Extension.swift */,
 				C76715ED1DB5BF1A0044D8E2 /* JSON+Date.swift */,
 				C75610961DC0615800925222 /* String+Date.swift */,
+				C7D5F47B1E3B0168004CBEA4 /* CLLocationCoordinate+Extension.swift */,
 			);
 			name = Extension;
 			path = KatsanaAPI/Extension;
@@ -575,12 +585,14 @@
 			children = (
 				C7F4B01A1DB5DC5100AC3838 /* Extension */,
 				C75945651DAE217400774FAD /* KMObject.h */,
+				C7D5F4901E3B3905004CBEA4 /* User.swift */,
 				C71D17841E39A4E2005CDC99 /* Travel.swift */,
 				C71D17961E39A513005CDC99 /* Trip.swift */,
 				C71D17981E39A761005CDC99 /* Vehicle.swift */,
 				C71D179A1E39AC5C005CDC99 /* VehicleLocation.swift */,
 				C79ACD0F1DBF2AC2000607A6 /* VehicleActivity.swift */,
 				C7E2ADC61DEE82670098F7E2 /* LiveShare.swift */,
+				C7D5F48D1E3B0B3E004CBEA4 /* Address.swift */,
 				C79D9FDD1D7D19CF0003E7A8 /* KMAddress.h */,
 				C79D9FDE1D7D19CF0003E7A8 /* KMAddress.m */,
 				C79D9FE51D7D19CF0003E7A8 /* KMTrip.h */,
@@ -1004,9 +1016,11 @@
 				C74927A71DDA86BB00A0767E /* KatsanaAPI+Vehicle.swift in Sources */,
 				C74927A81DDA86BB00A0767E /* KatsanaAPI+VehicleProfile.swift in Sources */,
 				C71D179C1E39AC5C005CDC99 /* VehicleLocation.swift in Sources */,
+				C7D5F48F1E3B0B3E004CBEA4 /* Address.swift in Sources */,
 				C74927C51DDA8D4200A0767E /* Just.swift in Sources */,
 				C74927A91DDA86BB00A0767E /* KatsanaAPI+Trip.swift in Sources */,
 				C74927AA1DDA86BB00A0767E /* KatsanaAPI+Address.swift in Sources */,
+				C7D5F4921E3B3905004CBEA4 /* User.swift in Sources */,
 				C74927AB1DDA86BB00A0767E /* KatsanaAPI+Other.swift in Sources */,
 				C74927AC1DDA86BB00A0767E /* KatsanaAPI+Log.swift in Sources */,
 				C7587CDE1DDAC53000357BF7 /* FastCoder.m in Sources */,
@@ -1027,6 +1041,7 @@
 				C74927B91DDA86BB00A0767E /* ObjectJSONTransformer.swift in Sources */,
 				C71D17951E39A4E6005CDC99 /* Travel.swift in Sources */,
 				C74927BA1DDA86BB00A0767E /* KMTimeTransformer.m in Sources */,
+				C7D5F47D1E3B0168004CBEA4 /* CLLocationCoordinate+Extension.swift in Sources */,
 				C74927BB1DDA86BB00A0767E /* KMConstant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1041,6 +1056,7 @@
 				C79ACD101DBF2AC2000607A6 /* VehicleActivity.swift in Sources */,
 				C7DFF3971DB4C7FA004751B6 /* Just.swift in Sources */,
 				C79DA00C1D7D19CF0003E7A8 /* KMUser.m in Sources */,
+				C7D5F48E1E3B0B3E004CBEA4 /* Address.swift in Sources */,
 				C76715EE1DB5BF1A0044D8E2 /* JSON+Date.swift in Sources */,
 				C7F4B0221DB5FA0600AC3838 /* ImageRequest.swift in Sources */,
 				C79DA0101D7D19CF0003E7A8 /* KMTravelHistory.m in Sources */,
@@ -1048,6 +1064,7 @@
 				C71D17851E39A4E2005CDC99 /* Travel.swift in Sources */,
 				C71D17971E39A513005CDC99 /* Trip.swift in Sources */,
 				C79C76431DADF507003A7DEF /* KatsanaAPI.swift in Sources */,
+				C7D5F47C1E3B0168004CBEA4 /* CLLocationCoordinate+Extension.swift in Sources */,
 				C79DA0021D7D19CF0003E7A8 /* KMAddress.m in Sources */,
 				C75610971DC0615800925222 /* String+Date.swift in Sources */,
 				C79ACD091DBF1A0E000607A6 /* SwiftyJSON.swift in Sources */,
@@ -1075,6 +1092,7 @@
 				C79DA0161D7D19CF0003E7A8 /* KMTimeTransformer.m in Sources */,
 				C7F4B0241DB600DC00AC3838 /* AddressRequest.swift in Sources */,
 				C78B22131D757441002E25C3 /* KMConstant.m in Sources */,
+				C7D5F4911E3B3905004CBEA4 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
