@@ -122,7 +122,7 @@ public class KatsanaFormatter: NSObject {
     }
     
     class func convertTime(seconds:Double, displayFormat:DisplayFormat) -> String {
-        let transformer = KMTimeTransformer()
+        let transformer = TimeTransformer()
         if displayFormat == .full {
             transformer.fullFormat = true
         }

@@ -36,11 +36,15 @@ extension KatsanaAPI {
                         let resource = self.API.resource("profile")
                         resource.loadIfNeeded()?.onSuccess({ (entity) in
                             let user : User? = resource.typedContent()
-                            self.currentUser = user
-                            completion(user)
-                            NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
-                            self.log.info("Logged in user \(user?.userId), \(user?.email)")
-                            KMCacheManager.sharedInstance().cacheData(user, identifier: "")
+                            if let user = user{
+                                self.currentUser = user
+                                completion(user)
+                                NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
+                                self.log.info("Logged in user \(user.userId), \(user.email)")
+                                CacheManager.shared.cache(user: user)
+                            }else{
+                                failure(nil)
+                            }
                         }).onFailure({ (error) in
                             failure(error)
                         })

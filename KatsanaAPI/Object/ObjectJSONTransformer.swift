@@ -131,8 +131,8 @@ class ObjectJSONTransformer: NSObject {
         return trip
     }
     
-    class func AddressObject(json : JSON) -> KMAddress {
-        let address = KMAddress()
+    class func AddressObject(json : JSON) -> Address {
+        let address = Address()
         address.latitude = json["latitude"].doubleValue
         address.longitude = json["longitude"].doubleValue
         let streetNumber = json["street_number"].stringValue

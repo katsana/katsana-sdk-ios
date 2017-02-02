@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 let cacheVersion = "2.0"
 

@@ -10,14 +10,14 @@
 extension KatsanaAPI {
     @nonobjc static let maxDaySummary = 3;
     
-    public func requestTripSummaryToday(vehicleId: String, completion: @escaping (_ summary: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTripSummaryToday(vehicleId: String, completion: @escaping (_ summary: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let path = "vehicles/" + vehicleId + "/summaries/today"
         let resource = API.resource(path);
         let request = resource.loadIfNeeded()
         
         
         request?.onSuccess({(entity) in
-            let summary : KMTravelHistory? = resource.typedContent()
+            let summary : Travel? = resource.typedContent()
             summary?.vehicleId = vehicleId
             completion(summary)
             }).onFailure({ (error) in
@@ -26,14 +26,14 @@ extension KatsanaAPI {
             })
         
         if request == nil {
-            let summary : KMTravelHistory? = resource.typedContent()
+            let summary : Travel? = resource.typedContent()
             completion(summary)
         }
     }
     
     ///Request trip summary between dates. Only load trip count without actual trip details to minimize data usage,
     
-    public func requestTripSummaries(vehicleId: String, fromDate: Date!, toDate: Date, completion: @escaping (_ summaries:[KMTravelHistory]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTripSummaries(vehicleId: String, fromDate: Date!, toDate: Date, completion: @escaping (_ summaries:[Travel]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let dates = validateRange(fromDate: fromDate, toDate: toDate)
         let datesWithHistory = requiredRangeToRequestTripSummary(fromDate: dates.fromDate, toDate: dates.toDate, vehicleId: vehicleId)
         
@@ -45,10 +45,10 @@ extension KatsanaAPI {
         let request = resource.loadIfNeeded()
         
         func handleResource() -> Void {
-            if let summaries : [KMTravelHistory] = resource.typedContent(){
+            if let summaries : [Travel] = resource.typedContent(){
                 for summary in summaries{
                     //Remove duplicate history
-                    var duplicateHistoryNeedRemove : KMTravelHistory!
+                    var duplicateHistoryNeedRemove : Travel!
                     for history in histories{
                         if summary.date.isEqualToDateIgnoringTime(history.date){
                             if summary.tripCount > history.trips.count{
@@ -72,7 +72,7 @@ extension KatsanaAPI {
                     
                     //Cache history for days more than maxDaySummary, because it may already contain trip but still not finalized on the server
                     if Date().daysAfterDate((summary.date)!) > KatsanaAPI.maxDaySummary{
-                        KMCacheManager.sharedInstance().cacheData(summary, identifier: vehicleId)
+                        CacheManager.shared.cache(travel: summary, vehicleId: vehicleId)
                     }
                 }
                 histories.append(contentsOf: summaries)
@@ -97,9 +97,9 @@ extension KatsanaAPI {
     }
     
     ///Request trip history will download histories for that particular date
-    public func requestTripHistory(for date: Date, vehicleId: String, completion: @escaping (_ history: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTripHistory(for date: Date, vehicleId: String, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         
-        let history = KMCacheManager.sharedInstance().travelHistory(for: date, vehicleId: vehicleId)
+        let history = CacheManager.shared.travel(vehicleId: vehicleId, date: date)
         if history != nil && history?.needLoadTripHistory == false{
             self.log.debug("Get trip history from cached data vehicle id \(vehicleId), date \(date)")
             history?.vehicleId = vehicleId
@@ -111,11 +111,13 @@ extension KatsanaAPI {
         let resource = API.resource(path);
         
         func handleResource() -> Void{
-            let history : KMTravelHistory? = resource.typedContent()
+            let history : Travel? = resource.typedContent()
             history?.lastUpdate = Date() //Set last update date
             history?.date = date
             history?.vehicleId = vehicleId
-            KMCacheManager.sharedInstance().cacheData(history, identifier: vehicleId) //Cache history
+            if let history = history {
+                CacheManager.shared.cache(travel: history, vehicleId: vehicleId) //Cache history
+            }
             completion(history)
         }
         
@@ -133,13 +135,13 @@ extension KatsanaAPI {
     }
     
     ///Request trip history using given summary. Summary only give duration and trip count, if cached history is different from the summary, reload and return it
-    public func requestTripHistoryUsing(summary: KMTravelHistory, completion: @escaping (_ history: KMTravelHistory?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTripHistoryUsing(summary: Travel, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let vehicleId = summary.vehicleId
         guard vehicleId != nil else {
             return
         }
         
-        let history = KMCacheManager.sharedInstance().travelHistory(for: summary.date, vehicleId: vehicleId)
+        let history = CacheManager.shared.travel(vehicleId: vehicleId!, date: summary.date)
         if history != nil && history?.needLoadTripHistory == false{
             //If trip count is different, make need load trip
             if summary.tripCount != history?.trips.count {
@@ -148,15 +150,17 @@ extension KatsanaAPI {
             }
             let theHistory = history!
             //If duration from summary and history more than 10 seconds, make need load trip
-            let totalDuration = theHistory.totalDuration()
-            if fabs(summary.totalDuration() - totalDuration) > 10 {
+            let totalDuration = theHistory.duration
+            if fabs(summary.duration - totalDuration) > 10 {
                 history?.needLoadTripHistory = true
-                self.log.debug("Need load trip history from summary because summary duration (\(summary.totalDuration())) != history duration (\(totalDuration)), vehicle id \(vehicleId)")
+                self.log.debug("Need load trip history from summary because summary duration (\(summary.duration)) != history duration (\(totalDuration)), vehicle id \(vehicleId)")
             }
         }
         requestTripHistory(for: summary.date, vehicleId: vehicleId!, completion: {history in
             summary.needLoadTripHistory = false
-            summary.trips = history?.trips
+            if let trips = history?.trips{
+                summary.trips = trips
+            }
             history?.needLoadTripHistory = false
             history?.vehicleId = summary.vehicleId
             completion(history)
@@ -167,11 +171,11 @@ extension KatsanaAPI {
     }
     
     ///Get latest cached travel histories from give day count
-    public func latestCachedTripHistories(vehicleId : String, dayCount : Int) -> [KMTravelHistory]! {
+    public func latestCachedTripHistories(vehicleId : String, dayCount : Int) -> [Travel]! {
         var date = Date()
-        var travelhistories = [KMTravelHistory]()
+        var travelhistories = [Travel]()
         for _ in 0..<dayCount {
-            if let history = KMCacheManager.sharedInstance().travelHistory(for: date, vehicleId: vehicleId){
+            if let history = CacheManager.shared.travel(vehicleId: vehicleId, date: date){
                 travelhistories.append(history)
             }
             date = date.dateBySubtractingDays(1)
@@ -199,16 +203,16 @@ extension KatsanaAPI {
     }
     
     //!Check required date range from given dates that require to update data from server. Basically give date range by user, cached data is checked if already available, the dates then filtered based on the cached data. However if it is latest dates, need check more condition because the latest data may still not uploaded to the server from the vechle itself.
-    func requiredRangeToRequestTripSummary(fromDate : Date, toDate : Date, vehicleId : String) -> (fromDate : Date, toDate : Date, cachedHistories : [KMTravelHistory]) {
-        var histories = [KMTravelHistory]()
-        var dates : (fromDate : Date, toDate : Date, cachedHistories : [KMTravelHistory])
+    func requiredRangeToRequestTripSummary(fromDate : Date, toDate : Date, vehicleId : String) -> (fromDate : Date, toDate : Date, cachedHistories : [Travel]) {
+        var histories = [Travel]()
+        var dates : (fromDate : Date, toDate : Date, cachedHistories : [Travel])
         
         var loopDate = fromDate
         
 
         //Check required from date
         while !loopDate.isEqualToDateIgnoringTime(toDate) {
-            let history = KMCacheManager.sharedInstance().travelHistory(for: loopDate, vehicleId: vehicleId)
+            let history = CacheManager.shared.travel(vehicleId: vehicleId, date: loopDate)
             
             //If have cached history, add to array if pass other condition
             if history != nil {
@@ -230,7 +234,7 @@ extension KatsanaAPI {
         //Check required to date
         loopDate = toDate
         while !loopDate.isEqualToDateIgnoringTime(fromDate) {
-            let history = KMCacheManager.sharedInstance().travelHistory(for: loopDate, vehicleId: vehicleId)
+            let history = CacheManager.shared.travel(vehicleId: vehicleId, date: loopDate)
             //If have cached history, add to array
             if history != nil {
                 histories.append(history!)

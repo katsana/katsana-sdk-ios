@@ -21,6 +21,13 @@ public class Travel: NSObject {
             _duration = newValue
         }
         get{
+            if _duration == 0 {
+                var totalDuration : Double = 0
+                for trip in trips {
+                    totalDuration = trip.duration
+                }
+                return totalDuration
+            }
             return _duration
         }
     }

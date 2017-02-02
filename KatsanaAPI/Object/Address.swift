@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 public class Address: NSObject {
     var latitude: Double!

@@ -6,12 +6,13 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
+import CoreLocation
 
 /// Class to request address from server. We are not using Siesta API because Siesta cache response in memory. Address may be called multiple times and we need to cache in KMCacheManager to save it in hdd
 class AddressRequest: NSObject {
 
-   class func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (KMAddress?, Error?) -> Void) -> Void {
-        KMCacheManager.sharedInstance().address(for: location) { (address) in
+   class func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (Address?, Error?) -> Void) -> Void {
+        CacheManager.shared.address(for: location) { (address) in
             if address != nil{
                 completion(address, nil)
             }else{
@@ -30,10 +31,10 @@ class AddressRequest: NSObject {
                                     address = appleAddress!
                                     completion(address, nil)
                                     //Save requested address to cache
-                                    KMCacheManager.sharedInstance().cacheData(address, identifier: nil)
+                                    CacheManager.shared.cache(address: address)
                                 })
                             }else{
-                                KMCacheManager.sharedInstance().cacheData(address, identifier: nil)
+                                CacheManager.shared.cache(address: address)
                                 DispatchQueue.main.sync{completion(address, nil)}
                             }
                         }else{
@@ -47,7 +48,7 @@ class AddressRequest: NSObject {
         }
     }
     
-   class func appleGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (KMAddress?) -> Void) -> Void {
+   class func appleGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (Address?) -> Void) -> Void {
         let geocoder = CLGeocoder()
         let clLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
         geocoder.reverseGeocodeLocation(clLocation, completionHandler: { (placemarks, error) in
@@ -56,7 +57,7 @@ class AddressRequest: NSObject {
             addressComps?.removeLast()
             let addressStr = addressComps?.joined(separator: ", ")
             
-            let address = KMAddress()
+            let address = Address()
             address.latitude = location.latitude
             address.longitude = location.longitude
             address.address = addressStr

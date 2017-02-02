@@ -8,7 +8,7 @@
 
 #if os(iOS)
 ///Currently, this extension no need to be used because ios <10 cannot use Measurement
-extension KMTravelHistory{
+extension Travel{
 
     public func averageSpeedStringNew() -> String {
         let speed = self.averageSpeed()
