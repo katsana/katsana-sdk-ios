@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C71831851E42C4B900E1507F /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71831841E42C4B900E1507F /* CacheManager.swift */; };
 		C71D17851E39A4E2005CDC99 /* Travel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17841E39A4E2005CDC99 /* Travel.swift */; };
 		C71D17951E39A4E6005CDC99 /* Travel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17841E39A4E2005CDC99 /* Travel.swift */; };
 		C71D17971E39A513005CDC99 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17961E39A513005CDC99 /* Trip.swift */; };
@@ -288,6 +289,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C71831841E42C4B900E1507F /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		C71D17841E39A4E2005CDC99 /* Travel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Travel.swift; sourceTree = "<group>"; };
 		C71D17961E39A513005CDC99 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		C71D17981E39A761005CDC99 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 			children = (
 				C79D9FCE1D7D19CF0003E7A8 /* KMCacheManager.h */,
 				C79D9FCF1D7D19CF0003E7A8 /* KMCacheManager.m */,
+				C71831841E42C4B900E1507F /* CacheManager.swift */,
 			);
 			name = Cache;
 			path = KatsanaAPI/Cache;
@@ -1078,6 +1081,7 @@
 				C76B86C51DAF8A48005F6751 /* KatsanaAPI+Trip.swift in Sources */,
 				C79DA00E1D7D19CF0003E7A8 /* KMVehicle.m in Sources */,
 				C76B86C31DAF569B005F6751 /* ObjectJSONTransformer.swift in Sources */,
+				C71831851E42C4B900E1507F /* CacheManager.swift in Sources */,
 				C76538BB1DB08B2B001E1788 /* UIImage+Extension.m in Sources */,
 				C79C76451DADF933003A7DEF /* KatsanaAPI+Login.swift in Sources */,
 				C75A3A681DC1FE0600F8E0BF /* KatsanaAPI+Log.swift in Sources */,

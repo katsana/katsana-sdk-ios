@@ -19,7 +19,7 @@ public class Address: NSObject {
     var country: String!
     
     var address: String!
-    var updateDate: Date!
+    var updateDate = Date()
     
     func optimizedAddress() -> String {
         var components = [String]()

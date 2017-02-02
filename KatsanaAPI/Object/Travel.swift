@@ -110,7 +110,7 @@ public class Travel: NSObject {
     
     // MARK: Logic
     
-    ///Get trip at specified time, may return nil
+    ///Get trip at specified time, return nil if not found
     func trip(at time: Date) -> Trip! {
         for trip in trips {
             if let startTime = trip.start?.trackedAt, let endTime = trip.end?.trackedAt  {
