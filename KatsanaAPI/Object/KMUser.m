@@ -40,6 +40,8 @@
     return dicto;
 }
 
+
+
 - (dispatch_queue_t)queue{
     if (!_queue) {
         _queue = dispatch_queue_create("activityLock", DISPATCH_QUEUE_SERIAL);
