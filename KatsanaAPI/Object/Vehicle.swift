@@ -38,7 +38,37 @@ public class Vehicle: NSObject {
         return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocket", "extraData"]
     }
     
+    func reload(with vehicle: Vehicle) {
+        guard userId == vehicle.userId, vehicleId == vehicle.vehicleId else {
+            return
+        }
+        
+        vehicleDescription = vehicle.vehicleDescription
+        mode = vehicle.mode
+        current = vehicle.current
+        imageURL = vehicle.imageURL
+        thumbImageURL = vehicle.thumbImageURL
+        todayMaxSpeed = vehicle.todayMaxSpeed
+        odometer = vehicle.odometer
+        subscriptionEnd = vehicle.subscriptionEnd
+        websocketSupported = vehicle.websocketSupported
+        image = vehicle.image
+        thumbImage = vehicle.thumbImage
+        imei = vehicle.imei
+    }
+    
+    func jsonPatch() -> [String: Any] {
+        var dicto = [String: Any]()
+        dicto["description"] = vehicleDescription
+        dicto["vehicle_number"] = vehicleNumber
+        return dicto
+    }
+    
     // MARK: Image
+    
+    func updateImage(_ image: KMImage) {
+        self.image = image
+    }
     
     func image(completion: @escaping (_ image: UIImage) -> Void){
         if let image = image {

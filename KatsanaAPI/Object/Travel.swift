@@ -60,7 +60,6 @@ public class Travel: NSObject {
     class func fastCodingKeys() -> [Any?] {
         return ["trips", "maxSpeed", "distance", "violationCount", "date", "idleDuration", "duration", "tripCount", "needLoadTripHistory", "vehicleId"]
     }
-
     
     // MARK: Helper
     

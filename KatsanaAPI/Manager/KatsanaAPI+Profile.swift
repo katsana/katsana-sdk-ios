@@ -16,24 +16,18 @@
 
 
 extension KatsanaAPI {
-    public func saveCurrentUserProfile(completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func saveCurrentUserProfile(completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let resource = self.API.resource("profile")
-        
-        if let json = self.currentUser.jsonPatchDictionary(){
-            resource.request(.patch, json: json).onSuccess { (_) in
-                completion(self.currentUser)
-                }.onFailure { (error) in
-                    failure(error)
-                    self.log.error("Error save user profile \(error)")
-            }
-        }else{
-            failure(nil)
-            self.log.error("Error save user profile")
+        let json = self.currentUser.jsonPatch()
+        resource.request(.patch, json: json).onSuccess { (_) in
+            completion(self.currentUser)
+            }.onFailure { (error) in
+                failure(error)
+                self.log.error("Error save user profile \(error)")
         }
-        
     }
     
-   public func saveCurrentUserProfileImage(image : KMImage?, completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+   public func saveCurrentUserProfileImage(image : KMImage?, completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
     
         var finalImage : KMImage!
         if image == nil {
@@ -63,7 +57,7 @@ extension KatsanaAPI {
         }
         
         //Just put it although still not saved
-        self.currentUser.avatarImage = finalImage
+        currentUser.updateImage(finalImage)
         let path = self.baseURL().absoluteString + "profile/avatar"
         uploadImage(image: finalImage, path: path) { (success, error) in
             if success{

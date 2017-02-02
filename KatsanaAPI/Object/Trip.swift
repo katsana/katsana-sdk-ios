@@ -18,6 +18,7 @@ public class Trip: NSObject {
     public var idleDuration: Float = 0
     public var score: Float = -1
     
+    public var idles = [VehicleLocation]()
     public var locations = [VehicleLocation]()
     public var violations = [VehicleActivity]()
     

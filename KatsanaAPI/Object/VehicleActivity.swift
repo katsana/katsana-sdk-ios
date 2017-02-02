@@ -143,7 +143,7 @@ public class VehicleActivity: NSObject {
         return CLLocationCoordinate2DMake(latitude, longitude)
     }
     
-    public func vehicle() -> KMVehicle! {
+    public func vehicle() -> Vehicle! {
         return KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)
     }
     

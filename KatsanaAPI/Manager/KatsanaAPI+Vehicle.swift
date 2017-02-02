@@ -14,7 +14,7 @@ extension KatsanaAPI {
     ///
     /// - parameter vehicleId:  vehicle id
     /// - parameter completion: completion
-    public func requestVehicle(vehicleId: String, completion: @escaping (_ vehicle: KMVehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestVehicle(vehicleId: String, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let cachedVehicle = vehicleWith(vehicleId: vehicleId)
         if (cachedVehicle != nil) {
             currentVehicle = cachedVehicle!;
@@ -25,12 +25,12 @@ extension KatsanaAPI {
         let request = resource.loadIfNeeded()
         
         func handleResource() -> Void {
-            let vehicle : KMVehicle? = resource.typedContent()
-            if cachedVehicle != nil {
-                cachedVehicle?.reloadData(with: vehicle)
+            let vehicle : Vehicle? = resource.typedContent()
+            if cachedVehicle != nil, let vehicle = vehicle {
+                cachedVehicle?.reload(with: vehicle)
                 currentVehicle = cachedVehicle!;
                 completion(cachedVehicle)
-                self.log.warning("Getting new instance of KMVehicle because vehicle list still not loaded")
+                self.log.warning("Getting new instance of Vehicle because vehicle list still not loaded")
             }else{
                 currentVehicle = vehicle!;
                 completion(vehicle)
@@ -51,7 +51,7 @@ extension KatsanaAPI {
     /// Request all vehicles. vehicles variable will be set from the vehicles requested
     ///
     /// - parameter completion: completion
-    public func requestAllVehicles(completion: @escaping (_ vehicles: [KMVehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestAllVehicles(completion: @escaping (_ vehicles: [Vehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         guard self.currentUser != nil else {
             failure(nil)
             return
@@ -62,7 +62,7 @@ extension KatsanaAPI {
         let request = resource.loadIfNeeded()
         
         func handleResource() -> Void {
-            let vehicles : [KMVehicle]? = resource.typedContent()
+            let vehicles : [Vehicle]? = resource.typedContent()
             self.vehicles = vehicles
             KMCacheManager.sharedInstance().cacheData(vehicles, identifier: "")
             completion(vehicles)
@@ -80,13 +80,13 @@ extension KatsanaAPI {
         }
     }
     
-    public func requestVehicleLocation(vehicleId: String, completion: @escaping (_ vehicleLocation: KMVehicleLocation?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestVehicleLocation(vehicleId: String, completion: @escaping (_ vehicleLocation: VehicleLocation?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let path = "vehicles/" + vehicleId + "/location"
         let resource = API.resource(path);
         let request = resource.loadIfNeeded()
         
         request?.onSuccess({ (entity) in
-            let location : KMVehicleLocation? = resource.typedContent()
+            let location : VehicleLocation? = resource.typedContent()
             completion(location)
             }).onFailure({ (error) in
                 failure(error)
@@ -94,12 +94,12 @@ extension KatsanaAPI {
             })
         
         if request == nil {
-            let location : KMVehicleLocation? = resource.typedContent()
+            let location : VehicleLocation? = resource.typedContent()
             completion(location)
         }
     }
     
-    public func requestAllVehicleLocations(completion: @escaping (_ vehicles: [KMVehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestAllVehicleLocations(completion: @escaping (_ vehicles: [Vehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         guard vehicles != nil else{
             return
         }
@@ -120,7 +120,7 @@ extension KatsanaAPI {
     
     // MARK: Logic
     
-    public func vehicleWith(vehicleId: String) -> KMVehicle! {
+    public func vehicleWith(vehicleId: String) -> Vehicle! {
         guard (vehicles != nil) else {
             self.log.warning("No vehicle given vehicle id \(vehicleId)")
             return nil

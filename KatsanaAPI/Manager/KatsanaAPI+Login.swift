@@ -12,7 +12,7 @@ import XCGLogger
 extension KatsanaAPI {
     
     
-    public func login(email: String, password: String, completion: @escaping (_ user: KMUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func login(email: String, password: String, completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         var data : Dictionary<String,String>
         var tokenKey = "access_token"
         var authPath = "oauth/token"
@@ -35,7 +35,7 @@ extension KatsanaAPI {
                         self.refreshToken = refreshToken
                         let resource = self.API.resource("profile")
                         resource.loadIfNeeded()?.onSuccess({ (entity) in
-                            let user : KMUser? = resource.typedContent()
+                            let user : User? = resource.typedContent()
                             self.currentUser = user
                             completion(user)
                             NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)

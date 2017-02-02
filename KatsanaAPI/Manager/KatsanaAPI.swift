@@ -26,8 +26,8 @@ public class KatsanaAPI: NSObject {
     internal(set) public var logPath: String!
     
     internal(set) public var tokenRefreshDate: Date!
-    internal(set) dynamic public var currentUser: KMUser!
-    public        dynamic        var currentVehicle: KMVehicle!{
+    internal(set) dynamic public var currentUser: User!
+    public        dynamic        var currentVehicle: Vehicle!{
         willSet{
             if (newValue != nil) {
                 log.info("Current selected vehicle \(newValue.vehicleId)")
@@ -35,7 +35,7 @@ public class KatsanaAPI: NSObject {
             }
         }
     }
-    internal(set) dynamic public var vehicles: [KMVehicle]!{
+    internal(set) dynamic public var vehicles: [Vehicle]!{
         willSet{
             if vehicles != nil {
                 lastVehicleImeis = vehicles.map({ $0.imei})
@@ -161,7 +161,7 @@ public class KatsanaAPI: NSObject {
             ObjectJSONTransformer.TravelSummaryObject(json: $0.content)
         }
         API.configureTransformer("vehicles/*/travels/***") {
-            ObjectJSONTransformer.TravelHistoryObject(json: $0.content)
+            ObjectJSONTransformer.TravelObject(json: $0.content)
         }
         API.configureTransformer("vehicles/*/location") {
             ObjectJSONTransformer.VehicleLocationObject(json: $0.content)
@@ -180,7 +180,7 @@ public class KatsanaAPI: NSObject {
         
         var supported = false
         for vehicle in vehicles {
-            if vehicle.websocket {
+            if vehicle.websocketSupported {
                 supported = true
                 break
             }
@@ -191,8 +191,8 @@ public class KatsanaAPI: NSObject {
     
     ///Load last logon user for offline viewing
     public func loadLastUserOffline() -> Void {
-        let user = KMCacheManager.sharedInstance().lastUser();
-        let vehicles = KMCacheManager.sharedInstance().lastVehicles();
+        let user = CacheManager.shared.lastUser();
+        let vehicles = CacheManager.shared.lastVehicles();
         self.currentUser = user
         self.vehicles = vehicles
     }

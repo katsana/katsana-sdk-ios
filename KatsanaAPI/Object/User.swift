@@ -18,7 +18,7 @@ public class User: NSObject {
     public var fullname: String!
     public var status: Int = 0
     
-    public var emergencyFullname: String!
+    public var emergencyFullName: String!
     public var emergencyPhoneHome: String!
     public var emergencyPhoneMobile: String!
     public var imageURL: String!
@@ -27,12 +27,96 @@ public class User: NSObject {
     public var createdAt: Date!
     public var updatedAt: Date!
     
+    private(set) public var image : UIImage!
+    private(set) public var thumbImage : UIImage!
+    
+    private var imageBlocks = [(image: UIImage) -> Void]()
+    private var thumbImageBlocks = [(image: UIImage) -> Void]()
+    private var isLoadingImage = false
+    private var isLoadingThumbImage = false
+    
     init(email: String) {
         self.email = email
     }
     
     class func fastCodingKeys() -> [Any?] {
         return ["userId", "email", "address", "phoneHome", "phoneMobile", "fullname", "status", "createdAt", "imageURL", "thumbImageURL"]
+    }
+    
+    func jsonPatch() -> [String: Any] {
+        var dicto = [String: Any]()
+        if let address = address{
+            dicto["address"] = address
+        }
+        if let phoneHome = phoneHome{
+            dicto["phone_home"] = phoneHome
+        }
+        if let phoneMobile = phoneMobile{
+            dicto["phone_mobile"] = phoneMobile
+        }
+        if let fullname = fullname{
+            dicto["fullname"] = fullname
+        }
+        if let emergencyFullName = emergencyFullName{
+            dicto["meta.emergency.fullname"] = emergencyFullName
+        }
+        if let emergencyPhoneHome = emergencyPhoneHome{
+            dicto["meta.emergency.phone.home"] = emergencyPhoneHome
+        }
+        if let emergencyPhoneMobile = emergencyPhoneMobile{
+            dicto["meta.emergency.phone.mobile"] = emergencyPhoneMobile
+        }
+        return dicto
+    }
+    
+    // MARK: Image
+    
+    func updateImage(_ image: KMImage) {
+        self.image = image
+    }
+    
+    func image(completion: @escaping (_ image: UIImage) -> Void){
+        if let image = image {
+            completion(image)
+        }else{
+            if isLoadingImage {
+                imageBlocks.append(completion)
+            }else{
+                isLoadingImage = true
+                ImageRequest.shared.requestImage(path: imageURL, completion: { (image) in
+                    self.image = image
+                    self.isLoadingImage = false
+                    for block in self.imageBlocks{
+                        block(image!)
+                    }
+                }, failure: { (error) in
+                    KatsanaAPI.shared.log.error("Error requesting user image \(self.email)")
+                    self.isLoadingImage = false
+                })
+            }
+        }
+    }
+    
+    func thumbImage(completion: @escaping (_ image: UIImage) -> Void){
+        if let image = thumbImage {
+            completion(image)
+        }else{
+            if isLoadingThumbImage {
+                thumbImageBlocks.append(completion)
+            }else{
+                isLoadingThumbImage = true
+                ImageRequest.shared.requestImage(path: thumbImageURL, completion: { (image) in
+                    self.thumbImage = image
+                    self.isLoadingThumbImage = false
+                    for block in self.thumbImageBlocks{
+                        block(image!)
+                    }
+                }, failure: { (error) in
+                    KatsanaAPI.shared.log.error("Error requesting user thumb image \(self.email)")
+                    self.isLoadingThumbImage = false
+                })
+            }
+        }
     }
 
 }

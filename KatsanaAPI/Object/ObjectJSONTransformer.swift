@@ -9,9 +9,9 @@
 
 /// Class to convert Swifty JSON to API object
 class ObjectJSONTransformer: NSObject {
-    class func UserObject(json : JSON) -> KMUser {
-        let user = KMUser()
-        user.email = json["email"].stringValue
+    class func UserObject(json : JSON) -> User {
+        let email = json["email"].stringValue
+        let user = User(email: email)
         user.userId = json["id"].stringValue
         user.address = json["address"].stringValue
         user.phoneHome = json["phone_home"].stringValue
@@ -20,27 +20,27 @@ class ObjectJSONTransformer: NSObject {
         user.emergencyFullName = json["meta"]["fullname"].stringValue
         user.emergencyPhoneHome = json["meta"]["phone"]["home"].stringValue
         user.emergencyPhoneMobile = json["meta"]["phone"]["mobile"].stringValue
-        user.avatarURLPath = json["avatar"]["url"].stringValue
+        user.imageURL = json["avatar"]["url"].stringValue
         
         user.createdAt = json["created_at"].date(gmt: 0)
         user.updatedAt = json["updated_at"].date(gmt: 0)
         return user
     }
     
-    class func VehiclesObject(json : JSON) -> [KMVehicle]{
+    class func VehiclesObject(json : JSON) -> [Vehicle]{
         let arr = json["devices"].arrayValue
         let vehicles = arr.map{VehicleObject(json: $0)}
         return vehicles
     }
     
-    class func VehicleObject(json : JSON) -> KMVehicle {
+    class func VehicleObject(json : JSON) -> Vehicle {
         var dicto = json["device"]
         //Check if called from vehicle or vehicles API
         if dicto.dictionaryValue.keys.count == 0 {
             dicto = json
         }
         
-        let vehicle = KMVehicle()
+        let vehicle = Vehicle()
         vehicle.userId = dicto["user_id"].stringValue
         vehicle.vehicleId = dicto["id"].stringValue
         vehicle.vehicleDescription = dicto["description"].stringValue
@@ -49,20 +49,23 @@ class ObjectJSONTransformer: NSObject {
         vehicle.mode = dicto["mode"].stringValue
         
         vehicle.todayMaxSpeed = dicto["today_max_speed"].floatValue
-        vehicle.markerURLPath = dicto["marker"].stringValue
-        vehicle.avatarURLPath = dicto["avatar"].stringValue
-        vehicle.odometer = dicto["odometer"].floatValue
-        vehicle.websocket = dicto["meta"]["websocket"].boolValue
+        vehicle.imageURL = dicto["marker"].stringValue
+        vehicle.thumbImageURL = dicto["avatar"].stringValue
+        vehicle.odometer = dicto["odometer"].doubleValue
+        vehicle.websocketSupported = dicto["meta"]["websocket"].boolValue
         
         vehicle.subscriptionEnd = dicto["ends_at"].date
         vehicle.current = self.VehicleLocationObject(json: dicto["current"])
         return vehicle
     }
     
-    class func VehicleLocationObject(json : JSON) -> KMVehicleLocation {
-        let pos = KMVehicleLocation()
-//        pos.altitude = json["altitude"].doubleValue
-//        pos.course = json["course"].string
+    class func VehicleLocationObject(json : JSON) -> VehicleLocation {
+        let latitude = json["latitude"].doubleValue
+        let longitude = json["longitude"].doubleValue
+        let pos = VehicleLocation(latitude: latitude, longitude: longitude)
+        
+        pos.altitude = json["altitude"].doubleValue
+        pos.course = json["course"].doubleValue
         pos.latitude = json["latitude"].doubleValue
         pos.longitude = json["longitude"].doubleValue
 //        pos.distance = json["distance"].floatValue
@@ -77,8 +80,8 @@ class ObjectJSONTransformer: NSObject {
         return pos
     }
     
-    class func TravelSummariesObject(json : JSON) -> [KMTravelHistory] {
-        var summaries = [KMTravelHistory]()
+    class func TravelSummariesObject(json : JSON) -> [Travel] {
+        var summaries = [Travel]()
         let array = json.arrayValue
         for jsonObj in array {
             let history = TravelSummaryObject(json: jsonObj)
@@ -87,8 +90,8 @@ class ObjectJSONTransformer: NSObject {
         return summaries
     }
     
-    class func TravelSummaryObject(json : JSON) -> KMTravelHistory {
-        let history = KMTravelHistory()
+    class func TravelSummaryObject(json : JSON) -> Travel {
+        let history = Travel()
         history.maxSpeed = json["max_speed"].floatValue
         history.distance = json["distance"].doubleValue
         history.violationCount = json["violation"].intValue
@@ -100,33 +103,31 @@ class ObjectJSONTransformer: NSObject {
         return history
     }
     
-    class func TravelHistoryObject(json : JSON) -> KMTravelHistory {
-        let history = KMTravelHistory()
+    class func TravelObject(json : JSON) -> Travel {
+        let history = Travel()
         history.maxSpeed = json["summary"]["max_speed"].floatValue
         history.distance = json["summary"]["distance"].doubleValue
         history.violationCount = json["summary"]["violation"].intValue
         history.trips = json["trips"].arrayValue.map{TripObject(json: $0)}
-        
         history.date = json["duration"]["from"].date(gmt: 0)
         return history
     }
     
-    class func TripObject(json : JSON) -> KMTrip {
-        let trip = KMTrip()
+    class func TripObject(json : JSON) -> Trip {
+        let trip = Trip()
         trip.maxSpeed = json["max_speed"].floatValue
         trip.distance = json["distance"].doubleValue
         trip.duration = json["duration"].doubleValue
         trip.averageSpeed = json["average_speed"].floatValue
-        trip.idleDuration = json["idle_duration"].doubleValue
-        
+        trip.idleDuration = json["idle_duration"].floatValue
         
         trip.start = VehicleLocationObject(json: json["start"])
         trip.end = VehicleLocationObject(json: json["end"])
         trip.idles = json["idles"].arrayValue.map{VehicleLocationObject(json: $0)}
-        trip.histories = json["histories"].arrayValue.map {VehicleLocationObject(json: $0)}
+        trip.locations = json["histories"].arrayValue.map {VehicleLocationObject(json: $0)}
         trip.violations = json["violations"].arrayValue.map {VehicleActivityObject(json: $0)}
         trip.score = json["score"].floatValue
-        
+
         return trip
     }
     
