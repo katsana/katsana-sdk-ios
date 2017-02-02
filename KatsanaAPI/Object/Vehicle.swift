@@ -38,7 +38,7 @@ public class Vehicle: NSObject {
         return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocket", "extraData"]
     }
     
-    func reload(with vehicle: Vehicle) {
+    public func reload(with vehicle: Vehicle) {
         guard userId == vehicle.userId, vehicleId == vehicle.vehicleId else {
             return
         }
@@ -66,11 +66,17 @@ public class Vehicle: NSObject {
     
     // MARK: Image
     
-    func updateImage(_ image: KMImage) {
+    public func updateImage(_ image: KMImage) {
         self.image = image
     }
     
-    func image(completion: @escaping (_ image: UIImage) -> Void){
+    public func reloadImageInBlocks() {
+        for block in imageBlocks {
+            block(self.image)
+        }
+    }
+    
+    public func image(completion: @escaping (_ image: UIImage) -> Void){
         if let image = image {
             completion(image)
         }else{
@@ -92,7 +98,7 @@ public class Vehicle: NSObject {
         }
     }
    
-    func thumbImage(completion: @escaping (_ image: UIImage) -> Void){
+    public func thumbImage(completion: @escaping (_ image: UIImage) -> Void){
         if let image = thumbImage {
             completion(image)
         }else{
@@ -114,7 +120,6 @@ public class Vehicle: NSObject {
         }
     }
     
-    // MARK: Logic
     
     
 }

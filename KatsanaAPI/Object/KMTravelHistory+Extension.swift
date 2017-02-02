@@ -1,5 +1,5 @@
 //
-//  KMTravelHistory+Extension.swift
+//  Travel+Extension.swift
 //  KatsanaSDK
 //
 //  Created by Wan Ahmad Lutfi on 18/10/2016.

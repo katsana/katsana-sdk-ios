@@ -8,26 +8,26 @@
 
 import UIKit
 
-public class Trip: NSObject {
-    public var start: VehicleLocation!
-    public var end: VehicleLocation!
-    public var distance: Double = 0
-    public var duration: Double = 0
-    public var maxSpeed: Float = 0
-    public var averageSpeed: Float = 0
-    public var idleDuration: Float = 0
-    public var score: Float = -1
+open class Trip: NSObject {
+    open var start: VehicleLocation!
+    open var end: VehicleLocation!
+    open var distance: Double = 0
+    open var duration: Double = 0
+    open var maxSpeed: Float = 0
+    open var averageSpeed: Float = 0
+    open var idleDuration: Float = 0
+    open var score: Float = -1
     
-    public var idles = [VehicleLocation]()
-    public var locations = [VehicleLocation]()
-    public var violations = [VehicleActivity]()
+    open var idles = [VehicleLocation]()
+    open var locations = [VehicleLocation]()
+    open var violations = [VehicleActivity]()
     
     ///Next trip and prev trip automatically set when trips are set in Travel class
     weak var nextTrip: Trip!
     weak var prevTrip: Trip!
     
     //Extra data that user can set to trip
-    public var extraData: [String: Any]!
+    open var extraData: [String: Any]!
     
     class func fastCodingKeys() -> [Any?] {
         return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData"]
@@ -35,7 +35,7 @@ public class Trip: NSObject {
     
     // MARK: Logic
     
-    func durationToNextTrip() -> Float {
+    open func durationToNextTrip() -> Float {
         if let nextTrip = nextTrip {
             let duration = nextTrip.start.trackedAt.timeIntervalSince(end.trackedAt)
             return Float(duration)
@@ -43,12 +43,23 @@ public class Trip: NSObject {
         return 0
     }
     
-    func durationToNextTripString() -> String {
+    open func durationToNextTripString() -> String {
         return KatsanaFormatter.durationStringFrom(seconds: Double(durationToNextTrip()))
     }
     
-    func maxSpeedString() -> String {
+    open func maxSpeedString() -> String {
         return KatsanaFormatter.speedStringFrom(knot: Double(maxSpeed))
     }
     
+    open func averageSpeedString() -> String {
+        return KatsanaFormatter.speedStringFrom(knot: Double(averageSpeed))
+    }
+    
+    open func durationString() -> String {
+        return KatsanaFormatter.durationStringFrom(seconds: duration)
+    }
+    
+    open func distanceString() -> String {
+        return KatsanaFormatter.distanceStringFrom(meter: distance)
+    }
 }

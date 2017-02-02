@@ -43,7 +43,7 @@ public class User: NSObject {
         return ["userId", "email", "address", "phoneHome", "phoneMobile", "fullname", "status", "createdAt", "imageURL", "thumbImageURL"]
     }
     
-    func jsonPatch() -> [String: Any] {
+    public func jsonPatch() -> [String: Any] {
         var dicto = [String: Any]()
         if let address = address{
             dicto["address"] = address
@@ -71,11 +71,11 @@ public class User: NSObject {
     
     // MARK: Image
     
-    func updateImage(_ image: KMImage) {
+    public func updateImage(_ image: KMImage) {
         self.image = image
     }
     
-    func image(completion: @escaping (_ image: UIImage) -> Void){
+    public func image(completion: @escaping (_ image: UIImage) -> Void){
         if let image = image {
             completion(image)
         }else{
@@ -97,7 +97,7 @@ public class User: NSObject {
         }
     }
     
-    func thumbImage(completion: @escaping (_ image: UIImage) -> Void){
+    public func thumbImage(completion: @escaping (_ image: UIImage) -> Void){
         if let image = thumbImage {
             completion(image)
         }else{

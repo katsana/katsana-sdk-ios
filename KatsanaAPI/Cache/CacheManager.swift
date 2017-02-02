@@ -15,7 +15,7 @@ public class CacheManager: NSObject {
     public static let shared = CacheManager()
     
     private var addresses = [Address]()
-    private var activities = [String: [VehicleActivity]]()
+    public var activities = [String: [VehicleActivity]]()
     private var liveShares = [LiveShare]()
     private var data = [String: Any]()
     

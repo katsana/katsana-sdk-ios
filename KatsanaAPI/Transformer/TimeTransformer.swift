@@ -8,14 +8,14 @@
 
 import UIKit
 
-class TimeTransformer: ValueTransformer {
-    var fullFormat = true
+public class TimeTransformer: ValueTransformer {
+    public var fullFormat = true
     
-    override class func allowsReverseTransformation() -> Bool{
+    override public class func allowsReverseTransformation() -> Bool{
         return false
     }
     
-    override func transformedValue(_ value: Any?) -> Any? {
+    override public func transformedValue(_ value: Any?) -> Any? {
         if let duration = value as? Float {
             var minutes = duration/60
             if (minutes > 60) {

@@ -9,14 +9,14 @@
 import UIKit
 
 ///Vehicle travel data for a day
-public class Travel: NSObject {
-    public var vehicleId : String!
-    public var maxSpeed : Float = 0
-    public var distance : Double = 0
-    public var idleDuration : Double = 0
+open class Travel: NSObject {
+    open var vehicleId : String!
+    open var maxSpeed : Float = 0
+    open var distance : Double = 0
+    open var idleDuration : Double = 0
     
     private var _duration : Double = 0
-    public var duration : Double{
+    open var duration : Double{
         set{
             _duration = newValue
         }
@@ -32,7 +32,7 @@ public class Travel: NSObject {
         }
     }
     
-    public var trips = [Trip](){
+    open var trips = [Trip](){
         didSet{
             //Set trip count explicitly
             tripCount = trips.count
@@ -56,13 +56,13 @@ public class Travel: NSObject {
         }
     }
     
-    public var date : Date!
-    public var lastUpdate : Date!
+    open var date : Date!
+    open var lastUpdate : Date!
     
-    public var violationCount : Int = 0
-    public var tripCount : Int = 0
+    open var violationCount : Int = 0
+    open var tripCount : Int = 0
 
-    public var needLoadTripHistory = false
+    open var needLoadTripHistory = false
     
     class func fastCodingKeys() -> [Any?] {
         return ["trips", "maxSpeed", "distance", "violationCount", "date", "idleDuration", "duration", "tripCount", "needLoadTripHistory", "vehicleId"]
@@ -70,15 +70,15 @@ public class Travel: NSObject {
     
     // MARK: Helper
     
-    public var _vehicle : Vehicle!
-    func owner() -> Vehicle {
+    open var _vehicle : Vehicle!
+    open func owner() -> Vehicle {
         if _vehicle == nil {
-//            _vehicle = KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)
+            _vehicle = KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)
         }
         return _vehicle
     }
     
-    func averageSpeed() -> Double {
+    open func averageSpeed() -> Double {
         var totalSpeed : Float = 0
         for trip in trips {
             totalSpeed = trip.averageSpeed
@@ -87,11 +87,11 @@ public class Travel: NSObject {
         return Double(averageSpeed)
     }
     
-    func averageSpeedString() -> String {
+    open func averageSpeedString() -> String {
         return KatsanaFormatter.speedStringFrom(knot: averageSpeed())
     }
     
-    func idleDurationString() -> String {
+    open func idleDurationString() -> String {
         var duration : Float = 0;
         for trip in trips {
             duration += trip.idleDuration
@@ -102,22 +102,22 @@ public class Travel: NSObject {
         return KatsanaFormatter.durationStringFrom(seconds: Double(duration))
     }
     
-    func todayMaxSpeedString() -> String {
+    open func todayMaxSpeedString() -> String {
         return KatsanaFormatter.speedStringFrom(knot: Double(maxSpeed))
     }
     
-    func totalDistanceString() -> String {
+    open func totalDistanceString() -> String {
         return KatsanaFormatter.distanceStringFrom(meter: distance)
     }
     
-    func totalDurationString() -> String {
+    open func totalDurationString() -> String {
         return KatsanaFormatter.durationStringFrom(seconds: duration)
     }
     
     // MARK: Logic
     
     ///Get trip at specified time, return nil if not found
-    func trip(at time: Date) -> Trip! {
+    open func trip(at time: Date) -> Trip! {
         for trip in trips {
             if let startTime = trip.start?.trackedAt, let endTime = trip.end?.trackedAt  {
                 if time.timeIntervalSince(startTime) >= 0, endTime.timeIntervalSince(time) >= 0 {
@@ -130,7 +130,7 @@ public class Travel: NSObject {
     
     // MARK: Equatable Protocol
     
-    static public func ==(a: Travel, b: Travel) -> Bool
+    static open func ==(a: Travel, b: Travel) -> Bool
     {
         guard a.date != nil, b.date != nil else {
             return false
@@ -145,7 +145,7 @@ public class Travel: NSObject {
     
     // MARK: Description
     
-    public override var description: String{
+    open override var description: String{
         return String(format: "%@, trips:%@, maxSpeed:%.1f, date:%@", super.description, trips.description, maxSpeed, date.description)
     }
     

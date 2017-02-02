@@ -62,8 +62,6 @@
 		C7578B4B1DB46A9A00C964DB /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7578B4A1DB46A9A00C964DB /* UIImage+Extension.swift */; };
 		C7587CDE1DDAC53000357BF7 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C773C96E1D98B02C00FC698E /* FastCoder.m */; };
 		C75A3A681DC1FE0600F8E0BF /* KatsanaAPI+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75A3A671DC1FE0600F8E0BF /* KatsanaAPI+Log.swift */; };
-		C76538BA1DB08B2B001E1788 /* UIImage+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = C76538B81DB08B2B001E1788 /* UIImage+Extension.h */; };
-		C76538BB1DB08B2B001E1788 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C76538B91DB08B2B001E1788 /* UIImage+Extension.m */; };
 		C76538C11DB08C74001E1788 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C01DB08C73001E1788 /* DateHelper.swift */; };
 		C76538C31DB08ECF001E1788 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C21DB08ECF001E1788 /* Date+Extension.swift */; };
 		C76538C71DB0DD00001E1788 /* KatsanaAPI+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C61DB0DD00001E1788 /* KatsanaAPI+Address.swift */; };
@@ -281,8 +279,6 @@
 		C7578B481DB462E400C964DB /* KatsanaAPI+Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Profile.swift"; sourceTree = "<group>"; };
 		C7578B4A1DB46A9A00C964DB /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		C75A3A671DC1FE0600F8E0BF /* KatsanaAPI+Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Log.swift"; sourceTree = "<group>"; };
-		C76538B81DB08B2B001E1788 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
-		C76538B91DB08B2B001E1788 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		C76538C01DB08C73001E1788 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		C76538C21DB08ECF001E1788 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C76538C61DB0DD00001E1788 /* KatsanaAPI+Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Address.swift"; sourceTree = "<group>"; };
@@ -470,8 +466,6 @@
 		C76538B71DB08B2B001E1788 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				C76538B81DB08B2B001E1788 /* UIImage+Extension.h */,
-				C76538B91DB08B2B001E1788 /* UIImage+Extension.m */,
 				C76538C21DB08ECF001E1788 /* Date+Extension.swift */,
 				C7578B4A1DB46A9A00C964DB /* UIImage+Extension.swift */,
 				C76715ED1DB5BF1A0044D8E2 /* JSON+Date.swift */,
@@ -612,7 +606,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C76538BA1DB08B2B001E1788 /* UIImage+Extension.h in Headers */,
 				C75105621D742D4700F4C341 /* PrefixHeader.pch in Headers */,
 				C75105011D7422BF00F4C341 /* KatsanaSDK.h in Headers */,
 				C773C96F1D98B02C00FC698E /* FastCoder.h in Headers */,
@@ -972,7 +965,6 @@
 				C76B86C51DAF8A48005F6751 /* KatsanaAPI+Trip.swift in Sources */,
 				C76B86C31DAF569B005F6751 /* ObjectJSONTransformer.swift in Sources */,
 				C71831851E42C4B900E1507F /* CacheManager.swift in Sources */,
-				C76538BB1DB08B2B001E1788 /* UIImage+Extension.m in Sources */,
 				C79C76451DADF933003A7DEF /* KatsanaAPI+Login.swift in Sources */,
 				C75A3A681DC1FE0600F8E0BF /* KatsanaAPI+Log.swift in Sources */,
 				C76B86B81DAF16EC005F6751 /* KatsanaAPI+Vehicle.swift in Sources */,

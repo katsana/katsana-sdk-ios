@@ -10,19 +10,19 @@ import UIKit
 import CoreLocation
 
 public class Address: NSObject {
-    var latitude: Double!
-    var longitude: Double!
-    var streetNumber: String!
-    var streetName: String!
-    var locality: String!
-    var sublocality: String!
-    var postcode: Int!
-    var country: String!
+    public var latitude: Double!
+    public var longitude: Double!
+    public var streetNumber: String!
+    public var streetName: String!
+    public var locality: String!
+    public var sublocality: String!
+    public var postcode: Int!
+    public var country: String!
     
-    var address: String!
-    var updateDate = Date()
+    public var address: String!
+    public var updateDate = Date()
     
-    func optimizedAddress() -> String {
+    public func optimizedAddress() -> String {
         var components = [String]()
         if let streetNumber = streetNumber, streetNumber.characters.count > 0 {
             components.append(streetNumber)
@@ -58,7 +58,7 @@ public class Address: NSObject {
 //        return address
 //    }
     
-    func coordinate() -> CLLocationCoordinate2D {
+    public func coordinate() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake(latitude, longitude)
     }
 }

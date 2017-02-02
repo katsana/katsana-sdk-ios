@@ -42,6 +42,7 @@ public class KatsanaAPI: NSObject {
             }
         }
     }
+    internal(set) dynamic public var activities: [VehicleActivity]!
     private(set) dynamic public var lastVehicleId: String!{
         set{
             UserDefaults.standard.set(newValue, forKey: "lastVehicleId")
