@@ -172,13 +172,60 @@ public class CacheManager: NSObject {
     
     // MARK: Save Cache
     
-    public func cache(data: Any!, identifier: String!) {
-        guard data != nil else {
-            return
+    public func cache(user: User) {
+        let classname = NSStringFromClass(User.self)
+        data[classname] = user
+        autoSave()
+    }
+    
+    public func cache(vehicles: [Vehicle]) {
+        let classname = NSStringFromClass(Vehicle.self)
+        data[classname] = vehicles
+        autoSave()
+    }
+    
+    public func cache(travel: Travel, vehicleId: String) {
+        var dataChanged = false
+        let classname = NSStringFromClass(Travel.self)
+        
+        var travelArray: [[String: Any]]!
+        if let array = data[classname] as? [[String: Any]]{
+            travelArray = array
+        }else{
+            let dicto = ["data": travel, "id": vehicleId] as [String : Any]
+            travelArray.append(dicto)
+            data[classname] = travelArray
+            dataChanged = true
         }
         
+        var needAdd = true
+        var needRemoveTravelIndex : Int!
         
+        for (index, dicto) in travelArray.enumerated() {
+            if let theTravel = dicto["data"] as? Travel, let theVehicleId = dicto["id"] as? String{
+                if theTravel.date.isEqualToDateIgnoringTime(travel.date), vehicleId == theVehicleId {
+                    if theTravel == travel{
+                        needAdd = false
+                    }else{
+                        needRemoveTravelIndex = index
+                        dataChanged = true
+                    }
+                    break
+                }
+            }
+        }
         
+        if let needRemoveTravelIndex = needRemoveTravelIndex {
+            travelArray.remove(at: needRemoveTravelIndex)
+        }
+        if needAdd {
+            travelArray.append(["data": travel, "id": vehicleId])
+            dataChanged = true
+        }
+        
+        if dataChanged{
+            autoSave()
+        }
     }
     
     public func cache(address: Address) {
@@ -194,6 +241,12 @@ public class CacheManager: NSObject {
             address.updateDate = Date()
             addresses.append(address)
             autosaveAddress()
+        }
+    }
+    
+    public func cache(activities: [VehicleActivity], userId: String) {
+        for act in activities {
+            cache(activity: act, userId: userId)
         }
     }
     
