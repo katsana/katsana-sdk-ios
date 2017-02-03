@@ -34,6 +34,12 @@ public class VehicleLocation: NSObject {
         return ["latitude", "longitude", "speed", "altitude", "course", "distance", "verticalAccuracy", "horizontalAccuracy", "state", "voltage", "gsm", "ignitionState", "trackedAt", "extraData"]
     }
     
+    ///Implemented to satisfy FastCoder and set default value
+    override init() {
+        self.latitude = 0
+        self.longitude = 0
+    }
+    
     public init(latitude: Double, longitude: Double) {
         self.latitude = latitude
         self.longitude = longitude
@@ -69,6 +75,12 @@ public class VehicleLocation: NSObject {
     ///Returns localized speed, depends on user settings at KatsanaFormatter
     public func localizedSpeed() -> Float {
         return Float(KatsanaFormatter.localizedSpeed(knot: Double(speed)))
+    }
+    
+    public func locationEqualTo(location: VehicleLocation) -> Bool {
+        let coord = coordinate()
+        let otherCoord = location.coordinate()
+        return coord.equal(otherCoord)
     }
     
     public func locationEqualTo(coordinate: CLLocationCoordinate2D) -> Bool {

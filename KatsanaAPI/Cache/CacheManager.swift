@@ -31,15 +31,17 @@ public class CacheManager: NSObject {
         super.init()
         
         let versionPath = cacheDirectory().appending("/version.txt")
-        let version = try? NSString(contentsOfFile: versionPath, encoding: String.Encoding.ascii.rawValue)
-        if let version = version{
+        do{
+            let version = try NSString(contentsOfFile: versionPath, encoding: String.Encoding.ascii.rawValue)
             if version as String != cacheVersion {
                 clearCache()
                 return
             }
             try? cacheVersion.write(toFile: versionPath, atomically: true, encoding: String.Encoding.ascii)
+        }catch{
+            try? cacheVersion.write(toFile: versionPath, atomically: true, encoding: String.Encoding.ascii)
         }
-        
+                
         let dataPath = cacheDirectory().appending("/" + cacheDataFilename())
         var url = URL(fileURLWithPath: dataPath)
         if let data = try? Data(contentsOf: url){

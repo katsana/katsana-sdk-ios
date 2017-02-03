@@ -35,6 +35,11 @@ public class User: NSObject {
     private var isLoadingImage = false
     private var isLoadingThumbImage = false
     
+    ///Implemented to satisfy FastCoder and set default value
+    override init() {
+        email = ""
+    }
+    
     init(email: String) {
         self.email = email
     }
