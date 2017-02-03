@@ -10,7 +10,7 @@
 extension KatsanaAPI {
     @nonobjc static let maxDaySummary = 3;
     
-    public func requestTripSummaryToday(vehicleId: String, completion: @escaping (_ summary: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTravelSummaryToday(vehicleId: String, completion: @escaping (_ summary: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let path = "vehicles/" + vehicleId + "/summaries/today"
         let resource = API.resource(path);
         let request = resource.loadIfNeeded()
@@ -31,9 +31,8 @@ extension KatsanaAPI {
         }
     }
     
-    ///Request trip summary between dates. Only load trip count without actual trip details to minimize data usage,
-    
-    public func requestTripSummaries(vehicleId: String, fromDate: Date!, toDate: Date, completion: @escaping (_ summaries:[Travel]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    ///Request travel summaries between dates. Only trip count is loaded, travel details are omitted.
+    public func requestTravelSummaries(vehicleId: String, fromDate: Date!, toDate: Date, completion: @escaping (_ summaries:[Travel]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let dates = validateRange(fromDate: fromDate, toDate: toDate)
         let datesWithHistory = requiredRangeToRequestTripSummary(fromDate: dates.fromDate, toDate: dates.toDate, vehicleId: vehicleId)
         
@@ -96,14 +95,14 @@ extension KatsanaAPI {
         
     }
     
-    ///Request trip history will download histories for that particular date
-    public func requestTripHistory(for date: Date, vehicleId: String, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    ///Request travel details for given date
+    public func requestTravel(for date: Date, vehicleId: String, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         
-        let history = CacheManager.shared.travel(vehicleId: vehicleId, date: date)
-        if history != nil && history?.needLoadTripHistory == false{
+        let travel = CacheManager.shared.travel(vehicleId: vehicleId, date: date)
+        if let travel = travel, travel.needLoadTripHistory == false{
             self.log.debug("Get trip history from cached data vehicle id \(vehicleId), date \(date)")
-            history?.vehicleId = vehicleId
-            completion(history)
+            travel.vehicleId = vehicleId
+            completion(travel)
             return
         }
         
@@ -111,14 +110,14 @@ extension KatsanaAPI {
         let resource = API.resource(path);
         
         func handleResource() -> Void{
-            let history : Travel? = resource.typedContent()
-            history?.lastUpdate = Date() //Set last update date
-            history?.date = date
-            history?.vehicleId = vehicleId
-            if let history = history {
+            let travel : Travel? = resource.typedContent()
+            travel?.lastUpdate = Date() //Set last update date
+            travel?.date = date
+            travel?.vehicleId = vehicleId
+            if let history = travel {
                 CacheManager.shared.cache(travel: history, vehicleId: vehicleId) //Cache history
             }
-            completion(history)
+            completion(travel)
         }
         
         let request = resource.loadIfNeeded()
@@ -134,29 +133,33 @@ extension KatsanaAPI {
         }
     }
     
-    ///Request trip history using given summary. Summary only give duration and trip count, if cached history is different from the summary, reload and return it
-    public func requestTripHistoryUsing(summary: Travel, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    ///Request travel using given summary. Summary only give duration and trip count, if cached history is different from the summary, reload and return it
+    public func requestTravelUsing(summary: Travel, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let vehicleId = summary.vehicleId
         guard vehicleId != nil else {
             return
         }
         
-        let history = CacheManager.shared.travel(vehicleId: vehicleId!, date: summary.date)
-        if history != nil && history?.needLoadTripHistory == false{
+        let travel = CacheManager.shared.travel(vehicleId: vehicleId!, date: summary.date)
+        if let travel = travel, travel.needLoadTripHistory == false{
             //If trip count is different, make need load trip
-            if summary.tripCount != history?.trips.count {
-                history?.needLoadTripHistory = true
-                self.log.debug("Need load trip history from summary because summary trip count (\(summary.tripCount)) != history trip count (\(history?.trips.count)), vehicle id \(vehicleId)")
+            if summary.tripCount != travel.trips.count {
+                travel.needLoadTripHistory = true
+                self.log.debug("Need load trip history from summary because summary trip count (\(summary.tripCount)) != history trip count (\(travel.trips.count)), vehicle id \(vehicleId)")
             }
-            let theHistory = history!
             //If duration from summary and history more than 10 seconds, make need load trip
-            let totalDuration = theHistory.duration
+            let totalDuration = travel.duration
             if fabs(summary.duration - totalDuration) > 10 {
-                history?.needLoadTripHistory = true
+                travel.needLoadTripHistory = true
                 self.log.debug("Need load trip history from summary because summary duration (\(summary.duration)) != history duration (\(totalDuration)), vehicle id \(vehicleId)")
             }
+            if !travel.needLoadTripHistory {
+                completion(travel)
+                return
+            }
         }
-        requestTripHistory(for: summary.date, vehicleId: vehicleId!, completion: {history in
+        
+        requestTravel(for: summary.date, vehicleId: vehicleId!, completion: {history in
             summary.needLoadTripHistory = false
             if let trips = history?.trips{
                 summary.trips = trips

@@ -49,8 +49,8 @@ class ObjectJSONTransformer: NSObject {
         vehicle.mode = dicto["mode"].stringValue
         
         vehicle.todayMaxSpeed = dicto["today_max_speed"].floatValue
-        vehicle.imageURL = dicto["marker"].stringValue
-        vehicle.thumbImageURL = dicto["avatar"].stringValue
+        vehicle.imageURL = dicto["avatar"].stringValue
+        vehicle.thumbImageURL = dicto["marker"].stringValue
         vehicle.odometer = dicto["odometer"].doubleValue
         vehicle.websocketSupported = dicto["meta"]["websocket"].boolValue
         

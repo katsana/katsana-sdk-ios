@@ -151,7 +151,7 @@ public class CacheManager: NSObject {
     public func image(for identifier: String) -> KMImage! {
         let dir = cacheDirectory()
         let path = dir.appending("/Images")
-        let filePath = path.appending(identifier + ".jpg")
+        let filePath = path.appending("/" + identifier)
         if let data = NSData(contentsOfFile: filePath){
             let image = KMImage(data: data as Data)
             return image

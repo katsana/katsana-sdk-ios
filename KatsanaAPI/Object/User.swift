@@ -81,7 +81,13 @@ public class User: NSObject {
     }
     
     public func image(completion: @escaping (_ image: UIImage) -> Void){
+        guard imageURL != nil else {
+            return
+        }
+        
         if let image = image {
+            completion(image)
+        }else if let image = CacheManager.shared.image(for: (NSURL(string: imageURL)?.lastPathComponent)!){
             completion(image)
         }else{
             if isLoadingImage {
@@ -104,7 +110,13 @@ public class User: NSObject {
     }
     
     public func thumbImage(completion: @escaping (_ image: UIImage) -> Void){
+        guard thumbImageURL != nil else {
+            return
+        }
+        
         if let image = thumbImage {
+            completion(image)
+        }else if let image = CacheManager.shared.image(for: (NSURL(string: thumbImageURL)?.lastPathComponent)!){
             completion(image)
         }else{
             if isLoadingThumbImage {
