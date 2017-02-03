@@ -106,10 +106,12 @@ public class CacheManager: NSObject {
         }
         
         let classname = NSStringFromClass(Travel.self)
-        if let travelDicto = data[classname] as? [String: Any]{
-            if let travelVehicleId = travelDicto["id"] as? String, let travel = travelDicto["data"] as? Travel {
-                if travelVehicleId == vehicleId, Calendar.current.isDate(travel.date, inSameDayAs: date){
-                    return travel
+        if let travelArray = data[classname] as? [[String: Any]]{
+            for travelDicto in travelArray {
+                if let travelVehicleId = travelDicto["id"] as? String, let travel = travelDicto["data"] as? Travel {
+                    if travelVehicleId == vehicleId, Calendar.current.isDate(travel.date, inSameDayAs: date){
+                        return travel
+                    }
                 }
             }
         }
@@ -202,11 +204,6 @@ public class CacheManager: NSObject {
             travelArray = array
         }else{
             travelArray = [[String: Any]]()
-            data[classname] = travelArray
-            let dicto = ["data": travel, "id": vehicleId] as [String : Any]
-            travelArray.append(dicto)
-            data[classname] = travelArray
-            dataChanged = true
         }
         
         var needAdd = true
@@ -235,6 +232,7 @@ public class CacheManager: NSObject {
         }
         
         if dataChanged{
+            data[classname] = travelArray
             autoSave()
         }
     }

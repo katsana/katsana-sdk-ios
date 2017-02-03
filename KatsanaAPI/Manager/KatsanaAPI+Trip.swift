@@ -114,8 +114,8 @@ extension KatsanaAPI {
             travel?.lastUpdate = Date() //Set last update date
             travel?.date = date
             travel?.vehicleId = vehicleId
-            if let history = travel {
-                CacheManager.shared.cache(travel: history, vehicleId: vehicleId) //Cache history
+            if let travel = travel {
+                CacheManager.shared.cache(travel: travel, vehicleId: vehicleId) //Cache history
             }
             completion(travel)
         }
@@ -159,14 +159,15 @@ extension KatsanaAPI {
             }
         }
         
-        requestTravel(for: summary.date, vehicleId: vehicleId!, completion: {history in
+        requestTravel(for: summary.date, vehicleId: vehicleId!, completion: {travel in
             summary.needLoadTripHistory = false
-            if let trips = history?.trips{
+            if let trips = travel?.trips{
                 summary.trips = trips
             }
-            history?.needLoadTripHistory = false
-            history?.vehicleId = summary.vehicleId
-            completion(history)
+            travel?.needLoadTripHistory = false
+            travel?.vehicleId = summary.vehicleId
+            completion(travel)
+
             }, failure: { (error) in
                 failure(error)
                 self.log.error("Error getting trip history vehicle id \(vehicleId), using summary with date \(summary.date), \(error)")
@@ -207,7 +208,7 @@ extension KatsanaAPI {
     
     //!Check required date range from given dates that require to update data from server. Basically give date range by user, cached data is checked if already available, the dates then filtered based on the cached data. However if it is latest dates, need check more condition because the latest data may still not uploaded to the server from the vechle itself.
     func requiredRangeToRequestTripSummary(fromDate : Date, toDate : Date, vehicleId : String) -> (fromDate : Date, toDate : Date, cachedHistories : [Travel]) {
-        var histories = [Travel]()
+        var travels = [Travel]()
         var dates : (fromDate : Date, toDate : Date, cachedHistories : [Travel])
         
         var loopDate = fromDate
@@ -215,18 +216,18 @@ extension KatsanaAPI {
 
         //Check required from date
         while !loopDate.isEqualToDateIgnoringTime(toDate) {
-            let history = CacheManager.shared.travel(vehicleId: vehicleId, date: loopDate)
+            let travel = CacheManager.shared.travel(vehicleId: vehicleId, date: loopDate)
             
             //If have cached history, add to array if pass other condition
-            if history != nil {
+            if let travel = travel {
                 //Check if last 3 day
-                if Date().daysAfterDate((history?.date)!) <= KatsanaAPI.maxDaySummary {
+                if Date().daysAfterDate((travel.date)!) <= KatsanaAPI.maxDaySummary {
                     //Check if current date is 5 minutes than last try update date and trips is 0
-                    if Date().minutesAfterDate((history?.lastUpdate)!) > 5 && history?.trips.count == 0 {
+                    if Date().minutesAfterDate(travel.lastUpdate) > 5 && travel.trips.count == 0 {
                         break
                     }
                 }
-                histories.append(history!)
+                travels.append(travel)
             }else{
                 break
             }
@@ -237,17 +238,17 @@ extension KatsanaAPI {
         //Check required to date
         loopDate = toDate
         while !loopDate.isEqualToDateIgnoringTime(fromDate) {
-            let history = CacheManager.shared.travel(vehicleId: vehicleId, date: loopDate)
+            let travel = CacheManager.shared.travel(vehicleId: vehicleId, date: loopDate)
             //If have cached history, add to array
-            if history != nil {
-                histories.append(history!)
+            if travel != nil {
+                travels.append(travel!)
             }else{
                 break
             }
             loopDate = loopDate.dateBySubtractingDays(1)
         }
         dates.toDate = loopDate
-        dates.cachedHistories = histories
+        dates.cachedHistories = travels
         return dates
     }
 }

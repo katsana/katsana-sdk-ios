@@ -57,7 +57,7 @@ open class Travel: NSObject {
     }
     
     open var date : Date!
-    open var lastUpdate : Date!
+    open var lastUpdate = Date()
     
     open var violationCount : Int = 0
     open var tripCount : Int = 0
