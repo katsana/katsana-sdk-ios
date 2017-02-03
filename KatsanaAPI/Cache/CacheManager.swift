@@ -280,6 +280,7 @@ public class CacheManager: NSObject {
         
         if needAdd{
             activities.append(activity)
+            self.activities[userId] = activities
             autoSaveActivities()
         }
     }
@@ -322,6 +323,7 @@ public class CacheManager: NSObject {
         NSObject.cancelPreviousPerformRequests(withTarget: self)
         if let lastSavedCache = lastSavedCache, Date().timeIntervalSince(lastSavedCache) < 5{
             perform(#selector(autoSave), with: nil, afterDelay: 3)
+            return
         }
         lastSavedCache = Date()
         
@@ -334,6 +336,7 @@ public class CacheManager: NSObject {
         NSObject.cancelPreviousPerformRequests(withTarget: self)
         if let lastSavedCache = lastSavedAddressCache, Date().timeIntervalSince(lastSavedCache) < 5{
             perform(#selector(autosaveAddress), with: nil, afterDelay: 3)
+            return
         }
         lastSavedAddressCache = Date()
         
@@ -346,6 +349,7 @@ public class CacheManager: NSObject {
         NSObject.cancelPreviousPerformRequests(withTarget: self)
         if let lastSavedCache = lastSavedActivitiesCache, Date().timeIntervalSince(lastSavedCache) < 5{
             perform(#selector(autoSaveActivities), with: nil, afterDelay: 3)
+            return
         }
         lastSavedActivitiesCache = Date()
         

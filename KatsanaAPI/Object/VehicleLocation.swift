@@ -77,17 +77,26 @@ public class VehicleLocation: NSObject {
         return Float(KatsanaFormatter.localizedSpeed(knot: Double(speed)))
     }
     
+    //Check if location equal to other location. The coordinate may have +- method check approximation only
     public func locationEqualTo(location: VehicleLocation) -> Bool {
         let coord = coordinate()
         let otherCoord = location.coordinate()
         return coord.equal(otherCoord)
     }
     
+    public func locationExactEqualTo(location: VehicleLocation) -> Bool {
+        let coordinate = location.coordinate()
+        if latitude == coordinate.latitude, longitude == coordinate.longitude {
+            return true
+        }
+        return false
+    }
+    
     public func locationEqualTo(coordinate: CLLocationCoordinate2D) -> Bool {
         return coordinate.equal(self.coordinate())
     }
     
-    public func locationExactEqualTo(_ coordinate: CLLocationCoordinate2D) -> Bool {
+    public func locationExactEqualTo(coordinate: CLLocationCoordinate2D) -> Bool {
         if latitude == coordinate.latitude, longitude == coordinate.longitude {
             return true
         }

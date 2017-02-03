@@ -38,6 +38,7 @@ public class Vehicle: NSObject {
         return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData"]
     }
     
+    ///Reload data given new vehicle data
     public func reload(with vehicle: Vehicle) {
         guard userId == vehicle.userId, vehicleId == vehicle.vehicleId else {
             return
@@ -90,6 +91,7 @@ public class Vehicle: NSObject {
                     for block in self.imageBlocks{
                         block(image!)
                     }
+                    completion(image!)
                 }, failure: { (error) in
                     KatsanaAPI.shared.log.error("Error requesting vehicle image \(self.vehicleId!)")
                     self.isLoadingImage = false
@@ -112,6 +114,7 @@ public class Vehicle: NSObject {
                     for block in self.thumbImageBlocks{
                         block(image!)
                     }
+                    completion(image!)
                 }, failure: { (error) in
                     KatsanaAPI.shared.log.error("Error requesting vehicle thumb image vehicle id \(self.vehicleId!)")
                     self.isLoadingThumbImage = false

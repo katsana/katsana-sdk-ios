@@ -94,6 +94,7 @@ public class User: NSObject {
                     for block in self.imageBlocks{
                         block(image!)
                     }
+                    completion(image!)
                 }, failure: { (error) in
                     KatsanaAPI.shared.log.error("Error requesting user image \(self.email)")
                     self.isLoadingImage = false
@@ -116,6 +117,7 @@ public class User: NSObject {
                     for block in self.thumbImageBlocks{
                         block(image!)
                     }
+                    completion(image!)
                 }, failure: { (error) in
                     KatsanaAPI.shared.log.error("Error requesting user thumb image \(self.email)")
                     self.isLoadingThumbImage = false
@@ -123,6 +125,18 @@ public class User: NSObject {
             }
         }
     }
-
+    
+    // MARK: helper
+    
+    func isPhoneNumber(_ text: String) -> Bool {
+        if text.characters.count < 3 {
+            return false
+        }
+        let set = CharacterSet(charactersIn: "+0123456789 ")
+        if text.trimmingCharacters(in: set) == ""{
+            return true
+        }
+        return false
+    }
 }
 

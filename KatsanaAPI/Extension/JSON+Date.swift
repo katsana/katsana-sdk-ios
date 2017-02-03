@@ -10,7 +10,7 @@ import Foundation
 
 extension JSON {
     
-    func date(gmt: Float) -> Date? {
+    public func date(gmt: Float) -> Date? {
         switch self.type {
         case .string:
             return (self.object as! String).date(gmt: gmt)
