@@ -39,7 +39,7 @@ import CoreLocation
 public class VehicleActivity: NSObject {
     internal var privateAttributedMessage: NSAttributedString!
     
-    public override class func fastCodingKeys() -> [Any]! {
+    override public class func fastCodingKeys() -> [Any]? {
         return ["vehicleId", "message", "distance", "duration", "latitude", "longitude", "startTime", "endTime", "startPosition", "endPosition", "violationId", "policyId", "policyKey", "maxSpeed", "averageSpeed", "identifier", "altitude", "course", "speed", "timeString"]
     }
     

@@ -37,7 +37,7 @@ extension KatsanaAPI {
         let dates = validateRange(fromDate: fromDate, toDate: toDate)
         let datesWithHistory = requiredRangeToRequestTripSummary(fromDate: dates.fromDate, toDate: dates.toDate, vehicleId: vehicleId)
         
-        var histories = datesWithHistory.cachedHistories
+        var travels = datesWithHistory.cachedHistories
         
         let path = "vehicles/" + vehicleId + "/summaries/duration"
         
@@ -49,20 +49,20 @@ extension KatsanaAPI {
                 for summary in summaries{
                     //Remove duplicate history
                     var duplicateHistoryNeedRemove : Travel!
-                    for history in histories{
-                        if summary.date.isEqualToDateIgnoringTime(history.date){
-                            if summary.tripCount > history.trips.count{
+                    for travel in travels{
+                        if summary.date.isEqualToDateIgnoringTime(travel.date){
+                            if summary.tripCount > travel.trips.count{
                                 summary.needLoadTripHistory = true
                             }else{
                                 summary.needLoadTripHistory = false
                             }
-                            summary.trips = history.trips
-                            duplicateHistoryNeedRemove = history
+                            summary.trips = travel.trips
+                            duplicateHistoryNeedRemove = travel
                             
                         }
                     }
                     if duplicateHistoryNeedRemove != nil{
-                        histories.remove(at: histories.index(of: duplicateHistoryNeedRemove)!)
+                        travels.remove(at: travels.index(of: duplicateHistoryNeedRemove)!)
                     }
                     
                     
@@ -75,9 +75,9 @@ extension KatsanaAPI {
                         CacheManager.shared.cache(travel: summary, vehicleId: vehicleId)
                     }
                 }
-                histories.append(contentsOf: summaries)
-                histories.sort(by: { $0.date > $1.date })
-                completion(histories)
+                travels.append(contentsOf: summaries)
+                travels.sort(by: { $0.date > $1.date })
+                completion(travels)
             }else{
                 failure(nil)
             }
@@ -170,8 +170,8 @@ extension KatsanaAPI {
         })
     }
     
-    ///Get latest cached travel histories from give day count
-    public func latestCachedTripHistories(vehicleId : String, dayCount : Int) -> [Travel]! {
+    ///Get latest cached travel histories from today to previous day count
+    public func latestCachedTravels(vehicleId : String, dayCount : Int) -> [Travel]! {
         var date = Date()
         var travelhistories = [Travel]()
         for _ in 0..<dayCount {

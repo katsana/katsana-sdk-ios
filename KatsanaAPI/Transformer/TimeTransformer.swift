@@ -9,14 +9,15 @@
 import UIKit
 
 public class TimeTransformer: ValueTransformer {
-    public var fullFormat = true
+    public var fullFormat = false
     
     override public class func allowsReverseTransformation() -> Bool{
         return false
     }
     
     override public func transformedValue(_ value: Any?) -> Any? {
-        if let duration = value as? Float {
+        if let number = value as? NSNumber {
+            let duration = number.floatValue
             var minutes = duration/60
             if (minutes > 60) {
                 var hour = minutes/60.0

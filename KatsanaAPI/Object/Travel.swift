@@ -64,7 +64,7 @@ open class Travel: NSObject {
 
     open var needLoadTripHistory = false
     
-    class func fastCodingKeys() -> [Any?] {
+    override open class func fastCodingKeys() -> [Any]? {
         return ["trips", "maxSpeed", "distance", "violationCount", "date", "idleDuration", "duration", "tripCount", "needLoadTripHistory", "vehicleId"]
     }
     

@@ -34,8 +34,8 @@ public class Vehicle: NSObject {
     private var isLoadingImage = false
     private var isLoadingThumbImage = false
     
-    class func fastCodingKeys() -> [Any?] {
-        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocket", "extraData"]
+    override public class func fastCodingKeys() -> [Any]? {
+        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData"]
     }
     
     public func reload(with vehicle: Vehicle) {

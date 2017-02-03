@@ -124,7 +124,9 @@ public class CacheManager: NSObject {
             var found = false
             for address in addresses {
                 if address.coordinate().equal(coordinate), Date().timeIntervalSince(address.updateDate) < keepAddressDuration{
-                    completion(address)
+                    DispatchQueue.main.sync {
+                        completion(address)
+                    }
                     found = true
                 }
             }
@@ -165,6 +167,10 @@ public class CacheManager: NSObject {
     }
     
     public func expandedTripListDate(vehicleId: String) -> Date! {
+        guard expandedTripList != nil else {
+            return nil
+        }
+        
         for (key, value) in expandedTripList {
             if key == vehicleId{
                 return value
@@ -195,6 +201,8 @@ public class CacheManager: NSObject {
         if let array = data[classname] as? [[String: Any]]{
             travelArray = array
         }else{
+            travelArray = [[String: Any]]()
+            data[classname] = travelArray
             let dicto = ["data": travel, "id": vehicleId] as [String : Any]
             travelArray.append(dicto)
             data[classname] = travelArray

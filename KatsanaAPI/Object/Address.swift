@@ -10,17 +10,32 @@ import UIKit
 import CoreLocation
 
 public class Address: NSObject {
-    public var latitude: Double!
-    public var longitude: Double!
+    public var latitude: Double
+    public var longitude: Double
     public var streetNumber: String!
     public var streetName: String!
     public var locality: String!
     public var sublocality: String!
-    public var postcode: Int!
+    public var postcode: Int = -1
     public var country: String!
     
     public var address: String!
     public var updateDate = Date()
+    
+    override public class func fastCodingKeys() -> [Any]?{
+        return ["latitude", "longitude", "streetNumber", "streetName", "locality", "sublocality", "postcode", "country", "address", "updateDate"]
+    }
+    
+    override public init() {
+        self.latitude = 0
+        self.longitude = 0
+    }
+    
+    init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
     
     public func optimizedAddress() -> String {
         var components = [String]()

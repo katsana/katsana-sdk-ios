@@ -44,7 +44,7 @@ public class User: NSObject {
         self.email = email
     }
     
-    class func fastCodingKeys() -> [Any?] {
+    override public class func fastCodingKeys() -> [Any]? {
         return ["userId", "email", "address", "phoneHome", "phoneMobile", "fullname", "status", "createdAt", "imageURL", "thumbImageURL"]
     }
     

@@ -29,7 +29,7 @@ open class Trip: NSObject {
     //Extra data that user can set to trip
     open var extraData: [String: Any]!
     
-    class func fastCodingKeys() -> [Any?] {
+    override open class func fastCodingKeys() -> [Any]? {
         return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData"]
     }
     
