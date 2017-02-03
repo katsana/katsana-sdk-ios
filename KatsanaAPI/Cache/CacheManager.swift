@@ -298,7 +298,7 @@ public class CacheManager: NSObject {
         if !FileManager.default.fileExists(atPath: path){
             try? FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
         }
-        let filePath = path.appending(identifier + ".jpg")
+        let filePath = path.appending("/" + identifier)
         #if os(iOS) || os(watchOS) || os(tvOS)
             let data = UIImagePNGRepresentation(image)
         #elseif os(OSX)
