@@ -1,5 +1,5 @@
 # katsana-sdk-ios
-KatsanaSDK is a framework for iOS/macOS to access data from Katsana platform.
+KatsanaSDK is a framework for accessing data from Katsana platform using iOS/macOS app.
 
 ## Installation
 
