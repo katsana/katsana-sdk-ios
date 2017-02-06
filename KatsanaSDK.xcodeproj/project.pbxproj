@@ -76,17 +76,16 @@
 		C71917CD1E4884410041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917C71E4884410041BC18 /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C71917CE1E4884410041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917C71E4884410041BC18 /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C71917CF1E4884410041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917C81E4884410041BC18 /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C71917D01E4884410041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917C81E4884410041BC18 /* FastCoder.m */; };
+		C71917D01E4884410041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917C81E4884410041BC18 /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C71917D11E4884410041BC18 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C91E4884410041BC18 /* Just.swift */; };
 		C71917D21E4884410041BC18 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C91E4884410041BC18 /* Just.swift */; };
 		C71917D31E4884410041BC18 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917CA1E4884410041BC18 /* SwiftyJSON.swift */; };
 		C71917D41E4884410041BC18 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917CA1E4884410041BC18 /* SwiftyJSON.swift */; };
-		C71917EC1E4893540041BC18 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C71917E51E4893500041BC18 /* Info.plist */; };
 		C71917ED1E4893540041BC18 /* KatsanaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917E61E4893500041BC18 /* KatsanaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C71917EE1E4893540041BC18 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C71917E71E4893500041BC18 /* PrefixHeader.pch */; };
-		C71917EF1E48935B0041BC18 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C71917E91E4893500041BC18 /* Info.plist */; };
 		C71917F01E48935B0041BC18 /* KatsanaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917EA1E4893500041BC18 /* KatsanaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C71917F11E48935B0041BC18 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C71917EB1E4893500041BC18 /* PrefixHeader.pch */; };
+		C71917F21E4897EF0041BC18 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
 		C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72773781DDBF59A00312F90 /* Cocoa.framework */; };
 		C74927BF1DDA8A3200A0767E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927BE1DDA8A3200A0767E /* CoreLocation.framework */; };
 		C74927C11DDA8A3D00A0767E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927C01DDA8A3D00A0767E /* MapKit.framework */; };
@@ -610,7 +609,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C71917EF1E48935B0041BC18 /* Info.plist in Resources */,
+				C71917F21E4897EF0041BC18 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,7 +617,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C71917EC1E4893540041BC18 /* Info.plist in Resources */,
 				C78B22151D75754B002E25C3 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -857,8 +855,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "KatsanaSDK-Mac/PrefixHeader.pch";
-				INFOPLIST_FILE = "KatsanaSDK-Mac/Info.plist";
+				GCC_PREFIX_HEADER = KatsanaSDK/macOS/PrefixHeader.pch;
+				INFOPLIST_FILE = KatsanaSDK/macOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -888,8 +886,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "KatsanaSDK-Mac/PrefixHeader.pch";
-				INFOPLIST_FILE = "KatsanaSDK-Mac/Info.plist";
+				GCC_PREFIX_HEADER = KatsanaSDK/macOS/PrefixHeader.pch;
+				INFOPLIST_FILE = KatsanaSDK/macOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -1014,8 +1012,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREFIX_HEADER = KatsanaSDK/PrefixHeader.pch;
-				INFOPLIST_FILE = KatsanaSDK/Info.plist;
+				GCC_PREFIX_HEADER = KatsanaSDK/iOS/PrefixHeader.pch;
+				INFOPLIST_FILE = KatsanaSDK/iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1046,8 +1044,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREFIX_HEADER = KatsanaSDK/PrefixHeader.pch;
-				INFOPLIST_FILE = KatsanaSDK/Info.plist;
+				GCC_PREFIX_HEADER = KatsanaSDK/iOS/PrefixHeader.pch;
+				INFOPLIST_FILE = KatsanaSDK/iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
