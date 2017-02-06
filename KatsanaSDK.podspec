@@ -8,12 +8,16 @@ SDK for accessing Katsana platform data
 DESC
 
 s.homepage     = "https://github.com/katsana/katsana-sdk-ios"
-s.license      = {:type => 'apache'}
+s.license      = 'apache'
 s.author       = { "Wan Ahmad Lutfi" => "lutfime_2000@yahoo.com" }
+s.platform = :ios, '8.0'
+s.platform = :osx, '10.11'
 s.ios.deployment_target = "8.0"
 s.osx.deployment_target = "10.11"
-s.source_files  = 'KatsanaSDK', 'KatsanaSDK/**/*.{swift,h,m}'
+s.source_files  = 'KatsanaSDK/**/*.{swift,h,m}'
 s.public_header_files = 'KatsanaSDK/**/*.h'
+s.ios.exclude_files = 'KatsanaSDK/macOS'
+s.osx.exclude_files = 'KatsanaSDK/iOS'
 s.framework    = 'CoreLocation'
 s.ios.framework  = 'UIKit'
 s.osx.framework  = 'AppKit'
