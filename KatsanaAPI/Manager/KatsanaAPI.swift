@@ -14,7 +14,7 @@ public class KatsanaAPI: NSObject {
     public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserSuccessLogonNotification")
     public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
     public static let userDidLogoutNotification = Notification.Name(rawValue: "KMUserDidLogoutNotification")
-    static let defaultBaseURL = URL(string: "https://api.katsana.com/")! as URL
+    static let defaultBaseURL: URL = URL(string: "https://api.katsana.com/")!
     internal(set) var log : XCGLogger!
     
     public static let shared = KatsanaAPI()

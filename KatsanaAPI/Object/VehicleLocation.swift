@@ -50,7 +50,7 @@ public class VehicleLocation: NSObject {
     }
     
     private var _lastCoordinate: CLLocationCoordinate2D!
-    
+    //Get address for current location
     public func address(completion: @escaping (String!) -> Void) {
         if let _lastCoordinate = _lastCoordinate, _lastCoordinate.equal(coordinate()) {
             completion(address)
@@ -77,13 +77,14 @@ public class VehicleLocation: NSObject {
         return Float(KatsanaFormatter.localizedSpeed(knot: Double(speed)))
     }
     
-    //Check if location equal to other location. The coordinate may have +- method check approximation only
+    ///Check if location equal to other location. Small distance between coordinates still considered as equal
     public func locationEqualTo(location: VehicleLocation) -> Bool {
         let coord = coordinate()
         let otherCoord = location.coordinate()
         return coord.equal(otherCoord)
     }
     
+    ///Check if location equal to other location. Check exact coordinates values between locations
     public func locationExactEqualTo(location: VehicleLocation) -> Bool {
         let coordinate = location.coordinate()
         if latitude == coordinate.latitude, longitude == coordinate.longitude {
@@ -114,5 +115,15 @@ public class VehicleLocation: NSObject {
         let otherLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         let distance = location.distance(from: otherLocation)
         return Float(distance)
+    }
+    
+    func localizedTrackedAt() -> Date! {
+        guard trackedAt != nil else {
+            return nil
+        }
+        
+        let timezoneOffset = NSTimeZone.system.secondsFromGMT(for: trackedAt)
+        let date = trackedAt.addingTimeInterval(TimeInterval(timezoneOffset))
+        return date
     }
 }
