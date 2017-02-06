@@ -9,8 +9,6 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
-//#define KNOT_TO_KMH 1.852
-
 @import UIKit;
 @import CoreLocation;
 

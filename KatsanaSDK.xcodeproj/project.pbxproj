@@ -51,8 +51,8 @@
 		C71917931E48703B0041BC18 /* KatsanaFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719175E1E48703B0041BC18 /* KatsanaFormatter.swift */; };
 		C71917941E48703B0041BC18 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917601E48703B0041BC18 /* Address.swift */; };
 		C71917951E48703B0041BC18 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917601E48703B0041BC18 /* Address.swift */; };
-		C71917961E48703B0041BC18 /* KMTravelHistory+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917611E48703B0041BC18 /* KMTravelHistory+Extension.swift */; };
-		C71917971E48703B0041BC18 /* KMTravelHistory+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917611E48703B0041BC18 /* KMTravelHistory+Extension.swift */; };
+		C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917611E48703B0041BC18 /* Travel+Extension.swift */; };
+		C71917971E48703B0041BC18 /* Travel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917611E48703B0041BC18 /* Travel+Extension.swift */; };
 		C71917981E48703B0041BC18 /* LiveShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917621E48703B0041BC18 /* LiveShare.swift */; };
 		C71917991E48703B0041BC18 /* LiveShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917621E48703B0041BC18 /* LiveShare.swift */; };
 		C719179A1E48703B0041BC18 /* ObjectJSONTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917631E48703B0041BC18 /* ObjectJSONTransformer.swift */; };
@@ -71,29 +71,29 @@
 		C71917A71E48703B0041BC18 /* VehicleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917691E48703B0041BC18 /* VehicleLocation.swift */; };
 		C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719176B1E48703B0041BC18 /* TimeTransformer.swift */; };
 		C71917A91E48703B0041BC18 /* TimeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719176B1E48703B0041BC18 /* TimeTransformer.swift */; };
-		C71917AD1E4870480041BC18 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C71917AA1E4870480041BC18 /* Info.plist */; };
-		C71917AE1E4870480041BC18 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C71917AA1E4870480041BC18 /* Info.plist */; };
 		C71917B11E4870490041BC18 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C71917AC1E4870480041BC18 /* PrefixHeader.pch */; };
 		C71917B21E4870490041BC18 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C71917AC1E4870480041BC18 /* PrefixHeader.pch */; };
 		C71917B41E4870FB0041BC18 /* KatsanaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917B31E4870FB0041BC18 /* KatsanaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C71917B81E4878140041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917B61E4878140041BC18 /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C71917B91E4878140041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917B61E4878140041BC18 /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C71917BA1E4878140041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917B71E4878140041BC18 /* FastCoder.m */; };
-		C71917BB1E4878140041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917B71E4878140041BC18 /* FastCoder.m */; };
+		C71917C41E4882180041BC18 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C71917AA1E4870480041BC18 /* Info.plist */; };
+		C71917CB1E4884410041BC18 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C61E4884410041BC18 /* DateHelper.swift */; };
+		C71917CC1E4884410041BC18 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C61E4884410041BC18 /* DateHelper.swift */; };
+		C71917CD1E4884410041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917C71E4884410041BC18 /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C71917CE1E4884410041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917C71E4884410041BC18 /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C71917CF1E4884410041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917C81E4884410041BC18 /* FastCoder.m */; };
+		C71917D01E4884410041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917C81E4884410041BC18 /* FastCoder.m */; };
+		C71917D11E4884410041BC18 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C91E4884410041BC18 /* Just.swift */; };
+		C71917D21E4884410041BC18 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C91E4884410041BC18 /* Just.swift */; };
+		C71917D31E4884410041BC18 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917CA1E4884410041BC18 /* SwiftyJSON.swift */; };
+		C71917D41E4884410041BC18 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917CA1E4884410041BC18 /* SwiftyJSON.swift */; };
 		C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72773781DDBF59A00312F90 /* Cocoa.framework */; };
 		C749278A1DDA831600A0767E /* KatsanaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C74927881DDA831600A0767E /* KatsanaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C74927BF1DDA8A3200A0767E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927BE1DDA8A3200A0767E /* CoreLocation.framework */; };
 		C74927C11DDA8A3D00A0767E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927C01DDA8A3D00A0767E /* MapKit.framework */; };
-		C74927C41DDA8D4000A0767E /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79ACD081DBF1A0E000607A6 /* SwiftyJSON.swift */; };
-		C74927C51DDA8D4200A0767E /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DFF3961DB4C7FA004751B6 /* Just.swift */; };
-		C74927C61DDA8D4500A0767E /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C01DB08C73001E1788 /* DateHelper.swift */; };
 		C74927D21DDA9A2F00A0767E /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C74927C71DDA943B00A0767E /* PrefixHeader.pch */; };
 		C751054F1D742B5F00F4C341 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751054E1D742B5F00F4C341 /* MapKit.framework */; };
 		C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751055F1D742D0500F4C341 /* UIKit.framework */; };
 		C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75105631D742D8600F4C341 /* CoreLocation.framework */; };
-		C76538C11DB08C74001E1788 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C01DB08C73001E1788 /* DateHelper.swift */; };
 		C78B22151D75754B002E25C3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
-		C79ACD091DBF1A0E000607A6 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79ACD081DBF1A0E000607A6 /* SwiftyJSON.swift */; };
 		C7A4BF781DAF077E007E90B8 /* KatsanaSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */; };
 		C7A4BF7A1DAF077E007E90B8 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
 		C7A4BF871DAF0C32007E90B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4BF861DAF0C32007E90B8 /* AppDelegate.swift */; };
@@ -103,7 +103,6 @@
 		C7A4BF911DAF0C32007E90B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7A4BF8F1DAF0C32007E90B8 /* LaunchScreen.storyboard */; };
 		C7A4BF961DAF0ECB007E90B8 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
 		C7A4BF971DAF0ECB007E90B8 /* KatsanaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C7DFF3971DB4C7FA004751B6 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DFF3961DB4C7FA004751B6 /* Just.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,7 +173,7 @@
 		C719175D1E48703B0041BC18 /* KatsanaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatsanaAPI.swift; sourceTree = "<group>"; };
 		C719175E1E48703B0041BC18 /* KatsanaFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatsanaFormatter.swift; sourceTree = "<group>"; };
 		C71917601E48703B0041BC18 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
-		C71917611E48703B0041BC18 /* KMTravelHistory+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KMTravelHistory+Extension.swift"; sourceTree = "<group>"; };
+		C71917611E48703B0041BC18 /* Travel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Travel+Extension.swift"; sourceTree = "<group>"; };
 		C71917621E48703B0041BC18 /* LiveShare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveShare.swift; sourceTree = "<group>"; };
 		C71917631E48703B0041BC18 /* ObjectJSONTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectJSONTransformer.swift; sourceTree = "<group>"; };
 		C71917641E48703B0041BC18 /* Travel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Travel.swift; sourceTree = "<group>"; };
@@ -187,8 +186,11 @@
 		C71917AA1E4870480041BC18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = KatsanaSDK/Info.plist; sourceTree = SOURCE_ROOT; };
 		C71917AC1E4870480041BC18 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = KatsanaSDK/PrefixHeader.pch; sourceTree = SOURCE_ROOT; };
 		C71917B31E4870FB0041BC18 /* KatsanaSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KatsanaSDK.h; path = KatsanaSDK/KatsanaSDK.h; sourceTree = SOURCE_ROOT; };
-		C71917B61E4878140041BC18 /* FastCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastCoder.h; sourceTree = "<group>"; };
-		C71917B71E4878140041BC18 /* FastCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCoder.m; sourceTree = "<group>"; };
+		C71917C61E4884410041BC18 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		C71917C71E4884410041BC18 /* FastCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastCoder.h; sourceTree = "<group>"; };
+		C71917C81E4884410041BC18 /* FastCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCoder.m; sourceTree = "<group>"; };
+		C71917C91E4884410041BC18 /* Just.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Just.swift; sourceTree = "<group>"; };
+		C71917CA1E4884410041BC18 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C72773781DDBF59A00312F90 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		C74927861DDA831600A0767E /* KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74927881DDA831600A0767E /* KatsanaSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KatsanaSDK.h; sourceTree = "<group>"; };
@@ -202,9 +204,7 @@
 		C751055D1D742CE100F4C341 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C751055F1D742D0500F4C341 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C75105631D742D8600F4C341 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		C76538C01DB08C73001E1788 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		C78B22141D75754B002E25C3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		C79ACD081DBF1A0E000607A6 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKTests.swift; sourceTree = "<group>"; };
 		C7A4BF791DAF077E007E90B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -215,7 +215,6 @@
 		C7A4BF8D1DAF0C32007E90B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7A4BF901DAF0C32007E90B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7A4BF921DAF0C32007E90B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7DFF3961DB4C7FA004751B6 /* Just.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Just.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,15 +273,11 @@
 		5DD901B866D20EE7A742A486 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C71917C51E4884410041BC18 /* Library */,
 				C72773781DDBF59A00312F90 /* Cocoa.framework */,
 				C74927C21DDA8AF300A0767E /* Foundation.framework */,
 				C74927C01DDA8A3D00A0767E /* MapKit.framework */,
 				C74927BE1DDA8A3200A0767E /* CoreLocation.framework */,
-				C7DFF3951DB4C7FA004751B6 /* Just */,
-				C76538C01DB08C73001E1788 /* DateHelper.swift */,
-				C79ACD081DBF1A0E000607A6 /* SwiftyJSON.swift */,
-				C71917B61E4878140041BC18 /* FastCoder.h */,
-				C71917B71E4878140041BC18 /* FastCoder.m */,
 				C75105631D742D8600F4C341 /* CoreLocation.framework */,
 				C751055F1D742D0500F4C341 /* UIKit.framework */,
 				C751055D1D742CE100F4C341 /* CoreGraphics.framework */,
@@ -341,7 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				C71917601E48703B0041BC18 /* Address.swift */,
-				C71917611E48703B0041BC18 /* KMTravelHistory+Extension.swift */,
+				C71917611E48703B0041BC18 /* Travel+Extension.swift */,
 				C71917621E48703B0041BC18 /* LiveShare.swift */,
 				C71917631E48703B0041BC18 /* ObjectJSONTransformer.swift */,
 				C71917641E48703B0041BC18 /* Travel.swift */,
@@ -362,6 +357,19 @@
 			);
 			name = Transformer;
 			path = KatsanaSDK/Transformer;
+			sourceTree = "<group>";
+		};
+		C71917C51E4884410041BC18 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				C71917C61E4884410041BC18 /* DateHelper.swift */,
+				C71917C71E4884410041BC18 /* FastCoder.h */,
+				C71917C81E4884410041BC18 /* FastCoder.m */,
+				C71917C91E4884410041BC18 /* Just.swift */,
+				C71917CA1E4884410041BC18 /* SwiftyJSON.swift */,
+			);
+			name = Library;
+			path = KatsanaSDK/Library;
 			sourceTree = "<group>";
 		};
 		C74927871DDA831600A0767E /* KatsanaSDK-macOS */ = {
@@ -438,14 +446,6 @@
 			path = KatsanaTest;
 			sourceTree = "<group>";
 		};
-		C7DFF3951DB4C7FA004751B6 /* Just */ = {
-			isa = PBXGroup;
-			children = (
-				C7DFF3961DB4C7FA004751B6 /* Just.swift */,
-			);
-			path = Just;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -453,7 +453,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C71917B91E4878140041BC18 /* FastCoder.h in Headers */,
+				C71917CE1E4884410041BC18 /* FastCoder.h in Headers */,
 				C749278A1DDA831600A0767E /* KatsanaSDK.h in Headers */,
 				C74927D21DDA9A2F00A0767E /* PrefixHeader.pch in Headers */,
 				C71917B21E4870490041BC18 /* PrefixHeader.pch in Headers */,
@@ -465,7 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C71917B41E4870FB0041BC18 /* KatsanaSDK.h in Headers */,
-				C71917B81E4878140041BC18 /* FastCoder.h in Headers */,
+				C71917CD1E4884410041BC18 /* FastCoder.h in Headers */,
 				C71917B11E4870490041BC18 /* PrefixHeader.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -611,7 +611,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C71917AE1E4870480041BC18 /* Info.plist in Resources */,
+				C71917C41E4882180041BC18 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,7 +619,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C71917AD1E4870480041BC18 /* Info.plist in Resources */,
 				C78B22151D75754B002E25C3 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -712,29 +711,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				C719179F1E48703B0041BC18 /* Trip.swift in Sources */,
-				C71917971E48703B0041BC18 /* KMTravelHistory+Extension.swift in Sources */,
+				C71917971E48703B0041BC18 /* Travel+Extension.swift in Sources */,
 				C719179D1E48703B0041BC18 /* Travel.swift in Sources */,
+				C71917D21E4884410041BC18 /* Just.swift in Sources */,
 				C71917931E48703B0041BC18 /* KatsanaFormatter.swift in Sources */,
 				C71917A11E48703B0041BC18 /* User.swift in Sources */,
 				C71917791E48703B0041BC18 /* AddressRequest.swift in Sources */,
 				C71917A91E48703B0041BC18 /* TimeTransformer.swift in Sources */,
-				C74927C61DDA8D4500A0767E /* DateHelper.swift in Sources */,
 				C71917A71E48703B0041BC18 /* VehicleLocation.swift in Sources */,
 				C71917831E48703B0041BC18 /* KatsanaAPI+Login.swift in Sources */,
+				C71917CC1E4884410041BC18 /* DateHelper.swift in Sources */,
 				C71917A31E48703B0041BC18 /* Vehicle.swift in Sources */,
 				C71917811E48703B0041BC18 /* KatsanaAPI+Log.swift in Sources */,
 				C71917871E48703B0041BC18 /* KatsanaAPI+Profile.swift in Sources */,
 				C719176F1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */,
 				C719176D1E48703B0041BC18 /* CacheManager.swift in Sources */,
-				C74927C51DDA8D4200A0767E /* Just.swift in Sources */,
 				C71917951E48703B0041BC18 /* Address.swift in Sources */,
+				C71917D01E4884410041BC18 /* FastCoder.m in Sources */,
 				C71917991E48703B0041BC18 /* LiveShare.swift in Sources */,
 				C719177F1E48703B0041BC18 /* KatsanaAPI+Address.swift in Sources */,
 				C719177B1E48703B0041BC18 /* APIError.swift in Sources */,
 				C719178D1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift in Sources */,
 				C71917711E48703B0041BC18 /* Date+Extension.swift in Sources */,
 				C71917851E48703B0041BC18 /* KatsanaAPI+Other.swift in Sources */,
-				C71917BB1E4878140041BC18 /* FastCoder.m in Sources */,
 				C71917891E48703B0041BC18 /* KatsanaAPI+Share.swift in Sources */,
 				C71917731E48703B0041BC18 /* JSON+Date.swift in Sources */,
 				C719178F1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift in Sources */,
@@ -744,7 +743,7 @@
 				C71917771E48703B0041BC18 /* UIImage+Extension.swift in Sources */,
 				C71917751E48703B0041BC18 /* String+Date.swift in Sources */,
 				C71917911E48703B0041BC18 /* KatsanaAPI.swift in Sources */,
-				C74927C41DDA8D4000A0767E /* SwiftyJSON.swift in Sources */,
+				C71917D41E4884410041BC18 /* SwiftyJSON.swift in Sources */,
 				C719178B1E48703B0041BC18 /* KatsanaAPI+Trip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -754,29 +753,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				C719179E1E48703B0041BC18 /* Trip.swift in Sources */,
-				C71917961E48703B0041BC18 /* KMTravelHistory+Extension.swift in Sources */,
+				C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */,
 				C719179C1E48703B0041BC18 /* Travel.swift in Sources */,
+				C71917D11E4884410041BC18 /* Just.swift in Sources */,
 				C71917921E48703B0041BC18 /* KatsanaFormatter.swift in Sources */,
 				C71917A01E48703B0041BC18 /* User.swift in Sources */,
 				C71917781E48703B0041BC18 /* AddressRequest.swift in Sources */,
 				C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */,
-				C7DFF3971DB4C7FA004751B6 /* Just.swift in Sources */,
 				C71917A61E48703B0041BC18 /* VehicleLocation.swift in Sources */,
 				C71917821E48703B0041BC18 /* KatsanaAPI+Login.swift in Sources */,
+				C71917CB1E4884410041BC18 /* DateHelper.swift in Sources */,
 				C71917A21E48703B0041BC18 /* Vehicle.swift in Sources */,
 				C71917801E48703B0041BC18 /* KatsanaAPI+Log.swift in Sources */,
 				C71917861E48703B0041BC18 /* KatsanaAPI+Profile.swift in Sources */,
 				C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */,
 				C719176C1E48703B0041BC18 /* CacheManager.swift in Sources */,
-				C79ACD091DBF1A0E000607A6 /* SwiftyJSON.swift in Sources */,
 				C71917941E48703B0041BC18 /* Address.swift in Sources */,
+				C71917CF1E4884410041BC18 /* FastCoder.m in Sources */,
 				C71917981E48703B0041BC18 /* LiveShare.swift in Sources */,
 				C719177E1E48703B0041BC18 /* KatsanaAPI+Address.swift in Sources */,
 				C719177A1E48703B0041BC18 /* APIError.swift in Sources */,
 				C719178C1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift in Sources */,
 				C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */,
 				C71917841E48703B0041BC18 /* KatsanaAPI+Other.swift in Sources */,
-				C71917BA1E4878140041BC18 /* FastCoder.m in Sources */,
 				C71917881E48703B0041BC18 /* KatsanaAPI+Share.swift in Sources */,
 				C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */,
 				C719178E1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift in Sources */,
@@ -786,7 +785,7 @@
 				C71917761E48703B0041BC18 /* UIImage+Extension.swift in Sources */,
 				C71917741E48703B0041BC18 /* String+Date.swift in Sources */,
 				C71917901E48703B0041BC18 /* KatsanaAPI.swift in Sources */,
-				C76538C11DB08C74001E1788 /* DateHelper.swift in Sources */,
+				C71917D31E4884410041BC18 /* SwiftyJSON.swift in Sources */,
 				C719178A1E48703B0041BC18 /* KatsanaAPI+Trip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
