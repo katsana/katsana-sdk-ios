@@ -10,6 +10,8 @@ DESC
 s.homepage     = "https://github.com/katsana/katsana-sdk-ios"
 s.license      = {:type => 'apache'}
 s.author       = { "Wan Ahmad Lutfi" => "lutfime_2000@yahoo.com" }
+s.platform = :ios, '8.0'
+s.platform = :osx, '10.11'
 s.ios.deployment_target = "8.0"
 s.osx.deployment_target = "10.11"
 s.source_files  = 'KatsanaSDK', 'KatsanaSDK/**/*.{swift,h,m}'

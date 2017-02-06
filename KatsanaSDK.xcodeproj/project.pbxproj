@@ -76,8 +76,8 @@
 		C71917B11E4870490041BC18 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C71917AC1E4870480041BC18 /* PrefixHeader.pch */; };
 		C71917B21E4870490041BC18 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C71917AC1E4870480041BC18 /* PrefixHeader.pch */; };
 		C71917B41E4870FB0041BC18 /* KatsanaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917B31E4870FB0041BC18 /* KatsanaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C71917B81E4878140041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917B61E4878140041BC18 /* FastCoder.h */; };
-		C71917B91E4878140041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917B61E4878140041BC18 /* FastCoder.h */; };
+		C71917B81E4878140041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917B61E4878140041BC18 /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C71917B91E4878140041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917B61E4878140041BC18 /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C71917BA1E4878140041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917B71E4878140041BC18 /* FastCoder.m */; };
 		C71917BB1E4878140041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917B71E4878140041BC18 /* FastCoder.m */; };
 		C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72773781DDBF59A00312F90 /* Cocoa.framework */; };
