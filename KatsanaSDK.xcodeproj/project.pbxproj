@@ -79,7 +79,7 @@
 		C71917CC1E4884410041BC18 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C61E4884410041BC18 /* DateHelper.swift */; };
 		C71917CD1E4884410041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917C71E4884410041BC18 /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C71917CE1E4884410041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917C71E4884410041BC18 /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C71917CF1E4884410041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917C81E4884410041BC18 /* FastCoder.m */; };
+		C71917CF1E4884410041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917C81E4884410041BC18 /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C71917D01E4884410041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917C81E4884410041BC18 /* FastCoder.m */; };
 		C71917D11E4884410041BC18 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C91E4884410041BC18 /* Just.swift */; };
 		C71917D21E4884410041BC18 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C91E4884410041BC18 /* Just.swift */; };
