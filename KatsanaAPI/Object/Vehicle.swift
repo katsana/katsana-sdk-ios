@@ -6,40 +6,41 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-import UIKit
-
-public class Vehicle: NSObject {
-    public var userId : String!
-    public var vehicleId: String!
-    public var vehicleDescription = ""
-    public var vehicleNumber = ""
-    public var imei : String!
-    public var mode: String!
-    public var todayMaxSpeed: Float = 0
-    public var odometer: Double = 0
-    public var subscriptionEnd: Date!
-    public var websocketSupported = false
-    public var imageURL: String!
-    public var thumbImageURL: String!
-    public var current: VehicleLocation!
+open class Vehicle: NSObject {
+    ///Owner id for this vehicle
+    open var userId : String!
+    open var vehicleId: String!
+    open var vehicleDescription = ""
+    open var vehicleNumber = ""
+    ///Imei of the beacon
+    open var imei : String!
+    open var mode: String!
+    open var todayMaxSpeed: Float = 0
+    open var odometer: Double = 0
+    ///Date when this vehicle subscription ended
+    open var subscriptionEnd: Date!
+    open var websocketSupported = false
+    open var imageURL: String!
+    open var thumbImageURL: String!
+    open var current: VehicleLocation!
     
     ///Extra data that user can save to vehicle. Should have only value with codable support.
-    public var extraData: [String: Any]!
+    open var extraData: [String: Any]!
     
-    private(set) public var image : UIImage!
-    private(set) public var thumbImage : UIImage!
+    private(set) open var image : KMImage!
+    private(set) open var thumbImage : KMImage!
     
-    private var imageBlocks = [(image: UIImage) -> Void]()
-    private var thumbImageBlocks = [(image: UIImage) -> Void]()
+    private var imageBlocks = [(image: KMImage) -> Void]()
+    private var thumbImageBlocks = [(image: KMImage) -> Void]()
     private var isLoadingImage = false
     private var isLoadingThumbImage = false
     
-    override public class func fastCodingKeys() -> [Any]? {
+    override open class func fastCodingKeys() -> [Any]? {
         return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData"]
     }
     
     ///Reload data given new vehicle data
-    public func reload(with vehicle: Vehicle) {
+    open func reload(with vehicle: Vehicle) {
         guard userId == vehicle.userId, vehicleId == vehicle.vehicleId else {
             return
         }
@@ -67,17 +68,17 @@ public class Vehicle: NSObject {
     
     // MARK: Image
     
-    public func updateImage(_ image: KMImage) {
+    open func updateImage(_ image: KMImage) {
         self.image = image
     }
     
-    public func reloadImageInBlocks() {
+    open func reloadImageInBlocks() {
         for block in imageBlocks {
             block(self.image)
         }
     }
     
-    public func image(completion: @escaping (_ image: UIImage) -> Void){
+    open func image(completion: @escaping (_ image: KMImage) -> Void){
         guard imageURL != nil else {
             return
         }
@@ -108,7 +109,7 @@ public class Vehicle: NSObject {
         }
     }
    
-    public func thumbImage(completion: @escaping (_ image: UIImage) -> Void){
+    open func thumbImage(completion: @escaping (_ image: KMImage) -> Void){
         guard thumbImageURL != nil else {
             return
         }

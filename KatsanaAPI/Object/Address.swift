@@ -6,23 +6,22 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-import UIKit
 import CoreLocation
 
-public class Address: NSObject {
-    public var latitude: Double
-    public var longitude: Double
-    public var streetNumber: String!
-    public var streetName: String!
-    public var locality: String!
-    public var sublocality: String!
-    public var postcode: Int = -1
-    public var country: String!
+open class Address: NSObject {
+    open var latitude: Double
+    open var longitude: Double
+    open var streetNumber: String!
+    open var streetName: String!
+    open var locality: String!
+    open var sublocality: String!
+    open var postcode: Int = -1
+    open var country: String!
     
-    public var address: String!
-    public var updateDate = Date()
+    open var address: String!
+    open var updateDate = Date()
     
-    override public class func fastCodingKeys() -> [Any]?{
+    override open class func fastCodingKeys() -> [Any]?{
         return ["latitude", "longitude", "streetNumber", "streetName", "locality", "sublocality", "postcode", "country", "address", "updateDate"]
     }
     
@@ -37,7 +36,7 @@ public class Address: NSObject {
     }
     
     
-    public func optimizedAddress() -> String {
+    open func optimizedAddress() -> String {
         var components = [String]()
         if let streetNumber = streetNumber, streetNumber.characters.count > 0 {
             components.append(streetNumber)
@@ -73,7 +72,7 @@ public class Address: NSObject {
 //        return address
 //    }
     
-    public func coordinate() -> CLLocationCoordinate2D {
+    open func coordinate() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake(latitude, longitude)
     }
 }

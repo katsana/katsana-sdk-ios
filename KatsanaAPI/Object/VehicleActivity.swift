@@ -28,24 +28,16 @@ import CoreLocation
     //More can be added
 }
 
-//@property (nonatomic, strong) NSString *identifier;
-//@property (nonatomic, assign) CGFloat altitude;
-//@property (nonatomic, assign) CGFloat course;
-//@property (nonatomic, assign) CGFloat speed;
-//@property (nonatomic, strong) NSAttributedString *attributedMessage;
-//
-//@property (nonatomic, strong) NSString *serverTimeText;
-
-public class VehicleActivity: NSObject {
+open class VehicleActivity: NSObject {
     internal var privateAttributedMessage: NSAttributedString!
     
-    override public class func fastCodingKeys() -> [Any]? {
+    override open class func fastCodingKeys() -> [Any]? {
         return ["vehicleId", "message", "distance", "duration", "latitude", "longitude", "startTime", "endTime", "startPosition", "endPosition", "violationId", "policyId", "policyKey", "maxSpeed", "averageSpeed", "identifier", "altitude", "course", "speed", "timeString"]
     }
     
-    public var vehicleId: String!
-    public var message: String!
-    public var attributedMessage: NSAttributedString!{
+    open var vehicleId: String!
+    open var message: String!
+    open var attributedMessage: NSAttributedString!{
         set{
             privateAttributedMessage = newValue
         }
@@ -59,29 +51,29 @@ public class VehicleActivity: NSObject {
             return privateAttributedMessage
         }
     }
-    public var address: String!
+    open var address: String!
     
-    public var distance: Float = 0
-    public var duration: Float = 0
-    public var latitude: Double = 0
-    public var longitude: Double = 0
-    public var altitude: Double = 0
-    public var course: Double = 0
+    open var distance: Float = 0
+    open var duration: Float = 0
+    open var latitude: Double = 0
+    open var longitude: Double = 0
+    open var altitude: Double = 0
+    open var course: Double = 0
     
-    public var speed: Float = 0
-    public var maxSpeed: Float = 0
-    public var averageSpeed: Float = 0
+    open var speed: Float = 0
+    open var maxSpeed: Float = 0
+    open var averageSpeed: Float = 0
     
-    public var timeString : String!
-    public var startTime: Date!
-    public var endTime: Date!
-    public var startPosition: Int = 0
-    public var endPosition: Int = 0
+    open var timeString : String!
+    open var startTime: Date!
+    open var endTime: Date!
+    open var startPosition: Int = 0
+    open var endPosition: Int = 0
     
-    public var identifier : String!
-    public var violationId: Int = 0
-    public var policyId: Int = 0
-    public lazy var type: ActivityType = {
+    open var identifier : String!
+    open var violationId: Int = 0
+    open var policyId: Int = 0
+    open lazy var type: ActivityType = {
         guard self.policyKey != nil else{
             return .none
         }
@@ -140,15 +132,15 @@ public class VehicleActivity: NSObject {
         
     }
 
-    public func coordinate() -> CLLocationCoordinate2D {
+    open func coordinate() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake(latitude, longitude)
     }
     
-    public func vehicle() -> Vehicle! {
+    open func vehicle() -> Vehicle! {
         return KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)
     }
     
-    public func address(completion: @escaping (String?) -> Void) -> Void {
+    open func address(completion: @escaping (String?) -> Void) -> Void {
         guard latitude != 0 || longitude != 0 else {
             completion("")
             return
@@ -160,15 +152,15 @@ public class VehicleActivity: NSObject {
 
     // MARK: Display
     
-    public func speedString() -> String {
+    open func speedString() -> String {
         return KatsanaFormatter.speedStringFrom(knot: Double(speed))
     }
     
-    public func maxSpeedString() -> String {
+    open func maxSpeedString() -> String {
         return KatsanaFormatter.speedStringFrom(knot: Double(maxSpeed))
     }
     
-//    class public func allTypes() -> [String] {
+//    class open func allTypes() -> [String] {
 //        return ["speed", "movement", "area", "battery-cutoff", "trip-start", "speed-summary", "harsh-brake", "harsh-accelerate", "harsh-corner", "checkpoint"]
 //    }
 }

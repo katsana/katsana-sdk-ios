@@ -6,32 +6,30 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-import UIKit
-
-public class User: NSObject {
-    public var email: String
-    public var userId: String!
-    public var address: String!
-    public var phoneHome: String!
-    public var phoneMobile: String!
-    public var identification: String!
-    public var fullname: String!
-    public var status: Int = 0
+open class User: NSObject {
+    open var email: String
+    open var userId: String!
+    open var address: String!
+    open var phoneHome: String!
+    open var phoneMobile: String!
+    open var identification: String!
+    open var fullname: String!
+    open var status: Int = 0
     
-    public var emergencyFullName: String!
-    public var emergencyPhoneHome: String!
-    public var emergencyPhoneMobile: String!
-    public var imageURL: String!
-    public var thumbImageURL: String!
+    open var emergencyFullName: String!
+    open var emergencyPhoneHome: String!
+    open var emergencyPhoneMobile: String!
+    open var imageURL: String!
+    open var thumbImageURL: String!
     
-    public var createdAt: Date!
-    public var updatedAt: Date!
+    open var createdAt: Date!
+    open var updatedAt: Date!
     
-    private(set) public var image : UIImage!
-    private(set) public var thumbImage : UIImage!
+    private(set) open var image : KMImage!
+    private(set) open var thumbImage : KMImage!
     
-    private var imageBlocks = [(image: UIImage) -> Void]()
-    private var thumbImageBlocks = [(image: UIImage) -> Void]()
+    private var imageBlocks = [(image: KMImage) -> Void]()
+    private var thumbImageBlocks = [(image: KMImage) -> Void]()
     private var isLoadingImage = false
     private var isLoadingThumbImage = false
     
@@ -44,11 +42,11 @@ public class User: NSObject {
         self.email = email
     }
     
-    override public class func fastCodingKeys() -> [Any]? {
+    override open class func fastCodingKeys() -> [Any]? {
         return ["userId", "email", "address", "phoneHome", "phoneMobile", "fullname", "status", "createdAt", "imageURL", "thumbImageURL"]
     }
     
-    public func jsonPatch() -> [String: Any] {
+    open func jsonPatch() -> [String: Any] {
         var dicto = [String: Any]()
         if let address = address{
             dicto["address"] = address
@@ -76,11 +74,11 @@ public class User: NSObject {
     
     // MARK: Image
     
-    public func updateImage(_ image: KMImage) {
+    open func updateImage(_ image: KMImage) {
         self.image = image
     }
     
-    public func image(completion: @escaping (_ image: UIImage) -> Void){
+    open func image(completion: @escaping (_ image: KMImage) -> Void){
         guard imageURL != nil else {
             return
         }
@@ -109,7 +107,7 @@ public class User: NSObject {
         }
     }
     
-    public func thumbImage(completion: @escaping (_ image: UIImage) -> Void){
+    open func thumbImage(completion: @escaping (_ image: KMImage) -> Void){
         guard thumbImageURL != nil else {
             return
         }

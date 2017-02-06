@@ -11,6 +11,7 @@
 		C71831961E43104E00E1507F /* TimeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71831951E43104E00E1507F /* TimeTransformer.swift */; };
 		C71831971E43104E00E1507F /* TimeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71831951E43104E00E1507F /* TimeTransformer.swift */; };
 		C71831981E43105800E1507F /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17981E39A761005CDC99 /* Vehicle.swift */; };
+		C719170F1E4859A00041BC18 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71831841E42C4B900E1507F /* CacheManager.swift */; };
 		C71D17851E39A4E2005CDC99 /* Travel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17841E39A4E2005CDC99 /* Travel.swift */; };
 		C71D17951E39A4E6005CDC99 /* Travel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17841E39A4E2005CDC99 /* Travel.swift */; };
 		C71D17971E39A513005CDC99 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17961E39A513005CDC99 /* Trip.swift */; };
@@ -60,7 +61,7 @@
 		C75610971DC0615800925222 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75610961DC0615800925222 /* String+Date.swift */; };
 		C7578B491DB462E400C964DB /* KatsanaAPI+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7578B481DB462E400C964DB /* KatsanaAPI+Profile.swift */; };
 		C7578B4B1DB46A9A00C964DB /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7578B4A1DB46A9A00C964DB /* UIImage+Extension.swift */; };
-		C7587CDE1DDAC53000357BF7 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C773C96E1D98B02C00FC698E /* FastCoder.m */; };
+		C7587CDE1DDAC53000357BF7 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C773C96E1D98B02C00FC698E /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C75A3A681DC1FE0600F8E0BF /* KatsanaAPI+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75A3A671DC1FE0600F8E0BF /* KatsanaAPI+Log.swift */; };
 		C76538C11DB08C74001E1788 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C01DB08C73001E1788 /* DateHelper.swift */; };
 		C76538C31DB08ECF001E1788 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C21DB08ECF001E1788 /* Date+Extension.swift */; };
@@ -70,7 +71,7 @@
 		C76B86C31DAF569B005F6751 /* ObjectJSONTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B86C21DAF569B005F6751 /* ObjectJSONTransformer.swift */; };
 		C76B86C51DAF8A48005F6751 /* KatsanaAPI+Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B86C41DAF8A48005F6751 /* KatsanaAPI+Trip.swift */; };
 		C773C96F1D98B02C00FC698E /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C773C96D1D98B02C00FC698E /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C773C9701D98B02C00FC698E /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C773C96E1D98B02C00FC698E /* FastCoder.m */; };
+		C773C9701D98B02C00FC698E /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C773C96E1D98B02C00FC698E /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C78B22151D75754B002E25C3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
 		C79ACD091DBF1A0E000607A6 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79ACD081DBF1A0E000607A6 /* SwiftyJSON.swift */; };
 		C79ACD101DBF2AC2000607A6 /* VehicleActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79ACD0F1DBF2AC2000607A6 /* VehicleActivity.swift */; };
@@ -907,6 +908,7 @@
 				C74927A21DDA86BB00A0767E /* JSON+Date.swift in Sources */,
 				C74927A31DDA86BB00A0767E /* String+Date.swift in Sources */,
 				C74927A41DDA86BB00A0767E /* KatsanaAPI.swift in Sources */,
+				C719170F1E4859A00041BC18 /* CacheManager.swift in Sources */,
 				C71831971E43104E00E1507F /* TimeTransformer.swift in Sources */,
 				C74927A51DDA86BB00A0767E /* KatsanaAPI+Login.swift in Sources */,
 				C74927A61DDA86BB00A0767E /* KatsanaAPI+Profile.swift in Sources */,

@@ -6,7 +6,6 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-import UIKit
 
 public class TimeTransformer: ValueTransformer {
     public var fullFormat = false

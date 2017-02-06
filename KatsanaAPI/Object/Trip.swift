@@ -6,8 +6,6 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-import UIKit
-
 open class Trip: NSObject {
     open var start: VehicleLocation!
     open var end: VehicleLocation!

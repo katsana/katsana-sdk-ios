@@ -10,12 +10,11 @@ import Foundation
 import XCGLogger
 
 extension KatsanaAPI {
-    
-    
+
     public func login(email: String, password: String, completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         var data : Dictionary<String,String>
-        var tokenKey = "access_token"
-        var authPath = "oauth/token"
+        let tokenKey = "access_token"
+        let authPath = "oauth/token"
 
         data = ["username" : email, "password" : password, "client_id" : self.clientId, "client_secret" : self.clientSecret, "scope" : "*", "grant_type": self.grantType]
 
@@ -26,7 +25,7 @@ extension KatsanaAPI {
         ) { r in
             if r.ok {
                 let json = JSON(data: r.content!)
-                let token = json["access_token"].stringValue
+                let token = json[tokenKey].stringValue
                 let refreshToken = json["refresh_token"].stringValue
                 
                 if token.characters.count > 0 {

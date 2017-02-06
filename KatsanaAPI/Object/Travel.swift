@@ -6,8 +6,6 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-import UIKit
-
 ///Vehicle travel data for a day
 open class Travel: NSObject {
     open var vehicleId : String!

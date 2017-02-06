@@ -6,11 +6,11 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-import UIKit
 import CoreLocation
 
 let cacheVersion = "2.0"
 
+//Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer does not need to use this class manually.
 public class CacheManager: NSObject {
     public static let shared = CacheManager()
     
@@ -300,7 +300,7 @@ public class CacheManager: NSObject {
         #if os(iOS) || os(watchOS) || os(tvOS)
             let data = UIImagePNGRepresentation(image)
         #elseif os(OSX)
-            let data = image.TIFFRepresentation
+            let data = image.tiffRepresentation
         #endif
         
         try? data?.write(to: URL(fileURLWithPath: filePath))
