@@ -1,6 +1,0 @@
-[submodule "Libraries/Siesta"]
-	path = Libraries/Siesta
-	url = https://github.com/bustoutsolutions/siesta.git
-[submodule "XCGLogger"]
-	path = XCGLogger
-	url = https://github.com/DaveWoodCom/XCGLogger.git

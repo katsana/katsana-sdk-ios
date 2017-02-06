@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A3D5B5E999A8B7991DB703C /* Pods_KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370766C63D4C0FE02F9C8E2B /* Pods_KatsanaSDK.framework */; };
+		65CFE8E479D695508F173AB4 /* Pods_KatsanaSDK_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0ABAD6C2A32616ED7574B6 /* Pods_KatsanaSDK_macOS.framework */; };
 		C71831851E42C4B900E1507F /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71831841E42C4B900E1507F /* CacheManager.swift */; };
 		C71831961E43104E00E1507F /* TimeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71831951E43104E00E1507F /* TimeTransformer.swift */; };
 		C71831971E43104E00E1507F /* TimeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71831951E43104E00E1507F /* TimeTransformer.swift */; };
@@ -20,10 +22,6 @@
 		C71D179C1E39AC5C005CDC99 /* VehicleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D179A1E39AC5C005CDC99 /* VehicleLocation.swift */; };
 		C71D179D1E39B765005CDC99 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D17961E39A513005CDC99 /* Trip.swift */; };
 		C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72773781DDBF59A00312F90 /* Cocoa.framework */; };
-		C728E0D81DF3BDC7007752FE /* Siesta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C728E0CB1DF3BDB4007752FE /* Siesta.framework */; };
-		C728E0D91DF3BDCE007752FE /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C728E0B11DF3BD9C007752FE /* XCGLogger.framework */; };
-		C728E0DA1DF3BDD7007752FE /* Siesta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C728E0CD1DF3BDB4007752FE /* Siesta.framework */; };
-		C728E0DB1DF3BDDC007752FE /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C728E0B31DF3BD9C007752FE /* XCGLogger.framework */; };
 		C749278A1DDA831600A0767E /* KatsanaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C74927881DDA831600A0767E /* KatsanaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C74927A01DDA86BB00A0767E /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C21DB08ECF001E1788 /* Date+Extension.swift */; };
 		C74927A11DDA86BB00A0767E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7578B4A1DB46A9A00C964DB /* UIImage+Extension.swift */; };
@@ -106,111 +104,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C728E0B01DF3BD9C007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 55E3EE4519D76F280068C3A7;
-			remoteInfo = "XCGLogger (iOS)";
-		};
-		C728E0B21DF3BD9C007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 554DF41719D76FE7005708BE;
-			remoteInfo = "XCGLogger (OS X)";
-		};
-		C728E0B41DF3BD9C007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 70CB94201B99E728007802FF;
-			remoteInfo = "XCGLogger (watchOS)";
-		};
-		C728E0B61DF3BD9C007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5515A3DF1BA119FA0047BA31;
-			remoteInfo = "XCGLogger (tvOS)";
-		};
-		C728E0B81DF3BD9C007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 55E3EE5019D76F280068C3A7;
-			remoteInfo = XCGLoggerTests_iOS;
-		};
-		C728E0BA1DF3BD9C007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 55BB1F011B79DC7500709779;
-			remoteInfo = XCGLoggerTests_OSX;
-		};
-		C728E0BC1DF3BD9C007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 558EEB851D6BAC61006A9C7A;
-			remoteInfo = XCGLoggerTests_watchOS;
-		};
-		C728E0BE1DF3BD9C007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 558EEB921D6BAC66006A9C7A;
-			remoteInfo = XCGLoggerTests_tvOS;
-		};
-		C728E0CA1DF3BDB4007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA336E4F1B2E6DDB006F702A;
-			remoteInfo = "Siesta iOS";
-		};
-		C728E0CC1DF3BDB4007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9F2FB51E1C28645E0068DFFA;
-			remoteInfo = "Siesta macOS";
-		};
-		C728E0CE1DF3BDB4007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DAC0B3AA1D651CB500D25C44;
-			remoteInfo = "SiestaUI iOS";
-		};
-		C728E0D01DF3BDB4007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DAC0B3D61D651CC700D25C44;
-			remoteInfo = "SiestaUI macOS";
-		};
-		C728E0D21DF3BDB4007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA336E591B2E6DDB006F702A;
-			remoteInfo = "SiestaTests iOS";
-		};
-		C728E0D41DF3BDB4007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9F0FAFAC1D033FCD00CE1B61;
-			remoteInfo = "SiestaTests macOS";
-		};
-		C728E0D61DF3BDB4007752FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA19D06E1D9ADC1800D15F3A;
-			remoteInfo = "SiestaPerformanceTests macOS";
-		};
 		C7A4BF7B1DAF077E007E90B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C75104F41D7422BF00F4C341 /* Project object */;
@@ -251,6 +144,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		029CF9ED8B24D1E3A2AAC990 /* Pods-KatsanaSDK macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS.release.xcconfig"; sourceTree = "<group>"; };
+		1ED2E6F183398FAE6BAA9FE3 /* Pods-KatsanaSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK.release.xcconfig"; sourceTree = "<group>"; };
+		370766C63D4C0FE02F9C8E2B /* Pods_KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EC96362BBA9C531ED1079F0 /* Pods-KatsanaSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK.debug.xcconfig"; sourceTree = "<group>"; };
+		710124ECF51BBFFF8B12D25A /* Pods-KatsanaSDK macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS.debug.xcconfig"; sourceTree = "<group>"; };
+		9F0ABAD6C2A32616ED7574B6 /* Pods_KatsanaSDK_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KatsanaSDK_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71831841E42C4B900E1507F /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		C71831951E43104E00E1507F /* TimeTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTransformer.swift; sourceTree = "<group>"; };
 		C71D17841E39A4E2005CDC99 /* Travel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Travel.swift; sourceTree = "<group>"; };
@@ -258,8 +157,6 @@
 		C71D17981E39A761005CDC99 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		C71D179A1E39AC5C005CDC99 /* VehicleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocation.swift; sourceTree = "<group>"; };
 		C72773781DDBF59A00312F90 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XCGLogger.xcodeproj; path = XCGLogger/Sources/XCGLogger.xcodeproj; sourceTree = "<group>"; };
-		C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Siesta.xcodeproj; path = Libraries/Siesta/Siesta.xcodeproj; sourceTree = "<group>"; };
 		C74927861DDA831600A0767E /* KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74927881DDA831600A0767E /* KatsanaSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KatsanaSDK.h; sourceTree = "<group>"; };
 		C74927891DDA831600A0767E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -323,11 +220,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C728E0DB1DF3BDDC007752FE /* XCGLogger.framework in Frameworks */,
-				C728E0DA1DF3BDD7007752FE /* Siesta.framework in Frameworks */,
 				C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */,
 				C74927C11DDA8A3D00A0767E /* MapKit.framework in Frameworks */,
 				C74927BF1DDA8A3200A0767E /* CoreLocation.framework in Frameworks */,
+				65CFE8E479D695508F173AB4 /* Pods_KatsanaSDK_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,11 +231,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C728E0D91DF3BDCE007752FE /* XCGLogger.framework in Frameworks */,
-				C728E0D81DF3BDC7007752FE /* Siesta.framework in Frameworks */,
 				C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */,
 				C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */,
 				C751054F1D742B5F00F4C341 /* MapKit.framework in Frameworks */,
+				5A3D5B5E999A8B7991DB703C /* Pods_KatsanaSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,11 +257,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		552CE048E3F93C14742C3C82 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6EC96362BBA9C531ED1079F0 /* Pods-KatsanaSDK.debug.xcconfig */,
+				1ED2E6F183398FAE6BAA9FE3 /* Pods-KatsanaSDK.release.xcconfig */,
+				710124ECF51BBFFF8B12D25A /* Pods-KatsanaSDK macOS.debug.xcconfig */,
+				029CF9ED8B24D1E3A2AAC990 /* Pods-KatsanaSDK macOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5DD901B866D20EE7A742A486 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */,
-				C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */,
 				C72773781DDBF59A00312F90 /* Cocoa.framework */,
 				C74927C21DDA8AF300A0767E /* Foundation.framework */,
 				C74927C01DDA8A3D00A0767E /* MapKit.framework */,
@@ -379,37 +283,10 @@
 				C751055F1D742D0500F4C341 /* UIKit.framework */,
 				C751055D1D742CE100F4C341 /* CoreGraphics.framework */,
 				C751054E1D742B5F00F4C341 /* MapKit.framework */,
+				370766C63D4C0FE02F9C8E2B /* Pods_KatsanaSDK.framework */,
+				9F0ABAD6C2A32616ED7574B6 /* Pods_KatsanaSDK_macOS.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C728E0A61DF3BD9C007752FE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C728E0B11DF3BD9C007752FE /* XCGLogger.framework */,
-				C728E0B31DF3BD9C007752FE /* XCGLogger.framework */,
-				C728E0B51DF3BD9C007752FE /* XCGLogger.framework */,
-				C728E0B71DF3BD9C007752FE /* XCGLogger.framework */,
-				C728E0B91DF3BD9C007752FE /* XCGLoggerTests_iOS.xctest */,
-				C728E0BB1DF3BD9C007752FE /* XCGLoggerTests (OS X).xctest */,
-				C728E0BD1DF3BD9C007752FE /* XCGLoggerTests_watchOS.xctest */,
-				C728E0BF1DF3BD9C007752FE /* XCGLoggerTests_tvOS.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C728E0C11DF3BDB4007752FE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C728E0CB1DF3BDB4007752FE /* Siesta.framework */,
-				C728E0CD1DF3BDB4007752FE /* Siesta.framework */,
-				C728E0CF1DF3BDB4007752FE /* SiestaUI.framework */,
-				C728E0D11DF3BDB4007752FE /* SiestaUI.framework */,
-				C728E0D31DF3BDB4007752FE /* SiestaTests.xctest */,
-				C728E0D51DF3BDB4007752FE /* SiestaTests.xctest */,
-				C728E0D71DF3BDB4007752FE /* SiestaPerformanceTests macOS.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		C74927871DDA831600A0767E /* KatsanaSDK-macOS */ = {
@@ -431,7 +308,6 @@
 				C79D9FD31D7D19CF0003E7A8 /* Manager */,
 				C79D9FDA1D7D19CF0003E7A8 /* Object */,
 				C79D9FF11D7D19CF0003E7A8 /* Transformer */,
-				C79D9FF41D7D19CF0003E7A8 /* View */,
 				C78B22141D75754B002E25C3 /* LICENSE */,
 				C75104FF1D7422BF00F4C341 /* KatsanaSDK */,
 				C7A4BF761DAF077E007E90B8 /* KatsanaSDKTests */,
@@ -439,6 +315,7 @@
 				C74927871DDA831600A0767E /* KatsanaSDK-macOS */,
 				C75104FE1D7422BF00F4C341 /* Products */,
 				5DD901B866D20EE7A742A486 /* Frameworks */,
+				552CE048E3F93C14742C3C82 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -544,14 +421,6 @@
 			path = KatsanaAPI/Transformer;
 			sourceTree = "<group>";
 		};
-		C79D9FF41D7D19CF0003E7A8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = View;
-			path = KatsanaAPI/View;
-			sourceTree = "<group>";
-		};
 		C7A4BF761DAF077E007E90B8 /* KatsanaSDKTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,10 +489,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C749279C1DDA831600A0767E /* Build configuration list for PBXNativeTarget "KatsanaSDK macOS" */;
 			buildPhases = (
+				8FE46478F6131C8E3A2D6123 /* [CP] Check Pods Manifest.lock */,
 				C74927811DDA831600A0767E /* Sources */,
 				C74927821DDA831600A0767E /* Frameworks */,
 				C74927831DDA831600A0767E /* Headers */,
 				C74927841DDA831600A0767E /* Resources */,
+				E57CCD73BE053FC15150AA76 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -638,11 +509,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C75105111D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaSDK" */;
 			buildPhases = (
+				9D503B72B1C383261034593C /* [CP] Check Pods Manifest.lock */,
 				C75104F81D7422BF00F4C341 /* Sources */,
 				C75104F91D7422BF00F4C341 /* Frameworks */,
 				C75104FA1D7422BF00F4C341 /* Headers */,
 				C75104FB1D7422BF00F4C341 /* Resources */,
 				C7A4BF9B1DAF0F0B007E90B8 /* CopyFiles */,
+				BD02729A9164F54CA3F1C076 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -734,16 +607,6 @@
 			mainGroup = C75104F31D7422BF00F4C341;
 			productRefGroup = C75104FE1D7422BF00F4C341 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = C728E0C11DF3BDB4007752FE /* Products */;
-					ProjectRef = C728E0C01DF3BDB4007752FE /* Siesta.xcodeproj */;
-				},
-				{
-					ProductGroup = C728E0A61DF3BD9C007752FE /* Products */;
-					ProjectRef = C728E0A51DF3BD9C007752FE /* XCGLogger.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				C75104FC1D7422BF00F4C341 /* KatsanaSDK */,
@@ -753,114 +616,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		C728E0B11DF3BD9C007752FE /* XCGLogger.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = XCGLogger.framework;
-			remoteRef = C728E0B01DF3BD9C007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0B31DF3BD9C007752FE /* XCGLogger.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = XCGLogger.framework;
-			remoteRef = C728E0B21DF3BD9C007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0B51DF3BD9C007752FE /* XCGLogger.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = XCGLogger.framework;
-			remoteRef = C728E0B41DF3BD9C007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0B71DF3BD9C007752FE /* XCGLogger.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = XCGLogger.framework;
-			remoteRef = C728E0B61DF3BD9C007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0B91DF3BD9C007752FE /* XCGLoggerTests_iOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = XCGLoggerTests_iOS.xctest;
-			remoteRef = C728E0B81DF3BD9C007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0BB1DF3BD9C007752FE /* XCGLoggerTests (OS X).xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "XCGLoggerTests (OS X).xctest";
-			remoteRef = C728E0BA1DF3BD9C007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0BD1DF3BD9C007752FE /* XCGLoggerTests_watchOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = XCGLoggerTests_watchOS.xctest;
-			remoteRef = C728E0BC1DF3BD9C007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0BF1DF3BD9C007752FE /* XCGLoggerTests_tvOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = XCGLoggerTests_tvOS.xctest;
-			remoteRef = C728E0BE1DF3BD9C007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0CB1DF3BDB4007752FE /* Siesta.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Siesta.framework;
-			remoteRef = C728E0CA1DF3BDB4007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0CD1DF3BDB4007752FE /* Siesta.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Siesta.framework;
-			remoteRef = C728E0CC1DF3BDB4007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0CF1DF3BDB4007752FE /* SiestaUI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SiestaUI.framework;
-			remoteRef = C728E0CE1DF3BDB4007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0D11DF3BDB4007752FE /* SiestaUI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SiestaUI.framework;
-			remoteRef = C728E0D01DF3BDB4007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0D31DF3BDB4007752FE /* SiestaTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SiestaTests.xctest;
-			remoteRef = C728E0D21DF3BDB4007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0D51DF3BDB4007752FE /* SiestaTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SiestaTests.xctest;
-			remoteRef = C728E0D41DF3BDB4007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C728E0D71DF3BDB4007752FE /* SiestaPerformanceTests macOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SiestaPerformanceTests macOS.xctest";
-			remoteRef = C728E0D61DF3BDB4007752FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C74927841DDA831600A0767E /* Resources */ = {
@@ -896,6 +651,69 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8FE46478F6131C8E3A2D6123 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9D503B72B1C383261034593C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BD02729A9164F54CA3F1C076 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E57CCD73BE053FC15150AA76 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C74927811DDA831600A0767E /* Sources */ = {
@@ -1036,6 +854,7 @@
 /* Begin XCBuildConfiguration section */
 		C749278B1DDA831600A0767E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 710124ECF51BBFFF8B12D25A /* Pods-KatsanaSDK macOS.debug.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1065,6 +884,7 @@
 		};
 		C749278C1DDA831600A0767E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 029CF9ED8B24D1E3A2AAC990 /* Pods-KatsanaSDK macOS.release.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1187,6 +1007,7 @@
 		};
 		C75105121D7422BF00F4C341 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EC96362BBA9C531ED1079F0 /* Pods-KatsanaSDK.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -1200,7 +1021,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREFIX_HEADER = KatsanaAPI/PrefixHeader.pch;
 				INFOPLIST_FILE = KatsanaAPI/Info.plist;
@@ -1219,6 +1039,7 @@
 		};
 		C75105131D7422BF00F4C341 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1ED2E6F183398FAE6BAA9FE3 /* Pods-KatsanaSDK.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -1232,7 +1053,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREFIX_HEADER = KatsanaAPI/PrefixHeader.pch;
 				INFOPLIST_FILE = KatsanaAPI/Info.plist;

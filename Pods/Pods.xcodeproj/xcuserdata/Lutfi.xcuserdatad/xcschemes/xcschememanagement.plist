@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-KatsanaSDK macOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-KatsanaSDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Siesta-OSX.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Siesta-iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>XCGLogger-OSX.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>XCGLogger-iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>10BA95834635CF35672395DA7E58128D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E509373945416F108AB554BA6192A41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>263EA02892F4F5283540211397BAC0B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6154A56DC56245ED805ABE87E8EE2079</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6E89621E0096A9D8F2EC0C4180E2991</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F89E19BCBC099A76FDC3FC4A7D53B505</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
