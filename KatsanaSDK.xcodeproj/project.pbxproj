@@ -76,6 +76,10 @@
 		C71917B11E4870490041BC18 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C71917AC1E4870480041BC18 /* PrefixHeader.pch */; };
 		C71917B21E4870490041BC18 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C71917AC1E4870480041BC18 /* PrefixHeader.pch */; };
 		C71917B41E4870FB0041BC18 /* KatsanaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917B31E4870FB0041BC18 /* KatsanaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C71917B81E4878140041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917B61E4878140041BC18 /* FastCoder.h */; };
+		C71917B91E4878140041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917B61E4878140041BC18 /* FastCoder.h */; };
+		C71917BA1E4878140041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917B71E4878140041BC18 /* FastCoder.m */; };
+		C71917BB1E4878140041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917B71E4878140041BC18 /* FastCoder.m */; };
 		C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72773781DDBF59A00312F90 /* Cocoa.framework */; };
 		C749278A1DDA831600A0767E /* KatsanaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C74927881DDA831600A0767E /* KatsanaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C74927BF1DDA8A3200A0767E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927BE1DDA8A3200A0767E /* CoreLocation.framework */; };
@@ -84,14 +88,10 @@
 		C74927C51DDA8D4200A0767E /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DFF3961DB4C7FA004751B6 /* Just.swift */; };
 		C74927C61DDA8D4500A0767E /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C01DB08C73001E1788 /* DateHelper.swift */; };
 		C74927D21DDA9A2F00A0767E /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C74927C71DDA943B00A0767E /* PrefixHeader.pch */; };
-		C74927D31DDA9A3A00A0767E /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C773C96D1D98B02C00FC698E /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C751054F1D742B5F00F4C341 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751054E1D742B5F00F4C341 /* MapKit.framework */; };
 		C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751055F1D742D0500F4C341 /* UIKit.framework */; };
 		C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75105631D742D8600F4C341 /* CoreLocation.framework */; };
-		C7587CDE1DDAC53000357BF7 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C773C96E1D98B02C00FC698E /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C76538C11DB08C74001E1788 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76538C01DB08C73001E1788 /* DateHelper.swift */; };
-		C773C96F1D98B02C00FC698E /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C773C96D1D98B02C00FC698E /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C773C9701D98B02C00FC698E /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C773C96E1D98B02C00FC698E /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C78B22151D75754B002E25C3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
 		C79ACD091DBF1A0E000607A6 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79ACD081DBF1A0E000607A6 /* SwiftyJSON.swift */; };
 		C7A4BF781DAF077E007E90B8 /* KatsanaSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */; };
@@ -187,6 +187,8 @@
 		C71917AA1E4870480041BC18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = KatsanaSDK/Info.plist; sourceTree = SOURCE_ROOT; };
 		C71917AC1E4870480041BC18 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = KatsanaSDK/PrefixHeader.pch; sourceTree = SOURCE_ROOT; };
 		C71917B31E4870FB0041BC18 /* KatsanaSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KatsanaSDK.h; path = KatsanaSDK/KatsanaSDK.h; sourceTree = SOURCE_ROOT; };
+		C71917B61E4878140041BC18 /* FastCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastCoder.h; sourceTree = "<group>"; };
+		C71917B71E4878140041BC18 /* FastCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCoder.m; sourceTree = "<group>"; };
 		C72773781DDBF59A00312F90 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		C74927861DDA831600A0767E /* KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74927881DDA831600A0767E /* KatsanaSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KatsanaSDK.h; sourceTree = "<group>"; };
@@ -201,8 +203,6 @@
 		C751055F1D742D0500F4C341 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C75105631D742D8600F4C341 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C76538C01DB08C73001E1788 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
-		C773C96D1D98B02C00FC698E /* FastCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastCoder.h; sourceTree = "<group>"; };
-		C773C96E1D98B02C00FC698E /* FastCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCoder.m; sourceTree = "<group>"; };
 		C78B22141D75754B002E25C3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C79ACD081DBF1A0E000607A6 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -281,7 +281,8 @@
 				C7DFF3951DB4C7FA004751B6 /* Just */,
 				C76538C01DB08C73001E1788 /* DateHelper.swift */,
 				C79ACD081DBF1A0E000607A6 /* SwiftyJSON.swift */,
-				C773C96C1D98B02C00FC698E /* FastCoder */,
+				C71917B61E4878140041BC18 /* FastCoder.h */,
+				C71917B71E4878140041BC18 /* FastCoder.m */,
 				C75105631D742D8600F4C341 /* CoreLocation.framework */,
 				C751055F1D742D0500F4C341 /* UIKit.framework */,
 				C751055D1D742CE100F4C341 /* CoreGraphics.framework */,
@@ -415,15 +416,6 @@
 			path = KatsanaAPI;
 			sourceTree = "<group>";
 		};
-		C773C96C1D98B02C00FC698E /* FastCoder */ = {
-			isa = PBXGroup;
-			children = (
-				C773C96D1D98B02C00FC698E /* FastCoder.h */,
-				C773C96E1D98B02C00FC698E /* FastCoder.m */,
-			);
-			path = FastCoder;
-			sourceTree = "<group>";
-		};
 		C7A4BF761DAF077E007E90B8 /* KatsanaSDKTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,8 +453,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C71917B91E4878140041BC18 /* FastCoder.h in Headers */,
 				C749278A1DDA831600A0767E /* KatsanaSDK.h in Headers */,
-				C74927D31DDA9A3A00A0767E /* FastCoder.h in Headers */,
 				C74927D21DDA9A2F00A0767E /* PrefixHeader.pch in Headers */,
 				C71917B21E4870490041BC18 /* PrefixHeader.pch in Headers */,
 			);
@@ -472,8 +464,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C773C96F1D98B02C00FC698E /* FastCoder.h in Headers */,
 				C71917B41E4870FB0041BC18 /* KatsanaSDK.h in Headers */,
+				C71917B81E4878140041BC18 /* FastCoder.h in Headers */,
 				C71917B11E4870490041BC18 /* PrefixHeader.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -572,12 +564,13 @@
 					C74927851DDA831600A0767E = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 47CF2FS3SX;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					C75104FC1D7422BF00F4C341 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 47CF2FS3SX;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					C7A4BF741DAF077E007E90B8 = {
@@ -741,11 +734,11 @@
 				C719178D1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift in Sources */,
 				C71917711E48703B0041BC18 /* Date+Extension.swift in Sources */,
 				C71917851E48703B0041BC18 /* KatsanaAPI+Other.swift in Sources */,
+				C71917BB1E4878140041BC18 /* FastCoder.m in Sources */,
 				C71917891E48703B0041BC18 /* KatsanaAPI+Share.swift in Sources */,
 				C71917731E48703B0041BC18 /* JSON+Date.swift in Sources */,
 				C719178F1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift in Sources */,
 				C719177D1E48703B0041BC18 /* ImageRequest.swift in Sources */,
-				C7587CDE1DDAC53000357BF7 /* FastCoder.m in Sources */,
 				C71917A51E48703B0041BC18 /* VehicleActivity.swift in Sources */,
 				C719179B1E48703B0041BC18 /* ObjectJSONTransformer.swift in Sources */,
 				C71917771E48703B0041BC18 /* UIImage+Extension.swift in Sources */,
@@ -783,11 +776,11 @@
 				C719178C1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift in Sources */,
 				C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */,
 				C71917841E48703B0041BC18 /* KatsanaAPI+Other.swift in Sources */,
+				C71917BA1E4878140041BC18 /* FastCoder.m in Sources */,
 				C71917881E48703B0041BC18 /* KatsanaAPI+Share.swift in Sources */,
 				C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */,
 				C719178E1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift in Sources */,
 				C719177C1E48703B0041BC18 /* ImageRequest.swift in Sources */,
-				C773C9701D98B02C00FC698E /* FastCoder.m in Sources */,
 				C71917A41E48703B0041BC18 /* VehicleActivity.swift in Sources */,
 				C719179A1E48703B0041BC18 /* ObjectJSONTransformer.swift in Sources */,
 				C71917761E48703B0041BC18 /* UIImage+Extension.swift in Sources */,
@@ -854,6 +847,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 710124ECF51BBFFF8B12D25A /* Pods-KatsanaSDK macOS.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -884,6 +878,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 029CF9ED8B24D1E3A2AAC990 /* Pods-KatsanaSDK macOS.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "-";
