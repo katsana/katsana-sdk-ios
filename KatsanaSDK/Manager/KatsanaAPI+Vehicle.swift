@@ -86,9 +86,11 @@ extension KatsanaAPI {
         let path = "vehicles/" + vehicleId + "/location"
         let resource = API.resource(path);
         let request = resource.loadIfNeeded()
+        let vehicle = vehicleWith(vehicleId: vehicleId)
         
         request?.onSuccess({ (entity) in
             let location : VehicleLocation? = resource.typedContent()
+            vehicle?.current = location
             completion(location)
             }).onFailure({ (error) in
                 failure(error)
@@ -97,6 +99,7 @@ extension KatsanaAPI {
         
         if request == nil {
             let location : VehicleLocation? = resource.typedContent()
+            vehicle?.current = location
             completion(location)
         }
     }
