@@ -97,7 +97,6 @@ extension KatsanaAPI {
     
     ///Request travel details for given date
     public func requestTravel(for date: Date, vehicleId: String, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        
         let travel = CacheManager.shared.travel(vehicleId: vehicleId, date: date)
         if let travel = travel, travel.needLoadTripHistory == false{
             self.log.debug("Get trip history from cached data vehicle id \(vehicleId), date \(date)")
@@ -174,17 +173,17 @@ extension KatsanaAPI {
         })
     }
     
-    ///Get latest cached travel histories from today to previous day count
+    ///Get latest cached travel locations from today to previous day count
     public func latestCachedTravels(vehicleId : String, dayCount : Int) -> [Travel]! {
         var date = Date()
-        var travelhistories = [Travel]()
+        var travellocations = [Travel]()
         for _ in 0..<dayCount {
             if let history = CacheManager.shared.travel(vehicleId: vehicleId, date: date){
-                travelhistories.append(history)
+                travellocations.append(history)
             }
             date = date.dateBySubtractingDays(1)
         }
-        return travelhistories
+        return travellocations
     }
 
 // MARK: Logic

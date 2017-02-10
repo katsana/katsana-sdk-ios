@@ -69,7 +69,7 @@ open class Travel: NSObject {
     // MARK: Helper
     
     open var _vehicle : Vehicle!
-    open func owner() -> Vehicle {
+    open func owner() -> Vehicle! {
         if _vehicle == nil {
             _vehicle = KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)
         }
