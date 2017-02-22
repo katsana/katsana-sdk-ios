@@ -29,7 +29,8 @@ extension KatsanaAPI{
                 
             }else{
                 DispatchQueue.main.sync {
-                    completion(false, r.error)
+                    print(r.APIError())
+                    completion(false, r.APIError())
                 }
                 
             }
@@ -70,7 +71,7 @@ extension KatsanaAPI{
             let json = JSON(data: r.content!)
             let dicto = json.dictionaryObject
             DispatchQueue.main.sync {
-                completion(dicto, r.error)
+                completion(dicto, r.APIError())
             }
         }
     }

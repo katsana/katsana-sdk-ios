@@ -62,9 +62,8 @@ extension KatsanaAPI {
                     default:
                         errorString = statusCodeDescriptions[status]!
                     }
-                    print(status)
                     let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  errorString, NSLocalizedFailureReasonErrorKey : jsonError]
-                    let error = NSError(domain: APIError.domain, code: status, userInfo: userInfo)
+                    let error = NSError(domain: SDKError.domain, code: status, userInfo: userInfo)
                     DispatchQueue.main.sync {
                         failure(error)
                     }

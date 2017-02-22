@@ -41,7 +41,7 @@ extension KatsanaAPI {
                         text = String(data: content, encoding: .utf8)!
                     }
                     self.log.error("Error requesting live share link \(vehicleId), error: \(text)")
-                    failure(r.error)
+                    failure(r.APIError())
                 }
                 
             }
@@ -76,7 +76,7 @@ extension KatsanaAPI {
                         text = String(data: content, encoding: .utf8)!
                     }
                     self.log.error("Error requesting live share link info \(vehicleId), \(text)")
-                    failure(r.error)
+                    failure(r.APIError())
                 }
                 
             }

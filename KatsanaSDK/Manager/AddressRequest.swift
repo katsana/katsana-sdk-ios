@@ -41,7 +41,7 @@ class AddressRequest: NSObject {
                             DispatchQueue.main.sync{completion(nil, nil)}
                         }
                     }else{
-                        DispatchQueue.main.sync{completion(address, r.error)}
+                        DispatchQueue.main.sync{completion(address, r.APIError())}
                     }
                 }
             }

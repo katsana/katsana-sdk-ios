@@ -6,7 +6,7 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-///Vehicle travel data for a day
+///The class contains information about vehicle travel for particular day.
 open class Travel: NSObject {
     open var vehicleId : String!
     open var maxSpeed : Float = 0
@@ -70,7 +70,7 @@ open class Travel: NSObject {
     
     open var _vehicle : Vehicle!
     open func owner() -> Vehicle! {
-        if _vehicle == nil {
+        if _vehicle == nil, let vehicleId = vehicleId {
             _vehicle = KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)
         }
         return _vehicle

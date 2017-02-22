@@ -50,7 +50,7 @@ public class ImageRequest: NSObject {
                     DispatchQueue.main.sync{failure(r.error)}
                 }
             }else{
-                DispatchQueue.main.sync{failure(r.error)}
+                DispatchQueue.main.sync{failure(r.APIError())}
             }
         }
     }
