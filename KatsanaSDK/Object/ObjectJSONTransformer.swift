@@ -56,6 +56,11 @@ class ObjectJSONTransformer: NSObject {
         
         vehicle.subscriptionEnd = dicto["ends_at"].date
         vehicle.current = self.VehicleLocationObject(json: dicto["current"])
+        
+        if let features = dicto["features"].arrayObject{
+            vehicle.extraData["features"] = features
+        }
+        
         return vehicle
     }
     

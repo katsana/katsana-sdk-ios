@@ -17,6 +17,9 @@ public class KatsanaAPI: NSObject {
     static let defaultBaseURL: URL = URL(string: "https://api.katsana.com/")!
     internal(set) var log : XCGLogger!
     
+    ///Default options when requesting vehicle or all vehicles
+    public var defaultRequestVehicleOptions: [String]!
+    
     public static let shared = KatsanaAPI()
     public var API : Service!
     internal(set) var clientId : String = ""

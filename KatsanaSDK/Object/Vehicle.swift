@@ -25,7 +25,7 @@ open class Vehicle: NSObject {
     open var current: VehicleLocation!
     
     ///Extra data that user can save to vehicle. Should have only value with codable support.
-    open var extraData: [String: Any]!
+    open var extraData = [String: Any]()
     
     private(set) open var image : KMImage!
     private(set) open var thumbImage : KMImage!
@@ -57,6 +57,7 @@ open class Vehicle: NSObject {
         image = vehicle.image
         thumbImage = vehicle.thumbImage
         imei = vehicle.imei
+        extraData = vehicle.extraData
     }
     
     func jsonPatch() -> [String: Any] {

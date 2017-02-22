@@ -14,14 +14,24 @@ extension KatsanaAPI {
     ///
     /// - parameter vehicleId:  vehicle id
     /// - parameter completion: completion
-    public func requestVehicle(vehicleId: String, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestVehicle(vehicleId: String, options: [String]! = nil, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let cachedVehicle = vehicleWith(vehicleId: vehicleId)
         if (cachedVehicle != nil) {
-            currentVehicle = cachedVehicle!;
+            currentVehicle = cachedVehicle!
         }
         
         let path = "vehicles/" + vehicleId
-        let resource = API.resource(path);
+        var resource = API.resource(path)
+        
+        //Check for options
+        if let options = options {
+            let text = options.joined(separator: ", ")
+            resource = resource.withParam("includes", text)
+        }else if let options = defaultRequestVehicleOptions{
+            let text = options.joined(separator: ", ")
+            resource = resource.withParam("includes", text)
+        }
+        
         let request = resource.loadIfNeeded()
         
         func handleResource() -> Void {
@@ -51,14 +61,23 @@ extension KatsanaAPI {
     /// Request all vehicles. vehicles variable will be set from the vehicles requested
     ///
     /// - parameter completion: completion
-    public func requestAllVehicles(completion: @escaping (_ vehicles: [Vehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestAllVehicles(options:[String]! = nil, completion: @escaping (_ vehicles: [Vehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         guard self.currentUser != nil else {
             failure(nil)
             return
         }
         
         let path = "vehicles"
-        let resource = API.resource(path);
+        var resource = API.resource(path)
+        
+        //Check for options
+        if let options = options {
+            let text = options.joined(separator: ", ")
+            resource = resource.withParam("includes", text)
+        }else if let options = defaultRequestVehicleOptions{
+            let text = options.joined(separator: ", ")
+            resource = resource.withParam("includes", text)
+        }
         let request = resource.loadIfNeeded()
         
         func handleResource() -> Void {
