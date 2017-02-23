@@ -30,6 +30,10 @@ open class LiveShare: NSObject {
         return formatter
     }()
     open func dateString() -> String {
-        return dateFormatter.string(from: endAt)
+        if let endAt = endAt {
+            return dateFormatter.string(from: endAt)
+        }else{
+            return ""
+        }
     }
 }
