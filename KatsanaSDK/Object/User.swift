@@ -86,6 +86,7 @@ open class User: NSObject {
         if let image = image {
             completion(image)
         }else if let image = CacheManager.shared.image(for: (NSURL(string: imageURL)?.lastPathComponent)!){
+            self.image = image
             completion(image)
         }else{
             if isLoadingImage {
