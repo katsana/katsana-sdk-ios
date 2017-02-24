@@ -19,12 +19,12 @@ open class Travel: NSObject {
             _duration = newValue
         }
         get{
-            if _duration == 0 {
+            if trips.count > 0 {
                 var totalDuration : Double = 0
                 for trip in trips {
                     totalDuration = trip.duration
                 }
-                return totalDuration
+                _duration = totalDuration
             }
             return _duration
         }
@@ -135,7 +135,7 @@ open class Travel: NSObject {
         }
         
         var equal = false
-        if Calendar.current.isDate(a.date, equalTo: b.date, toGranularity: .day), a.trips.count == b.trips.count {
+        if Calendar.current.isDate(a.date, equalTo: b.date, toGranularity: .day), a.trips.count == b.trips.count, a.distance == b.distance {
             equal = true
         }
         return equal

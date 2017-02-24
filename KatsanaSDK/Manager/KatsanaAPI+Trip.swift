@@ -57,7 +57,6 @@ extension KatsanaAPI {
                             }
                             summary.trips = travel.trips
                             duplicateHistoryNeedRemove = travel
-                            
                         }
                     }
                     if duplicateHistoryNeedRemove != nil{
@@ -140,21 +139,32 @@ extension KatsanaAPI {
         }
         
         let travel = CacheManager.shared.travel(vehicleId: vehicleId!, date: summary.date)
-        if let travel = travel, travel.needLoadTripHistory == false{
-            //If trip count is different, make need load trip
-            if summary.tripCount != travel.trips.count {
-                travel.needLoadTripHistory = true
-                self.log.debug("Need load trip history from summary because summary trip count (\(summary.tripCount)) != history trip count (\(travel.trips.count)), vehicle id \(vehicleId)")
-            }
-            //If duration from summary and history more than 10 seconds, make need load trip
-            let totalDuration = travel.duration
-            if fabs(summary.duration - totalDuration) > 10 {
-                travel.needLoadTripHistory = true
-                self.log.debug("Need load trip history from summary because summary duration (\(summary.duration)) != history duration (\(totalDuration)), vehicle id \(vehicleId)")
-            }
-            if !travel.needLoadTripHistory {
+        if let travel = travel{
+            //If distance is same, no need to request again
+            if summary.duration != 0, summary.distance == travel.distance, summary.tripCount == travel.trips.count {
+                summary.trips = travel.trips
+                travel.needLoadTripHistory = false
                 completion(travel)
                 return
+            }
+            
+            if travel.needLoadTripHistory == false{
+                //If trip count is different, make need load trip
+                if summary.tripCount != travel.trips.count {
+                    travel.needLoadTripHistory = true
+                    self.log.debug("Need load trip history from summary because summary trip count (\(summary.tripCount)) != history trip count (\(travel.trips.count)), vehicle id \(vehicleId)")
+                }
+                //If duration from summary and history more than 10 seconds, make need load trip
+                let totalDuration = travel.duration
+                if fabs(summary.duration - totalDuration) > 10 {
+                    travel.needLoadTripHistory = true
+                    self.log.debug("Need load trip history from summary because summary duration (\(summary.duration)) != history duration (\(totalDuration)), vehicle id \(vehicleId)")
+                }
+                if !travel.needLoadTripHistory {
+                    summary.trips = travel.trips
+                    completion(travel)
+                    return
+                }
             }
         }
         
@@ -165,6 +175,7 @@ extension KatsanaAPI {
             }
             travel?.needLoadTripHistory = false
             travel?.vehicleId = summary.vehicleId
+            CacheManager.shared.cache(travel: travel!, vehicleId: vehicleId!) //Cache history
             completion(travel)
 
             }, failure: { (error) in
@@ -222,9 +233,9 @@ extension KatsanaAPI {
                 //Check if last 3 day
                 if Date().daysAfterDate((travel.date)!) <= KatsanaAPI.maxDaySummary {
                     //Check if current date is 5 minutes than last try update date and trips is 0
-                    if Date().minutesAfterDate(travel.lastUpdate) > 5 && travel.trips.count == 0 {
+//                    if Date().minutesAfterDate(travel.lastUpdate) > 5 || travel.trips.count == 0 {
                         break
-                    }
+//                    }
                 }
                 travels.append(travel)
             }else{
@@ -239,8 +250,15 @@ extension KatsanaAPI {
         while !loopDate.isEqualToDateIgnoringTime(fromDate) {
             let travel = CacheManager.shared.travel(vehicleId: vehicleId, date: loopDate)
             //If have cached history, add to array
-            if travel != nil {
-                travels.append(travel!)
+            if let travel = travel {
+                //Check if last 3 day
+                if Date().daysAfterDate((travel.date)!) <= KatsanaAPI.maxDaySummary {
+                    //Check if current date is 5 minutes than last try update date and trips is 0
+//                    if Date().minutesAfterDate(travel.lastUpdate) > 5 || travel.trips.count == 0 {
+                        break
+//                    }
+                }
+                travels.append(travel)
             }else{
                 break
             }
