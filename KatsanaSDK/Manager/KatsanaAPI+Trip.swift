@@ -184,6 +184,30 @@ extension KatsanaAPI {
         })
     }
     
+    ///Request trip summaries between dates.
+    public func requestTripSummaries(vehicleId: String, fromDate: Date, toDate: Date, completion: @escaping (_ summaries:[Trip]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        var trips = [Trip]()
+        var date = fromDate
+        
+        func requestTravel(){
+            self.requestTravel(for: date, vehicleId: vehicleId, completion: { (travel) in
+                travel?.trips.map({$0.date = date})
+                trips.append(contentsOf: (travel?.trips.reversed())!)
+                
+                if date.isEqualToDateIgnoringTime(toDate){
+                    completion(trips.reversed())
+                }else{
+                    date = date.dateByAddingDays(1)
+                    requestTravel()
+                }
+            }) { (error) in
+                failure(error)
+                self.log.error("Error getting trip history vehicle id \(vehicleId), using summary with date \(date), \(error)")
+            }
+        }
+        requestTravel()
+    }
+    
     ///Get latest cached travel locations from today to previous day count
     public func latestCachedTravels(vehicleId : String, dayCount : Int) -> [Travel]! {
         var date = Date()

@@ -27,7 +27,7 @@ open class VehicleLocation: NSObject {
     private(set) open var address: String!
     open var trackedAt: Date!
     ///Extra data that user can save to vehicle location. Should have only value with codable support.
-    open var extraData: [String: Any]!
+    open var extraData = [String: Any]()
     
     override open class func fastCodingKeys() -> [Any]? {
         return ["latitude", "longitude", "speed", "altitude", "course", "distance", "verticalAccuracy", "horizontalAccuracy", "state", "voltage", "gsm", "ignitionState", "trackedAt", "extraData"]
