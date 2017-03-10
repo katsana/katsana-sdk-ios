@@ -19,6 +19,8 @@ public class KatsanaAPI: NSObject {
     
     ///Default options when requesting vehicle or all vehicles
     public var defaultRequestVehicleOptions: [String]!
+    ///Default options when requesting travel or trip
+    public var defaultRequestTravelOptions: [String]!
     
     public static let shared = KatsanaAPI()
     public var API : Service!

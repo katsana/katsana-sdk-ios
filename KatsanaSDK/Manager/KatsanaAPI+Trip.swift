@@ -95,7 +95,7 @@ extension KatsanaAPI {
     }
     
     ///Request travel details for given date
-    public func requestTravel(for date: Date, vehicleId: String, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTravel(for date: Date, vehicleId: String, options: [String]! = nil, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let travel = CacheManager.shared.travel(vehicleId: vehicleId, date: date)
         if let travel = travel, travel.needLoadTripHistory == false{
             self.log.debug("Get trip history from cached data vehicle id \(vehicleId), date \(date)")
@@ -105,7 +105,16 @@ extension KatsanaAPI {
         }
         
         let path = "vehicles/" + vehicleId + "/travels/" + date.toStringWithYearMonthDay()
-        let resource = API.resource(path);
+        var resource = API.resource(path)
+        
+        //Check for options
+        if let options = options {
+            let text = options.joined(separator: ", ")
+            resource = resource.withParam("includes", text)
+        }else if let options = defaultRequestTravelOptions{
+            let text = options.joined(separator: ", ")
+            resource = resource.withParam("includes", text)
+        }
         
         func handleResource() -> Void{
             let travel : Travel? = resource.typedContent()

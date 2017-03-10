@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-let cacheVersion = "2.0"
+let cacheVersion = "2.1"
 
 //Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer does not need to use this class manually.
 public class CacheManager: NSObject {

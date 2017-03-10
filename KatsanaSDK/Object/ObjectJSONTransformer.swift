@@ -82,6 +82,10 @@ class ObjectJSONTransformer: NSObject {
         pos.ignitionState = json["ignition"].boolValue
         pos.trackedAt = json["tracked_at"].date(gmt: 0)
         
+        if let harsh = json["harsh"].dictionaryObject{
+            pos.extraData["harsh"] = harsh
+        }
+        
         return pos
     }
     
