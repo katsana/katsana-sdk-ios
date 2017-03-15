@@ -201,7 +201,7 @@ extension KatsanaAPI {
         func requestTravel(){
             self.requestTravel(for: date, vehicleId: vehicleId, completion: { (travel) in
                 travel?.trips.map({$0.date = date})
-                trips.append(contentsOf: (travel?.trips.reversed())!)
+                trips.append(contentsOf: (travel?.trips)!)
                 
                 if date.isEqualToDateIgnoringTime(toDate){
                     completion(trips.reversed())

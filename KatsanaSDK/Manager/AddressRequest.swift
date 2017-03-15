@@ -26,7 +26,15 @@ class AddressRequest: NSObject {
                         let json = JSON(data: content!)
                         if json != JSON.null{
                             var address = ObjectJSONTransformer.AddressObject(json: json)
-                            if (address.optimizedAddress().characters.count) <= 10{
+                            let optimizedAddress = address.optimizedAddress()
+                            var useAppleAddress = false
+                            let comps = optimizedAddress.components(separatedBy: ",")
+                            if let first = comps.first{
+                                if first.characters.count < 2{
+                                    useAppleAddress = true
+                                }
+                            }
+                            if (optimizedAddress.characters.count) <= 10 || useAppleAddress{
                                 self.appleGeoAddress(from: location, completion: { (appleAddress) in
                                     address = appleAddress!
                                     completion(address, nil)

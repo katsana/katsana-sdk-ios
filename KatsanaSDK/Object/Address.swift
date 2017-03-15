@@ -49,7 +49,9 @@ open class Address: NSObject {
         }
         var address = components.joined(separator: ", ")
         if address.characters.count == 0 {
-            return self.address
+            if self.address != nil {
+                address = self.address
+            }
         }
         return address
     }

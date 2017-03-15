@@ -35,6 +35,7 @@ public class CacheManager: NSObject {
             let version = try NSString(contentsOfFile: versionPath, encoding: String.Encoding.ascii.rawValue)
             if version as String != cacheVersion {
                 clearCache()
+                try? cacheVersion.write(toFile: versionPath, atomically: true, encoding: String.Encoding.ascii)
                 return
             }
             try? cacheVersion.write(toFile: versionPath, atomically: true, encoding: String.Encoding.ascii)
