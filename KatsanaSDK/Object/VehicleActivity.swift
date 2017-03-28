@@ -160,6 +160,10 @@ open class VehicleActivity: NSObject {
         return KatsanaFormatter.speedStringFrom(knot: Double(maxSpeed))
     }
     
+    open override var description: String{
+        return "\(super.description): \(message!) \(startTime!)"
+    }
+    
 //    class open func allTypes() -> [String] {
 //        return ["speed", "movement", "area", "battery-cutoff", "trip-start", "speed-summary", "harsh-brake", "harsh-accelerate", "harsh-corner", "checkpoint"]
 //    }

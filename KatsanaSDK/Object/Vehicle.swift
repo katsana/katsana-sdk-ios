@@ -87,7 +87,7 @@ open class Vehicle: NSObject {
         if let image = image {
             completion(image)
         }
-        else if let image = CacheManager.shared.image(for: (NSURL(string: imageURL)?.lastPathComponent)!){
+        else if let path = NSURL(string: imageURL)?.lastPathComponent, let image = CacheManager.shared.image(for: path){
             completion(image)
         }
         else{
@@ -118,7 +118,7 @@ open class Vehicle: NSObject {
         if let image = thumbImage {
             completion(image)
         }
-        else if let image = CacheManager.shared.image(for: (NSURL(string: thumbImageURL)?.lastPathComponent)!){
+        else if let path = NSURL(string: thumbImageURL)?.lastPathComponent, let image = CacheManager.shared.image(for: path){
             completion(image)
         }else{
             if isLoadingThumbImage {

@@ -63,7 +63,16 @@ public class CacheManager: NSObject {
         url = URL(fileURLWithPath: activitiesPath)
         if let data = try? Data(contentsOf: url){
             if let unarchive = FastCoder.object(with: data) as? [String: [VehicleActivity]]{
-                self.activities = unarchive
+                //Sort activities date
+                var newDicto = [String: [VehicleActivity]]()
+                for (key, value) in unarchive {
+                    let sort = value.sorted { (a, b) -> Bool in
+                        return a.startTime.timeIntervalSince(b.startTime) > 0
+                    }
+                    newDicto[key] = sort
+                }
+                
+                self.activities = newDicto
             }
         }
         
