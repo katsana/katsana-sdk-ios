@@ -65,8 +65,8 @@ open class VehicleActivity: NSObject {
     open var averageSpeed: Float = 0
     
     open var timeString : String!
-    open var startTime: Date!
-    open var endTime: Date!
+    open var startTime = Date(timeIntervalSinceReferenceDate: 0)
+    open var endTime = Date(timeIntervalSinceReferenceDate: 0)
     open var startPosition: Int = 0
     open var endPosition: Int = 0
     
@@ -126,7 +126,9 @@ open class VehicleActivity: NSObject {
             self.vehicleId = (dictionary["device_id"] as? NSNumber)?.stringValue
             self.message = dictionary["message"] as? String
             self.timeString = dictionary["time"] as? String
-            self.startTime = (dictionary["time"] as? String)?.date(gmt: 0)
+            if let date = (dictionary["time"] as? String)?.date(gmt: 0){
+                self.startTime = date
+            }
             self.identifier = identifier
         }        
         
@@ -161,7 +163,7 @@ open class VehicleActivity: NSObject {
     }
     
     open override var description: String{
-        return "\(super.description): \(message!) \(startTime!)"
+        return "\(super.description): \(message!) \(startTime)"
     }
     
 //    class open func allTypes() -> [String] {

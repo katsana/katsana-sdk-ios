@@ -85,6 +85,10 @@ extension KatsanaAPI {
             self.vehicles = vehicles
             if let vehicles = vehicles {
                 CacheManager.shared.cache(vehicles: vehicles)
+                
+                let vehicleIds = vehicles.map({$0.vehicleId!})
+                let combined = vehicleIds.joined(separator: ", ")
+                self.log.info("Got vehicle id's \(combined)")
             }
             completion(vehicles)
         }

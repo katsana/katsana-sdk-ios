@@ -21,6 +21,7 @@ public class KatsanaAPI: NSObject {
     public var defaultRequestVehicleOptions: [String]!
     ///Default options when requesting travel or trip
     public var defaultRequestTravelOptions: [String]!
+    public var authorizationHeader = "Bearer "
     
     public static let shared = KatsanaAPI()
     public var API : Service!
@@ -107,7 +108,7 @@ public class KatsanaAPI: NSObject {
             $0.headers["Accept"] = "application/json"
             $0.pipeline[.parsing].add(self.SwiftyJSONTransformer, contentTypes: ["*/json"])
             if self.authToken != nil{
-                $0.headers["Authorization"] = "Bearer " + self.authToken
+                $0.headers["Authorization"] = self.authorizationHeader + self.authToken
             }
         }
         

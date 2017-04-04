@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-let cacheVersion = "2.1"
+let cacheVersion = "2.2"
 
 //Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer does not need to use this class manually.
 public class CacheManager: NSObject {
@@ -178,6 +178,21 @@ public class CacheManager: NSObject {
         return nil
     }
     
+    public func validateVehicleActivities(userId: String, vehicleIds: [String]) {
+        if let theActivities = activities[userId]{
+            var newActivities = [VehicleActivity]()
+            for act in theActivities {
+                if let vehicleId = act.vehicleId {
+                    if vehicleIds.contains(vehicleId) {
+                        newActivities.append(act)
+                    }
+                }
+            }
+            activities[userId] = newActivities
+            autoSaveActivities()
+        }
+    }
+    
     public func expandedTripListDate(vehicleId: String) -> Date! {
         guard expandedTripList != nil else {
             return nil
@@ -243,6 +258,48 @@ public class CacheManager: NSObject {
         
         if dataChanged{
             data[classname] = travelArray
+            autoSave()
+        }
+    }
+    
+    public func cache(tripSummary: Trip, vehicleId: String) {
+        var dataChanged = false
+        let classname = NSStringFromClass(Trip.self)
+        
+        var tripArray: [[String: Any]]!
+        if let array = data[classname] as? [[String: Any]]{
+            tripArray = array
+        }else{
+            tripArray = [[String: Any]]()
+        }
+        
+        var needAdd = true
+        var needRemoveTravelIndex : Int!
+        
+        for (index, dicto) in tripArray.enumerated() {
+            if let theTrip = dicto["data"] as? Trip, let theVehicleId = dicto["id"] as? String{
+                if theTrip.date.isEqualToDateIgnoringTime(tripSummary.date), vehicleId == theVehicleId {
+                    if theTrip == tripSummary{
+                        needAdd = false
+                    }else{
+                        needRemoveTravelIndex = index
+                        dataChanged = true
+                    }
+                    break
+                }
+            }
+        }
+        
+        if let needRemoveTravelIndex = needRemoveTravelIndex {
+            tripArray.remove(at: needRemoveTravelIndex)
+        }
+        if needAdd {
+            tripArray.append(["data": tripSummary, "id": vehicleId])
+            dataChanged = true
+        }
+        
+        if dataChanged{
+            data[classname] = tripArray
             autoSave()
         }
     }

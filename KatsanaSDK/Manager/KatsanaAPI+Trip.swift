@@ -34,7 +34,7 @@ extension KatsanaAPI {
     ///Request travel summaries between dates. Only trip count is loaded, travel details are omitted.
     public func requestTravelSummaries(vehicleId: String, fromDate: Date!, toDate: Date, completion: @escaping (_ summaries:[Travel]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let dates = validateRange(fromDate: fromDate, toDate: toDate)
-        let datesWithHistory = requiredRangeToRequestTripSummary(fromDate: dates.fromDate, toDate: dates.toDate, vehicleId: vehicleId)
+        let datesWithHistory = requiredRangeToRequestTravelSummary(fromDate: dates.fromDate, toDate: dates.toDate, vehicleId: vehicleId)
         
         var travels = datesWithHistory.cachedHistories
         
@@ -195,6 +195,11 @@ extension KatsanaAPI {
     
     ///Request trip summaries between dates.
     public func requestTripSummaries(vehicleId: String, fromDate: Date, toDate: Date, completion: @escaping (_ summaries:[Trip]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        let datesWithHistory = requiredRangeToRequestTravelSummary(fromDate: fromDate, toDate: toDate, vehicleId: vehicleId)
+        var travels = datesWithHistory.cachedHistories
+        let newFromDate = datesWithHistory.fromDate.toStringWithYearMonthDay()
+        let newToDate = datesWithHistory.toDate.toStringWithYearMonthDay()
+        
         var trips = [Trip]()
         var date = fromDate
         
@@ -250,7 +255,7 @@ extension KatsanaAPI {
     }
     
     //!Check required date range from given dates that require to update data from server. Basically give date range by user, cached data is checked if already available, the dates then filtered based on the cached data. However if it is latest dates, need check more condition because the latest data may still not uploaded to the server from the vechle itself.
-    func requiredRangeToRequestTripSummary(fromDate : Date, toDate : Date, vehicleId : String) -> (fromDate : Date, toDate : Date, cachedHistories : [Travel]) {
+    func requiredRangeToRequestTravelSummary(fromDate : Date, toDate : Date, vehicleId : String) -> (fromDate : Date, toDate : Date, cachedHistories : [Travel]) {
         var travels = [Travel]()
         var dates : (fromDate : Date, toDate : Date, cachedHistories : [Travel])
         

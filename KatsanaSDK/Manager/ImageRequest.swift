@@ -41,8 +41,6 @@ public class ImageRequest: NSObject {
         ) { r in
             if r.ok {
                 let content = r.content
-                
-                
                 if let image = KMImage(data: content!), let lastComponent = url?.lastPathComponent{
                     CacheManager.shared.cache(image: image, identifier: lastComponent)
                     DispatchQueue.main.sync{completion(image)}

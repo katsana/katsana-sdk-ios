@@ -166,8 +166,12 @@ class ObjectJSONTransformer: NSObject {
         violation.duration = json["duration"].floatValue
         violation.latitude = json["latitude"].doubleValue
         violation.longitude = json["longitude"].doubleValue
-        violation.startTime = json["start_time"].date(gmt: 0)
-        violation.endTime = json["end_time"].date(gmt: 0)
+        if let date = json["start_time"].date(gmt: 0){
+            violation.startTime = date
+        }
+        if let date = json["end_time"].date(gmt: 0){
+            violation.endTime = date
+        }
         violation.startPosition = json["start_position"].intValue
         violation.endPosition = json["end_position"].intValue
         violation.maxSpeed = json["max_speed"].floatValue

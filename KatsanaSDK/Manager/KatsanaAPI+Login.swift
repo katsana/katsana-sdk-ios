@@ -11,6 +11,56 @@ import XCGLogger
 
 extension KatsanaAPI {
 
+    public func loginJWT(name: String, password: String, nameKey: String = "email", authPath: String = "auth", completion: @escaping () -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        let useOAuth2 = false
+        var data = [nameKey : name, "password" : password]
+        var tokenKey = "token"
+
+        let path = self.baseURL().absoluteString + authPath
+        Just.post(
+            path,
+            data: data
+        ) { r in
+            if r.ok {
+                let json = JSON(data: r.content!)
+                let token = json["token"].string
+                if token != nil {
+                    DispatchQueue.main.sync {
+                        self.authToken = token
+                        NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
+                        completion()
+                    }
+                }else{
+                    failure(r.error)
+                }
+            }else{
+                let json = JSON(data: r.content!)
+                var errorString = json["error"].stringValue
+                if let status : Int = r.statusCode, let jsonError = json["error"].string{
+                    print(errorString)
+                    switch status {
+                    case 401:
+                        errorString = "Invalid login details"
+                    default:
+                        errorString = statusCodeDescriptions[status]!
+                    }
+                    let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  errorString, NSLocalizedFailureReasonErrorKey : jsonError]
+                    let error = NSError(domain: SDKError.domain, code: status, userInfo: userInfo)
+                    DispatchQueue.main.sync {
+                        failure(error)
+                    }
+                    
+                    self.log.info("Error logon \(error)")
+                }else{
+                    DispatchQueue.main.sync {
+                        failure(r.error)
+                        self.log.info("Error logon \(r.error)")
+                    }
+                }
+            }
+        }
+    }
+    
     public func login(email: String, password: String, completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         var data : Dictionary<String,String>
         let tokenKey = "access_token"

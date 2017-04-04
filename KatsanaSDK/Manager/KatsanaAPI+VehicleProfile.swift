@@ -41,9 +41,11 @@ extension KatsanaAPI {
             return
         }
         
-        var finalImage = image! as KMImage
+        var finalImage : KMImage!
         if image == nil {
             finalImage = KMImage(color: KMColor.white)!
+        }else{
+            finalImage = image
         }
         finalImage = finalImage.fixOrientation()
         
