@@ -105,7 +105,8 @@ public class CacheManager: NSObject {
         return nil
     }
     
-    public func latestTravel(vehicleId: String) -> Travel! {
+    ///Get latest cached travel data 
+    public func latestTravels(vehicleId: String, count: Int = 1) -> [Travel]! {
         let classname = NSStringFromClass(Travel.self)
         if let travelArray = data[classname] as? [[String: Any]]{
             var theTravels : [Travel]!
@@ -114,11 +115,23 @@ public class CacheManager: NSObject {
                     theTravels = travels
                 }
             }
-            if var theTravels = theTravels {
-                theTravels.sort(by: { (a, b) -> Bool in
+            if theTravels != nil {
+                theTravels.sort(by: { (a, b) -> Bool in //Latest is first
                     a.date > b.date
                 })
-                return theTravels.first
+                if count == 1 || count == 0 {
+                    return [theTravels.first!]
+                }else{
+                    var newTravels = [Travel]()
+                    for (index, travel) in theTravels.enumerated() {
+                        if index == count - 1 {
+                            break
+                        }else{
+                            newTravels.append(travel)
+                        }
+                    }
+                    return newTravels
+                }
             }
         }
         return nil
