@@ -105,7 +105,7 @@ public class CacheManager: NSObject {
         return nil
     }
     
-    ///Get latest cached travel data 
+    ///Get latest cached travel data
     public func latestTravels(vehicleId: String, count: Int = 1) -> [Travel]! {
         let classname = NSStringFromClass(Travel.self)
         if let travelArray = data[classname] as? [[String: Any]]{

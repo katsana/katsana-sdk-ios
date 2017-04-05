@@ -29,7 +29,7 @@ open class Trip: NSObject {
     open var extraData: [String: Any]!
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData"]
+        return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData", "date"]
     }
     
     // MARK: Logic
