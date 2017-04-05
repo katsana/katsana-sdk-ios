@@ -203,23 +203,46 @@ extension KatsanaAPI {
         var trips = [Trip]()
         var date = fromDate
         
-        func requestTravel(){
-            self.requestTravel(for: date, vehicleId: vehicleId, completion: { (travel) in
-                travel?.trips.map({$0.date = date})
-                trips.append(contentsOf: (travel?.trips)!)
-                
-                if date.isEqualToDateIgnoringTime(toDate){
-                    completion(trips.reversed())
-                }else{
-                    date = date.dateByAddingDays(1)
-                    requestTravel()
-                }
-            }) { (error) in
-                failure(error)
-                self.log.error("Error getting trip history vehicle id \(vehicleId), using summary with date \(date), \(error)")
+//        func requestTravel(){
+//            self.requestTravel(for: date, vehicleId: vehicleId, completion: { (travel) in
+//                travel?.trips.map({$0.date = date})
+//                trips.append(contentsOf: (travel?.trips)!)
+//                
+//                if date.isEqualToDateIgnoringTime(toDate){
+//                    completion(trips.reversed())
+//                }else{
+//                    date = date.dateByAddingDays(1)
+//                    requestTravel()
+//                }
+//            }) { (error) in
+//                failure(error)
+//                self.log.error("Error getting trip history vehicle id \(vehicleId), using summary with date \(date), \(error)")
+//            }
+//        }
+//        requestTravel()
+        
+        let path = "vehicles/" + vehicleId + "/travels/summaries/duration"
+        
+        let resource = API.resource(path).withParam("start", datesWithHistory.fromDate.toStringWithYearMonthDay()).withParam("end",datesWithHistory.toDate.toStringWithYearMonthDay());
+        let request = resource.loadIfNeeded()
+        
+        func handleResource() -> Void {
+            if let summaries : [Trip] = resource.typedContent(){
+                completion(summaries)
+            }else{
+                failure(nil)
             }
         }
-        requestTravel()
+        
+        request?.onSuccess({(entity) in
+            handleResource()
+        }).onFailure({ (error) in
+            failure(error)
+            self.log.error("Error getting trip summaries with original from \(fromDate) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error)")
+        })
+        if request == nil {
+            handleResource()
+        }
     }
     
     ///Get latest cached travel locations from today to previous day count

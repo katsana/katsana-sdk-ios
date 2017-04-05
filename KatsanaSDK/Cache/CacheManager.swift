@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-let cacheVersion = "2.2"
+let cacheVersion = "2.3"
 
 //Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer does not need to use this class manually.
 public class CacheManager: NSObject {
@@ -105,6 +105,56 @@ public class CacheManager: NSObject {
         return nil
     }
     
+//    public func latestTravel(userId: String) -> Travel! {
+//        let classname = NSStringFromClass(Travel.self)
+//        if let travelArray = data[classname] as? [[String: Any]]{
+//            for travelDicto in travelArray {
+//                if let travelVehicleId = travelDicto["id"] as? String, let travel = travelDicto["data"] as? Travel {
+//                    if travelVehicleId == vehicleId, Calendar.current.isDate(travel.date, inSameDayAs: date){
+//                        return travel
+//                    }
+//                }
+//            }
+//        }
+//        return nil
+//    }
+    
+    ///Get cached travel data given vehicle id and date
+    public func trips(vehicleId:String, date:Date, toDate:Date! = nil) -> [Trip]! {
+        //Check if date is today, return nil if more than specified time. No local cache is returned and  library should request a new data from server
+//        let today = Date()
+//        if date.isToday(), travelAccessVehicleId == vehicleId, let todayAccessDate = todayAccessDate, today.timeIntervalSince(todayAccessDate) > 60 * 4 {
+//            self.travelAccessVehicleId = vehicleId
+//            self.todayAccessDate = today
+//            return nil
+//        }
+        
+        let classname = NSStringFromClass(Trip.self)
+        if let tripArray = data[classname] as? [[String: Any]]{
+            var trips = [Trip]()
+            for tripDicto in tripArray {
+                if let travelVehicleId = tripDicto["id"] as? String, let trip = tripDicto["data"] as? Trip {
+                    if toDate == nil {
+                        if travelVehicleId == vehicleId, Calendar.current.isDate(trip.date, inSameDayAs: date){
+                            trips.append(trip)
+                        }
+                    }else{
+                        if travelVehicleId == vehicleId{
+                            if (Calendar.current.isDate(trip.date, inSameDayAs: date) || (trip.date.isLaterThanDate(date) && trip.date.isEarlierThanDate(toDate))) {
+                                trips.append(trip)
+                            }
+                        }
+                    }
+                }
+            }
+            if trips.count == 0 {
+                return nil
+            }
+            return trips
+        }
+        return nil
+    }
+    
     ///Get cached travel data given vehicle id and date
     public func travel(vehicleId:String, date:Date) -> Travel! {
         //Check if date is today, return nil if more than specified time. No local cache is returned and  library should request a new data from server
@@ -118,9 +168,11 @@ public class CacheManager: NSObject {
         let classname = NSStringFromClass(Travel.self)
         if let travelArray = data[classname] as? [[String: Any]]{
             for travelDicto in travelArray {
-                if let travelVehicleId = travelDicto["id"] as? String, let travel = travelDicto["data"] as? Travel {
-                    if travelVehicleId == vehicleId, Calendar.current.isDate(travel.date, inSameDayAs: date){
-                        return travel
+                if let travelVehicleId = travelDicto["id"] as? String, let travels = travelDicto["data"] as? [Travel] {
+                    for travel in travels {
+                        if travelVehicleId == vehicleId, Calendar.current.isDate(travel.date, inSameDayAs: date){
+                            return travel
+                        }
                     }
                 }
             }
@@ -224,45 +276,66 @@ public class CacheManager: NSObject {
         var dataChanged = false
         let classname = NSStringFromClass(Travel.self)
         
-        var travelArray: [[String: Any]]!
+        var travelDicto: [[String: Any]]!
         if let array = data[classname] as? [[String: Any]]{
-            travelArray = array
+            travelDicto = array
         }else{
-            travelArray = [[String: Any]]()
+            travelDicto = [[String: Any]]()
         }
         
         var needAdd = true
         var needRemoveTravelIndex : Int!
+        var theTravels : [Travel]!
+        var theUserIndex : Int!
         
-        for (index, dicto) in travelArray.enumerated() {
-            if let theTravel = dicto["data"] as? Travel, let theVehicleId = dicto["id"] as? String{
-                if theTravel.date.isEqualToDateIgnoringTime(travel.date), vehicleId == theVehicleId {
-                    if theTravel == travel{
-                        needAdd = false
-                    }else{
-                        needRemoveTravelIndex = index
-                        dataChanged = true
+        for (userIndex, dicto) in travelDicto.enumerated() {
+            if let theVehicleId = dicto["id"] as? String, let travels = dicto["data"] as? [Travel]{
+                theTravels = travels
+                theUserIndex = userIndex
+                var needBreak = false
+                for (index, theTravel) in travels.enumerated() {
+                    if theTravel.date.isEqualToDateIgnoringTime(travel.date), vehicleId == theVehicleId {
+                        if theTravel == travel{
+                            needAdd = false
+                        }else{
+                            needRemoveTravelIndex = index
+                            dataChanged = true
+                        }
+                        needBreak = true
+                        break
                     }
+                }
+                if needBreak {
                     break
                 }
             }
         }
         
         if let needRemoveTravelIndex = needRemoveTravelIndex {
-            travelArray.remove(at: needRemoveTravelIndex)
+            theTravels.remove(at: needRemoveTravelIndex)
         }
         if needAdd {
-            travelArray.append(["data": travel, "id": vehicleId])
+            if theTravels != nil {
+                theTravels.append(travel)
+            }else{
+                theTravels = [travel]
+            }
             dataChanged = true
         }
         
         if dataChanged{
-            data[classname] = travelArray
+            if let theUserIndex = theUserIndex {
+                travelDicto[theUserIndex]["data"] = theTravels
+            }else{
+                var travelData = ["id": vehicleId, "data": theTravels] as [String : Any]
+                travelDicto.append(travelData)
+            }
+            data[classname] = travelDicto
             autoSave()
         }
     }
     
-    public func cache(tripSummary: Trip, vehicleId: String) {
+    public func cache(trip: Trip, vehicleId: String) {
         var dataChanged = false
         let classname = NSStringFromClass(Trip.self)
         
@@ -278,8 +351,8 @@ public class CacheManager: NSObject {
         
         for (index, dicto) in tripArray.enumerated() {
             if let theTrip = dicto["data"] as? Trip, let theVehicleId = dicto["id"] as? String{
-                if theTrip.date.isEqualToDateIgnoringTime(tripSummary.date), vehicleId == theVehicleId {
-                    if theTrip == tripSummary{
+                if theTrip.date.isEqualToDateIgnoringTime(trip.date), vehicleId == theVehicleId {
+                    if theTrip == trip{
                         needAdd = false
                     }else{
                         needRemoveTravelIndex = index
@@ -294,7 +367,7 @@ public class CacheManager: NSObject {
             tripArray.remove(at: needRemoveTravelIndex)
         }
         if needAdd {
-            tripArray.append(["data": tripSummary, "id": vehicleId])
+            tripArray.append(["data": trip, "id": vehicleId])
             dataChanged = true
         }
         

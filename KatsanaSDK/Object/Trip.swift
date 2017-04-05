@@ -15,7 +15,7 @@ open class Trip: NSObject {
     open var averageSpeed: Float = 0
     open var idleDuration: Float = 0
     open var score: Float = -1
-    open var date : Date!
+    open var date = Date(timeIntervalSinceReferenceDate: 0)
     
     open var idles = [VehicleLocation]()
     dynamic open var locations = [VehicleLocation]()
