@@ -105,19 +105,24 @@ public class CacheManager: NSObject {
         return nil
     }
     
-//    public func latestTravel(userId: String) -> Travel! {
-//        let classname = NSStringFromClass(Travel.self)
-//        if let travelArray = data[classname] as? [[String: Any]]{
-//            for travelDicto in travelArray {
-//                if let travelVehicleId = travelDicto["id"] as? String, let travel = travelDicto["data"] as? Travel {
-//                    if travelVehicleId == vehicleId, Calendar.current.isDate(travel.date, inSameDayAs: date){
-//                        return travel
-//                    }
-//                }
-//            }
-//        }
-//        return nil
-//    }
+    public func latestTravel(vehicleId: String) -> Travel! {
+        let classname = NSStringFromClass(Travel.self)
+        if let travelArray = data[classname] as? [[String: Any]]{
+            var theTravels : [Travel]!
+            for travelDicto in travelArray {
+                if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["data"] as? [Travel] {
+                    theTravels = travels
+                }
+            }
+            if var theTravels = theTravels {
+                theTravels.sort(by: { (a, b) -> Bool in
+                    a.date > b.date
+                })
+                return theTravels.first
+            }
+        }
+        return nil
+    }
     
     ///Get cached travel data given vehicle id and date
     public func trips(vehicleId:String, date:Date, toDate:Date! = nil) -> [Trip]! {
@@ -168,9 +173,9 @@ public class CacheManager: NSObject {
         let classname = NSStringFromClass(Travel.self)
         if let travelArray = data[classname] as? [[String: Any]]{
             for travelDicto in travelArray {
-                if let travelVehicleId = travelDicto["id"] as? String, let travels = travelDicto["data"] as? [Travel] {
+                if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["data"] as? [Travel] {
                     for travel in travels {
-                        if travelVehicleId == vehicleId, Calendar.current.isDate(travel.date, inSameDayAs: date){
+                        if Calendar.current.isDate(travel.date, inSameDayAs: date){
                             return travel
                         }
                     }
@@ -289,12 +294,12 @@ public class CacheManager: NSObject {
         var theUserIndex : Int!
         
         for (userIndex, dicto) in travelDicto.enumerated() {
-            if let theVehicleId = dicto["id"] as? String, let travels = dicto["data"] as? [Travel]{
+            if let theVehicleId = dicto["id"] as? String, vehicleId == theVehicleId, let travels = dicto["data"] as? [Travel]{
                 theTravels = travels
                 theUserIndex = userIndex
                 var needBreak = false
                 for (index, theTravel) in travels.enumerated() {
-                    if theTravel.date.isEqualToDateIgnoringTime(travel.date), vehicleId == theVehicleId {
+                    if theTravel.date.isEqualToDateIgnoringTime(travel.date) {
                         if theTravel == travel{
                             needAdd = false
                         }else{
