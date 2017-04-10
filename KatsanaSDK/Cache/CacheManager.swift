@@ -10,7 +10,7 @@ import CoreLocation
 
 let cacheVersion = "2.3"
 
-//Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer does not need to use this class manually.
+//Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer should not use and call methods in this class manually.
 public class CacheManager: NSObject {
     public static let shared = CacheManager()
     
@@ -353,46 +353,58 @@ public class CacheManager: NSObject {
         }
     }
     
+    ///For normal use of KatsanaSDK, this class is never called except when used for different purpose.
     public func cache(trip: Trip, vehicleId: String) {
-        var dataChanged = false
-        let classname = NSStringFromClass(Trip.self)
-        
-        var tripArray: [[String: Any]]!
-        if let array = data[classname] as? [[String: Any]]{
-            tripArray = array
-        }else{
-            tripArray = [[String: Any]]()
-        }
-        
-        var needAdd = true
-        var needRemoveTravelIndex : Int!
-        
-        for (index, dicto) in tripArray.enumerated() {
-            if let theTrip = dicto["data"] as? Trip, let theVehicleId = dicto["id"] as? String{
-                if theTrip.date.isEqualToDateIgnoringTime(trip.date), vehicleId == theVehicleId {
-                    if theTrip == trip{
-                        needAdd = false
-                    }else{
-                        needRemoveTravelIndex = index
-                        dataChanged = true
+        var travel: Travel!
+        let classname = NSStringFromClass(Travel.self)
+        if let travelArray = data[classname] as? [[String: Any]]{
+            for travelDicto in travelArray {
+                if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["data"] as? [Travel] {
+                    for theTravel in travels {
+                        if Calendar.current.isDate(theTravel.date, inSameDayAs: trip.date){
+                            travel = theTravel
+                        }
                     }
-                    break
                 }
             }
         }
         
-        if let needRemoveTravelIndex = needRemoveTravelIndex {
-            tripArray.remove(at: needRemoveTravelIndex)
-        }
-        if needAdd {
-            tripArray.append(["data": trip, "id": vehicleId])
-            dataChanged = true
+        var haveSameTrip = false
+        if let travel = travel{
+            for aTrip in travel.trips {
+                if aTrip.date == trip.date {
+                    haveSameTrip = true
+                    break
+                }
+            }
+            if !haveSameTrip {
+                var trips = travel.trips
+                trips.append(trip)
+                trips.sort(by: { (a, b) -> Bool in
+                    return a.date < b.date
+                })
+                travel.trips = trips
+            }
+        }else{
+            travel = Travel()
+            travel.date = trip.date
+            travel.vehicleId = vehicleId
+            travel.trips = [trip]
         }
         
-        if dataChanged{
-            data[classname] = tripArray
-            autoSave()
+        var distance : Double = 0
+        var maxSpeed : CGFloat = 0
+        var duration : Double = 0
+        
+        for trip in travel.trips {
+            distance += trip.distance
+            duration += trip.duration
+            maxSpeed = max(maxSpeed, CGFloat(trip.maxSpeed))
         }
+        travel.distance = distance
+        travel.duration = duration
+        travel.maxSpeed = Float(maxSpeed)
+        cache(travel: travel, vehicleId: vehicleId)
     }
     
     public func cache(address: Address) {
