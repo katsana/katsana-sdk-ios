@@ -361,7 +361,7 @@ public class CacheManager: NSObject {
             for travelDicto in travelArray {
                 if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["data"] as? [Travel] {
                     for theTravel in travels {
-                        if Calendar.current.isDate(theTravel.date, inSameDayAs: trip.date){
+                        if let theTravelDate = theTravel.date, Calendar.current.isDate(theTravelDate, inSameDayAs: trip.date){
                             travel = theTravel
                         }
                     }
@@ -405,6 +405,7 @@ public class CacheManager: NSObject {
         travel.duration = duration
         travel.maxSpeed = Float(maxSpeed)
         cache(travel: travel, vehicleId: vehicleId)
+        autoSave()
     }
     
     public func cache(address: Address) {
