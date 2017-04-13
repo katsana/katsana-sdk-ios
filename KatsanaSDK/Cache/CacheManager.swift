@@ -361,7 +361,7 @@ public class CacheManager: NSObject {
             for travelDicto in travelArray {
                 if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["data"] as? [Travel] {
                     for theTravel in travels {
-                        if let theTravelDate = theTravel.date, Calendar.current.isDate(theTravelDate, inSameDayAs: trip.date){
+                        if let travelDate = theTravel.date, travelDate.isEqualToDateIgnoringTime(trip.date){
                             travel = theTravel
                         }
                     }

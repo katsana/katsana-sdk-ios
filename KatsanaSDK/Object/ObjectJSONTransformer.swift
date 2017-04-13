@@ -99,6 +99,16 @@ class ObjectJSONTransformer: NSObject {
         return summaries
     }
     
+    class func TripSummariesObject(json : JSON) -> [Trip] {
+        var summaries = [Trip]()
+        let array = json.arrayValue
+        for jsonObj in array {
+            let history = TripObject(json: jsonObj)
+            summaries.append(history)
+        }
+        return summaries
+    }
+    
     class func TravelSummaryObject(json : JSON) -> Travel {
         let history = Travel()
         history.maxSpeed = json["max_speed"].floatValue

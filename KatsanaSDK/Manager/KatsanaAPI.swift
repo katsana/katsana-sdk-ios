@@ -158,11 +158,15 @@ public class KatsanaAPI: NSObject {
         API.configureTransformer("vehicles/*/summaries/duration") {
             ObjectJSONTransformer.TravelSummariesObject(json: $0.content)
         }
+        
         API.configureTransformer("vehicles/*/summaries/today") {
             ObjectJSONTransformer.TravelSummaryObject(json: $0.content)
         }
         API.configureTransformer("vehicles/*/travels/***") {
             ObjectJSONTransformer.TravelObject(json: $0.content)
+        }
+        API.configureTransformer("vehicles/*/travels/summaries/duration") {
+            ObjectJSONTransformer.TripSummariesObject(json: $0.content)
         }
         API.configureTransformer("vehicles/*/location") {
             ObjectJSONTransformer.VehicleLocationObject(json: $0.content)

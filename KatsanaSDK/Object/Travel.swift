@@ -144,7 +144,7 @@ open class Travel: NSObject {
     // MARK: Description
     
     open override var description: String{
-        return String(format: "%@, trips:%@, maxSpeed:%.1f, date:%@", super.description, trips.description, maxSpeed, date.description)
+        return String(format: "%@, trips:%@, maxSpeed:%.1f, date:%@", super.description, trips.description, maxSpeed, date?.description ?? "")
     }
     
 }

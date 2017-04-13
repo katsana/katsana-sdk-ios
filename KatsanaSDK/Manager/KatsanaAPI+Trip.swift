@@ -223,7 +223,7 @@ extension KatsanaAPI {
         
         let path = "vehicles/" + vehicleId + "/travels/summaries/duration"
         
-        let resource = API.resource(path).withParam("start", datesWithHistory.fromDate.toStringWithYearMonthDay()).withParam("end",datesWithHistory.toDate.toStringWithYearMonthDay());
+        let resource = API.resource(path).withParam("start", fromDate.toStringWithYearMonthDay()).withParam("end", toDate.toStringWithYearMonthDay());
         let request = resource.loadIfNeeded()
         
         func handleResource() -> Void {

@@ -26,7 +26,7 @@ open class Trip: NSObject {
     weak var prevTrip: Trip!
     
     //Extra data that user can set to trip
-    open var extraData: [String: Any]!
+    open var extraData = [String: Any]()
     
     override open class func fastCodingKeys() -> [Any]? {
         return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData", "date"]
