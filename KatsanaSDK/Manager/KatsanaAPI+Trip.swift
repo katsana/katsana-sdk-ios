@@ -109,10 +109,10 @@ extension KatsanaAPI {
         
         //Check for options
         if let options = options {
-            let text = options.joined(separator: ", ")
+            let text = options.joined(separator: ",")
             resource = resource.withParam("includes", text)
         }else if let options = defaultRequestTravelOptions{
-            let text = options.joined(separator: ", ")
+            let text = options.joined(separator: ",")
             resource = resource.withParam("includes", text)
         }
         
@@ -194,7 +194,7 @@ extension KatsanaAPI {
     }
     
     ///Request trip summaries between dates.
-    public func requestTripSummaries(vehicleId: String, fromDate: Date, toDate: Date, completion: @escaping (_ summaries:[Trip]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTripSummaries(vehicleId: String, options: [String]! = nil, fromDate: Date, toDate: Date, completion: @escaping (_ summaries:[Trip]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let datesWithHistory = requiredRangeToRequestTravelSummary(fromDate: fromDate, toDate: toDate, vehicleId: vehicleId)
         var travels = datesWithHistory.cachedHistories
         let newFromDate = datesWithHistory.fromDate.toStringWithYearMonthDay()
@@ -202,46 +202,71 @@ extension KatsanaAPI {
         
         var trips = [Trip]()
         var date = fromDate
-        
-//        func requestTravel(){
-//            self.requestTravel(for: date, vehicleId: vehicleId, completion: { (travel) in
-//                travel?.trips.map({$0.date = date})
-//                trips.append(contentsOf: (travel?.trips)!)
-//                
-//                if date.isEqualToDateIgnoringTime(toDate){
-//                    completion(trips.reversed())
-//                }else{
-//                    date = date.dateByAddingDays(1)
-//                    requestTravel()
-//                }
-//            }) { (error) in
-//                failure(error)
-//                self.log.error("Error getting trip history vehicle id \(vehicleId), using summary with date \(date), \(error)")
-//            }
-//        }
-//        requestTravel()
-        
+
         let path = "vehicles/" + vehicleId + "/travels/summaries/duration"
+        var resource = API.resource(path)
         
-        let resource = API.resource(path).withParam("start", fromDate.toStringWithYearMonthDay()).withParam("end", toDate.toStringWithYearMonthDay());
-        let request = resource.loadIfNeeded()
+        var timezone: NSTimeZone!
+        var vehicle = vehicleWith(vehicleId: vehicleId)
+        if vehicle == nil {
+            vehicle = currentVehicle
+        }
+        if let vehicle = vehicle, let timezoneText = vehicle.timezone{
+            timezone = NSTimeZone(name: timezoneText)
+        }
         
-        func handleResource() -> Void {
-            if let summaries : [Trip] = resource.typedContent(){
-                completion(summaries)
+        func requestSummaries(){
+            //Check for options
+            if let options = options {
+                let text = options.joined(separator: ", ")
+                resource = resource.withParam("includes", text)
+                let params = "?start=\(fromDate.toStringWithYearMonthDayAndTime())&end=\(toDate.toStringWithYearMonthDayAndTime())"
+                resource = API.resource(path).relative(params)
+            }else if let options = defaultRequestTripOptions{
+                let text = options.joined(separator: ", ")
+                resource = resource.withParam("includes", text)
+                let params = "?start=\(fromDate.toStringWithYearMonthDayAndTime(timezone: timezone))&end=\(toDate.toStringWithYearMonthDayAndTime(timezone: timezone))"
+                resource = API.resource(path).relative(params)
             }else{
-                failure(nil)
+                let params = "?start=\(fromDate.toStringWithYearMonthDayAndTime(timezone: timezone))&end=\(toDate.toStringWithYearMonthDayAndTime(timezone: timezone))"
+                resource = API.resource(path).relative(params)
+            }
+            
+            let request = resource.loadIfNeeded()
+            
+            func handleResource() -> Void {
+                if let summaries : [Trip] = resource.typedContent(){
+                    for summary in summaries{
+                        summary.date = summary.start.trackedAt
+                    }
+                    completion(summaries)
+                }else{
+                    failure(nil)
+                }
+            }
+            
+            request?.onSuccess({(entity) in
+                handleResource()
+            }).onFailure({ (error) in
+                failure(error)
+                self.log.error("Error getting trip summaries with original from \(fromDate) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error)")
+            })
+            if request == nil {
+                handleResource()
             }
         }
         
-        request?.onSuccess({(entity) in
-            handleResource()
-        }).onFailure({ (error) in
-            failure(error)
-            self.log.error("Error getting trip summaries with original from \(fromDate) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error)")
-        })
-        if request == nil {
-            handleResource()
+        if vehicle == nil{
+            requestVehicle(vehicleId: vehicleId, completion: { (vehicle) in
+                if let vehicle = vehicle, let timezoneText = vehicle.timezone{
+                    timezone = NSTimeZone(name: timezoneText)
+                }
+                requestSummaries()
+            }) { (err) in
+                failure(err)
+            }
+        }else{
+            requestSummaries()
         }
     }
     

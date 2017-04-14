@@ -25,7 +25,7 @@ extension KatsanaAPI {
         
         //Check for options
         if let options = options {
-            let text = options.joined(separator: ", ")
+            let text = options.joined(separator: ",")
             resource = resource.withParam("includes", text)
         }else if let options = defaultRequestVehicleOptions{
             let text = options.joined(separator: ", ")
@@ -38,7 +38,15 @@ extension KatsanaAPI {
             let vehicle : Vehicle? = resource.typedContent()
             if cachedVehicle != nil, let vehicle = vehicle {
                 cachedVehicle?.reload(with: vehicle)
-                currentVehicle = cachedVehicle!;
+                currentVehicle = cachedVehicle!
+                if self.vehicleWith(vehicleId: vehicleId) == nil {
+                    if self.vehicles == nil{
+                        self.vehicles = [currentVehicle]
+                    }else{
+                        self.vehicles.append(currentVehicle)
+                    }
+                }
+                
                 completion(cachedVehicle)
                 self.log.warning("Getting new instance of Vehicle because vehicle list still not loaded")
             }else{

@@ -21,6 +21,7 @@ public class KatsanaAPI: NSObject {
     public var defaultRequestVehicleOptions: [String]!
     ///Default options when requesting travel or trip
     public var defaultRequestTravelOptions: [String]!
+    public var defaultRequestTripOptions: [String]!
     public var authorizationHeader = "Bearer "
     
     public static let shared = KatsanaAPI()

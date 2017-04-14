@@ -47,7 +47,7 @@ class ObjectJSONTransformer: NSObject {
         vehicle.vehicleNumber = dicto["vehicle_number"].stringValue
         vehicle.imei = dicto["imei"].stringValue
         vehicle.mode = dicto["mode"].stringValue
-        
+        vehicle.timezone = dicto["timezone"].stringValue
         vehicle.todayMaxSpeed = dicto["today_max_speed"].floatValue
         vehicle.imageURL = dicto["avatar"].stringValue
         vehicle.thumbImageURL = dicto["marker"].stringValue

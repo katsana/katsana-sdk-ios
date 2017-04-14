@@ -20,6 +20,7 @@ open class Vehicle: NSObject {
     ///Date when this vehicle subscription ended
     open var subscriptionEnd: Date!
     open var websocketSupported = false
+    open var timezone: String!
     open var imageURL: String!
     open var thumbImageURL: String!
     open var current: VehicleLocation!
@@ -36,7 +37,7 @@ open class Vehicle: NSObject {
     private var isLoadingThumbImage = false
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData"]
+        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData", "timezone"]
     }
     
     ///Reload data given new vehicle data
