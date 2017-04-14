@@ -218,15 +218,16 @@ extension KatsanaAPI {
         func requestSummaries(){
             //Check for options
             if let options = options {
-                let text = options.joined(separator: ", ")
-                resource = resource.withParam("includes", text)
-                let params = "?start=\(fromDate.toStringWithYearMonthDayAndTime())&end=\(toDate.toStringWithYearMonthDayAndTime())"
-                resource = API.resource(path).relative(params)
+                let text = options.joined(separator: ",")
+                var params = "?start=\(fromDate.toStringWithYearMonthDayAndTime())&end=\(toDate.toStringWithYearMonthDayAndTime())"
+                params = params + "&includes=\(text)"
+                resource = resource.relative(params)
             }else if let options = defaultRequestTripOptions{
-                let text = options.joined(separator: ", ")
+                let text = options.joined(separator: ",")
                 resource = resource.withParam("includes", text)
-                let params = "?start=\(fromDate.toStringWithYearMonthDayAndTime(timezone: timezone))&end=\(toDate.toStringWithYearMonthDayAndTime(timezone: timezone))"
-                resource = API.resource(path).relative(params)
+                var params = "?start=\(fromDate.toStringWithYearMonthDayAndTime(timezone: timezone))&end=\(toDate.toStringWithYearMonthDayAndTime(timezone: timezone))"
+                params = params + "&includes=\(text)"
+                resource = resource.relative(params)
             }else{
                 let params = "?start=\(fromDate.toStringWithYearMonthDayAndTime(timezone: timezone))&end=\(toDate.toStringWithYearMonthDayAndTime(timezone: timezone))"
                 resource = API.resource(path).relative(params)

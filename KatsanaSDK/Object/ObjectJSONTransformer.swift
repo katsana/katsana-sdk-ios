@@ -24,6 +24,9 @@ class ObjectJSONTransformer: NSObject {
         
         user.createdAt = json["created_at"].date(gmt: 0)
         user.updatedAt = json["updated_at"].date(gmt: 0)
+        if let handler = KatsanaAPI.shared.objectInitializationHandler {
+            handler(json, User.self)
+        }
         return user
     }
     
@@ -61,6 +64,10 @@ class ObjectJSONTransformer: NSObject {
             vehicle.extraData["features"] = features
         }
         
+        if let handler = KatsanaAPI.shared.objectInitializationHandler {
+            handler(json, Vehicle.self)
+        }
+        
         return vehicle
     }
     
@@ -85,7 +92,6 @@ class ObjectJSONTransformer: NSObject {
         if let harsh = json["harsh"].dictionaryObject{
             pos.extraData["harsh"] = harsh
         }
-        
         return pos
     }
     
@@ -119,6 +125,9 @@ class ObjectJSONTransformer: NSObject {
         history.idleDuration = json["idle_duration"].doubleValue
         history.date = json["date"].dateWithoutTime
 //        /change date to local date and check UTC time again
+        if let handler = KatsanaAPI.shared.objectInitializationHandler {
+            handler(json, Vehicle.self)
+        }
         return history
     }
     
@@ -129,6 +138,9 @@ class ObjectJSONTransformer: NSObject {
         history.violationCount = json["summary"]["violation"].intValue
         history.trips = json["trips"].arrayValue.map{TripObject(json: $0)}
         history.date = json["duration"]["from"].date(gmt: 0)
+        if let handler = KatsanaAPI.shared.objectInitializationHandler {
+            handler(json, Travel.self)
+        }
         return history
     }
     
@@ -146,7 +158,9 @@ class ObjectJSONTransformer: NSObject {
         trip.locations = json["histories"].arrayValue.map {VehicleLocationObject(json: $0)}
         trip.violations = json["violations"].arrayValue.map {VehicleActivityObject(json: $0)}
         trip.score = json["score"].floatValue
-
+        if let handler = KatsanaAPI.shared.objectInitializationHandler {
+            handler(json, Trip.self)
+        }
         return trip
     }
     
@@ -162,7 +176,6 @@ class ObjectJSONTransformer: NSObject {
         address.postcode = json["postcode"].intValue
         address.country = json["country"].stringValue
         address.address = json["address"].stringValue
-
         return address
     }
     
