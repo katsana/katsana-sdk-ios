@@ -24,7 +24,7 @@ public class KatsanaAPI: NSObject {
     public var defaultRequestTripOptions: [String]!
     public var authorizationHeader = "Bearer "
     ///Use this handler if need to have extra setup when object is initialized
-    public var objectInitializationHandler : ((JSON, AnyClass) -> (Void))!
+    public var objectInitializationHandler : ((JSON, Any) -> (Void))!
     
     public static let shared = KatsanaAPI()
     public var API : Service!

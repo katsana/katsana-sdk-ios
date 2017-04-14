@@ -65,7 +65,7 @@ class ObjectJSONTransformer: NSObject {
         }
         
         if let handler = KatsanaAPI.shared.objectInitializationHandler {
-            handler(json, Vehicle.self)
+            handler(json, vehicle)
         }
         
         return vehicle
@@ -126,7 +126,7 @@ class ObjectJSONTransformer: NSObject {
         history.date = json["date"].dateWithoutTime
 //        /change date to local date and check UTC time again
         if let handler = KatsanaAPI.shared.objectInitializationHandler {
-            handler(json, Vehicle.self)
+            handler(json, history)
         }
         return history
     }
@@ -139,7 +139,7 @@ class ObjectJSONTransformer: NSObject {
         history.trips = json["trips"].arrayValue.map{TripObject(json: $0)}
         history.date = json["duration"]["from"].date(gmt: 0)
         if let handler = KatsanaAPI.shared.objectInitializationHandler {
-            handler(json, Travel.self)
+            handler(json, history)
         }
         return history
     }
@@ -159,7 +159,7 @@ class ObjectJSONTransformer: NSObject {
         trip.violations = json["violations"].arrayValue.map {VehicleActivityObject(json: $0)}
         trip.score = json["score"].floatValue
         if let handler = KatsanaAPI.shared.objectInitializationHandler {
-            handler(json, Trip.self)
+            handler(json, trip)
         }
         return trip
     }

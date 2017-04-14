@@ -28,7 +28,7 @@ extension KatsanaAPI {
             let text = options.joined(separator: ",")
             resource = resource.withParam("includes", text)
         }else if let options = defaultRequestVehicleOptions{
-            let text = options.joined(separator: ", ")
+            let text = options.joined(separator: ",")
             resource = resource.withParam("includes", text)
         }
         
@@ -80,10 +80,10 @@ extension KatsanaAPI {
         
         //Check for options
         if let options = options {
-            let text = options.joined(separator: ", ")
+            let text = options.joined(separator: ",")
             resource = resource.withParam("includes", text)
         }else if let options = defaultRequestVehicleOptions{
-            let text = options.joined(separator: ", ")
+            let text = options.joined(separator: ",")
             resource = resource.withParam("includes", text)
         }
         let request = resource.loadIfNeeded()
