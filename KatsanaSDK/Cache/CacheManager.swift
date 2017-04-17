@@ -550,6 +550,55 @@ public class CacheManager: NSObject {
         return documentsPath
     }
     
+    func clearTravelCache(vehicleId: String, date: Date, toDate: Date! = nil) {
+        var dataChanged = false
+        let classname = NSStringFromClass(Travel.self)
+        
+        var travelDicto: [[String: Any]]!
+        if let array = data[classname] as? [[String: Any]]{
+            travelDicto = array
+        }else{
+            travelDicto = [[String: Any]]()
+        }
+        
+        for (userIndex, dicto) in travelDicto.enumerated() {
+            if let theVehicleId = dicto["id"] as? String, vehicleId == theVehicleId, var travels = dicto["data"] as? [Travel]{
+                var indexset = IndexSet()
+                var startIndex : Int!
+                var endIndex : Int!
+                for (index, theTravel) in travels.enumerated() {
+                    if toDate == nil{
+                        if theTravel.date.isEqualToDateIgnoringTime(date){
+                            startIndex = index
+                            break
+                        }
+                    }else{
+                        if theTravel.date.timeIntervalSince(date) >= 0, toDate.timeIntervalSince(theTravel.date) >= 0 {
+                            if startIndex == nil{
+                                startIndex = index
+                            }else{
+                                endIndex = index
+                            }
+                        }
+                    }
+                }
+                
+                if let startIndex = startIndex{
+                    if let endIndex = endIndex{
+                        travels.removeSubrange(startIndex ... endIndex)
+                    }else{
+                        travels.remove(at: startIndex)
+                    }
+                    
+                    travelDicto[userIndex]["data"] = travels
+                    data[classname] = travelDicto
+                    autoSave()
+                }
+                break
+            }
+        }
+    }
+    
     func clearCache() {
         let dataPath = cacheDirectory().appending("/" + cacheDataFilename())
         let addressPath = cacheDirectory().appending("/" + cacheAddressDataFilename())
