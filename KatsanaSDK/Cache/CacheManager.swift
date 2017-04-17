@@ -384,6 +384,12 @@ public class CacheManager: NSObject {
                     return a.date < b.date
                 })
                 travel.trips = trips
+                
+//                for trip in trips {
+//                    if trip.locations.count == 0 {
+//                        travel.needLoadTripHistory = true
+//                    }
+//                }
             }
         }else{
             travel = Travel()
@@ -550,7 +556,8 @@ public class CacheManager: NSObject {
         return documentsPath
     }
     
-    func clearTravelCache(vehicleId: String, date: Date, toDate: Date! = nil) {
+    ///Clear travel cache for specified date ranges
+    public func clearTravelCache(vehicleId: String, date: Date, toDate: Date! = nil) {
         var dataChanged = false
         let classname = NSStringFromClass(Travel.self)
         
@@ -573,7 +580,7 @@ public class CacheManager: NSObject {
                             break
                         }
                     }else{
-                        if theTravel.date.timeIntervalSince(date) >= 0, toDate.timeIntervalSince(theTravel.date) >= 0 {
+                        if theTravel.date.timeIntervalSince(date.dateAtStartOfDay()) >= 0, toDate.timeIntervalSince(theTravel.date.dateAtStartOfDay()) >= 0 {
                             if startIndex == nil{
                                 startIndex = index
                             }else{
