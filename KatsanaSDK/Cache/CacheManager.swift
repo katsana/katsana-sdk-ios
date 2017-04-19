@@ -319,11 +319,17 @@ public class CacheManager: NSObject {
                             needRemoveTravelIndex = index
                             dataChanged = true
                         }
+                        
+                        //Some request does not pass all information, so if old travel data has extra data use that data and save into new response data
                         if travel.trips.count == theTravel.trips.count{
-                            for (index, trip) in travel.trips.enumerated() {
+                            for (subindex, trip) in travel.trips.enumerated() {
                                 if trip.extraData.count == 0{
-                                    let oldTrip = theTravel.trips[index]
-                                    trip.extraData = oldTrip.extraData
+                                    let oldTrip = theTravel.trips[subindex]
+                                    if oldTrip.extraData.count > 0 {
+                                        needRemoveTravelIndex = index
+                                        dataChanged = true
+                                        trip.extraData = oldTrip.extraData
+                                    }
                                 }
                             }
                         }
