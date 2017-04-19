@@ -319,6 +319,14 @@ public class CacheManager: NSObject {
                             needRemoveTravelIndex = index
                             dataChanged = true
                         }
+                        if travel.trips.count == theTravel.trips.count{
+                            for (index, trip) in travel.trips.enumerated() {
+                                if trip.extraData.count == 0{
+                                    let oldTrip = theTravel.trips[index]
+                                    trip.extraData = oldTrip.extraData
+                                }
+                            }
+                        }
                         needBreak = true
                         break
                     }

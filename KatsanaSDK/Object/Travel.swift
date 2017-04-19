@@ -135,7 +135,7 @@ open class Travel: NSObject {
         }
         
         var equal = false
-        if Calendar.current.isDate(a.date, equalTo: b.date, toGranularity: .day), a.trips.count == b.trips.count, a.distance == b.distance {
+        if Calendar.current.isDate(a.date, equalTo: b.date, toGranularity: .day), a.trips.count == b.trips.count, fabs(a.distance - b.distance) < 50 {
             equal = true
         }
         return equal
