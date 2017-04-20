@@ -20,6 +20,11 @@ extension KatsanaAPI {
             currentVehicle = cachedVehicle!
         }
         
+        guard authToken != nil else {
+            self.log.warning("Auth token is nil")
+            return
+        }
+        
         let path = "vehicles/" + vehicleId
         var resource = API.resource(path)
         
@@ -74,6 +79,7 @@ extension KatsanaAPI {
             failure(nil)
             return
         }
+        
         
         let path = "vehicles"
         var resource = API.resource(path)
@@ -158,7 +164,7 @@ extension KatsanaAPI {
     
     public func vehicleWith(vehicleId: String) -> Vehicle! {
         guard (vehicles != nil) else {
-            self.log.warning("No vehicle given vehicle id \(vehicleId)")
+            self.log.info("No vehicle given vehicle id \(vehicleId)")
             return nil
         }
         
