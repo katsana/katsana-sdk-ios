@@ -29,7 +29,6 @@ extension KatsanaAPI{
                 
             }else{
                 DispatchQueue.main.sync {
-                    print(r.APIError())
                     completion(false, r.APIError())
                 }
                 

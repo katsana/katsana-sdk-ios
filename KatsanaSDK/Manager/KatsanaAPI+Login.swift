@@ -47,14 +47,13 @@ extension KatsanaAPI {
                     let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  errorString, NSLocalizedFailureReasonErrorKey : jsonError]
                     let error = NSError(domain: SDKError.domain, code: status, userInfo: userInfo)
                     DispatchQueue.main.sync {
-                        failure(error)
+                        failure(r.APIError())
                     }
-                    
-                    self.log.info("Error logon \(error)")
+                    self.log.info("Error logon \(r.APIError())")
                 }else{
                     DispatchQueue.main.sync {
-                        failure(r.error)
-                        self.log.info("Error logon \(r.error)")
+                        failure(r.APIError())
+                        self.log.info("Error logon \(r.APIError())")
                     }
                 }
             }
@@ -118,11 +117,11 @@ extension KatsanaAPI {
                         failure(error)
                     }
                     
-                    self.log.info("Error logon \(error)")
+                    self.log.info("Error logon \(r.APIError())")
                 }else{
                     DispatchQueue.main.sync {
                         failure(r.error)
-                        self.log.info("Error logon \(r.error)")
+                        self.log.info("Error logon \(r.APIError())")
                     }
                 }
                 

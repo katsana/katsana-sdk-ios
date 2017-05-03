@@ -17,7 +17,6 @@ extension Travel{
             let formatter = MeasurementFormatter()
             let speedMeasure  = Measurement(value: Double(speed), unit: UnitSpeed.knots)
             speedStr   = formatter.string(from: speedMeasure)
-            print(speedStr)
         } else {
             // Fallback on earlier versions
         }
@@ -31,8 +30,6 @@ extension Travel{
             let formatter = MeasurementFormatter()
             let distanceMeasure  = Measurement(value: Double(distance), unit: UnitLength.meters)
             distanceStr    = formatter.string(from: distanceMeasure)
-            
-            print(distanceStr)
         } else {
             // Fallback on earlier versions
         }
@@ -46,8 +43,6 @@ extension Travel{
             let formatter = MeasurementFormatter()
             let ddurationMeasure  = Measurement(value: Double(duration), unit: UnitDuration.seconds)
             durationStr    = formatter.string(from: ddurationMeasure)
-            
-            print(durationStr)
         } else {
             // Fallback on earlier versions
         }

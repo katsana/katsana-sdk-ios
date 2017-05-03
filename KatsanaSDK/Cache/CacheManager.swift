@@ -312,6 +312,7 @@ public class CacheManager: NSObject {
                 theUserIndex = userIndex
                 var needBreak = false
                 for (index, theTravel) in travels.enumerated() {
+                    //Check if same date
                     if theTravel.date.isEqualToDateIgnoringTime(travel.date) {
                         if theTravel == travel{
                             needAdd = false
@@ -323,13 +324,10 @@ public class CacheManager: NSObject {
                         //Some request does not pass all information, so if old travel data has extra data use that data and save into new response data
                         if travel.trips.count == theTravel.trips.count{
                             for (subindex, trip) in travel.trips.enumerated() {
-                                if trip.extraData.count == 0{
-                                    let oldTrip = theTravel.trips[subindex]
-                                    if oldTrip.extraData.count > 0 {
-                                        needRemoveTravelIndex = index
-                                        dataChanged = true
-                                        trip.extraData = oldTrip.extraData
-                                    }
+                                let oldTrip = theTravel.trips[subindex]
+                                if mergeTrip(trip, with: oldTrip){
+                                    needRemoveTravelIndex = index
+                                    dataChanged = true
                                 }
                             }
                         }
@@ -653,6 +651,23 @@ public class CacheManager: NSObject {
         }else{
             UserDefaults.standard.setValue(Date(), forKey: "lastPurgeActivityDate")
         }
+    }
+    
+    // MARK: Logic
+    
+    ///Merge two trips
+    func mergeTrip(_ trip: Trip, with oldTrip: Trip) -> Bool {
+        var merged = false
+        if trip.extraData.count == 0{
+            if oldTrip.extraData.count > 0 {
+                merged = true
+                trip.extraData = oldTrip.extraData
+            }
+        }
+        if trip.locations.count == 0, oldTrip.locations.count > 0{
+            trip.locations = oldTrip.locations.map({$0})
+        }        
+        return merged
     }
     
     
