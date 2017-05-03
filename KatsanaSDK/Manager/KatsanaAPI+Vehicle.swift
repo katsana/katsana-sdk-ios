@@ -21,7 +21,8 @@ extension KatsanaAPI {
         }
         
         guard authToken != nil else {
-            self.log.warning("Auth token is nil")
+            failure(nil)
+//            self.log.warning("Auth token is nil")
             return
         }
         
@@ -164,7 +165,7 @@ extension KatsanaAPI {
     
     public func vehicleWith(vehicleId: String) -> Vehicle! {
         guard (vehicles != nil) else {
-            self.log.info("No vehicle given vehicle id \(vehicleId)")
+//            self.log.info("No vehicle given vehicle id \(vehicleId)")
             return nil
         }
         
