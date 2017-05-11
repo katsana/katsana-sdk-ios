@@ -38,9 +38,14 @@ public class KatsanaAPI: NSObject {
     internal(set) dynamic public var currentUser: User!
     public        dynamic        var currentVehicle: Vehicle!{
         willSet{
-            if (newValue != nil) {
-                log.info("Current selected vehicle \(newValue.vehicleId)")
-                lastVehicleId = newValue.vehicleId
+            if let newValue = newValue{
+                if let currentVehicle = currentVehicle, newValue != currentVehicle{
+                    log.info("Current selected vehicle \(newValue.vehicleId)")
+                    lastVehicleId = newValue.vehicleId
+                }else if currentVehicle == nil{
+                    log.info("Current selected vehicle \(newValue.vehicleId)")
+                    lastVehicleId = newValue.vehicleId
+                }
             }
         }
     }

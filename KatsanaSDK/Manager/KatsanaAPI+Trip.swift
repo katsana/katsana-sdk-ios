@@ -98,7 +98,13 @@ extension KatsanaAPI {
     public func requestTravel(for date: Date, vehicleId: String, options: [String]! = nil, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let travel = CacheManager.shared.travel(vehicleId: vehicleId, date: date)
         if let travel = travel, travel.needLoadTripHistory == false{
-            if let first = travel.trips.first, first.locations.count > 0{ //Can load from cache only if locations count > 0
+            var needLoad = false
+            for trip in travel.trips {
+                if trip.locations.count == 0{
+                    needLoad = true
+                }
+            }
+            if !needLoad{ //Can load from cache only if locations count > 0
                 self.log.debug("Get trip history from cached data vehicle id \(vehicleId), date \(date)")
                 travel.vehicleId = vehicleId
                 completion(travel)
