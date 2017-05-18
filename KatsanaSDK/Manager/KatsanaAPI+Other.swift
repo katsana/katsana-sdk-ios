@@ -16,19 +16,9 @@ extension KatsanaAPI{
             let data = image.tiffRepresentation(using: .JPEG, factor: 0.9)! //Change to data
         #endif
         
-        let countBytes = ByteCountFormatter()
-        countBytes.allowedUnits = [.useKB]
-        countBytes.countStyle = .file
-        let fileSize = countBytes.string(fromByteCount: Int64(data.count))
-        
-        var imageSize: Int = data.count
-        print("size of image in KB: %f ", Double(imageSize) / 1024.0)
-        
-        print("File size: \(fileSize)")
-        
         Just.post(
             path,
-            headers: ["Authorization" : ("Bearer " + self.authToken), "client_id" : self.clientId, "client_secret" : self.clientSecret],
+            headers: ["Authorization" : ("Bearer " + self.authToken)],
             files: ["file": .data("avatar.png", data, "image/jpeg")]
         ) { r in
 //            let strData = NSString(data: r.content!, encoding: String.Encoding.utf8.rawValue)
@@ -39,14 +29,12 @@ extension KatsanaAPI{
                 
             }else{
                 DispatchQueue.main.sync {
-                    print(r.APIError())
                     completion(false, r.APIError())
                 }
                 
             }
         }
     }
-    
     
     /// Request custom response from other application using current KatsanaAPI endpoint.
     ///
