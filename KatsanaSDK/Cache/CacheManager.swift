@@ -663,8 +663,7 @@ public class CacheManager: NSObject {
         var dataChanged = false
         let classname = NSStringFromClass(Travel.self)
         
-        var travelDicto: [[String: Any]]!
-        if let array = data[classname] as? [[String: Any]]{
+        if var travelDicto = data[classname] as? [[String: Any]]{
             for (userIndex, dicto) in travelDicto.enumerated() {
                 if let theVehicleId = dicto["id"] as? String, vehicleId == theVehicleId, var travels = dicto["data"] as? [Travel]{
                     var indexset = IndexSet()
