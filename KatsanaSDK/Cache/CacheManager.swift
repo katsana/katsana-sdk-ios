@@ -367,14 +367,41 @@ public class CacheManager: NSObject {
     
     ///For normal use of KatsanaSDK, this class is never called except when used for different purpose.
     public func cache(trip: Trip, vehicleId: String) {
-        var travel: Travel!
+//        var travels = [Travel]()
+//        var dates = [Date]()
+//        var currentDate : Date!
+//        for trip in trips{
+//            if let date = currentDate{
+//                if !date.isEqualToDateIgnoringTime(trip.date) {
+//                    currentDate = trip.date
+//                    dates.append(currentDate)
+//                }
+//            }else{
+//                currentDate = trip.date
+//                dates.append(currentDate)
+//            }
+//        }
+//        
+//        for date in dates{
+//            let theTravel = travel(vehicleId: vehicleId, date: date)
+//            travels.append(theTravel)
+//        }
         let classname = NSStringFromClass(Travel.self)
-        if let travelArray = data[classname] as? [[String: Any]]{
-            for travelDicto in travelArray {
-                if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["data"] as? [Travel] {
-                    for theTravel in travels {
+        var travel: Travel!
+        var travelIndex: Int!
+        var theTravels : [Travel]!
+        var theUserIndex: Int!
+        var travelDicto = data[classname]
+        
+        if let travelDicto = travelDicto as? [[String: Any]]{
+            for (userIndex, dicto) in travelDicto.enumerated() {
+                if let theVehicleId = dicto["id"] as? String, vehicleId == theVehicleId, let travels = dicto["data"] as? [Travel] {
+                    theTravels = travels
+                    for (index, theTravel) in travels.enumerated() {
                         if let travelDate = theTravel.date, travelDate.isEqualToDateIgnoringTime(trip.date){
                             travel = theTravel
+                            travelIndex = index
+                            theUserIndex = userIndex
                         }
                     }
                 }
@@ -385,6 +412,12 @@ public class CacheManager: NSObject {
         if let travel = travel{
             for aTrip in travel.trips {
                 if aTrip.date == trip.date {
+                    if trip.locations.count > aTrip.locations.count {
+                        aTrip.locations = trip.locations
+                    }
+                    for (key, value) in trip.extraData{
+                        aTrip.extraData[key] = value
+                    }
                     haveSameTrip = true
                     break
                 }
@@ -422,8 +455,15 @@ public class CacheManager: NSObject {
         travel.distance = distance
         travel.duration = duration
         travel.maxSpeed = Float(maxSpeed)
-        cache(travel: travel, vehicleId: vehicleId)
-        autoSave()
+        
+        if let travelIndex = travelIndex, var travelDicto = travelDicto as? [[String: Any]]{
+            theTravels[travelIndex] = travel
+            travelDicto[theUserIndex]["data"] = theTravels
+            data[classname] = travelDicto
+            autoSave()
+        }else{
+            cache(travel: travel, vehicleId: vehicleId)
+        }
     }
     
     public func cache(address: Address) {
@@ -614,6 +654,45 @@ public class CacheManager: NSObject {
                     autoSave()
                 }
                 break
+            }
+        }
+    }
+    
+    ///Clear travel cache for specified date ranges
+    public func clearTripCache(vehicleId: String, date: Date, toDate: Date) {
+        var dataChanged = false
+        let classname = NSStringFromClass(Travel.self)
+        
+        var travelDicto: [[String: Any]]!
+        if let array = data[classname] as? [[String: Any]]{
+            for (userIndex, dicto) in travelDicto.enumerated() {
+                if let theVehicleId = dicto["id"] as? String, vehicleId == theVehicleId, var travels = dicto["data"] as? [Travel]{
+                    var indexset = IndexSet()
+                    var startIndex : Int!
+                    var endIndex : Int!
+                    var dataChanged = false
+                    
+                    for (index, theTravel) in travels.enumerated() {
+                        var indexesNeedClear = [Int]()
+                        for (tripIndex, trip) in theTravel.trips.enumerated(){
+                            if trip.date.timeIntervalSince(date) >= 0, trip.date.timeIntervalSince(toDate) < 0{
+                                indexesNeedClear.append(tripIndex)
+                                dataChanged = true
+                            }
+                        }
+                        if indexesNeedClear.count == 1{
+                            theTravel.trips.remove(at: indexesNeedClear.first!)
+                        }else if indexesNeedClear.count > 1, let first = indexesNeedClear.first, let last = indexesNeedClear.last{
+                            theTravel.trips.removeSubrange(first...last)
+                        }
+                    }
+                    if dataChanged {
+                        travelDicto[userIndex]["data"] = travels
+                        data[classname] = travelDicto
+                        autoSave()
+                    }
+                    break
+                }
             }
         }
     }
