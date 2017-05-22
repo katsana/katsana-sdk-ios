@@ -547,7 +547,7 @@ public class CacheManager: NSObject {
     // MARK: Save data
     
     func autoSave()  {
-        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(autoSave), object: nil)
         if let lastSavedCache = lastSavedCache, Date().timeIntervalSince(lastSavedCache) < 5{
             perform(#selector(autoSave), with: nil, afterDelay: 3)
             return
@@ -559,8 +559,15 @@ public class CacheManager: NSObject {
         try? data?.write(to: URL(fileURLWithPath: path))
     }
     
+    func autoSave2()  {
+        return
+        let data = FastCoder.data(withRootObject: self.data)
+        let path = cacheDirectory().appending("/" + cacheDataFilename() + "2")
+        try? data?.write(to: URL(fileURLWithPath: path))
+    }
+    
     func autosaveAddress() {
-        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(autosaveAddress), object: nil)
         if let lastSavedCache = lastSavedAddressCache, Date().timeIntervalSince(lastSavedCache) < 5{
             perform(#selector(autosaveAddress), with: nil, afterDelay: 3)
             return
@@ -573,7 +580,7 @@ public class CacheManager: NSObject {
     }
     
     func autoSaveActivities() {
-        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(autoSaveActivities), object: nil)
         if let lastSavedCache = lastSavedActivitiesCache, Date().timeIntervalSince(lastSavedCache) < 5{
             perform(#selector(autoSaveActivities), with: nil, afterDelay: 3)
             return
@@ -660,6 +667,7 @@ public class CacheManager: NSObject {
     
     ///Clear travel cache for specified date ranges
     public func clearTripCache(vehicleId: String, date: Date, toDate: Date) {
+        autoSave2()
         var dataChanged = false
         let classname = NSStringFromClass(Travel.self)
         
@@ -674,7 +682,7 @@ public class CacheManager: NSObject {
                     for (index, theTravel) in travels.enumerated() {
                         var indexesNeedClear = [Int]()
                         for (tripIndex, trip) in theTravel.trips.enumerated(){
-                            if trip.date.timeIntervalSince(date) >= 0, trip.date.timeIntervalSince(toDate) < 0{
+                            if trip.date.timeIntervalSince(date) >= 0, trip.date.timeIntervalSince(toDate) <= 0{
                                 indexesNeedClear.append(tripIndex)
                                 dataChanged = true
                             }
