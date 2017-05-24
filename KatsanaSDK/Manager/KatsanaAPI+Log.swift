@@ -37,7 +37,7 @@ extension KatsanaAPI{
         logPath = path
         
         if let firstDateLogged = UserDefaults.standard.object(forKey: "firstDateLogged") as? Date{
-            if Date().timeIntervalSince(firstDateLogged) > 60*60*24*7 {
+            if Date().timeIntervalSince(firstDateLogged) > 60*60*24*TimeInterval(cacheSavedDuration) {
                 let fileManager = FileManager.default
                 try? fileManager.removeItem(atPath: path)
                 UserDefaults.standard.set(Date(), forKey: "firstDateLogged")

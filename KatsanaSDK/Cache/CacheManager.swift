@@ -560,7 +560,6 @@ public class CacheManager: NSObject {
     }
     
     func autoSave2()  {
-        return
         let data = FastCoder.data(withRootObject: self.data)
         let path = cacheDirectory().appending("/" + cacheDataFilename() + "2")
         try? data?.write(to: URL(fileURLWithPath: path))

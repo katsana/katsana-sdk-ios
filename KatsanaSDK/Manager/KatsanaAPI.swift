@@ -23,6 +23,8 @@ public class KatsanaAPI: NSObject {
     public var defaultRequestTravelOptions: [String]!
     public var defaultRequestTripOptions: [String]!
     public var authorizationHeader = "Bearer "
+    ///Specify time cache is saved in day
+    public var cacheSavedDuration = 7
     ///Use this handler if need to have extra setup when object is initialized
     public var objectInitializationHandler : ((JSON, Any) -> (Void))!
     
