@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  LocalUser.swift
 //  KatsanaSDK
 //
 //  Created by Wan Ahmad Lutfi on 27/01/2017.

@@ -357,7 +357,7 @@ public class CacheManager: NSObject {
             if let theUserIndex = theUserIndex {
                 travelDicto[theUserIndex]["data"] = theTravels
             }else{
-                var travelData = ["id": vehicleId, "data": theTravels] as [String : Any]
+                let travelData = ["id": vehicleId, "data": theTravels] as [String : Any]
                 travelDicto.append(travelData)
             }
             data[classname] = travelDicto
@@ -391,7 +391,7 @@ public class CacheManager: NSObject {
         var travelIndex: Int!
         var theTravels : [Travel]!
         var theUserIndex: Int!
-        var travelDicto = data[classname]
+        let travelDicto = data[classname]
         
         if let travelDicto = travelDicto as? [[String: Any]]{
             for (userIndex, dicto) in travelDicto.enumerated() {
@@ -560,6 +560,7 @@ public class CacheManager: NSObject {
     }
     
     func autoSave2()  {
+        return
         let data = FastCoder.data(withRootObject: self.data)
         let path = cacheDirectory().appending("/" + cacheDataFilename() + "2")
         try? data?.write(to: URL(fileURLWithPath: path))
@@ -667,18 +668,17 @@ public class CacheManager: NSObject {
     ///Clear travel cache for specified date ranges
     public func clearTripCache(vehicleId: String, date: Date, toDate: Date) {
         autoSave2()
-        var dataChanged = false
         let classname = NSStringFromClass(Travel.self)
         
         if var travelDicto = data[classname] as? [[String: Any]]{
             for (userIndex, dicto) in travelDicto.enumerated() {
                 if let theVehicleId = dicto["id"] as? String, vehicleId == theVehicleId, var travels = dicto["data"] as? [Travel]{
-                    var indexset = IndexSet()
-                    var startIndex : Int!
-                    var endIndex : Int!
+//                    var indexset = IndexSet()
+//                    var startIndex : Int!
+//                    var endIndex : Int!
                     var dataChanged = false
                     
-                    for (index, theTravel) in travels.enumerated() {
+                    for (_, theTravel) in travels.enumerated() {
                         var indexesNeedClear = [Int]()
                         for (tripIndex, trip) in theTravel.trips.enumerated(){
                             if trip.date.timeIntervalSince(date) >= 0, trip.date.timeIntervalSince(toDate) <= 0{

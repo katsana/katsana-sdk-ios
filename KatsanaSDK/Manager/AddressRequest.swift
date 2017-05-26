@@ -17,9 +17,11 @@ class AddressRequest: NSObject {
                 completion(address, nil)
             }else{
                 let path = KatsanaAPI.shared.baseURL().absoluteString + "address/"
+                let latitude = String(format: "%.6f", location.latitude)
+                let longitude = String(format: "%.6f", location.longitude)
                 Just.get(
                     path,
-                    params: ["latitude" : "\(location.latitude)", "longitude" : "\(location.longitude)"]
+                    params: ["latitude" : latitude, "longitude" : longitude]
                 ) { r in
                     if r.ok {
                         let content = r.content

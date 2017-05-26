@@ -126,11 +126,16 @@ extension KatsanaAPI {
         
         func handleResource() -> Void{
             let travel : Travel? = resource.typedContent()
-            travel?.lastUpdate = Date() //Set last update date
-            travel?.date = date
-            travel?.vehicleId = vehicleId
-            _ = travel?.trips.map({$0.date = $0.start.trackedAt})
+            
             if let travel = travel {
+                travel.lastUpdate = Date() //Set last update date
+                travel.date = date
+                travel.vehicleId = vehicleId
+                for trip in travel.trips {
+                    if let date =  trip.start?.trackedAt{
+                        trip.date = date
+                    }
+                }
                 CacheManager.shared.cache(travel: travel, vehicleId: vehicleId) //Cache history
             }
             completion(travel)
