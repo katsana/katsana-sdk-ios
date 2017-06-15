@@ -128,6 +128,8 @@ open class VehicleActivity: NSObject {
             self.timeString = dictionary["time"] as? String
             if let date = (dictionary["time"] as? String)?.date(gmt: 0){
                 self.startTime = date
+            }else{
+                KatsanaAPI.shared.log.warning("Date cannot be create \(self.timeString)")
             }
             self.identifier = identifier
         }        

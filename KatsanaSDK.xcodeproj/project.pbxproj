@@ -73,10 +73,6 @@
 		C71917A91E48703B0041BC18 /* TimeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719176B1E48703B0041BC18 /* TimeTransformer.swift */; };
 		C71917CB1E4884410041BC18 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C61E4884410041BC18 /* DateHelper.swift */; };
 		C71917CC1E4884410041BC18 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C61E4884410041BC18 /* DateHelper.swift */; };
-		C71917CD1E4884410041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917C71E4884410041BC18 /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C71917CE1E4884410041BC18 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917C71E4884410041BC18 /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C71917CF1E4884410041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917C81E4884410041BC18 /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C71917D01E4884410041BC18 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C71917C81E4884410041BC18 /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C71917D11E4884410041BC18 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C91E4884410041BC18 /* Just.swift */; };
 		C71917D21E4884410041BC18 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917C91E4884410041BC18 /* Just.swift */; };
 		C71917D31E4884410041BC18 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917CA1E4884410041BC18 /* SwiftyJSON.swift */; };
@@ -183,8 +179,6 @@
 		C71917691E48703B0041BC18 /* VehicleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocation.swift; sourceTree = "<group>"; };
 		C719176B1E48703B0041BC18 /* TimeTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTransformer.swift; sourceTree = "<group>"; };
 		C71917C61E4884410041BC18 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
-		C71917C71E4884410041BC18 /* FastCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastCoder.h; sourceTree = "<group>"; };
-		C71917C81E4884410041BC18 /* FastCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCoder.m; sourceTree = "<group>"; };
 		C71917C91E4884410041BC18 /* Just.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Just.swift; sourceTree = "<group>"; };
 		C71917CA1E4884410041BC18 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C71917E51E4893500041BC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -362,8 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				C71917C61E4884410041BC18 /* DateHelper.swift */,
-				C71917C71E4884410041BC18 /* FastCoder.h */,
-				C71917C81E4884410041BC18 /* FastCoder.m */,
 				C71917C91E4884410041BC18 /* Just.swift */,
 				C71917CA1E4884410041BC18 /* SwiftyJSON.swift */,
 			);
@@ -452,7 +444,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C71917CE1E4884410041BC18 /* FastCoder.h in Headers */,
 				C71917F01E48935B0041BC18 /* KatsanaSDK.h in Headers */,
 				C71917F11E48935B0041BC18 /* PrefixHeader.pch in Headers */,
 			);
@@ -462,7 +453,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C71917CD1E4884410041BC18 /* FastCoder.h in Headers */,
 				C71917ED1E4893540041BC18 /* KatsanaSDK.h in Headers */,
 				C71917EE1E4893540041BC18 /* PrefixHeader.pch in Headers */,
 			);
@@ -653,7 +643,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9D503B72B1C383261034593C /* [CP] Check Pods Manifest.lock */ = {
@@ -668,7 +658,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BD02729A9164F54CA3F1C076 /* [CP] Copy Pods Resources */ = {
@@ -725,7 +715,6 @@
 				C719176F1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */,
 				C719176D1E48703B0041BC18 /* CacheManager.swift in Sources */,
 				C71917951E48703B0041BC18 /* Address.swift in Sources */,
-				C71917D01E4884410041BC18 /* FastCoder.m in Sources */,
 				C71917991E48703B0041BC18 /* LiveShare.swift in Sources */,
 				C719177F1E48703B0041BC18 /* KatsanaAPI+Address.swift in Sources */,
 				C719177B1E48703B0041BC18 /* APIError.swift in Sources */,
@@ -767,7 +756,6 @@
 				C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */,
 				C719176C1E48703B0041BC18 /* CacheManager.swift in Sources */,
 				C71917941E48703B0041BC18 /* Address.swift in Sources */,
-				C71917CF1E4884410041BC18 /* FastCoder.m in Sources */,
 				C71917981E48703B0041BC18 /* LiveShare.swift in Sources */,
 				C719177E1E48703B0041BC18 /* KatsanaAPI+Address.swift in Sources */,
 				C719177A1E48703B0041BC18 /* APIError.swift in Sources */,

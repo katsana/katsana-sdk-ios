@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double KatsanaAPIVersionNumber;
 FOUNDATION_EXPORT const unsigned char KatsanaAPIVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <KatsanaAPI/PublicHeader.h>
-
-#import <KatsanaSDK/FastCoder.h>

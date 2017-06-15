@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "263EA02892F4F5283540211397BAC0B9"
+               BlueprintIdentifier = "03762DE833DEFC5F472F4CFC5DDFF6F4"
                BuildableName = "Pods_KatsanaSDK_macOS.framework"
                BlueprintName = "Pods-KatsanaSDK macOS"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "263EA02892F4F5283540211397BAC0B9"
+            BlueprintIdentifier = "03762DE833DEFC5F472F4CFC5DDFF6F4"
             BuildableName = "Pods_KatsanaSDK_macOS.framework"
             BlueprintName = "Pods-KatsanaSDK macOS"
             ReferencedContainer = "container:Pods.xcodeproj">

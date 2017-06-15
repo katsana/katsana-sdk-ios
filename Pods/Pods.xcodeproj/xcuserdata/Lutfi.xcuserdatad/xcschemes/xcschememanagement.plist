@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>FastCoding-OSX.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FastCoding-iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-KatsanaSDK macOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>10BA95834635CF35672395DA7E58128D</key>
+		<key>03762DE833DEFC5F472F4CFC5DDFF6F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1E509373945416F108AB554BA6192A41</key>
+		<key>63BC6E564E9A995AFBE9944F4CCE8B94</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>263EA02892F4F5283540211397BAC0B9</key>
+		<key>685995BCA03FBB93F849E976F5412B6F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6154A56DC56245ED805ABE87E8EE2079</key>
+		<key>686E00A03523B7CF4E9F2DB7F6D90133</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F6E89621E0096A9D8F2EC0C4180E2991</key>
+		<key>92D3D217CF5FAC47B68C109E968380FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F89E19BCBC099A76FDC3FC4A7D53B505</key>
+		<key>9653716108B2E3244EA7FD451067944D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E773E4C5ADD2729A88E77D8B9999761A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8D727B151DBBFBFDD1419030741AAEB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -98,7 +98,7 @@ public class _objc_Error: NSObject
     internal init(_ error: RequestError)
         {
         self.httpStatusCode = error.httpStatusCode ?? -1
-        self.cause          = error.cause as? NSError
+        self.cause          = error.cause as NSError?
         self.userMessage    = error.userMessage
         self.timestamp      = error.timestamp
         if let errorData = error.entity
@@ -276,7 +276,7 @@ private class _objc_ResourceObserverGlue: ResourceObserver, CustomDebugStringCon
 
 extension ResourceEvent
     {
-    fileprivate var _objc_stringForm: String
+    public var _objc_stringForm: String
         {
         if case .newData(let source) = self
             { return "NewData(\(source.description.capitalized))" }

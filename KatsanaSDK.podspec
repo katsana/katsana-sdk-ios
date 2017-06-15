@@ -26,6 +26,7 @@ s.source       = { :git => "https://github.com/katsana/katsana-sdk-ios.git", :ta
 
 s.dependency 'Siesta'
 s.dependency 'XCGLogger'
+s.dependency 'FastCoding'
 
 end
 

@@ -7,6 +7,7 @@
 //
 
 import CoreLocation
+import FastCoding
 
 let cacheVersion = "2.3"
 

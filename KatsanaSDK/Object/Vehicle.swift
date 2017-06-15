@@ -6,6 +6,8 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
+import FastCoding
+
 open class Vehicle: NSObject {
     ///Owner id for this vehicle
     open var userId : String!

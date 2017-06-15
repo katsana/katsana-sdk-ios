@@ -6,6 +6,8 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
+import FastCoding
+
 ///The class contains information about vehicle travel for particular day.
 open class Travel: NSObject {
     open var vehicleId : String!

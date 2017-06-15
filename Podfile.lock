@@ -1,19 +1,22 @@
 PODS:
-  - Siesta (1.0.1):
-    - Siesta/Core (= 1.0.1)
-  - Siesta/Core (1.0.1)
+  - FastCoding (3.2.1)
+  - Siesta (1.1.1):
+    - Siesta/Core (= 1.1.1)
+  - Siesta/Core (1.1.1)
   - XCGLogger (4.0.0):
     - XCGLogger/Core (= 4.0.0)
   - XCGLogger/Core (4.0.0)
 
 DEPENDENCIES:
-  - Siesta (~> 1.0.1)
-  - XCGLogger (~> 4.0.0)
+  - FastCoding
+  - Siesta (~> 1.0)
+  - XCGLogger (~> 4.0)
 
 SPEC CHECKSUMS:
-  Siesta: c7195fc65376360c76a27ce7bb64e0f1ce099a20
+  FastCoding: ed46c83ba23d048aafa0251972a1e1fc1cfc58ed
+  Siesta: 920372f09b7cfd798074d85d8f3cf8505529a56e
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: 555fcf1a67ae2d6d107df054060401c3f9aada77
+PODFILE CHECKSUM: 15eb6883f58a39640c42599c6313bcda5f5096e0
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1
