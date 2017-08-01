@@ -100,7 +100,7 @@ extension KatsanaAPI {
         if let travel = travel, travel.needLoadTripHistory == false{
             var needLoad = false
             for trip in travel.trips {
-                if trip.locations.count == 0{
+                if trip.locations.count <= 2{
                     needLoad = true
                 }
             }
