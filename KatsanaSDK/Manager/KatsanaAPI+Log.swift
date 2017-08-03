@@ -37,7 +37,7 @@ extension KatsanaAPI{
         logPath = path
         
         if let firstDateLogged = UserDefaults.standard.object(forKey: "firstDateLogged") as? Date{
-            if Date().timeIntervalSince(firstDateLogged) > 60*60*24*TimeInterval(cacheSavedDuration) {
+            if Date().timeIntervalSince(firstDateLogged) > 60*60*24*TimeInterval(logSavedDuration) {
                 let fileManager = FileManager.default
                 try? fileManager.removeItem(atPath: path)
                 UserDefaults.standard.set(Date(), forKey: "firstDateLogged")
@@ -61,11 +61,12 @@ extension KatsanaAPI{
         
         // Process this destination in the background
         fileDestination.logQueue = XCGLogger.logQueue
+        fileDestination.haveLoggedAppDetails = true
         
         // Add the destination to the logger
         log.add(destination: fileDestination)
         
         // Add basic app info, version info etc, to the start of the logs
-        log.logAppDetails()
+        //log.logAppDetails()
     }
 }
