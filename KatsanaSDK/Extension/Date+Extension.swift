@@ -13,7 +13,7 @@ extension Date{
         let formatter = DateFormatter()
         let timezone = NSTimeZone.local
         formatter.timeZone = timezone
-        formatter.dateFormat = "yyyy/MM/dd+HH:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd+HH:mm:ss"
         return formatter
     }()
     
@@ -32,7 +32,7 @@ extension Date{
         return Date.timeDateFormatter.string(from: self)
         
         let dateComps = Calendar.current.dateComponents([.second, .minute, .hour, .day, .month, .year], from: self)
-        let str = "\(dateComps.year!)/\(dateComps.month!)/\(dateComps.day!)+\(dateComps.hour!):\(dateComps.minute!):\(dateComps.second!)"
+        let str = "\(dateComps.year!)-\(dateComps.month!)-\(dateComps.day!)+\(dateComps.hour!):\(dateComps.minute!):\(dateComps.second!)"
         return str
     }
 }
