@@ -146,7 +146,7 @@ extension KatsanaAPI {
             handleResource()
         }).onFailure({ (error) in
             failure(error)
-            self.log.error("Error getting trip history today vehicle id \(vehicleId), date \(date), \(error)")
+            self.handleError(error: error, details: "Error getting trip history today vehicle id \(vehicleId), date \(date), \(error)")
         })
         
         if request == nil {

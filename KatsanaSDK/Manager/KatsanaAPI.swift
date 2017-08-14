@@ -221,4 +221,34 @@ public class KatsanaAPI: NSObject {
     public func updateToken(newToken: String) -> Void {
         authToken = newToken
     }
+    
+    // MARK: Error handling
+    
+    private var lastUnauthorizedErrorDate: Date!
+    func handleError(error: Error!, details: String) {
+        var handled = false
+        if let error = error as? RequestError {
+            if let code = error.httpStatusCode, code == 401 {
+                //Because not authorized is occured frequently (need check the issue), fire notification or log unauthorized error only after 1 minute only
+                if let lastUnauthorizedErrorDate = lastUnauthorizedErrorDate{
+                    if Date().timeIntervalSince(lastUnauthorizedErrorDate) > 60 {
+                        handleUnauthorizedError(details: details)
+                    }
+                }else{
+                    handleUnauthorizedError(details: details)
+                }
+            }
+        }
+        if !handled {
+            self.log.error(details)
+        }
+    }
+    
+    func handleUnauthorizedError(details: String) {
+        refreshToken(completion: { (success) in
+            self.log.info("Token refreshed")
+        }) { (error) in
+            self.log.error("Error refreshing token, \(error?.localizedDescription)")
+        }
+    }
 }
