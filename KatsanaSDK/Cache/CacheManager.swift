@@ -344,6 +344,7 @@ public class CacheManager: NSObject {
         
         if let needRemoveTravelIndex = needRemoveTravelIndex {
             theTravels.remove(at: needRemoveTravelIndex)
+            theTravels.insert(travel, at: needRemoveTravelIndex)
         }
         if needAdd {
             if theTravels != nil {
@@ -353,7 +354,7 @@ public class CacheManager: NSObject {
             }
             dataChanged = true
         }
-        
+
         if dataChanged{
             if let theUserIndex = theUserIndex {
                 travelDicto[theUserIndex]["data"] = theTravels
