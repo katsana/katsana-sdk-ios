@@ -33,6 +33,17 @@ public class KatsanaFormatter: NSObject {
         return formatter
     }()
     
+    public class func localizedSpeedString(knot: Double) -> String {
+        var speed : String!
+        switch distanceFormat {
+        case .kilometer:
+            speed =  String(format:"%.0fkm/h", knot * knotToKMH)
+        case .miles:
+            speed =  String(format:"%.0fkm/h", knot * knotToMPH)
+        }
+        return speed
+    }
+    
     public class func localizedSpeed(knot: Double) -> Double {
         let speed : Double
         switch distanceFormat {

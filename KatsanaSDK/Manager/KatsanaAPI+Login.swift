@@ -139,6 +139,7 @@ extension KatsanaAPI {
         authToken = nil
         NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
         log.info("Logged out user \(self.currentUser?.userId), \(self.currentUser?.email)")
+        CacheManager.shared.clearTravelCache(vehicleId: "-1")
     }
     
     public func verify(password:String, completion: @escaping (_ success: Bool) -> Void) -> Void {

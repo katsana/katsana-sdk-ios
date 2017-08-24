@@ -9,7 +9,7 @@
 import CoreLocation
 import FastCoding
 
-let cacheVersion = "2.3"
+let cacheVersion = "2.4"
 
 //Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer should not use and call methods in this class manually.
 public class CacheManager: NSObject {
@@ -618,7 +618,7 @@ public class CacheManager: NSObject {
     }
     
     ///Clear travel cache for specified date ranges
-    public func clearTravelCache(vehicleId: String, date: Date, toDate: Date! = nil) {
+    public func clearTravelCache(vehicleId: String, date: Date! = nil, toDate: Date! = nil) {
         var dataChanged = false
         let classname = NSStringFromClass(Travel.self)
         
@@ -634,33 +634,41 @@ public class CacheManager: NSObject {
                 var indexset = IndexSet()
                 var startIndex : Int!
                 var endIndex : Int!
-                for (index, theTravel) in travels.enumerated() {
-                    if toDate == nil{
-                        if theTravel.date.isEqualToDateIgnoringTime(date){
-                            startIndex = index
-                            break
-                        }
-                    }else{
-                        if theTravel.date.timeIntervalSince(date.dateAtStartOfDay()) >= 0, toDate.timeIntervalSince(theTravel.date.dateAtStartOfDay()) >= 0 {
-                            if startIndex == nil{
+                
+                if date == nil, toDate == nil {
+                    //Remove all data
+                    travelDicto[userIndex]["data"] = nil
+                    data[classname] = travelDicto
+                    autoSave()
+                }else{
+                    for (index, theTravel) in travels.enumerated() {
+                        if toDate == nil{
+                            if theTravel.date.isEqualToDateIgnoringTime(date){
                                 startIndex = index
-                            }else{
-                                endIndex = index
+                                break
+                            }
+                        }else{
+                            if theTravel.date.timeIntervalSince(date.dateAtStartOfDay()) >= 0, toDate.timeIntervalSince(theTravel.date.dateAtStartOfDay()) >= 0 {
+                                if startIndex == nil{
+                                    startIndex = index
+                                }else{
+                                    endIndex = index
+                                }
                             }
                         }
                     }
-                }
-                
-                if let startIndex = startIndex{
-                    if let endIndex = endIndex{
-                        travels.removeSubrange(startIndex ... endIndex)
-                    }else{
-                        travels.remove(at: startIndex)
-                    }
                     
-                    travelDicto[userIndex]["data"] = travels
-                    data[classname] = travelDicto
-                    autoSave()
+                    if let startIndex = startIndex{
+                        if let endIndex = endIndex{
+                            travels.removeSubrange(startIndex ... endIndex)
+                        }else{
+                            travels.remove(at: startIndex)
+                        }
+                        
+                        travelDicto[userIndex]["data"] = travels
+                        data[classname] = travelDicto
+                        autoSave()
+                    }
                 }
                 break
             }
