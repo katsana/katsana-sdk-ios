@@ -264,7 +264,7 @@ extension KatsanaAPI {
                 handleResource()
             }).onFailure({ (error) in
                 failure(error)
-                self.log.error("Error getting trip summaries with original from \(fromDate) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error)")
+                self.log.error("Error getting trip summaries with original from \(fromDate) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error), path \(resource.url)")
             })
             if request == nil {
                 handleResource()
