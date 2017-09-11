@@ -14,6 +14,7 @@ extension Date{
         let timezone = NSTimeZone.local
         formatter.timeZone = timezone
         formatter.dateFormat = "yyyy-MM-dd+HH:mm:ss"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
     
@@ -28,6 +29,7 @@ extension Date{
     public func toStringWithYearMonthDayAndTime(timezone: NSTimeZone! = nil) -> String {
         if let timezone = timezone {
             Date.timeDateFormatter.timeZone = timezone as Foundation.TimeZone
+            Date.timeDateFormatter.dateFormat = "yyyy-MM-dd+HH:mm:ss"
         }
         return Date.timeDateFormatter.string(from: self)
         

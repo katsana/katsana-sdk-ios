@@ -90,8 +90,6 @@ extension KatsanaAPI {
         if request == nil {
             handleResource()
         }
-        
-        
     }
     
     ///Request travel details for given date
@@ -104,6 +102,10 @@ extension KatsanaAPI {
                     needLoad = true
                 }
             }
+            if travel.trips.count == 0{
+                needLoad = true
+            }
+            
             if !needLoad{ //Can load from cache only if locations count > 0
                 self.log.debug("Get trip history from cached data vehicle id \(vehicleId), date \(date)")
                 travel.vehicleId = vehicleId
@@ -252,7 +254,12 @@ extension KatsanaAPI {
             func handleResource() -> Void {
                 if let summaries : [Trip] = resource.typedContent(){
                     for summary in summaries{
-                        summary.date = summary.start.trackedAt
+                        if let date = summary.start.trackedAt{
+                            summary.date = date
+                        }else if summary.locations.count > 0, let date = summary.locations.first?.trackedAt{
+                            summary.date = date
+                        }
+                        
                     }
                     completion(summaries)
                 }else{

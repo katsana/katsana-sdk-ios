@@ -87,7 +87,8 @@ class ObjectJSONTransformer: NSObject {
         pos.voltage = json["voltage"].stringValue
         pos.gsm = json["gsm"].stringValue
         pos.ignitionState = json["ignition"].boolValue
-        pos.trackedAt = json["tracked_at"].date(gmt: 0)
+        let date = json["tracked_at"].date(gmt: 0)
+        pos.trackedAt = date
         
         if let harsh = json["harsh"].dictionaryObject{
             pos.extraData["harsh"] = harsh

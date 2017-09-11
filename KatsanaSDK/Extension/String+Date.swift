@@ -46,6 +46,7 @@ class Formatter {
             internalJsonDateGMTFormatter = DateFormatter()
             internalJsonDateGMTFormatter!.dateFormat = "yyyy-MM-dd HH:mm:ss"
             internalJsonDateGMTFormatter?.timeZone = Foundation.TimeZone(secondsFromGMT: 0)!
+            internalJsonDateGMTFormatter!.locale = Locale(identifier: "en_US_POSIX")
             //            2013-11-18 03:31:02
         }
         internalJsonDateGMTFormatter?.timeZone = Foundation.TimeZone(secondsFromGMT: Int(gmt * 60*60))!
