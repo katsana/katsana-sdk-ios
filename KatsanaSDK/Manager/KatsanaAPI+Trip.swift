@@ -200,7 +200,9 @@ extension KatsanaAPI {
             }
             travel?.needLoadTripHistory = false
             travel?.vehicleId = summary.vehicleId
-            CacheManager.shared.cache(travel: travel!, vehicleId: vehicleId!) //Cache history
+            if let travel = travel, let vehicleId = vehicleId{
+                CacheManager.shared.cache(travel: travel, vehicleId: vehicleId) //Cache history
+            }
             completion(travel)
 
             }, failure: { (error) in
