@@ -100,12 +100,19 @@ extension KatsanaAPI {
             for trip in travel.trips {
                 if trip.locations.count <= 2{
                     needLoad = true
+                    break
+                }
+                else if trip.locations.count > 3, let last = trip.locations.last?.trackedAt, let secondLast = trip.locations[trip.locations.count-2].trackedAt{
+                    if last == secondLast{
+                        needLoad = true
+                        break
+                    }
                 }
             }
             if travel.trips.count == 0{
                 needLoad = true
             }
-            
+
             if !needLoad{ //Can load from cache only if locations count > 0
                 self.log.debug("Get trip history from cached data vehicle id \(vehicleId), date \(date)")
                 travel.vehicleId = vehicleId

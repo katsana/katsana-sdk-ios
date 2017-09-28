@@ -4,12 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FastCoding-OSX.xcscheme</key>
+		<key>FastCoding-iOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FastCoding-iOS.xcscheme</key>
+		<key>FastCoding-macOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ObjcExceptionBridging-iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ObjcExceptionBridging-macOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -24,17 +34,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Siesta-OSX.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Siesta-iOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>XCGLogger-OSX.xcscheme</key>
+		<key>Siesta-macOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -44,49 +49,13 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>XCGLogger-macOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>03762DE833DEFC5F472F4CFC5DDFF6F4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>63BC6E564E9A995AFBE9944F4CCE8B94</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>685995BCA03FBB93F849E976F5412B6F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>686E00A03523B7CF4E9F2DB7F6D90133</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>92D3D217CF5FAC47B68C109E968380FC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9653716108B2E3244EA7FD451067944D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E773E4C5ADD2729A88E77D8B9999761A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E8D727B151DBBFBFDD1419030741AAEB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

@@ -89,15 +89,16 @@
 		C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751055F1D742D0500F4C341 /* UIKit.framework */; };
 		C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75105631D742D8600F4C341 /* CoreLocation.framework */; };
 		C78B22151D75754B002E25C3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
+		C78F1FA11F7C92AC008262CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F1FA01F7C92AC008262CE /* AppDelegate.swift */; };
+		C78F1FA31F7C92AC008262CE /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F1FA21F7C92AC008262CE /* FirstViewController.swift */; };
+		C78F1FA51F7C92AC008262CE /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F1FA41F7C92AC008262CE /* SecondViewController.swift */; };
+		C78F1FA81F7C92AC008262CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C78F1FA61F7C92AC008262CE /* Main.storyboard */; };
+		C78F1FAA1F7C92AC008262CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C78F1FA91F7C92AC008262CE /* Assets.xcassets */; };
+		C78F1FAD1F7C92AC008262CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C78F1FAB1F7C92AC008262CE /* LaunchScreen.storyboard */; };
+		C799054E1F7C97CD000E2A6E /* Pods_KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C799054D1F7C97CD000E2A6E /* Pods_KatsanaSDK.framework */; };
+		C799054F1F7C97CD000E2A6E /* Pods_KatsanaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C799054D1F7C97CD000E2A6E /* Pods_KatsanaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C7A4BF781DAF077E007E90B8 /* KatsanaSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */; };
 		C7A4BF7A1DAF077E007E90B8 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
-		C7A4BF871DAF0C32007E90B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4BF861DAF0C32007E90B8 /* AppDelegate.swift */; };
-		C7A4BF891DAF0C32007E90B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4BF881DAF0C32007E90B8 /* ViewController.swift */; };
-		C7A4BF8C1DAF0C32007E90B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7A4BF8A1DAF0C32007E90B8 /* Main.storyboard */; };
-		C7A4BF8E1DAF0C32007E90B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7A4BF8D1DAF0C32007E90B8 /* Assets.xcassets */; };
-		C7A4BF911DAF0C32007E90B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7A4BF8F1DAF0C32007E90B8 /* LaunchScreen.storyboard */; };
-		C7A4BF961DAF0ECB007E90B8 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
-		C7A4BF971DAF0ECB007E90B8 /* KatsanaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,23 +109,16 @@
 			remoteGlobalIDString = C75104FC1D7422BF00F4C341;
 			remoteInfo = KatsanaSDK;
 		};
-		C7A4BF981DAF0ECB007E90B8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C75104F41D7422BF00F4C341 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C75104FC1D7422BF00F4C341;
-			remoteInfo = KatsanaSDK;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C7A4BF9A1DAF0ECB007E90B8 /* Embed Frameworks */ = {
+		C79905501F7C97CD000E2A6E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C7A4BF971DAF0ECB007E90B8 /* KatsanaSDK.framework in Embed Frameworks */,
+				C799054F1F7C97CD000E2A6E /* Pods_KatsanaSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,16 +192,18 @@
 		C751055F1D742D0500F4C341 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C75105631D742D8600F4C341 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C78B22141D75754B002E25C3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		C78F1F9E1F7C92AC008262CE /* Example-KatsanaSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-KatsanaSDK.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C78F1FA01F7C92AC008262CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C78F1FA21F7C92AC008262CE /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		C78F1FA41F7C92AC008262CE /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		C78F1FA71F7C92AC008262CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C78F1FA91F7C92AC008262CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C78F1FAC1F7C92AC008262CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C78F1FAE1F7C92AC008262CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C799054D1F7C97CD000E2A6E /* Pods_KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKTests.swift; sourceTree = "<group>"; };
 		C7A4BF791DAF077E007E90B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7A4BF841DAF0C32007E90B8 /* KatsanaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KatsanaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7A4BF861DAF0C32007E90B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C7A4BF881DAF0C32007E90B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C7A4BF8B1DAF0C32007E90B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C7A4BF8D1DAF0C32007E90B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C7A4BF901DAF0C32007E90B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		C7A4BF921DAF0C32007E90B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,19 +229,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C78F1F9B1F7C92AC008262CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C799054E1F7C97CD000E2A6E /* Pods_KatsanaSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C7A4BF721DAF077E007E90B8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C7A4BF7A1DAF077E007E90B8 /* KatsanaSDK.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C7A4BF811DAF0C32007E90B8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C7A4BF961DAF0ECB007E90B8 /* KatsanaSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +384,7 @@
 		C75104F31D7422BF00F4C341 = {
 			isa = PBXGroup;
 			children = (
+				C799054D1F7C97CD000E2A6E /* Pods_KatsanaSDK.framework */,
 				C78B22141D75754B002E25C3 /* LICENSE */,
 				C71917481E48703B0041BC18 /* Cache */,
 				C719174A1E48703B0041BC18 /* Extension */,
@@ -397,7 +394,7 @@
 				C71917E41E4893500041BC18 /* iOS */,
 				C71917E81E4893500041BC18 /* macOS */,
 				C7A4BF761DAF077E007E90B8 /* KatsanaSDKTests */,
-				C7A4BF851DAF0C32007E90B8 /* KatsanaTest */,
+				C78F1F9F1F7C92AC008262CE /* Example-KatsanaSDK */,
 				C75104FE1D7422BF00F4C341 /* Products */,
 				5DD901B866D20EE7A742A486 /* Frameworks */,
 				552CE048E3F93C14742C3C82 /* Pods */,
@@ -409,10 +406,24 @@
 			children = (
 				C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */,
 				C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */,
-				C7A4BF841DAF0C32007E90B8 /* KatsanaTest.app */,
 				C74927861DDA831600A0767E /* KatsanaSDK.framework */,
+				C78F1F9E1F7C92AC008262CE /* Example-KatsanaSDK.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C78F1F9F1F7C92AC008262CE /* Example-KatsanaSDK */ = {
+			isa = PBXGroup;
+			children = (
+				C78F1FA01F7C92AC008262CE /* AppDelegate.swift */,
+				C78F1FA21F7C92AC008262CE /* FirstViewController.swift */,
+				C78F1FA41F7C92AC008262CE /* SecondViewController.swift */,
+				C78F1FA61F7C92AC008262CE /* Main.storyboard */,
+				C78F1FA91F7C92AC008262CE /* Assets.xcassets */,
+				C78F1FAB1F7C92AC008262CE /* LaunchScreen.storyboard */,
+				C78F1FAE1F7C92AC008262CE /* Info.plist */,
+			);
+			path = "Example-KatsanaSDK";
 			sourceTree = "<group>";
 		};
 		C7A4BF761DAF077E007E90B8 /* KatsanaSDKTests */ = {
@@ -422,19 +433,6 @@
 				C7A4BF791DAF077E007E90B8 /* Info.plist */,
 			);
 			path = KatsanaSDKTests;
-			sourceTree = "<group>";
-		};
-		C7A4BF851DAF0C32007E90B8 /* KatsanaTest */ = {
-			isa = PBXGroup;
-			children = (
-				C7A4BF861DAF0C32007E90B8 /* AppDelegate.swift */,
-				C7A4BF881DAF0C32007E90B8 /* ViewController.swift */,
-				C7A4BF8A1DAF0C32007E90B8 /* Main.storyboard */,
-				C7A4BF8D1DAF0C32007E90B8 /* Assets.xcassets */,
-				C7A4BF8F1DAF0C32007E90B8 /* LaunchScreen.storyboard */,
-				C7A4BF921DAF0C32007E90B8 /* Info.plist */,
-			);
-			path = KatsanaTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,6 +500,24 @@
 			productReference = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		C78F1F9D1F7C92AC008262CE /* Example-KatsanaSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C78F1FB11F7C92AC008262CE /* Build configuration list for PBXNativeTarget "Example-KatsanaSDK" */;
+			buildPhases = (
+				C78F1F9A1F7C92AC008262CE /* Sources */,
+				C78F1F9B1F7C92AC008262CE /* Frameworks */,
+				C78F1F9C1F7C92AC008262CE /* Resources */,
+				C79905501F7C97CD000E2A6E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Example-KatsanaSDK";
+			productName = "Example-KatsanaSDK";
+			productReference = C78F1F9E1F7C92AC008262CE /* Example-KatsanaSDK.app */;
+			productType = "com.apple.product-type.application";
+		};
 		C7A4BF741DAF077E007E90B8 /* KatsanaSDKTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7A4BF7D1DAF077E007E90B8 /* Build configuration list for PBXNativeTarget "KatsanaSDKTests" */;
@@ -520,33 +536,14 @@
 			productReference = C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C7A4BF831DAF0C32007E90B8 /* KatsanaTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C7A4BF931DAF0C32007E90B8 /* Build configuration list for PBXNativeTarget "KatsanaTest" */;
-			buildPhases = (
-				C7A4BF801DAF0C32007E90B8 /* Sources */,
-				C7A4BF811DAF0C32007E90B8 /* Frameworks */,
-				C7A4BF821DAF0C32007E90B8 /* Resources */,
-				C7A4BF9A1DAF0ECB007E90B8 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C7A4BF991DAF0ECB007E90B8 /* PBXTargetDependency */,
-			);
-			name = KatsanaTest;
-			productName = KatsanaTest;
-			productReference = C7A4BF841DAF0C32007E90B8 /* KatsanaTest.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		C75104F41D7422BF00F4C341 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0820;
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = pixelated;
 				TargetAttributes = {
 					C74927851DDA831600A0767E = {
@@ -561,12 +558,12 @@
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
-					C7A4BF741DAF077E007E90B8 = {
-						CreatedOnToolsVersion = 8.0;
+					C78F1F9D1F7C92AC008262CE = {
+						CreatedOnToolsVersion = 9.0;
 						DevelopmentTeam = 47CF2FS3SX;
 						ProvisioningStyle = Automatic;
 					};
-					C7A4BF831DAF0C32007E90B8 = {
+					C7A4BF741DAF077E007E90B8 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 47CF2FS3SX;
 						ProvisioningStyle = Automatic;
@@ -589,7 +586,7 @@
 				C75104FC1D7422BF00F4C341 /* KatsanaSDK */,
 				C74927851DDA831600A0767E /* KatsanaSDK macOS */,
 				C7A4BF741DAF077E007E90B8 /* KatsanaSDKTests */,
-				C7A4BF831DAF0C32007E90B8 /* KatsanaTest */,
+				C78F1F9D1F7C92AC008262CE /* Example-KatsanaSDK */,
 			);
 		};
 /* End PBXProject section */
@@ -611,20 +608,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C78F1F9C1F7C92AC008262CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C78F1FAD1F7C92AC008262CE /* LaunchScreen.storyboard in Resources */,
+				C78F1FAA1F7C92AC008262CE /* Assets.xcassets in Resources */,
+				C78F1FA81F7C92AC008262CE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C7A4BF731DAF077E007E90B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C7A4BF821DAF0C32007E90B8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C7A4BF911DAF0C32007E90B8 /* LaunchScreen.storyboard in Resources */,
-				C7A4BF8E1DAF0C32007E90B8 /* Assets.xcassets in Resources */,
-				C7A4BF8C1DAF0C32007E90B8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,13 +634,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KatsanaSDK macOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9D503B72B1C383261034593C /* [CP] Check Pods Manifest.lock */ = {
@@ -652,13 +652,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KatsanaSDK-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BD02729A9164F54CA3F1C076 /* [CP] Copy Pods Resources */ = {
@@ -776,20 +779,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C78F1F9A1F7C92AC008262CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C78F1FA51F7C92AC008262CE /* SecondViewController.swift in Sources */,
+				C78F1FA11F7C92AC008262CE /* AppDelegate.swift in Sources */,
+				C78F1FA31F7C92AC008262CE /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C7A4BF711DAF077E007E90B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C7A4BF781DAF077E007E90B8 /* KatsanaSDKTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C7A4BF801DAF0C32007E90B8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C7A4BF891DAF0C32007E90B8 /* ViewController.swift in Sources */,
-				C7A4BF871DAF0C32007E90B8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,26 +805,21 @@
 			target = C75104FC1D7422BF00F4C341 /* KatsanaSDK */;
 			targetProxy = C7A4BF7B1DAF077E007E90B8 /* PBXContainerItemProxy */;
 		};
-		C7A4BF991DAF0ECB007E90B8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C75104FC1D7422BF00F4C341 /* KatsanaSDK */;
-			targetProxy = C7A4BF981DAF0ECB007E90B8 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C7A4BF8A1DAF0C32007E90B8 /* Main.storyboard */ = {
+		C78F1FA61F7C92AC008262CE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C7A4BF8B1DAF0C32007E90B8 /* Base */,
+				C78F1FA71F7C92AC008262CE /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		C7A4BF8F1DAF0C32007E90B8 /* LaunchScreen.storyboard */ = {
+		C78F1FAB1F7C92AC008262CE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C7A4BF901DAF0C32007E90B8 /* Base */,
+				C78F1FAC1F7C92AC008262CE /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -835,7 +834,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 47CF2FS3SX;
@@ -866,7 +865,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 47CF2FS3SX;
@@ -989,6 +988,7 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 47CF2FS3SX;
@@ -1021,6 +1021,7 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 47CF2FS3SX;
@@ -1043,6 +1044,66 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
+			};
+			name = Release;
+		};
+		C78F1FAF1F7C92AC008262CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 47CF2FS3SX;
+				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Example-KatsanaSDK/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pixelated.Example-KatsanaSDK";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C78F1FB01F7C92AC008262CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 47CF2FS3SX;
+				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Example-KatsanaSDK/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pixelated.Example-KatsanaSDK";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1078,42 +1139,6 @@
 			};
 			name = Release;
 		};
-		C7A4BF941DAF0C32007E90B8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEVELOPMENT_TEAM = 47CF2FS3SX;
-				INFOPLIST_FILE = KatsanaTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		C7A4BF951DAF0C32007E90B8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEVELOPMENT_TEAM = 47CF2FS3SX;
-				INFOPLIST_FILE = KatsanaTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1144,20 +1169,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		C78F1FB11F7C92AC008262CE /* Build configuration list for PBXNativeTarget "Example-KatsanaSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C78F1FAF1F7C92AC008262CE /* Debug */,
+				C78F1FB01F7C92AC008262CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C7A4BF7D1DAF077E007E90B8 /* Build configuration list for PBXNativeTarget "KatsanaSDKTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C7A4BF7E1DAF077E007E90B8 /* Debug */,
 				C7A4BF7F1DAF077E007E90B8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C7A4BF931DAF0C32007E90B8 /* Build configuration list for PBXNativeTarget "KatsanaTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C7A4BF941DAF0C32007E90B8 /* Debug */,
-				C7A4BF951DAF0C32007E90B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
