@@ -190,4 +190,21 @@ extension KatsanaAPI {
             failure(error)
         })
     }
+    
+    public func requestUser(completion: @escaping (_ user: User) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void{
+        let resource = self.API.resource("profile")
+        resource.loadIfNeeded()?.onSuccess({ (entity) in
+            let user : User? = resource.typedContent()
+            if let user = user{
+                self.currentUser = user
+                completion(user)
+                self.log.info("Logged in user \(user.userId), \(user.email)")
+                CacheManager.shared.cache(user: user)
+            }else{
+                failure(nil)
+            }
+        }).onFailure({ (error) in
+            failure(error)
+        })
+    }
 }

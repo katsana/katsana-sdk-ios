@@ -113,6 +113,14 @@ public class KatsanaAPI: NSObject {
         shared.grantType = grantType
     }
     
+    ///Configure API using access token
+    public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, accessToken: String) -> Void {
+        shared.API = Service(baseURL: baseURL)
+        shared.authToken = accessToken
+        shared.configure()
+        shared.setupTransformer()
+    }
+    
     func configure() {
         API.configure("**") {
             $0.headers["Accept"] = "application/json"
