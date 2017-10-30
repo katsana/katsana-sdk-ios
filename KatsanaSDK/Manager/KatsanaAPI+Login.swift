@@ -138,7 +138,7 @@ extension KatsanaAPI {
         currentUser = nil
         authToken = nil
         NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
-        log.info("Logged out user \(self.currentUser?.userId), \(self.currentUser?.email)")
+        log.info("Logged out user \(self.currentUser?.userId ?? "??"), \(self.currentUser?.email ?? "")")
         CacheManager.shared.clearTravelCache(vehicleId: "-1")
     }
     

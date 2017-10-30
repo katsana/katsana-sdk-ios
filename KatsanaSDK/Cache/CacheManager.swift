@@ -413,7 +413,8 @@ public class CacheManager: NSObject {
         var haveSameTrip = false
         if let travel = travel{
             for aTrip in travel.trips {
-                if aTrip.date == trip.date {
+                //If less than 2 minute consider as same trip
+                if fabs(aTrip.date.timeIntervalSince(trip.date)) < 2*60 {
                     if trip.locations.count > aTrip.locations.count {
                         aTrip.locations = trip.locations
                     }
@@ -682,7 +683,7 @@ public class CacheManager: NSObject {
         
         if var travelDicto = data[classname] as? [[String: Any]]{
             for (userIndex, dicto) in travelDicto.enumerated() {
-                if let theVehicleId = dicto["id"] as? String, vehicleId == theVehicleId, var travels = dicto["data"] as? [Travel]{
+                if let theVehicleId = dicto["id"] as? String, vehicleId == theVehicleId, let travels = dicto["data"] as? [Travel]{
 //                    var indexset = IndexSet()
 //                    var startIndex : Int!
 //                    var endIndex : Int!

@@ -24,7 +24,7 @@ open class Travel: NSObject {
             if trips.count > 0 {
                 var totalDuration : Double = 0
                 for trip in trips {
-                    totalDuration = trip.duration
+                    totalDuration += trip.duration
                 }
                 _duration = totalDuration
             }
