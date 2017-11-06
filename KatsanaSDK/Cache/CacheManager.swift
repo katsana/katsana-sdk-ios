@@ -723,6 +723,51 @@ public class CacheManager: NSObject {
         try? FileManager.default.removeItem(atPath: activityPath)
     }
     
+    func purgeTravelOlderThan(days: Int) {
+        let lastPurgeDate = UserDefaults.standard.value(forKey: "lastPurgeTravelDate")
+        let purgeInterval : TimeInterval = 60*60*24*7
+        
+        UserDefaults.standard.removeObject(forKey: "lastPurgeTravelDate")
+        
+        var canContinue = false
+        if let lastPurgeDate = lastPurgeDate as? Date, Date().timeIntervalSince(lastPurgeDate) > purgeInterval{
+            canContinue = true
+        }else if lastPurgeDate == nil{
+            canContinue = true
+        }
+        
+        if canContinue {
+            var newTravelArray = [[String: Any]]()
+            let classname = NSStringFromClass(Travel.self)
+            
+            if let travelArray = data[classname] as? [[String: Any]]{
+                for travelDicto in travelArray {
+                    var dicto = travelDicto
+                    if var travels = travelDicto["data"] as? [Travel] {
+                        travels.sort(by: { (a, b) -> Bool in //Latest is last
+                            a.date < b.date
+                        })
+                        var newTravels = [Travel]()
+                        for (index, travel) in travels.enumerated().reversed(){
+                            if Date().daysAfterDate(travel.date) > days{
+                                newTravels = Array(travels.suffix(from: index))
+                                break
+                            }
+                        }
+                        dicto["data"] = newTravels
+                    }
+                    newTravelArray.append(dicto)
+                }
+                data[classname] = newTravelArray
+            }
+            
+            
+            
+            UserDefaults.standard.setValue(Date(), forKey: "lastPurgeTravelDate")
+            autoSave()
+        }
+    }
+    
     func purgeOldActivities() {
         if let lastPurgeDate = UserDefaults.standard.value(forKey: "lastPurgeActivityDate") as? Date{
             let purgeInterval : TimeInterval = 60*60*24*7

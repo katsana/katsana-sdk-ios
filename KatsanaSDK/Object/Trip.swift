@@ -35,6 +35,11 @@ open class Trip: NSObject {
     
     // MARK: Logic
     
+    ///Because locations size is high, need to load only when needed
+//    func loadLocations(completion: (_ locations: [VehicleLocation])->Void) {
+//        <#function body#>
+//    }
+    
     open func durationToNextTrip() -> Float {
         if let nextTrip = nextTrip {
             let duration = nextTrip.start.trackedAt.timeIntervalSince(end.trackedAt)

@@ -230,6 +230,10 @@ public class KatsanaAPI: NSObject {
         authToken = newToken
     }
     
+    public func purgeTravelCacheOlderThan(days: Int) {
+        CacheManager.shared.purgeTravelOlderThan(days: days)
+    }
+    
     // MARK: Error handling
     
     private var lastUnauthorizedErrorDate: Date!
