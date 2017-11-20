@@ -14,7 +14,7 @@ extension KatsanaAPI {
     ///
     /// - parameter vehicleId:  vehicle id
     /// - parameter completion: completion
-    public func requestVehicle(vehicleId: String, options: [String]! = nil, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestVehicle(vehicleId: String, options: [String]! = nil, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let cachedVehicle = vehicleWith(vehicleId: vehicleId)
         if (cachedVehicle != nil) {
             currentVehicle = cachedVehicle!
@@ -75,7 +75,7 @@ extension KatsanaAPI {
     /// Request all vehicles. vehicles variable will be set from the vehicles requested
     ///
     /// - parameter completion: completion
-    public func requestAllVehicles(options:[String]! = nil, completion: @escaping (_ vehicles: [Vehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestAllVehicles(options:[String]! = nil, completion: @escaping (_ vehicles: [Vehicle]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         guard self.currentUser != nil else {
             failure(nil)
             return
@@ -120,7 +120,7 @@ extension KatsanaAPI {
         }
     }
     
-    public func requestVehicleLocation(vehicleId: String, completion: @escaping (_ vehicleLocation: VehicleLocation?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestVehicleLocation(vehicleId: String, completion: @escaping (_ vehicleLocation: VehicleLocation?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let path = "vehicles/" + vehicleId + "/location"
         let resource = API.resource(path);
         let request = resource.loadIfNeeded()
@@ -142,7 +142,7 @@ extension KatsanaAPI {
         }
     }
     
-    public func requestAllVehicleLocations(completion: @escaping (_ vehicles: [Vehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestAllVehicleLocations(completion: @escaping (_ vehicles: [Vehicle]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         guard vehicles != nil else{
             return
         }

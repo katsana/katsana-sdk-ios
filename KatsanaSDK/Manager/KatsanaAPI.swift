@@ -17,6 +17,7 @@ public class KatsanaAPI: NSObject {
     static let defaultBaseURL: URL = URL(string: "https://api.katsana.com/")!
     internal(set) var log : XCGLogger!
     
+    
     ///Default options when requesting vehicle or all vehicles
     public var defaultRequestVehicleOptions: [String]!
     ///Default options when requesting travel or trip
@@ -92,6 +93,9 @@ public class KatsanaAPI: NSObject {
 
     /// Token to refresh access token
     internal(set) public var refreshToken: String!
+    
+    ///If requestTravel() called but the token is unauthorized, the travel will be requested again. This closure variable is used to save those completion closure. While unauthorized issue may persist for other request too, travel is frequently accessed after app opened.
+    internal var callTravelCompletionAfterTokenRefreshed: ((_ history: Travel?) -> Void)!
     
     // MARK: Lifecycle
     
@@ -238,7 +242,7 @@ public class KatsanaAPI: NSObject {
     
     private var lastUnauthorizedErrorDate: Date!
     func handleError(error: Error!, details: String) {
-        var handled = false
+        let handled = false
         if let error = error as? RequestError {
             if let code = error.httpStatusCode, code == 401 {
                 //Because not authorized is occured frequently (need check the issue), fire notification or log unauthorized error only after 1 minute only

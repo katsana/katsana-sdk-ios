@@ -6,11 +6,12 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
+import Siesta
 
 extension KatsanaAPI {
     @nonobjc static let maxDaySummary = 3;
     
-    public func requestTravelSummaryToday(vehicleId: String, completion: @escaping (_ summary: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTravelSummaryToday(vehicleId: String, completion: @escaping (_ summary: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let path = "vehicles/" + vehicleId + "/summaries/today"
         let resource = API.resource(path);
         let request = resource.loadIfNeeded()
@@ -32,7 +33,7 @@ extension KatsanaAPI {
     }
     
     ///Request travel summaries between dates. Only trip count is loaded, travel details are omitted.
-    public func requestTravelSummaries(vehicleId: String, fromDate: Date!, toDate: Date, completion: @escaping (_ summaries:[Travel]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTravelSummaries(vehicleId: String, fromDate: Date!, toDate: Date, completion: @escaping (_ summaries:[Travel]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let dates = validateRange(fromDate: fromDate, toDate: toDate)
         let datesWithHistory = requiredRangeToRequestTravelSummary(fromDate: dates.fromDate, toDate: dates.toDate, vehicleId: vehicleId)
         
@@ -93,7 +94,7 @@ extension KatsanaAPI {
     }
     
     ///Request travel details for given date
-    public func requestTravel(for date: Date, vehicleId: String, options: [String]! = nil, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTravel(for date: Date, vehicleId: String, options: [String]! = nil, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let travel = CacheManager.shared.travel(vehicleId: vehicleId, date: date)
         if let travel = travel, travel.needLoadTripHistory == false{
             var needLoad = false
@@ -154,6 +155,9 @@ extension KatsanaAPI {
         request?.onSuccess({(entity) in
             handleResource()
         }).onFailure({ (error) in
+            if let code = error.httpStatusCode, code == 401 {
+                self.callTravelCompletionAfterTokenRefreshed = completion
+            }
             failure(error)
             self.handleError(error: error, details: "Error getting trip history today vehicle id \(vehicleId), date \(date), \(error)")
         })
@@ -164,7 +168,7 @@ extension KatsanaAPI {
     }
     
     ///Request travel using given summary. Summary only give duration and trip count, if cached history is different from the summary, reload and return it
-    public func requestTravelUsing(summary: Travel, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTravelUsing(summary: Travel, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let vehicleId = summary.vehicleId
         guard vehicleId != nil else {
             return
@@ -219,7 +223,7 @@ extension KatsanaAPI {
     }
     
     ///Request trip summaries between dates.
-    public func requestTripSummaries(vehicleId: String, options: [String]! = nil, fromDate: Date, toDate: Date, completion: @escaping (_ summaries:[Trip]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func requestTripSummaries(vehicleId: String, options: [String]! = nil, fromDate: Date, toDate: Date, completion: @escaping (_ summaries:[Trip]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let datesWithHistory = requiredRangeToRequestTravelSummary(fromDate: fromDate, toDate: toDate, vehicleId: vehicleId)
         var travels = datesWithHistory.cachedHistories
         let newFromDate = datesWithHistory.fromDate.toStringWithYearMonthDay()

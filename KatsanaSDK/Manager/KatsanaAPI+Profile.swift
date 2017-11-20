@@ -16,7 +16,7 @@
 
 
 extension KatsanaAPI {
-    public func saveCurrentUserProfile(completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func saveCurrentUserProfile(completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let resource = self.API.resource("profile")
         let json = self.currentUser.jsonPatch()
         resource.request(.patch, json: json).onSuccess { (_) in
@@ -27,7 +27,7 @@ extension KatsanaAPI {
         }
     }
     
-   public func saveCurrentUserProfileImage(image : KMImage?, completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+   public func saveCurrentUserProfileImage(image : KMImage?, completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
     
         var finalImage : KMImage!
         if image == nil {
