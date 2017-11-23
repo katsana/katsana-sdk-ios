@@ -155,9 +155,6 @@ extension KatsanaAPI {
         request?.onSuccess({(entity) in
             handleResource()
         }).onFailure({ (error) in
-            if let code = error.httpStatusCode, code == 401 {
-                self.callTravelCompletionAfterTokenRefreshed = completion
-            }
             failure(error)
             self.handleError(error: error, details: "Error getting trip history today vehicle id \(vehicleId), date \(date), \(error)")
         })
@@ -188,13 +185,13 @@ extension KatsanaAPI {
                 //If trip count is different, make need load trip
                 if summary.tripCount != travel.trips.count {
                     travel.needLoadTripHistory = true
-                    self.log.debug("Need load trip history from summary because summary trip count (\(summary.tripCount)) != history trip count (\(travel.trips.count)), vehicle id \(vehicleId)")
+                    self.log.debug("Need load trip history from summary because summary trip count (\(summary.tripCount)) != history trip count (\(travel.trips.count)), vehicle id \(String(describing: vehicleId))")
                 }
                 //If duration from summary and history more than 10 seconds, make need load trip
                 let totalDuration = travel.duration
                 if fabs(summary.duration - totalDuration) > 10 {
                     travel.needLoadTripHistory = true
-                    self.log.debug("Need load trip history from summary because summary duration (\(summary.duration)) != history duration (\(totalDuration)), vehicle id \(vehicleId)")
+                    self.log.debug("Need load trip history from summary because summary duration (\(summary.duration)) != history duration (\(totalDuration)), vehicle id \(String(describing: vehicleId))")
                 }
                 if !travel.needLoadTripHistory {
                     summary.trips = travel.trips
@@ -218,7 +215,7 @@ extension KatsanaAPI {
 
             }, failure: { (error) in
                 failure(error)
-                self.log.error("Error getting trip history vehicle id \(vehicleId), using summary with date \(summary.date), \(error)")
+                self.log.error("Error getting trip history vehicle id \(String(describing: vehicleId)), using summary with date \(summary.date), \(String(describing: error))")
         })
     }
     

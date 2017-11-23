@@ -11,7 +11,7 @@ extension KatsanaAPI {
     public func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (Address?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         AddressRequest.requestAddress(for: location) { (address, error) in
             if error != nil{
-                self.log.error("Error getting address from Katsana platform \(location), \(error)")
+                self.log.error("Error getting address from Katsana platform \(location), \(String(describing: error))")
                 failure(error)
             }else{
                 completion(address)

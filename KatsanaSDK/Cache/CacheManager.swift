@@ -562,12 +562,12 @@ public class CacheManager: NSObject {
         try? data?.write(to: URL(fileURLWithPath: path))
     }
     
-    func autoSave2()  {
-        return
-        let data = FastCoder.data(withRootObject: self.data)
-        let path = cacheDirectory().appending("/" + cacheDataFilename() + "2")
-        try? data?.write(to: URL(fileURLWithPath: path))
-    }
+//    func autoSave2()  {
+//        return
+//        let data = FastCoder.data(withRootObject: self.data)
+//        let path = cacheDirectory().appending("/" + cacheDataFilename() + "2")
+//        try? data?.write(to: URL(fileURLWithPath: path))
+//    }
     
     func autosaveAddress() {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(autosaveAddress), object: nil)
@@ -678,7 +678,6 @@ public class CacheManager: NSObject {
     
     ///Clear travel cache for specified date ranges
     public func clearTripCache(vehicleId: String, date: Date, toDate: Date) {
-        autoSave2()
         let classname = NSStringFromClass(Travel.self)
         
         if var travelDicto = data[classname] as? [[String: Any]]{

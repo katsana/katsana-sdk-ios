@@ -93,10 +93,7 @@ public class KatsanaAPI: NSObject {
 
     /// Token to refresh access token
     internal(set) public var refreshToken: String!
-    
-    ///If requestTravel() called but the token is unauthorized, the travel will be requested again. This closure variable is used to save those completion closure. While unauthorized issue may persist for other request too, travel is frequently accessed after app opened.
-    internal var callTravelCompletionAfterTokenRefreshed: ((_ history: Travel?) -> Void)!
-    
+
     // MARK: Lifecycle
     
     override init() {

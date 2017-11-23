@@ -140,7 +140,7 @@ open class User: NSObject {
     // MARK: helper
     
     func isPhoneNumber(_ text: String) -> Bool {
-        if text.characters.count < 3 {
+        if text.count < 3 {
             return false
         }
         let set = CharacterSet(charactersIn: "+0123456789 ")

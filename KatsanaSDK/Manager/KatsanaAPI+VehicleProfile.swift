@@ -6,9 +6,10 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
+import Siesta
+
 extension KatsanaAPI {
 
-    
     /// Save vehicle profile data
     ///
     /// 
@@ -35,7 +36,7 @@ extension KatsanaAPI {
     /// - parameter vehicleId:  vehicle id
     /// - parameter image:      image to save
     /// - parameter completion: return vehicle
-    public func saveVehicleProfileImage(vehicleId: String, image : KMImage?, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func saveVehicleProfileImage(vehicleId: String, image : KMImage?, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let vehicle = vehicleWith(vehicleId: vehicleId)
         guard vehicle != nil else {
             return
@@ -73,7 +74,7 @@ extension KatsanaAPI {
             if success{
                 completion(vehicle)
             }else{
-                self.log.error("Error save vehicle profile image \(vehicleId), \(error)")
+                self.log.error("Error save vehicle profile image \(vehicleId), \(String(describing: error))")
                 failure(error)
             }
         }

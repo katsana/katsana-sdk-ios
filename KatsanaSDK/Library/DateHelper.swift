@@ -24,7 +24,7 @@ public enum ISO8601Format: String {
     case DateTimeMilliSec = "yyyy-MM-dd'T'HH:mm:ss.SSSZ" // 1997-07-16T19:20:30.45+01:00
     
     init(dateString:String) {
-        switch dateString.characters.count {
+        switch dateString.count {
         case 4:
             self = ISO8601Format(rawValue: ISO8601Format.Year.rawValue)!
         case 7:

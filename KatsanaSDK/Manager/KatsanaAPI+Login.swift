@@ -8,6 +8,7 @@
 
 import Foundation
 import XCGLogger
+import Siesta
 
 extension KatsanaAPI {
 

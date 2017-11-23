@@ -6,6 +6,8 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
+import Siesta
+
 #if os(iOS)
     public typealias KMColor = UIColor
     public typealias KMImage = UIImage
@@ -27,7 +29,7 @@ extension KatsanaAPI {
         }
     }
     
-   public func saveCurrentUserProfileImage(image : KMImage?, completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+   public func saveCurrentUserProfileImage(image : KMImage?, completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
     
         var finalImage : KMImage!
         if image == nil {
@@ -64,7 +66,7 @@ extension KatsanaAPI {
                 completion(self.currentUser)
             }else{
                 failure(error)
-                self.log.error("Error save user profile image \(error)")
+                self.log.error("Error save user profile image \(String(describing: error))")
             }
         }
     }

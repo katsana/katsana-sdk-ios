@@ -32,9 +32,5 @@ extension Date{
             Date.timeDateFormatter.dateFormat = "yyyy-MM-dd+HH:mm:ss"
         }
         return Date.timeDateFormatter.string(from: self)
-        
-        let dateComps = Calendar.current.dateComponents([.second, .minute, .hour, .day, .month, .year], from: self)
-        let str = "\(dateComps.year!)-\(dateComps.month!)-\(dateComps.day!)+\(dateComps.hour!):\(dateComps.minute!):\(dateComps.second!)"
-        return str
     }
 }

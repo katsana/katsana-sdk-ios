@@ -38,17 +38,17 @@ open class Address: NSObject {
     
     open func optimizedAddress() -> String {
         var components = [String]()
-        if let streetNumber = streetNumber, streetNumber.characters.count > 0 {
+        if let streetNumber = streetNumber, streetNumber.count > 0 {
             components.append(streetNumber)
         }
-        if let streetName = streetName, streetName.characters.count > 0 {
+        if let streetName = streetName, streetName.count > 0 {
             components.append(streetName)
         }
-        if let sublocality = sublocality, sublocality.characters.count > 0{
+        if let sublocality = sublocality, sublocality.count > 0{
             components.append(sublocality)
         }
         var address = components.joined(separator: ", ")
-        if address.characters.count == 0 {
+        if address.count == 0 {
             if self.address != nil {
                 address = self.address
             }
