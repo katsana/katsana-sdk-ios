@@ -9,7 +9,7 @@
 import Siesta
 import XCGLogger
 
-public class KatsanaAPI: NSObject {
+@objc public class KatsanaAPI: NSObject {
     //Notifications
     public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserSuccessLogonNotification")
     public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
