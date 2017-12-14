@@ -90,6 +90,8 @@
 		C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75105631D742D8600F4C341 /* CoreLocation.framework */; };
 		C7729D661FCBA869002497DD /* KatsanaAPI+objc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7729D651FCBA869002497DD /* KatsanaAPI+objc.swift */; };
 		C78B22151D75754B002E25C3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
+		C79CA23E1FE220F100A9F8E1 /* Insurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79CA23D1FE220F100A9F8E1 /* Insurer.swift */; };
+		C79CA23F1FE220F100A9F8E1 /* Insurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79CA23D1FE220F100A9F8E1 /* Insurer.swift */; };
 		C7A4BF781DAF077E007E90B8 /* KatsanaSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */; };
 		C7A4BF7A1DAF077E007E90B8 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
 /* End PBXBuildFile section */
@@ -178,6 +180,7 @@
 		C78615371F7DF9A5003DBF39 /* Pods_KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C78615391F7DF9D2003DBF39 /* Pods_KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C78B22141D75754B002E25C3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		C79CA23D1FE220F100A9F8E1 /* Insurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insurer.swift; sourceTree = "<group>"; };
 		C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKTests.swift; sourceTree = "<group>"; };
 		C7A4BF791DAF077E007E90B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -307,6 +310,7 @@
 				C71917671E48703B0041BC18 /* Vehicle.swift */,
 				C71917681E48703B0041BC18 /* VehicleActivity.swift */,
 				C71917691E48703B0041BC18 /* VehicleLocation.swift */,
+				C79CA23D1FE220F100A9F8E1 /* Insurer.swift */,
 			);
 			name = Object;
 			path = KatsanaSDK/Object;
@@ -629,6 +633,7 @@
 				C71917D21E4884410041BC18 /* Just.swift in Sources */,
 				C71917931E48703B0041BC18 /* KatsanaFormatter.swift in Sources */,
 				C71917A11E48703B0041BC18 /* User.swift in Sources */,
+				C79CA23F1FE220F100A9F8E1 /* Insurer.swift in Sources */,
 				C71917791E48703B0041BC18 /* AddressRequest.swift in Sources */,
 				C71917A91E48703B0041BC18 /* TimeTransformer.swift in Sources */,
 				C71917A71E48703B0041BC18 /* VehicleLocation.swift in Sources */,
@@ -680,6 +685,7 @@
 				C71917801E48703B0041BC18 /* KatsanaAPI+Log.swift in Sources */,
 				C71917861E48703B0041BC18 /* KatsanaAPI+Profile.swift in Sources */,
 				C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */,
+				C79CA23E1FE220F100A9F8E1 /* Insurer.swift in Sources */,
 				C719176C1E48703B0041BC18 /* CacheManager.swift in Sources */,
 				C71917941E48703B0041BC18 /* Address.swift in Sources */,
 				C71917981E48703B0041BC18 /* LiveShare.swift in Sources */,

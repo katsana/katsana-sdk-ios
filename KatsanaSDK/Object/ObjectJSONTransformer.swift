@@ -221,4 +221,17 @@ class ObjectJSONTransformer: NSObject {
 //        share.durationText = json1["duration"].stringValue
         return share
     }
+    
+    class func InsurersObject(json : JSON) -> [Insurer] {
+        var insurers = [Insurer]()
+        let array = json.arrayValue
+        for jsonObj in array {
+            let name = jsonObj["name"].stringValue
+            let country = jsonObj["country"].stringValue
+            let partner = jsonObj["partner"].boolValue
+            let insurer = Insurer(name: name, country: country, partner: partner)
+            insurers.append(insurer)
+        }
+        return insurers
+    }
 }

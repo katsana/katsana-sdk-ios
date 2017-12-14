@@ -162,6 +162,74 @@ extension KatsanaAPI {
         }
     }
     
+    public func checkVehicleAvailable(vehicleToken: String, completion: @escaping (_ available: Bool) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        let path = "track/availability"
+        let resource = API.resource(path);
+        
+        let data = ["activation": vehicleToken]
+        
+        resource.request(.post, json: data).onSuccess { (entity) in
+            if let content = entity.content as? JSON{
+                let valid = content["status"].boolValue
+                completion(valid)
+            }else{
+                completion(false)
+            }
+        }.onFailure { (error) in
+            
+            if let content = error.entity?.content as? [String: Any], let valid = content["status"] as? Bool {
+                completion(valid)
+
+            }else{
+                failure(error)
+                self.log.error("Error checking vehicle availability \(error)")
+            }
+        }
+    }
+    
+    public func registerVehicle(vehicleToken: String, vehicleData: [String: String], userData: [String: String]! = nil, completion: @escaping (_ available: Bool) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        let path = "track/register"
+        let resource = API.resource(path);
+        
+        var theData = [String: Any]()
+        theData["activation"] = vehicleToken
+        theData["vehicle"] = vehicleData
+        if let userData = userData{
+            theData["user"] = userData
+        }
+
+        resource.request(.post, json: theData).onSuccess { (entity) in
+            completion(true)
+            }.onFailure { (error) in
+                if let content = error.entity?.content as? [String: Any], let errors = content.first?.value as? [String], let first = errors.first {
+                    let error = RequestError(userMessage: first, cause: error)
+                    failure(error)
+                }else{
+                    failure(error)
+                }
+                self.log.error("Error register vehicle \(String(describing: error.errorDescription))")
+        }
+    }
+    
+    public func requestInsurers(completion: @escaping (_ insurers: [Insurer]) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        let path = "insurers/my"
+        let resource = API.resource(path);
+        let request = resource.loadIfNeeded()
+        
+        request?.onSuccess({ (entity) in
+            let insurers : [Insurer]? = resource.typedContent()
+            completion(insurers!)
+        }).onFailure({ (error) in
+            failure(error)
+            self.log.error("Error getting insurers")
+        })
+        
+        if request == nil {
+            let insurers : [Insurer]? = resource.typedContent()
+            completion(insurers!)
+        }
+    }
+    
     // MARK: Logic
     
     public func vehicleWith(vehicleId: String) -> Vehicle! {

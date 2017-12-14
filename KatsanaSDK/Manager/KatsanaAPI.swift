@@ -164,7 +164,11 @@ import XCGLogger
         //Trip summary duration will request new data only after 1 minute
         API.configure("vehicles/*/travels/summaries/duration") {
             $0.expirationTime = 1*60
-        }        
+        }
+        
+        API.configure("insurers/my") {
+            $0.expirationTime = 15*60
+        }
     }
     
     func setupTransformer() -> Void {
@@ -194,6 +198,9 @@ import XCGLogger
         }
         API.configureTransformer("vehicles/*/location") {
             ObjectJSONTransformer.VehicleLocationObject(json: $0.content)
+        }
+        API.configureTransformer("insurers/my") {
+            ObjectJSONTransformer.InsurersObject(json: $0.content)
         }
     }
     
