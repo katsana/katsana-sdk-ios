@@ -19,7 +19,7 @@ open class Trip: NSObject {
     open var date = Date(timeIntervalSinceReferenceDate: 0)
     
     open var idles = [VehicleLocation]()
-    dynamic open var locations = [VehicleLocation]()
+    @objc dynamic open var locations = [VehicleLocation]()
     open var violations = [VehicleActivity]()
     
     ///Next trip and prev trip automatically set when trips are set in Travel class

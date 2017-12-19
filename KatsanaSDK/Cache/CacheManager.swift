@@ -549,7 +549,7 @@ public class CacheManager: NSObject {
     
     // MARK: Save data
     
-    func autoSave()  {
+    @objc func autoSave()  {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(autoSave), object: nil)
         if let lastSavedCache = lastSavedCache, Date().timeIntervalSince(lastSavedCache) < 5{
             perform(#selector(autoSave), with: nil, afterDelay: 3)
@@ -569,7 +569,7 @@ public class CacheManager: NSObject {
 //        try? data?.write(to: URL(fileURLWithPath: path))
 //    }
     
-    func autosaveAddress() {
+    @objc func autosaveAddress() {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(autosaveAddress), object: nil)
         if let lastSavedCache = lastSavedAddressCache, Date().timeIntervalSince(lastSavedCache) < 5{
             perform(#selector(autosaveAddress), with: nil, afterDelay: 3)
@@ -582,7 +582,7 @@ public class CacheManager: NSObject {
         try? data?.write(to: URL(fileURLWithPath: path))
     }
     
-    func autoSaveActivities() {
+    @objc func autoSaveActivities() {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(autoSaveActivities), object: nil)
         if let lastSavedCache = lastSavedActivitiesCache, Date().timeIntervalSince(lastSavedCache) < 5{
             perform(#selector(autoSaveActivities), with: nil, afterDelay: 3)

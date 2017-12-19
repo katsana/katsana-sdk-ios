@@ -14,7 +14,7 @@ import XCGLogger
     public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserSuccessLogonNotification")
     public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
     public static let userDidLogoutNotification = Notification.Name(rawValue: "KMUserDidLogoutNotification")
-    static let defaultBaseURL: URL = URL(string: "https://api.katsana.com/")!
+    public static let defaultBaseURL: URL = URL(string: "https://api.katsana.com/")!
     internal(set) var log : XCGLogger!
     
     
@@ -38,8 +38,8 @@ import XCGLogger
     internal(set) public var logPath: String!
     
     internal(set) public var tokenRefreshDate: Date!
-    internal(set) dynamic public var currentUser: User!
-    public        dynamic        var currentVehicle: Vehicle!{
+    @objc internal(set) dynamic public var currentUser: User!
+    @objc public        dynamic        var currentVehicle: Vehicle!{
         willSet{
             if let newValue = newValue{
                 if let currentVehicle = currentVehicle, newValue != currentVehicle{
@@ -52,14 +52,14 @@ import XCGLogger
             }
         }
     }
-    internal(set) dynamic public var vehicles: [Vehicle]!{
+    @objc internal(set) dynamic public var vehicles: [Vehicle]!{
         willSet{
             if vehicles != nil {
                 lastVehicleImeis = vehicles.map({ $0.imei})
             }
         }
     }
-    private(set) dynamic public var lastVehicleId: String!{
+    @objc private(set) dynamic public var lastVehicleId: String!{
         set{
             UserDefaults.standard.set(newValue, forKey: "lastVehicleId")
         }
@@ -67,7 +67,7 @@ import XCGLogger
             return  UserDefaults.standard.value(forKey: "lastVehicleId") as! String!
         }
     }
-    private(set) dynamic public var lastVehicleImeis: [String]!{
+    @objc private(set) dynamic public var lastVehicleImeis: [String]!{
         set{
             UserDefaults.standard.set(newValue, forKey: "lastVehicleImeis")
         }
