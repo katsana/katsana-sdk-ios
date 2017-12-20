@@ -49,6 +49,20 @@ public class CacheManager: NSObject {
         if let data = try? Data(contentsOf: url){
             if let unarchive = FastCoder.object(with: data) as? [String: Any]{
                 self.data = unarchive
+                
+                if let travelArray = unarchive[NSStringFromClass(Travel.self)] as? [[String: Any]]{
+                    for travelDicto in travelArray {
+                        if let travels = travelDicto["data"] as? [Travel] {
+                            for travel in travels{
+                                for trip in travel.trips{
+                                    if trip.locations.count > 100000{
+                                        trip.locations.removeAll()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         
