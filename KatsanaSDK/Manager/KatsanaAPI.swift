@@ -268,7 +268,7 @@ import XCGLogger
         refreshToken(completion: { (success) in
             self.log.info("Token refreshed")
         }) { (error) in
-            self.log.error("Error refreshing token, \(error?.localizedDescription)")
+            self.log.error("Error refreshing token, \(String(describing: error?.localizedDescription))")
         }
     }
 }

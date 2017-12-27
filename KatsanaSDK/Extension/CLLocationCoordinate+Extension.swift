@@ -18,5 +18,6 @@ public extension CLLocationCoordinate2D{
             return true
         }
         return false
+        
     }
 }

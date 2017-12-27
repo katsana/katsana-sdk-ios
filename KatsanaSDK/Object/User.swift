@@ -6,7 +6,19 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
+public enum Gender : String{
+    case unknown
+    case male
+    case female
+}
+
 open class User: NSObject {
+    static let dateFormatter : DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+    
     open var email: String
     open var userId: String!
     open var address: String!
@@ -21,6 +33,57 @@ open class User: NSObject {
     open var emergencyPhoneMobile: String!
     open var imageURL: String!
     open var thumbImageURL: String!
+    
+    open var phoneMobileCountryCode: String!
+    open var postcode: String!
+    open var state: String!
+    open var country: String!
+    open var gender: Gender = .unknown
+    
+    var genderText: String{
+        get{
+            return gender.rawValue
+        }
+        set{
+            if newValue.lowercased() == "male" {
+                gender = .male
+            }
+            else if newValue.lowercased() == "female" {
+                gender = .female
+            }
+        }
+    }
+    
+    open var birthday: Date!{
+        didSet{
+            if let birthday = birthday {
+                let dateStr = User.dateFormatter.string(from: birthday)
+                if let birthdayText = birthdayText, dateStr == birthdayText{
+                    
+                }else{
+                    birthdayText = dateStr
+                }
+            }else{
+                birthdayText = ""
+            }
+            
+        }
+    }
+    open var birthdayText: String!{
+        didSet{
+            if let birthdayText = birthdayText {
+                let date = User.dateFormatter.date(from: birthdayText)
+                if let birthday = birthday, date == birthday {
+                    //Do nothing
+                }else if date != nil{
+                    birthday = date
+                }
+            }else{
+                birthday = nil
+            }
+            
+        }
+    }
     
     open var createdAt: Date!
     open var updatedAt: Date!
@@ -43,7 +106,7 @@ open class User: NSObject {
     }
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["userId", "email", "address", "phoneHome", "phoneMobile", "fullname", "status", "createdAt", "imageURL", "thumbImageURL"]
+        return ["userId", "email", "address", "phoneHome", "phoneMobile", "fullname", "status", "createdAt", "imageURL", "thumbImageURL", "postcode", "phoneMobileCountryCode", "state", "country", "birthdayText", "genderText"]
     }
     
     open func jsonPatch() -> [String: Any] {
