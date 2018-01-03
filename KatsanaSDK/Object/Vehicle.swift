@@ -27,6 +27,11 @@ open class Vehicle: NSObject {
     open var thumbImageURL: String!
     open var current: VehicleLocation!
     
+    open var manufacturer: String!
+    open var model: String!
+    open var insuredBy: String!
+    open var insuredExpiry: Date!
+    
     ///Extra data that user can save to vehicle. Should have only value with codable support.
     open var extraData = [String: Any]()
     
