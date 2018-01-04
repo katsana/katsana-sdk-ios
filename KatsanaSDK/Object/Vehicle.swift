@@ -9,6 +9,12 @@
 import FastCoding
 
 open class Vehicle: NSObject {
+    static let dateFormatter : DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+    
     ///Owner id for this vehicle
     open var userId : String!
     open var vehicleId: String!
@@ -30,7 +36,35 @@ open class Vehicle: NSObject {
     open var manufacturer: String!
     open var model: String!
     open var insuredBy: String!
-    open var insuredExpiry: Date!
+    open var insuredExpiry: Date!{
+        didSet{
+            if let insuredExpiry = insuredExpiry {
+                let dateStr = Vehicle.dateFormatter.string(from: insuredExpiry)
+                if let insuredExpiryText = insuredExpiryText, dateStr == insuredExpiryText{
+                    
+                }else{
+                    insuredExpiryText = dateStr
+                }
+            }else{
+                insuredExpiryText = ""
+            }
+            
+        }
+    }
+    open var insuredExpiryText: String!{
+        didSet{
+            if let insuredExpiryText = insuredExpiryText {
+                let date = Vehicle.dateFormatter.date(from: insuredExpiryText)
+                if let insuredExpiry = insuredExpiry, date == insuredExpiry {
+                    //Do nothing
+                }else if date != nil{
+                    insuredExpiry = date
+                }
+            }else{
+                insuredExpiry = nil
+            }
+        }
+    }
     
     ///Extra data that user can save to vehicle. Should have only value with codable support.
     open var extraData = [String: Any]()
@@ -44,7 +78,7 @@ open class Vehicle: NSObject {
     private var isLoadingThumbImage = false
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData", "timezone"]
+        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData", "timezone", "insuredExpiry", "insuredBy", "model", "manufacturer"]
     }
     
     ///Reload data given new vehicle data
@@ -66,14 +100,26 @@ open class Vehicle: NSObject {
         thumbImage = vehicle.thumbImage
         imei = vehicle.imei
         extraData = vehicle.extraData
+        insuredExpiry = vehicle.insuredExpiry
+        insuredBy = vehicle.insuredBy
+        vehicleNumber = vehicle.vehicleNumber
+        model = vehicle.model
+        manufacturer = vehicle.manufacturer
     }
     
     func jsonPatch() -> [String: Any] {
         var dicto = [String: Any]()
         dicto["description"] = vehicleDescription
-        dicto["vehicle_number"] = vehicleNumber
+        dicto["vehicle_number"] = vehicleNumber        
         return dicto
     }
+    
+//    license_plate: (string, optional) - License Plate
+//    description: (string, optional) - Description
+//    manufacturer: (string, optional) - Vehicle Manufacturer
+//    model: (string, optional) - Vehicle Model
+//    insured_by: (string, optional) - Insured By
+//    insured_expiry: (date, optional) - Insured Expiry Date
     
     // MARK: Image
     
@@ -96,6 +142,7 @@ open class Vehicle: NSObject {
             completion(image)
         }
         else if let path = NSURL(string: imageURL)?.lastPathComponent, let image = CacheManager.shared.image(for: path){
+            self.image = image
             completion(image)
         }
         else{

@@ -63,16 +63,7 @@ public extension KatsanaAPI{
             failure(error)
         }
     }
-    
-    @available(swift, obsoleted: 1.0)
-    public func objc_saveVehicleProfile(vehicleId: String, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        saveVehicleProfile(vehicleId: vehicleId, completion: { (vehicle) in
-            completion(vehicle)
-        }) { (error) in
-            failure(error)
-        }
-    }
-    
+
     @available(swift, obsoleted: 1.0)
     public func objc_saveCurrentUserProfile(completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         saveCurrentUserProfile(completion: { (user) in

@@ -13,7 +13,7 @@ extension KatsanaAPI {
     /// Save vehicle profile data
     ///
     /// 
-    public func saveVehicleProfile(vehicleId: String, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func saveVehicleProfile(vehicleId: String, data: [String: Any], completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let vehicle = vehicleWith(vehicleId: vehicleId)
         guard vehicle != nil else {
             return
@@ -22,8 +22,32 @@ extension KatsanaAPI {
         let path = "vehicles/" + vehicleId
         let resource = self.API.resource(path)
         
-        let json = vehicle?.jsonPatch()
-        resource.request(.patch, json: json!).onSuccess { entity in
+        for (key, value) in data{
+            if let value = value as? String{
+                if key == "license_plate"{
+                    vehicle?.vehicleNumber = value
+                }
+                else if key == "description"{
+                    vehicle?.vehicleDescription = value
+                }
+                else if key == "manufacturer"{
+                    vehicle?.manufacturer = value
+                }
+                else if key == "model"{
+                    vehicle?.model = value
+                }
+                else if key == "insured_by"{
+                    vehicle?.insuredBy = value
+                }
+            }
+            else if let value = value as? Date{
+                if key == "insured_expiry"{
+                    vehicle?.insuredExpiry = value
+                }
+            }
+        }
+        
+        resource.request(.patch, json: data).onSuccess { entity in
             completion(vehicle)
         }.onFailure { (error) in
             failure(error)

@@ -46,8 +46,7 @@ class ObjectJSONTransformer: NSObject {
         let vehicle = Vehicle()
         vehicle.userId = dicto["user_id"].stringValue
         vehicle.vehicleId = dicto["id"].stringValue
-        vehicle.vehicleDescription = dicto["description"].stringValue
-        vehicle.vehicleNumber = dicto["vehicle_number"].stringValue
+        
         vehicle.imei = dicto["imei"].stringValue
         vehicle.mode = dicto["mode"].stringValue
         vehicle.timezone = dicto["timezone"].stringValue
@@ -56,6 +55,16 @@ class ObjectJSONTransformer: NSObject {
         vehicle.thumbImageURL = dicto["marker"].stringValue
         vehicle.odometer = dicto["odometer"].doubleValue
         vehicle.websocketSupported = dicto["meta"]["websocket"].boolValue
+        
+        vehicle.vehicleNumber = dicto["vehicle_number"].stringValue
+        if vehicle.vehicleNumber == "" {
+            vehicle.vehicleNumber = dicto["license_plate"].stringValue
+        }
+        vehicle.vehicleDescription = dicto["description"].stringValue
+        vehicle.manufacturer = dicto["manufacturer"].stringValue
+        vehicle.model = dicto["model"].stringValue
+        vehicle.insuredExpiryText = dicto["insured"]["expiry"].stringValue
+        vehicle.insuredBy = dicto["insured"]["by"].stringValue
         
         vehicle.subscriptionEnd = dicto["ends_at"].date
         vehicle.current = self.VehicleLocationObject(json: dicto["current"])
