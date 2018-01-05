@@ -195,6 +195,8 @@ open class Vehicle: NSObject {
         }
     }
     
-    
+    open func date(from string: String) -> Date! {
+        return Vehicle.dateFormatter.date(from: string)
+    }
     
 }

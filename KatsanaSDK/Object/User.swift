@@ -42,7 +42,10 @@ open class User: NSObject {
     
     var genderText: String{
         get{
-            return gender.rawValue
+            if gender == .unknown{
+                return ""
+            }
+            return gender.rawValue.capitalized
         }
         set{
             if newValue.lowercased() == "male" {
@@ -211,6 +214,10 @@ open class User: NSObject {
             return true
         }
         return false
+    }
+    
+    open func date(from string: String) -> Date! {
+        return User.dateFormatter.date(from: string)
     }
 }
 

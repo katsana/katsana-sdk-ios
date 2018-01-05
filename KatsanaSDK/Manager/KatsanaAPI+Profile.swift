@@ -18,14 +18,16 @@ import Siesta
 
 
 extension KatsanaAPI {
-    public func saveCurrentUserProfile(completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func saveCurrentUserProfile(data: [String: Any], completion: @escaping (_ user: User) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let resource = self.API.resource("profile")
-        let json = self.currentUser.jsonPatch()
-        resource.request(.patch, json: json).onSuccess { (_) in
-            completion(self.currentUser)
-            }.onFailure { (error) in
-                failure(error)
-                self.log.error("Error save user profile \(error)")
+        let user = currentUser!
+        
+//        let json = self.currentUser.jsonPatch()
+        resource.request(.patch, json: data).onSuccess { (_) in
+            completion(user)
+        }.onFailure { (error) in
+            failure(error)
+            self.log.error("Error save user profile \(error)")
         }
     }
     

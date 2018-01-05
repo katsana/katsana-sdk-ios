@@ -21,33 +21,30 @@ extension KatsanaAPI {
 
         let path = "vehicles/" + vehicleId
         let resource = self.API.resource(path)
-        
-        for (key, value) in data{
-            if let value = value as? String{
-                if key == "license_plate"{
-                    vehicle?.vehicleNumber = value
-                }
-                else if key == "description"{
-                    vehicle?.vehicleDescription = value
-                }
-                else if key == "manufacturer"{
-                    vehicle?.manufacturer = value
-                }
-                else if key == "model"{
-                    vehicle?.model = value
-                }
-                else if key == "insured_by"{
-                    vehicle?.insuredBy = value
-                }
-            }
-            else if let value = value as? Date{
-                if key == "insured_expiry"{
-                    vehicle?.insuredExpiry = value
-                }
-            }
-        }
-        
+
         resource.request(.patch, json: data).onSuccess { entity in
+            for (key, value) in data{
+                if let value = value as? String{
+                    if key == "license_plate"{
+                        vehicle?.vehicleNumber = value
+                    }
+                    else if key == "description"{
+                        vehicle?.vehicleDescription = value
+                    }
+                    else if key == "manufacturer"{
+                        vehicle?.manufacturer = value
+                    }
+                    else if key == "model"{
+                        vehicle?.model = value
+                    }
+                    else if key == "insured_by"{
+                        vehicle?.insuredBy = value
+                    }
+                    else if key == "insured_expiry"{
+                        vehicle?.insuredExpiryText = value
+                    }
+                }
+            }
             completion(vehicle)
         }.onFailure { (error) in
             failure(error)

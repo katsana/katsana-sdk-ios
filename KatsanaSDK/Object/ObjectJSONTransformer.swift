@@ -22,6 +22,15 @@ class ObjectJSONTransformer: NSObject {
         user.emergencyPhoneMobile = json["meta"]["phone"]["mobile"].stringValue
         user.imageURL = json["avatar"]["url"].stringValue
         
+        user.address = json["address"].stringValue
+        if let gender = json["gender"].string, (gender == "male" || gender == "female"){
+            user.gender = Gender(rawValue: gender)!
+        }
+        user.country = json["country"].stringValue
+        user.state = json["state"].stringValue
+        user.postcode = json["postcode"].stringValue
+        user.birthdayText = json["birthday"].stringValue
+        
         user.createdAt = json["created_at"].date(gmt: 0)
         user.updatedAt = json["updated_at"].date(gmt: 0)
         if let handler = KatsanaAPI.shared.objectInitializationHandler {
