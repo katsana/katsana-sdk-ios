@@ -22,9 +22,45 @@ extension KatsanaAPI {
         let resource = self.API.resource("profile")
         let user = currentUser!
         
+        var newData = data
+        for (key, value) in data {
+            if let value = value as? String, value == ""{
+                //Do nothing, should not add if have empty value
+            }
+        }
+        
 //        let json = self.currentUser.jsonPatch()
         resource.request(.patch, json: data).onSuccess { (_) in
+            for (key, value) in data{
+                if let value = value as? String{
+                    if key == "fullname"{
+                        user.fullname = value
+                    }
+                    else if key == "phone_mobile"{
+                        user.phoneMobile = value
+                    }
+                    else if key == "birthday"{
+                        user.birthdayText = value
+                    }
+                    else if key == "gender"{
+                        user.genderText = value.lowercased()
+                    }
+                    else if key == "address"{
+                        user.address = value
+                    }
+                    else if key == "country"{
+                        user.country = value
+                    }
+                    else if key == "state"{
+                        user.state = value
+                    }
+                    else if key == "postcode"{
+                        user.postcode = value
+                    }
+                }
+            }
             completion(user)
+            NotificationCenter.default.post(name: KatsanaAPI.profileUpdatedNotification, object: nil)
         }.onFailure { (error) in
             failure(error)
             self.log.error("Error save user profile \(error)")

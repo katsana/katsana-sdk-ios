@@ -14,6 +14,7 @@ import XCGLogger
     public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserSuccessLogonNotification")
     public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
     public static let userDidLogoutNotification = Notification.Name(rawValue: "KMUserDidLogoutNotification")
+    public static let profileUpdatedNotification = Notification.Name(rawValue: "KMProfileUpdatedNotification")
     public static let defaultBaseURL: URL = URL(string: "https://api.katsana.com/")!
     internal(set) var log : XCGLogger!
     

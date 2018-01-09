@@ -205,6 +205,38 @@ open class User: NSObject {
     
     // MARK: helper
     
+    open func profileProgress() -> CGFloat {
+        var progressCount :CGFloat = 0
+        let totalCount:CGFloat = 8
+        
+        if let fullname = fullname, fullname.count > 0 {
+            progressCount += 1
+        }
+        if let phoneNumber = phoneMobile, phoneNumber.count > 0 {
+            progressCount += 1
+        }
+        if (birthday) != nil{
+            progressCount += 1
+        }
+        if let address = address, address.count > 0{
+            progressCount += 1
+        }
+        if let country = country, country.count > 0{
+            progressCount += 1
+        }
+        if let postcode = postcode, postcode.count > 0{
+            progressCount += 1
+        }
+        if gender != .unknown{
+            progressCount += 1
+        }
+        if let imageURL = imageURL, imageURL.count > 0{
+            progressCount += 1
+        }
+        let progress = progressCount/totalCount
+        return progress
+    }
+    
     func isPhoneNumber(_ text: String) -> Bool {
         if text.count < 3 {
             return false

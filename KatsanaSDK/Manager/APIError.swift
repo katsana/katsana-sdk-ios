@@ -31,9 +31,21 @@ extension HTTPResult{
 }
 
 extension RequestError: LocalizedError {
-    public var errorDescription: String? {
-        if let content = entity?.content as? [String: String], let description = content["error"] {
-            return description
+    public var errorDescription: String {
+        if let content = entity?.content as? [String: Any]{
+            if let description = content["error"] as? String{
+                return description
+            }
+            for (_, value) in content{
+                if let arr = value as? [String]{
+                    return arr.first!
+                }
+            }
+        }
+        else if let content = entity?.content as? [String: String]{
+            if let description = content["error"]{
+                return description
+            }
         }
         return self.userMessage
     }
