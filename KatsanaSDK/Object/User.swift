@@ -230,7 +230,9 @@ open class User: NSObject {
         if gender != .unknown{
             progressCount += 1
         }
-        if let imageURL = imageURL, imageURL.count > 0{
+        if let imageURL = imageURL,  imageURL.count > 0{
+            progressCount += 1
+        }else if image != nil{
             progressCount += 1
         }
         let progress = progressCount/totalCount
