@@ -13,9 +13,9 @@ import Siesta
 extension KatsanaAPI {
 
     public func loginJWT(name: String, password: String, nameKey: String = "email", authPath: String = "auth", completion: @escaping () -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        let useOAuth2 = false
-        var data = [nameKey : name, "password" : password]
-        var tokenKey = "token"
+//        let useOAuth2 = false
+        let data = [nameKey : name, "password" : password]
+//        var tokenKey = "token"
 
         let path = self.baseURL().absoluteString + authPath
         Just.post(
@@ -45,7 +45,7 @@ extension KatsanaAPI {
                     default:
                         errorString = statusCodeDescriptions[status]!
                     }
-                    let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  errorString, NSLocalizedFailureReasonErrorKey : jsonError]
+//                    let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  errorString, NSLocalizedFailureReasonErrorKey : jsonError]
 //                    let error = NSError(domain: SDKError.domain, code: status, userInfo: userInfo)
                     DispatchQueue.main.sync {
                         failure(r.APIError())
@@ -78,24 +78,23 @@ extension KatsanaAPI {
                 let token = json[tokenKey].stringValue
                 let refreshToken = json["refresh_token"].stringValue
                 
-                if token.characters.count > 0 {
+                if token.count > 0 {
                     DispatchQueue.main.sync {
                         self.authToken = token
                         self.refreshToken = refreshToken
-                        let resource = self.API.resource("profile")
-                        resource.loadIfNeeded()?.onSuccess({ (entity) in
-                            let user : User? = resource.typedContent()
-                            if let user = user{
-                                self.currentUser = user
+                        self.loadProfile(completion: { (user) in
+                            completion(user)
+                        }, failure: { (error) in
+                            self.loadProfile(completion: { (user) in
                                 completion(user)
-                                NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
-                                self.log.info("Logged in user \(user.userId), \(user.email)")
-                                CacheManager.shared.cache(user: user)
-                            }else{
-                                failure(nil)
-                            }
-                        }).onFailure({ (error) in
-                            failure(error)
+                            }, failure: { (error) in
+                                self.loadProfile(completion: { (user) in
+                                    completion(user)
+                                }, failure: { (error) in
+                                    failure(error)
+                                })
+                            })
+                            
                         })
                     }
                 }else{
@@ -128,6 +127,24 @@ extension KatsanaAPI {
                 
             }
         }
+    }
+    
+    private func loadProfile(completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void) {
+        let resource = self.API.resource("profile")
+        resource.loadIfNeeded()?.onSuccess({ (entity) in
+            let user : User? = resource.typedContent()
+            if let user = user{
+                self.currentUser = user
+                completion(user)
+                NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
+                self.log.info("Logged in user \(user.userId), \(user.email)")
+                CacheManager.shared.cache(user: user)
+            }else{
+                failure(nil)
+            }
+        }).onFailure({ (error) in
+            failure(error)
+        })
     }
         
     public func logout() -> Void {
