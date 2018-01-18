@@ -207,7 +207,7 @@ open class User: NSObject {
     
     open func profileProgress() -> CGFloat {
         var progressCount :CGFloat = 0
-        let totalCount:CGFloat = 8
+        let totalCount:CGFloat = 8 - 1
         
         if let fullname = fullname, fullname.count > 0 {
             progressCount += 1
@@ -215,9 +215,9 @@ open class User: NSObject {
         if let phoneNumber = phoneMobile, phoneNumber.count > 0 {
             progressCount += 1
         }
-        if (birthday) != nil{
-            progressCount += 1
-        }
+//        if (birthday) != nil{
+//            progressCount += 1
+//        }
         if let address = address, address.count > 0{
             progressCount += 1
         }
