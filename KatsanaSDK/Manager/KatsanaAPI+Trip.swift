@@ -314,6 +314,10 @@ extension KatsanaAPI {
         }
         return travellocations
     }
+    
+    public func wipeTripSummariesResources(){
+        API.wipeResources(matching: "vehicles/*/travels/summaries/duration")
+    }
 
 // MARK: Logic
     

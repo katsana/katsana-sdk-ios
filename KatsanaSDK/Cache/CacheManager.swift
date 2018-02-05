@@ -634,7 +634,7 @@ public class CacheManager: NSObject {
     
     ///Clear travel cache for specified date ranges
     public func clearTravelCache(vehicleId: String, date: Date! = nil, toDate: Date! = nil) {
-        var dataChanged = false
+//        var dataChanged = false
         let classname = NSStringFromClass(Travel.self)
         
         var travelDicto: [[String: Any]]!
@@ -646,7 +646,7 @@ public class CacheManager: NSObject {
         
         for (userIndex, dicto) in travelDicto.enumerated() {
             if let theVehicleId = dicto["id"] as? String, vehicleId == theVehicleId, var travels = dicto["data"] as? [Travel]{
-                var indexset = IndexSet()
+//                var indexset = IndexSet()
                 var startIndex : Int!
                 var endIndex : Int!
                 
