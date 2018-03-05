@@ -64,6 +64,7 @@ class ObjectJSONTransformer: NSObject {
         vehicle.thumbImageURL = dicto["marker"].stringValue
         vehicle.odometer = dicto["odometer"].doubleValue
         vehicle.websocketSupported = dicto["meta"]["websocket"].boolValue
+        vehicle.earliestTravelDate = dicto["earliest_date"].dateWithoutTime
         
         vehicle.vehicleNumber = dicto["vehicle_number"].stringValue
         if vehicle.vehicleNumber == "" {

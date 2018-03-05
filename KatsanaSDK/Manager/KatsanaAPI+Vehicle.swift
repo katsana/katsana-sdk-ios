@@ -57,7 +57,7 @@ extension KatsanaAPI {
                 completion(cachedVehicle)
                 self.log.warning("Getting new instance of Vehicle because vehicle list still not loaded")
             }else{
-                currentVehicle = vehicle!;
+                currentVehicle = vehicle!
                 completion(vehicle)
             }
         }
