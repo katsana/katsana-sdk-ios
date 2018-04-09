@@ -253,4 +253,53 @@ class ObjectJSONTransformer: NSObject {
         }
         return insurers
     }
+    
+    class func VehicleSubscriptionsObject(json : JSON) -> [VehicleSubscription] {
+        var subscribes = [VehicleSubscription]()
+        let array = json.arrayValue
+        for jsonObj in array {
+            let history = VehicleSubscriptionObject(json: jsonObj)
+            subscribes.append(history)
+        }
+        return subscribes
+    }
+    
+    class func VehicleSubscriptionObject(json : JSON) -> VehicleSubscription {
+        let subscribe = VehicleSubscription()
+        subscribe.id = json["id"].stringValue
+        subscribe.userId = json["user_id"].stringValue
+        subscribe.planId = json["plan"]["id"].stringValue
+        subscribe.name = json["plan"]["name"].stringValue
+        subscribe.planDescription = json["plan"]["description"].stringValue
+        subscribe.endsAt = json["ends_at"].date(gmt: 0)
+        subscribe.status = json["status"].stringValue
+        subscribe.isExpiring = json["is_expiring"].boolValue
+        subscribe.amountBeforeTax = json["amount"]["before_gst"].floatValue
+        subscribe.amountAfterTax = json["amount"]["after_gst"].floatValue
+        subscribe.taxPercent = json["amount"]["gst_percent"].floatValue
+        subscribe.taxAmount = json["amount"]["gst_amount"].floatValue
+        
+        var subscribeUpgrades = [VehicleSubscription]()
+        if let upgrades = json["upgrades"].array{
+            for upgradeJSON in upgrades{
+                let upgrade = ObjectJSONTransformer.VehicleSubscriptionObject(json: upgradeJSON)
+                subscribeUpgrades.append(upgrade)
+            }
+        }
+        subscribe.upgrades = subscribeUpgrades
+        
+        var devices = [Vehicle]()
+        if let devicesArray = json["devices"].array{
+            for deviceJSON in devicesArray{
+                let device = Vehicle()
+                device.vehicleId = deviceJSON["id"].stringValue
+                device.vehicleNumber = deviceJSON["vehicle_number"].stringValue
+                device.vehicleDescription = deviceJSON["description"].stringValue
+                devices.append(device)
+            }
+        }
+        subscribe.devices = devices
+        
+        return subscribe
+    }
 }

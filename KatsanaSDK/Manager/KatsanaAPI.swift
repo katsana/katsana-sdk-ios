@@ -203,6 +203,14 @@ import XCGLogger
         API.configureTransformer("insurers/my") {
             ObjectJSONTransformer.InsurersObject(json: $0.content)
         }
+        
+        API.configureTransformer("subscriptions") {
+            ObjectJSONTransformer.VehicleSubscriptionsObject(json: $0.content)
+        }
+        
+        API.configureTransformer("subscriptions/*") {
+            ObjectJSONTransformer.VehicleSubscriptionObject(json: $0.content)
+        }
     }
     
     func baseURL() -> URL {

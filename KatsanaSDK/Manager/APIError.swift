@@ -13,7 +13,7 @@ struct SDKError {
     static let domain = "Katsana API Error Domain"
 }
 
-extension HTTPResult{
+public extension HTTPResult{
     func APIError() -> Error! {
         if !ok{
             if let content = content{
@@ -34,6 +34,9 @@ extension RequestError: LocalizedError {
     public var errorDescription: String {
         if let content = entity?.content as? [String: Any]{
             if let description = content["error"] as? String{
+                return description
+            }
+            if let description = content["message"] as? String{
                 return description
             }
             for (_, value) in content{

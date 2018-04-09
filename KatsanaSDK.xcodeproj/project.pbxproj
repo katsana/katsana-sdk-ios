@@ -83,6 +83,10 @@
 		C71917F11E48935B0041BC18 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C71917EB1E4893500041BC18 /* PrefixHeader.pch */; };
 		C71917F21E4897EF0041BC18 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
 		C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72773781DDBF59A00312F90 /* Cocoa.framework */; };
+		C7331295207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7331294207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift */; };
+		C7331296207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7331294207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift */; };
+		C7331298207B1EC800541BE8 /* VehicleSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7331297207B1EC800541BE8 /* VehicleSubscription.swift */; };
+		C7331299207B1EC800541BE8 /* VehicleSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7331297207B1EC800541BE8 /* VehicleSubscription.swift */; };
 		C74927BF1DDA8A3200A0767E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927BE1DDA8A3200A0767E /* CoreLocation.framework */; };
 		C74927C11DDA8A3D00A0767E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927C01DDA8A3D00A0767E /* MapKit.framework */; };
 		C751054F1D742B5F00F4C341 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751054E1D742B5F00F4C341 /* MapKit.framework */; };
@@ -167,6 +171,8 @@
 		C71917EA1E4893500041BC18 /* KatsanaSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KatsanaSDK.h; sourceTree = "<group>"; };
 		C71917EB1E4893500041BC18 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C72773781DDBF59A00312F90 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		C7331294207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Subscribe.swift"; sourceTree = "<group>"; };
+		C7331297207B1EC800541BE8 /* VehicleSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleSubscription.swift; sourceTree = "<group>"; };
 		C74927861DDA831600A0767E /* KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74927BE1DDA8A3200A0767E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 		C74927C01DDA8A3D00A0767E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -285,6 +291,7 @@
 				C71917561E48703B0041BC18 /* KatsanaAPI+Login.swift */,
 				C71917571E48703B0041BC18 /* KatsanaAPI+Other.swift */,
 				C71917581E48703B0041BC18 /* KatsanaAPI+Profile.swift */,
+				C7331294207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift */,
 				C71917591E48703B0041BC18 /* KatsanaAPI+Share.swift */,
 				C719175A1E48703B0041BC18 /* KatsanaAPI+Trip.swift */,
 				C719175B1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift */,
@@ -310,6 +317,7 @@
 				C71917671E48703B0041BC18 /* Vehicle.swift */,
 				C71917681E48703B0041BC18 /* VehicleActivity.swift */,
 				C71917691E48703B0041BC18 /* VehicleLocation.swift */,
+				C7331297207B1EC800541BE8 /* VehicleSubscription.swift */,
 				C79CA23D1FE220F100A9F8E1 /* Insurer.swift */,
 			);
 			name = Object;
@@ -630,6 +638,7 @@
 				C719179F1E48703B0041BC18 /* Trip.swift in Sources */,
 				C71917971E48703B0041BC18 /* Travel+Extension.swift in Sources */,
 				C719179D1E48703B0041BC18 /* Travel.swift in Sources */,
+				C7331296207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift in Sources */,
 				C71917D21E4884410041BC18 /* Just.swift in Sources */,
 				C71917931E48703B0041BC18 /* KatsanaFormatter.swift in Sources */,
 				C71917A11E48703B0041BC18 /* User.swift in Sources */,
@@ -652,6 +661,7 @@
 				C71917711E48703B0041BC18 /* Date+Extension.swift in Sources */,
 				C71917851E48703B0041BC18 /* KatsanaAPI+Other.swift in Sources */,
 				C71917891E48703B0041BC18 /* KatsanaAPI+Share.swift in Sources */,
+				C7331299207B1EC800541BE8 /* VehicleSubscription.swift in Sources */,
 				C71917731E48703B0041BC18 /* JSON+Date.swift in Sources */,
 				C719178F1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift in Sources */,
 				C719177D1E48703B0041BC18 /* ImageRequest.swift in Sources */,
@@ -669,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7331295207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift in Sources */,
 				C719179E1E48703B0041BC18 /* Trip.swift in Sources */,
 				C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */,
 				C719179C1E48703B0041BC18 /* Travel.swift in Sources */,
@@ -701,6 +712,7 @@
 				C71917A41E48703B0041BC18 /* VehicleActivity.swift in Sources */,
 				C719179A1E48703B0041BC18 /* ObjectJSONTransformer.swift in Sources */,
 				C71917761E48703B0041BC18 /* UIImage+Extension.swift in Sources */,
+				C7331298207B1EC800541BE8 /* VehicleSubscription.swift in Sources */,
 				C71917741E48703B0041BC18 /* String+Date.swift in Sources */,
 				C71917901E48703B0041BC18 /* KatsanaAPI.swift in Sources */,
 				C71917D31E4884410041BC18 /* SwiftyJSON.swift in Sources */,
