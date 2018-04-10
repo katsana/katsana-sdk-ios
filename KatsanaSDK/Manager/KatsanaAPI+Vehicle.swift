@@ -187,7 +187,7 @@ extension KatsanaAPI {
         }
     }
     
-    public func registerVehicle(vehicleToken: String, vehicleData: [String: String], userData: [String: String]! = nil, completion: @escaping (_ available: Bool) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func registerVehicle(vehicleToken: String, vehicleData: [String: String], userData: [String: String]! = nil, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let path = "track/register"
         let resource = API.resource(path);
         
@@ -199,7 +199,13 @@ extension KatsanaAPI {
         }
 
         resource.request(.post, json: theData).onSuccess { (entity) in
-            completion(true)
+            let vehicle : Vehicle? = resource.typedContent()
+            if let vehicle = vehicle{
+                self.vehicles?.append(vehicle)
+                completion(vehicle)
+            }else{
+                completion(nil)
+            }
             }.onFailure { (error) in
                 if let content = error.entity?.content as? [String: Any], let errors = content.first?.value as? [String], let first = errors.first {
                     let error = RequestError(userMessage: first, cause: error)

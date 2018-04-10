@@ -211,6 +211,10 @@ import XCGLogger
         API.configureTransformer("subscriptions/*") {
             ObjectJSONTransformer.VehicleSubscriptionObject(json: $0.content)
         }
+        
+        API.configureTransformer("track/register") {
+            ObjectJSONTransformer.RegisterVehicleObject(json: $0.content)
+        }
     }
     
     func baseURL() -> URL {

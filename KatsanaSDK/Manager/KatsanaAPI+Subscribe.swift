@@ -33,4 +33,21 @@ extension KatsanaAPI{
             }
         }
     }
+    
+    public func requestPaySubscriptionURL(subscriptionId: String, completion: @escaping (_ url: String) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        let path = "subscriptions/" + subscriptionId + "/pay"
+        let resource = API.resource(path);
+        
+        resource.request(.post).onSuccess({(entity) in
+            let test = entity.content as? JSON
+            if let url = test!["pay_url"].string{
+                completion(url)
+            }else{
+                failure(nil)
+            }
+        }).onFailure({ (error) in
+            failure(error)
+            self.log.error("Error getting vehicle subscriptions, \(error)")
+        })
+    }
 }

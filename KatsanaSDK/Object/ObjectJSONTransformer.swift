@@ -302,4 +302,9 @@ class ObjectJSONTransformer: NSObject {
         
         return subscribe
     }
+    
+    class func RegisterVehicleObject(json : JSON) -> Vehicle {
+        let device = json["device"]
+        return ObjectJSONTransformer.VehicleObject(json: device)
+    }
 }
