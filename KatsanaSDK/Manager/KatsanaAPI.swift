@@ -170,6 +170,10 @@ import XCGLogger
         API.configure("insurers/my") {
             $0.expirationTime = 15*60
         }
+        
+        API.configure("subscriptions/*") {
+            $0.expirationTime = 1
+        }
     }
     
     func setupTransformer() -> Void {

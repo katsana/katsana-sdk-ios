@@ -34,6 +34,23 @@ extension KatsanaAPI{
         }
     }
     
+    public func requestSubscription(id: String, completion: @escaping (_ subscription: VehicleSubscription) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        let path = "subscriptions/" + id
+        let resource = API.resource(path);
+        let request = resource.loadIfNeeded()
+        
+        request?.onSuccess({(entity) in
+            if let subscription : VehicleSubscription = resource.typedContent(){
+                completion(subscription)
+            }else{
+                failure(nil)
+            }
+        }).onFailure({ (error) in
+            failure(error)
+            self.log.error("Error getting vehicle subscription \(id), \(error)")
+        })
+    }
+    
     public func requestPaySubscriptionURL(subscriptionId: String, completion: @escaping (_ url: String) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let path = "subscriptions/" + subscriptionId + "/pay"
         let resource = API.resource(path);
@@ -47,7 +64,25 @@ extension KatsanaAPI{
             }
         }).onFailure({ (error) in
             failure(error)
-            self.log.error("Error getting vehicle subscriptions, \(error)")
+            self.log.error("Error getting pay subscriptions url, \(error)")
+        })
+    }
+    
+    public func requestUpgradeSubscriptionURL(subscriptionId: String, planId: String, completion: @escaping (_ url: String) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        let path = "subscriptions/" + subscriptionId + "/upgrade"
+        let resource = API.resource(path);
+        
+        let parameters = ["plan_id": planId] as [String : Any]
+        resource.request(.post, json: NSDictionary(dictionary: parameters)).onSuccess({(entity) in
+            let test = entity.content as? JSON
+            if let url = test!["pay_url"].string{
+                completion(url)
+            }else{
+                failure(nil)
+            }
+        }).onFailure({ (error) in
+            failure(error)
+            self.log.error("Error getting upgrade subscriptions url, \(error)")
         })
     }
 }
