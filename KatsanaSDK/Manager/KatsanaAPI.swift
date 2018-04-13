@@ -243,11 +243,20 @@ import XCGLogger
     }
     
     ///Load last logon user for offline viewing
-    public func loadLastUserOffline() -> Void {
-        let user = CacheManager.shared.lastUser();
-        let vehicles = CacheManager.shared.lastVehicles();
-        self.currentUser = user
-        self.vehicles = vehicles
+    public func loadCachedUser() -> Void {
+        if let user = CacheManager.shared.lastUser(){
+            let vehicles = CacheManager.shared.vehicles(userId: user.userId)
+            self.currentUser = user
+            self.vehicles = vehicles
+        }
+    }
+    
+    ///Load cached vehicles
+    public func loadCachedVehicles() -> Void {
+        if let user = CacheManager.shared.lastUser(){
+            let vehicles = CacheManager.shared.vehicles(userId: user.userId)
+            self.vehicles = vehicles
+        }
     }
     
     //Update to new token. You must know what you are doing!

@@ -105,9 +105,9 @@ public class CacheManager: NSObject {
         return nil
     }
     
-    public func lastVehicles() -> [Vehicle]! {
+    public func vehicles(userId: String) -> [Vehicle]! {
         let classname = NSStringFromClass(Vehicle.self)
-        if let vehicles = data[classname] as? [Vehicle]{
+        if let vehiclesData = data[classname] as? [String: Any], let id = vehiclesData["user"] as? String, userId == id, let vehicles = vehiclesData["vehicles"] as? [Vehicle]{
             return vehicles
         }
         return nil
@@ -301,8 +301,10 @@ public class CacheManager: NSObject {
     
     public func cache(vehicles: [Vehicle]) {
         let classname = NSStringFromClass(Vehicle.self)
-        data[classname] = vehicles
-        autoSave()
+        if let user = data[NSStringFromClass(User.self)] as? User{
+            data[classname] = ["vehicles": vehicles, "user": user.userId]
+            autoSave()
+        }
     }
     
     public func cache(travel: Travel, vehicleId: String) {

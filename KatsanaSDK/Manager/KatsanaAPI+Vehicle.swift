@@ -252,4 +252,9 @@ extension KatsanaAPI {
         return nil
     }
     
+    ///Get latest cached travel locations from today to previous day count
+    public func cachedVehicles(userId : String) -> [Vehicle]! {
+        return CacheManager.shared.vehicles(userId:userId)
+    }
+    
 }
