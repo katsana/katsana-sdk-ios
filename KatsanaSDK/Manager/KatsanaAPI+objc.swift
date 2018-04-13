@@ -81,4 +81,13 @@ public extension KatsanaAPI{
             failure(error)
         }
     }
+    
+    @available(swift, obsoleted: 1.0)
+    public func objc_requestSubscriptions(completion: @escaping (_ subscriptions: [VehicleSubscription]) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        requestSubscriptions(completion: { (subscriptions) in
+            completion(subscriptions)
+        }) { (error) in
+            failure(error)
+        }
+    }
 }

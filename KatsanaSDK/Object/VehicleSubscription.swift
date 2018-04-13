@@ -12,7 +12,7 @@ open class VehicleSubscription: NSObject {
     open var id: String!
     open var userId: String!
     open var planId: String!
-    open var name: String!
+    open var planName: String!
     open var planDescription: String!
     open var billingCycle: Int = 0
     

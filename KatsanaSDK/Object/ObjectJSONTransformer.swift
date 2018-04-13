@@ -269,7 +269,7 @@ class ObjectJSONTransformer: NSObject {
         subscribe.id = json["id"].stringValue
         subscribe.userId = json["user_id"].stringValue
         subscribe.planId = json["plan"]["id"].stringValue
-        subscribe.name = json["plan"]["name"].stringValue
+        subscribe.planName = json["plan"]["name"].stringValue
         subscribe.planDescription = json["plan"]["description"].stringValue
         subscribe.endsAt = json["ends_at"].date(gmt: 0)
         subscribe.status = json["status"].stringValue
@@ -278,11 +278,22 @@ class ObjectJSONTransformer: NSObject {
         subscribe.amountAfterTax = json["amount"]["after_gst"].floatValue
         subscribe.taxPercent = json["amount"]["gst_percent"].floatValue
         subscribe.taxAmount = json["amount"]["gst_amount"].floatValue
+        subscribe.billingCycle = json["plan"]["billing_cycle"].intValue
         
         var subscribeUpgrades = [VehicleSubscription]()
-        if let upgrades = json["upgrades"].array{
+        if let upgrades = json["plan"]["upgrades"].array{
             for upgradeJSON in upgrades{
-                let upgrade = ObjectJSONTransformer.VehicleSubscriptionObject(json: upgradeJSON)
+                let upgrade = VehicleSubscription()
+                upgrade.id = subscribe.id
+                upgrade.billingCycle = upgradeJSON["billing_cycle"].intValue
+                upgrade.userId = subscribe.userId
+                upgrade.planId = upgradeJSON["plan_id"].stringValue
+                upgrade.planName = upgradeJSON["name"].stringValue
+                upgrade.planDescription = upgradeJSON["description"].stringValue
+                upgrade.amountBeforeTax = json["amount"]["before_gst"].floatValue
+                upgrade.amountAfterTax = json["amount"]["after_gst"].floatValue
+                upgrade.taxPercent = json["amount"]["gst_percent"].floatValue
+                upgrade.taxAmount = json["amount"]["gst_amount"].floatValue
                 subscribeUpgrades.append(upgrade)
             }
         }
