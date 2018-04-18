@@ -8,7 +8,17 @@
 
 import UIKit
 
+@objc public enum VehicleSubscriptionStatus: Int{
+    case active
+    case grace
+    case expired
+}
+
 open class VehicleSubscription: NSObject {
+    override open class func fastCodingKeys() -> [Any]? {
+        return ["id", "userId", "planId", "planName", "planDescription", "billingCycle", "amountBeforeTax", "amountAfterTax", "taxPercent", "status", "endsAt", "isExpiring", "upgrades", "vehicle", "devices"]
+    }
+    
     open var id: String!
     open var userId: String!
     open var planId: String!
@@ -21,7 +31,7 @@ open class VehicleSubscription: NSObject {
     open var taxPercent: Float = 0
     open var taxAmount: Float = 0
     
-    open var status: String!
+    open var status: VehicleSubscriptionStatus = .active
     open var endsAt: Date!
     open var isExpiring = false
 

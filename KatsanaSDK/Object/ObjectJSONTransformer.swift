@@ -272,7 +272,15 @@ class ObjectJSONTransformer: NSObject {
         subscribe.planName = json["plan"]["name"].stringValue
         subscribe.planDescription = json["plan"]["description"].stringValue
         subscribe.endsAt = json["ends_at"].date(gmt: 0)
-        subscribe.status = json["status"].stringValue
+        let status = json["status"].stringValue
+        if status == "active" {
+            subscribe.status = .active
+        }else if status == "grace"{
+            subscribe.status = .grace
+        }else{
+            subscribe.status = .expired
+        }
+        
         subscribe.isExpiring = json["is_expiring"].boolValue
         subscribe.amountBeforeTax = json["amount"]["before_gst"].floatValue
         subscribe.amountAfterTax = json["amount"]["after_gst"].floatValue

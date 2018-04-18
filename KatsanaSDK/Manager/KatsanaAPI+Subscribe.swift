@@ -16,6 +16,7 @@ extension KatsanaAPI{
         
         request?.onSuccess({(entity) in
             if let summaries : [VehicleSubscription] = resource.typedContent(){
+                CacheManager.shared.cache(vehicleSubscription: summaries)
                 completion(summaries)
             }else{
                 failure(nil)
@@ -84,5 +85,12 @@ extension KatsanaAPI{
             failure(error)
             self.log.error("Error getting upgrade subscriptions url, \(error)")
         })
+    }
+    
+    public func cachedVehicleSubscriptions() -> [VehicleSubscription]! {
+        if let user = currentUser{
+            return CacheManager.shared.vehicleSubscriptions(userId: user.userId)
+        }
+        return nil
     }
 }
