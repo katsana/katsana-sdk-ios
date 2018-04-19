@@ -23,6 +23,7 @@ extension KatsanaAPI {
         let resource = self.API.resource(path)
 
         resource.request(.patch, json: data).onSuccess { entity in
+            var insuranceExpiryChanged = false
             for (key, value) in data{
                 if let value = value as? String{
                     if key == "license_plate"{
@@ -41,9 +42,19 @@ extension KatsanaAPI {
                         vehicle?.insuredBy = value
                     }
                     else if key == "insured_expiry"{
+                        if vehicle?.insuredExpiryText != value{
+                            insuranceExpiryChanged = true
+                        }
                         vehicle?.insuredExpiryText = value
                     }
                 }
+            }
+            
+            if let vehicle = vehicle, let idx = self.vehicles.index(of: vehicle){
+                self.vehicles[idx] = vehicle
+            }
+            if insuranceExpiryChanged{
+                NotificationCenter.default.post(name: KatsanaAPI.insuranceExpiryDateChangedNotification, object: vehicle)
             }
             completion(vehicle)
         }.onFailure { (error) in

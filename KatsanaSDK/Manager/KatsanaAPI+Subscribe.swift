@@ -17,6 +17,7 @@ extension KatsanaAPI{
         request?.onSuccess({(entity) in
             if let summaries : [VehicleSubscription] = resource.typedContent(){
                 CacheManager.shared.cache(vehicleSubscription: summaries)
+                NotificationCenter.default.post(name: KatsanaAPI.subscriptionRequestedNotification, object: summaries)
                 completion(summaries)
             }else{
                 failure(nil)

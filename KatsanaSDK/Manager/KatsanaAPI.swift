@@ -15,6 +15,8 @@ import XCGLogger
     public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
     public static let userDidLogoutNotification = Notification.Name(rawValue: "KMUserDidLogoutNotification")
     public static let profileUpdatedNotification = Notification.Name(rawValue: "KMProfileUpdatedNotification")
+    public static let subscriptionRequestedNotification = Notification.Name(rawValue: "subscriptionRequestedNotification")
+    public static let insuranceExpiryDateChangedNotification = Notification.Name(rawValue: "insuranceExpiryDateChangedNotification")
     public static let defaultBaseURL: URL = URL(string: "https://api.katsana.com/")!
     internal(set) var log : XCGLogger!
     
