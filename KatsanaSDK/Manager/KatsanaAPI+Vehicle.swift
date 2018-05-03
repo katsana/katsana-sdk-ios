@@ -66,7 +66,7 @@ extension KatsanaAPI {
             handleResource()
         }).onFailure({ (error) in
             failure(error)
-            self.log.error("Error getting vehicle id \(vehicleId), \(error)")
+            self.error("Error getting vehicle id \(vehicleId), \(error)", identifier: "errorVehicleId", duration: 60*3)
         })
         
         if request == nil { handleResource()}

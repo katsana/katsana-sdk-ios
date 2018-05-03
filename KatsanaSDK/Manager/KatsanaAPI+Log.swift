@@ -11,6 +11,7 @@ import XCGLogger
 
 extension KatsanaAPI{
     
+    
     /// Setup logging for KatsanaAPI
     func setupLog() -> Void {
         // Create a logger object with no destinations
@@ -36,14 +37,12 @@ extension KatsanaAPI{
         let path = documentsPath.appending("/KatsanaSDK.log")
         logPath = path
         
-        if let firstDateLogged = UserDefaults.standard.object(forKey: "firstDateLogged") as? Date{
-            if Date().timeIntervalSince(firstDateLogged) > 60*60*24*TimeInterval(logSavedDuration) {
-                let fileManager = FileManager.default
-                try? fileManager.removeItem(atPath: path)
-                UserDefaults.standard.set(Date(), forKey: "firstDateLogged")
-            }
-        }else{
-            UserDefaults.standard.set(Date(), forKey: "firstDateLogged")
+        let firstDateLogged = UserDefaults.standard.object(forKey: "KatsanaSDKFirstDateLogged") as? Date
+        
+        if (firstDateLogged != nil && Date().timeIntervalSince(firstDateLogged!) > 60*60*24*TimeInterval(logSavedDuration)) || firstDateLogged == nil{
+            let fileManager = FileManager.default
+            try? fileManager.removeItem(atPath: path)
+            UserDefaults.standard.set(Date(), forKey: "KatsanaSDKFirstDateLogged")
         }
         
         // Create a file log destination
@@ -68,5 +67,33 @@ extension KatsanaAPI{
         
         // Add basic app info, version info etc, to the start of the logs
         //log.logAppDetails()
+    }
+    
+    func debug(_ text: String, identifier: String! = nil, duration: TimeInterval = 0, functionName: StaticString = #function, fileName: StaticString = #file, lineNumber: Int = #line) {
+        let date = Date().addingTimeInterval(duration)
+        if let identifier = identifier, let idDate = identifierDicts[identifier], duration > 0{
+            if Date().timeIntervalSince(idDate) > 0{
+                self.log?.debug(text, functionName: functionName, fileName:fileName, lineNumber:lineNumber)
+            }
+        }else{
+            self.log?.debug(text, functionName: functionName, fileName:fileName, lineNumber:lineNumber)
+        }
+        if identifier != nil{
+            identifierDicts[identifier] = date
+        }
+    }
+    
+    func error(_ text: String, identifier: String! = nil, duration: TimeInterval = 0, functionName: StaticString = #function, fileName: StaticString = #file, lineNumber: Int = #line) {
+        let date = Date().addingTimeInterval(duration)
+        if let identifier = identifier, let idDate = identifierDicts[identifier], duration > 0{
+            if Date().timeIntervalSince(idDate) > 0{
+                self.log?.error(text, functionName: functionName, fileName:fileName, lineNumber:lineNumber)
+            }
+        }else{
+            self.log?.error(text, functionName: functionName, fileName:fileName, lineNumber:lineNumber)
+        }
+        if identifier != nil{
+            identifierDicts[identifier] = date
+        }
     }
 }

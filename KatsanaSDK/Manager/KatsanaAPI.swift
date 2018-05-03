@@ -38,7 +38,9 @@ import XCGLogger
     internal(set) var clientSecret: String = ""
     internal(set) var grantType: String = ""
     internal(set) var authTokenExpired: Date!
+    
     internal(set) public var logPath: String!
+    internal var identifierDicts = [String: Date]()
     
     internal(set) public var tokenRefreshDate: Date!
     @objc internal(set) dynamic public var currentUser: User!

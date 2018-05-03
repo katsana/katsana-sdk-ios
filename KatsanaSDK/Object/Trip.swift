@@ -23,8 +23,8 @@ open class Trip: NSObject {
     open var violations = [VehicleActivity]()
     
     ///Next trip and prev trip automatically set when trips are set in Travel class
-    weak var nextTrip: Trip!
-    weak var prevTrip: Trip!
+    weak open var nextTrip: Trip!
+    weak open var prevTrip: Trip!
     
     //Extra data that user can set to trip
     open var extraData = [String: Any]()
