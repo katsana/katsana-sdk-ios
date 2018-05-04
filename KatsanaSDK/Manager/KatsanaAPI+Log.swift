@@ -9,7 +9,7 @@
 import Foundation
 import XCGLogger
 
-extension KatsanaAPI{
+public extension KatsanaAPI{
     
     
     /// Setup logging for KatsanaAPI
@@ -67,6 +67,14 @@ extension KatsanaAPI{
         
         // Add basic app info, version info etc, to the start of the logs
         //log.logAppDetails()
+    }
+    
+    public func clearLog() {
+        if let path = logPath{
+            let fileManager = FileManager.default
+            try? fileManager.removeItem(atPath: path)
+            UserDefaults.standard.set(Date(), forKey: "KatsanaSDKFirstDateLogged")
+        }
     }
     
     func debug(_ text: String, identifier: String! = nil, duration: TimeInterval = 0, functionName: StaticString = #function, fileName: StaticString = #file, lineNumber: Int = #line) {
