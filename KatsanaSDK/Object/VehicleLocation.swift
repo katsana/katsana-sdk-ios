@@ -25,6 +25,7 @@ open class VehicleLocation: NSObject {
     open var horizontalAccuracy: Float = 0
     
     private(set) open var address: String!
+    
     open var trackedAt: Date!
     ///Extra data that user can save to vehicle location. Should have only value with codable support.
     open var extraData = [String: Any]()
@@ -59,6 +60,20 @@ open class VehicleLocation: NSObject {
                 self._lastCoordinate = self.coordinate()
                 self.address = address?.optimizedAddress()
                 completion(self.address)
+            })
+        }
+    }
+    
+    private(set) open var addressObject: Address!
+    //Get address for current location
+    open func fullAddress(completion: @escaping (String!) -> Void) {
+        if let addressObject = addressObject, addressObject.coordinate().equal(coordinate()){
+            completion(addressObject.fullAddress())
+        }else{
+            KatsanaAPI.shared.requestAddress(for: coordinate(), completion: { (address) in
+                let fullAddress = address?.fullAddress()
+                self.addressObject = address
+                completion(fullAddress)
             })
         }
     }

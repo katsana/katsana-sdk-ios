@@ -16,63 +16,104 @@ class AddressRequest: NSObject {
             if address != nil{
                 completion(address, nil)
             }else{
-                let path = KatsanaAPI.shared.baseURL().absoluteString + "address/"
-                let latitude = String(format: "%.6f", location.latitude)
-                let longitude = String(format: "%.6f", location.longitude)
-                Just.get(
-                    path,
-                    params: ["latitude" : latitude, "longitude" : longitude]
-                ) { r in
-                    if r.ok {
-                        let content = r.content
-                        let json = JSON(data: content!)
-                        if json != JSON.null{
-                            var address = ObjectJSONTransformer.AddressObject(json: json)
-                            let optimizedAddress = address.optimizedAddress()
-                            var useAppleAddress = false
-                            let comps = optimizedAddress.components(separatedBy: ",")
-                            if let first = comps.first{
-                                if first.count < 2{
-                                    useAppleAddress = true
-                                }
-                            }
-                            if (optimizedAddress.count) <= 10 || useAppleAddress{
-                                self.appleGeoAddress(from: location, completion: { (appleAddress) in
-                                    address = appleAddress!
-                                    completion(address, nil)
-                                    //Save requested address to cache
-                                    CacheManager.shared.cache(address: address)
-                                })
-                            }else{
-                                CacheManager.shared.cache(address: address)
-                                DispatchQueue.main.sync{completion(address, nil)}
-                            }
-                        }else{
-                            DispatchQueue.main.sync{completion(nil, nil)}
+                self.appleGeoAddress(from: location, completion: { (address) in
+                    let optimizedAddress = address.optimizedAddress()
+                    var useAppleAddress = false
+                    let comps = optimizedAddress.components(separatedBy: ",")
+                    if let first = comps.first{
+                        if first.count < 2{
+                            useAppleAddress = true
                         }
-                    }else{
-                        DispatchQueue.main.sync{completion(address, r.APIError())}
                     }
-                }
+                    if (optimizedAddress.count) <= 10 || useAppleAddress{
+                        self.platformGeoAddress(from: location, completion: { (address) in
+                            completion(address, nil)
+                            //Save requested address to cache
+                            CacheManager.shared.cache(address: address)
+                        })
+                    }else{
+                        CacheManager.shared.cache(address: address)
+                        completion(address, nil)
+                    }
+                    
+                }, failure: { (error) in
+                    self.platformGeoAddress(from: location, completion: { (address) in
+                        completion(address, nil)
+                        //Save requested address to cache
+                        CacheManager.shared.cache(address: address)
+                    }, failure: { (error) in
+                        completion(nil, error)
+                    })
+                })
             }
         }
     }
     
-   class func appleGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (Address?) -> Void) -> Void {
+    class func platformGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (Address) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        let path = KatsanaAPI.shared.baseURL().absoluteString + "address/"
+        let latitude = String(format: "%.6f", location.latitude)
+        let longitude = String(format: "%.6f", location.longitude)
+        Just.get(
+            path,
+            params: ["latitude" : latitude, "longitude" : longitude]
+        ) { r in
+            if r.ok {
+                let content = r.content
+                let json = JSON(data: content!)
+                if json != JSON.null{
+                    let address = ObjectJSONTransformer.AddressObject(json: json)
+                    DispatchQueue.main.sync{completion(address)}
+                }else{
+                    DispatchQueue.main.sync{failure(nil)}
+                    
+                }
+            }else{
+                DispatchQueue.main.sync{failure(r.APIError())}
+            }
+        }
+    }
+    
+    class func appleGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (Address) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let geocoder = CLGeocoder()
         let clLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
         geocoder.reverseGeocodeLocation(clLocation, completionHandler: { (placemarks, error) in
-            let placemark = placemarks?.first
-            var addressComps = placemark?.addressDictionary?["FormattedAddressLines"] as? [String]
-            addressComps?.removeLast()
-            let addressStr = addressComps?.joined(separator: ", ")
-            
-            let address = Address()
-            address.latitude = location.latitude
-            address.longitude = location.longitude
-            address.address = addressStr
-            completion(address)
+            if let error = error{
+                failure(error)
+            }else{
+                if let dicto = placemarks?.first?.addressDictionary{
+                    let address = Address()
+                    address.latitude = location.latitude
+                    address.longitude = location.longitude
+                    address.streetName = dicto["Street"] as? String
+                    let postcode = dicto["ZIP"] as? String
+                    if let postcode = postcode, let postcodeInt = Int(postcode){
+                        address.postcode = postcodeInt
+                    }
+                    address.country = dicto["Country"] as? String
+                    address.city = dicto["City"] as? String
+                    address.state = dicto["State"] as? String
+                    
+                    var addressComps = dicto["FormattedAddressLines"] as? [String]
+                    addressComps?.removeLast()
+                    let addressStr = addressComps?.joined(separator: ", ")
+                    address.address = addressStr
+                    completion(address)
+                }
+                
+            }
         })
     }
+    
+//    let address = Address()
+//    address.latitude = json["latitude"].doubleValue
+//    address.longitude = json["longitude"].doubleValue
+//    let streetNumber = json["street_number"].stringValue
+//    address.streetNumber = streetNumber
+//    address.streetName = json["street_name"].stringValue
+//    address.locality = json["locality"].stringValue
+//    address.sublocality = json["sublocality"].stringValue
+//    address.postcode = json["postcode"].intValue
+//    address.country = json["country"].stringValue
+//    address.address = json["address"].stringValue
     
 }

@@ -16,13 +16,15 @@ open class Address: NSObject {
     open var locality: String!
     open var sublocality: String!
     open var postcode: Int = -1
+    open var city: String!
+    open var state: String!
     open var country: String!
     
     open var address: String!
     open var updateDate = Date()
     
     override open class func fastCodingKeys() -> [Any]?{
-        return ["latitude", "longitude", "streetNumber", "streetName", "locality", "sublocality", "postcode", "country", "address", "updateDate"]
+        return ["latitude", "longitude", "streetNumber", "streetName", "locality", "sublocality", "city", "postcode", "country", "address", "updateDate", "state"]
     }
     
     override public init() {
@@ -46,6 +48,43 @@ open class Address: NSObject {
         }
         if let sublocality = sublocality, sublocality.count > 0{
             components.append(sublocality)
+        }
+        if let city = city, city.count > 0{
+            components.append(city)
+        }
+        var address = components.joined(separator: ", ")
+        if address.count == 0 {
+            if self.address != nil {
+                address = self.address
+            }
+        }
+        return address
+    }
+    
+    open func fullAddress() -> String {
+        var components = [String]()
+        if let streetNumber = streetNumber, streetNumber.count > 0 {
+            components.append(streetNumber)
+        }
+        if let streetName = streetName, streetName.count > 0 {
+            components.append(streetName)
+        }
+        if let sublocality = sublocality, sublocality.count > 0{
+            components.append(sublocality)
+        }
+        if postcode > 0{
+            let post = "\(postcode)"
+            components.append(post)
+        }
+        if let locality = locality, locality.count > 0{
+            components.append(locality)
+        }
+        if let city = city, city.count > 0{
+            components.append(city)
+        }
+        
+        if let state = state, state.count > 0{
+            components.append(state)
         }
         var address = components.joined(separator: ", ")
         if address.count == 0 {
