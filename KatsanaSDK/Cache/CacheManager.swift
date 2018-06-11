@@ -143,8 +143,11 @@ public class CacheManager: NSObject {
                     a.date > b.date
                 })
                 if count == 1 || count == 0 {
-                    return [theTravels.first!]
-                }else{
+                    if let travel = theTravels.first{
+                        return [travel]
+                    }
+                }
+                else{
                     var newTravels = [Travel]()
                     for (index, travel) in theTravels.enumerated() {
                         if index == count - 1 {
