@@ -6,7 +6,6 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-import UIKit
 
 open class Insurer: NSObject {
     public var country: String

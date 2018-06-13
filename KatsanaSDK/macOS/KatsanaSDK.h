@@ -14,4 +14,4 @@ FOUNDATION_EXPORT double KatsanaSDK_MacVersionNumber;
 //! Project version string for KatsanaSDK-Mac.
 FOUNDATION_EXPORT const unsigned char KatsanaSDK_MacVersionString[];
 
-#import <KatsanaSDK/FastCoder.h>
+

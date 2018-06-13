@@ -6,7 +6,6 @@
 //  Copyright © 2018 pixelated. All rights reserved.
 //
 
-import UIKit
 
 @objc public enum VehicleSubscriptionStatus: Int{
     case active
