@@ -14,6 +14,8 @@ open class VehicleLocation: NSObject {
     open var speed: Float = 0
     open var altitude: Double = 0
     open var course: Double = 0
+    open var magneticHeading: Float = -1
+    open var magneticHeadingAccuracy: Float = 0
     ///Distance to previous location
     open var distance: Float = 0
     
@@ -31,7 +33,7 @@ open class VehicleLocation: NSObject {
     open var extraData = [String: Any]()
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["latitude", "longitude", "speed", "altitude", "course", "distance", "verticalAccuracy", "horizontalAccuracy", "state", "voltage", "gsm", "ignitionState", "trackedAt", "extraData"]
+        return ["latitude", "longitude", "speed", "altitude", "course", "distance", "verticalAccuracy", "horizontalAccuracy", "state", "voltage", "gsm", "ignitionState", "trackedAt", "extraData", "magneticHeading", "magneticHeadingAccuracy"]
     }
     
     ///Implemented to satisfy FastCoder and set default value
