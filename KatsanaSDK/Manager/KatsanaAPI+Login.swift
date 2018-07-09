@@ -82,6 +82,7 @@ extension KatsanaAPI {
                     DispatchQueue.main.sync {
                         self.authToken = token
                         self.refreshToken = refreshToken
+                        NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
                         self.loadProfile(completion: { (user) in
                             completion(user)
                         }, failure: { (error) in

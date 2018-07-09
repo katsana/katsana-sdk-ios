@@ -49,7 +49,7 @@ extension KatsanaAPI {
                     }
                 }
             }
-            
+
             if let vehicle = vehicle, let idx = self.vehicles.index(of: vehicle){
                 self.vehicles[idx] = vehicle
             }

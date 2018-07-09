@@ -11,7 +11,7 @@ import XCGLogger
 
 @objc public class KatsanaAPI: NSObject {
     //Notifications
-    public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserSuccessLogonNotification")
+    public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserLogonSuccessNotification")
     public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
     public static let userDidLogoutNotification = Notification.Name(rawValue: "KMUserDidLogoutNotification")
     public static let profileUpdatedNotification = Notification.Name(rawValue: "KMProfileUpdatedNotification")
@@ -49,10 +49,23 @@ import XCGLogger
             if let newValue = newValue{
                 if let currentVehicle = currentVehicle, newValue != currentVehicle{
                     log.info("Current selected vehicle \(newValue.vehicleId)")
-                    lastVehicleId = newValue.vehicleId
+                    lastVehicleIds = [newValue.vehicleId]
                 }else if currentVehicle == nil{
                     log.info("Current selected vehicle \(newValue.vehicleId)")
-                    lastVehicleId = newValue.vehicleId
+                    lastVehicleIds = [newValue.vehicleId]
+                }
+            }
+        }
+    }
+    @objc public dynamic var selectedVehicles: [Vehicle]!{
+        willSet{
+            if let newValue = newValue{
+                if let selectedVehicles = selectedVehicles, newValue != selectedVehicles{
+//                    log.info("Current selected vehicles \(newValue.vehicleId)")
+                    lastVehicleIds = newValue.map({$0.vehicleId})
+                }else if selectedVehicles == nil{
+//                    log.info("Current selected vehicles \(newValue.vehicleId)")
+                    lastVehicleIds = newValue.map({$0.vehicleId})
                 }
             }
         }
@@ -64,12 +77,15 @@ import XCGLogger
             }
         }
     }
-    @objc private(set) dynamic public var lastVehicleId: String!{
+    @objc private(set) dynamic public var lastVehicleIds: [String]!{
         set{
-            UserDefaults.standard.set(newValue, forKey: "lastVehicleId")
+            UserDefaults.standard.set(newValue, forKey: "lastVehicleIds")
         }
         get{
-            return  UserDefaults.standard.value(forKey: "lastVehicleId") as! String!
+            if let ids = UserDefaults.standard.value(forKey: "lastVehicleIds") as? [String]{
+                return ids
+            }
+            return nil
         }
     }
     @objc private(set) dynamic public var lastVehicleImeis: [String]!{
