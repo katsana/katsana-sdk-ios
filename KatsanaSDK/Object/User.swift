@@ -40,19 +40,23 @@ open class User: NSObject {
     open var country: String!
     open var gender: Gender = .unknown
     
-    var genderText: String{
+    open var genderText: String!{
         get{
             if gender == .unknown{
-                return ""
+                return nil
             }
             return gender.rawValue.capitalized
         }
         set{
-            if newValue.lowercased() == "male" {
-                gender = .male
-            }
-            else if newValue.lowercased() == "female" {
-                gender = .female
+            if let newValue = newValue{
+                if newValue.lowercased() == "male" {
+                    gender = .male
+                }
+                else if newValue.lowercased() == "female" {
+                    gender = .female
+                }
+            }else{
+                gender = .unknown
             }
         }
     }

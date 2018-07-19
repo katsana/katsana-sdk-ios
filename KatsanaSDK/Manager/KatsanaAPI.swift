@@ -9,13 +9,14 @@
 import Siesta
 import XCGLogger
 
-@objc public class KatsanaAPI: NSObject {
+@objc open class KatsanaAPI: NSObject {
     //Notifications
     public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserLogonSuccessNotification")
     public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
     public static let userDidLogoutNotification = Notification.Name(rawValue: "KMUserDidLogoutNotification")
     public static let profileUpdatedNotification = Notification.Name(rawValue: "KMProfileUpdatedNotification")
     public static let subscriptionRequestedNotification = Notification.Name(rawValue: "subscriptionRequestedNotification")
+    public static let authTokenUpdatedNotification = Notification.Name(rawValue: "authTokenUpdatedNotification")
     public static let insuranceExpiryDateChangedNotification = Notification.Name(rawValue: "insuranceExpiryDateChangedNotification")
     public static let defaultBaseURL: URL = URL(string: "https://api.katsana.com/")!
     internal(set) var log : XCGLogger!
@@ -106,7 +107,7 @@ import XCGLogger
                 // Rerun existing configuration closure using new value
                 API.invalidateConfiguration()
             }
-            
+            NotificationCenter.default.post(name: KatsanaAPI.authTokenUpdatedNotification, object: self)
             // Wipe any Siesta’s cached state if auth token changes
             API.wipeResources()
         }
@@ -117,7 +118,7 @@ import XCGLogger
 
     // MARK: Lifecycle
     
-    override init() {
+    public override init() {
         super.init()
         self.setupLog()
     }
@@ -141,6 +142,14 @@ import XCGLogger
         shared.authToken = accessToken
         shared.configure()
         shared.setupTransformer()
+    }
+    
+    ///Configure API using access token
+    public func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, accessToken: String) -> Void {
+        API = Service(baseURL: baseURL)
+        authToken = accessToken
+        configure()
+        setupTransformer()
     }
     
     func configure() {
