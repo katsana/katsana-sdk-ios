@@ -27,6 +27,7 @@ import XCGLogger
     ///Default options when requesting travel or trip
     public var defaultRequestTravelOptions: [String]!
     public var defaultRequestTripOptions: [String]!
+    public var defaultRequestTripSummaryOptions: [String]!
     public var authorizationHeader = "Bearer "
     ///Specify time cache is saved in day
     public var logSavedDuration = 7
@@ -191,9 +192,9 @@ import XCGLogger
             $0.expirationTime = 1*60
         }
         
-        //Trip summary duration will request new data only after 1 minute
+        //Trip summary duration will request new data only after 3 minute
         API.configure("vehicles/*/travels/summaries/duration") {
-            $0.expirationTime = 1*60
+            $0.expirationTime = 3*60
         }
         
         API.configure("insurers/my") {

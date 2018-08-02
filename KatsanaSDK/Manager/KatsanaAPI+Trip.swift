@@ -231,7 +231,7 @@ extension KatsanaAPI {
 
         let path = "vehicles/" + vehicleId + "/travels/summaries/duration"
         var resource = API.resource(path)
-        
+
         var timezone: NSTimeZone!
         var vehicle = vehicleWith(vehicleId: vehicleId)
         if vehicle == nil {
@@ -248,7 +248,7 @@ extension KatsanaAPI {
                 var params = "?start=\(fromDate.toStringWithYearMonthDayAndTime())&end=\(toDate.toStringWithYearMonthDayAndTime())"
                 params = params + "&includes=\(text)"
                 resource = resource.relative(params)
-            }else if let options = defaultRequestTripOptions{
+            }else if let options = defaultRequestTripSummaryOptions{
                 let text = options.joined(separator: ",")
                 resource = resource.withParam("includes", text)
                 var params = "?start=\(fromDate.toStringWithYearMonthDayAndTime(timezone: timezone))&end=\(toDate.toStringWithYearMonthDayAndTime(timezone: timezone))"

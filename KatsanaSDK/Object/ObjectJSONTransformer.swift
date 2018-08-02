@@ -171,6 +171,7 @@ class ObjectJSONTransformer: NSObject {
         trip.duration = json["duration"].doubleValue
         trip.averageSpeed = json["average_speed"].floatValue
         trip.idleDuration = json["idle_duration"].floatValue
+        trip.id = json["id"].stringValue
         
         trip.start = VehicleLocationObject(json: json["start"])
         trip.end = VehicleLocationObject(json: json["end"])

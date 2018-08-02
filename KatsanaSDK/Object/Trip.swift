@@ -8,6 +8,7 @@
 import FastCoding
 
 open class Trip: NSObject {
+    open var id : String!
     open var start: VehicleLocation!
     open var end: VehicleLocation!
     open var distance: Double = 0
@@ -30,7 +31,7 @@ open class Trip: NSObject {
     open var extraData = [String: Any]()
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData", "date"]
+        return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData", "date", "id"]
     }
     
     // MARK: Logic

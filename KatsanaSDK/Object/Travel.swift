@@ -149,4 +149,27 @@ open class Travel: NSObject {
         return String(format: "%@, trips:%@, maxSpeed:%.1f, date:%@", super.description, trips.description, maxSpeed, date?.description ?? "")
     }
     
+    open class func separateTripsIntoTravels(trips : [Trip]) -> [Travel] {
+        var travels = [Travel]()
+        var currentTravel: Travel!
+        for trip in trips{
+            if currentTravel == nil{
+                currentTravel = Travel()
+                currentTravel.date = trip.date
+                currentTravel.trips = [Trip]()
+                travels.append(currentTravel)
+            }
+            else if trip.date.isEqualToDateIgnoringTime(currentTravel.date){
+                //Do nothing
+            }else{
+                //If date not same, create new travel
+                currentTravel = Travel()
+                currentTravel.date = trip.date
+                travels.append(currentTravel)
+            }
+            currentTravel.trips.append(trip)
+        }
+        return travels
+    }
+    
 }
