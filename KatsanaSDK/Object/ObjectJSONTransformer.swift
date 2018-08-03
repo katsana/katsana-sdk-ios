@@ -193,6 +193,7 @@ class ObjectJSONTransformer: NSObject {
         address.streetNumber = streetNumber
         address.streetName = json["street_name"].stringValue
         address.locality = json["locality"].stringValue
+        address.city = json["locality"].stringValue
         address.sublocality = json["sublocality"].stringValue
         address.postcode = json["postcode"].intValue
         address.country = json["country"].stringValue

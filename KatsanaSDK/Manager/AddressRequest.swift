@@ -92,6 +92,10 @@ class AddressRequest: NSObject {
                     address.country = dicto["Country"] as? String
                     address.city = dicto["City"] as? String
                     address.state = dicto["State"] as? String
+                    address.sublocality = dicto["SubLocality"] as? String
+                    address.locality = dicto["Locality"] as? String
+                    address.state = dicto["State"] as? String
+                    address.subAdministrativeArea = dicto["SubAdministrativeArea"] as? String
                     
                     var addressComps = dicto["FormattedAddressLines"] as? [String]
                     addressComps?.removeLast()

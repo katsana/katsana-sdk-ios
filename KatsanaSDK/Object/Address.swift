@@ -15,6 +15,7 @@ open class Address: NSObject {
     open var streetName: String!
     open var locality: String!
     open var sublocality: String!
+    open var subAdministrativeArea: String!
     open var postcode: Int = -1
     open var city: String!
     open var state: String!
@@ -24,7 +25,7 @@ open class Address: NSObject {
     open var updateDate = Date()
     
     override open class func fastCodingKeys() -> [Any]?{
-        return ["latitude", "longitude", "streetNumber", "streetName", "locality", "sublocality", "city", "postcode", "country", "address", "updateDate", "state"]
+        return ["latitude", "longitude", "streetNumber", "streetName", "locality", "sublocality", "city", "postcode", "country", "address", "updateDate", "state", "subAdministrativeArea"]
     }
     
     override public init() {
@@ -50,7 +51,11 @@ open class Address: NSObject {
             components.append(sublocality)
         }
         if let city = city, city.count > 0{
-            components.append(city)
+            if let sublocality = sublocality, city == sublocality{
+                //Do nothing
+            }else{
+                components.append(city)
+            }
         }
         var address = components.joined(separator: ", ")
         if address.count == 0 {
@@ -93,6 +98,25 @@ open class Address: NSObject {
             }
         }
         return address
+    }
+    
+    open func pointOfInterest() -> String{
+        if let sublocality = sublocality{
+            return sublocality
+        }
+        if let subAdministrativeArea = subAdministrativeArea{
+            return subAdministrativeArea
+        }
+        if let locality = locality{
+            return locality
+        }
+        if let city = city{
+            return city
+        }
+        if let state = state{
+            return state
+        }
+        return ""
     }
     
 //    func optimizedAddressWithCountry() -> String {
