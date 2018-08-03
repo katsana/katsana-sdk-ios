@@ -101,16 +101,16 @@ open class Address: NSObject {
     }
     
     open func pointOfInterest() -> String{
-        if let sublocality = sublocality{
+        if let sublocality = sublocality, sublocality.count > 0{
             return sublocality
         }
-        if let subAdministrativeArea = subAdministrativeArea{
+        if let subAdministrativeArea = subAdministrativeArea, subAdministrativeArea.count > 0{
             return subAdministrativeArea
         }
-        if let locality = locality{
+        if let locality = locality, locality.count > 0{
             return locality
         }
-        if let city = city{
+        if let city = city, city.count > 0{
             return city
         }
         if let state = state{
