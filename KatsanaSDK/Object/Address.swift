@@ -100,23 +100,37 @@ open class Address: NSObject {
         return address
     }
     
+    var _pointOfInterest : String!
     open func pointOfInterest() -> String{
+        if let s = _pointOfInterest {
+            return s
+        }
+        
+        var place = ""
         if let sublocality = sublocality, sublocality.count > 0{
-            return sublocality
+            if let city = city, city.contains(sublocality){
+                place = city
+            }else{
+                place = sublocality
+            }
         }
-        if let subAdministrativeArea = subAdministrativeArea, subAdministrativeArea.count > 0{
-            return subAdministrativeArea
+        else if let subAdministrativeArea = subAdministrativeArea, subAdministrativeArea.count > 0{
+            place = subAdministrativeArea
         }
-        if let locality = locality, locality.count > 0{
-            return locality
+        else if let locality = locality, locality.count > 0{
+            place = locality
         }
-        if let city = city, city.count > 0{
-            return city
+        else if let city = city, city.count > 0{
+            place = city
         }
-        if let state = state{
-            return state
+        else if let state = state{
+            place = state
         }
-        return ""
+        if place.hasPrefix("Kampung") {
+            place = place.replacingOccurrences(of: "Kampung", with: "Kg")
+        }
+        _pointOfInterest = place
+        return place
     }
     
 //    func optimizedAddressWithCountry() -> String {
