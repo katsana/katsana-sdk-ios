@@ -6,7 +6,7 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-
+@objcMembers
 public class TimeTransformer: ValueTransformer {
     public var fullFormat = false
     

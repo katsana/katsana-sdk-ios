@@ -12,6 +12,7 @@ import FastCoding
 let cacheVersion = "2.9"
 
 //Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer should not use and call methods in this class manually.
+@objcMembers
 public class CacheManager: NSObject {
     public static let shared = CacheManager()
     

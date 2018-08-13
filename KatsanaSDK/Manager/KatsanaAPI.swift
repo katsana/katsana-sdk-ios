@@ -9,7 +9,8 @@
 import Siesta
 import XCGLogger
 
-@objc open class KatsanaAPI: NSObject {
+@objcMembers
+open class KatsanaAPI: NSObject {
     //Notifications
     public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserLogonSuccessNotification")
     public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
@@ -75,6 +76,7 @@ import XCGLogger
     @objc internal(set) dynamic public var vehicles: [Vehicle]!{
         willSet{
             if vehicles != nil {
+                print(vehicles)
                 lastVehicleImeis = vehicles.map({ $0.imei})
             }
         }
