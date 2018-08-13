@@ -12,6 +12,7 @@ public enum Gender : String{
     case female
 }
 
+@objcMembers
 open class User: NSObject {
     static let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()

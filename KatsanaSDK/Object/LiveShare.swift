@@ -6,7 +6,7 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
-
+@objcMembers
 open class LiveShare: NSObject {
     open var deviceId : String!
     open var userId : String!

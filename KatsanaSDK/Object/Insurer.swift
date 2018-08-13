@@ -6,7 +6,7 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-
+@objcMembers
 open class Insurer: NSObject {
     public var country: String
     public var name: String

@@ -13,6 +13,7 @@
     case expired
 }
 
+@objcMembers
 open class VehicleSubscription: NSObject {
     override open class func fastCodingKeys() -> [Any]? {
         return ["id", "userId", "planId", "planName", "planDescription", "billingCycle", "amountBeforeTax", "amountAfterTax", "taxPercent", "status", "endsAt", "isExpiring", "upgrades", "vehicle", "devices"]

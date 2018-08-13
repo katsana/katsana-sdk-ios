@@ -7,6 +7,7 @@
 //
 import FastCoding
 
+@objcMembers
 open class Trip: NSObject {
     open var id : String!
     open var start: VehicleLocation!

@@ -9,6 +9,7 @@
 import FastCoding
 
 ///The class contains information about vehicle travel for particular day.
+@objcMembers
 open class Travel: NSObject {
     open var vehicleId : String!
     open var maxSpeed : Float = 0

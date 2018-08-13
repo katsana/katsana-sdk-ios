@@ -28,6 +28,7 @@ import CoreLocation
     //More can be added
 }
 
+@objcMembers
 open class VehicleActivity: NSObject {
     internal var privateAttributedMessage: NSAttributedString!
     

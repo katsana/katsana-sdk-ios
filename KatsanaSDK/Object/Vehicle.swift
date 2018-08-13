@@ -8,6 +8,7 @@
 
 import FastCoding
 
+@objcMembers
 open class Vehicle: NSObject {
     static let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()

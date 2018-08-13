@@ -8,6 +8,7 @@
 
 import CoreLocation
 
+@objcMembers
 open class VehicleLocation: NSObject {
     open var latitude: Double
     open var longitude: Double
