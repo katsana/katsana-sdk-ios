@@ -5,8 +5,6 @@ This application makes use of the following third party libraries:
 
 FastCoding
 
-Version 3.2.1, April 2nd, 2015
-
 Copyright (C) 2013 Charcoal Design
 
 This software is provided 'as-is', without any express or implied
@@ -54,7 +52,7 @@ SOFTWARE.
 
 ## Siesta
 
-Copyright (c) 2016 Bust Out Solutions, Inc. http://bustoutsolutions.com
+Copyright (c) 2018 Bust Out Solutions, Inc. http://bustoutsolutions.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -24,7 +24,7 @@ s.osx.framework  = 'AppKit'
 s.requires_arc = true
 s.source       = { :git => "https://github.com/katsana/katsana-sdk-ios.git", :tag => "#{s.version}" }
 
-s.dependency 'Siesta'
+s.dependency 'Siesta', '~>1.3.0'
 s.dependency 'XCGLogger'
 s.dependency 'FastCoding'
 

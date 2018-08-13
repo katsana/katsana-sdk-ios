@@ -22,12 +22,12 @@ extension KatsanaAPI {
         let resource = self.API.resource("profile")
         let user = currentUser!
         
-        var newData = data
-        for (key, value) in data {
-            if let value = value as? String, value == ""{
-                //Do nothing, should not add if have empty value
-            }
-        }
+//        var newData = data
+//        for (key, value) in data {
+//            if let value = value as? String, value == ""{
+//                //Do nothing, should not add if have empty value
+//            }
+//        }
         
 //        let json = self.currentUser.jsonPatch()
         resource.request(.patch, json: data).onSuccess { (_) in

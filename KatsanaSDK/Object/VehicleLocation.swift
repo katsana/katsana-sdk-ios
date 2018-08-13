@@ -54,7 +54,7 @@ open class VehicleLocation: NSObject {
     
     private var _lastCoordinate: CLLocationCoordinate2D!
     //Get address for current location
-    open func address(completion: @escaping (String!) -> Void) {
+    open func address(completion: @escaping (String?) -> Void) {
         if let _lastCoordinate = _lastCoordinate, _lastCoordinate.equal(coordinate()) {
             completion(address)
             return
@@ -69,7 +69,7 @@ open class VehicleLocation: NSObject {
     }
     
     //Get address for current location
-    open func addressObject(completion: @escaping (Address!) -> Void) {
+    open func addressObject(completion: @escaping (Address?) -> Void) {
         if let _lastCoordinate = _lastCoordinate, _lastCoordinate.equal(coordinate()) {
             completion(addressObject)
             return
@@ -85,7 +85,7 @@ open class VehicleLocation: NSObject {
     
     
     //Get address for current location
-    open func fullAddress(completion: @escaping (String!) -> Void) {
+    open func fullAddress(completion: @escaping (String?) -> Void) {
         if let addressObject = addressObject, addressObject.coordinate().equal(coordinate()){
             completion(addressObject.fullAddress())
         }else{

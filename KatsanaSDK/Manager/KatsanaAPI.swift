@@ -95,7 +95,7 @@ import XCGLogger
             UserDefaults.standard.set(newValue, forKey: "lastVehicleImeis")
         }
         get{
-            return  UserDefaults.standard.value(forKey: "lastVehicleImeis") as! [String]!
+            return  UserDefaults.standard.value(forKey: "lastVehicleImeis") as! [String]?
         }
     }
     private let SwiftyJSONTransformer = ResponseContentTransformer { JSON($0.content as AnyObject) }
