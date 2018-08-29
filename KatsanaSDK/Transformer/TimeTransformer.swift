@@ -8,7 +8,7 @@
 
 @objcMembers
 public class TimeTransformer: ValueTransformer {
-    public var fullFormat = false
+    public var displayFormat = DisplayFormat.short
     
     override public class func allowsReverseTransformation() -> Bool{
         return false
@@ -25,15 +25,18 @@ public class TimeTransformer: ValueTransformer {
                 minutes = floor(minutes)
                 
                 var timeStr: String!
-                if (hour >= 24) {
+                if hour >= 24, displayFormat != .hourShort {
                     let day = hour/24
                     hour = (day - floor(day)) * 24
                     hour = ceil(hour)
                     timeStr = String(format:"%.0f day %.0f hours", day, hour)
                 }else{
                     timeStr = String(format:"%.0f hr %.0f min", hour, minutes)
-                    if (self.fullFormat) {
+                    if displayFormat == .full {
                         timeStr = String(format:"%.0f hour %.0f minutes", hour, minutes)
+                    }
+                    else if displayFormat == .hourShort{
+                        timeStr = String(format:"%.0f:%.0f hrs", hour, minutes)
                     }
                 }
                 return timeStr;
@@ -41,14 +44,20 @@ public class TimeTransformer: ValueTransformer {
                 var timeStr: String!
                 if (minutes < 1) {
                     timeStr = String(format:"%.0f sec", minutes * 60)
-                    if (self.fullFormat) {
+                    if displayFormat == .full {
                         timeStr = String(format:"%.0f seconds", minutes * 60)
+                    }
+                    else if displayFormat == .hourShort{
+                        timeStr = String(format:"0:0 hrs")
                     }
                 }else{
                     minutes = round(minutes);
                     timeStr = String(format:"%.0f min", minutes )
-                    if (self.fullFormat) {
+                    if displayFormat == .full {
                         timeStr = String(format:"%.0f minutes", minutes )
+                    }
+                    else if displayFormat == .hourShort{
+                        timeStr = String(format:"0:%.0f hrs", minutes )
                     }
                 }
                 

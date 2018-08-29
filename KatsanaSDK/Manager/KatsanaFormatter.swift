@@ -15,6 +15,7 @@
 @objc public enum DisplayFormat : Int {
     case short
     case full
+    case hourShort
 }
 
 @objcMembers
@@ -135,9 +136,7 @@ public class KatsanaFormatter: NSObject {
     
     class func convertTime(seconds:Double, displayFormat:DisplayFormat) -> String {
         let transformer = TimeTransformer()
-        if displayFormat == .full {
-            transformer.fullFormat = true
-        }
+        transformer.displayFormat = displayFormat
         let time = transformer.transformedValue(seconds) as? String
         return time!
     }
