@@ -264,12 +264,11 @@ extension KatsanaAPI {
             func handleResource() -> Void {
                 if let summaries : [Trip] = resource.typedContent(){
                     for summary in summaries{
-                        if let date = summary.start.trackedAt{
+                        if let date = summary.start?.trackedAt{
                             summary.date = date
                         }else if summary.locations.count > 0, let date = summary.locations.first?.trackedAt{
                             summary.date = date
                         }
-                        
                     }
                     completion(summaries)
                 }else{
