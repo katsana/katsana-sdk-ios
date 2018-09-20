@@ -566,7 +566,7 @@ public class CacheManager: NSObject {
         }
         let filePath = path.appending("/" + identifier)
         #if os(iOS) || os(watchOS) || os(tvOS)
-            let data = UIImagePNGRepresentation(image)
+        let data = image.pngData()
         #elseif os(OSX)
             let data = image.tiffRepresentation
         #endif

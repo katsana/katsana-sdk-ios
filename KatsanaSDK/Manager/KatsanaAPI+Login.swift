@@ -37,7 +37,7 @@ extension KatsanaAPI {
             }else{
                 let json = JSON(data: r.content!)
                 var errorString = json["error"].stringValue
-                if let status : Int = r.statusCode, let jsonError = json["error"].string{
+                if let status : Int = r.statusCode, let _ = json["error"].string{
                     print(errorString)
                     switch status {
                     case 401:
@@ -45,16 +45,20 @@ extension KatsanaAPI {
                     default:
                         errorString = statusCodeDescriptions[status]!
                     }
-//                    let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  errorString, NSLocalizedFailureReasonErrorKey : jsonError]
-//                    let error = NSError(domain: SDKError.domain, code: status, userInfo: userInfo)
-                    DispatchQueue.main.sync {
-                        failure(r.APIError())
+                    var error = r.APIError()
+                    if error != nil{
+                        let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  errorString, NSLocalizedFailureReasonErrorKey : errorString]
+                        error = NSError(domain: SDKError.domain, code: status, userInfo: userInfo)
                     }
-                    self.log.info("Error logon \(r.APIError())")
+
+                    DispatchQueue.main.sync {
+                        failure(error)
+                    }
+                    self.log.info("Error logon \(String(describing: r.APIError()))")
                 }else{
                     DispatchQueue.main.sync {
                         failure(r.APIError())
-                        self.log.info("Error logon \(r.APIError())")
+                        self.log.info("Error logon \(String(describing: r.APIError()))")
                     }
                 }
             }

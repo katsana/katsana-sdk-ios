@@ -11,7 +11,7 @@ extension KatsanaAPI{
     func uploadImage(image : KMImage, path : String, completion : @escaping (Bool, Error?) -> Void) -> Void {
         //        let path = self.baseURL().absoluteString + "profile/avatar"
         #if os(iOS)
-            let data = UIImageJPEGRepresentation(image, 0.9)! //Change to data
+            let data = image.jpegData(compressionQuality:0.9) //Change to data
         #elseif os(OSX)
             let data = image.tiffRepresentation(using: .JPEG, factor: 0.9)! //Change to data
         #endif
@@ -19,7 +19,7 @@ extension KatsanaAPI{
         Just.post(
             path,
             headers: ["Authorization" : ("Bearer " + self.authToken)],
-            files: ["file": .data("avatar.png", data, "image/jpeg")]
+            files: ["file": .data("avatar.png", data!, "image/jpeg")]
         ) { r in
 //            let strData = NSString(data: r.content!, encoding: String.Encoding.utf8.rawValue)
             if r.ok {
