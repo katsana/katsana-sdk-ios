@@ -11,130 +11,71 @@ import XCGLogger
 import Siesta
 
 extension KatsanaAPI {
-
-    public func loginJWT(name: String, password: String, nameKey: String = "email", authPath: String = "auth", completion: @escaping () -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-//        let useOAuth2 = false
-        let data = [nameKey : name, "password" : password]
-//        var tokenKey = "token"
-
-        let path = self.baseURL().absoluteString + authPath
-        Just.post(
-            path,
-            data: data
-        ) { r in
-            if r.ok {
-                let json = JSON(data: r.content!)
-                let token = json["token"].string
-                if token != nil {
-                    DispatchQueue.main.sync {
-                        self.authToken = token
-                        NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
-                        completion()
-                    }
-                }else{
-                    failure(r.error)
-                }
-            }else{
-                let json = JSON(data: r.content!)
-                var errorString = json["error"].stringValue
-                if let status : Int = r.statusCode, let _ = json["error"].string{
-                    print(errorString)
-                    switch status {
-                    case 401:
-                        errorString = "Invalid login details"
-                    default:
-                        errorString = statusCodeDescriptions[status]!
-                    }
-                    var error = r.APIError()
-                    if error != nil{
-                        let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  errorString, NSLocalizedFailureReasonErrorKey : errorString]
-                        error = NSError(domain: SDKError.domain, code: status, userInfo: userInfo)
-                    }
-
-                    DispatchQueue.main.sync {
-                        failure(error)
-                    }
-                    self.log.info("Error logon \(String(describing: r.APIError()))")
-                }else{
-                    DispatchQueue.main.sync {
-                        failure(r.APIError())
-                        self.log.info("Error logon \(String(describing: r.APIError()))")
-                    }
-                }
-            }
-        }
-    }
     
+    public func loginJWT(name: String, password: String, nameKey: String = "email", authPath: String = "auth", completion: @escaping () -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        //        let useOAuth2 = false
+        let data = [nameKey : name, "password" : password]
+        
+        let resource = self.API.resource(authPath)
+        resource.request(.post, json: NSDictionary(dictionary: data)).onSuccess({ (entity) in
+            if let json = entity.content as? JSON{
+                let token = json["token"].stringValue
+//                let refreshToken = json["refresh_token"].stringValue
+//                self.refreshToken = refreshToken
+                self.authToken = token
+                NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
+                completion()
+            }else{
+                failure(nil)
+            }
+        }).onFailure({ (error) in
+            failure(error)
+        })
+    }
+
     public func login(email: String, password: String, completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         var data : Dictionary<String,String>
         let tokenKey = "access_token"
         let authPath = "oauth/token"
-
+        
         data = ["username" : email, "password" : password, "client_id" : self.clientId, "client_secret" : self.clientSecret, "scope" : "*", "grant_type": self.grantType]
-
-        let path = self.baseURL().absoluteString + authPath
-        Just.post(
-            path,
-            data: data
-        ) { r in
-            if r.ok {
-                let json = JSON(data: r.content!)
+        
+        let resource = self.API.resource(authPath)
+        resource.request(.post, json: NSDictionary(dictionary: data)).onSuccess({ (entity) in
+            if let json = entity.content as? JSON{
                 let token = json[tokenKey].stringValue
                 let refreshToken = json["refresh_token"].stringValue
-                
                 if token.count > 0 {
-                    DispatchQueue.main.sync {
-                        self.authToken = token
-                        self.refreshToken = refreshToken
-                        NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
+                    self.authToken = token
+                    self.refreshToken = refreshToken
+                    NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
+                    self.loadProfile(completion: { (user) in
+                        completion(user)
+                    }, failure: { (error) in
                         self.loadProfile(completion: { (user) in
                             completion(user)
                         }, failure: { (error) in
                             self.loadProfile(completion: { (user) in
                                 completion(user)
                             }, failure: { (error) in
-                                self.loadProfile(completion: { (user) in
-                                    completion(user)
-                                }, failure: { (error) in
-                                    failure(error)
-                                })
+                                failure(error)
                             })
-                            
                         })
-                    }
+                        
+                    })
                 }else{
-                    failure(r.error)
+                    failure(nil)
                 }
-            }else{
-                let json = JSON(data: r.content!)
-                var errorString = json["error"].stringValue
-                if let status : Int = r.statusCode, let jsonError = json["error"].string{
-                    print(errorString)
-                    switch status {
-                    case 401:
-                        errorString = "Invalid login details"
-                    default:
-                        errorString = statusCodeDescriptions[status]!
-                    }
-                    let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  errorString, NSLocalizedFailureReasonErrorKey : jsonError]
-                    let error = NSError(domain: SDKError.domain, code: status, userInfo: userInfo)
-                    DispatchQueue.main.sync {
-                        failure(error)
-                    }
-                    
-                    self.log.info("Error logon \(r.APIError())")
-                }else{
-                    DispatchQueue.main.sync {
-                        failure(r.error)
-                        self.log.info("Error logon \(r.APIError())")
-                    }
-                }
-                
             }
-        }
+        }).onFailure({ (error) in
+            print(error.errorDescription)
+            let theError = NSError(domain: "KatsanaSDKErrorDomain", code: error.httpStatusCode ?? 0, userInfo: [NSLocalizedDescriptionKey: error.userMessage])
+            failure(theError)
+        })
+        
     }
     
-    private func loadProfile(completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void) {
+    private func loadProfile(completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: RequestError?) -> Void) {
         let resource = self.API.resource("profile")
         resource.loadIfNeeded()?.onSuccess({ (entity) in
             let user : User? = resource.typedContent()
@@ -142,7 +83,7 @@ extension KatsanaAPI {
                 self.currentUser = user
                 completion(user)
                 NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
-                self.log.info("Logged in user \(user.userId), \(user.email)")
+                self.log.info("Logged in user \(String(describing: user.userId)), \(user.email)")
                 CacheManager.shared.cache(user: user)
             }else{
                 failure(nil)

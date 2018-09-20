@@ -11,7 +11,7 @@ extension KatsanaAPI{
     func uploadImage(image : KMImage, path : String, completion : @escaping (Bool, Error?) -> Void) -> Void {
         //        let path = self.baseURL().absoluteString + "profile/avatar"
         #if os(iOS)
-            let data = image.jpegData(compressionQuality:0.9) //Change to data
+            let data = image.jpegData(compressionQuality: 0.9)
         #elseif os(OSX)
             let data = image.tiffRepresentation(using: .JPEG, factor: 0.9)! //Change to data
         #endif
