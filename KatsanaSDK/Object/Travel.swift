@@ -131,7 +131,7 @@ open class Travel: NSObject {
     
     // MARK: Equatable Protocol
     
-    static open func ==(a: Travel, b: Travel) -> Bool
+    static public func ==(a: Travel, b: Travel) -> Bool
     {
         guard a.date != nil, b.date != nil else {
             return false

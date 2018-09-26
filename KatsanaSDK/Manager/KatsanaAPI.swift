@@ -51,10 +51,10 @@ open class KatsanaAPI: NSObject {
         willSet{
             if let newValue = newValue{
                 if let currentVehicle = currentVehicle, newValue != currentVehicle{
-                    log.info("Current selected vehicle \(newValue.vehicleId)")
+                    log.info("Current selected vehicle \(String(describing: newValue.vehicleId))")
                     lastVehicleIds = [newValue.vehicleId]
                 }else if currentVehicle == nil{
-                    log.info("Current selected vehicle \(newValue.vehicleId)")
+                    log.info("Current selected vehicle \(String(describing: newValue.vehicleId))")
                     lastVehicleIds = [newValue.vehicleId]
                 }
             }

@@ -130,7 +130,7 @@ open class VehicleActivity: NSObject {
             if let date = (dictionary["time"] as? String)?.date(gmt: 0){
                 self.startTime = date
             }else{
-                KatsanaAPI.shared.log.warning("Date cannot be create \(self.timeString)")
+                KatsanaAPI.shared.log.warning("Date cannot be create \(String(describing: self.timeString))")
             }
             self.identifier = identifier
         }        

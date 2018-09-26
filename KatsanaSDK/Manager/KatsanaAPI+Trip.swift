@@ -86,7 +86,7 @@ extension KatsanaAPI {
             handleResource()
         }).onFailure({ (error) in
             failure(error)
-            self.log.error("Error getting trip summaries with original from \(fromDate) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error)")
+            self.log.error("Error getting trip summaries with original from \(String(describing: fromDate)) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error)")
         })
         if request == nil {
             handleResource()
@@ -215,7 +215,7 @@ extension KatsanaAPI {
 
             }, failure: { (error) in
                 failure(error)
-                self.log.error("Error getting trip history vehicle id \(String(describing: vehicleId)), using summary with date \(summary.date), \(String(describing: error))")
+                self.log.error("Error getting trip history vehicle id \(String(describing: vehicleId)), using summary with date \(String(describing: summary.date)), \(String(describing: error))")
         })
     }
     
