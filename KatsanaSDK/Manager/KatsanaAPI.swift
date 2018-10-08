@@ -220,6 +220,10 @@ open class KatsanaAPI: NSObject {
             ObjectJSONTransformer.UserObject(json: $0.content)
         }
         
+        API.configureTransformer("address/") {
+            ObjectJSONTransformer.AddressObject(json: $0.content)
+        }
+        
         API.configureTransformer("vehicles/*/summaries/duration") {
             ObjectJSONTransformer.TravelSummariesObject(json: $0.content)
         }

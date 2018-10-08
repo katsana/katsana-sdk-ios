@@ -30,20 +30,15 @@ extension KatsanaAPI {
                 let json = JSON(data: r.content!)
                 let liveShare = ObjectJSONTransformer.LiveShareObject(json: json)
                 liveShare.duration = Int(duration)
-                DispatchQueue.main.sync {
-                    completion(liveShare)
-                }
+                completion(liveShare)
                 
             }else{
-                DispatchQueue.main.sync {
-                    var text = r.reason
-                    if let content = r.content{
-                        text = String(data: content, encoding: .utf8)!
-                    }
-                    self.log.error("Error requesting live share link \(vehicleId), error: \(text)")
-                    failure(r.APIError())
+                var text = r.reason
+                if let content = r.content{
+                    text = String(data: content, encoding: .utf8)!
                 }
-                
+                self.log.error("Error requesting live share link \(vehicleId), error: \(text)")
+                failure(r.APIError())
             }
         }
     }
@@ -64,20 +59,15 @@ extension KatsanaAPI {
                     let liveShare = ObjectJSONTransformer.LiveShareObject(json: aJson)
                     liveShares.append(liveShare)
                 }
-                
-                DispatchQueue.main.sync {
-                    completion(liveShares)
-                }
+                completion(liveShares)
                 
             }else{
-                DispatchQueue.main.sync {
-                    var text = r.reason
-                    if let content = r.content{
-                        text = String(data: content, encoding: .utf8)!
-                    }
-                    self.log.error("Error requesting live share link info \(vehicleId), \(text)")
-                    failure(r.APIError())
+                var text = r.reason
+                if let content = r.content{
+                    text = String(data: content, encoding: .utf8)!
                 }
+                self.log.error("Error requesting live share link info \(vehicleId), \(text)")
+                failure(r.APIError())
                 
             }
         }
@@ -91,20 +81,15 @@ extension KatsanaAPI {
             headers: ["Authorization" : ("Bearer " + self.authToken)]
         ) { r in
             if r.ok {
-                DispatchQueue.main.sync {
-                    completion(true)
+                completion(true)
+            }else{
+                var text = r.reason
+                if let content = r.content{
+                    text = String(data: content, encoding: .utf8)!
                 }
                 
-            }else{
-                DispatchQueue.main.sync {
-                    var text = r.reason
-                    if let content = r.content{
-                        text = String(data: content, encoding: .utf8)!
-                    }
-                    
-                    self.log.error("Error deleting live share link \(vehicleId), \(text)")
-                    completion(false)
-                }
+                self.log.error("Error deleting live share link \(vehicleId), \(text)")
+                completion(false)
                 
             }
         }

@@ -23,15 +23,10 @@ extension KatsanaAPI{
         ) { r in
 //            let strData = NSString(data: r.content!, encoding: String.Encoding.utf8.rawValue)
             if r.ok {
-                DispatchQueue.main.sync {
-                    completion(true, nil)
-                }
+                completion(true, nil)
                 
             }else{
-                DispatchQueue.main.sync {
-                    completion(false, r.APIError())
-                }
-                
+                completion(false, r.APIError())
             }
         }
     }

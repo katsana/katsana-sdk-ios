@@ -71,7 +71,7 @@ open class VehicleLocation: NSObject {
     
     //Get address for current location
     open func addressObject(completion: @escaping (Address?) -> Void) {
-        if let _lastCoordinate = _lastCoordinate, _lastCoordinate.equal(coordinate()) {
+        if let _lastCoordinate = _lastCoordinate, _lastCoordinate.equal(coordinate()), let addressObject = addressObject, addressObject.pointOfInterest().count > 0 {
             completion(addressObject)
             return
         }else{

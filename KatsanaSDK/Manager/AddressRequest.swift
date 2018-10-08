@@ -25,7 +25,7 @@ class AddressRequest: NSObject {
                             useAppleAddress = true
                         }
                     }
-                    if (optimizedAddress.count) <= 10 || useAppleAddress{
+                    if (optimizedAddress.count) <= 10 || !useAppleAddress{
                         self.platformGeoAddress(from: location, completion: { (address) in
                             completion(address, nil)
                             //Save requested address to cache
@@ -35,7 +35,7 @@ class AddressRequest: NSObject {
                         CacheManager.shared.cache(address: address)
                         completion(address, nil)
                     }
-                    
+                
                 }, failure: { (error) in
                     self.platformGeoAddress(from: location, completion: { (address) in
                         completion(address, nil)
@@ -62,13 +62,12 @@ class AddressRequest: NSObject {
                 let json = JSON(data: content!)
                 if json != JSON.null{
                     let address = ObjectJSONTransformer.AddressObject(json: json)
-                    DispatchQueue.main.sync{completion(address)}
+                    completion(address)
                 }else{
-                    DispatchQueue.main.sync{failure(nil)}
-                    
+                    failure(nil)
                 }
             }else{
-                DispatchQueue.main.sync{failure(r.APIError())}
+                failure(r.APIError())
             }
         }
     }

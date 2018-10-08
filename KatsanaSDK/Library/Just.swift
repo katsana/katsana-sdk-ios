@@ -199,7 +199,7 @@ public final class HTTPResult : NSObject {
     let foundCookies: [HTTPCookie]
     if let headers = self.response?.HTTPHeaders, let url = self.response?.url {
       foundCookies = HTTPCookie.cookies(withResponseHeaderFields: headers,
-                                        for: url) as [HTTPCookie]
+                                        for: url)
     } else {
       foundCookies = []
     }
@@ -225,9 +225,7 @@ public final class HTTPResult : NSObject {
     }
     content.components(separatedBy: ", ").forEach { s in
       let linkComponents = s.components(separatedBy: ";")
-        .map {
-          ($0 as String).trimmingCharacters(in: CharacterSet.whitespaces)
-      }
+        .map { $0.trimmingCharacters(in: CharacterSet.whitespaces) }
       // although a link without a rel is valid, there's no way to reference it.
       if linkComponents.count > 1 {
         let url = linkComponents.first!
@@ -785,12 +783,11 @@ public final class HTTP: NSObject, URLSessionDelegate, JustAdaptor {
 
   func query(_ parameters: [String: Any]) -> String {
     var components: [(String, String)] = []
-    for key in Array(parameters.keys).sorted(by: <) {
-      let value: Any! = parameters[key]
-      components += self.queryComponents(key, value)
+    for (key, value) in parameters.sorted(by: { $0.key < $1.key }) {
+        components += self.queryComponents(key, value)
     }
 
-    return (components.map{"\($0)=\($1)"} as [String]).joined(separator: "&")
+    return (components.map { "\($0)=\($1)" }).joined(separator: "&")
   }
 
   func percentEncodeString(_ originalObject: Any) -> String {
@@ -907,7 +904,6 @@ public final class HTTP: NSObject, URLSessionDelegate, JustAdaptor {
           contentType = "application/json"
           body = try? JSONSerialization.data(withJSONObject: requestJSON,
             options: defaults.JSONWritingOptions)
-
         } else {
           if data.count > 0 {
             // assume user wants JSON if she is using this header
@@ -947,7 +943,7 @@ public final class HTTP: NSObject, URLSessionDelegate, JustAdaptor {
         for (k, v) in finalHeaders {
           request.addValue(v, forHTTPHeaderField: k)
         }
-        return request as URLRequest
+        return request
       }
 
     }
@@ -1115,7 +1111,7 @@ extension HTTP: URLSessionTaskDelegate, URLSessionDataDelegate {
       let handler = config.completionHandler
     {
       let result = HTTPResult(
-        data: config.data as Data,
+        data: config.data,
         response: task.response,
         error: error,
         task: task
