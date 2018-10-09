@@ -86,7 +86,7 @@ extension KatsanaAPI {
             handleResource()
         }).onFailure({ (error) in
             failure(error)
-            self.log.error("Error getting trip summaries with original from \(String(describing: fromDate)) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error)")
+            self.handleError(error: error, details: "Error getting trip summaries with original from \(String(describing: fromDate)) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error)")
         })
         if request == nil {
             handleResource()
@@ -280,7 +280,7 @@ extension KatsanaAPI {
                 handleResource()
             }).onFailure({ (error) in
                 failure(error)
-                self.log.error("Error getting trip summaries with original from \(fromDate) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error), path \(resource.url)")
+                self.handleError(error: error, details: "Error getting trip summaries with original from \(fromDate) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error), path \(resource.url)")
             })
             if request == nil {
                 handleResource()
