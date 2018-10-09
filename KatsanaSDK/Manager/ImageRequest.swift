@@ -43,12 +43,12 @@ public class ImageRequest: NSObject {
                 let content = r.content
                 if let image = KMImage(data: content!), let lastComponent = url?.lastPathComponent{
                     CacheManager.shared.cache(image: image, identifier: lastComponent)
-                    completion(image)
+                    DispatchQueue.main.sync{completion(image)}
                 }else{
-                    failure(r.error)
+                    DispatchQueue.main.sync{failure(r.error)}
                 }
             }else{
-                failure(r.APIError())
+                DispatchQueue.main.sync{failure(r.APIError())}
             }
         }
     }

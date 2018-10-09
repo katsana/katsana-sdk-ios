@@ -121,9 +121,9 @@ extension KatsanaAPI {
             if r.ok{
                 let json = JSON(data: r.content!)
                 let success = json["success"].boolValue
-                completion(success)
+                DispatchQueue.main.sync{completion(success)}
             }else{
-                completion(false)
+                DispatchQueue.main.sync{completion(false)}
             }
         }
     }

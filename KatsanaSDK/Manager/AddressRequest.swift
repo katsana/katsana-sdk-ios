@@ -62,12 +62,12 @@ class AddressRequest: NSObject {
                 let json = JSON(data: content!)
                 if json != JSON.null{
                     let address = ObjectJSONTransformer.AddressObject(json: json)
-                    completion(address)
+                    DispatchQueue.main.sync{completion(address)}
                 }else{
-                    failure(nil)
+                    DispatchQueue.main.sync{failure(nil)}
                 }
             }else{
-                failure(r.APIError())
+                DispatchQueue.main.sync{failure(r.APIError())}
             }
         }
     }

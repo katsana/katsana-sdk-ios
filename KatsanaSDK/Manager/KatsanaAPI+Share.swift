@@ -30,7 +30,7 @@ extension KatsanaAPI {
                 let json = JSON(data: r.content!)
                 let liveShare = ObjectJSONTransformer.LiveShareObject(json: json)
                 liveShare.duration = Int(duration)
-                completion(liveShare)
+                DispatchQueue.main.sync{completion(liveShare)}
                 
             }else{
                 var text = r.reason
@@ -38,7 +38,7 @@ extension KatsanaAPI {
                     text = String(data: content, encoding: .utf8)!
                 }
                 self.log.error("Error requesting live share link \(vehicleId), error: \(text)")
-                failure(r.APIError())
+                DispatchQueue.main.sync{failure(r.APIError())}
             }
         }
     }
@@ -59,7 +59,7 @@ extension KatsanaAPI {
                     let liveShare = ObjectJSONTransformer.LiveShareObject(json: aJson)
                     liveShares.append(liveShare)
                 }
-                completion(liveShares)
+                DispatchQueue.main.sync{completion(liveShares)}
                 
             }else{
                 var text = r.reason
@@ -67,7 +67,7 @@ extension KatsanaAPI {
                     text = String(data: content, encoding: .utf8)!
                 }
                 self.log.error("Error requesting live share link info \(vehicleId), \(text)")
-                failure(r.APIError())
+                DispatchQueue.main.sync{failure(r.APIError())}
                 
             }
         }
@@ -81,7 +81,7 @@ extension KatsanaAPI {
             headers: ["Authorization" : ("Bearer " + self.authToken)]
         ) { r in
             if r.ok {
-                completion(true)
+                DispatchQueue.main.sync{completion(true)}
             }else{
                 var text = r.reason
                 if let content = r.content{
@@ -89,8 +89,7 @@ extension KatsanaAPI {
                 }
                 
                 self.log.error("Error deleting live share link \(vehicleId), \(text)")
-                completion(false)
-                
+                DispatchQueue.main.sync{completion(false)}
             }
         }
     }
