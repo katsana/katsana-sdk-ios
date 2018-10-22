@@ -302,6 +302,11 @@ extension KatsanaAPI {
     }
     
     ///Get latest cached travel locations from today to previous day count
+    public func cacheLatestTrip(trip: Trip, vehicleId : String){
+        CacheManager.shared.cache(trip: trip, vehicleId: vehicleId)
+    }
+    
+    ///Get latest cached travel locations from today to previous day count
     public func cachedTrips(vehicleId : String, fromDate: Date, toDate: Date) -> [Trip]! {
         return CacheManager.shared.trips(vehicleId: vehicleId, date: fromDate, toDate: toDate)
     }
