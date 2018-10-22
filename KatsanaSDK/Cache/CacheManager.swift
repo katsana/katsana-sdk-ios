@@ -66,7 +66,7 @@ public class CacheManager: NSObject {
                 }
             }
         }
-        
+
         let addressPath = cacheDirectory().appending("/" + cacheAddressDataFilename())
         url = URL(fileURLWithPath: addressPath)
         if let data = try? Data(contentsOf: url){
@@ -174,19 +174,21 @@ public class CacheManager: NSObject {
 //            return nil
 //        }
         
-        let classname = NSStringFromClass(Trip.self)
-        if let tripArray = data[classname] as? [[String: Any]]{
+        let classname = NSStringFromClass(Travel.self)
+        if let travelArray = data[classname] as? [[String: Any]]{
             var trips = [Trip]()
-            for tripDicto in tripArray {
-                if let travelVehicleId = tripDicto["id"] as? String, let trip = tripDicto["data"] as? Trip {
-                    if toDate == nil {
-                        if travelVehicleId == vehicleId, Calendar.current.isDate(trip.date, inSameDayAs: date){
-                            trips.append(trip)
-                        }
-                    }else{
-                        if travelVehicleId == vehicleId{
-                            if (Calendar.current.isDate(trip.date, inSameDayAs: date) || (trip.date.isLaterThanDate(date) && trip.date.isEarlierThanDate(toDate))) {
-                                trips.append(trip)
+            for travelDicto in travelArray {
+                if let travelVehicleId = travelDicto["id"] as? String, let travels = travelDicto["data"] as? [Travel] {
+                    for travel in travels{
+                        if toDate == nil {
+                            if travelVehicleId == vehicleId, Calendar.current.isDate(travel.date, inSameDayAs: date){
+                                trips.append(contentsOf: travel.trips)
+                            }
+                        }else{
+                            if travelVehicleId == vehicleId{
+                                if (Calendar.current.isDate(travel.date, inSameDayAs: date) || (travel.date.isLaterThanDate(date) && travel.date.isEarlierThanDate(toDate))) {
+                                    trips.append(contentsOf: travel.trips)
+                                }
                             }
                         }
                     }
@@ -215,7 +217,8 @@ public class CacheManager: NSObject {
             for travelDicto in travelArray {
                 if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["data"] as? [Travel] {
                     for travel in travels {
-                        if Calendar.current.isDate(travel.date, inSameDayAs: date){
+                        let startDay = travel.date.dateAtStartOfDay()
+                        if startDay.isEqualToDateIgnoringTime(date){
                             return travel
                         }
                     }
@@ -760,15 +763,13 @@ public class CacheManager: NSObject {
     
     func purgeTravelOlderThan(days: Int) {
         let lastPurgeDate = UserDefaults.standard.value(forKey: "lastPurgeTravelDate")
-        let purgeInterval : TimeInterval = 60*60*24*7
-        
-        UserDefaults.standard.removeObject(forKey: "lastPurgeTravelDate")
+        let purgeInterval : TimeInterval = 60*60*24*TimeInterval(days)
         
         var canContinue = false
         if let lastPurgeDate = lastPurgeDate as? Date, Date().timeIntervalSince(lastPurgeDate) > purgeInterval{
             canContinue = true
         }else if lastPurgeDate == nil{
-            canContinue = true
+            UserDefaults.standard.setValue(Date(), forKey: "lastPurgeTravelDate")
         }
         
         if canContinue {

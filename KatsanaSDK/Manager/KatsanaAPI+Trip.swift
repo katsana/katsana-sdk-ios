@@ -378,7 +378,7 @@ extension KatsanaAPI {
         
         //Check required to date
         loopDate = toDate
-        while !loopDate.isEqualToDateIgnoringTime(fromDate) {
+        while !loopDate.isEqualToDateIgnoringTime(fromDate) || loopDate == toDate {
             let travel = CacheManager.shared.travel(vehicleId: vehicleId, date: loopDate)
             //If have cached history, add to array
             if let travel = travel {
