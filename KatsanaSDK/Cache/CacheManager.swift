@@ -181,12 +181,12 @@ public class CacheManager: NSObject {
                 if let travelVehicleId = travelDicto["id"] as? String, let travels = travelDicto["data"] as? [Travel] {
                     for travel in travels{
                         if toDate == nil {
-                            if travelVehicleId == vehicleId, Calendar.current.isDate(travel.date, inSameDayAs: date){
+                            if travelVehicleId == vehicleId, travel.date.timeIntervalSince(date) > 0{
                                 trips.append(contentsOf: travel.trips)
                             }
                         }else{
                             if travelVehicleId == vehicleId{
-                                if (Calendar.current.isDate(travel.date, inSameDayAs: date) || (travel.date.isLaterThanDate(date) && travel.date.isEarlierThanDate(toDate))) {
+                                if (travel.date.isLaterThanDate(date) && travel.date.isEarlierThanDate(toDate)) {
                                     trips.append(contentsOf: travel.trips)
                                 }
                             }
