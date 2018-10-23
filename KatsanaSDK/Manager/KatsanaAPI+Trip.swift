@@ -228,6 +228,7 @@ extension KatsanaAPI {
         
         var trips = [Trip]()
         var date = fromDate
+        
 
         let path = "vehicles/" + vehicleId + "/travels/summaries/duration"
         var resource = API.resource(path)

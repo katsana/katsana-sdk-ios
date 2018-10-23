@@ -73,6 +73,8 @@ public class KatsanaFormatter: NSObject {
     }
     
     public class func durationStringFrom(seconds: Double) -> String {
+        
+        
         return convertTime(seconds: seconds, displayFormat: displayFormat)
     }
     
@@ -137,7 +139,9 @@ public class KatsanaFormatter: NSObject {
     class func convertTime(seconds:Double, displayFormat:DisplayFormat) -> String {
         let transformer = TimeTransformer()
         transformer.displayFormat = displayFormat
-        let time = transformer.transformedValue(seconds) as? String
-        return time!
+        if let time = transformer.transformedValue(seconds) as? String{
+            return time
+        }
+        return ""
     }
 }

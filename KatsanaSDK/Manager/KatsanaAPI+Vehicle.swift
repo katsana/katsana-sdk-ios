@@ -249,7 +249,7 @@ extension KatsanaAPI {
         }
         
         for vehicle in vehicles{
-            if vehicle.vehicleId == vehicleId {
+            if let id = vehicle.vehicleId, id == vehicleId {
                 return vehicle
             }
         }

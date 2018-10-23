@@ -19,6 +19,7 @@ open class Trip: NSObject {
     open var idleDuration: Float = 0
     open var score: Float = -1
     open var date = Date(timeIntervalSinceReferenceDate: 0)
+    open var publicTransit = false
     
     open var idles = [VehicleLocation]()
     @objc dynamic open var locations = [VehicleLocation]()
@@ -32,7 +33,7 @@ open class Trip: NSObject {
     open var extraData = [String: Any]()
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData", "date", "id"]
+        return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData", "date", "id", "publicTransit"]
     }
     
     // MARK: Logic

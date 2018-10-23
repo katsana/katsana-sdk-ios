@@ -179,6 +179,11 @@ class ObjectJSONTransformer: NSObject {
         trip.locations = json["histories"].arrayValue.map {VehicleLocationObject(json: $0)}
         trip.violations = json["violations"].arrayValue.map {VehicleActivityObject(json: $0)}
         trip.score = json["score"].floatValue
+        let type = json["type"].stringValue
+        if type == "public_transit"{
+            trip.publicTransit = true
+        }
+        
         if let handler = KatsanaAPI.shared.objectInitializationHandler {
             handler(json, trip)
         }
