@@ -141,11 +141,16 @@ extension KatsanaAPI {
                 travel.lastUpdate = Date() //Set last update date
                 travel.date = date
                 travel.vehicleId = vehicleId
+                var newTrips = [Trip]()
                 for trip in travel.trips {
                     if let date =  trip.start?.trackedAt{
                         trip.date = date
                     }
+                    if trip.duration > 60, trip.distance > 1000{
+                        newTrips.append(trip)
+                    }
                 }
+                travel.trips = newTrips
                 CacheManager.shared.cache(travel: travel, vehicleId: vehicleId) //Cache history
             }
             completion(travel)
@@ -264,14 +269,18 @@ extension KatsanaAPI {
             
             func handleResource() -> Void {
                 if let summaries : [Trip] = resource.typedContent(){
+                    var newSummaries = [Trip]()
                     for summary in summaries{
                         if let date = summary.start?.trackedAt{
                             summary.date = date
                         }else if summary.locations.count > 0, let date = summary.locations.first?.trackedAt{
                             summary.date = date
                         }
+                        if summary.duration > 60, summary.distance > 1000{
+                            newSummaries.append(summary)
+                        }
                     }
-                    completion(summaries)
+                    completion(newSummaries)
                 }else{
                     failure(nil)
                 }
