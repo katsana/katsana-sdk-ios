@@ -18,11 +18,11 @@ class AddressRequest: NSObject {
             }else{
                 self.appleGeoAddress(from: location, completion: { (address) in
                     let optimizedAddress = address.optimizedAddress()
-                    var useAppleAddress = false
+                    var useAppleAddress = true
                     let comps = optimizedAddress.components(separatedBy: ",")
                     if let first = comps.first{
                         if first.count < 2{
-                            useAppleAddress = true
+                            useAppleAddress = false
                         }
                     }
                     if (optimizedAddress.count) <= 10 || !useAppleAddress{
