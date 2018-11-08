@@ -8,6 +8,7 @@
 
 import Siesta
 import XCGLogger
+import CoreLocation
 
 @objcMembers
 open class KatsanaAPI: NSObject {
@@ -34,6 +35,8 @@ open class KatsanaAPI: NSObject {
     public var logSavedDuration = 7
     ///Use this handler if need to have extra setup when object is initialized
     public var objectInitializationHandler : ((JSON, Any) -> (Void))!
+    ///Call outside address handler if address from SDK deemed not valid
+    public var addressHandler : ((CLLocationCoordinate2D, _ completion: @escaping (Address?) -> Void) -> Void)!
     
     public static let shared = KatsanaAPI()
     public var API : Service!

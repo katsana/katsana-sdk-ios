@@ -17,6 +17,9 @@ class AddressRequest: NSObject {
                 completion(address, nil)
             }else{
                 self.appleGeoAddress(from: location, completion: { (address) in
+                    CacheManager.shared.cache(address: address)
+                    completion(address, nil)
+                    
                     let optimizedAddress = address.optimizedAddress()
                     var useAppleAddress = true
                     let comps = optimizedAddress.components(separatedBy: ",")
@@ -25,11 +28,14 @@ class AddressRequest: NSObject {
                             useAppleAddress = false
                         }
                     }
-                    if (optimizedAddress.count) <= 10 || !useAppleAddress{
-                        self.platformGeoAddress(from: location, completion: { (address) in
-                            completion(address, nil)
-                            //Save requested address to cache
-                            CacheManager.shared.cache(address: address)
+                    if (optimizedAddress.count) <= 10 || !useAppleAddress, let handler = KatsanaAPI.shared.addressHandler{
+                        handler(location, {googleAddress in
+                            if let googleAddress = googleAddress{
+                                CacheManager.shared.cache(address: googleAddress)
+                                completion(googleAddress, nil)
+                            }else{
+                                completion(address, nil)
+                            }
                         })
                     }else{
                         CacheManager.shared.cache(address: address)
@@ -37,13 +43,17 @@ class AddressRequest: NSObject {
                     }
                 
                 }, failure: { (error) in
-                    self.platformGeoAddress(from: location, completion: { (address) in
-                        completion(address, nil)
-                        //Save requested address to cache
-                        CacheManager.shared.cache(address: address)
-                    }, failure: { (error) in
+                    if let handler = KatsanaAPI.shared.addressHandler{
+                        handler(location, {address in
+                            if let address = address{
+                                completion(address, nil)
+                            }else{
+                                completion(nil, error)
+                            }
+                        })
+                    }else{
                         completion(nil, error)
-                    })
+                    }
                 })
             }
         }
