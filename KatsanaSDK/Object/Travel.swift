@@ -10,11 +10,33 @@ import FastCoding
 
 ///The class contains information about vehicle travel for particular day.
 @objcMembers
-open class Travel: NSObject {
+open class Travel: NSObject, NSCopying {
     open var vehicleId : String!
     open var maxSpeed : Float = 0
     open var distance : Double = 0
     open var idleDuration : Double = 0
+    
+    public func copy(with zone: NSZone? = nil) -> Any {
+        let travel = Travel()
+        travel.vehicleId = vehicleId
+        travel.maxSpeed = maxSpeed
+        travel.distance = distance
+        travel.idleDuration = idleDuration
+        travel.duration = duration
+        
+        var newTrips = [Trip]()
+        for trip in trips{
+            let newTrip = trip.copy() as! Trip
+            newTrips.append(newTrip)
+        }
+        travel.trips = newTrips
+        travel.date = date
+        travel.lastUpdate = lastUpdate
+        travel.violationCount = violationCount
+        travel.tripCount = tripCount
+        travel._vehicle = _vehicle
+        return travel
+    }
     
     private var _duration : Double = 0
     open var duration : Double{
@@ -171,6 +193,24 @@ open class Travel: NSObject {
             currentTravel.trips.append(trip)
         }
         return travels
+    }
+    
+    func updateDataFromTrip() {
+        var distance : Double = 0
+        var maxSpeed : CGFloat = 0
+        var duration : Double = 0
+        
+        for trip in trips {
+            distance += trip.distance
+            duration += trip.duration
+            maxSpeed = max(maxSpeed, CGFloat(trip.maxSpeed))
+        }
+        self.distance = distance
+        self.duration = duration
+        self.maxSpeed = Float(maxSpeed)
+        if let date = trips.first?.date{
+            self.date = date
+        }
     }
     
 }

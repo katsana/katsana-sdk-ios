@@ -94,8 +94,14 @@ extension KatsanaAPI {
     }
     
     ///Request travel details for given date
-    public func requestTravel(for date: Date, vehicleId: String, options: [String]! = nil, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
-        let travel = CacheManager.shared.travel(vehicleId: vehicleId, date: date)
+    public func requestTravel(for date: Date, vehicleId: String, loadLocations: Bool = false, options: [String]! = nil, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        var travel : Travel!
+        if loadLocations {
+            travel = CacheManager.shared.travelDetail(vehicleId: vehicleId, date: date)
+        }else{
+            travel = CacheManager.shared.travel(vehicleId: vehicleId, date: date)
+        }
+        
         if let travel = travel, travel.needLoadTripHistory == false{
             var needLoad = false
             for trip in travel.trips {
@@ -332,6 +338,11 @@ extension KatsanaAPI {
             date = date.dateBySubtractingDays(1)
         }
         return travellocations
+    }
+    
+    ///Get cached travel data with locations
+    public func cachedTravelWithLocationsData(vehicleId : String, date : Date) -> Travel! {
+        return CacheManager.shared.travelDetail(vehicleId:vehicleId, date:date)
     }
     
     public func wipeTripSummariesResources(){

@@ -16,6 +16,12 @@ let cacheVersion = "2.9"
 public class CacheManager: NSObject {
     public static let shared = CacheManager()
     
+    static public let dateFormatter : DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-YYY"
+        return formatter
+    }()
+    
     private var addresses = [Address]()
     public var activities = [String: [VehicleActivity]]()
     private var liveShares = [LiveShare]()
@@ -94,6 +100,20 @@ public class CacheManager: NSObject {
         
         purgeOldActivities()
         print(dataPath)
+        
+//        var travelDicto: [[String: Any]]!
+//        if let array = data[NSStringFromClass(Travel.self)] as? [[String: Any]]{
+//            travelDicto = array
+//            for (_, dicto) in travelDicto.enumerated() {
+//                if let theVehicleId = dicto["id"] as? String, let travels = dicto["data"] as? [Travel]{
+//                    for travel in travels{
+//                        cache(travel: travel, vehicleId: theVehicleId)
+//                    }
+//                }
+//            }
+//        }
+
+        
     }
     
     // MARK: Get Cache
@@ -202,7 +222,7 @@ public class CacheManager: NSObject {
         return nil
     }
     
-    ///Get cached travel data given vehicle id and date
+    ///Get cached travel data given vehicle id and date without locations data
     public func travel(vehicleId:String, date:Date) -> Travel! {
         //Check if date is today, return nil if more than specified time. No local cache is returned and  library should request a new data from server
         let today = Date()
@@ -222,6 +242,22 @@ public class CacheManager: NSObject {
                             return travel
                         }
                     }
+                }
+            }
+        }
+        return nil
+    }
+    
+    /*Get cached travel data given vehicle id and date with locations data.
+     Previously, all locations are saved in same place as trip summaries, but due to memory issue, all travel locations are saved into separate file, a single file for a day travel.
+    */
+    public func travelDetail(vehicleId:String, date:Date) -> Travel! {
+        let dateStr = CacheManager.dateFormatter.string(from: date)
+        let path = tripPath().appending("/\(dateStr).dat")
+        if FileManager.default.fileExists(atPath: path) {
+            if let data = try? Data(contentsOf: URL(fileURLWithPath: path)){
+                if let aTravel = FastCoder.object(with: data) as? Travel{
+                    return aTravel
                 }
             }
         }
@@ -331,6 +367,12 @@ public class CacheManager: NSObject {
     }
     
     public func cache(travel: Travel, vehicleId: String) {
+        let aTravel = travel.copy() as! Travel
+        for trip in aTravel.trips{
+            cacheTripLocations(trip: trip)
+            trip.locations.removeAll()
+        }
+        
         var dataChanged = false
         let classname = NSStringFromClass(Travel.self)
         
@@ -353,8 +395,8 @@ public class CacheManager: NSObject {
                 var needBreak = false
                 for (index, theTravel) in travels.enumerated() {
                     //Check if same date
-                    if theTravel.date.isEqualToDateIgnoringTime(travel.date) {
-                        if theTravel == travel{
+                    if theTravel.date.isEqualToDateIgnoringTime(aTravel.date) {
+                        if theTravel == aTravel{
                             needAdd = false
                         }else{
                             needRemoveTravelIndex = index
@@ -362,7 +404,7 @@ public class CacheManager: NSObject {
                         }
                         
                         //Some request does not pass all information, so if old travel data has extra data use that data and save into new response data
-                        if travel.trips.count == theTravel.trips.count{
+                        if aTravel.trips.count == theTravel.trips.count{
                             for (subindex, trip) in travel.trips.enumerated() {
                                 let oldTrip = theTravel.trips[subindex]
                                 if mergeTrip(trip, with: oldTrip){
@@ -387,9 +429,9 @@ public class CacheManager: NSObject {
         }
         if needAdd {
             if theTravels != nil {
-                theTravels.append(travel)
+                theTravels.append(aTravel)
             }else{
-                theTravels = [travel]
+                theTravels = [aTravel]
             }
             dataChanged = true
         }
@@ -408,6 +450,7 @@ public class CacheManager: NSObject {
     
     ///For normal use of KatsanaSDK, this class is never called except when used for different purpose.
     public func cache(trip: Trip, vehicleId: String) {
+//        /Need cache trip to hdd
 //        var travels = [Travel]()
 //        var dates = [Date]()
 //        var currentDate : Date!
@@ -427,6 +470,10 @@ public class CacheManager: NSObject {
 //            let theTravel = travel(vehicleId: vehicleId, date: date)
 //            travels.append(theTravel)
 //        }
+        //Save locations in separate file to reduce memory footprint
+        cacheTripLocations(trip: trip)
+        trip.locations.removeAll()
+        
         let classname = NSStringFromClass(Travel.self)
         var travel: Travel!
         var travelIndex: Int!
@@ -471,12 +518,6 @@ public class CacheManager: NSObject {
                     return a.date < b.date
                 })
                 travel.trips = trips
-                
-//                for trip in trips {
-//                    if trip.locations.count == 0 {
-//                        travel.needLoadTripHistory = true
-//                    }
-//                }
             }
         }else{
             travel = Travel()
@@ -485,19 +526,8 @@ public class CacheManager: NSObject {
             travel.trips = [trip]
         }
         
-        var distance : Double = 0
-        var maxSpeed : CGFloat = 0
-        var duration : Double = 0
-        
-        for trip in travel.trips {
-            distance += trip.distance
-            duration += trip.duration
-            maxSpeed = max(maxSpeed, CGFloat(trip.maxSpeed))
-        }
-        travel.distance = distance
-        travel.duration = duration
-        travel.maxSpeed = Float(maxSpeed)
-        
+        travel.updateDataFromTrip()
+
         if let travelIndex = travelIndex, var travelDicto = travelDicto as? [[String: Any]]{
             theTravels[travelIndex] = travel
             travelDicto[theUserIndex]["data"] = theTravels
@@ -505,6 +535,42 @@ public class CacheManager: NSObject {
             autoSave()
         }else{
             cache(travel: travel, vehicleId: vehicleId)
+        }
+    }
+    
+    func cacheTripLocations(trip: Trip) {
+        let dateStr = CacheManager.dateFormatter.string(from: trip.date)
+        let path = tripPath().appending("/\(dateStr).dat")
+        var travel: Travel!
+        if FileManager.default.fileExists(atPath: path), let data = try? Data(contentsOf: URL(fileURLWithPath: path)), let aTravel = FastCoder.object(with: data) as? Travel {
+                var foundIdx : Int!
+                for (idx, aTrip) in aTravel.trips.enumerated(){
+                    if aTrip.date == trip.date{
+                        foundIdx = idx
+                        break
+                    }
+                }
+                if let foundIdx = foundIdx{
+                    aTravel.trips.remove(at: foundIdx)
+                    aTravel.trips.insert(trip, at: foundIdx)
+                }else{
+                    var trips = aTravel.trips
+                    trips.insert(trip, at: 0)
+                    trips.sort(by: { (a, b) -> Bool in
+                        return a.date < b.date
+                    })
+                    aTravel.trips = trips
+                }
+                travel = aTravel
+        } else {
+            travel = Travel()
+            travel.trips = [trip]
+            travel.updateDataFromTrip()
+        }
+        
+        if let travel = travel{
+            let data = FastCoder.data(withRootObject: travel)
+            try? data?.write(to: URL(fileURLWithPath: path))
         }
     }
     
@@ -634,28 +700,6 @@ public class CacheManager: NSObject {
         try? data?.write(to: URL(fileURLWithPath: path))
     }
     
-    // MARK: Persistence
-    
-    func cacheDataFilename() -> String {
-        return "cacheData.dat"
-    }
-    
-    func cacheAddressDataFilename() -> String {
-        return "cacheAddress.dat"
-    }
-    
-    func cacheActivitiesDataFilename() -> String {
-        return "cacheActivities.dat"
-    }
-    
-    func cacheLiveShareFilename() -> String {
-        return "cacheLiveShare.dat"
-    }
-    
-    func cacheDirectory() -> String {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)[0]
-        return documentsPath
-    }
     
     ///Clear travel cache for specified date ranges
     public func clearTravelCache(vehicleId: String, date: Date! = nil, toDate: Date! = nil) {
@@ -845,6 +889,54 @@ public class CacheManager: NSObject {
             trip.locations = oldTrip.locations.map({$0})
         }        
         return merged
+    }
+    
+    // MARK: Persistence
+    
+    func cacheDataFilename() -> String {
+        return "cacheData.dat"
+    }
+    
+    func cacheAddressDataFilename() -> String {
+        return "cacheAddress.dat"
+    }
+    
+    func cacheActivitiesDataFilename() -> String {
+        return "cacheActivities.dat"
+    }
+    
+    func cacheLiveShareFilename() -> String {
+        return "cacheLiveShare.dat"
+    }
+    
+    func cacheDirectory() -> String {
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)[0]
+        return documentsPath
+    }
+    
+    private var _tripPath: String!
+    private func tripPath() -> String
+    {
+        if _tripPath != nil{
+            return _tripPath!
+        }
+        createLogFolderIfNeeded()
+        _tripPath = cacheDirectory().appending("/trip")
+        return _tripPath
+    }
+    
+    private func createLogFolderIfNeeded() {
+        let triplogPath = cacheDirectory().appending("/trip")
+        let fileManager = FileManager.default
+        if !fileManager.fileExists(atPath: triplogPath) {
+            do {
+                try fileManager.createDirectory(atPath: triplogPath,
+                                                withIntermediateDirectories: false,
+                                                attributes: nil)
+            } catch {
+                KatsanaAPI.shared.log.error("Error creating log folder in dir: \(error)")
+            }
+        }
     }
     
     

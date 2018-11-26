@@ -8,7 +8,7 @@
 import FastCoding
 
 @objcMembers
-open class Trip: NSObject {
+open class Trip: NSObject, NSCopying {
     open var id : String!
     open var start: VehicleLocation!
     open var end: VehicleLocation!
@@ -34,6 +34,28 @@ open class Trip: NSObject {
     
     override open class func fastCodingKeys() -> [Any]? {
         return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData", "date", "id", "publicTransit"]
+    }
+    
+    public func copy(with zone: NSZone? = nil) -> Any {
+        let trip = Trip()
+        trip.id = id
+        trip.maxSpeed = maxSpeed
+        trip.distance = distance
+        trip.averageSpeed = averageSpeed
+        trip.idleDuration = idleDuration
+        trip.duration = duration
+        trip.start = start
+        trip.end = end
+        trip.locations = locations
+        trip.idles = idles
+        trip.score = score
+        trip.date = date
+        trip.violations = violations
+        trip.nextTrip = nextTrip
+        trip.prevTrip = prevTrip
+        trip.extraData = extraData
+        trip.publicTransit = publicTransit
+        return trip
     }
     
     // MARK: Logic
