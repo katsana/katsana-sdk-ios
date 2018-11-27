@@ -14,7 +14,15 @@ let cacheVersion = "2.9"
 //Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer should not use and call methods in this class manually.
 @objcMembers
 public class CacheManager: NSObject {
-    public static let shared = CacheManager()
+    private static var _shared : CacheManager!
+    public static var shared: CacheManager {
+        get{
+            if _shared == nil{
+                _shared = CacheManager()
+            }
+            return _shared
+        }
+    }
     
     static public let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
@@ -22,7 +30,50 @@ public class CacheManager: NSObject {
         return formatter
     }()
     
-    private var addresses = [Address]()
+    private var _addresses : [Address]!
+    private var addresses : [Address] {
+        get{
+            if _addresses == nil{
+                let addressPath = CacheManager.shared.cacheDirectory().appending("/" + CacheManager.shared.cacheAddressDataFilename())
+                let url = URL(fileURLWithPath: addressPath)
+                if let data = try? Data(contentsOf: url){
+                    if let unarchive = FastCoder.object(with: data) as? [Address]{
+                        _addresses = unarchive
+                        purgeOldAddresses()
+                    }
+                }
+            }
+            if _addresses == nil{
+                _addresses = [Address]()
+            }
+            return _addresses
+        }
+        set{
+            _addresses = newValue
+        }
+    }
+//    private var _travels : [Travel]!
+//    private var travels : [Travel] {
+//        get{
+//            if _travels == nil{
+//                let path = CacheManager.shared.cacheDirectory().appending("/" + CacheManager.shared.cacheTravelsDataFilename())
+//                let url = URL(fileURLWithPath: path)
+//                if let data = try? Data(contentsOf: url){
+//                    if let unarchive = FastCoder.object(with: data) as? [Travel]{
+//                        _travels = unarchive
+//                    }
+//                }
+//            }
+//            if _travels == nil{
+//                _travels = [Travel]()
+//            }
+//            return _travels
+//        }
+//        set{
+//            _travels = newValue
+//        }
+//    }
+    
     public var activities = [String: [VehicleActivity]]()
     private var liveShares = [LiveShare]()
     private var data = [String: Any]()
@@ -72,14 +123,6 @@ public class CacheManager: NSObject {
                 }
             }
         }
-
-        let addressPath = cacheDirectory().appending("/" + cacheAddressDataFilename())
-        url = URL(fileURLWithPath: addressPath)
-        if let data = try? Data(contentsOf: url){
-            if let unarchive = FastCoder.object(with: data) as? [Address]{
-                self.addresses = unarchive
-            }
-        }
         
         let activitiesPath = cacheDirectory().appending("/" + cacheActivitiesDataFilename())
         url = URL(fileURLWithPath: activitiesPath)
@@ -100,20 +143,6 @@ public class CacheManager: NSObject {
         
         purgeOldActivities()
         print(dataPath)
-        
-//        var travelDicto: [[String: Any]]!
-//        if let array = data[NSStringFromClass(Travel.self)] as? [[String: Any]]{
-//            travelDicto = array
-//            for (_, dicto) in travelDicto.enumerated() {
-//                if let theVehicleId = dicto["id"] as? String, let travels = dicto["data"] as? [Travel]{
-//                    for travel in travels{
-//                        cache(travel: travel, vehicleId: theVehicleId)
-//                    }
-//                }
-//            }
-//        }
-
-        
     }
     
     // MARK: Get Cache
@@ -805,6 +834,10 @@ public class CacheManager: NSObject {
         try? FileManager.default.removeItem(atPath: activityPath)
     }
     
+    func clearMemory() {
+        CacheManager._shared = nil
+    }
+    
     func purgeTravelOlderThan(days: Int) {
         let lastPurgeDate = UserDefaults.standard.value(forKey: "lastPurgeTravelDate")
         let purgeInterval : TimeInterval = 60*60*24*TimeInterval(days)
@@ -874,6 +907,18 @@ public class CacheManager: NSObject {
         }
     }
     
+    func purgeOldAddresses() {
+        if let addresses = _addresses{
+            var diff = _addresses.count - 150
+            if diff > 0{
+                diff -= 10
+                if diff > 0{
+                    _addresses = Array(addresses.suffix(from: diff))
+                }
+            }
+        }
+    }
+    
     // MARK: Logic
     
     ///Merge two trips
@@ -899,6 +944,10 @@ public class CacheManager: NSObject {
     
     func cacheAddressDataFilename() -> String {
         return "cacheAddress.dat"
+    }
+    
+    func cacheTravelsDataFilename() -> String {
+        return "travel.dat"
     }
     
     func cacheActivitiesDataFilename() -> String {
@@ -938,6 +987,5 @@ public class CacheManager: NSObject {
             }
         }
     }
-    
     
 }
