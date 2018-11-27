@@ -103,8 +103,12 @@ public class CacheManager: NSObject {
         }
                 
         let dataPath = cacheDirectory().appending("/" + cacheDataFilename())
+        
         var url = URL(fileURLWithPath: dataPath)
         if let data = try? Data(contentsOf: url){
+            let sizeStr = covertToFileString(with: sizeForLocalFilePath(filePath: dataPath))
+            KatsanaAPI.shared.log.info("Cache data size = \(sizeStr)")
+            
             if let unarchive = FastCoder.object(with: data) as? [String: Any]{
                 self.data = unarchive
                 
@@ -136,12 +140,10 @@ public class CacheManager: NSObject {
                     }
                     newDicto[key] = sort
                 }
-                
                 self.activities = newDicto
+                purgeOldActivities()
             }
         }
-        
-        purgeOldActivities()
         print(dataPath)
     }
     
@@ -986,6 +988,33 @@ public class CacheManager: NSObject {
                 KatsanaAPI.shared.log.error("Error creating log folder in dir: \(error)")
             }
         }
+    }
+    
+    // MARK: Helper
+    
+    func sizeForLocalFilePath(filePath:String) -> UInt64 {
+        do {
+            let fileAttributes = try FileManager.default.attributesOfItem(atPath: filePath)
+            if let fileSize = fileAttributes[FileAttributeKey.size]  {
+                return (fileSize as! NSNumber).uint64Value
+            } else {
+                print("Failed to get a size attribute from path: \(filePath)")
+            }
+        } catch {
+            print("Failed to get file attributes for local path: \(filePath) with error: \(error)")
+        }
+        return 0
+    }
+    
+    func covertToFileString(with size: UInt64) -> String {
+        var convertedValue: Double = Double(size)
+        var multiplyFactor = 0
+        let tokens = ["bytes", "KB", "MB", "GB", "TB", "PB",  "EB",  "ZB", "YB"]
+        while convertedValue > 1024 {
+            convertedValue /= 1024
+            multiplyFactor += 1
+        }
+        return String(format: "%4.2f %@", convertedValue, tokens[multiplyFactor])
     }
     
 }
