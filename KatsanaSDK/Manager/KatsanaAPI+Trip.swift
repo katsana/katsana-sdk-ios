@@ -287,6 +287,20 @@ extension KatsanaAPI {
                         }
                         CacheManager.shared.cache(trip: summary, vehicleId: vehicleId)
                     }
+                    if let travels = CacheManager.shared.latestTravels(vehicleId: vehicleId, count: 2){
+                        var cachedTrips = [Trip]()
+                        for travel in travels{
+                            cachedTrips.append(contentsOf: travel.trips)
+                        }
+                        
+                        if let lastTrip = summaries.last{
+                            for trip in cachedTrips{
+                                if trip.date.timeIntervalSince(lastTrip.date) > 0{
+                                    newSummaries.append(trip)
+                                }
+                            }
+                        }
+                    }
                     completion(newSummaries)
                 }else{
                     failure(nil)
