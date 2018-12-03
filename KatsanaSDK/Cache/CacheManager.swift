@@ -538,6 +538,9 @@ public class CacheManager: NSObject {
                     for (key, value) in trip.extraData{
                         aTrip.extraData[key] = value
                     }
+                    if trip.score >= 0{
+                        aTrip.score = trip.score
+                    }
                     haveSameTrip = true
                     break
                 }
@@ -570,6 +573,10 @@ public class CacheManager: NSObject {
     }
     
     func cacheTripLocations(trip: Trip) {
+        if trip.locations.count == 0{
+            return
+        }
+        
         let dateStr = CacheManager.dateFormatter.string(from: trip.date)
         let path = tripPath().appending("/\(dateStr).dat")
         var travel: Travel!

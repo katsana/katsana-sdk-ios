@@ -285,6 +285,7 @@ extension KatsanaAPI {
                         if summary.duration > 60, summary.distance > 1000{
                             newSummaries.append(summary)
                         }
+                        CacheManager.shared.cache(trip: summary, vehicleId: vehicleId)
                     }
                     completion(newSummaries)
                 }else{
