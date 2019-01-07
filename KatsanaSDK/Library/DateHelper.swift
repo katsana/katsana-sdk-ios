@@ -528,13 +528,9 @@ public extension Date {
     */
     func dateAtStartOfWeek() -> Date
     {
-        let flags: Set<Calendar.Component> = [Calendar.Component.year, Calendar.Component.month, Calendar.Component.weekOfYear, Calendar.Component.weekday]
-        var components = Calendar.current.dateComponents(flags, from: self)
-        components.weekday = Calendar.current.firstWeekday
-        components.hour = 0
-        components.minute = 0
-        components.second = 0
-        return Calendar.current.date(from: components)!
+        //Fix new year bug by Lutfi
+        let date = Calendar.current.date(from: Calendar.current.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))
+        return date!
     }
     
     /**
