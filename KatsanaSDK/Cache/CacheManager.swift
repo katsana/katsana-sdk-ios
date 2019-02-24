@@ -297,9 +297,8 @@ public class CacheManager: NSObject {
     
     public func address(for coordinate: CLLocationCoordinate2D, completion: @escaping (_ address: Address?) -> Void) {
         let keepAddressDuration : TimeInterval = 60*60*24 * 3*30 //Keep address for 3 months
-        
+        let addresses = self.addresses
         DispatchQueue.global(qos: .background).async {
-            let addresses = self.addresses
             var found = false
             for address in addresses {
                 if address.coordinate().equal(coordinate), Date().timeIntervalSince(address.updateDate) < keepAddressDuration{

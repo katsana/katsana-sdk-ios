@@ -21,7 +21,7 @@ open class KatsanaAPI: NSObject {
     public static let authTokenUpdatedNotification = Notification.Name(rawValue: "authTokenUpdatedNotification")
     public static let insuranceExpiryDateChangedNotification = Notification.Name(rawValue: "insuranceExpiryDateChangedNotification")
     public static let defaultBaseURL: URL = URL(string: "https://api.katsana.com/")!
-    internal(set) var log : XCGLogger!
+    public internal(set) var log : XCGLogger!
     
     
     ///Default options when requesting vehicle or all vehicles
