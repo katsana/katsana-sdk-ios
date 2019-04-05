@@ -33,15 +33,22 @@ extension KatsanaAPI {
     }
     
     ///Request travel summaries between dates. Only trip count is loaded, travel details are omitted.
-    public func requestTravelSummaries(vehicleId: String, fromDate: Date!, toDate: Date, completion: @escaping (_ summaries:[Travel]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestTravelSummaries(vehicleId: String, fromDate: Date!, toDate: Date, forceRequest: Bool = false, completion: @escaping (_ summaries:[Travel]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let dates = validateRange(fromDate: fromDate, toDate: toDate)
-        let datesWithHistory = requiredRangeToRequestTravelSummary(fromDate: dates.fromDate, toDate: dates.toDate, vehicleId: vehicleId)
+        var newFromDate = dates.fromDate
+        var newToDate = dates.toDate
+        var travels = [Travel]()
         
-        var travels = datesWithHistory.cachedHistories
-        
+        if !forceRequest{
+            let datesWithHistory = requiredRangeToRequestTravelSummary(fromDate: dates.fromDate, toDate: dates.toDate, vehicleId: vehicleId)
+            newFromDate = datesWithHistory.fromDate
+            newToDate = datesWithHistory.toDate
+            travels = datesWithHistory.cachedHistories
+        }
+
         let path = "vehicles/" + vehicleId + "/summaries/duration"
         
-        let resource = API.resource(path).withParam("start", datesWithHistory.fromDate.toStringWithYearMonthDay()).withParam("end",datesWithHistory.toDate.toStringWithYearMonthDay());
+        let resource = API.resource(path).withParam("start", newFromDate.toStringWithYearMonthDay()).withParam("end",newToDate.toStringWithYearMonthDay());
         let request = resource.loadIfNeeded()
         
         func handleResource() -> Void {
@@ -86,7 +93,7 @@ extension KatsanaAPI {
             handleResource()
         }).onFailure({ (error) in
             failure(error)
-            self.handleError(error: error, details: "Error getting trip summaries with original from \(String(describing: fromDate)) to \(toDate) and final from \(datesWithHistory.fromDate) to \(datesWithHistory.toDate),  \(error)")
+            self.handleError(error: error, details: "Error getting trip summaries with original from \(String(describing: fromDate)) to \(toDate) and final from \(newFromDate) to \(newToDate),  \(error)")
         })
         if request == nil {
             handleResource()
@@ -182,7 +189,7 @@ extension KatsanaAPI {
             return
         }
         
-        let travel = CacheManager.shared.travel(vehicleId: vehicleId!, date: summary.date)
+        let travel = cachedTravelWithLocationsData(vehicleId: vehicleId!, date: summary.date)
         if let travel = travel{
             //If distance is same, no need to request again
             if summary.duration != 0, summary.distance == travel.distance, summary.tripCount == travel.trips.count {

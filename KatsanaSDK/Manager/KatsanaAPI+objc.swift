@@ -30,7 +30,7 @@ public extension KatsanaAPI{
     
     @available(swift, obsoleted: 1.0)
     public func objc_requestTravelSummaries(vehicleId: String, fromDate: Date!, toDate: Date, completion: @escaping (_ summaries:[Travel]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        requestTravelSummaries(vehicleId: vehicleId, fromDate: fromDate, toDate: toDate, completion: { (travels) in
+        requestTravelSummaries(vehicleId: vehicleId, fromDate: fromDate, toDate: toDate, forceRequest: true, completion: { (travels) in
             completion(travels)
         }) { (error) in
             failure(error)
