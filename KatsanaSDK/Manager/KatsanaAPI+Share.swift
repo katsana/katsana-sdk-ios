@@ -67,7 +67,7 @@ extension KatsanaAPI {
                     text = String(data: content, encoding: .utf8)!
                 }
                 self.log.error("Error requesting live share link info \(vehicleId), \(text)")
-                DispatchQueue.main.sync{failure(r.APIError())}
+                failure(r.APIError())
                 
             }
         }

@@ -101,12 +101,14 @@ extension KatsanaAPI {
     }
     
     ///Request travel details for given date
-    public func requestTravel(for date: Date, vehicleId: String, loadLocations: Bool = false, options: [String]! = nil, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestTravel(for date: Date, vehicleId: String, loadLocations: Bool = false, forceLoad: Bool = false, options: [String]! = nil, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         var travel : Travel!
-        if loadLocations {
-            travel = CacheManager.shared.travelDetail(vehicleId: vehicleId, date: date)
-        }else{
-            travel = CacheManager.shared.travel(vehicleId: vehicleId, date: date)
+        if !forceLoad{
+            if loadLocations {
+                travel = CacheManager.shared.travelDetail(vehicleId: vehicleId, date: date)
+            }else{
+                travel = CacheManager.shared.travel(vehicleId: vehicleId, date: date)
+            }
         }
         
         if let travel = travel, travel.needLoadTripHistory == false{
@@ -219,7 +221,13 @@ extension KatsanaAPI {
             }
         }
         
-        requestTravel(for: summary.date, vehicleId: vehicleId!, completion: {travel in
+        var forceLoad = false
+        if let travel = travel{
+            forceLoad = travel.needLoadTripHistory
+        }
+        
+        
+        requestTravel(for: summary.date, vehicleId: vehicleId!, forceLoad:forceLoad, completion: {travel in
             summary.needLoadTripHistory = false
             if let trips = travel?.trips{
                 summary.trips = trips
