@@ -161,7 +161,7 @@ extension KatsanaAPI {
                     if let date =  trip.start?.trackedAt{
                         trip.date = date
                     }
-                    if trip.duration > 60, trip.distance > 1000{
+                    if trip.duration > 60, trip.distance > 10{
                         newTrips.append(trip)
                     }
                 }

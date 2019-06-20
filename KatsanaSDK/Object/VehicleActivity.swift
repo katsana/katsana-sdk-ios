@@ -25,6 +25,7 @@ import CoreLocation
     case doorAjar
     case intrusion
     case tripScore
+    case fuelLow
     //More can be added
 }
 
@@ -107,6 +108,8 @@ open class VehicleActivity: NSObject {
             type = .intrusion
         case "trip-score":
             type = .tripScore
+        case "fuel-low":
+            type = .fuelLow
         default:
             print("Policy " + self.policyKey + " not handled")
         }
@@ -169,7 +172,4 @@ open class VehicleActivity: NSObject {
         return "\(super.description): \(message!) \(startTime)"
     }
     
-//    class open func allTypes() -> [String] {
-//        return ["speed", "movement", "area", "battery-cutoff", "trip-start", "speed-summary", "harsh-brake", "harsh-accelerate", "harsh-corner", "checkpoint"]
-//    }
 }
