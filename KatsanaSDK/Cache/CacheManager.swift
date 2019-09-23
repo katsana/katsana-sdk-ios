@@ -106,9 +106,10 @@ public class CacheManager: NSObject {
         
         var url = URL(fileURLWithPath: dataPath)
         if let data = try? Data(contentsOf: url){
-            let sizeStr = covertToFileString(with: sizeForLocalFilePath(filePath: dataPath))
+            let size = sizeForLocalFilePath(filePath: dataPath)
+            let sizeStr = covertToFileString(with: size)
             KatsanaAPI.shared.log.info("Cache data size = \(sizeStr)")
-            
+            print(size)
             if let unarchive = FastCoder.object(with: data) as? [String: Any]{
                 self.data = unarchive
                 
@@ -125,6 +126,10 @@ public class CacheManager: NSObject {
                         }
                     }
                 }
+            }
+            
+            if size > 500000{
+                purgeTravelOlderThan(days: 7)
             }
         }
         

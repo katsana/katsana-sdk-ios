@@ -48,6 +48,11 @@ open class KatsanaAPI: NSObject {
     internal(set) public var logPath: String!
     internal var identifierDicts = [String: Date]()
     
+    ///Last log size before reset. Used for debugging purpose
+    ///
+    ///
+    internal(set) public var lastLogSize: String!
+    
     internal(set) public var tokenRefreshDate: Date!
     @objc internal(set) dynamic public var currentUser: User!
     @objc public        dynamic        var currentVehicle: Vehicle!{
