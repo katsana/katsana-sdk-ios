@@ -34,6 +34,7 @@ open class Vehicle: NSObject {
     open var thumbImageURL: String!
     open var current: VehicleLocation!
     open var earliestTravelDate: Date!
+    open var fuelPercentage: Float = -1
     
     open var manufacturer: String!
     open var model: String!
@@ -107,6 +108,7 @@ open class Vehicle: NSObject {
         vehicleNumber = vehicle.vehicleNumber
         model = vehicle.model
         manufacturer = vehicle.manufacturer
+        fuelPercentage = vehicle.fuelPercentage
     }
     
     func jsonPatch() -> [String: Any] {

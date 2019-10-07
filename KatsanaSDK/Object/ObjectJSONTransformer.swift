@@ -65,6 +65,10 @@ class ObjectJSONTransformer: NSObject {
         vehicle.odometer = dicto["odometer"].doubleValue
         vehicle.websocketSupported = dicto["meta"]["websocket"].boolValue
         vehicle.earliestTravelDate = dicto["earliest_date"].dateWithoutTime
+        if let fuel = dicto["fuel_percentage"].float{
+            vehicle.fuelPercentage = fuel
+        }
+        
         
         vehicle.vehicleNumber = dicto["vehicle_number"].stringValue
         if vehicle.vehicleNumber == "" {

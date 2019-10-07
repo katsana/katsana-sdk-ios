@@ -9,7 +9,7 @@
 import CoreLocation
 import FastCoding
 
-let cacheVersion = "2.9"
+let cacheVersion = "2.11"
 
 //Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer should not use and call methods in this class manually.
 @objcMembers
@@ -109,7 +109,6 @@ public class CacheManager: NSObject {
             let size = sizeForLocalFilePath(filePath: dataPath)
             let sizeStr = covertToFileString(with: size)
             KatsanaAPI.shared.log.info("Cache data size = \(sizeStr)")
-            print(size)
             if let unarchive = FastCoder.object(with: data) as? [String: Any]{
                 self.data = unarchive
                 
