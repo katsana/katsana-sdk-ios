@@ -34,7 +34,14 @@ open class Vehicle: NSObject {
     open var thumbImageURL: String!
     open var current: VehicleLocation!
     open var earliestTravelDate: Date!
+    
+    //Sensors
+    open var fuelLitre: Float = -1
     open var fuelPercentage: Float = -1
+    open var fuelCapacity: Float = -1
+    open var temperatureValue: Float = -1
+    open var temperatureStatus: String!
+    open var sensors = [Sensor]()
     
     open var manufacturer: String!
     open var model: String!
@@ -192,6 +199,11 @@ open class Vehicle: NSObject {
                     }
                     completion(image!)
                 }, failure: { (error) in
+                    if let error = error as! NSError{
+                        if error.code == 404{ //If not found just set the url as nil
+                            self.thumbImageURL = nil
+                        }
+                    }
                     KatsanaAPI.shared.log.error("Error requesting vehicle thumb image vehicle id \(self.vehicleId!)")
                     self.isLoadingThumbImage = false
                 })

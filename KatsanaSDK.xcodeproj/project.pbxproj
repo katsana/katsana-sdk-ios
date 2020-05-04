@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5A3D5B5E999A8B7991DB703C /* Pods_KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370766C63D4C0FE02F9C8E2B /* Pods_KatsanaSDK.framework */; };
 		65CFE8E479D695508F173AB4 /* Pods_KatsanaSDK_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0ABAD6C2A32616ED7574B6 /* Pods_KatsanaSDK_macOS.framework */; };
+		C16C8290245A99F9008B0B1E /* KatsanaAPI+Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */; };
+		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C719176C1E48703B0041BC18 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917491E48703B0041BC18 /* CacheManager.swift */; };
 		C719176D1E48703B0041BC18 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917491E48703B0041BC18 /* CacheManager.swift */; };
 		C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */; };
@@ -130,6 +132,8 @@
 		6EC96362BBA9C531ED1079F0 /* Pods-KatsanaSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		710124ECF51BBFFF8B12D25A /* Pods-KatsanaSDK macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9F0ABAD6C2A32616ED7574B6 /* Pods_KatsanaSDK_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KatsanaSDK_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Fleet.swift"; sourceTree = "<group>"; };
+		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C701AA5D1F7DFEA000EFFF4E /* Pods_KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71917491E48703B0041BC18 /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate+Extension.swift"; sourceTree = "<group>"; };
@@ -296,6 +300,7 @@
 				C7331294207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift */,
 				C71917591E48703B0041BC18 /* KatsanaAPI+Share.swift */,
 				C719175A1E48703B0041BC18 /* KatsanaAPI+Trip.swift */,
+				C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */,
 				C719175B1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift */,
 				C719175C1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift */,
 				C7729D651FCBA869002497DD /* KatsanaAPI+objc.swift */,
@@ -315,6 +320,7 @@
 				C71917631E48703B0041BC18 /* ObjectJSONTransformer.swift */,
 				C71917641E48703B0041BC18 /* Travel.swift */,
 				C71917651E48703B0041BC18 /* Trip.swift */,
+				C16C8291245AB6FA008B0B1E /* Sensor.swift */,
 				C71917661E48703B0041BC18 /* User.swift */,
 				C71917671E48703B0041BC18 /* Vehicle.swift */,
 				C71917681E48703B0041BC18 /* VehicleActivity.swift */,
@@ -521,6 +527,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -651,6 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7331295207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift in Sources */,
+				C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */,
 				C719179E1E48703B0041BC18 /* Trip.swift in Sources */,
 				C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */,
 				C719179C1E48703B0041BC18 /* Travel.swift in Sources */,
@@ -661,6 +669,7 @@
 				C71917781E48703B0041BC18 /* AddressRequest.swift in Sources */,
 				C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */,
 				C71917A61E48703B0041BC18 /* VehicleLocation.swift in Sources */,
+				C16C8290245A99F9008B0B1E /* KatsanaAPI+Fleet.swift in Sources */,
 				C71917821E48703B0041BC18 /* KatsanaAPI+Login.swift in Sources */,
 				C71917CB1E4884410041BC18 /* DateHelper.swift in Sources */,
 				C71917A21E48703B0041BC18 /* Vehicle.swift in Sources */,
@@ -822,6 +831,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -874,6 +884,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
