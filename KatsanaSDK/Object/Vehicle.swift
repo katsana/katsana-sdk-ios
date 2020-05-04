@@ -175,9 +175,15 @@ open class Vehicle: NSObject {
             }
         }
     }
+    
+    open func emptyImage() -> UIImage{
+        let image = UIImage(color: UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1))
+        return image!
+    }
    
     open func thumbImage(completion: @escaping (_ image: KMImage) -> Void){
         guard thumbImageURL != nil else {
+            completion(emptyImage())
             return
         }
         
@@ -199,13 +205,14 @@ open class Vehicle: NSObject {
                     }
                     completion(image!)
                 }, failure: { (error) in
-                    if let error = error as! NSError{
+                    if let error = error as NSError?{
                         if error.code == 404{ //If not found just set the url as nil
                             self.thumbImageURL = nil
                         }
                     }
                     KatsanaAPI.shared.log.error("Error requesting vehicle thumb image vehicle id \(self.vehicleId!)")
                     self.isLoadingThumbImage = false
+                    completion(self.emptyImage())
                 })
             }
         }
