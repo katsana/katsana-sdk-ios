@@ -26,6 +26,18 @@ class ObjectJSONTransformer: NSObject {
         if let gender = json["gender"].string, (gender == "male" || gender == "female"){
             user.gender = Gender(rawValue: gender)!
         }
+        if let fleets = json["fleets"].array{
+            var theFleets = [Fleet]()
+            for fleet in fleets{
+                let aFleet = Fleet()
+                aFleet.fleetId = fleet["id"].intValue
+                aFleet.name = fleet["name"].stringValue
+                aFleet.deviceCount = fleet["devices"].intValue
+                theFleets.append(aFleet)
+            }
+            user.fleets = theFleets
+        }
+        
         user.country = json["country"].stringValue
         user.state = json["state"].stringValue
         user.postcode = json["postcode"].stringValue
@@ -69,11 +81,26 @@ class ObjectJSONTransformer: NSObject {
             vehicle.fuelPercentage = fuel
         }
         
-        vehicle.temperatureValue = dicto["sensors"]["temperature"]["value"].floatValue
-        vehicle.temperatureStatus = dicto["sensors"]["temperature"]["status"].stringValue
-        vehicle.fuelLitre = dicto["sensors"]["fuel"]["litre"].floatValue
-        vehicle.fuelPercentage = dicto["sensors"]["fuel"]["percentage"].floatValue
-        vehicle.fuelCapacity = dicto["sensors"]["fuel"]["capacity"].floatValue
+        if let fleets = dicto["fleets"].array{
+            var fleedIds = [Int]()
+            for fleet in fleets{
+                if let id = fleet.int{
+                    fleedIds.append(id)
+                }
+            }
+            vehicle.fleetIds = fleedIds
+        }
+        
+        if let val = dicto["sensors"]["temperature"]["value"].float{
+            vehicle.temperatureValue = val
+            vehicle.temperatureStatus = dicto["sensors"]["temperature"]["status"].stringValue
+        }
+        if let val = dicto["sensors"]["fuel"]["litre"].float{
+            vehicle.fuelLitre = val
+            vehicle.fuelPercentage = dicto["sensors"]["fuel"]["percentage"].floatValue
+            vehicle.fuelCapacity = dicto["sensors"]["fuel"]["capacity"].floatValue
+        }
+        
         
         if let sensors = dicto["sensors"]["others"].array?.first?.array{
             var theSensors = [Sensor]()

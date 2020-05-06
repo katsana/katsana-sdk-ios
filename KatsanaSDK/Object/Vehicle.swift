@@ -43,6 +43,8 @@ open class Vehicle: NSObject {
     open var temperatureStatus: String!
     open var sensors = [Sensor]()
     
+    open var fleetIds = [Int]()
+    
     open var manufacturer: String!
     open var model: String!
     open var insuredBy: String!
@@ -88,7 +90,7 @@ open class Vehicle: NSObject {
     private var isLoadingThumbImage = false
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData", "timezone", "insuredExpiry", "insuredBy", "model", "manufacturer", "earliestTravelDate"]
+        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData", "timezone", "insuredExpiry", "insuredBy", "model", "manufacturer", "earliestTravelDate", "fleetIds"]
     }
     
     ///Reload data given new vehicle data
@@ -125,12 +127,60 @@ open class Vehicle: NSObject {
         return dicto
     }
     
+    open func availableSensorTitles() -> [String] {
+        var titles = [String]()
+        for sensor in sensors{
+            if sensor.sensorType == .door{
+                titles.append("door")
+            }
+            else if sensor.sensorType == .arm{
+                titles.append("arm")
+            }
+        }
+        if fuelPercentage > -1{
+            titles.append("fuel")
+        }
+        if temperatureValue > -1{
+            titles.append("temperature")
+        }
+        return titles
+    }
+    
+    open func availableSensorValues() -> [String] {
+        var values = [String]()
+        for sensor in sensors{
+            if sensor.sensorType == .door{
+                if sensor.event == "open"{
+                    values.append("Open")
+                }else{
+                    values.append("Closed")
+                }
+            }
+            else if sensor.sensorType == .arm{
+                if sensor.event == "active"{
+                    values.append("On")
+                }else{
+                    values.append("Off")
+                }
+            }
+        }
+        if fuelPercentage > -1{
+            values.append(String(format: "%.0f%%", fuelPercentage))
+        }
+        if temperatureValue > -1{
+            values.append(String(format: "%.0f°C", temperatureValue))
+        }
+        return values
+    }
+    
 //    license_plate: (string, optional) - License Plate
 //    description: (string, optional) - Description
 //    manufacturer: (string, optional) - Vehicle Manufacturer
 //    model: (string, optional) - Vehicle Model
 //    insured_by: (string, optional) - Insured By
 //    insured_expiry: (date, optional) - Insured Expiry Date
+    
+    
     
     // MARK: Image
     
@@ -146,6 +196,7 @@ open class Vehicle: NSObject {
     
     open func image(completion: @escaping (_ image: KMImage) -> Void){
         guard imageURL != nil else {
+            completion(emptyImage())
             return
         }
         
@@ -169,8 +220,15 @@ open class Vehicle: NSObject {
                     }
                     completion(image!)
                 }, failure: { (error) in
+                    if let error = error as NSError?{
+                        if error.code == 404{ //If not found just set the url as nil
+                            self.imageURL = nil
+                            self.thumbImageURL = nil
+                        }
+                    }
                     KatsanaAPI.shared.log.error("Error requesting vehicle image \(self.vehicleId!)")
                     self.isLoadingImage = false
+                    completion(self.emptyImage())
                 })
             }
         }
@@ -208,6 +266,7 @@ open class Vehicle: NSObject {
                     if let error = error as NSError?{
                         if error.code == 404{ //If not found just set the url as nil
                             self.thumbImageURL = nil
+                            self.imageURL = nil
                         }
                     }
                     KatsanaAPI.shared.log.error("Error requesting vehicle thumb image vehicle id \(self.vehicleId!)")

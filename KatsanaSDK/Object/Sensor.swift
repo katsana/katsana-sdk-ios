@@ -15,15 +15,11 @@
 
 @objcMembers
 open class Sensor: NSObject {
-    
-    
-    var input: Int = -1
-    var name = ""
-    var sensorType: SensorType = .other
-    var event: String!
-    var deviceType: String!
-    
-    
+    open var input: Int = -1
+    open var name = ""
+    open var sensorType: SensorType = .other
+    open var event: String!
+    open var deviceType: String!    
 }
 
 //"event" : "in-active",

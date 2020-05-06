@@ -41,6 +41,8 @@ open class User: NSObject {
     open var country: String!
     open var gender: Gender = .unknown
     
+    open var fleets = [Fleet]()
+    
     open var genderText: String!{
         get{
             if gender == .unknown{
@@ -114,7 +116,7 @@ open class User: NSObject {
     }
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["userId", "email", "address", "phoneHome", "phoneMobile", "fullname", "status", "createdAt", "imageURL", "thumbImageURL", "postcode", "phoneMobileCountryCode", "state", "country", "birthdayText", "genderText"]
+        return ["userId", "email", "address", "phoneHome", "phoneMobile", "fullname", "status", "createdAt", "imageURL", "thumbImageURL", "postcode", "phoneMobileCountryCode", "state", "country", "birthdayText", "genderText", "fleets"]
     }
     
     open func jsonPatch() -> [String: Any] {
@@ -209,6 +211,15 @@ open class User: NSObject {
     }
     
     // MARK: helper
+    
+    open func fleet(id: Int) -> Fleet!{
+        for fleet in fleets{
+            if fleet.fleetId == id{
+                return fleet
+            }
+        }
+        return nil
+    }
     
     open func profileProgress() -> CGFloat {
         var progressCount :CGFloat = 0

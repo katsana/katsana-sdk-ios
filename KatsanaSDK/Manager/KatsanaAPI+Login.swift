@@ -76,7 +76,12 @@ extension KatsanaAPI {
     }
     
     private func loadProfile(completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: RequestError?) -> Void) {
-        let resource = self.API.resource("profile")
+        var resource = self.API.resource("profile")
+        if let options = defaultRequestProfileOptions{
+            let text = options.joined(separator: ",")
+            resource = resource.withParam("includes", text)
+        }
+        
         resource.loadIfNeeded()?.onSuccess({ (entity) in
             let user : User? = resource.typedContent()
             if let user = user{

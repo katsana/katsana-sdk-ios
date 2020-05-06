@@ -29,6 +29,7 @@ open class KatsanaAPI: NSObject {
     ///Default options when requesting travel or trip
     public var defaultRequestTravelOptions: [String]!
     public var defaultRequestTripOptions: [String]!
+    public var defaultRequestProfileOptions: [String]!
     public var defaultRequestTripSummaryOptions: [String]!
     public var authorizationHeader = "Bearer "
     ///Specify time cache is saved in day
