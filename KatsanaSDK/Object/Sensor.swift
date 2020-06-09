@@ -19,7 +19,19 @@ open class Sensor: NSObject {
     open var name = ""
     open var sensorType: SensorType = .other
     open var event: String!
-    open var deviceType: String!    
+    open var deviceType: String!
+    
+    public func title() -> String {
+        switch sensorType {
+        case .arm:
+            return "arm"
+        case .door:
+            return "door"
+        default:
+            return ""
+        }
+    }
+    
 }
 
 //"event" : "in-active",

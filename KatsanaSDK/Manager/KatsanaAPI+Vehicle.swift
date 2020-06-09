@@ -261,4 +261,8 @@ extension KatsanaAPI {
         return CacheManager.shared.vehicles(userId:userId)
     }
     
+    public func wipeResources(vehicleId: String){
+        API.wipeResources(matching: "vehicles/" + vehicleId)
+    }
+    
 }

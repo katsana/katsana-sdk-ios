@@ -95,14 +95,18 @@ class ObjectJSONTransformer: NSObject {
             vehicle.temperatureValue = val
             vehicle.temperatureStatus = dicto["sensors"]["temperature"]["status"].stringValue
         }
-        if let val = dicto["sensors"]["fuel"]["litre"].float{
-            vehicle.fuelLitre = val
+        if let val = dicto["sensors"]["fuel"]["capacity"].float{
+            let litre = dicto["sensors"]["fuel"]["litre"].stringValue
+            if let litreFloat = Float(litre){
+                vehicle.fuelLitre = litreFloat
+            }
             vehicle.fuelPercentage = dicto["sensors"]["fuel"]["percentage"].floatValue
-            vehicle.fuelCapacity = dicto["sensors"]["fuel"]["capacity"].floatValue
+            vehicle.fuelCapacity = val
+            vehicle.fuelStatus = dicto["sensors"]["fuel"]["status"].string
         }
         
         
-        if let sensors = dicto["sensors"]["others"].array?.first?.array{
+        if let sensors = dicto["sensors"]["others"].array{
             var theSensors = [Sensor]()
             for sensor in sensors{
                 let aSensor = Sensor()

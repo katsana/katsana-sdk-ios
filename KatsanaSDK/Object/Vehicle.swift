@@ -39,6 +39,7 @@ open class Vehicle: NSObject {
     open var fuelLitre: Float = -1
     open var fuelPercentage: Float = -1
     open var fuelCapacity: Float = -1
+    open var fuelStatus: String!
     open var temperatureValue: Float = -1
     open var temperatureStatus: String!
     open var sensors = [Sensor]()
@@ -168,7 +169,7 @@ open class Vehicle: NSObject {
             values.append(String(format: "%.0f%%", fuelPercentage))
         }
         if temperatureValue > -1{
-            values.append(String(format: "%.0f°C", temperatureValue))
+            values.append(String(format: "%.1f°C", temperatureValue))
         }
         return values
     }
@@ -199,6 +200,11 @@ open class Vehicle: NSObject {
             completion(emptyImage())
             return
         }
+        if KatsanaAPI.shared.vehicleIdWithEmptyImages.contains(vehicleId) {
+            completion(emptyImage())
+            return
+        }
+        
         
         if let image = image {
             completion(image)
@@ -224,6 +230,7 @@ open class Vehicle: NSObject {
                         if error.code == 404{ //If not found just set the url as nil
                             self.imageURL = nil
                             self.thumbImageURL = nil
+                            KatsanaAPI.shared.vehicleIdWithEmptyImages.append(self.vehicleId)
                         }
                     }
                     KatsanaAPI.shared.log.error("Error requesting vehicle image \(self.vehicleId!)")
@@ -241,6 +248,10 @@ open class Vehicle: NSObject {
    
     open func thumbImage(completion: @escaping (_ image: KMImage) -> Void){
         guard thumbImageURL != nil else {
+            completion(emptyImage())
+            return
+        }
+        if KatsanaAPI.shared.vehicleIdWithEmptyImages.contains(vehicleId) {
             completion(emptyImage())
             return
         }
@@ -267,6 +278,7 @@ open class Vehicle: NSObject {
                         if error.code == 404{ //If not found just set the url as nil
                             self.thumbImageURL = nil
                             self.imageURL = nil
+                            KatsanaAPI.shared.vehicleIdWithEmptyImages.append(self.vehicleId)
                         }
                     }
                     KatsanaAPI.shared.log.error("Error requesting vehicle thumb image vehicle id \(self.vehicleId!)")

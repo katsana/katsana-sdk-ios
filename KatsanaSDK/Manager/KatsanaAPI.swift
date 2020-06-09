@@ -41,13 +41,16 @@ open class KatsanaAPI: NSObject {
     
     public static let shared = KatsanaAPI()
     public var API : Service!
-    internal(set) var clientId : String = ""
-    internal(set) var clientSecret: String = ""
-    internal(set) var grantType: String = ""
-    internal(set) var authTokenExpired: Date!
+    var clientId : String = ""
+    var clientSecret: String = ""
+    var grantType: String = ""
+    var authTokenExpired: Date!
     
     internal(set) public var logPath: String!
     internal var identifierDicts = [String: Date]()
+    
+    ///Vehicle ids with empty images. Due to some bugs, we put vehicle with empty image here, so can skip loading those images again on current session.
+    var vehicleIdWithEmptyImages = [String]()
     
     ///Last log size before reset. Used for debugging purpose
     ///
@@ -341,5 +344,27 @@ open class KatsanaAPI: NSObject {
         }) { (error) in
             self.log.error("Error refreshing token, \(String(describing: error?.localizedDescription))")
         }
+    }
+    
+    // MARK: Helper
+    
+    public func vehicleWithUnassignedFleet() -> [Vehicle]! {
+        if let user = currentUser, let vehicles = vehicles{
+            var newVehicles = [Vehicle]()
+            for vehicle in vehicles{
+                var isUnassigned = true
+                for fleet in vehicle.fleetIds{
+                    if let _ = user.fleet(id: fleet){
+                        isUnassigned = false
+                        break
+                    }
+                }
+                if isUnassigned{
+                    newVehicles.append(vehicle)
+                }
+            }
+            return newVehicles
+        }
+        return nil
     }
 }
