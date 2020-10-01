@@ -9,9 +9,9 @@
 
 /// Class to convert Swifty JSON to API object
 class ObjectJSONTransformer: NSObject {
-    class func UserObject(json : JSON) -> User {
+    class func UserObject(json : JSON) -> KTUser {
         let email = json["email"].stringValue
-        let user = User(email: email)
+        let user = KTUser(email: email)
         user.userId = json["id"].stringValue
         user.address = json["address"].stringValue
         user.phoneHome = json["phone_home"].stringValue
@@ -46,25 +46,25 @@ class ObjectJSONTransformer: NSObject {
         user.createdAt = json["created_at"].date(gmt: 0)
         user.updatedAt = json["updated_at"].date(gmt: 0)
         if let handler = KatsanaAPI.shared.objectInitializationHandler {
-            handler(json, User.self)
+            handler(json, KTUser.self)
         }
         return user
     }
     
-    class func VehiclesObject(json : JSON) -> [Vehicle]{
+    class func VehiclesObject(json : JSON) -> [KTVehicle]{
         let arr = json["devices"].arrayValue
         let vehicles = arr.map{VehicleObject(json: $0)}
         return vehicles
     }
     
-    class func VehicleObject(json : JSON) -> Vehicle {
+    class func VehicleObject(json : JSON) -> KTVehicle {
         var dicto = json["device"]
         //Check if called from vehicle or vehicles API
         if dicto.dictionaryValue.keys.count == 0 {
             dicto = json
         }
         
-        let vehicle = Vehicle()
+        let vehicle = KTVehicle()
         vehicle.userId = dicto["user_id"].stringValue
         vehicle.vehicleId = dicto["id"].stringValue
         
@@ -184,8 +184,8 @@ class ObjectJSONTransformer: NSObject {
         return summaries
     }
     
-    class func TripSummariesObject(json : JSON) -> [Trip] {
-        var summaries = [Trip]()
+    class func TripSummariesObject(json : JSON) -> [KTTrip] {
+        var summaries = [KTTrip]()
         let array = json.arrayValue
         for jsonObj in array {
             let history = TripObject(json: jsonObj)
@@ -223,8 +223,8 @@ class ObjectJSONTransformer: NSObject {
         return history
     }
     
-    class func TripObject(json : JSON) -> Trip {
-        let trip = Trip()
+    class func TripObject(json : JSON) -> KTTrip {
+        let trip = KTTrip()
         trip.maxSpeed = json["max_speed"].floatValue
         trip.distance = json["distance"].doubleValue
         trip.duration = json["duration"].doubleValue
@@ -249,8 +249,8 @@ class ObjectJSONTransformer: NSObject {
         return trip
     }
     
-    class func AddressObject(json : JSON) -> Address {
-        let address = Address()
+    class func AddressObject(json : JSON) -> KTAddress {
+        let address = KTAddress()
         address.latitude = json["latitude"].doubleValue
         address.longitude = json["longitude"].doubleValue
         let streetNumber = json["street_number"].stringValue
@@ -307,14 +307,14 @@ class ObjectJSONTransformer: NSObject {
         return share
     }
     
-    class func InsurersObject(json : JSON) -> [Insurer] {
-        var insurers = [Insurer]()
+    class func InsurersObject(json : JSON) -> [KTInsurer] {
+        var insurers = [KTInsurer]()
         let array = json.arrayValue
         for jsonObj in array {
             let name = jsonObj["name"].stringValue
             let country = jsonObj["country"].stringValue
             let partner = jsonObj["partner"].boolValue
-            let insurer = Insurer(name: name, country: country, partner: partner)
+            let insurer = KTInsurer(name: name, country: country, partner: partner)
             insurers.append(insurer)
         }
         return insurers
@@ -373,10 +373,10 @@ class ObjectJSONTransformer: NSObject {
         }
         subscribe.upgrades = subscribeUpgrades
         
-        var devices = [Vehicle]()
+        var devices = [KTVehicle]()
         if let devicesArray = json["devices"].array{
             for deviceJSON in devicesArray{
-                let device = Vehicle()
+                let device = KTVehicle()
                 device.vehicleId = deviceJSON["id"].stringValue
                 device.vehicleNumber = deviceJSON["vehicle_number"].stringValue
                 device.vehicleDescription = deviceJSON["description"].stringValue
@@ -388,7 +388,7 @@ class ObjectJSONTransformer: NSObject {
         return subscribe
     }
     
-    class func RegisterVehicleObject(json : JSON) -> Vehicle {
+    class func RegisterVehicleObject(json : JSON) -> KTVehicle {
         let device = json["device"]
         return ObjectJSONTransformer.VehicleObject(json: device)
     }

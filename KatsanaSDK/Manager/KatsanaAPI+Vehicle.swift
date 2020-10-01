@@ -15,7 +15,7 @@ extension KatsanaAPI {
     ///
     /// - parameter vehicleId:  vehicle id
     /// - parameter completion: completion
-    public func requestVehicle(vehicleId: String, options: [String]! = nil, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestVehicle(vehicleId: String, options: [String]! = nil, completion: @escaping (_ vehicle: KTVehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let cachedVehicle = vehicleWith(vehicleId: vehicleId)
         if (cachedVehicle != nil) {
             currentVehicle = cachedVehicle!
@@ -42,7 +42,7 @@ extension KatsanaAPI {
         let request = resource.loadIfNeeded()
         
         func handleResource() -> Void {
-            let vehicle : Vehicle? = resource.typedContent()
+            let vehicle : KTVehicle? = resource.typedContent()
             if cachedVehicle != nil, let vehicle = vehicle {
                 cachedVehicle?.reload(with: vehicle)
                 currentVehicle = cachedVehicle!
@@ -80,7 +80,7 @@ extension KatsanaAPI {
     /// Request all vehicles. vehicles variable will be set from the vehicles requested
     ///
     /// - parameter completion: completion
-    public func requestAllVehicles(options:[String]! = nil, completion: @escaping (_ vehicles: [Vehicle]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestAllVehicles(options:[String]! = nil, completion: @escaping (_ vehicles: [KTVehicle]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         guard self.currentUser != nil else {
             failure(nil)
             return
@@ -101,10 +101,10 @@ extension KatsanaAPI {
         let request = resource.loadIfNeeded()
         
         func handleResource() -> Void {
-            let vehicles : [Vehicle]? = resource.typedContent()
+            let vehicles : [KTVehicle]? = resource.typedContent()
             self.vehicles = vehicles
             if let vehicles = vehicles {
-                CacheManager.shared.cache(vehicles: vehicles)
+                KTCacheManager.shared.cache(vehicles: vehicles)
                 
                 let vehicleIds = vehicles.map({$0.vehicleId!})
                 let combined = vehicleIds.joined(separator: ", ")
@@ -147,7 +147,7 @@ extension KatsanaAPI {
         }
     }
     
-    public func requestAllVehicleLocations(completion: @escaping (_ vehicles: [Vehicle]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestAllVehicleLocations(completion: @escaping (_ vehicles: [KTVehicle]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         guard vehicles != nil else{
             return
         }
@@ -191,7 +191,7 @@ extension KatsanaAPI {
         }
     }
     
-    public func registerVehicle(vehicleToken: String, vehicleData: [String: String], userData: [String: String]! = nil, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func registerVehicle(vehicleToken: String, vehicleData: [String: String], userData: [String: String]! = nil, completion: @escaping (_ vehicle: KTVehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let path = "track/register"
         let resource = API.resource(path);
         
@@ -203,7 +203,7 @@ extension KatsanaAPI {
         }
 
         resource.request(.post, json: theData).onSuccess { (entity) in
-            let vehicle : Vehicle? = resource.typedContent()
+            let vehicle : KTVehicle? = resource.typedContent()
             if let vehicle = vehicle{
                 self.vehicles?.append(vehicle)
                 completion(vehicle)
@@ -221,13 +221,13 @@ extension KatsanaAPI {
         }
     }
     
-    public func requestInsurers(completion: @escaping (_ insurers: [Insurer]) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestInsurers(completion: @escaping (_ insurers: [KTInsurer]) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let path = "insurers/my"
         let resource = API.resource(path);
         let request = resource.loadIfNeeded()
         
         request?.onSuccess({ (entity) in
-            let insurers : [Insurer]? = resource.typedContent()
+            let insurers : [KTInsurer]? = resource.typedContent()
             completion(insurers!)
         }).onFailure({ (error) in
             failure(error)
@@ -235,14 +235,14 @@ extension KatsanaAPI {
         })
         
         if request == nil {
-            let insurers : [Insurer]? = resource.typedContent()
+            let insurers : [KTInsurer]? = resource.typedContent()
             completion(insurers!)
         }
     }
     
     // MARK: Logic
     
-    public func vehicleWith(vehicleId: String) -> Vehicle! {
+    public func vehicleWith(vehicleId: String) -> KTVehicle! {
         guard (vehicles != nil) else {
 //            self.log.info("No vehicle given vehicle id \(vehicleId)")
             return nil
@@ -257,8 +257,8 @@ extension KatsanaAPI {
     }
     
     ///Get latest cached travel locations from today to previous day count
-    public func cachedVehicles(userId : String) -> [Vehicle]! {
-        return CacheManager.shared.vehicles(userId:userId)
+    public func cachedVehicles(userId : String) -> [KTVehicle]! {
+        return KTCacheManager.shared.vehicles(userId:userId)
     }
     
     public func wipeResources(vehicleId: String){

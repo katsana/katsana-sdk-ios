@@ -24,9 +24,9 @@ open class Travel: NSObject, NSCopying {
         travel.idleDuration = idleDuration
         travel.duration = duration
         
-        var newTrips = [Trip]()
+        var newTrips = [KTTrip]()
         for trip in trips{
-            let newTrip = trip.copy() as! Trip
+            let newTrip = trip.copy() as! KTTrip
             newTrips.append(newTrip)
         }
         travel.trips = newTrips
@@ -55,7 +55,7 @@ open class Travel: NSObject, NSCopying {
         }
     }
     
-    open var trips = [Trip](){
+    open var trips = [KTTrip](){
         didSet{
             //Set trip count explicitly
             tripCount = trips.count
@@ -93,8 +93,8 @@ open class Travel: NSObject, NSCopying {
     
     // MARK: Helper
     
-    open var _vehicle : Vehicle!
-    open func owner() -> Vehicle! {
+    open var _vehicle : KTVehicle!
+    open func owner() -> KTVehicle! {
         if _vehicle == nil, let vehicleId = vehicleId {
             _vehicle = KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)
         }
@@ -140,7 +140,7 @@ open class Travel: NSObject, NSCopying {
     // MARK: Logic
     
     ///Get trip at specified time, return nil if not found
-    open func trip(at time: Date) -> Trip! {
+    open func trip(at time: Date) -> KTTrip! {
         for trip in trips {
             if let startTime = trip.start?.trackedAt, let endTime = trip.end?.trackedAt  {
                 if time.timeIntervalSince(startTime) >= 0, endTime.timeIntervalSince(time) >= 0 {
@@ -172,14 +172,14 @@ open class Travel: NSObject, NSCopying {
         return String(format: "%@, trips:%@, maxSpeed:%.1f, date:%@", super.description, trips.description, maxSpeed, date?.description ?? "")
     }
     
-    open class func separateTripsIntoTravels(trips : [Trip]) -> [Travel] {
+    open class func separateTripsIntoTravels(trips : [KTTrip]) -> [Travel] {
         var travels = [Travel]()
         var currentTravel: Travel!
         for trip in trips{
             if currentTravel == nil{
                 currentTravel = Travel()
                 currentTravel.date = trip.date
-                currentTravel.trips = [Trip]()
+                currentTravel.trips = [KTTrip]()
                 travels.append(currentTravel)
             }
             else if trip.date.isEqualToDateIgnoringTime(currentTravel.date){

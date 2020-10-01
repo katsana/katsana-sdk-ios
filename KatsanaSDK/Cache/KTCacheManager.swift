@@ -13,12 +13,12 @@ let cacheVersion = "2.11"
 
 //Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer should not use and call methods in this class manually.
 @objcMembers
-public class CacheManager: NSObject {
-    private static var _shared : CacheManager!
-    public static var shared: CacheManager {
+public class KTCacheManager: NSObject {
+    private static var _shared : KTCacheManager!
+    public static var shared: KTCacheManager {
         get{
             if _shared == nil{
-                _shared = CacheManager()
+                _shared = KTCacheManager()
             }
             return _shared
         }
@@ -30,21 +30,21 @@ public class CacheManager: NSObject {
         return formatter
     }()
     
-    private var _addresses : [Address]!
-    private var addresses : [Address] {
+    private var _addresses : [KTAddress]!
+    private var addresses : [KTAddress] {
         get{
             if _addresses == nil{
-                let addressPath = CacheManager.shared.cacheDirectory().appending("/" + CacheManager.shared.cacheAddressDataFilename())
+                let addressPath = KTCacheManager.shared.cacheDirectory().appending("/" + KTCacheManager.shared.cacheAddressDataFilename())
                 let url = URL(fileURLWithPath: addressPath)
                 if let data = try? Data(contentsOf: url){
-                    if let unarchive = FastCoder.object(with: data) as? [Address]{
+                    if let unarchive = FastCoder.object(with: data) as? [KTAddress]{
                         _addresses = unarchive
                         purgeOldAddresses()
                     }
                 }
             }
             if _addresses == nil{
-                _addresses = [Address]()
+                _addresses = [KTAddress]()
             }
             return _addresses
         }
@@ -153,17 +153,17 @@ public class CacheManager: NSObject {
     
     // MARK: Get Cache
     
-    public func lastUser() -> User! {
-        let classname = NSStringFromClass(User.self)
-        if let user = data[classname] as? User{
+    public func lastUser() -> KTUser! {
+        let classname = NSStringFromClass(KTUser.self)
+        if let user = data[classname] as? KTUser{
             return user
         }
         return nil
     }
     
-    public func vehicles(userId: String) -> [Vehicle]! {
-        let classname = NSStringFromClass(Vehicle.self)
-        if let vehiclesData = data[classname] as? [String: Any], let id = vehiclesData["user"] as? String, userId == id, let vehicles = vehiclesData["vehicles"] as? [Vehicle]{
+    public func vehicles(userId: String) -> [KTVehicle]! {
+        let classname = NSStringFromClass(KTVehicle.self)
+        if let vehiclesData = data[classname] as? [String: Any], let id = vehiclesData["user"] as? String, userId == id, let vehicles = vehiclesData["vehicles"] as? [KTVehicle]{
             return vehicles
         }
         return nil
@@ -220,7 +220,7 @@ public class CacheManager: NSObject {
     }
     
     ///Get cached travel data given vehicle id and date
-    public func trips(vehicleId:String, date:Date, toDate:Date! = nil) -> [Trip]! {
+    public func trips(vehicleId:String, date:Date, toDate:Date! = nil) -> [KTTrip]! {
         //Check if date is today, return nil if more than specified time. No local cache is returned and  library should request a new data from server
 //        let today = Date()
 //        if date.isToday(), travelAccessVehicleId == vehicleId, let todayAccessDate = todayAccessDate, today.timeIntervalSince(todayAccessDate) > 60 * 4 {
@@ -231,7 +231,7 @@ public class CacheManager: NSObject {
         
         let classname = NSStringFromClass(Travel.self)
         if let travelArray = data[classname] as? [[String: Any]]{
-            var trips = [Trip]()
+            var trips = [KTTrip]()
             for travelDicto in travelArray {
                 if let travelVehicleId = travelDicto["id"] as? String, let travels = travelDicto["data"] as? [Travel] {
                     for travel in travels{
@@ -287,7 +287,7 @@ public class CacheManager: NSObject {
      Previously, all locations are saved in same place as trip summaries, but due to memory issue, all travel locations are saved into separate file, a single file for a day travel.
     */
     public func travelDetail(vehicleId:String, date:Date) -> Travel! {
-        let dateStr = CacheManager.dateFormatter.string(from: date)
+        let dateStr = KTCacheManager.dateFormatter.string(from: date)
         let path = tripPath().appending("/\(dateStr).dat")
         if FileManager.default.fileExists(atPath: path) {
             if let data = try? Data(contentsOf: URL(fileURLWithPath: path)){
@@ -299,7 +299,7 @@ public class CacheManager: NSObject {
         return nil
     }
     
-    public func address(for coordinate: CLLocationCoordinate2D, completion: @escaping (_ address: Address?) -> Void) {
+    public func address(for coordinate: CLLocationCoordinate2D, completion: @escaping (_ address: KTAddress?) -> Void) {
         let keepAddressDuration : TimeInterval = 60*60*24 * 3*30 //Keep address for 3 months
         let addresses = self.addresses
         DispatchQueue.global(qos: .background).async {
@@ -378,15 +378,15 @@ public class CacheManager: NSObject {
     
     // MARK: Save Cache
     
-    public func cache(user: User) {
-        let classname = NSStringFromClass(User.self)
+    public func cache(user: KTUser) {
+        let classname = NSStringFromClass(KTUser.self)
         data[classname] = user
         autoSave()
     }
     
-    public func cache(vehicles: [Vehicle]) {
-        let classname = NSStringFromClass(Vehicle.self)
-        if let user = data[NSStringFromClass(User.self)] as? User{
+    public func cache(vehicles: [KTVehicle]) {
+        let classname = NSStringFromClass(KTVehicle.self)
+        if let user = data[NSStringFromClass(KTUser.self)] as? KTUser{
             data[classname] = ["vehicles": vehicles, "user": user.userId]
             autoSave()
         }
@@ -394,7 +394,7 @@ public class CacheManager: NSObject {
     
     public func cache(vehicleSubscription: [VehicleSubscription]) {
         let classname = NSStringFromClass(VehicleSubscription.self)
-        if let user = data[NSStringFromClass(User.self)] as? User{
+        if let user = data[NSStringFromClass(KTUser.self)] as? KTUser{
             data[classname] = ["subscriptions": vehicleSubscription, "user": user.userId]
             autoSave()
         }
@@ -483,7 +483,7 @@ public class CacheManager: NSObject {
     }
     
     ///For normal use of KatsanaSDK, this class is never called except when used for different purpose.
-    public func cache(trip: Trip, vehicleId: String) {
+    public func cache(trip: KTTrip, vehicleId: String) {
 //        /Need cache trip to hdd
 //        var travels = [Travel]()
 //        var dates = [Date]()
@@ -575,12 +575,12 @@ public class CacheManager: NSObject {
         }
     }
     
-    func cacheTripLocations(trip: Trip) {
+    func cacheTripLocations(trip: KTTrip) {
         if trip.locations.count == 0{
             return
         }
         
-        let dateStr = CacheManager.dateFormatter.string(from: trip.date)
+        let dateStr = KTCacheManager.dateFormatter.string(from: trip.date)
         let path = tripPath().appending("/\(dateStr).dat")
         var travel: Travel!
         if FileManager.default.fileExists(atPath: path), let data = try? Data(contentsOf: URL(fileURLWithPath: path)), let aTravel = FastCoder.object(with: data) as? Travel {
@@ -615,7 +615,7 @@ public class CacheManager: NSObject {
         }
     }
     
-    public func cache(address: Address) {
+    public func cache(address: KTAddress) {
         var needAdd = true
         for add in addresses {
             if address == add{
@@ -847,7 +847,7 @@ public class CacheManager: NSObject {
     }
     
     func clearMemory() {
-        CacheManager._shared = nil
+        KTCacheManager._shared = nil
     }
     
     func purgeTravelOlderThan(days: Int) {
@@ -934,7 +934,7 @@ public class CacheManager: NSObject {
     // MARK: Logic
     
     ///Merge two trips
-    func mergeTrip(_ trip: Trip, with oldTrip: Trip) -> Bool {
+    func mergeTrip(_ trip: KTTrip, with oldTrip: KTTrip) -> Bool {
         var merged = false
         if trip.extraData.count == 0{
             if oldTrip.extraData.count > 0 {

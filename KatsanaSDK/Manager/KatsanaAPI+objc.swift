@@ -11,7 +11,7 @@ import Foundation
 public extension KatsanaAPI{
 
     @available(swift, obsoleted: 1.0)
-    public func objc_requestAllVehicleLocations(completion: @escaping (_ vehicles: [Vehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func objc_requestAllVehicleLocations(completion: @escaping (_ vehicles: [KTVehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         requestAllVehicleLocations(completion: { (vehicles) in
             completion(vehicles)
         }) { (error) in
@@ -20,7 +20,7 @@ public extension KatsanaAPI{
     }
     
     @available(swift, obsoleted: 1.0)
-    public func objc_requestAllVehicles(options:[String]! = nil, completion: @escaping (_ vehicles: [Vehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func objc_requestAllVehicles(options:[String]! = nil, completion: @escaping (_ vehicles: [KTVehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         requestAllVehicles(completion: { (vehicles) in
             completion(vehicles)
         }) { (error) in
@@ -65,7 +65,7 @@ public extension KatsanaAPI{
     }
     
     @available(swift, obsoleted: 1.0)
-    public func objc_requestVehicle(vehicleId: String, options: [String]! = nil, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func objc_requestVehicle(vehicleId: String, options: [String]! = nil, completion: @escaping (_ vehicle: KTVehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         requestVehicle(vehicleId: vehicleId, options: options, completion: { (vehicle) in
             completion(vehicle)
         }) { (error) in

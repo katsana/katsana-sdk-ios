@@ -38,10 +38,10 @@ open class VehicleSubscription: NSObject {
     open var upgrades = [VehicleSubscription]()
     
     //Need to be set manually
-    open var vehicle: Vehicle!
-    open var devices = [Vehicle]()
+    open var vehicle: KTVehicle!
+    open var devices = [KTVehicle]()
     
-    open func firstDevice() -> Vehicle {
+    open func firstDevice() -> KTVehicle {
         return devices.first!
     }
 }

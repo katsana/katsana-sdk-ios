@@ -13,7 +13,7 @@ extension KatsanaAPI {
     /// Save vehicle profile data
     ///
     /// 
-    public func saveVehicleProfile(vehicleId: String, data: [String: Any], completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func saveVehicleProfile(vehicleId: String, data: [String: Any], completion: @escaping (_ vehicle: KTVehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let vehicle = vehicleWith(vehicleId: vehicleId)
         guard vehicle != nil else {
             return
@@ -68,7 +68,7 @@ extension KatsanaAPI {
     /// - parameter vehicleId:  vehicle id
     /// - parameter image:      image to save
     /// - parameter completion: return vehicle
-    public func saveVehicleProfileImage(vehicleId: String, image : KMImage?, completion: @escaping (_ vehicle: Vehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func saveVehicleProfileImage(vehicleId: String, image : KMImage?, completion: @escaping (_ vehicle: KTVehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let vehicle = vehicleWith(vehicleId: vehicleId)
         guard vehicle != nil else {
             return

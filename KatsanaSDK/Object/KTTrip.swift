@@ -8,7 +8,7 @@
 import FastCoding
 
 @objcMembers
-open class Trip: NSObject, NSCopying {
+open class KTTrip: NSObject, NSCopying {
     open var id : String!
     open var start: VehicleLocation!
     open var end: VehicleLocation!
@@ -26,8 +26,8 @@ open class Trip: NSObject, NSCopying {
     open var violations = [VehicleActivity]()
     
     ///Next trip and prev trip automatically set when trips are set in Travel class
-    weak open var nextTrip: Trip!
-    weak open var prevTrip: Trip!
+    weak open var nextTrip: KTTrip!
+    weak open var prevTrip: KTTrip!
     
     //Extra data that user can set to trip
     open var extraData = [String: Any]()
@@ -37,7 +37,7 @@ open class Trip: NSObject, NSCopying {
     }
     
     public func copy(with zone: NSZone? = nil) -> Any {
-        let trip = Trip()
+        let trip = KTTrip()
         trip.id = id
         trip.maxSpeed = maxSpeed
         trip.distance = distance

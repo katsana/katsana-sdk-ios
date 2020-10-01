@@ -10,9 +10,9 @@ DESC
 s.homepage     = "https://github.com/katsana/katsana-sdk-ios"
 s.license      = 'apache'
 s.author       = { "Wan Ahmad Lutfi" => "lutfime_2000@yahoo.com" }
-s.platform = :ios, '8.0'
+s.platform = :ios, '9.0'
 s.platform = :osx, '10.11'
-s.ios.deployment_target = "8.0"
+s.ios.deployment_target = "9.0"
 s.osx.deployment_target = "10.11"
 s.source_files  = 'KatsanaSDK/**/*.{swift,h,m}'
 s.public_header_files = 'KatsanaSDK/**/*.h'
@@ -24,7 +24,7 @@ s.osx.framework  = 'AppKit'
 s.requires_arc = true
 s.source       = { :git => "https://github.com/katsana/katsana-sdk-ios.git", :tag => "#{s.version}" }
 
-s.dependency 'Siesta', '~>1.0'
+s.dependency 'Siesta'
 s.dependency 'XCGLogger'
 s.dependency 'FastCoding'
 

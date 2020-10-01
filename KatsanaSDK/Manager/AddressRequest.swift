@@ -11,13 +11,13 @@ import CoreLocation
 /// Class to request address from server. We are not using Siesta API because Siesta cache response in memory. Address may be called multiple times and we need to cache in KMCacheManager to save it in hdd
 class AddressRequest: NSObject {
 
-   class func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (Address?, Error?) -> Void) -> Void {
-        CacheManager.shared.address(for: location) { (address) in
+   class func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (KTAddress?, Error?) -> Void) -> Void {
+        KTCacheManager.shared.address(for: location) { (address) in
             if address != nil{
                 completion(address, nil)
             }else{
                 self.appleGeoAddress(from: location, completion: { (address) in
-                    CacheManager.shared.cache(address: address)
+                    KTCacheManager.shared.cache(address: address)
                     completion(address, nil)
                     
                     let optimizedAddress = address.optimizedAddress()
@@ -31,14 +31,14 @@ class AddressRequest: NSObject {
                     if (optimizedAddress.count) <= 10 || !useAppleAddress, let handler = KatsanaAPI.shared.addressHandler{
                         handler(location, {googleAddress in
                             if let googleAddress = googleAddress{
-                                CacheManager.shared.cache(address: googleAddress)
+                                KTCacheManager.shared.cache(address: googleAddress)
                                 completion(googleAddress, nil)
                             }else{
                                 completion(address, nil)
                             }
                         })
                     }else{
-                        CacheManager.shared.cache(address: address)
+                        KTCacheManager.shared.cache(address: address)
                         completion(address, nil)
                     }
                 
@@ -59,7 +59,7 @@ class AddressRequest: NSObject {
         }
     }
     
-    class func platformGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (Address) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    class func platformGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (KTAddress) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let path = KatsanaAPI.shared.baseURL().absoluteString + "address/"
         let latitude = String(format: "%.6f", location.latitude)
         let longitude = String(format: "%.6f", location.longitude)
@@ -82,7 +82,7 @@ class AddressRequest: NSObject {
         }
     }
     
-    class func appleGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (Address) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    class func appleGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (KTAddress) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let geocoder = CLGeocoder()
         let clLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
         geocoder.reverseGeocodeLocation(clLocation, completionHandler: { (placemarks, error) in
@@ -90,7 +90,7 @@ class AddressRequest: NSObject {
                 failure(error)
             }else{
                 if let dicto = placemarks?.first?.addressDictionary{
-                    let address = Address()
+                    let address = KTAddress()
                     address.latitude = location.latitude
                     address.longitude = location.longitude
                     address.streetName = dicto["Street"] as? String

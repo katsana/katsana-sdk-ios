@@ -9,7 +9,7 @@
 import FastCoding
 
 @objcMembers
-open class Vehicle: NSObject {
+open class KTVehicle: NSObject {
     static let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -52,7 +52,7 @@ open class Vehicle: NSObject {
     open var insuredExpiry: Date!{
         didSet{
             if let insuredExpiry = insuredExpiry {
-                let dateStr = Vehicle.dateFormatter.string(from: insuredExpiry)
+                let dateStr = KTVehicle.dateFormatter.string(from: insuredExpiry)
                 if let insuredExpiryText = insuredExpiryText, dateStr == insuredExpiryText{
                     
                 }else{
@@ -67,7 +67,7 @@ open class Vehicle: NSObject {
     open var insuredExpiryText: String!{
         didSet{
             if let insuredExpiryText = insuredExpiryText {
-                let date = Vehicle.dateFormatter.date(from: insuredExpiryText)
+                let date = KTVehicle.dateFormatter.date(from: insuredExpiryText)
                 if let insuredExpiry = insuredExpiry, date == insuredExpiry {
                     //Do nothing
                 }else if date != nil{
@@ -95,7 +95,7 @@ open class Vehicle: NSObject {
     }
     
     ///Reload data given new vehicle data
-    open func reload(with vehicle: Vehicle) {
+    open func reload(with vehicle: KTVehicle) {
         guard userId == vehicle.userId, vehicleId == vehicle.vehicleId else {
             return
         }
@@ -209,7 +209,7 @@ open class Vehicle: NSObject {
         if let image = image {
             completion(image)
         }
-        else if let path = NSURL(string: imageURL)?.lastPathComponent, let image = CacheManager.shared.image(for: path){
+        else if let path = NSURL(string: imageURL)?.lastPathComponent, let image = KTCacheManager.shared.image(for: path){
             self.image = image
             completion(image)
         }
@@ -241,8 +241,13 @@ open class Vehicle: NSObject {
         }
     }
     
+    private var _emptyImage: UIImage!
     open func emptyImage() -> UIImage{
+        if let image = _emptyImage {
+            return image
+        }
         let image = UIImage(color: UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1))
+        _emptyImage = image
         return image!
     }
    
@@ -259,7 +264,7 @@ open class Vehicle: NSObject {
         if let image = thumbImage {
             completion(image)
         }
-        else if let path = NSURL(string: thumbImageURL)?.lastPathComponent, let image = CacheManager.shared.image(for: path){
+        else if let path = NSURL(string: thumbImageURL)?.lastPathComponent, let image = KTCacheManager.shared.image(for: path){
             completion(image)
         }else{
             if isLoadingThumbImage {
@@ -290,7 +295,7 @@ open class Vehicle: NSObject {
     }
     
     open func date(from string: String) -> Date! {
-        return Vehicle.dateFormatter.date(from: string)
+        return KTVehicle.dateFormatter.date(from: string)
     }
     
 }

@@ -7,7 +7,7 @@
 //
 
 @objcMembers
-open class Insurer: NSObject {
+open class KTInsurer: NSObject {
     public var country: String
     public var name: String
     public var partner = false

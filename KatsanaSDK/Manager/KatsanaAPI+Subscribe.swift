@@ -16,7 +16,7 @@ extension KatsanaAPI{
         
         request?.onSuccess({(entity) in
             if let summaries : [VehicleSubscription] = resource.typedContent(){
-                CacheManager.shared.cache(vehicleSubscription: summaries)
+                KTCacheManager.shared.cache(vehicleSubscription: summaries)
                 NotificationCenter.default.post(name: KatsanaAPI.subscriptionRequestedNotification, object: summaries)
                 completion(summaries)
             }else{
@@ -90,7 +90,7 @@ extension KatsanaAPI{
     
     public func cachedVehicleSubscriptions() -> [VehicleSubscription]! {
         if let user = currentUser{
-            return CacheManager.shared.vehicleSubscriptions(userId: user.userId)
+            return KTCacheManager.shared.vehicleSubscriptions(userId: user.userId)
         }
         return nil
     }

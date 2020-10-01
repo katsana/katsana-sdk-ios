@@ -31,7 +31,7 @@ public class ImageRequest: NSObject {
     
     public func requestImage(path : String, completion: @escaping (_ image: KMImage?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let url = NSURL(string: path)
-        if let lastComponent = url?.lastPathComponent, let image = CacheManager.shared.image(for: lastComponent){
+        if let lastComponent = url?.lastPathComponent, let image = KTCacheManager.shared.image(for: lastComponent){
             completion(image)
             return
         }
@@ -42,7 +42,7 @@ public class ImageRequest: NSObject {
             if r.ok {
                 let content = r.content
                 if let image = KMImage(data: content!), let lastComponent = url?.lastPathComponent{
-                    CacheManager.shared.cache(image: image, identifier: lastComponent)
+                    KTCacheManager.shared.cache(image: image, identifier: lastComponent)
                     DispatchQueue.main.sync{completion(image)}
                 }else{
                     DispatchQueue.main.sync{failure(r.error)}

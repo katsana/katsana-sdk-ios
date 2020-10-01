@@ -18,7 +18,7 @@ import Siesta
 
 
 extension KatsanaAPI {
-    public func saveCurrentUserProfile(data: [String: Any], completion: @escaping (_ user: User) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func saveCurrentUserProfile(data: [String: Any], completion: @escaping (_ user: KTUser) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let resource = self.API.resource("profile")
         let user = currentUser!
         
@@ -67,7 +67,7 @@ extension KatsanaAPI {
         }
     }
     
-   public func saveCurrentUserProfileImage(image : KMImage?, completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+   public func saveCurrentUserProfileImage(image : KMImage?, completion: @escaping (_ user: KTUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
     
         var finalImage : KMImage!
         if image == nil {

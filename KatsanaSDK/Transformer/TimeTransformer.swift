@@ -30,6 +30,9 @@ public class TimeTransformer: ValueTransformer {
                     hour = (day - floor(day)) * 24
                     hour = ceil(hour)
                     timeStr = String(format: NSLocalizedString("%.0f day %.0f hours", comment: "") , day, hour)
+                    if displayFormat == .hourOrMinuteOnly{
+                        timeStr = String(format: NSLocalizedString("%.0f day", comment: "") , day)
+                    }
                 }else{
                     timeStr = String(format:NSLocalizedString("%.0f hr %.0f min", comment: ""), hour, minutes)
                     if displayFormat == .full {
@@ -37,6 +40,8 @@ public class TimeTransformer: ValueTransformer {
                     }
                     else if displayFormat == .hourShort{
                         timeStr = String(format:NSLocalizedString("%.0f:%.0f hrs", comment: ""), hour, minutes)
+                    }else if displayFormat == .hourOrMinuteOnly{
+                        timeStr = String(format:NSLocalizedString("%.0f hr", comment: ""), hour)
                     }
                 }
                 return timeStr;

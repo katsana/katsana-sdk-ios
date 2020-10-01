@@ -28,7 +28,7 @@ open class VehicleLocation: NSObject {
     open var horizontalAccuracy: Float = 0
     
     private(set) open var address: String!
-    private(set) open var addressObject: Address!
+    private(set) open var addressObject: KTAddress!
     
     open var trackedAt: Date!
     ///Extra data that user can save to vehicle location. Should have only value with codable support.
@@ -70,7 +70,7 @@ open class VehicleLocation: NSObject {
     }
     
     //Get address for current location
-    open func addressObject(completion: @escaping (Address?) -> Void) {
+    open func addressObject(completion: @escaping (KTAddress?) -> Void) {
         if let _lastCoordinate = _lastCoordinate, _lastCoordinate.equal(coordinate()), let addressObject = addressObject, addressObject.pointOfInterest().count > 0 {
             completion(addressObject)
             return

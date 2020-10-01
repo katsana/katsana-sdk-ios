@@ -9,7 +9,7 @@
 import CoreLocation
 
 @objcMembers
-open class Address: NSObject {
+open class KTAddress: NSObject {
     open var latitude: Double
     open var longitude: Double
     open var streetNumber: String!

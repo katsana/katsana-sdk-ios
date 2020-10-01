@@ -13,7 +13,7 @@ public enum Gender : String{
 }
 
 @objcMembers
-open class User: NSObject {
+open class KTUser: NSObject {
     static let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -67,7 +67,7 @@ open class User: NSObject {
     open var birthday: Date!{
         didSet{
             if let birthday = birthday {
-                let dateStr = User.dateFormatter.string(from: birthday)
+                let dateStr = KTUser.dateFormatter.string(from: birthday)
                 if let birthdayText = birthdayText, dateStr == birthdayText{
                     
                 }else{
@@ -82,7 +82,7 @@ open class User: NSObject {
     open var birthdayText: String!{
         didSet{
             if let birthdayText = birthdayText {
-                let date = User.dateFormatter.date(from: birthdayText)
+                let date = KTUser.dateFormatter.date(from: birthdayText)
                 if let birthday = birthday, date == birthday {
                     //Do nothing
                 }else if date != nil{
@@ -158,7 +158,7 @@ open class User: NSObject {
         
         if let image = image {
             completion(image)
-        }else if let path = NSURL(string: imageURL)?.lastPathComponent, let image = CacheManager.shared.image(for: path){
+        }else if let path = NSURL(string: imageURL)?.lastPathComponent, let image = KTCacheManager.shared.image(for: path){
             self.image = image
             completion(image)
         }else{
@@ -188,7 +188,7 @@ open class User: NSObject {
         
         if let image = thumbImage {
             completion(image)
-        }else if let path = NSURL(string: thumbImageURL)?.lastPathComponent, let image = CacheManager.shared.image(for: path){
+        }else if let path = NSURL(string: thumbImageURL)?.lastPathComponent, let image = KTCacheManager.shared.image(for: path){
             completion(image)
         }else{
             if isLoadingThumbImage {
@@ -267,7 +267,7 @@ open class User: NSObject {
     }
     
     open func date(from string: String) -> Date! {
-        return User.dateFormatter.date(from: string)
+        return KTUser.dateFormatter.date(from: string)
     }
 }
 

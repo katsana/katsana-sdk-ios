@@ -33,7 +33,7 @@ extension KatsanaAPI {
         })
     }
 
-    public func login(email: String, password: String, completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func login(email: String, password: String, completion: @escaping (_ user: KTUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         var data : Dictionary<String,String>
         let tokenKey = "access_token"
         let authPath = "oauth/token"
@@ -75,7 +75,7 @@ extension KatsanaAPI {
         
     }
     
-    private func loadProfile(completion: @escaping (_ user: User?) -> Void, failure: @escaping (_ error: RequestError?) -> Void) {
+    private func loadProfile(completion: @escaping (_ user: KTUser?) -> Void, failure: @escaping (_ error: RequestError?) -> Void) {
         var resource = self.API.resource("profile")
         if let options = defaultRequestProfileOptions{
             let text = options.joined(separator: ",")
@@ -83,13 +83,13 @@ extension KatsanaAPI {
         }
         
         resource.loadIfNeeded()?.onSuccess({ (entity) in
-            let user : User? = resource.typedContent()
+            let user : KTUser? = resource.typedContent()
             if let user = user{
                 self.currentUser = user
                 completion(user)
                 NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
                 self.log.info("Logged in user \(String(describing: user.userId)), \(user.email)")
-                CacheManager.shared.cache(user: user)
+                KTCacheManager.shared.cache(user: user)
             }else{
                 failure(nil)
             }
@@ -108,7 +108,7 @@ extension KatsanaAPI {
         authToken = nil
         NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
         log.info("Logged out user \(self.currentUser?.userId ?? "??"), \(self.currentUser?.email ?? "")")
-        CacheManager.shared.clearTravelCache(vehicleId: "-1")
+        KTCacheManager.shared.clearTravelCache(vehicleId: "-1")
     }
     
     public func verify(password:String, completion: @escaping (_ success: Bool) -> Void) -> Void {
@@ -156,15 +156,15 @@ extension KatsanaAPI {
         })
     }
     
-    public func requestUser(completion: @escaping (_ user: User) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void{
+    public func requestUser(completion: @escaping (_ user: KTUser) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void{
         let resource = self.API.resource("profile")
         resource.loadIfNeeded()?.onSuccess({ (entity) in
-            let user : User? = resource.typedContent()
+            let user : KTUser? = resource.typedContent()
             if let user = user{
                 self.currentUser = user
                 completion(user)
                 self.log.info("Logged in user \(String(describing: user.userId)), \(user.email)")
-                CacheManager.shared.cache(user: user)
+                KTCacheManager.shared.cache(user: user)
             }else{
                 failure(nil)
             }

@@ -37,7 +37,7 @@ open class KatsanaAPI: NSObject {
     ///Use this handler if need to have extra setup when object is initialized
     public var objectInitializationHandler : ((JSON, Any) -> (Void))!
     ///Call outside address handler if address from SDK deemed not valid
-    public var addressHandler : ((CLLocationCoordinate2D, _ completion: @escaping (Address?) -> Void) -> Void)!
+    public var addressHandler : ((CLLocationCoordinate2D, _ completion: @escaping (KTAddress?) -> Void) -> Void)!
     
     public static let shared = KatsanaAPI()
     public var API : Service!
@@ -58,8 +58,8 @@ open class KatsanaAPI: NSObject {
     internal(set) public var lastLogSize: String!
     
     internal(set) public var tokenRefreshDate: Date!
-    @objc internal(set) dynamic public var currentUser: User!
-    @objc public        dynamic        var currentVehicle: Vehicle!{
+    @objc internal(set) dynamic public var currentUser: KTUser!
+    @objc public        dynamic        var currentVehicle: KTVehicle!{
         willSet{
             if let newValue = newValue{
                 if let currentVehicle = currentVehicle, newValue != currentVehicle{
@@ -72,7 +72,7 @@ open class KatsanaAPI: NSObject {
             }
         }
     }
-    @objc public dynamic var selectedVehicles: [Vehicle]!{
+    @objc public dynamic var selectedVehicles: [KTVehicle]!{
         willSet{
             if let newValue = newValue{
                 if let selectedVehicles = selectedVehicles, newValue != selectedVehicles{
@@ -85,7 +85,7 @@ open class KatsanaAPI: NSObject {
             }
         }
     }
-    @objc internal(set) dynamic public var vehicles: [Vehicle]!{
+    @objc internal(set) dynamic public var vehicles: [KTVehicle]!{
         willSet{
             if vehicles != nil {
                 print(vehicles)
@@ -292,8 +292,8 @@ open class KatsanaAPI: NSObject {
     
     ///Load last logon user for offline viewing
     public func loadCachedUser() -> Void {
-        if let user = CacheManager.shared.lastUser(){
-            let vehicles = CacheManager.shared.vehicles(userId: user.userId)
+        if let user = KTCacheManager.shared.lastUser(){
+            let vehicles = KTCacheManager.shared.vehicles(userId: user.userId)
             self.currentUser = user
             self.vehicles = vehicles
         }
@@ -301,8 +301,8 @@ open class KatsanaAPI: NSObject {
     
     ///Load cached vehicles
     public func loadCachedVehicles() -> Void {
-        if let user = CacheManager.shared.lastUser(){
-            let vehicles = CacheManager.shared.vehicles(userId: user.userId)
+        if let user = KTCacheManager.shared.lastUser(){
+            let vehicles = KTCacheManager.shared.vehicles(userId: user.userId)
             self.vehicles = vehicles
         }
     }
@@ -313,7 +313,7 @@ open class KatsanaAPI: NSObject {
     }
     
     public func purgeTravelCacheOlderThan(days: Int) {
-        CacheManager.shared.purgeTravelOlderThan(days: days)
+        KTCacheManager.shared.purgeTravelOlderThan(days: days)
     }
     
     // MARK: Error handling
@@ -348,9 +348,9 @@ open class KatsanaAPI: NSObject {
     
     // MARK: Helper
     
-    public func vehicleWithUnassignedFleet() -> [Vehicle]! {
+    public func vehicleWithUnassignedFleet() -> [KTVehicle]! {
         if let user = currentUser, let vehicles = vehicles{
-            var newVehicles = [Vehicle]()
+            var newVehicles = [KTVehicle]()
             for vehicle in vehicles{
                 var isUnassigned = true
                 for fleet in vehicle.fleetIds{

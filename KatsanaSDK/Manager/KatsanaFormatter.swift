@@ -16,6 +16,7 @@
     case short
     case full
     case hourShort
+    case hourOrMinuteOnly
 }
 
 @objcMembers
@@ -73,8 +74,6 @@ public class KatsanaFormatter: NSObject {
     }
     
     public class func durationStringFrom(seconds: Double) -> String {
-        
-        
         return convertTime(seconds: seconds, displayFormat: displayFormat)
     }
     
