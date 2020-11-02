@@ -187,12 +187,12 @@ extension KatsanaAPI {
     
     ///Request travel using given summary. Summary only give duration and trip count, if cached history is different from the summary, reload and return it
     public func requestTravelUsing(summary: Travel, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
-        let vehicleId = summary.vehicleId
-        guard vehicleId != nil else {
+        
+        guard let vehicleId = summary.vehicleId, let date = summary.date else {
             return
         }
         
-        let travel = cachedTravelWithLocationsData(vehicleId: vehicleId!, date: summary.date)
+        let travel = cachedTravelWithLocationsData(vehicleId: vehicleId, date: date)
         if let travel = travel{
             //If distance is same, no need to request again
             if summary.duration != 0, summary.distance == travel.distance, summary.tripCount == travel.trips.count {
@@ -228,14 +228,14 @@ extension KatsanaAPI {
         }
         
         
-        requestTravel(for: summary.date, vehicleId: vehicleId!, forceLoad:forceLoad, completion: {travel in
+        requestTravel(for: summary.date, vehicleId: vehicleId, forceLoad:forceLoad, completion: {travel in
             summary.needLoadTripHistory = false
             if let trips = travel?.trips{
                 summary.trips = trips
             }
             travel?.needLoadTripHistory = false
             travel?.vehicleId = summary.vehicleId
-            if let travel = travel, let vehicleId = vehicleId{
+            if let travel = travel{
                 KTCacheManager.shared.cache(travel: travel, vehicleId: vehicleId) //Cache history
             }
             completion(travel)
