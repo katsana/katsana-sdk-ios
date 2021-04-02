@@ -67,6 +67,7 @@ class ObjectJSONTransformer: NSObject {
         let vehicle = KTVehicle()
         vehicle.userId = dicto["user_id"].stringValue
         vehicle.vehicleId = dicto["id"].stringValue
+        vehicle.driver = dicto["live_status"]["driver"].string
         
         vehicle.imei = dicto["imei"].stringValue
         vehicle.mode = dicto["mode"].stringValue
@@ -329,61 +330,32 @@ class ObjectJSONTransformer: NSObject {
         }
         return subscribes
     }
-    
+
     class func VehicleSubscriptionObject(json : JSON) -> VehicleSubscription {
         let subscribe = VehicleSubscription()
-        subscribe.id = json["id"].stringValue
-        subscribe.userId = json["user_id"].stringValue
-        subscribe.planId = json["plan"]["id"].stringValue
-        subscribe.planName = json["plan"]["name"].stringValue
-        subscribe.planDescription = json["plan"]["description"].stringValue
-        subscribe.endsAt = json["ends_at"].date(gmt: 0)
-        let status = json["status"].stringValue
-        if status == "active" {
-            subscribe.status = .active
-        }else if status == "grace"{
-            subscribe.status = .grace
-        }else{
-            subscribe.status = .expired
-        }
+        subscribe.deviceId = json["device_id"].stringValue
+        subscribe.deviceImei = json["device_imei"].stringValue
+        subscribe.vehicleExpiredAt = json["expired_at"].dateTime
+        subscribe.vehicleDescription = json["description"].stringValue
+        subscribe.vehicleNumber = json["vehicle_number"].stringValue
+        subscribe.isReseller = json["reseller"].boolValue
         
-        subscribe.isExpiring = json["is_expiring"].boolValue
-        subscribe.amountBeforeTax = json["amount"]["before_gst"].floatValue
-        subscribe.amountAfterTax = json["amount"]["after_gst"].floatValue
-        subscribe.taxPercent = json["amount"]["gst_percent"].floatValue
-        subscribe.taxAmount = json["amount"]["gst_amount"].floatValue
-        subscribe.billingCycle = json["plan"]["billing_cycle"].intValue
+        subscribe.subscriptionId = json["subscription"]["id"].stringValue
+        subscribe.subscriptionPrice = json["subscription"]["price"].intValue
+        subscribe.subscriptionStartAt = json["subscription"]["starts_at"].dateTime
+        subscribe.subscriptionEndAt = json["subscription"]["ends_at"].dateTime
         
-        var subscribeUpgrades = [VehicleSubscription]()
-        if let upgrades = json["plan"]["upgrades"].array{
-            for upgradeJSON in upgrades{
-                let upgrade = VehicleSubscription()
-                upgrade.id = subscribe.id
-                upgrade.billingCycle = upgradeJSON["billing_cycle"].intValue
-                upgrade.userId = subscribe.userId
-                upgrade.planId = upgradeJSON["plan_id"].stringValue
-                upgrade.planName = upgradeJSON["name"].stringValue
-                upgrade.planDescription = upgradeJSON["description"].stringValue
-                upgrade.amountBeforeTax = json["amount"]["before_gst"].floatValue
-                upgrade.amountAfterTax = json["amount"]["after_gst"].floatValue
-                upgrade.taxPercent = json["amount"]["gst_percent"].floatValue
-                upgrade.taxAmount = json["amount"]["gst_amount"].floatValue
-                subscribeUpgrades.append(upgrade)
-            }
-        }
-        subscribe.upgrades = subscribeUpgrades
-        
-        var devices = [KTVehicle]()
-        if let devicesArray = json["devices"].array{
-            for deviceJSON in devicesArray{
-                let device = KTVehicle()
-                device.vehicleId = deviceJSON["id"].stringValue
-                device.vehicleNumber = deviceJSON["vehicle_number"].stringValue
-                device.vehicleDescription = deviceJSON["description"].stringValue
-                devices.append(device)
-            }
-        }
-        subscribe.devices = devices
+        subscribe.planId = json["subscription"]["plan"]["id"].stringValue
+        subscribe.planName = json["subscription"]["plan"]["name"].stringValue
+        subscribe.planDescription = json["subscription"]["plan"]["description"].stringValue
+        subscribe.planPrice = json["subscription"]["plan"]["price"].intValue
+        subscribe.planBillingCycle = json["subscription"]["plan"]["billing_cycle"].intValue
+        subscribe.planQuickBooksId = json["subscription"]["plan"]["quickbooks_id"].stringValue
+        subscribe.planRenewalAddonId = json["subscription"]["plan"]["renewal_addon_id"].stringValue
+        subscribe.planTagId = json["subscription"]["plan"]["tag_id"].stringValue
+        subscribe.planType = json["subscription"]["plan"]["type"].stringValue
+        subscribe.planCreatedAt = json["subscription"]["created_at"].dateTime
+        subscribe.planUpdatedAt = json["subscription"]["updated_at"].dateTime
         
         return subscribe
     }

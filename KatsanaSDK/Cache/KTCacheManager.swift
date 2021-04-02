@@ -9,7 +9,7 @@
 import CoreLocation
 import FastCoding
 
-let cacheVersion = "2.14"
+let cacheVersion = "2.2"
 
 //Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer should not use and call methods in this class manually.
 @objcMembers
@@ -170,10 +170,10 @@ public class KTCacheManager: NSObject {
     }
     
     public func vehicleSubscriptions(userId: String) -> [VehicleSubscription]! {
-        let classname = NSStringFromClass(VehicleSubscription.self)
-        if let vehiclesData = data[classname] as? [String: Any], let id = vehiclesData["user"] as? String, userId == id, let subcriptions = vehiclesData["subscriptions"] as? [VehicleSubscription]{
-            return subcriptions
-        }
+//        let classname = NSStringFromClass(VehicleSubscription.self)
+//        if let vehiclesData = data[classname] as? [String: Any], let id = vehiclesData["user"] as? String, userId == id, let subcriptions = vehiclesData["subscriptions"] as? [VehicleSubscription]{
+//            return subcriptions
+//        }
         return nil
     }
     

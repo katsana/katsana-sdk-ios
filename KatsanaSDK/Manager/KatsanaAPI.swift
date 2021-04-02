@@ -218,6 +218,10 @@ open class KatsanaAPI: NSObject {
         API.configure("subscriptions/*") {
             $0.expirationTime = 1
         }
+        
+        API.configure("subscriptions") {
+            $0.expirationTime = 5*60
+        }
     }
     
     func setupTransformer() -> Void {

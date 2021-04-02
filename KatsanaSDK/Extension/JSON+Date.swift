@@ -52,4 +52,15 @@ extension JSON {
         }
     }
     
+    public var dateTime2: Date? {
+        get {
+            switch self.type {
+            case .string:
+                return (self.object as! String).dateTime2
+            default:
+                return nil
+            }
+        }
+    }
+    
 }

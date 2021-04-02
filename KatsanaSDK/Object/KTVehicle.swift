@@ -35,6 +35,8 @@ open class KTVehicle: NSObject {
     open var current: VehicleLocation!
     open var earliestTravelDate: Date!
     
+    open var driver: String!
+    
     //Sensors
     open var fuelLitre: Float = -1
     open var fuelPercentage: Float = -1
@@ -91,7 +93,7 @@ open class KTVehicle: NSObject {
     private var isLoadingThumbImage = false
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData", "timezone", "insuredExpiry", "insuredBy", "model", "manufacturer", "earliestTravelDate", "fleetIds"]
+        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData", "timezone", "insuredExpiry", "insuredBy", "model", "manufacturer", "earliestTravelDate", "fleetIds", "driver"]
     }
     
     ///Reload data given new vehicle data
@@ -119,6 +121,7 @@ open class KTVehicle: NSObject {
         model = vehicle.model
         manufacturer = vehicle.manufacturer
         fuelPercentage = vehicle.fuelPercentage
+        driver = vehicle.driver
     }
     
     func jsonPatch() -> [String: Any] {

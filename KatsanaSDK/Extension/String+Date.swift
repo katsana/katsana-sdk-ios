@@ -22,13 +22,20 @@ extension String {
     
     public var dateWithoutTime: Date? {
         get {
-            return Formatter.jsonDateWithoutTimeFormatter.date(from: self)
+            let text = Formatter.jsonDateWithoutTimeFormatter.date(from: self)
+            return text
         }
     }
     
     public var dateTime: Date? {
         get {
             return Formatter.jsonDateTimeFormatter.date(from: self)
+        }
+    }
+    
+    public var dateTime2: Date? {
+        get {
+            return Formatter.jsonDateTimeFormatter2.date(from: self)
         }
     }
     
@@ -40,6 +47,7 @@ class Formatter {
     private static var internalJsonDateGMTFormatter: DateFormatter?
     private static var internalJsonDateWithoutTimeFormatter: DateFormatter?
     private static var internalJsonDateTimeFormatter: DateFormatter?
+    private static var internalJsonDateTimeFormatter2: DateFormatter?
     
     static func jsonDateFormatter(gmt: Float) -> DateFormatter {
         if (internalJsonDateGMTFormatter == nil) {
@@ -79,6 +87,14 @@ class Formatter {
             internalJsonDateTimeFormatter!.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'"
         }
         return internalJsonDateTimeFormatter!
+    }
+    
+    static var jsonDateTimeFormatter2: DateFormatter {
+        if (internalJsonDateTimeFormatter2 == nil) {
+            internalJsonDateTimeFormatter2 = DateFormatter()
+            internalJsonDateTimeFormatter2!.dateFormat = "yyyy-MM-ddTHH:mm:ss.SSSZ"
+        }
+        return internalJsonDateTimeFormatter2!
     }
     
 }
