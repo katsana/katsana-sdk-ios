@@ -135,6 +135,13 @@ open class VehicleActivity: NSObject {
             }else{
                 KatsanaAPI.shared.log.warning("Date cannot be create \(String(describing: self.timeString))")
             }
+            if let ping = dictionary["ping"] as? [String: Any]{
+                self.latitude = (ping["latitude"] as? NSNumber)?.doubleValue ?? 0
+                self.longitude = (ping["longitude"] as? NSNumber)?.doubleValue ?? 0
+            }else{
+                print("Sdf")
+            }
+            
             self.identifier = identifier
         }        
         
