@@ -335,15 +335,21 @@ class ObjectJSONTransformer: NSObject {
         let subscribe = VehicleSubscription()
         subscribe.deviceId = json["device_id"].stringValue
         subscribe.deviceImei = json["device_imei"].stringValue
-        subscribe.vehicleExpiredAt = json["expired_at"].dateTime
+        subscribe.vehicleExpiredAt = json["expired_at"].date(gmt: 0)
         subscribe.vehicleDescription = json["description"].stringValue
         subscribe.vehicleNumber = json["vehicle_number"].stringValue
         subscribe.isReseller = json["reseller"].boolValue
         
+        if subscribe.vehicleNumber == "WXC 8377" {
+            print("sdf")
+        }
+        
         subscribe.subscriptionId = json["subscription"]["id"].stringValue
-        subscribe.subscriptionPrice = json["subscription"]["price"].intValue
-        subscribe.subscriptionStartAt = json["subscription"]["starts_at"].dateTime
-        subscribe.subscriptionEndAt = json["subscription"]["ends_at"].dateTime
+        subscribe.subscriptionPrice = json["subscription"]["price"]["price"].intValue
+        subscribe.subscriptionPriceWithTax = json["subscription"]["price"]["price_with_tax"].intValue
+        subscribe.subscriptionTax = json["subscription"]["price"]["tax"].floatValue
+        subscribe.subscriptionStartAt = json["subscription"]["starts_at"].date(gmt: 0)
+        subscribe.subscriptionEndAt = json["subscription"]["ends_at"].date(gmt: 0)
         
         subscribe.planId = json["subscription"]["plan"]["id"].stringValue
         subscribe.planName = json["subscription"]["plan"]["name"].stringValue
@@ -354,8 +360,8 @@ class ObjectJSONTransformer: NSObject {
         subscribe.planRenewalAddonId = json["subscription"]["plan"]["renewal_addon_id"].stringValue
         subscribe.planTagId = json["subscription"]["plan"]["tag_id"].stringValue
         subscribe.planType = json["subscription"]["plan"]["type"].stringValue
-        subscribe.planCreatedAt = json["subscription"]["created_at"].dateTime
-        subscribe.planUpdatedAt = json["subscription"]["updated_at"].dateTime
+        subscribe.planCreatedAt = json["subscription"]["created_at"].date(gmt: 0)
+        subscribe.planUpdatedAt = json["subscription"]["updated_at"].date(gmt: 0)
         
         return subscribe
     }

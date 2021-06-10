@@ -78,7 +78,7 @@ KatsanaAPI.shared.vehicleWith(vehicleId: "78")
 ```
 which will return vehicle with vehicle id if already requested from server.
 
-## Vehicle Location
+## KTVehicle Location
 
 ```VehicleLocation``` class contains location data of the vehicle including, coordinate, speed and device voltage.
 

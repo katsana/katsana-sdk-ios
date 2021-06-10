@@ -179,8 +179,8 @@ open class KTVehicle: NSObject {
     
 //    license_plate: (string, optional) - License Plate
 //    description: (string, optional) - Description
-//    manufacturer: (string, optional) - Vehicle Manufacturer
-//    model: (string, optional) - Vehicle Model
+//    manufacturer: (string, optional) - KTVehicle Manufacturer
+//    model: (string, optional) - KTVehicle Model
 //    insured_by: (string, optional) - Insured By
 //    insured_expiry: (date, optional) - Insured Expiry Date
     

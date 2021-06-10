@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-/// Class to request address from server. We are not using Siesta API because Siesta cache response in memory. Address may be called multiple times and we need to cache in KMCacheManager to save it in hdd
+/// Class to request address from server. We are not using Siesta API because Siesta cache response in memory. Address may be called multiple times and we need to cache in KMKTCacheManager to save it in hdd
 class AddressRequest: NSObject {
 
    class func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (KTAddress?, Error?) -> Void) -> Void {

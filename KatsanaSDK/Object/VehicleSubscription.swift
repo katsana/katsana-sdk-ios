@@ -17,9 +17,9 @@
 
 @objcMembers
 open class VehicleSubscription: NSObject {
-//    override open class func fastCodingKeys() -> [Any]? {
-//        return ["deviceId", "deviceImei", "vehicleNumber", "vehicleDescription", "vehicleExpiredAt", "subscriptionId", "subscriptionPrice", "subscriptionStartAt", "subscriptionEndAt", "planId", "planName", "planDescription", "planPrice", "planBillingCycle", "planQuickBooksId", "planRenewalAddonId", ]
-//    }
+    override open class func fastCodingKeys() -> [Any]? {
+        return ["deviceId", "deviceImei", "vehicleNumber", "vehicleDescription", "vehicleExpiredAt", "subscriptionId", "subscriptionPrice", "subscriptionStartAt", "subscriptionEndAt", "subscriptionPriceWithTax", "subscriptionTax", "planId", "planName", "planDescription", "planPrice", "planBillingCycle", "planQuickBooksId", "planRenewalAddonId", "planTagId", "planType", "planCreatedAt", "planUpdatedAt", "isReseller"]
+    }
     
     open var deviceId: String!
     open var deviceImei: String!
@@ -29,6 +29,9 @@ open class VehicleSubscription: NSObject {
     
     open var subscriptionId: String!
     open var subscriptionPrice: Int = 0
+    open var subscriptionPriceWithTax: Int = 0
+    open var subscriptionTax: Float = 0
+    
     open var subscriptionStartAt: Date!
     open var subscriptionEndAt: Date!
     
@@ -36,8 +39,8 @@ open class VehicleSubscription: NSObject {
     open var planName: String!
     open var planDescription: String!
     open var planPrice: Int = 0
-    open var planTaxRate: Int = 0
-    open var planTaxValue: Int = 0
+//    open var planTaxRate: Int = 0 //Should not be used
+//    open var planTaxValue: Int = 0 //Should not be used
     open var planBillingCycle: Int = 0
     open var planQuickBooksId: String!
     open var planRenewalAddonId: String!

@@ -215,7 +215,7 @@ open class KatsanaAPI: NSObject {
             $0.expirationTime = 15*60
         }
         
-        API.configure("subscriptions/*") {
+        API.configure("subscriptions/pay") {
             $0.expirationTime = 1
         }
         
@@ -264,9 +264,9 @@ open class KatsanaAPI: NSObject {
             ObjectJSONTransformer.VehicleSubscriptionsObject(json: $0.content)
         }
         
-        API.configureTransformer("subscriptions/*") {
-            ObjectJSONTransformer.VehicleSubscriptionObject(json: $0.content)
-        }
+//        API.configureTransformer("subscriptions/*") {
+//            ObjectJSONTransformer.VehicleSubscriptionObject(json: $0.content)
+//        }
         
         API.configureTransformer("track/register") {
             ObjectJSONTransformer.RegisterVehicleObject(json: $0.content)

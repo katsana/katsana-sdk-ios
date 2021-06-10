@@ -53,7 +53,7 @@ extension KatsanaAPI{
 //        })
 //    }
     
-    public func requestPaySubscriptionURL(subscriptions: [VehicleSubscription], completion: @escaping (_ url: String) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestPaySubscriptionURL(subscriptions: [VehicleSubscription], period:Int, completion: @escaping (_ url: String) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         
         var params = [String: Any]()
         var newIds = [Int]()
@@ -63,13 +63,14 @@ extension KatsanaAPI{
             }
         }
         params["subscription"] = newIds
+        params["period"] = period
         
         let path = "subscriptions/pay"
         let resource = API.resource(path);
         
         resource.request(.post, json: NSDictionary(dictionary: params)).onSuccess({(entity) in
             let test = entity.content as? JSON
-            if let url = test!["pay_url"].string{
+            if let url = test!["transaction"]["meta"]["bill"]["url"].string{
                 completion(url)
             }else{
                 failure(nil)
@@ -77,6 +78,31 @@ extension KatsanaAPI{
         }).onFailure({ (error) in
             failure(error)
             self.log.error("Error getting pay subscriptions url, \(error)")
+        })
+    }
+    
+    public func notifySupportKatsanaForSubscription(subscriptions: [VehicleSubscription], type:String, completion: @escaping () -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        
+        var params = [String: Any]()
+        var newIds = [Int]()
+        for subscription in subscriptions{
+            if let val = Int(subscription.deviceId){
+                newIds.append(val)
+            }
+        }
+        params["device"] = newIds
+        params["type"] = type
+        
+        let path = "subscriptions/notify"
+        let resource = API.resource(path);
+        
+        resource.request(.post, json: NSDictionary(dictionary: params)).onSuccess({(entity) in
+//            let test = entity.content as? JSON
+//            print(entity)
+            completion()
+        }).onFailure({ (error) in
+            failure(error)
+            self.log.error("Error notify Customer Support to renew terminated subscriptions, \(error)")
         })
     }
     
@@ -97,6 +123,10 @@ extension KatsanaAPI{
 //            self.log.error("Error getting upgrade subscriptions url, \(error)")
 //        })
 //    }
+    
+    public func wipeSubscriptionResources(){
+        API.wipeResources(matching: "subscriptions")
+    }
     
     public func cachedVehicleSubscriptions() -> [VehicleSubscription]! {
         if let user = currentUser{
