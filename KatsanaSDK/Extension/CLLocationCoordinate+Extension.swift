@@ -13,7 +13,7 @@ import CoreLocation
 public extension CLLocationCoordinate2D{
     static let epsilon = 0.005
     
-    public func equal(_ location: CLLocationCoordinate2D) -> Bool {
+    func equal(_ location: CLLocationCoordinate2D) -> Bool {
         if fabs(latitude - location.latitude) < CLLocationCoordinate2D.epsilon && fabs(longitude - location.longitude) < CLLocationCoordinate2D.epsilon {
             return true
         }

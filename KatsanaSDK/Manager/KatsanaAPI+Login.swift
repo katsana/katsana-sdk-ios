@@ -75,6 +75,30 @@ extension KatsanaAPI {
         
     }
     
+    public func login(token: String, completion: @escaping (_ user: KTUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        if token.count > 0{
+            self.authToken = token
+            
+            self.loadProfile(completion: { (user) in
+                NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
+                completion(user)
+            }, failure: { (error) in
+                self.loadProfile(completion: { (user) in
+                    NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
+                    completion(user)
+                }, failure: { (error) in
+                    self.loadProfile(completion: { (user) in
+                        NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
+                        completion(user)
+                    }, failure: { (error) in
+                        failure(error)
+                    })
+                })
+                
+            })
+        }
+    }
+    
     private func loadProfile(completion: @escaping (_ user: KTUser?) -> Void, failure: @escaping (_ error: RequestError?) -> Void) {
         var resource = self.API.resource("profile")
         if let options = defaultRequestProfileOptions{

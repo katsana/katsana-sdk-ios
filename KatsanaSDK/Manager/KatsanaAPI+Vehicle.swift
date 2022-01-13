@@ -115,10 +115,10 @@ extension KatsanaAPI {
         
         request?.onSuccess({ (entity) in
             handleResource()
-            }).onFailure({ (error) in
-                failure(error)
-                self.log.error("Error getting all vehicle list \(error)")
-            })
+        }).onFailure({ (error) in
+            failure(error)
+            self.log.error("Error getting all vehicle list \(error)")
+        })
         
         if request == nil {
             handleResource()

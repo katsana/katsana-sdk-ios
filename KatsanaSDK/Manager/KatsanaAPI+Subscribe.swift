@@ -81,7 +81,7 @@ extension KatsanaAPI{
         })
     }
     
-    public func notifySupportKatsanaForSubscription(subscriptions: [VehicleSubscription], type:String, completion: @escaping () -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func notifySupportKatsanaForSubscription(subscriptions: [VehicleSubscription], completion: @escaping () -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         
         var params = [String: Any]()
         var newIds = [Int]()
@@ -91,7 +91,6 @@ extension KatsanaAPI{
             }
         }
         params["device"] = newIds
-        params["type"] = type
         
         let path = "subscriptions/notify"
         let resource = API.resource(path);

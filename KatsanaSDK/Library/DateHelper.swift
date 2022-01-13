@@ -112,7 +112,7 @@ public extension Date {
             
         case .iso8601(let isoFormat):
             
-            let dateFormat = (isoFormat != nil) ? isoFormat! : ISO8601Format(dateString: string as String)
+            let dateFormat = (isoFormat != nil) ? isoFormat! : KatsanaSDK.ISO8601Format(dateString: string as String)
             let formatter = Date.formatter(dateFormat.rawValue)
             formatter.locale = Foundation.Locale(identifier: "en_US_POSIX")
             formatter.timeZone = Foundation.NSTimeZone.local
@@ -834,7 +834,7 @@ public extension Date {
             let nowMillis = 1000 * self.timeIntervalSince1970
             return  "/Date(\(nowMillis)\(offset))/"
         case .iso8601(let isoFormat):
-            dateFormat = (isoFormat != nil) ? isoFormat!.rawValue : ISO8601Format.DateTimeMilliSec.rawValue
+            dateFormat = (isoFormat != nil) ? isoFormat!.rawValue : KatsanaSDK.ISO8601Format.DateTimeMilliSec.rawValue
             zone = NSTimeZone.local
         case .rss:
             dateFormat = RSSFormat

@@ -69,6 +69,8 @@ open class KatsanaAPI: NSObject {
                     log.info("Current selected vehicle \(String(describing: newValue.vehicleId))")
                     lastVehicleIds = [newValue.vehicleId]
                 }
+            }else{
+                lastVehicleIds = nil
             }
         }
     }
