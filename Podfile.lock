@@ -3,9 +3,9 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
-  - Siesta (1.4.3):
-    - Siesta/Core (= 1.4.3)
-  - Siesta/Core (1.4.3)
+  - Siesta (1.5.2):
+    - Siesta/Core (= 1.5.2)
+  - Siesta/Core (1.5.2)
   - XCGLogger (7.0.1):
     - XCGLogger/Core (= 7.0.1)
   - XCGLogger/Core (7.0.1):
@@ -26,9 +26,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   FastCoding: 3b590f7143a229780fa744b35084d85d9461587e
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
-  Siesta: 83795fdf6a43232d1d2909e1a3dfb92ab5916d26
+  Siesta: d1e1966af43ffca170f658ad6d987228a5b40873
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: df053e210be7383c49aa90d9769938513f0118d5
+PODFILE CHECKSUM: 936b93425d75f99e74688fd6d5f05262d23971cd
 
-COCOAPODS: 1.10.0.rc.1
+COCOAPODS: 1.11.3

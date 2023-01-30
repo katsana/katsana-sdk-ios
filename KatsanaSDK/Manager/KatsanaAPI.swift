@@ -10,8 +10,7 @@ import Siesta
 import XCGLogger
 import CoreLocation
 
-@objcMembers
-open class KatsanaAPI: NSObject {
+open class KatsanaAPI {
     //Notifications
     public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserLogonSuccessNotification")
     public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
@@ -135,8 +134,7 @@ open class KatsanaAPI: NSObject {
 
     // MARK: Lifecycle
     
-    public override init() {
-        super.init()
+    public init() {
         self.setupLog()
     }
 

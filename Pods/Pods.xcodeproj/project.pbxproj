@@ -7,250 +7,248 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		022BF85F66049697FDD17175475A304C /* ObjcExceptionBridging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAF414090FB8BFF5D01D7C525564B11 /* ObjcExceptionBridging.framework */; };
-		025788448E66B774B1CCC7746D5B2641 /* RequestChaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920A4A47E7AB4A04D94C80C8114D6360 /* RequestChaining.swift */; };
-		0355069F1AD2296B4EA3925085D30BBB /* ObjcExceptionBridging.h in Headers */ = {isa = PBXBuildFile; fileRef = 55B14B4162C1EE381CF00EDDD822CA68 /* ObjcExceptionBridging.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		04812AE3737CFB523ED8B6F4D6D712D5 /* ObjectiveCMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C548F0FBEFE518AC04A556D8D02ED52 /* ObjectiveCMarker.m */; };
-		05F1872ADA6139533B228DC1E8F1D0C4 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BC8450B6EA326ECDA7F0D57443288 /* Logging.swift */; };
-		074020C75B5703FEFDB1758B0EF211FF /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2674AB87966286E3CD972A9C41B777 /* Resource.swift */; };
-		0A3A3FB3718EC8271F79496D87257EFC /* FilterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD41FF0EFF4A977968391D03853C3B9 /* FilterProtocol.swift */; };
-		0AC1F74EDE1306EE7CAEF717F1C99DFE /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9057571869EBC3846F0500C1C1BB61B8 /* Entity.swift */; };
-		0B69A6B8FC1BD98F84E5B7EE348CB811 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9057571869EBC3846F0500C1C1BB61B8 /* Entity.swift */; };
-		0C5E10426E2B84EE7611FA7C5E39394A /* AppleSystemLogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB36E6F73BF9152E0DF43BA24BCA48 /* AppleSystemLogDestination.swift */; };
-		0D6CB8F760FB60FBE7BEDBDC79B1C2C7 /* LogFormatterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DBBE55078F72E3751C8F8BFA39F3AF /* LogFormatterProtocol.swift */; };
-		0EA9686C528F8E1D3ABEBDA4C2734FC1 /* Pods-KatsanaSDK macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 57BE9EFA5E986F392D4BF315159B3D41 /* Pods-KatsanaSDK macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0F1D9452F7E8DDA0CD1CB613D9C4198C /* PrePostFixLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE04FFB5AF52921C340C9B27E0F11EC /* PrePostFixLogFormatter.swift */; };
-		1016CF5B1B3B7CB87C4E842C382E73F0 /* StandardTransformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17D1858B2164ADDAD1C21DF1F466AD2 /* StandardTransformers.swift */; };
-		10259D7A1F8D5149920A8D41428AB591 /* WeakCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84281AB2D5580B4B350D815CD84A396 /* WeakCache.swift */; };
-		120B977B1483C6B5AE935757D9425E93 /* GCD+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543BE30588EBB99C34DFA5E583205A9 /* GCD+Siesta.swift */; };
-		13A62E03FFA86A1AE680F97240737B63 /* ResourceNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FFA46891BF4616784E7831326E680D /* ResourceNavigation.swift */; };
-		14A5AF5B73DAF74AF9D49BBBF1DD4D7A /* LiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0767D8EB2A27B94BC7291378D35247F /* LiveRequest.swift */; };
-		14B852FD118968C39B0E147A658A612E /* Siesta-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A0EC2493F053EB4B2950B9EB4F367E4 /* Siesta-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14E2247908705AE03FB9D859B0DD034A /* BaseQueuedDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9778D30C1367696E327C7AEC40BE1 /* BaseQueuedDestination.swift */; };
-		1870FF60BDC7634D4D192DE3617083F6 /* ResourceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12161824ABB21BA9ED9EBA033ED3294B /* ResourceObserver.swift */; };
-		189817D6D6B223302595A294A6DF052E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B74E48223B07BEDD1CDB44D3D9FE1A80 /* Foundation.framework */; };
-		1EA14F7E6B6B05EF41ABF7E7571536CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B74E48223B07BEDD1CDB44D3D9FE1A80 /* Foundation.framework */; };
-		1FD5AC673A03F14769ADC475F762DD22 /* AutoRotatingFileDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA2551677FC2B3B7BFFA5BED28920D /* AutoRotatingFileDestination.swift */; };
-		2058BFA9B0C260E2077903555E40D81D /* TestDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A2CA294EF44905A74DAB11310F2D7C /* TestDestination.swift */; };
-		216CEC674E0D2FFD162A8AD78A623DF7 /* Siesta-ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC059F47835A9CB7C26A7260167306AB /* Siesta-ObjC.swift */; };
-		21CD1F2BE19C072A512486CCE9403939 /* SiestaUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E1B2F831A817C29089331E7993C7B259 /* SiestaUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		24F51C4FDEAB12479EE9187DF5445162 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19FB602B0ED298EF4C111211B18DDCB8 /* Cocoa.framework */; };
-		24FEE25BD7751D2E03A02A1EC56D2E06 /* StandardTransformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17D1858B2164ADDAD1C21DF1F466AD2 /* StandardTransformers.swift */; };
-		2576863FA6AF6171E94EB5D47FA43886 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A614F2D7C626D7E9532A8FE93AA76 /* Progress.swift */; };
-		26D8527D67CF36B95749F231A7BAD339 /* UserInfoFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F715E79C02E0395E5EF2CD08218E7D /* UserInfoFilter.swift */; };
-		2BA88FFF6005F7BA2F90B5F5AF3AA286 /* AppleSystemLogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB36E6F73BF9152E0DF43BA24BCA48 /* AppleSystemLogDestination.swift */; };
-		2DC121E53988165690A7A9EED0577F6A /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = A6427468A6A3996CC8A7088C42637C67 /* .swift-version */; };
-		2E0DCF9EC27E8B72015D095AE202840C /* FileNameFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA6C4F922743439F24DBEB14FF65BC3 /* FileNameFilter.swift */; };
-		3003E9E01972E0F43655D0CE4F61D73E /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6644511EA7E624DE76B3D24DC213D1DD /* Request.swift */; };
-		303DCDA4E5A11FA3EC4F8821D1BE7655 /* RequestCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B6C5565DABFA1B194F3235EA3B1FD2 /* RequestCreation.swift */; };
-		30A05A8EEBF5CA9173AD6712B9E6F209 /* UserInfoFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F715E79C02E0395E5EF2CD08218E7D /* UserInfoFilter.swift */; };
-		31FC4CB8DC39C1BFB05701D3861D56A9 /* WeakCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84281AB2D5580B4B350D815CD84A396 /* WeakCache.swift */; };
-		35BC1E2B9A210DF8686E1B9906B0D9DE /* Siesta.h in Headers */ = {isa = PBXBuildFile; fileRef = C1686D7DC841F8546593CA3F7336CB6B /* Siesta.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		360F460735843C6C4FE5F2AFA21D2CE9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19FB602B0ED298EF4C111211B18DDCB8 /* Cocoa.framework */; };
-		3650964004B650F3DCBBB61CE196EF68 /* TestDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A2CA294EF44905A74DAB11310F2D7C /* TestDestination.swift */; };
-		375CB8F153D5652F62629C7FAE02D20E /* OpenEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1C9B79399FE9612D3C3AB38135B473 /* OpenEnum.swift */; };
-		3C2A08A80CF6477CFD0C4F92BFE8299E /* ConfigurationPatternConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B51C0B570CF1A9CE3F0A2B0A1C1C8 /* ConfigurationPatternConvertible.swift */; };
-		4024A69DA2944777FE30C963E29D6884 /* XCGLogger-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 77C8D88B865BF1BB3B8D2DCE9C6F3D49 /* XCGLogger-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		41FE45B0F8631EB6E0880398FC8C8980 /* FileNameFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA6C4F922743439F24DBEB14FF65BC3 /* FileNameFilter.swift */; };
-		423D04E427286DD4DA0D8C64729FFF4E /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A614F2D7C626D7E9532A8FE93AA76 /* Progress.swift */; };
-		439E69E1D538F2F53AC95E16FA285E46 /* ANSIColorLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF471C4E36384761CA2CD2B696BC390 /* ANSIColorLogFormatter.swift */; };
-		450E6E35C820DB8A0D2B28E8C420EACB /* ObjcExceptionBridging.h in Headers */ = {isa = PBXBuildFile; fileRef = 55B14B4162C1EE381CF00EDDD822CA68 /* ObjcExceptionBridging.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4766F40BED4AAFFF781EC19551F0BAF1 /* LogDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF15DA89A06B3429BDB935DA4C0290 /* LogDetails.swift */; };
-		4A71D6B6C4841FBD1F8661660327182E /* BaseQueuedDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9778D30C1367696E327C7AEC40BE1 /* BaseQueuedDestination.swift */; };
-		4DCB6808CE56672743FE718348E08D8B /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = B165F889B3DB2BBD27A191C40B97DE5C /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4E78E490F6AB198128E510810E50CAE9 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BC8450B6EA326ECDA7F0D57443288 /* Logging.swift */; };
-		4F37A0DEC3427496A52B15DD1B452133 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E71B0F1A676F51874DC2D711A5FA53D /* HelperFunctions.swift */; };
-		50E025187765A8AF9D7D9E598F6E3C7A /* RequestCallbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B466A1A3541FE554701C16C9A76E55 /* RequestCallbacks.swift */; };
-		5500902A2E33546C75447965A6B78E5D /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292C958618D943A0D58E1BFE74FB1A88 /* NetworkRequest.swift */; };
-		5A46D106852AD5F4627F8042B1B5FB4B /* GCD+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543BE30588EBB99C34DFA5E583205A9 /* GCD+Siesta.swift */; };
-		5A89955BC326C1FFFB6EABF76353DE0E /* PipelineConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A8CEDDCE84AC7FA57A53B015ED885 /* PipelineConfiguration.swift */; };
-		5B08CBCADDD7E65880565C9FE964309D /* HardWiredRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DADCD972EAD7FCCE6CECEC8B6FEA0BD /* HardWiredRequest.swift */; };
-		5B87B5A7523F283CB1594DDC956F6A73 /* ARC+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E3437A1B76D551CABCE0CA53AED4F2 /* ARC+Siesta.swift */; };
-		5D73C6D496204389DC45D2FFC4A7CEE1 /* String+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2FA07AEDEC3A704F199E51AD02E87 /* String+Siesta.swift */; };
-		5E0C2C1AF4903928939DDD3786F8B39B /* PrePostFixLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE04FFB5AF52921C340C9B27E0F11EC /* PrePostFixLogFormatter.swift */; };
-		62C0008EC86BDA0A8C70CD1447ECFE2B /* Pods-KatsanaSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 780F60D8631F2A3732D13DC274BE44B2 /* Pods-KatsanaSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		63886986F4A378286DC110902CB2D861 /* FastCoding-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CFEBFCCB03234039AA98BF3A473C3D /* FastCoding-iOS-dummy.m */; };
-		6499778ABC5E77F83C63EA320F61DF1F /* Base64LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3F618F650E6102E7D425EFDF9A408F /* Base64LogFormatter.swift */; };
-		67FEA07A994028EE6A560A74A2FD0B69 /* ResponseTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CCF70B3EAA9F879FCC8E49DFB9C7D8 /* ResponseTransformer.swift */; };
-		681D0986C5C91A1B821DF64BA0542D4C /* HardWiredRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DADCD972EAD7FCCE6CECEC8B6FEA0BD /* HardWiredRequest.swift */; };
-		6916F4A2A489C687664EB2350620F678 /* DebugFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6FE59B6CCC4EDAD1E31F248A0F679B /* DebugFormatting.swift */; };
-		6A4D65194B93673CD85784BD25C4A912 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E7F25ED6CC8FBF7898BD8022A4801D /* Service.swift */; };
-		6A6DF230F6FB75D384546929440FDA47 /* RequestCallbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B466A1A3541FE554701C16C9A76E55 /* RequestCallbacks.swift */; };
-		6CC7212FE014321A901811E3A4B4791D /* Regex+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839FEB0718244EB0199AB5E073B35DC /* Regex+Siesta.swift */; };
-		6FA7D781EDA912EBD7D07A86D40B1016 /* ResourceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12161824ABB21BA9ED9EBA033ED3294B /* ResourceObserver.swift */; };
-		70C9D6BDEA2CBBBD4FCBCD68844D33CD /* Pods-KatsanaSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 770576AC574C8D645C6786933E501FE8 /* Pods-KatsanaSDK-dummy.m */; };
-		732FA62C5F553CCECC1F3B05C56C9037 /* ProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C322F5147338EACEFA84C19F2AD3B4 /* ProgressTracker.swift */; };
-		75617C85F8E40466A592D7DF808C0BD1 /* PipelineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1DD864B0ED53800AFD2C8CD966CC4 /* PipelineProcessing.swift */; };
-		7BA55272D44DADA84BECD6033E824388 /* Siesta-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8410FEF2D7FDEF09FCDE4191024AF94D /* Siesta-iOS-dummy.m */; };
-		7E1CECCB9EECAD400BB1716C714BA7ED /* Networking-URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C5E0CF4A3BE95599FD963C59F780CD /* Networking-URLSession.swift */; };
-		7EB45938CD5E469ED474BC905E0C6CFB /* XCGLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7807E9CDEAF4F5E55A9CE4C31B76EFDA /* XCGLogger.swift */; };
-		7F5ED9D6F48750400C5F942194516AE3 /* AutoRotatingFileDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA2551677FC2B3B7BFFA5BED28920D /* AutoRotatingFileDestination.swift */; };
-		8090535160899CED0C9C137E5802C645 /* ARC+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E3437A1B76D551CABCE0CA53AED4F2 /* ARC+Siesta.swift */; };
-		835112DD5AB0622C37B538C26AF1BCCF /* Siesta-ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC059F47835A9CB7C26A7260167306AB /* Siesta-ObjC.swift */; };
-		83800C8D9695EC779488AF10B527049F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B74E48223B07BEDD1CDB44D3D9FE1A80 /* Foundation.framework */; };
-		843C049D1987610A66191979B5498481 /* XcodeColorsLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB82B456B545ABB100382EE5BAA9E4 /* XcodeColorsLogFormatter.swift */; };
-		84A36E55922B05EA1EB929336E47BCEB /* Optional+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF3C77ABC64F65EDB41552D5BEEA959 /* Optional+Siesta.swift */; };
-		870876E0242EF30C7D8E90E8F17A85B9 /* ObjcExceptionBridging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAF414090FB8BFF5D01D7C525564B11 /* ObjcExceptionBridging.framework */; };
-		8CBC3975CDE58EC1371304CC8D4101F8 /* XCGLogger-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F6993219436D776C23ECF8A49D5248C /* XCGLogger-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8CE3FF5E8955C2FDF33B1A2C90767E9E /* ObjcExceptionBridging-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7366728C34307ED2A4BB41FD488B3DD8 /* ObjcExceptionBridging-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8DC9D43E1CF2A7B58572A28DF778E864 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E7F25ED6CC8FBF7898BD8022A4801D /* Service.swift */; };
-		9262C72B75067EF494083FD966A26787 /* FileDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B698E7A2A07207F201FABD56EACB395 /* FileDestination.swift */; };
-		945149B755D6ACF7344FBACAFD097FF1 /* ConfigurationPatternConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B51C0B570CF1A9CE3F0A2B0A1C1C8 /* ConfigurationPatternConvertible.swift */; };
-		94A88B2BB126EB81E7C17FCED73FAF69 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = B165F889B3DB2BBD27A191C40B97DE5C /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		979993B9118670333169F2F388230BD9 /* BaseDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC71619198B12D9DE4BC245CC5369BA /* BaseDestination.swift */; };
-		9836B59DD65DA176C5251A41DB4EB1D4 /* Siesta-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ADE5CBBC510C72C7FF496FAF7CBDF8 /* Siesta-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		98416192887B3F802BAFDD84322F9F14 /* LogFormatterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DBBE55078F72E3751C8F8BFA39F3AF /* LogFormatterProtocol.swift */; };
-		9A48330D4190FC43179FF2F8F21CB591 /* Base64LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3F618F650E6102E7D425EFDF9A408F /* Base64LogFormatter.swift */; };
-		9B10BD36B51E934B17CC25535AFF714B /* XcodeColorsLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB82B456B545ABB100382EE5BAA9E4 /* XcodeColorsLogFormatter.swift */; };
-		9BA632CD3D8C056D7072241F1F441852 /* DestinationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14952FB7157EC3F380AEC3EFB73F8E5 /* DestinationProtocol.swift */; };
-		9C4DA4886DB1CFB41195094C08D1672D /* LiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0767D8EB2A27B94BC7291378D35247F /* LiveRequest.swift */; };
-		9CAFC2EE1F06B89A7B31D416FCAF5130 /* ANSIColorLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF471C4E36384761CA2CD2B696BC390 /* ANSIColorLogFormatter.swift */; };
-		9E604C01342E915CB4F56FB583E12DFA /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F09F86FEB486D1ABC4F61364DD3B2 /* RequestError.swift */; };
-		9EB2556E181240C363D98202129FEB2A /* ObjectiveCMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C548F0FBEFE518AC04A556D8D02ED52 /* ObjectiveCMarker.m */; };
-		9EE0CE52D6C2DAC414890B325E0A5B55 /* DevFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07566DB2D4CACC7F3C8FC22A6152F494 /* DevFilter.swift */; };
-		9F98F25D2DEBA1FC0239296257CA7C52 /* ConsoleDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78F1488D120A0508DD2F44E46A2A60E /* ConsoleDestination.swift */; };
-		A019BD0DD936F9F93F1DC3918F1E3675 /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = A6427468A6A3996CC8A7088C42637C67 /* .swift-version */; };
-		A0D00465C4B6F1C11FF43BCD7A3E0590 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292C958618D943A0D58E1BFE74FB1A88 /* NetworkRequest.swift */; };
-		A20D9E1766339E9D369DFA21A30906CA /* String+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2FA07AEDEC3A704F199E51AD02E87 /* String+Siesta.swift */; };
-		A267F496B945A88138EA424A3B946410 /* FastCoding-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0556879CE8DA563BB0D118CF7896D7DF /* FastCoding-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6934A2592F31461A95C9AE94F1085FD /* Regex+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839FEB0718244EB0199AB5E073B35DC /* Regex+Siesta.swift */; };
-		A7A7E7933183842EA18F6C5E90B38D2E /* EntityCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E025F66A4893285F7C06D06E0489165B /* EntityCache.swift */; };
-		AA568BC637D430157214FA615C16B83B /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2674AB87966286E3CD972A9C41B777 /* Resource.swift */; };
-		AA621A63DD8FD06B010DCFDAF14EEEE4 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F09F86FEB486D1ABC4F61364DD3B2 /* RequestError.swift */; };
-		AA809971DA0B8D3C2308C6D8A8A57DC5 /* ConsoleDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78F1488D120A0508DD2F44E46A2A60E /* ConsoleDestination.swift */; };
-		AAC597F030D5BC91FB28041A97FAE761 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19FB602B0ED298EF4C111211B18DDCB8 /* Cocoa.framework */; };
-		AB65319F8C2E8159B2BAE23B6E21BC22 /* URL+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B9A500A737EC34718A1E6AB63F892B /* URL+Siesta.swift */; };
-		ACF03D2960AD933902157669E422985E /* ObjcExceptionBridging-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4483AD7A42DCA218C564A0590C892DBE /* ObjcExceptionBridging-iOS-dummy.m */; };
-		AD67900F83863EF59A4C34B727586C94 /* OpenEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1C9B79399FE9612D3C3AB38135B473 /* OpenEnum.swift */; };
-		AE17EAB162E28D075DD0667E921A3161 /* XCGLogger-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 12784F01268D80ADB57E5E2E8F70427A /* XCGLogger-macOS-dummy.m */; };
-		AE98308EDFBC83211931F999E724BD7D /* DebugFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6FE59B6CCC4EDAD1E31F248A0F679B /* DebugFormatting.swift */; };
-		AF35975E75CF338F031E869333C96096 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19FB602B0ED298EF4C111211B18DDCB8 /* Cocoa.framework */; };
-		B0B06A7BB087D73C42123184FF885DF1 /* Collection+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1F044664A5E62777952E29E6DBC36 /* Collection+Siesta.swift */; };
-		B106356576A037F9E292B3F4FCB16DDC /* DestinationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14952FB7157EC3F380AEC3EFB73F8E5 /* DestinationProtocol.swift */; };
-		B2218579C3D6603E722FAF5CD8C974B4 /* URL+XCGAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2160A25FB19CA9C488C50DD8938D48C /* URL+XCGAdditions.swift */; };
-		B264593FA11C6E39D5164437ECC0AB1C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B74E48223B07BEDD1CDB44D3D9FE1A80 /* Foundation.framework */; };
-		B29CE557EDACCBD04B3F5ACDFAB64A1F /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E36EC0F5777790A743A314330E56F /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B3ACDF3C5D6B7A3A33C6C37A167E9D2A /* TagFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AFE4AB9D38504E0F22D220CCCA10F /* TagFilter.swift */; };
-		B4F2B5B2267E0BFB5EE523C311718206 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB39A22F31B041C5134E6C68B08193D /* Configuration.swift */; };
-		B89097F7FB6AE9D67FBE73A5609BFAA6 /* PipelineConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A8CEDDCE84AC7FA57A53B015ED885 /* PipelineConfiguration.swift */; };
-		BB33DA28DB307BA00B207FF2CCE9E493 /* DevFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07566DB2D4CACC7F3C8FC22A6152F494 /* DevFilter.swift */; };
-		BC883B648E25AD5D40260075980AB96E /* ResourceNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FFA46891BF4616784E7831326E680D /* ResourceNavigation.swift */; };
-		BD39FC4A61BBE6C5D2CCC77A852926E9 /* PipelineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1DD864B0ED53800AFD2C8CD966CC4 /* PipelineProcessing.swift */; };
-		BD4F7D92A04C85F56CA022A30278F7C8 /* Ω_Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41D1612B7922C1DE4C6761DEA41CEAD /* Ω_Deprecations.swift */; };
-		BDDA254F592F176354F063C7C717AB7C /* URL+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B9A500A737EC34718A1E6AB63F892B /* URL+Siesta.swift */; };
-		BEC081A8F0F33C3B32326F1F2A2F950F /* EntityCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E025F66A4893285F7C06D06E0489165B /* EntityCache.swift */; };
-		C102F54205ED8D4B73C3458E4A025293 /* DispatchQueue+XCGAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4DF9F9E5C79AFA36D8817B8B188B3A /* DispatchQueue+XCGAdditions.swift */; };
-		C1F1B83AF2EACA26827AD889E4C58B82 /* ObjcExceptionBridging-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 083C9DCF08BC0BC2165DBACADFAA9A0E /* ObjcExceptionBridging-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C3B593296B872FC9BD0C584E07006C20 /* Networking-URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C5E0CF4A3BE95599FD963C59F780CD /* Networking-URLSession.swift */; };
-		C4B284725334E258A1DEA680B927F1B9 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E36EC0F5777790A743A314330E56F /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C760631FD78C8CD321D7E749F7745532 /* FileDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B698E7A2A07207F201FABD56EACB395 /* FileDestination.swift */; };
-		C8706FC2C207866324B12426A5FD8204 /* Siesta-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BDACFC19BD7F8AFE13FF6F82B62684A9 /* Siesta-macOS-dummy.m */; };
-		C93ACF193613E3EE7CEE7E23EB4CD11A /* ObjcExceptionBridging-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C98441795F4C5063F6F88D8F7428536 /* ObjcExceptionBridging-macOS-dummy.m */; };
-		CA713B8E2EE50A07B2919FC493BB7393 /* FastCoding-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FB4A54C381B49A243DF2F07C03D7138F /* FastCoding-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CB657616224A50A4F68C70031EFC1605 /* ResponseTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CCF70B3EAA9F879FCC8E49DFB9C7D8 /* ResponseTransformer.swift */; };
-		CE1BBC82CFA5BFC0BA467E42292B41CB /* Pods-KatsanaSDK macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065C0B029469B746A6AE022E6631980 /* Pods-KatsanaSDK macOS-dummy.m */; };
-		CF75BB268F41CD97CB4889414DCAEDD4 /* Collection+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1F044664A5E62777952E29E6DBC36 /* Collection+Siesta.swift */; };
-		CFE4F7DC4DEE2BF2595E705A970B482D /* XCGLogger-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BF7107507699F282842190260E4F84 /* XCGLogger-iOS-dummy.m */; };
-		D0D8767F8944F78A722BCB5D2FE9D831 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E71B0F1A676F51874DC2D711A5FA53D /* HelperFunctions.swift */; };
-		D25DEC1BD7C47BB71126724AA6748970 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B74E48223B07BEDD1CDB44D3D9FE1A80 /* Foundation.framework */; };
-		D2E80D40198451224D13E2FFA6A26618 /* FilterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD41FF0EFF4A977968391D03853C3B9 /* FilterProtocol.swift */; };
-		D34EE005A600C2B385A908CA3CC35C01 /* XCGLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7807E9CDEAF4F5E55A9CE4C31B76EFDA /* XCGLogger.swift */; };
-		D5053E2E71E0F7086CF2DD8C6F5769CF /* Optional+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF3C77ABC64F65EDB41552D5BEEA959 /* Optional+Siesta.swift */; };
-		D5982EB3A234DE18B7038E140C00AC8E /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5937B9D234D9F1602423EFC1064205 /* Networking.swift */; };
-		D5BBA53505C5D47BBF0471559AD83830 /* URL+XCGAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2160A25FB19CA9C488C50DD8938D48C /* URL+XCGAdditions.swift */; };
-		D76B9B95DA02737C66D4A510EC45C616 /* SiestaUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E1B2F831A817C29089331E7993C7B259 /* SiestaUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D7CBFFE131769B2A3C158902E290228C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6644511EA7E624DE76B3D24DC213D1DD /* Request.swift */; };
-		D82221026C7DE45A42219B4690B2F935 /* RequestCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B6C5565DABFA1B194F3235EA3B1FD2 /* RequestCreation.swift */; };
-		E0885056DA568606472A9D096D7CD97F /* TagFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AFE4AB9D38504E0F22D220CCCA10F /* TagFilter.swift */; };
-		E165194528940A921E3CB7954FC636C7 /* ProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C322F5147338EACEFA84C19F2AD3B4 /* ProgressTracker.swift */; };
-		E1C44DB6793DCC1F15B7C0F84F040774 /* LogDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF15DA89A06B3429BDB935DA4C0290 /* LogDetails.swift */; };
-		E4F1B215F0A2C3A1881FDB116DF17B21 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB39A22F31B041C5134E6C68B08193D /* Configuration.swift */; };
-		E7F10EDD14DB936F9BE24C7340D0BC94 /* BaseDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC71619198B12D9DE4BC245CC5369BA /* BaseDestination.swift */; };
-		E9665894DF69BFE0E6589A1F823527E9 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5937B9D234D9F1602423EFC1064205 /* Networking.swift */; };
-		EB105F1040973CCA609A1DA0E1763A99 /* RequestChaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920A4A47E7AB4A04D94C80C8114D6360 /* RequestChaining.swift */; };
-		ED8E31137CDAA00FC29B135BA7EE4AEF /* FastCoding-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5055422435DB11F65F9DF59598F8CD85 /* FastCoding-macOS-dummy.m */; };
-		EFC3C0F82B1DB9D737CE855E515D2B74 /* Siesta.h in Headers */ = {isa = PBXBuildFile; fileRef = C1686D7DC841F8546593CA3F7336CB6B /* Siesta.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F1A4C081243348110C816698C7E4CECD /* DispatchQueue+XCGAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4DF9F9E5C79AFA36D8817B8B188B3A /* DispatchQueue+XCGAdditions.swift */; };
-		F56C6FE330CA7BA470F66355ED5C78B1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19FB602B0ED298EF4C111211B18DDCB8 /* Cocoa.framework */; };
-		F79D699279BF7E0853561ADE6836EB0E /* Ω_Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41D1612B7922C1DE4C6761DEA41CEAD /* Ω_Deprecations.swift */; };
+		0040A11040AFD5407403AAA94F230086 /* FileDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B698E7A2A07207F201FABD56EACB395 /* FileDestination.swift */; };
+		0084580E279E0D31539C92B786F77C39 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5937B9D234D9F1602423EFC1064205 /* Networking.swift */; };
+		017C12D42D38DD6CE79EB50EE9B030C3 /* ResponseTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CCF70B3EAA9F879FCC8E49DFB9C7D8 /* ResponseTransformer.swift */; };
+		018C49244CEA653D9DD4608C13C3ACFA /* UserInfoFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F715E79C02E0395E5EF2CD08218E7D /* UserInfoFilter.swift */; };
+		026159DCD2B9C878D7894BC0DE0B9FBC /* Siesta-ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC059F47835A9CB7C26A7260167306AB /* Siesta-ObjC.swift */; };
+		03698581DEC58002F37D54C82188F291 /* PipelineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1DD864B0ED53800AFD2C8CD966CC4 /* PipelineProcessing.swift */; };
+		0406372F1F8D3DCB03E74040825ED9CD /* BaseDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC71619198B12D9DE4BC245CC5369BA /* BaseDestination.swift */; };
+		06587949AD9D178D8BE8923EB968E4FC /* FastCoding-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CFEBFCCB03234039AA98BF3A473C3D /* FastCoding-iOS-dummy.m */; };
+		09B00D55F4157F590773164DBD988B2A /* Pods-KatsanaSDK macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 57BE9EFA5E986F392D4BF315159B3D41 /* Pods-KatsanaSDK macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A333BD78C2CAA9E6F4BA7ECD57CE572 /* DevFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07566DB2D4CACC7F3C8FC22A6152F494 /* DevFilter.swift */; };
+		0A3D2F6538EA099B5806AB464E077746 /* LiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0767D8EB2A27B94BC7291378D35247F /* LiveRequest.swift */; };
+		0B9C44C89AF99559E89521DE4DE35608 /* DestinationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14952FB7157EC3F380AEC3EFB73F8E5 /* DestinationProtocol.swift */; };
+		0BC4854102917934F80209E1400831AB /* PipelineConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A8CEDDCE84AC7FA57A53B015ED885 /* PipelineConfiguration.swift */; };
+		0C858C4483194B76B190065348B0186A /* XcodeColorsLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB82B456B545ABB100382EE5BAA9E4 /* XcodeColorsLogFormatter.swift */; };
+		0C8F9D79FB32CEBD166F40EF8B0FDF46 /* XCGLogger-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 77C8D88B865BF1BB3B8D2DCE9C6F3D49 /* XCGLogger-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D55EAC45980C709A336DCDB518F4905 /* URL+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B9A500A737EC34718A1E6AB63F892B /* URL+Siesta.swift */; };
+		0E3CCA6E352C1012C3A0CAD72C9A2FF2 /* OpenEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1C9B79399FE9612D3C3AB38135B473 /* OpenEnum.swift */; };
+		0E438C126186EB8E0B297BD52D41AE50 /* String+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2FA07AEDEC3A704F199E51AD02E87 /* String+Siesta.swift */; };
+		0F2DFBA10542AC99ADF76F95EFDB0AB3 /* AppleSystemLogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB36E6F73BF9152E0DF43BA24BCA48 /* AppleSystemLogDestination.swift */; };
+		0F5F110550365373C7354F8B121042F9 /* ObjectiveCMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C548F0FBEFE518AC04A556D8D02ED52 /* ObjectiveCMarker.m */; };
+		10CD8D6D522C93DE2EFF3586FCDDB99F /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = A6427468A6A3996CC8A7088C42637C67 /* .swift-version */; };
+		119DB217A3F74068869DE2CDDE2B7BFC /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BC8450B6EA326ECDA7F0D57443288 /* Logging.swift */; };
+		1306D6A54C87D2D7685FB3ABCB3AB418 /* ObjcExceptionBridging-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7366728C34307ED2A4BB41FD488B3DD8 /* ObjcExceptionBridging-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		154FCDF7C7EA621B30854803CD9E3720 /* XcodeColorsLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB82B456B545ABB100382EE5BAA9E4 /* XcodeColorsLogFormatter.swift */; };
+		17132EECD93ECCAC6F118C9D2E80C92C /* Siesta-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BDACFC19BD7F8AFE13FF6F82B62684A9 /* Siesta-macOS-dummy.m */; };
+		18235B6CF3EEB135CD1694D731C27474 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A54C97DEB1A3977AC3A62AFF00971BF /* Cocoa.framework */; };
+		1A245BA3C6AAA1CA60CB5F73C5925516 /* OpenEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1C9B79399FE9612D3C3AB38135B473 /* OpenEnum.swift */; };
+		1C9F05F49F380AAA7D24119C8EEB4187 /* RequestChaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920A4A47E7AB4A04D94C80C8114D6360 /* RequestChaining.swift */; };
+		1D2964F36125DF48CF549351F6E1F4ED /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E36EC0F5777790A743A314330E56F /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1E3D3344EB5DBB4902F9D374F626F1B7 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E7F25ED6CC8FBF7898BD8022A4801D /* Service.swift */; };
+		1FEA85920DAAACEDE11E583664FCF6E2 /* WeakCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84281AB2D5580B4B350D815CD84A396 /* WeakCache.swift */; };
+		1FF933188BB6A43600B5DD098DB54C2F /* Collection+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1F044664A5E62777952E29E6DBC36 /* Collection+Siesta.swift */; };
+		204857708FF71B23F9D76BD13144D49B /* XCGLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7807E9CDEAF4F5E55A9CE4C31B76EFDA /* XCGLogger.swift */; };
+		20ED3756ECF674D05BDC055A34B259ED /* HardWiredRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DADCD972EAD7FCCE6CECEC8B6FEA0BD /* HardWiredRequest.swift */; };
+		212D215BAF9C353F25F446E150C7EBBF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6644511EA7E624DE76B3D24DC213D1DD /* Request.swift */; };
+		22AB47FC23B13E0CFC1DF6CD32176917 /* Pods-KatsanaSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 780F60D8631F2A3732D13DC274BE44B2 /* Pods-KatsanaSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		275FB21500F13DF05ADC05DA0C843955 /* ANSIColorLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF471C4E36384761CA2CD2B696BC390 /* ANSIColorLogFormatter.swift */; };
+		2832E72AAF3AF49223F184B27B12A434 /* Collection+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1F044664A5E62777952E29E6DBC36 /* Collection+Siesta.swift */; };
+		2A182A71BB541F516AE3FA2AC3F75E27 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB39A22F31B041C5134E6C68B08193D /* Configuration.swift */; };
+		2B3C7BA2CCB2C40E36C892D12FA92AC9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A54C97DEB1A3977AC3A62AFF00971BF /* Cocoa.framework */; };
+		2B826DDA122730EC4C1DE6F0B3C61A7D /* RequestCallbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B466A1A3541FE554701C16C9A76E55 /* RequestCallbacks.swift */; };
+		2BFFDC5B9F91CF6E876FEF54B9994206 /* FastCoding-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FB4A54C381B49A243DF2F07C03D7138F /* FastCoding-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2C1270E025877AB78A5408310C12FE00 /* Siesta.h in Headers */ = {isa = PBXBuildFile; fileRef = C1686D7DC841F8546593CA3F7336CB6B /* Siesta.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D7B2AE8A0E76E3783561DBFAB178EC5 /* TagFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AFE4AB9D38504E0F22D220CCCA10F /* TagFilter.swift */; };
+		31DB71994F3D5075326149E5AC438715 /* TestDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A2CA294EF44905A74DAB11310F2D7C /* TestDestination.swift */; };
+		32E55FE3BCE95B575C41268655615FB4 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F09F86FEB486D1ABC4F61364DD3B2 /* RequestError.swift */; };
+		335D2A05000E564AA86BC4F0C163C56A /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2674AB87966286E3CD972A9C41B777 /* Resource.swift */; };
+		390A6720517D79A3631E1FBCF30AFAEB /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9057571869EBC3846F0500C1C1BB61B8 /* Entity.swift */; };
+		39794F69190690B9ACD36FF0A7970BE4 /* Siesta-ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC059F47835A9CB7C26A7260167306AB /* Siesta-ObjC.swift */; };
+		3B138447EBEFBEF1183B39D1793ECC41 /* ProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C322F5147338EACEFA84C19F2AD3B4 /* ProgressTracker.swift */; };
+		3B6DF804E025378F833CA362A8A26A7F /* FileDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B698E7A2A07207F201FABD56EACB395 /* FileDestination.swift */; };
+		3C385A8ACACB8058B62F16CC38F18B2E /* ConfigurationPatternConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B51C0B570CF1A9CE3F0A2B0A1C1C8 /* ConfigurationPatternConvertible.swift */; };
+		3C400FC17961D3D9F8790E040EA2D2E5 /* Siesta.h in Headers */ = {isa = PBXBuildFile; fileRef = C1686D7DC841F8546593CA3F7336CB6B /* Siesta.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C62FDD2066AD6262ABBD2B47CB23AA4 /* Optional+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF3C77ABC64F65EDB41552D5BEEA959 /* Optional+Siesta.swift */; };
+		3EEDC175D6F59F7A775C021A3FB9E4E7 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2674AB87966286E3CD972A9C41B777 /* Resource.swift */; };
+		3FAF639FD64AFAE55798620CD0FF9839 /* ResourceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12161824ABB21BA9ED9EBA033ED3294B /* ResourceObserver.swift */; };
+		40A61F2F2621EC42D7C80BEFBDCAC8D5 /* Siesta-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A0EC2493F053EB4B2950B9EB4F367E4 /* Siesta-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		41D2B54FBE02E34CC4C00CF46795677C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E7F25ED6CC8FBF7898BD8022A4801D /* Service.swift */; };
+		45C1FC95186C1D7C9CA45368D798ADB4 /* FastCoding-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0556879CE8DA563BB0D118CF7896D7DF /* FastCoding-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		47C1190EFFA60E16DBE36EEC58932E40 /* DebugFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6FE59B6CCC4EDAD1E31F248A0F679B /* DebugFormatting.swift */; };
+		4904C5FA96E9B8194BCE8D2F87CC4309 /* Pods-KatsanaSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 770576AC574C8D645C6786933E501FE8 /* Pods-KatsanaSDK-dummy.m */; };
+		4991AA0B1BD6B96A99731E24DE818640 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A54C97DEB1A3977AC3A62AFF00971BF /* Cocoa.framework */; };
+		4B385F196E2C5579AD1956DD4AFE0DFA /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A614F2D7C626D7E9532A8FE93AA76 /* Progress.swift */; };
+		4D5DAD3BD4BF040B4336DA38A0099F43 /* PipelineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1DD864B0ED53800AFD2C8CD966CC4 /* PipelineProcessing.swift */; };
+		4DB931B1F1B3634B9FBB921849A86428 /* FilterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD41FF0EFF4A977968391D03853C3B9 /* FilterProtocol.swift */; };
+		4EAE038EAFE814F8B34C96E930EB78F3 /* ObjcExceptionBridging.h in Headers */ = {isa = PBXBuildFile; fileRef = 55B14B4162C1EE381CF00EDDD822CA68 /* ObjcExceptionBridging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F41AB07F57C7EF2A70663E76B19F9BB /* PrePostFixLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE04FFB5AF52921C340C9B27E0F11EC /* PrePostFixLogFormatter.swift */; };
+		4F749E3E3AE23F610949F7DA695A49BE /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E71B0F1A676F51874DC2D711A5FA53D /* HelperFunctions.swift */; };
+		50218C078AB7EE018B47D97EFCFF637E /* BaseQueuedDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9778D30C1367696E327C7AEC40BE1 /* BaseQueuedDestination.swift */; };
+		56BF12E871D79D9E6DDE4A6ADE9DB42D /* TestDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A2CA294EF44905A74DAB11310F2D7C /* TestDestination.swift */; };
+		5777CB3B0087D74F00E113AA62BC4796 /* FileNameFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA6C4F922743439F24DBEB14FF65BC3 /* FileNameFilter.swift */; };
+		5793A0F1751E6908F340AD04F0C692CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3261E5A5395F45780622405F504B2804 /* Foundation.framework */; };
+		58ADCC6C02EFBA9479CA3C6E404ACF95 /* SiestaUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E1B2F831A817C29089331E7993C7B259 /* SiestaUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		595CBBAF74C868C7FA8C98153C3A33D5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5937B9D234D9F1602423EFC1064205 /* Networking.swift */; };
+		59BB2C12671A0AF2BA2B8BAF61AA0F86 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292C958618D943A0D58E1BFE74FB1A88 /* NetworkRequest.swift */; };
+		5B1E813D9CFD0242115E87C64EC3BBB4 /* RequestCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B6C5565DABFA1B194F3235EA3B1FD2 /* RequestCreation.swift */; };
+		5B276055674B8DA4B64945CC34FC60D8 /* ResourceNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FFA46891BF4616784E7831326E680D /* ResourceNavigation.swift */; };
+		5BBD0D58B458619A988537485836A6BB /* URL+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B9A500A737EC34718A1E6AB63F892B /* URL+Siesta.swift */; };
+		5C0C97D171012F057D335F99E5B43FEB /* ARC+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E3437A1B76D551CABCE0CA53AED4F2 /* ARC+Siesta.swift */; };
+		5F33EEE7E67165CAE3FDD8F418D5A4E3 /* TagFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AFE4AB9D38504E0F22D220CCCA10F /* TagFilter.swift */; };
+		5F5ABC12E18BF74EEF760842782BFA94 /* ResourceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12161824ABB21BA9ED9EBA033ED3294B /* ResourceObserver.swift */; };
+		615EB0D61E7B9E2DA42527B928FEB98F /* URL+XCGAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2160A25FB19CA9C488C50DD8938D48C /* URL+XCGAdditions.swift */; };
+		61E4B19466F160A4F4C891E2F6C38F16 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A614F2D7C626D7E9532A8FE93AA76 /* Progress.swift */; };
+		6342E0C3A2CE99081C0D21DE6F1D2345 /* DevFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07566DB2D4CACC7F3C8FC22A6152F494 /* DevFilter.swift */; };
+		68247911D6823323344EDFCB12BA7F97 /* FileNameFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA6C4F922743439F24DBEB14FF65BC3 /* FileNameFilter.swift */; };
+		6B17543FBBE6223FECA97A7564E703B2 /* DebugFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6FE59B6CCC4EDAD1E31F248A0F679B /* DebugFormatting.swift */; };
+		6B4993E1D2825908E83C84BD946E5692 /* FilterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD41FF0EFF4A977968391D03853C3B9 /* FilterProtocol.swift */; };
+		70C66FE7A79044F8F99A5ABE33297319 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = B165F889B3DB2BBD27A191C40B97DE5C /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7155C6511AB9C88C175ED1D2898FD4EE /* Base64LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3F618F650E6102E7D425EFDF9A408F /* Base64LogFormatter.swift */; };
+		74F673295E6F902129F6CA04D8A48A7D /* ARC+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E3437A1B76D551CABCE0CA53AED4F2 /* ARC+Siesta.swift */; };
+		761F4B3109AB6BAF42E52FAE628416CA /* Regex+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839FEB0718244EB0199AB5E073B35DC /* Regex+Siesta.swift */; };
+		781190D3CE1B0C2B2DA8C1B3A3FADBE9 /* FastCoding-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5055422435DB11F65F9DF59598F8CD85 /* FastCoding-macOS-dummy.m */; };
+		78195E7A3AE92BD6DA59BD1B9EA322E5 /* ResponseTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CCF70B3EAA9F879FCC8E49DFB9C7D8 /* ResponseTransformer.swift */; };
+		7DBEDE3E102B76CCE8F3F65B64BABAC0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A54C97DEB1A3977AC3A62AFF00971BF /* Cocoa.framework */; };
+		7E54A77CF8277669CBE615062CB4F470 /* AutoRotatingFileDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA2551677FC2B3B7BFFA5BED28920D /* AutoRotatingFileDestination.swift */; };
+		8367207BE41A7DCCFC99171391D85616 /* ObjectiveCMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C548F0FBEFE518AC04A556D8D02ED52 /* ObjectiveCMarker.m */; };
+		85A1BF9821FAF491F0B949140BA490A8 /* Siesta-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ADE5CBBC510C72C7FF496FAF7CBDF8 /* Siesta-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87C90D6C83BEB1320F231F9DF9B4DBB4 /* Networking-URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C5E0CF4A3BE95599FD963C59F780CD /* Networking-URLSession.swift */; };
+		8B23A5AEBB4BB64E41E0EF87AF5A3F73 /* ObjcExceptionBridging-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C98441795F4C5063F6F88D8F7428536 /* ObjcExceptionBridging-macOS-dummy.m */; };
+		8B34E5055B387A2DA3611519D2690ACB /* DispatchQueue+XCGAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4DF9F9E5C79AFA36D8817B8B188B3A /* DispatchQueue+XCGAdditions.swift */; };
+		8BDDD1593F8FDD263CCEDE8E6F4E1779 /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E36EC0F5777790A743A314330E56F /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8D580582080E62CF552DC0FD301A88A3 /* EntityCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E025F66A4893285F7C06D06E0489165B /* EntityCache.swift */; };
+		8E370842F60B2BDA62AD7630505DD8EA /* ResourceNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FFA46891BF4616784E7831326E680D /* ResourceNavigation.swift */; };
+		8F1CAAA66DAD81E53AAAEAD3F08890A8 /* Base64LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3F618F650E6102E7D425EFDF9A408F /* Base64LogFormatter.swift */; };
+		8F49DCEBD2E815583586790E194E7F23 /* Siesta-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8410FEF2D7FDEF09FCDE4191024AF94D /* Siesta-iOS-dummy.m */; };
+		8F7DF9FDCA75502EBCA831384AA200DE /* ObjcExceptionBridging-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4483AD7A42DCA218C564A0590C892DBE /* ObjcExceptionBridging-iOS-dummy.m */; };
+		90317060E5337195DFCAB28F6EDA7AD7 /* SiestaUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E1B2F831A817C29089331E7993C7B259 /* SiestaUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94A6CB1EB31A5BF7B5C59914E5AA7F78 /* RequestCallbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B466A1A3541FE554701C16C9A76E55 /* RequestCallbacks.swift */; };
+		96192192CFC12AAE272B87961216FCD6 /* AutoRotatingFileDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA2551677FC2B3B7BFFA5BED28920D /* AutoRotatingFileDestination.swift */; };
+		96A065D424FBBAE9BE1B8AD50644D564 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F09F86FEB486D1ABC4F61364DD3B2 /* RequestError.swift */; };
+		998F9C36954E2C56A7A042930CE4F1E1 /* XCGLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7807E9CDEAF4F5E55A9CE4C31B76EFDA /* XCGLogger.swift */; };
+		9E11A8D1929CED7279339CA19388B9D9 /* ObjcExceptionBridging.h in Headers */ = {isa = PBXBuildFile; fileRef = 55B14B4162C1EE381CF00EDDD822CA68 /* ObjcExceptionBridging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9EBA8CBD84DAC8AD1C603CD6B28262AD /* LiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0767D8EB2A27B94BC7291378D35247F /* LiveRequest.swift */; };
+		A3912189B6D63DFE1CF30419CD3CB18D /* Pods-KatsanaSDK macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065C0B029469B746A6AE022E6631980 /* Pods-KatsanaSDK macOS-dummy.m */; };
+		A3EAB011B4ED99903F3449A769206283 /* ConfigurationPatternConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B51C0B570CF1A9CE3F0A2B0A1C1C8 /* ConfigurationPatternConvertible.swift */; };
+		A401491BDDF1C398FD412019925F8EA3 /* AppleSystemLogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB36E6F73BF9152E0DF43BA24BCA48 /* AppleSystemLogDestination.swift */; };
+		A493E15AC3CA82C62302364C2337A09F /* BaseQueuedDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9778D30C1367696E327C7AEC40BE1 /* BaseQueuedDestination.swift */; };
+		A6BD2EE85E8EEE4CC1E99E8CED0A7DBE /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6644511EA7E624DE76B3D24DC213D1DD /* Request.swift */; };
+		A93FD100C12AC0202D0C99906CC94E8D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB39A22F31B041C5134E6C68B08193D /* Configuration.swift */; };
+		A96D92FFE42C9B280BE1740629C90201 /* StandardTransformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17D1858B2164ADDAD1C21DF1F466AD2 /* StandardTransformers.swift */; };
+		AE9ACF623F5FA6F609E05170D79C71AD /* StandardTransformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17D1858B2164ADDAD1C21DF1F466AD2 /* StandardTransformers.swift */; };
+		B0DD1071558C80DF9B234F2B83595ADC /* Optional+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF3C77ABC64F65EDB41552D5BEEA959 /* Optional+Siesta.swift */; };
+		B1F9AFD17F515D6E3287649E9826CBA7 /* DestinationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14952FB7157EC3F380AEC3EFB73F8E5 /* DestinationProtocol.swift */; };
+		B44E49F2DE1D0CFC93C97D506D6B56F6 /* DispatchQueue+XCGAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4DF9F9E5C79AFA36D8817B8B188B3A /* DispatchQueue+XCGAdditions.swift */; };
+		B82193A6B1330942D7D40911ED231B95 /* RequestCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B6C5565DABFA1B194F3235EA3B1FD2 /* RequestCreation.swift */; };
+		BB58FA91629BEC981D5CB068605F2D8A /* WeakCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84281AB2D5580B4B350D815CD84A396 /* WeakCache.swift */; };
+		BC5B6837D2A7326A31D0D3B06247F42F /* GCD+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543BE30588EBB99C34DFA5E583205A9 /* GCD+Siesta.swift */; };
+		BDD3369FF78826065A2024723314E0FD /* Ω_Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41D1612B7922C1DE4C6761DEA41CEAD /* Ω_Deprecations.swift */; };
+		C05C90FEC0DC381169C61FAB0160C1C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A54C97DEB1A3977AC3A62AFF00971BF /* Cocoa.framework */; };
+		C137DEE47286CA952E7939FA1A6218BF /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292C958618D943A0D58E1BFE74FB1A88 /* NetworkRequest.swift */; };
+		C574C72DF321B85E8296FE312BA62A65 /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = A6427468A6A3996CC8A7088C42637C67 /* .swift-version */; };
+		C5789361BC9155D9F87BB876439AEC22 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E71B0F1A676F51874DC2D711A5FA53D /* HelperFunctions.swift */; };
+		C5F9BE06D2020D12CE9A5C2CB699C295 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9057571869EBC3846F0500C1C1BB61B8 /* Entity.swift */; };
+		C8C1DE82FF0C6CDDA21400B8B6C6CDD8 /* PipelineConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A8CEDDCE84AC7FA57A53B015ED885 /* PipelineConfiguration.swift */; };
+		CA955F87678ECB43FD3D632272EB83D6 /* Regex+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839FEB0718244EB0199AB5E073B35DC /* Regex+Siesta.swift */; };
+		CB5AC10389D7952907B7673DE3550FD4 /* LogDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF15DA89A06B3429BDB935DA4C0290 /* LogDetails.swift */; };
+		CC55943CD091318D21C6D12BB9663DF3 /* ConsoleDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78F1488D120A0508DD2F44E46A2A60E /* ConsoleDestination.swift */; };
+		CD82382263586931969898BB377EBF49 /* String+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2FA07AEDEC3A704F199E51AD02E87 /* String+Siesta.swift */; };
+		CEA84E913695968AABAD72BB980DD9B0 /* FastCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = B165F889B3DB2BBD27A191C40B97DE5C /* FastCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CEDB332B1D61032EBF3AE403588D8E25 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BC8450B6EA326ECDA7F0D57443288 /* Logging.swift */; };
+		D465F9196BE5A29E9BB2389FF7DCAF1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3261E5A5395F45780622405F504B2804 /* Foundation.framework */; };
+		D495A249DD230CC2FAF106AF121CCFA7 /* XCGLogger-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 12784F01268D80ADB57E5E2E8F70427A /* XCGLogger-macOS-dummy.m */; };
+		D5AD02EF8F4BD30C36205817E64503AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3261E5A5395F45780622405F504B2804 /* Foundation.framework */; };
+		D660AB654FAA0E2E704C140C9304EF37 /* LogFormatterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DBBE55078F72E3751C8F8BFA39F3AF /* LogFormatterProtocol.swift */; };
+		D6745BF1CE194DF93BCFB2D625D24117 /* XCGLogger-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F6993219436D776C23ECF8A49D5248C /* XCGLogger-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D715ABA3DF1532123D86ADCA1B3ABA2C /* HardWiredRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DADCD972EAD7FCCE6CECEC8B6FEA0BD /* HardWiredRequest.swift */; };
+		D8652306EB345199AFD9A76217679D28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3261E5A5395F45780622405F504B2804 /* Foundation.framework */; };
+		DBDAD6C2E72BCF55229BE60245AD91A7 /* ProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C322F5147338EACEFA84C19F2AD3B4 /* ProgressTracker.swift */; };
+		DC16E63FBEFD00AE487F23969E55F378 /* UserInfoFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F715E79C02E0395E5EF2CD08218E7D /* UserInfoFilter.swift */; };
+		DD0A03A56C7F4B22F0D6A03FD4031C82 /* LogDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF15DA89A06B3429BDB935DA4C0290 /* LogDetails.swift */; };
+		E3AF20BBE82AC06950B591920EFE0AB7 /* Ω_Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41D1612B7922C1DE4C6761DEA41CEAD /* Ω_Deprecations.swift */; };
+		E90606272F4711766E74A423B80F77A0 /* URL+XCGAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2160A25FB19CA9C488C50DD8938D48C /* URL+XCGAdditions.swift */; };
+		E967A1F3058FF2FC299B741CE1ABF540 /* RequestChaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920A4A47E7AB4A04D94C80C8114D6360 /* RequestChaining.swift */; };
+		E9BB3DB8413FD85D45F370808D1AA530 /* LogFormatterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DBBE55078F72E3751C8F8BFA39F3AF /* LogFormatterProtocol.swift */; };
+		EA2554E242931995062CB0636E9D4946 /* GCD+Siesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543BE30588EBB99C34DFA5E583205A9 /* GCD+Siesta.swift */; };
+		EA563ED7A1F91B0F53605552E2B3C4B7 /* ConsoleDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78F1488D120A0508DD2F44E46A2A60E /* ConsoleDestination.swift */; };
+		EE981F7C36A150EFE08F44E364BC9F3A /* BaseDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC71619198B12D9DE4BC245CC5369BA /* BaseDestination.swift */; };
+		F0ED786AED598790B0A46FB4C72B5FEA /* ANSIColorLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF471C4E36384761CA2CD2B696BC390 /* ANSIColorLogFormatter.swift */; };
+		F597CB6EF2A517FED65E1BF43FE35C41 /* PrePostFixLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE04FFB5AF52921C340C9B27E0F11EC /* PrePostFixLogFormatter.swift */; };
+		F63343AB534215043CABA16699AC2E44 /* ObjcExceptionBridging-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 083C9DCF08BC0BC2165DBACADFAA9A0E /* ObjcExceptionBridging-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F814D0FBE0013B8D4825CECB8D3F817C /* EntityCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E025F66A4893285F7C06D06E0489165B /* EntityCache.swift */; };
+		F9A1DF6D13FEEE283A6F35B16CB800A4 /* Networking-URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C5E0CF4A3BE95599FD963C59F780CD /* Networking-URLSession.swift */; };
+		FA15908A6AB9671C12D65811FE18BD1E /* XCGLogger-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BF7107507699F282842190260E4F84 /* XCGLogger-iOS-dummy.m */; };
+		FAC19FDA1885A1A1307E1F70073B031B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3261E5A5395F45780622405F504B2804 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		232DE883BA5B7EEF67BA9B4C6A5B149A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EC26C9F326090BBE63EB86584A9145A6;
-			remoteInfo = "ObjcExceptionBridging-macOS";
-		};
-		330506361A7FAF2AD132F9DC7119E66D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E035DEA7DB5F13EC4C11C02E5D727F07;
-			remoteInfo = "FastCoding-iOS";
-		};
-		364C9A306438E9C660B5E1BB09F4EAD1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 561E34D43E5F287C1307C6F7AEA4781E;
-			remoteInfo = "ObjcExceptionBridging-iOS";
-		};
-		59E7188A218C05E4830CB939A2C37EE5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 218A51180DE7A40A3DC05BBB957344E7;
-			remoteInfo = "Siesta-iOS";
-		};
-		6512B47F6E48C3BE1A3D98E87DC51EA8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 561E34D43E5F287C1307C6F7AEA4781E;
-			remoteInfo = "ObjcExceptionBridging-iOS";
-		};
-		8145688A7749D9AE618184E8EF03157C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EC26C9F326090BBE63EB86584A9145A6;
-			remoteInfo = "ObjcExceptionBridging-macOS";
-		};
-		ACE96E4BC4EE18B84BF4F07A2328192C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9B05586B1CABF46C14AAF8543C6BE3BF;
-			remoteInfo = "FastCoding-macOS";
-		};
-		B50B00888FA26A76BEF64CEB306C2D67 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A870562CB3FBF6CAEBECEE0144484B21;
-			remoteInfo = "XCGLogger-macOS";
-		};
-		E8934D3589763112C5E0AF20DAEAECD6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D50E171D729A216CE7335A7B375CE67A;
-			remoteInfo = "XCGLogger-iOS";
-		};
-		FA63E6728325B2BACFFEC2A019383089 /* PBXContainerItemProxy */ = {
+		0822467A3213B242341066DB9E031D7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 56B9AD0F8F6A9A1E8E1A708697FBD2CD;
 			remoteInfo = "Siesta-macOS";
 		};
+		2B694FCD3E794237AC0BD2BBEB09CD17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B05586B1CABF46C14AAF8543C6BE3BF;
+			remoteInfo = "FastCoding-macOS";
+		};
+		5CE30E44E0CBA756538C4F961E3A3456 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC26C9F326090BBE63EB86584A9145A6;
+			remoteInfo = "ObjcExceptionBridging-macOS";
+		};
+		8B1408C9FF2B461DA1A165A926E3728A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D50E171D729A216CE7335A7B375CE67A;
+			remoteInfo = "XCGLogger-iOS";
+		};
+		94828CB540009697C23062C66BEB48D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 218A51180DE7A40A3DC05BBB957344E7;
+			remoteInfo = "Siesta-iOS";
+		};
+		952B52A7D094A428F5D31535196EA24F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 561E34D43E5F287C1307C6F7AEA4781E;
+			remoteInfo = "ObjcExceptionBridging-iOS";
+		};
+		957C27DB29D210D591B70371D8954F36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC26C9F326090BBE63EB86584A9145A6;
+			remoteInfo = "ObjcExceptionBridging-macOS";
+		};
+		9ACB1552AACBC0A8854892579FA6138D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E035DEA7DB5F13EC4C11C02E5D727F07;
+			remoteInfo = "FastCoding-iOS";
+		};
+		E22C4870160B3830142D62A595AEA509 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A870562CB3FBF6CAEBECEE0144484B21;
+			remoteInfo = "XCGLogger-macOS";
+		};
+		FE18A07FDC5BF3BF41F375F3F8C01489 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 561E34D43E5F287C1307C6F7AEA4781E;
+			remoteInfo = "ObjcExceptionBridging-iOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		00C984305B98368BF2875C82FA788359 /* ObjcExceptionBridging-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "ObjcExceptionBridging-iOS.modulemap"; sourceTree = "<group>"; };
-		012C196A1791A0AB5C84CD5D125EF0C6 /* Siesta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Siesta.framework; path = "Siesta-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		012C196A1791A0AB5C84CD5D125EF0C6 /* Siesta-iOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Siesta-iOS"; path = Siesta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		01684ABEA430EF27E3D3329F82B2C8FD /* Siesta-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Siesta-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		0234AFCF3234EE53F87D878F7B8AAAAC /* ObjcExceptionBridging-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ObjcExceptionBridging-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		04A2CA294EF44905A74DAB11310F2D7C /* TestDestination.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TestDestination.swift; path = Sources/XCGLogger/Destinations/TestDestination.swift; sourceTree = "<group>"; };
@@ -269,10 +267,9 @@
 		12161824ABB21BA9ED9EBA033ED3294B /* ResourceObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResourceObserver.swift; path = Source/Siesta/Resource/ResourceObserver.swift; sourceTree = "<group>"; };
 		12784F01268D80ADB57E5E2E8F70427A /* XCGLogger-macOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCGLogger-macOS-dummy.m"; path = "../XCGLogger-macOS/XCGLogger-macOS-dummy.m"; sourceTree = "<group>"; };
 		16B466A1A3541FE554701C16C9A76E55 /* RequestCallbacks.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestCallbacks.swift; path = Source/Siesta/Request/RequestCallbacks.swift; sourceTree = "<group>"; };
-		19FB602B0ED298EF4C111211B18DDCB8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		1B3F09F86FEB486D1ABC4F61364DD3B2 /* RequestError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestError.swift; path = Source/Siesta/RequestError.swift; sourceTree = "<group>"; };
 		1CF132C19A2C90CA5D8D63BFFEABF4E0 /* FastCoding-macOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FastCoding-macOS-prefix.pch"; path = "../FastCoding-macOS/FastCoding-macOS-prefix.pch"; sourceTree = "<group>"; };
-		1D7C36B71B8972C7AB9C6F10B3A8B7FD /* FastCoding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FastCoding.framework; path = "FastCoding-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D7C36B71B8972C7AB9C6F10B3A8B7FD /* FastCoding-iOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "FastCoding-iOS"; path = FastCoding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23A1F044664A5E62777952E29E6DBC36 /* Collection+Siesta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Collection+Siesta.swift"; path = "Source/Siesta/Support/Collection+Siesta.swift"; sourceTree = "<group>"; };
 		252DA127D3DF514126DFF31F9060CB65 /* FastCoding-iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FastCoding-iOS-Info.plist"; sourceTree = "<group>"; };
 		28ADE5CBBC510C72C7FF496FAF7CBDF8 /* Siesta-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Siesta-iOS-umbrella.h"; sourceTree = "<group>"; };
@@ -280,7 +277,8 @@
 		2D30F0E079BA6371094CF336101D2821 /* Pods-KatsanaSDK macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KatsanaSDK macOS.release.xcconfig"; sourceTree = "<group>"; };
 		2DADCD972EAD7FCCE6CECEC8B6FEA0BD /* HardWiredRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HardWiredRequest.swift; path = Source/Siesta/Request/HardWiredRequest.swift; sourceTree = "<group>"; };
 		2EE04FFB5AF52921C340C9B27E0F11EC /* PrePostFixLogFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PrePostFixLogFormatter.swift; path = Sources/XCGLogger/LogFormatters/PrePostFixLogFormatter.swift; sourceTree = "<group>"; };
-		309BFA78F452698F38F993934F06F191 /* Siesta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Siesta.framework; path = "Siesta-macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		309BFA78F452698F38F993934F06F191 /* Siesta-macOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Siesta-macOS"; path = Siesta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3261E5A5395F45780622405F504B2804 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		34747391D7F9858993CBE69E0DC7EB20 /* Pods-KatsanaSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KatsanaSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		34E3437A1B76D551CABCE0CA53AED4F2 /* ARC+Siesta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ARC+Siesta.swift"; path = "Source/Siesta/Support/ARC+Siesta.swift"; sourceTree = "<group>"; };
 		3543BE30588EBB99C34DFA5E583205A9 /* GCD+Siesta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "GCD+Siesta.swift"; path = "Source/Siesta/Support/GCD+Siesta.swift"; sourceTree = "<group>"; };
@@ -298,15 +296,16 @@
 		55C322F5147338EACEFA84C19F2AD3B4 /* ProgressTracker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProgressTracker.swift; path = Source/Siesta/Request/ProgressTracker.swift; sourceTree = "<group>"; };
 		56822AFDEB0CA5ED7EA3D4D0E9B838D4 /* Pods-KatsanaSDK-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-KatsanaSDK-acknowledgements.markdown"; sourceTree = "<group>"; };
 		57BE9EFA5E986F392D4BF315159B3D41 /* Pods-KatsanaSDK macOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-KatsanaSDK macOS-umbrella.h"; sourceTree = "<group>"; };
-		57F98A76D6804D252F8415B71B3A12A4 /* Pods_KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_KatsanaSDK.framework; path = "Pods-KatsanaSDK.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57F98A76D6804D252F8415B71B3A12A4 /* Pods-KatsanaSDK */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-KatsanaSDK"; path = Pods_KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		581B51C0B570CF1A9CE3F0A2B0A1C1C8 /* ConfigurationPatternConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConfigurationPatternConvertible.swift; path = Source/Siesta/ConfigurationPatternConvertible.swift; sourceTree = "<group>"; };
-		5A1C84DE27CE4C809E0515FEA2A00150 /* Pods_KatsanaSDK_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_KatsanaSDK_macOS.framework; path = "Pods-KatsanaSDK macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A1C84DE27CE4C809E0515FEA2A00150 /* Pods-KatsanaSDK macOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-KatsanaSDK macOS"; path = Pods_KatsanaSDK_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A54C97DEB1A3977AC3A62AFF00971BF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		5E8E36EC0F5777790A743A314330E56F /* FastCoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FastCoder.m; path = FastCoder/FastCoder.m; sourceTree = "<group>"; };
 		5FC71619198B12D9DE4BC245CC5369BA /* BaseDestination.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseDestination.swift; path = Sources/XCGLogger/Destinations/BaseDestination.swift; sourceTree = "<group>"; };
 		603ACDEE2556A3BDBDB775AF7A2F2D95 /* XCGLogger-macOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "XCGLogger-macOS-Info.plist"; path = "../XCGLogger-macOS/XCGLogger-macOS-Info.plist"; sourceTree = "<group>"; };
 		63DC70DD59739C34EB7BBF10A1FB576B /* FastCoding-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "FastCoding-macOS.release.xcconfig"; path = "../FastCoding-macOS/FastCoding-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		6461532EAE9CEF84A88194C7130DB9E7 /* FastCoding-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FastCoding-iOS-prefix.pch"; sourceTree = "<group>"; };
-		6475B65CDDD32D22F44F1AC70B857DED /* FastCoding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FastCoding.framework; path = "FastCoding-macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6475B65CDDD32D22F44F1AC70B857DED /* FastCoding-macOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "FastCoding-macOS"; path = FastCoding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6644511EA7E624DE76B3D24DC213D1DD /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Siesta/Request/Request.swift; sourceTree = "<group>"; };
 		669B3315E8A92004ED0519FE047DECEE /* Siesta-macOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Siesta-macOS-prefix.pch"; path = "../Siesta-macOS/Siesta-macOS-prefix.pch"; sourceTree = "<group>"; };
 		6A0EC2493F053EB4B2950B9EB4F367E4 /* Siesta-macOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Siesta-macOS-umbrella.h"; path = "../Siesta-macOS/Siesta-macOS-umbrella.h"; sourceTree = "<group>"; };
@@ -335,7 +334,7 @@
 		8E71B0F1A676F51874DC2D711A5FA53D /* HelperFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HelperFunctions.swift; path = Sources/XCGLogger/Misc/HelperFunctions.swift; sourceTree = "<group>"; };
 		9057571869EBC3846F0500C1C1BB61B8 /* Entity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Entity.swift; path = Source/Siesta/Entity.swift; sourceTree = "<group>"; };
 		920A4A47E7AB4A04D94C80C8114D6360 /* RequestChaining.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestChaining.swift; path = Source/Siesta/Request/RequestChaining.swift; sourceTree = "<group>"; };
-		9224FD50E3EC906E6F12D27CBF2D7B26 /* ObjcExceptionBridging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ObjcExceptionBridging.framework; path = "ObjcExceptionBridging-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9224FD50E3EC906E6F12D27CBF2D7B26 /* ObjcExceptionBridging-iOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "ObjcExceptionBridging-iOS"; path = ObjcExceptionBridging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		972EF4F2DE488DCB8A397E8333EB5C39 /* FastCoding-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "FastCoding-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		97BF7107507699F282842190260E4F84 /* XCGLogger-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "XCGLogger-iOS-dummy.m"; sourceTree = "<group>"; };
 		9C5F8A74D6CD9B696AE138378030A152 /* Pods-KatsanaSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-KatsanaSDK.modulemap"; sourceTree = "<group>"; };
@@ -360,7 +359,6 @@
 		B165F889B3DB2BBD27A191C40B97DE5C /* FastCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FastCoder.h; path = FastCoder/FastCoder.h; sourceTree = "<group>"; };
 		B2160A25FB19CA9C488C50DD8938D48C /* URL+XCGAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URL+XCGAdditions.swift"; path = "Sources/XCGLogger/Extensions/URL+XCGAdditions.swift"; sourceTree = "<group>"; };
 		B67985C48694E4CEADCFE85B4B181EF2 /* ObjcExceptionBridging-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ObjcExceptionBridging-iOS-prefix.pch"; sourceTree = "<group>"; };
-		B74E48223B07BEDD1CDB44D3D9FE1A80 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		BC5748796D8B93483CCAAC0FA001B386 /* XCGLogger-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "XCGLogger-macOS.debug.xcconfig"; path = "../XCGLogger-macOS/XCGLogger-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BC5937B9D234D9F1602423EFC1064205 /* Networking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Networking.swift; path = Source/Siesta/Networking.swift; sourceTree = "<group>"; };
 		BCF3C77ABC64F65EDB41552D5BEEA959 /* Optional+Siesta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Optional+Siesta.swift"; path = "Source/Siesta/Support/Optional+Siesta.swift"; sourceTree = "<group>"; };
@@ -388,8 +386,7 @@
 		E1B2F831A817C29089331E7993C7B259 /* SiestaUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SiestaUI.h; path = Source/Siesta/Support/SiestaUI.h; sourceTree = "<group>"; };
 		E40D7A13CD137674AF3CBA784E58B1D3 /* FastCoding-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "FastCoding-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		E6B6C5565DABFA1B194F3235EA3B1FD2 /* RequestCreation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestCreation.swift; path = Source/Siesta/Request/RequestCreation.swift; sourceTree = "<group>"; };
-		EC8CCE35CCDEA06489F043EEA1EA11EC /* XCGLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = XCGLogger.framework; path = "XCGLogger-macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDAF414090FB8BFF5D01D7C525564B11 /* ObjcExceptionBridging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObjcExceptionBridging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC8CCE35CCDEA06489F043EEA1EA11EC /* XCGLogger-macOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "XCGLogger-macOS"; path = XCGLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECB36E6F73BF9152E0DF43BA24BCA48 /* AppleSystemLogDestination.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppleSystemLogDestination.swift; path = Sources/XCGLogger/Destinations/AppleSystemLogDestination.swift; sourceTree = "<group>"; };
 		EFF471C4E36384761CA2CD2B696BC390 /* ANSIColorLogFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ANSIColorLogFormatter.swift; path = Sources/XCGLogger/LogFormatters/ANSIColorLogFormatter.swift; sourceTree = "<group>"; };
 		F0E7F25ED6CC8FBF7898BD8022A4801D /* Service.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Service.swift; path = Source/Siesta/Service.swift; sourceTree = "<group>"; };
@@ -397,93 +394,91 @@
 		F3DBBE55078F72E3751C8F8BFA39F3AF /* LogFormatterProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogFormatterProtocol.swift; path = Sources/XCGLogger/LogFormatters/LogFormatterProtocol.swift; sourceTree = "<group>"; };
 		F5FFA46891BF4616784E7831326E680D /* ResourceNavigation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResourceNavigation.swift; path = Source/Siesta/Resource/ResourceNavigation.swift; sourceTree = "<group>"; };
 		F6E4788739A14322D5C29404C9FF9E6E /* FastCoding-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "FastCoding-macOS.debug.xcconfig"; path = "../FastCoding-macOS/FastCoding-macOS.debug.xcconfig"; sourceTree = "<group>"; };
-		FA2109E633CEC6CC15C09BD24379EE1A /* ObjcExceptionBridging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ObjcExceptionBridging.framework; path = "ObjcExceptionBridging-macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA2109E633CEC6CC15C09BD24379EE1A /* ObjcExceptionBridging-macOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "ObjcExceptionBridging-macOS"; path = ObjcExceptionBridging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4A54C381B49A243DF2F07C03D7138F /* FastCoding-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FastCoding-iOS-umbrella.h"; sourceTree = "<group>"; };
 		FC059F47835A9CB7C26A7260167306AB /* Siesta-ObjC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Siesta-ObjC.swift"; path = "Source/Siesta/Support/Siesta-ObjC.swift"; sourceTree = "<group>"; };
 		FCC2961B0E33C28C5D39FD4D7E696AF0 /* Pods-KatsanaSDK macOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-KatsanaSDK macOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		FFFCA5C4A4022028C3D67C065369046C /* XCGLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = XCGLogger.framework; path = "XCGLogger-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFFCA5C4A4022028C3D67C065369046C /* XCGLogger-iOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "XCGLogger-iOS"; path = XCGLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0501B2ABC351691BC496757DA1CA643A /* Frameworks */ = {
+		1E0B0249D4A51DE2CC15E6E716983898 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				360F460735843C6C4FE5F2AFA21D2CE9 /* Cocoa.framework in Frameworks */,
+				2B3C7BA2CCB2C40E36C892D12FA92AC9 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		13AF1E31D8C06B3512D405FA35E20B70 /* Frameworks */ = {
+		3D9A28D03F3369A19514F356EE1A180F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D25DEC1BD7C47BB71126724AA6748970 /* Foundation.framework in Frameworks */,
-				870876E0242EF30C7D8E90E8F17A85B9 /* ObjcExceptionBridging.framework in Frameworks */,
+				5793A0F1751E6908F340AD04F0C692CB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4B9E74969D21FFE7221112ED6881687C /* Frameworks */ = {
+		624679FB98C99CBD61B41CDE34A6A01F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24F51C4FDEAB12479EE9187DF5445162 /* Cocoa.framework in Frameworks */,
+				D465F9196BE5A29E9BB2389FF7DCAF1A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5B2E908467457F56904AEA29B3EF5213 /* Frameworks */ = {
+		89485D5E9643ED5121E2B5D2248D53B1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F56C6FE330CA7BA470F66355ED5C78B1 /* Cocoa.framework in Frameworks */,
+				4991AA0B1BD6B96A99731E24DE818640 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		86AF9E297979D22AD594B7C6785046FA /* Frameworks */ = {
+		8E7130002CDEC02284A895C605C357E5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				189817D6D6B223302595A294A6DF052E /* Foundation.framework in Frameworks */,
+				FAC19FDA1885A1A1307E1F70073B031B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9484A5DCB1D47A38BD6EB7020E1A324B /* Frameworks */ = {
+		9AF742A8C894DCA52D164328DB72FE8A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B264593FA11C6E39D5164437ECC0AB1C /* Foundation.framework in Frameworks */,
+				D8652306EB345199AFD9A76217679D28 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94873FB4D0BBEF2170D62800FF44B186 /* Frameworks */ = {
+		9B438D4CBDEE5192FD276464FA9110C0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF35975E75CF338F031E869333C96096 /* Cocoa.framework in Frameworks */,
-				022BF85F66049697FDD17175475A304C /* ObjcExceptionBridging.framework in Frameworks */,
+				C05C90FEC0DC381169C61FAB0160C1C9 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A6AAB5DC50AC6FE16BDF906AA5D6815B /* Frameworks */ = {
+		AF47C3A4FC22FC8A79ADA49A83B16ADE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83800C8D9695EC779488AF10B527049F /* Foundation.framework in Frameworks */,
+				18235B6CF3EEB135CD1694D731C27474 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C49F2FF96CAB2771778E0496ADD671EE /* Frameworks */ = {
+		DD247E4D7986B414AAAA8D22845D03AE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAC597F030D5BC91FB28041A97FAE761 /* Cocoa.framework in Frameworks */,
+				D5AD02EF8F4BD30C36205817E64503AF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7992D6D9F6D197275181DCCDC9D1C89 /* Frameworks */ = {
+		DF238F1FA6085D4DED648D8269C284E5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EA14F7E6B6B05EF41ABF7E7571536CA /* Foundation.framework in Frameworks */,
+				7DBEDE3E102B76CCE8F3F65B64BABAC0 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +538,31 @@
 			path = "../Target Support Files/XCGLogger-iOS";
 			sourceTree = "<group>";
 		};
+		3C7F9EA2C93F6D030E22AAF2E3BD0FA3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D7C36B71B8972C7AB9C6F10B3A8B7FD /* FastCoding-iOS */,
+				6475B65CDDD32D22F44F1AC70B857DED /* FastCoding-macOS */,
+				9224FD50E3EC906E6F12D27CBF2D7B26 /* ObjcExceptionBridging-iOS */,
+				FA2109E633CEC6CC15C09BD24379EE1A /* ObjcExceptionBridging-macOS */,
+				57F98A76D6804D252F8415B71B3A12A4 /* Pods-KatsanaSDK */,
+				5A1C84DE27CE4C809E0515FEA2A00150 /* Pods-KatsanaSDK macOS */,
+				012C196A1791A0AB5C84CD5D125EF0C6 /* Siesta-iOS */,
+				309BFA78F452698F38F993934F06F191 /* Siesta-macOS */,
+				FFFCA5C4A4022028C3D67C065369046C /* XCGLogger-iOS */,
+				EC8CCE35CCDEA06489F043EEA1EA11EC /* XCGLogger-macOS */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		41C052635D3E21350AC08C5F316759F6 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				5A54C97DEB1A3977AC3A62AFF00971BF /* Cocoa.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
 		42E763ABEBA378A285F4F3ADDA541278 /* XCGLogger */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,20 +583,11 @@
 			path = Siesta;
 			sourceTree = "<group>";
 		};
-		4EBBBDA893C419737BC8BA97D7A71B1A /* OS X */ = {
+		4EDC20B56A0B9A8564E1FCEA191C83C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				19FB602B0ED298EF4C111211B18DDCB8 /* Cocoa.framework */,
-			);
-			name = "OS X";
-			sourceTree = "<group>";
-		};
-		512CE5FDBE93BDF347E34A932EE38C02 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EDAF414090FB8BFF5D01D7C525564B11 /* ObjcExceptionBridging.framework */,
-				F5A38ABA6F547D1D81CD8D02D3659304 /* iOS */,
-				4EBBBDA893C419737BC8BA97D7A71B1A /* OS X */,
+				DABCD2AA1C1DFCD4E2578CE87BDFD93F /* iOS */,
+				41C052635D3E21350AC08C5F316759F6 /* OS X */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -681,23 +692,6 @@
 			path = "../Target Support Files/FastCoding-iOS";
 			sourceTree = "<group>";
 		};
-		71A9D5FFAF1FE1BF1FF19851039B274F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6475B65CDDD32D22F44F1AC70B857DED /* FastCoding.framework */,
-				1D7C36B71B8972C7AB9C6F10B3A8B7FD /* FastCoding.framework */,
-				9224FD50E3EC906E6F12D27CBF2D7B26 /* ObjcExceptionBridging.framework */,
-				FA2109E633CEC6CC15C09BD24379EE1A /* ObjcExceptionBridging.framework */,
-				57F98A76D6804D252F8415B71B3A12A4 /* Pods_KatsanaSDK.framework */,
-				5A1C84DE27CE4C809E0515FEA2A00150 /* Pods_KatsanaSDK_macOS.framework */,
-				309BFA78F452698F38F993934F06F191 /* Siesta.framework */,
-				012C196A1791A0AB5C84CD5D125EF0C6 /* Siesta.framework */,
-				FFFCA5C4A4022028C3D67C065369046C /* XCGLogger.framework */,
-				EC8CCE35CCDEA06489F043EEA1EA11EC /* XCGLogger.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		773A5113A81F8A1CEC78E49FD8F02FB3 /* ObjcExceptionBridging */ = {
 			isa = PBXGroup;
 			children = (
@@ -762,11 +756,19 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				512CE5FDBE93BDF347E34A932EE38C02 /* Frameworks */,
+				4EDC20B56A0B9A8564E1FCEA191C83C4 /* Frameworks */,
 				91F5DC669E00BE62888B3DC5457931E1 /* Pods */,
-				71A9D5FFAF1FE1BF1FF19851039B274F /* Products */,
+				3C7F9EA2C93F6D030E22AAF2E3BD0FA3 /* Products */,
 				F09693864CF8DBD4C7FE486D1698955D /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		DABCD2AA1C1DFCD4E2578CE87BDFD93F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3261E5A5395F45780622405F504B2804 /* Foundation.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		F09693864CF8DBD4C7FE486D1698955D /* Targets Support Files */ = {
@@ -800,14 +802,6 @@
 			path = "../Target Support Files/ObjcExceptionBridging-iOS";
 			sourceTree = "<group>";
 		};
-		F5A38ABA6F547D1D81CD8D02D3659304 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				B74E48223B07BEDD1CDB44D3D9FE1A80 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
 		F8F2DB03A35494F31E01FC485D50DDE7 /* FastCoding */ = {
 			isa = PBXGroup;
 			children = (
@@ -822,91 +816,91 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		088DEC22547268DE71F4AFF120209514 /* Headers */ = {
+		7875E6F9924FF646F65F8BB5A753B73B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14B852FD118968C39B0E147A658A612E /* Siesta-macOS-umbrella.h in Headers */,
-				EFC3C0F82B1DB9D737CE855E515D2B74 /* Siesta.h in Headers */,
-				21CD1F2BE19C072A512486CCE9403939 /* SiestaUI.h in Headers */,
+				4EAE038EAFE814F8B34C96E930EB78F3 /* ObjcExceptionBridging.h in Headers */,
+				1306D6A54C87D2D7685FB3ABCB3AB418 /* ObjcExceptionBridging-iOS-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0D376662F517B604CD61FD2088292134 /* Headers */ = {
+		7EDDE7ACC0E30C4EC71F61C15CB75132 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CBC3975CDE58EC1371304CC8D4101F8 /* XCGLogger-macOS-umbrella.h in Headers */,
+				2C1270E025877AB78A5408310C12FE00 /* Siesta.h in Headers */,
+				85A1BF9821FAF491F0B949140BA490A8 /* Siesta-iOS-umbrella.h in Headers */,
+				90317060E5337195DFCAB28F6EDA7AD7 /* SiestaUI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		194AA9EECBF91814D8AFE6E5DC90053C /* Headers */ = {
+		82A8DA61C3219A4BB4DE71A067245E31 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94A88B2BB126EB81E7C17FCED73FAF69 /* FastCoder.h in Headers */,
-				A267F496B945A88138EA424A3B946410 /* FastCoding-macOS-umbrella.h in Headers */,
+				0C8F9D79FB32CEBD166F40EF8B0FDF46 /* XCGLogger-iOS-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		26E8C84023B8B0CECFC5D771BCE16130 /* Headers */ = {
+		8845D2432D9548D9578B24415734C322 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DCB6808CE56672743FE718348E08D8B /* FastCoder.h in Headers */,
-				CA713B8E2EE50A07B2919FC493BB7393 /* FastCoding-iOS-umbrella.h in Headers */,
+				D6745BF1CE194DF93BCFB2D625D24117 /* XCGLogger-macOS-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4F46D61058720179262151D9DCD92A8B /* Headers */ = {
+		898A01FA4832D9D45F7CB49AE457109A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1F1B83AF2EACA26827AD889E4C58B82 /* ObjcExceptionBridging-macOS-umbrella.h in Headers */,
-				0355069F1AD2296B4EA3925085D30BBB /* ObjcExceptionBridging.h in Headers */,
+				9E11A8D1929CED7279339CA19388B9D9 /* ObjcExceptionBridging.h in Headers */,
+				F63343AB534215043CABA16699AC2E44 /* ObjcExceptionBridging-macOS-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		54E6678BF0304D6AB0440CAA688AB461 /* Headers */ = {
+		AC3ECAC0B73C9FFAD03774A978DEAE9A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62C0008EC86BDA0A8C70CD1447ECFE2B /* Pods-KatsanaSDK-umbrella.h in Headers */,
+				CEA84E913695968AABAD72BB980DD9B0 /* FastCoder.h in Headers */,
+				2BFFDC5B9F91CF6E876FEF54B9994206 /* FastCoding-iOS-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8C097E637EBC6D4CF4004AB013C90F8A /* Headers */ = {
+		AF2A82B6BD4908CF4A1F0FE01C8B7F56 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4024A69DA2944777FE30C963E29D6884 /* XCGLogger-iOS-umbrella.h in Headers */,
+				09B00D55F4157F590773164DBD988B2A /* Pods-KatsanaSDK macOS-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B81801B97F9474FEBCB31F29253CB79C /* Headers */ = {
+		E2A2954DB1402FE40D2FFB21BFE9AE63 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CE3FF5E8955C2FDF33B1A2C90767E9E /* ObjcExceptionBridging-iOS-umbrella.h in Headers */,
-				450E6E35C820DB8A0D2B28E8C420EACB /* ObjcExceptionBridging.h in Headers */,
+				3C400FC17961D3D9F8790E040EA2D2E5 /* Siesta.h in Headers */,
+				40A61F2F2621EC42D7C80BEFBDCAC8D5 /* Siesta-macOS-umbrella.h in Headers */,
+				58ADCC6C02EFBA9479CA3C6E404ACF95 /* SiestaUI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA94709C1584C625F21636A04A965579 /* Headers */ = {
+		EC3F8931CC1FD12FC3D3775EA4C2A93F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9836B59DD65DA176C5251A41DB4EB1D4 /* Siesta-iOS-umbrella.h in Headers */,
-				35BC1E2B9A210DF8686E1B9906B0D9DE /* Siesta.h in Headers */,
-				D76B9B95DA02737C66D4A510EC45C616 /* SiestaUI.h in Headers */,
+				22AB47FC23B13E0CFC1DF6CD32176917 /* Pods-KatsanaSDK-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EAA4B72CBC0C96D080B646613490B9C5 /* Headers */ = {
+		F34FE20B4A7E8966F81B4DC2831406C4 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EA9686C528F8E1D3ABEBDA4C2734FC1 /* Pods-KatsanaSDK macOS-umbrella.h in Headers */,
+				70C66FE7A79044F8F99A5ABE33297319 /* FastCoder.h in Headers */,
+				45C1FC95186C1D7C9CA45368D798ADB4 /* FastCoding-macOS-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,192 +909,192 @@
 /* Begin PBXNativeTarget section */
 		218A51180DE7A40A3DC05BBB957344E7 /* Siesta-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8B215DBF6B63C431D61EF99D1239CEC3 /* Build configuration list for PBXNativeTarget "Siesta-iOS" */;
+			buildConfigurationList = C0BFCCCDE3F5E05790766212750599EA /* Build configuration list for PBXNativeTarget "Siesta-iOS" */;
 			buildPhases = (
-				BA94709C1584C625F21636A04A965579 /* Headers */,
-				F8646B385952A8523F84F118AB6A9A18 /* Sources */,
-				A6AAB5DC50AC6FE16BDF906AA5D6815B /* Frameworks */,
-				D69F56010A7E8B6395B7BADCFD7FCC19 /* Resources */,
+				7EDDE7ACC0E30C4EC71F61C15CB75132 /* Headers */,
+				A5A41008332FBF3C8A016C46C8A3FA3A /* Sources */,
+				8E7130002CDEC02284A895C605C357E5 /* Frameworks */,
+				30CA41BA3543D28E42E9AC71453D9066 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Siesta-iOS";
-			productName = "Siesta-iOS";
-			productReference = 012C196A1791A0AB5C84CD5D125EF0C6 /* Siesta.framework */;
+			productName = Siesta;
+			productReference = 012C196A1791A0AB5C84CD5D125EF0C6 /* Siesta-iOS */;
 			productType = "com.apple.product-type.framework";
 		};
 		561E34D43E5F287C1307C6F7AEA4781E /* ObjcExceptionBridging-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8E171EFF47FE4C0D14A8B3079B87D5EA /* Build configuration list for PBXNativeTarget "ObjcExceptionBridging-iOS" */;
+			buildConfigurationList = 08AD80A4D480CE76899127610FF89EA6 /* Build configuration list for PBXNativeTarget "ObjcExceptionBridging-iOS" */;
 			buildPhases = (
-				B81801B97F9474FEBCB31F29253CB79C /* Headers */,
-				FD9B23EAC8F1BA0AE528133318C846E0 /* Sources */,
-				C7992D6D9F6D197275181DCCDC9D1C89 /* Frameworks */,
-				DF65B6B43A1D9B8B45DD8E24D4584169 /* Resources */,
+				7875E6F9924FF646F65F8BB5A753B73B /* Headers */,
+				24E4435399914EA07B1BBC20B194E63C /* Sources */,
+				DD247E4D7986B414AAAA8D22845D03AE /* Frameworks */,
+				EEE58CD4C51292C65FDFC43CD2645061 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "ObjcExceptionBridging-iOS";
-			productName = "ObjcExceptionBridging-iOS";
-			productReference = 9224FD50E3EC906E6F12D27CBF2D7B26 /* ObjcExceptionBridging.framework */;
+			productName = ObjcExceptionBridging;
+			productReference = 9224FD50E3EC906E6F12D27CBF2D7B26 /* ObjcExceptionBridging-iOS */;
 			productType = "com.apple.product-type.framework";
 		};
 		56B9AD0F8F6A9A1E8E1A708697FBD2CD /* Siesta-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D5D710ABB06854DF257614BF00D223D6 /* Build configuration list for PBXNativeTarget "Siesta-macOS" */;
+			buildConfigurationList = A9787B1AA1FAD968192DA6C41FF2D207 /* Build configuration list for PBXNativeTarget "Siesta-macOS" */;
 			buildPhases = (
-				088DEC22547268DE71F4AFF120209514 /* Headers */,
-				F42D7BAE7FB91BD33E78587AA238F6CF /* Sources */,
-				4B9E74969D21FFE7221112ED6881687C /* Frameworks */,
-				AAB33714C16AB8A1C002246E95BCA627 /* Resources */,
+				E2A2954DB1402FE40D2FFB21BFE9AE63 /* Headers */,
+				62A0CBB548C0ACC6636D354E7E1F010F /* Sources */,
+				AF47C3A4FC22FC8A79ADA49A83B16ADE /* Frameworks */,
+				084BE80FCC33C633EEAA548C7B7FB3FE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Siesta-macOS";
-			productName = "Siesta-macOS";
-			productReference = 309BFA78F452698F38F993934F06F191 /* Siesta.framework */;
+			productName = Siesta;
+			productReference = 309BFA78F452698F38F993934F06F191 /* Siesta-macOS */;
 			productType = "com.apple.product-type.framework";
 		};
 		60FB5C9CB95764E2B48BFBD2CB5961A4 /* Pods-KatsanaSDK macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CF1A6B288B5288CC5904521E87F81752 /* Build configuration list for PBXNativeTarget "Pods-KatsanaSDK macOS" */;
+			buildConfigurationList = 766810B66CB385B1F28D4545F2A8DC2F /* Build configuration list for PBXNativeTarget "Pods-KatsanaSDK macOS" */;
 			buildPhases = (
-				EAA4B72CBC0C96D080B646613490B9C5 /* Headers */,
-				5C4D4AB88B85002967785FF0D286AE51 /* Sources */,
-				0501B2ABC351691BC496757DA1CA643A /* Frameworks */,
-				886D22BF6CF42122AD60E6D84B522A4F /* Resources */,
+				AF2A82B6BD4908CF4A1F0FE01C8B7F56 /* Headers */,
+				D17FA08F46DDF2B1CB94F14D1D78001C /* Sources */,
+				9B438D4CBDEE5192FD276464FA9110C0 /* Frameworks */,
+				F64629BBCAC4981DA93B6FEA0C5297F5 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				CB488FD374D14457433B8F43359C4160 /* PBXTargetDependency */,
-				EF3F7BADA48AA2CF936EF78CB46FC729 /* PBXTargetDependency */,
-				3C1EC8A1C6F2B46490DDFE5721F14A3F /* PBXTargetDependency */,
-				42937ABA602E6F12D5A49077CB5CA8D3 /* PBXTargetDependency */,
+				23027C91D553A39476F54A491BE0538A /* PBXTargetDependency */,
+				0ECFFB1FE62EF94D4F65FDE9A5DBF84A /* PBXTargetDependency */,
+				AD0F133A28702218E2268C226D197FA4 /* PBXTargetDependency */,
+				D2E16DAA95F29A23133A64B59C92093D /* PBXTargetDependency */,
 			);
 			name = "Pods-KatsanaSDK macOS";
-			productName = "Pods-KatsanaSDK macOS";
-			productReference = 5A1C84DE27CE4C809E0515FEA2A00150 /* Pods_KatsanaSDK_macOS.framework */;
+			productName = Pods_KatsanaSDK_macOS;
+			productReference = 5A1C84DE27CE4C809E0515FEA2A00150 /* Pods-KatsanaSDK macOS */;
 			productType = "com.apple.product-type.framework";
 		};
 		784C2CA32512CA628ABFE7D4147CCB69 /* Pods-KatsanaSDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ABE06891515570F9D2A0F00AA682E7B4 /* Build configuration list for PBXNativeTarget "Pods-KatsanaSDK" */;
+			buildConfigurationList = D462E44F76EE0C05518F62D0FBCFCC2F /* Build configuration list for PBXNativeTarget "Pods-KatsanaSDK" */;
 			buildPhases = (
-				54E6678BF0304D6AB0440CAA688AB461 /* Headers */,
-				97C6CA8DDB6A4DBBB0852A3CB584F1E3 /* Sources */,
-				86AF9E297979D22AD594B7C6785046FA /* Frameworks */,
-				ED9F2F4DEBF80E0116D34A0F9989BA82 /* Resources */,
+				EC3F8931CC1FD12FC3D3775EA4C2A93F /* Headers */,
+				A44CAAC3521328B5B5C1ED120EE1F70C /* Sources */,
+				9AF742A8C894DCA52D164328DB72FE8A /* Frameworks */,
+				5A4CBBF6A4803D75401B0624B1C18438 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C091DE9D4640A59EA855549DD2F0A14B /* PBXTargetDependency */,
-				CB0F7D14E56E50E0FC8E5B3072C368F3 /* PBXTargetDependency */,
-				CF8CA3FB716734ADA0083A695406C53C /* PBXTargetDependency */,
-				D99FAD7717EB5907CAC138EDDC564A6D /* PBXTargetDependency */,
+				48D303016011975AF721CD348FB12BF2 /* PBXTargetDependency */,
+				F66D302C36ADCED1FD1F83821F696C7E /* PBXTargetDependency */,
+				A90397B47E4D8C33C657A5AB80AD7DE0 /* PBXTargetDependency */,
+				D3B12E6193189ED479CBB2FB0452219B /* PBXTargetDependency */,
 			);
 			name = "Pods-KatsanaSDK";
-			productName = "Pods-KatsanaSDK";
-			productReference = 57F98A76D6804D252F8415B71B3A12A4 /* Pods_KatsanaSDK.framework */;
+			productName = Pods_KatsanaSDK;
+			productReference = 57F98A76D6804D252F8415B71B3A12A4 /* Pods-KatsanaSDK */;
 			productType = "com.apple.product-type.framework";
 		};
 		9B05586B1CABF46C14AAF8543C6BE3BF /* FastCoding-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6410DFE6AAB8C5E2149C8C3AEBD604FD /* Build configuration list for PBXNativeTarget "FastCoding-macOS" */;
+			buildConfigurationList = EF5DDAAC38ED6F2D03677AFF8EEECA9B /* Build configuration list for PBXNativeTarget "FastCoding-macOS" */;
 			buildPhases = (
-				194AA9EECBF91814D8AFE6E5DC90053C /* Headers */,
-				1C42DFF7ADCF0135721E85DA2DDF0D50 /* Sources */,
-				C49F2FF96CAB2771778E0496ADD671EE /* Frameworks */,
-				DEBD238CAD70B5D8269FE1A8713653A6 /* Resources */,
+				F34FE20B4A7E8966F81B4DC2831406C4 /* Headers */,
+				493C1BC5873D4F88A2D0F437BB1A7270 /* Sources */,
+				1E0B0249D4A51DE2CC15E6E716983898 /* Frameworks */,
+				511A6BC0E05DE1713CB2E891B7A315D1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "FastCoding-macOS";
-			productName = "FastCoding-macOS";
-			productReference = 6475B65CDDD32D22F44F1AC70B857DED /* FastCoding.framework */;
+			productName = FastCoding;
+			productReference = 6475B65CDDD32D22F44F1AC70B857DED /* FastCoding-macOS */;
 			productType = "com.apple.product-type.framework";
 		};
 		A870562CB3FBF6CAEBECEE0144484B21 /* XCGLogger-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0083854085E4F782EA0B5C740E3D1312 /* Build configuration list for PBXNativeTarget "XCGLogger-macOS" */;
+			buildConfigurationList = 7FC1450CB826C177F5F9549A37709EE1 /* Build configuration list for PBXNativeTarget "XCGLogger-macOS" */;
 			buildPhases = (
-				0D376662F517B604CD61FD2088292134 /* Headers */,
-				34349BEC9003EC23C8389C8BD18544DF /* Sources */,
-				94873FB4D0BBEF2170D62800FF44B186 /* Frameworks */,
-				729A6031485BFF11E83F38D3702EB168 /* Resources */,
+				8845D2432D9548D9578B24415734C322 /* Headers */,
+				3C4CB9654E2B2F9E2110151ECA57FBBA /* Sources */,
+				89485D5E9643ED5121E2B5D2248D53B1 /* Frameworks */,
+				2CE79B74FAC8EF1F3304AB64DED19E70 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				CAB87CD47A777FBD51CFE5BB0BB29DEB /* PBXTargetDependency */,
+				DD99EFFEDC714276CEFBD1F8AC3D9285 /* PBXTargetDependency */,
 			);
 			name = "XCGLogger-macOS";
-			productName = "XCGLogger-macOS";
-			productReference = EC8CCE35CCDEA06489F043EEA1EA11EC /* XCGLogger.framework */;
+			productName = XCGLogger;
+			productReference = EC8CCE35CCDEA06489F043EEA1EA11EC /* XCGLogger-macOS */;
 			productType = "com.apple.product-type.framework";
 		};
 		D50E171D729A216CE7335A7B375CE67A /* XCGLogger-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 004F06A0155DF0BC42A8CAAC7B17E5BC /* Build configuration list for PBXNativeTarget "XCGLogger-iOS" */;
+			buildConfigurationList = 8491670205D957FEBDDE65FF2EB7B9BB /* Build configuration list for PBXNativeTarget "XCGLogger-iOS" */;
 			buildPhases = (
-				8C097E637EBC6D4CF4004AB013C90F8A /* Headers */,
-				091001DCC3CFFA29B17885D4B737D304 /* Sources */,
-				13AF1E31D8C06B3512D405FA35E20B70 /* Frameworks */,
-				59FC24B0352D675003E202BC96C6F3CE /* Resources */,
+				82A8DA61C3219A4BB4DE71A067245E31 /* Headers */,
+				184A6309A46A2F7C97DB8694E552D002 /* Sources */,
+				3D9A28D03F3369A19514F356EE1A180F /* Frameworks */,
+				0771BBE363F399B1CC41F4928C86C759 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				37C74BE9A2B508486DD3F788270DC246 /* PBXTargetDependency */,
+				AB0169EE1838CB7DA83BDCC1C8E2C9E5 /* PBXTargetDependency */,
 			);
 			name = "XCGLogger-iOS";
-			productName = "XCGLogger-iOS";
-			productReference = FFFCA5C4A4022028C3D67C065369046C /* XCGLogger.framework */;
+			productName = XCGLogger;
+			productReference = FFFCA5C4A4022028C3D67C065369046C /* XCGLogger-iOS */;
 			productType = "com.apple.product-type.framework";
 		};
 		E035DEA7DB5F13EC4C11C02E5D727F07 /* FastCoding-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CACBF4438DC364B68D4C61F9A87E1A38 /* Build configuration list for PBXNativeTarget "FastCoding-iOS" */;
+			buildConfigurationList = 3DD69D1306FA18AC09E4A21171A08C56 /* Build configuration list for PBXNativeTarget "FastCoding-iOS" */;
 			buildPhases = (
-				26E8C84023B8B0CECFC5D771BCE16130 /* Headers */,
-				E73EEF539E54517B996274E339C16866 /* Sources */,
-				9484A5DCB1D47A38BD6EB7020E1A324B /* Frameworks */,
-				CE92453CA8CEF7B5AE84E1533654FF49 /* Resources */,
+				AC3ECAC0B73C9FFAD03774A978DEAE9A /* Headers */,
+				3CEE943666EA094A85D487106F3DC278 /* Sources */,
+				624679FB98C99CBD61B41CDE34A6A01F /* Frameworks */,
+				74929D715217C9DC4D1B59BF4A04BAEB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "FastCoding-iOS";
-			productName = "FastCoding-iOS";
-			productReference = 1D7C36B71B8972C7AB9C6F10B3A8B7FD /* FastCoding.framework */;
+			productName = FastCoding;
+			productReference = 1D7C36B71B8972C7AB9C6F10B3A8B7FD /* FastCoding-iOS */;
 			productType = "com.apple.product-type.framework";
 		};
 		EC26C9F326090BBE63EB86584A9145A6 /* ObjcExceptionBridging-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 927FAB7C74F5C0477CFCDAB68612BFF7 /* Build configuration list for PBXNativeTarget "ObjcExceptionBridging-macOS" */;
+			buildConfigurationList = 0B7B7F2FD789A52D06B2AEBF3DB70368 /* Build configuration list for PBXNativeTarget "ObjcExceptionBridging-macOS" */;
 			buildPhases = (
-				4F46D61058720179262151D9DCD92A8B /* Headers */,
-				6FC391FEB97112A397D8DA0CB9FF8C98 /* Sources */,
-				5B2E908467457F56904AEA29B3EF5213 /* Frameworks */,
-				31866DEABE27960FD6D59CC2628E1A6B /* Resources */,
+				898A01FA4832D9D45F7CB49AE457109A /* Headers */,
+				EBBBB20C8315D3FB6077325F370445C3 /* Sources */,
+				DF238F1FA6085D4DED648D8269C284E5 /* Frameworks */,
+				F3B3AE98E5319B1C42321CC30C07971B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "ObjcExceptionBridging-macOS";
-			productName = "ObjcExceptionBridging-macOS";
-			productReference = FA2109E633CEC6CC15C09BD24379EE1A /* ObjcExceptionBridging.framework */;
+			productName = ObjcExceptionBridging;
+			productReference = FA2109E633CEC6CC15C09BD24379EE1A /* ObjcExceptionBridging-macOS */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1109,19 +1103,19 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 71A9D5FFAF1FE1BF1FF19851039B274F /* Products */;
+			productRefGroup = 3C7F9EA2C93F6D030E22AAF2E3BD0FA3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -1140,72 +1134,72 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		31866DEABE27960FD6D59CC2628E1A6B /* Resources */ = {
+		0771BBE363F399B1CC41F4928C86C759 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C574C72DF321B85E8296FE312BA62A65 /* .swift-version in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		084BE80FCC33C633EEAA548C7B7FB3FE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		59FC24B0352D675003E202BC96C6F3CE /* Resources */ = {
+		2CE79B74FAC8EF1F3304AB64DED19E70 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DC121E53988165690A7A9EED0577F6A /* .swift-version in Resources */,
+				10CD8D6D522C93DE2EFF3586FCDDB99F /* .swift-version in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		729A6031485BFF11E83F38D3702EB168 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A019BD0DD936F9F93F1DC3918F1E3675 /* .swift-version in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		886D22BF6CF42122AD60E6D84B522A4F /* Resources */ = {
+		30CA41BA3543D28E42E9AC71453D9066 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AAB33714C16AB8A1C002246E95BCA627 /* Resources */ = {
+		511A6BC0E05DE1713CB2E891B7A315D1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE92453CA8CEF7B5AE84E1533654FF49 /* Resources */ = {
+		5A4CBBF6A4803D75401B0624B1C18438 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D69F56010A7E8B6395B7BADCFD7FCC19 /* Resources */ = {
+		74929D715217C9DC4D1B59BF4A04BAEB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DEBD238CAD70B5D8269FE1A8713653A6 /* Resources */ = {
+		EEE58CD4C51292C65FDFC43CD2645061 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DF65B6B43A1D9B8B45DD8E24D4584169 /* Resources */ = {
+		F3B3AE98E5319B1C42321CC30C07971B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ED9F2F4DEBF80E0116D34A0F9989BA82 /* Resources */ = {
+		F64629BBCAC4981DA93B6FEA0C5297F5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1215,318 +1209,282 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		091001DCC3CFFA29B17885D4B737D304 /* Sources */ = {
+		184A6309A46A2F7C97DB8694E552D002 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				439E69E1D538F2F53AC95E16FA285E46 /* ANSIColorLogFormatter.swift in Sources */,
-				2BA88FFF6005F7BA2F90B5F5AF3AA286 /* AppleSystemLogDestination.swift in Sources */,
-				1FD5AC673A03F14769ADC475F762DD22 /* AutoRotatingFileDestination.swift in Sources */,
-				6499778ABC5E77F83C63EA320F61DF1F /* Base64LogFormatter.swift in Sources */,
-				979993B9118670333169F2F388230BD9 /* BaseDestination.swift in Sources */,
-				14E2247908705AE03FB9D859B0DD034A /* BaseQueuedDestination.swift in Sources */,
-				AA809971DA0B8D3C2308C6D8A8A57DC5 /* ConsoleDestination.swift in Sources */,
-				9BA632CD3D8C056D7072241F1F441852 /* DestinationProtocol.swift in Sources */,
-				9EE0CE52D6C2DAC414890B325E0A5B55 /* DevFilter.swift in Sources */,
-				C102F54205ED8D4B73C3458E4A025293 /* DispatchQueue+XCGAdditions.swift in Sources */,
-				9262C72B75067EF494083FD966A26787 /* FileDestination.swift in Sources */,
-				41FE45B0F8631EB6E0880398FC8C8980 /* FileNameFilter.swift in Sources */,
-				0A3A3FB3718EC8271F79496D87257EFC /* FilterProtocol.swift in Sources */,
-				D0D8767F8944F78A722BCB5D2FE9D831 /* HelperFunctions.swift in Sources */,
-				4766F40BED4AAFFF781EC19551F0BAF1 /* LogDetails.swift in Sources */,
-				98416192887B3F802BAFDD84322F9F14 /* LogFormatterProtocol.swift in Sources */,
-				5E0C2C1AF4903928939DDD3786F8B39B /* PrePostFixLogFormatter.swift in Sources */,
-				E0885056DA568606472A9D096D7CD97F /* TagFilter.swift in Sources */,
-				2058BFA9B0C260E2077903555E40D81D /* TestDestination.swift in Sources */,
-				D5BBA53505C5D47BBF0471559AD83830 /* URL+XCGAdditions.swift in Sources */,
-				26D8527D67CF36B95749F231A7BAD339 /* UserInfoFilter.swift in Sources */,
-				CFE4F7DC4DEE2BF2595E705A970B482D /* XCGLogger-iOS-dummy.m in Sources */,
-				7EB45938CD5E469ED474BC905E0C6CFB /* XCGLogger.swift in Sources */,
-				843C049D1987610A66191979B5498481 /* XcodeColorsLogFormatter.swift in Sources */,
+				275FB21500F13DF05ADC05DA0C843955 /* ANSIColorLogFormatter.swift in Sources */,
+				0F2DFBA10542AC99ADF76F95EFDB0AB3 /* AppleSystemLogDestination.swift in Sources */,
+				7E54A77CF8277669CBE615062CB4F470 /* AutoRotatingFileDestination.swift in Sources */,
+				7155C6511AB9C88C175ED1D2898FD4EE /* Base64LogFormatter.swift in Sources */,
+				0406372F1F8D3DCB03E74040825ED9CD /* BaseDestination.swift in Sources */,
+				A493E15AC3CA82C62302364C2337A09F /* BaseQueuedDestination.swift in Sources */,
+				CC55943CD091318D21C6D12BB9663DF3 /* ConsoleDestination.swift in Sources */,
+				B1F9AFD17F515D6E3287649E9826CBA7 /* DestinationProtocol.swift in Sources */,
+				6342E0C3A2CE99081C0D21DE6F1D2345 /* DevFilter.swift in Sources */,
+				8B34E5055B387A2DA3611519D2690ACB /* DispatchQueue+XCGAdditions.swift in Sources */,
+				0040A11040AFD5407403AAA94F230086 /* FileDestination.swift in Sources */,
+				5777CB3B0087D74F00E113AA62BC4796 /* FileNameFilter.swift in Sources */,
+				4DB931B1F1B3634B9FBB921849A86428 /* FilterProtocol.swift in Sources */,
+				4F749E3E3AE23F610949F7DA695A49BE /* HelperFunctions.swift in Sources */,
+				CB5AC10389D7952907B7673DE3550FD4 /* LogDetails.swift in Sources */,
+				E9BB3DB8413FD85D45F370808D1AA530 /* LogFormatterProtocol.swift in Sources */,
+				F597CB6EF2A517FED65E1BF43FE35C41 /* PrePostFixLogFormatter.swift in Sources */,
+				2D7B2AE8A0E76E3783561DBFAB178EC5 /* TagFilter.swift in Sources */,
+				31DB71994F3D5075326149E5AC438715 /* TestDestination.swift in Sources */,
+				615EB0D61E7B9E2DA42527B928FEB98F /* URL+XCGAdditions.swift in Sources */,
+				DC16E63FBEFD00AE487F23969E55F378 /* UserInfoFilter.swift in Sources */,
+				998F9C36954E2C56A7A042930CE4F1E1 /* XCGLogger.swift in Sources */,
+				FA15908A6AB9671C12D65811FE18BD1E /* XCGLogger-iOS-dummy.m in Sources */,
+				154FCDF7C7EA621B30854803CD9E3720 /* XcodeColorsLogFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1C42DFF7ADCF0135721E85DA2DDF0D50 /* Sources */ = {
+		24E4435399914EA07B1BBC20B194E63C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4B284725334E258A1DEA680B927F1B9 /* FastCoder.m in Sources */,
-				ED8E31137CDAA00FC29B135BA7EE4AEF /* FastCoding-macOS-dummy.m in Sources */,
+				8F7DF9FDCA75502EBCA831384AA200DE /* ObjcExceptionBridging-iOS-dummy.m in Sources */,
+				0F5F110550365373C7354F8B121042F9 /* ObjectiveCMarker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		34349BEC9003EC23C8389C8BD18544DF /* Sources */ = {
+		3C4CB9654E2B2F9E2110151ECA57FBBA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CAFC2EE1F06B89A7B31D416FCAF5130 /* ANSIColorLogFormatter.swift in Sources */,
-				0C5E10426E2B84EE7611FA7C5E39394A /* AppleSystemLogDestination.swift in Sources */,
-				7F5ED9D6F48750400C5F942194516AE3 /* AutoRotatingFileDestination.swift in Sources */,
-				9A48330D4190FC43179FF2F8F21CB591 /* Base64LogFormatter.swift in Sources */,
-				E7F10EDD14DB936F9BE24C7340D0BC94 /* BaseDestination.swift in Sources */,
-				4A71D6B6C4841FBD1F8661660327182E /* BaseQueuedDestination.swift in Sources */,
-				9F98F25D2DEBA1FC0239296257CA7C52 /* ConsoleDestination.swift in Sources */,
-				B106356576A037F9E292B3F4FCB16DDC /* DestinationProtocol.swift in Sources */,
-				BB33DA28DB307BA00B207FF2CCE9E493 /* DevFilter.swift in Sources */,
-				F1A4C081243348110C816698C7E4CECD /* DispatchQueue+XCGAdditions.swift in Sources */,
-				C760631FD78C8CD321D7E749F7745532 /* FileDestination.swift in Sources */,
-				2E0DCF9EC27E8B72015D095AE202840C /* FileNameFilter.swift in Sources */,
-				D2E80D40198451224D13E2FFA6A26618 /* FilterProtocol.swift in Sources */,
-				4F37A0DEC3427496A52B15DD1B452133 /* HelperFunctions.swift in Sources */,
-				E1C44DB6793DCC1F15B7C0F84F040774 /* LogDetails.swift in Sources */,
-				0D6CB8F760FB60FBE7BEDBDC79B1C2C7 /* LogFormatterProtocol.swift in Sources */,
-				0F1D9452F7E8DDA0CD1CB613D9C4198C /* PrePostFixLogFormatter.swift in Sources */,
-				B3ACDF3C5D6B7A3A33C6C37A167E9D2A /* TagFilter.swift in Sources */,
-				3650964004B650F3DCBBB61CE196EF68 /* TestDestination.swift in Sources */,
-				B2218579C3D6603E722FAF5CD8C974B4 /* URL+XCGAdditions.swift in Sources */,
-				30A05A8EEBF5CA9173AD6712B9E6F209 /* UserInfoFilter.swift in Sources */,
-				AE17EAB162E28D075DD0667E921A3161 /* XCGLogger-macOS-dummy.m in Sources */,
-				D34EE005A600C2B385A908CA3CC35C01 /* XCGLogger.swift in Sources */,
-				9B10BD36B51E934B17CC25535AFF714B /* XcodeColorsLogFormatter.swift in Sources */,
+				F0ED786AED598790B0A46FB4C72B5FEA /* ANSIColorLogFormatter.swift in Sources */,
+				A401491BDDF1C398FD412019925F8EA3 /* AppleSystemLogDestination.swift in Sources */,
+				96192192CFC12AAE272B87961216FCD6 /* AutoRotatingFileDestination.swift in Sources */,
+				8F1CAAA66DAD81E53AAAEAD3F08890A8 /* Base64LogFormatter.swift in Sources */,
+				EE981F7C36A150EFE08F44E364BC9F3A /* BaseDestination.swift in Sources */,
+				50218C078AB7EE018B47D97EFCFF637E /* BaseQueuedDestination.swift in Sources */,
+				EA563ED7A1F91B0F53605552E2B3C4B7 /* ConsoleDestination.swift in Sources */,
+				0B9C44C89AF99559E89521DE4DE35608 /* DestinationProtocol.swift in Sources */,
+				0A333BD78C2CAA9E6F4BA7ECD57CE572 /* DevFilter.swift in Sources */,
+				B44E49F2DE1D0CFC93C97D506D6B56F6 /* DispatchQueue+XCGAdditions.swift in Sources */,
+				3B6DF804E025378F833CA362A8A26A7F /* FileDestination.swift in Sources */,
+				68247911D6823323344EDFCB12BA7F97 /* FileNameFilter.swift in Sources */,
+				6B4993E1D2825908E83C84BD946E5692 /* FilterProtocol.swift in Sources */,
+				C5789361BC9155D9F87BB876439AEC22 /* HelperFunctions.swift in Sources */,
+				DD0A03A56C7F4B22F0D6A03FD4031C82 /* LogDetails.swift in Sources */,
+				D660AB654FAA0E2E704C140C9304EF37 /* LogFormatterProtocol.swift in Sources */,
+				4F41AB07F57C7EF2A70663E76B19F9BB /* PrePostFixLogFormatter.swift in Sources */,
+				5F33EEE7E67165CAE3FDD8F418D5A4E3 /* TagFilter.swift in Sources */,
+				56BF12E871D79D9E6DDE4A6ADE9DB42D /* TestDestination.swift in Sources */,
+				E90606272F4711766E74A423B80F77A0 /* URL+XCGAdditions.swift in Sources */,
+				018C49244CEA653D9DD4608C13C3ACFA /* UserInfoFilter.swift in Sources */,
+				204857708FF71B23F9D76BD13144D49B /* XCGLogger.swift in Sources */,
+				D495A249DD230CC2FAF106AF121CCFA7 /* XCGLogger-macOS-dummy.m in Sources */,
+				0C858C4483194B76B190065348B0186A /* XcodeColorsLogFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5C4D4AB88B85002967785FF0D286AE51 /* Sources */ = {
+		3CEE943666EA094A85D487106F3DC278 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE1BBC82CFA5BFC0BA467E42292B41CB /* Pods-KatsanaSDK macOS-dummy.m in Sources */,
+				1D2964F36125DF48CF549351F6E1F4ED /* FastCoder.m in Sources */,
+				06587949AD9D178D8BE8923EB968E4FC /* FastCoding-iOS-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6FC391FEB97112A397D8DA0CB9FF8C98 /* Sources */ = {
+		493C1BC5873D4F88A2D0F437BB1A7270 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C93ACF193613E3EE7CEE7E23EB4CD11A /* ObjcExceptionBridging-macOS-dummy.m in Sources */,
-				9EB2556E181240C363D98202129FEB2A /* ObjectiveCMarker.m in Sources */,
+				8BDDD1593F8FDD263CCEDE8E6F4E1779 /* FastCoder.m in Sources */,
+				781190D3CE1B0C2B2DA8C1B3A3FADBE9 /* FastCoding-macOS-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		97C6CA8DDB6A4DBBB0852A3CB584F1E3 /* Sources */ = {
+		62A0CBB548C0ACC6636D354E7E1F010F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70C9D6BDEA2CBBBD4FCBCD68844D33CD /* Pods-KatsanaSDK-dummy.m in Sources */,
+				74F673295E6F902129F6CA04D8A48A7D /* ARC+Siesta.swift in Sources */,
+				1FF933188BB6A43600B5DD098DB54C2F /* Collection+Siesta.swift in Sources */,
+				2A182A71BB541F516AE3FA2AC3F75E27 /* Configuration.swift in Sources */,
+				3C385A8ACACB8058B62F16CC38F18B2E /* ConfigurationPatternConvertible.swift in Sources */,
+				6B17543FBBE6223FECA97A7564E703B2 /* DebugFormatting.swift in Sources */,
+				390A6720517D79A3631E1FBCF30AFAEB /* Entity.swift in Sources */,
+				8D580582080E62CF552DC0FD301A88A3 /* EntityCache.swift in Sources */,
+				BC5B6837D2A7326A31D0D3B06247F42F /* GCD+Siesta.swift in Sources */,
+				D715ABA3DF1532123D86ADCA1B3ABA2C /* HardWiredRequest.swift in Sources */,
+				0A3D2F6538EA099B5806AB464E077746 /* LiveRequest.swift in Sources */,
+				119DB217A3F74068869DE2CDDE2B7BFC /* Logging.swift in Sources */,
+				595CBBAF74C868C7FA8C98153C3A33D5 /* Networking.swift in Sources */,
+				F9A1DF6D13FEEE283A6F35B16CB800A4 /* Networking-URLSession.swift in Sources */,
+				C137DEE47286CA952E7939FA1A6218BF /* NetworkRequest.swift in Sources */,
+				0E3CCA6E352C1012C3A0CAD72C9A2FF2 /* OpenEnum.swift in Sources */,
+				B0DD1071558C80DF9B234F2B83595ADC /* Optional+Siesta.swift in Sources */,
+				0BC4854102917934F80209E1400831AB /* PipelineConfiguration.swift in Sources */,
+				03698581DEC58002F37D54C82188F291 /* PipelineProcessing.swift in Sources */,
+				4B385F196E2C5579AD1956DD4AFE0DFA /* Progress.swift in Sources */,
+				3B138447EBEFBEF1183B39D1793ECC41 /* ProgressTracker.swift in Sources */,
+				761F4B3109AB6BAF42E52FAE628416CA /* Regex+Siesta.swift in Sources */,
+				212D215BAF9C353F25F446E150C7EBBF /* Request.swift in Sources */,
+				2B826DDA122730EC4C1DE6F0B3C61A7D /* RequestCallbacks.swift in Sources */,
+				E967A1F3058FF2FC299B741CE1ABF540 /* RequestChaining.swift in Sources */,
+				5B1E813D9CFD0242115E87C64EC3BBB4 /* RequestCreation.swift in Sources */,
+				96A065D424FBBAE9BE1B8AD50644D564 /* RequestError.swift in Sources */,
+				335D2A05000E564AA86BC4F0C163C56A /* Resource.swift in Sources */,
+				5B276055674B8DA4B64945CC34FC60D8 /* ResourceNavigation.swift in Sources */,
+				3FAF639FD64AFAE55798620CD0FF9839 /* ResourceObserver.swift in Sources */,
+				78195E7A3AE92BD6DA59BD1B9EA322E5 /* ResponseTransformer.swift in Sources */,
+				41D2B54FBE02E34CC4C00CF46795677C /* Service.swift in Sources */,
+				17132EECD93ECCAC6F118C9D2E80C92C /* Siesta-macOS-dummy.m in Sources */,
+				39794F69190690B9ACD36FF0A7970BE4 /* Siesta-ObjC.swift in Sources */,
+				AE9ACF623F5FA6F609E05170D79C71AD /* StandardTransformers.swift in Sources */,
+				0E438C126186EB8E0B297BD52D41AE50 /* String+Siesta.swift in Sources */,
+				0D55EAC45980C709A336DCDB518F4905 /* URL+Siesta.swift in Sources */,
+				BB58FA91629BEC981D5CB068605F2D8A /* WeakCache.swift in Sources */,
+				E3AF20BBE82AC06950B591920EFE0AB7 /* Ω_Deprecations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E73EEF539E54517B996274E339C16866 /* Sources */ = {
+		A44CAAC3521328B5B5C1ED120EE1F70C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B29CE557EDACCBD04B3F5ACDFAB64A1F /* FastCoder.m in Sources */,
-				63886986F4A378286DC110902CB2D861 /* FastCoding-iOS-dummy.m in Sources */,
+				4904C5FA96E9B8194BCE8D2F87CC4309 /* Pods-KatsanaSDK-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F42D7BAE7FB91BD33E78587AA238F6CF /* Sources */ = {
+		A5A41008332FBF3C8A016C46C8A3FA3A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8090535160899CED0C9C137E5802C645 /* ARC+Siesta.swift in Sources */,
-				CF75BB268F41CD97CB4889414DCAEDD4 /* Collection+Siesta.swift in Sources */,
-				E4F1B215F0A2C3A1881FDB116DF17B21 /* Configuration.swift in Sources */,
-				945149B755D6ACF7344FBACAFD097FF1 /* ConfigurationPatternConvertible.swift in Sources */,
-				AE98308EDFBC83211931F999E724BD7D /* DebugFormatting.swift in Sources */,
-				0AC1F74EDE1306EE7CAEF717F1C99DFE /* Entity.swift in Sources */,
-				BEC081A8F0F33C3B32326F1F2A2F950F /* EntityCache.swift in Sources */,
-				120B977B1483C6B5AE935757D9425E93 /* GCD+Siesta.swift in Sources */,
-				5B08CBCADDD7E65880565C9FE964309D /* HardWiredRequest.swift in Sources */,
-				9C4DA4886DB1CFB41195094C08D1672D /* LiveRequest.swift in Sources */,
-				05F1872ADA6139533B228DC1E8F1D0C4 /* Logging.swift in Sources */,
-				C3B593296B872FC9BD0C584E07006C20 /* Networking-URLSession.swift in Sources */,
-				E9665894DF69BFE0E6589A1F823527E9 /* Networking.swift in Sources */,
-				A0D00465C4B6F1C11FF43BCD7A3E0590 /* NetworkRequest.swift in Sources */,
-				375CB8F153D5652F62629C7FAE02D20E /* OpenEnum.swift in Sources */,
-				D5053E2E71E0F7086CF2DD8C6F5769CF /* Optional+Siesta.swift in Sources */,
-				5A89955BC326C1FFFB6EABF76353DE0E /* PipelineConfiguration.swift in Sources */,
-				75617C85F8E40466A592D7DF808C0BD1 /* PipelineProcessing.swift in Sources */,
-				2576863FA6AF6171E94EB5D47FA43886 /* Progress.swift in Sources */,
-				732FA62C5F553CCECC1F3B05C56C9037 /* ProgressTracker.swift in Sources */,
-				6CC7212FE014321A901811E3A4B4791D /* Regex+Siesta.swift in Sources */,
-				3003E9E01972E0F43655D0CE4F61D73E /* Request.swift in Sources */,
-				6A6DF230F6FB75D384546929440FDA47 /* RequestCallbacks.swift in Sources */,
-				025788448E66B774B1CCC7746D5B2641 /* RequestChaining.swift in Sources */,
-				303DCDA4E5A11FA3EC4F8821D1BE7655 /* RequestCreation.swift in Sources */,
-				AA621A63DD8FD06B010DCFDAF14EEEE4 /* RequestError.swift in Sources */,
-				AA568BC637D430157214FA615C16B83B /* Resource.swift in Sources */,
-				BC883B648E25AD5D40260075980AB96E /* ResourceNavigation.swift in Sources */,
-				6FA7D781EDA912EBD7D07A86D40B1016 /* ResourceObserver.swift in Sources */,
-				CB657616224A50A4F68C70031EFC1605 /* ResponseTransformer.swift in Sources */,
-				8DC9D43E1CF2A7B58572A28DF778E864 /* Service.swift in Sources */,
-				C8706FC2C207866324B12426A5FD8204 /* Siesta-macOS-dummy.m in Sources */,
-				835112DD5AB0622C37B538C26AF1BCCF /* Siesta-ObjC.swift in Sources */,
-				24FEE25BD7751D2E03A02A1EC56D2E06 /* StandardTransformers.swift in Sources */,
-				5D73C6D496204389DC45D2FFC4A7CEE1 /* String+Siesta.swift in Sources */,
-				AB65319F8C2E8159B2BAE23B6E21BC22 /* URL+Siesta.swift in Sources */,
-				31FC4CB8DC39C1BFB05701D3861D56A9 /* WeakCache.swift in Sources */,
-				F79D699279BF7E0853561ADE6836EB0E /* Ω_Deprecations.swift in Sources */,
+				5C0C97D171012F057D335F99E5B43FEB /* ARC+Siesta.swift in Sources */,
+				2832E72AAF3AF49223F184B27B12A434 /* Collection+Siesta.swift in Sources */,
+				A93FD100C12AC0202D0C99906CC94E8D /* Configuration.swift in Sources */,
+				A3EAB011B4ED99903F3449A769206283 /* ConfigurationPatternConvertible.swift in Sources */,
+				47C1190EFFA60E16DBE36EEC58932E40 /* DebugFormatting.swift in Sources */,
+				C5F9BE06D2020D12CE9A5C2CB699C295 /* Entity.swift in Sources */,
+				F814D0FBE0013B8D4825CECB8D3F817C /* EntityCache.swift in Sources */,
+				EA2554E242931995062CB0636E9D4946 /* GCD+Siesta.swift in Sources */,
+				20ED3756ECF674D05BDC055A34B259ED /* HardWiredRequest.swift in Sources */,
+				9EBA8CBD84DAC8AD1C603CD6B28262AD /* LiveRequest.swift in Sources */,
+				CEDB332B1D61032EBF3AE403588D8E25 /* Logging.swift in Sources */,
+				0084580E279E0D31539C92B786F77C39 /* Networking.swift in Sources */,
+				87C90D6C83BEB1320F231F9DF9B4DBB4 /* Networking-URLSession.swift in Sources */,
+				59BB2C12671A0AF2BA2B8BAF61AA0F86 /* NetworkRequest.swift in Sources */,
+				1A245BA3C6AAA1CA60CB5F73C5925516 /* OpenEnum.swift in Sources */,
+				3C62FDD2066AD6262ABBD2B47CB23AA4 /* Optional+Siesta.swift in Sources */,
+				C8C1DE82FF0C6CDDA21400B8B6C6CDD8 /* PipelineConfiguration.swift in Sources */,
+				4D5DAD3BD4BF040B4336DA38A0099F43 /* PipelineProcessing.swift in Sources */,
+				61E4B19466F160A4F4C891E2F6C38F16 /* Progress.swift in Sources */,
+				DBDAD6C2E72BCF55229BE60245AD91A7 /* ProgressTracker.swift in Sources */,
+				CA955F87678ECB43FD3D632272EB83D6 /* Regex+Siesta.swift in Sources */,
+				A6BD2EE85E8EEE4CC1E99E8CED0A7DBE /* Request.swift in Sources */,
+				94A6CB1EB31A5BF7B5C59914E5AA7F78 /* RequestCallbacks.swift in Sources */,
+				1C9F05F49F380AAA7D24119C8EEB4187 /* RequestChaining.swift in Sources */,
+				B82193A6B1330942D7D40911ED231B95 /* RequestCreation.swift in Sources */,
+				32E55FE3BCE95B575C41268655615FB4 /* RequestError.swift in Sources */,
+				3EEDC175D6F59F7A775C021A3FB9E4E7 /* Resource.swift in Sources */,
+				8E370842F60B2BDA62AD7630505DD8EA /* ResourceNavigation.swift in Sources */,
+				5F5ABC12E18BF74EEF760842782BFA94 /* ResourceObserver.swift in Sources */,
+				017C12D42D38DD6CE79EB50EE9B030C3 /* ResponseTransformer.swift in Sources */,
+				1E3D3344EB5DBB4902F9D374F626F1B7 /* Service.swift in Sources */,
+				8F49DCEBD2E815583586790E194E7F23 /* Siesta-iOS-dummy.m in Sources */,
+				026159DCD2B9C878D7894BC0DE0B9FBC /* Siesta-ObjC.swift in Sources */,
+				A96D92FFE42C9B280BE1740629C90201 /* StandardTransformers.swift in Sources */,
+				CD82382263586931969898BB377EBF49 /* String+Siesta.swift in Sources */,
+				5BBD0D58B458619A988537485836A6BB /* URL+Siesta.swift in Sources */,
+				1FEA85920DAAACEDE11E583664FCF6E2 /* WeakCache.swift in Sources */,
+				BDD3369FF78826065A2024723314E0FD /* Ω_Deprecations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8646B385952A8523F84F118AB6A9A18 /* Sources */ = {
+		D17FA08F46DDF2B1CB94F14D1D78001C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B87B5A7523F283CB1594DDC956F6A73 /* ARC+Siesta.swift in Sources */,
-				B0B06A7BB087D73C42123184FF885DF1 /* Collection+Siesta.swift in Sources */,
-				B4F2B5B2267E0BFB5EE523C311718206 /* Configuration.swift in Sources */,
-				3C2A08A80CF6477CFD0C4F92BFE8299E /* ConfigurationPatternConvertible.swift in Sources */,
-				6916F4A2A489C687664EB2350620F678 /* DebugFormatting.swift in Sources */,
-				0B69A6B8FC1BD98F84E5B7EE348CB811 /* Entity.swift in Sources */,
-				A7A7E7933183842EA18F6C5E90B38D2E /* EntityCache.swift in Sources */,
-				5A46D106852AD5F4627F8042B1B5FB4B /* GCD+Siesta.swift in Sources */,
-				681D0986C5C91A1B821DF64BA0542D4C /* HardWiredRequest.swift in Sources */,
-				14A5AF5B73DAF74AF9D49BBBF1DD4D7A /* LiveRequest.swift in Sources */,
-				4E78E490F6AB198128E510810E50CAE9 /* Logging.swift in Sources */,
-				7E1CECCB9EECAD400BB1716C714BA7ED /* Networking-URLSession.swift in Sources */,
-				D5982EB3A234DE18B7038E140C00AC8E /* Networking.swift in Sources */,
-				5500902A2E33546C75447965A6B78E5D /* NetworkRequest.swift in Sources */,
-				AD67900F83863EF59A4C34B727586C94 /* OpenEnum.swift in Sources */,
-				84A36E55922B05EA1EB929336E47BCEB /* Optional+Siesta.swift in Sources */,
-				B89097F7FB6AE9D67FBE73A5609BFAA6 /* PipelineConfiguration.swift in Sources */,
-				BD39FC4A61BBE6C5D2CCC77A852926E9 /* PipelineProcessing.swift in Sources */,
-				423D04E427286DD4DA0D8C64729FFF4E /* Progress.swift in Sources */,
-				E165194528940A921E3CB7954FC636C7 /* ProgressTracker.swift in Sources */,
-				A6934A2592F31461A95C9AE94F1085FD /* Regex+Siesta.swift in Sources */,
-				D7CBFFE131769B2A3C158902E290228C /* Request.swift in Sources */,
-				50E025187765A8AF9D7D9E598F6E3C7A /* RequestCallbacks.swift in Sources */,
-				EB105F1040973CCA609A1DA0E1763A99 /* RequestChaining.swift in Sources */,
-				D82221026C7DE45A42219B4690B2F935 /* RequestCreation.swift in Sources */,
-				9E604C01342E915CB4F56FB583E12DFA /* RequestError.swift in Sources */,
-				074020C75B5703FEFDB1758B0EF211FF /* Resource.swift in Sources */,
-				13A62E03FFA86A1AE680F97240737B63 /* ResourceNavigation.swift in Sources */,
-				1870FF60BDC7634D4D192DE3617083F6 /* ResourceObserver.swift in Sources */,
-				67FEA07A994028EE6A560A74A2FD0B69 /* ResponseTransformer.swift in Sources */,
-				6A4D65194B93673CD85784BD25C4A912 /* Service.swift in Sources */,
-				7BA55272D44DADA84BECD6033E824388 /* Siesta-iOS-dummy.m in Sources */,
-				216CEC674E0D2FFD162A8AD78A623DF7 /* Siesta-ObjC.swift in Sources */,
-				1016CF5B1B3B7CB87C4E842C382E73F0 /* StandardTransformers.swift in Sources */,
-				A20D9E1766339E9D369DFA21A30906CA /* String+Siesta.swift in Sources */,
-				BDDA254F592F176354F063C7C717AB7C /* URL+Siesta.swift in Sources */,
-				10259D7A1F8D5149920A8D41428AB591 /* WeakCache.swift in Sources */,
-				BD4F7D92A04C85F56CA022A30278F7C8 /* Ω_Deprecations.swift in Sources */,
+				A3912189B6D63DFE1CF30419CD3CB18D /* Pods-KatsanaSDK macOS-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD9B23EAC8F1BA0AE528133318C846E0 /* Sources */ = {
+		EBBBB20C8315D3FB6077325F370445C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACF03D2960AD933902157669E422985E /* ObjcExceptionBridging-iOS-dummy.m in Sources */,
-				04812AE3737CFB523ED8B6F4D6D712D5 /* ObjectiveCMarker.m in Sources */,
+				8B23A5AEBB4BB64E41E0EF87AF5A3F73 /* ObjcExceptionBridging-macOS-dummy.m in Sources */,
+				8367207BE41A7DCCFC99171391D85616 /* ObjectiveCMarker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		37C74BE9A2B508486DD3F788270DC246 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "ObjcExceptionBridging-iOS";
-			target = 561E34D43E5F287C1307C6F7AEA4781E /* ObjcExceptionBridging-iOS */;
-			targetProxy = 6512B47F6E48C3BE1A3D98E87DC51EA8 /* PBXContainerItemProxy */;
-		};
-		3C1EC8A1C6F2B46490DDFE5721F14A3F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Siesta-macOS";
-			target = 56B9AD0F8F6A9A1E8E1A708697FBD2CD /* Siesta-macOS */;
-			targetProxy = FA63E6728325B2BACFFEC2A019383089 /* PBXContainerItemProxy */;
-		};
-		42937ABA602E6F12D5A49077CB5CA8D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "XCGLogger-macOS";
-			target = A870562CB3FBF6CAEBECEE0144484B21 /* XCGLogger-macOS */;
-			targetProxy = B50B00888FA26A76BEF64CEB306C2D67 /* PBXContainerItemProxy */;
-		};
-		C091DE9D4640A59EA855549DD2F0A14B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "FastCoding-iOS";
-			target = E035DEA7DB5F13EC4C11C02E5D727F07 /* FastCoding-iOS */;
-			targetProxy = 330506361A7FAF2AD132F9DC7119E66D /* PBXContainerItemProxy */;
-		};
-		CAB87CD47A777FBD51CFE5BB0BB29DEB /* PBXTargetDependency */ = {
+		0ECFFB1FE62EF94D4F65FDE9A5DBF84A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "ObjcExceptionBridging-macOS";
 			target = EC26C9F326090BBE63EB86584A9145A6 /* ObjcExceptionBridging-macOS */;
-			targetProxy = 232DE883BA5B7EEF67BA9B4C6A5B149A /* PBXContainerItemProxy */;
+			targetProxy = 957C27DB29D210D591B70371D8954F36 /* PBXContainerItemProxy */;
 		};
-		CB0F7D14E56E50E0FC8E5B3072C368F3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "ObjcExceptionBridging-iOS";
-			target = 561E34D43E5F287C1307C6F7AEA4781E /* ObjcExceptionBridging-iOS */;
-			targetProxy = 364C9A306438E9C660B5E1BB09F4EAD1 /* PBXContainerItemProxy */;
-		};
-		CB488FD374D14457433B8F43359C4160 /* PBXTargetDependency */ = {
+		23027C91D553A39476F54A491BE0538A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "FastCoding-macOS";
 			target = 9B05586B1CABF46C14AAF8543C6BE3BF /* FastCoding-macOS */;
-			targetProxy = ACE96E4BC4EE18B84BF4F07A2328192C /* PBXContainerItemProxy */;
+			targetProxy = 2B694FCD3E794237AC0BD2BBEB09CD17 /* PBXContainerItemProxy */;
 		};
-		CF8CA3FB716734ADA0083A695406C53C /* PBXTargetDependency */ = {
+		48D303016011975AF721CD348FB12BF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FastCoding-iOS";
+			target = E035DEA7DB5F13EC4C11C02E5D727F07 /* FastCoding-iOS */;
+			targetProxy = 9ACB1552AACBC0A8854892579FA6138D /* PBXContainerItemProxy */;
+		};
+		A90397B47E4D8C33C657A5AB80AD7DE0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Siesta-iOS";
 			target = 218A51180DE7A40A3DC05BBB957344E7 /* Siesta-iOS */;
-			targetProxy = 59E7188A218C05E4830CB939A2C37EE5 /* PBXContainerItemProxy */;
+			targetProxy = 94828CB540009697C23062C66BEB48D2 /* PBXContainerItemProxy */;
 		};
-		D99FAD7717EB5907CAC138EDDC564A6D /* PBXTargetDependency */ = {
+		AB0169EE1838CB7DA83BDCC1C8E2C9E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ObjcExceptionBridging-iOS";
+			target = 561E34D43E5F287C1307C6F7AEA4781E /* ObjcExceptionBridging-iOS */;
+			targetProxy = FE18A07FDC5BF3BF41F375F3F8C01489 /* PBXContainerItemProxy */;
+		};
+		AD0F133A28702218E2268C226D197FA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Siesta-macOS";
+			target = 56B9AD0F8F6A9A1E8E1A708697FBD2CD /* Siesta-macOS */;
+			targetProxy = 0822467A3213B242341066DB9E031D7D /* PBXContainerItemProxy */;
+		};
+		D2E16DAA95F29A23133A64B59C92093D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "XCGLogger-macOS";
+			target = A870562CB3FBF6CAEBECEE0144484B21 /* XCGLogger-macOS */;
+			targetProxy = E22C4870160B3830142D62A595AEA509 /* PBXContainerItemProxy */;
+		};
+		D3B12E6193189ED479CBB2FB0452219B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "XCGLogger-iOS";
 			target = D50E171D729A216CE7335A7B375CE67A /* XCGLogger-iOS */;
-			targetProxy = E8934D3589763112C5E0AF20DAEAECD6 /* PBXContainerItemProxy */;
+			targetProxy = 8B1408C9FF2B461DA1A165A926E3728A /* PBXContainerItemProxy */;
 		};
-		EF3F7BADA48AA2CF936EF78CB46FC729 /* PBXTargetDependency */ = {
+		DD99EFFEDC714276CEFBD1F8AC3D9285 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "ObjcExceptionBridging-macOS";
 			target = EC26C9F326090BBE63EB86584A9145A6 /* ObjcExceptionBridging-macOS */;
-			targetProxy = 8145688A7749D9AE618184E8EF03157C /* PBXContainerItemProxy */;
+			targetProxy = 5CE30E44E0CBA756538C4F961E3A3456 /* PBXContainerItemProxy */;
+		};
+		F66D302C36ADCED1FD1F83821F696C7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ObjcExceptionBridging-iOS";
+			target = 561E34D43E5F287C1307C6F7AEA4781E /* ObjcExceptionBridging-iOS */;
+			targetProxy = 952B52A7D094A428F5D31535196EA24F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		03185D9D18682B8B1D1E2B636F751965 /* Release */ = {
+		067A6446787F4DB84AE2D3D3A01165A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BFDE2E86FBF072BC24692A1B37C79A5 /* Siesta-macOS.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/Siesta-macOS/Siesta-macOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Siesta-macOS/Siesta-macOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MODULEMAP_FILE = "Target Support Files/Siesta-macOS/Siesta-macOS.modulemap";
-				PRODUCT_MODULE_NAME = Siesta;
-				PRODUCT_NAME = Siesta;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		05A89C3A6C921EEECFBD42F68F46652F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D30F0E079BA6371094CF336101D2821 /* Pods-KatsanaSDK macOS.release.xcconfig */;
+			baseConfigurationReference = A226A133F3C7591A4AA6074A059C4178 /* Pods-KatsanaSDK macOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1536,12 +1494,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MODULEMAP_FILE = "Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -1553,14 +1510,45 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
+			name = Debug;
+		};
+		06A9E297382DC70B9B4656E14DDC40FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DA86D2BB697ADDA19C391DA4B79FB63 /* XCGLogger-macOS.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/XCGLogger-macOS/XCGLogger-macOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/XCGLogger-macOS/XCGLogger-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/XCGLogger-macOS/XCGLogger-macOS.modulemap";
+				PRODUCT_MODULE_NAME = XCGLogger;
+				PRODUCT_NAME = XCGLogger;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
 			name = Release;
 		};
-		1A833F7559562AF40BFF97972F9BE8F3 /* Debug */ = {
+		06EF4E7A21CD4C68322744915A011F2A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34747391D7F9858993CBE69E0DC7EB20 /* Pods-KatsanaSDK.debug.xcconfig */;
+			baseConfigurationReference = 7599762304FD8F2EBDD92357FB196C26 /* Siesta-iOS.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1569,30 +1557,60 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Siesta-iOS/Siesta-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Siesta-iOS/Siesta-iOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/Siesta-iOS/Siesta-iOS.modulemap";
+				PRODUCT_MODULE_NAME = Siesta;
+				PRODUCT_NAME = Siesta;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		1D950235E6BFF9ED04A5570AA8BFE586 /* Debug */ = {
+		2B1769A9286B3FADE9C04B454C4FFB11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF1762DF4BB8F367A257A147392A9970 /* XCGLogger-iOS.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/XCGLogger-iOS/XCGLogger-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/XCGLogger-iOS/XCGLogger-iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/XCGLogger-iOS/XCGLogger-iOS.modulemap";
+				PRODUCT_MODULE_NAME = XCGLogger;
+				PRODUCT_NAME = XCGLogger;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2E9179AE6A010FA63647AEC07A2EE386 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0234AFCF3234EE53F87D878F7B8AAAAC /* ObjcExceptionBridging-iOS.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1619,13 +1637,12 @@
 			};
 			name = Debug;
 		};
-		1E923814AA611C96C2BD19FC6F5CFE91 /* Debug */ = {
+		2F5CBF876D7BE15A7E1AE4F77622AEF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6E4788739A14322D5C29404C9FF9E6E /* FastCoding-macOS.debug.xcconfig */;
+			baseConfigurationReference = BC5748796D8B93483CCAAC0FA001B386 /* XCGLogger-macOS.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1635,77 +1652,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/FastCoding-macOS/FastCoding-macOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FastCoding-macOS/FastCoding-macOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				MODULEMAP_FILE = "Target Support Files/FastCoding-macOS/FastCoding-macOS.modulemap";
-				PRODUCT_MODULE_NAME = FastCoding;
-				PRODUCT_NAME = FastCoding;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		28D28743ED8F85AE8C0816D4AD9A0BF0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A226A133F3C7591A4AA6074A059C4178 /* Pods-KatsanaSDK macOS.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MODULEMAP_FILE = "Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		4F72D2BE14573588B66933B682339572 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6DA86D2BB697ADDA19C391DA4B79FB63 /* XCGLogger-macOS.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
 				GCC_PREFIX_HEADER = "Target Support Files/XCGLogger-macOS/XCGLogger-macOS-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/XCGLogger-macOS/XCGLogger-macOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1720,14 +1666,79 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		68A68B0A456876D242796EB31DFDB5A3 /* Release */ = {
+		36C0D2CF9FCBE237EEB8D29212F5EDB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6FE86873181406A6A459AA1B7D7A2709 /* Pods-KatsanaSDK.release.xcconfig */;
+			baseConfigurationReference = AB7422A6F000584F6CE4B32D02C36D01 /* ObjcExceptionBridging-macOS.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ObjcExceptionBridging-macOS/ObjcExceptionBridging-macOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ObjcExceptionBridging-macOS/ObjcExceptionBridging-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/ObjcExceptionBridging-macOS/ObjcExceptionBridging-macOS.modulemap";
+				PRODUCT_MODULE_NAME = ObjcExceptionBridging;
+				PRODUCT_NAME = ObjcExceptionBridging;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4E4E18DA4C5D2934B25822C16808A41C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8B55AB79C6FFF3545C27301CFAD630B /* Siesta-macOS.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Siesta-macOS/Siesta-macOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Siesta-macOS/Siesta-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/Siesta-macOS/Siesta-macOS.modulemap";
+				PRODUCT_MODULE_NAME = Siesta;
+				PRODUCT_NAME = Siesta;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		71AA88A5676A48EBBFE94AF8493E60A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34747391D7F9858993CBE69E0DC7EB20 /* Pods-KatsanaSDK.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1738,7 +1749,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK.modulemap";
@@ -1750,78 +1761,50 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		693B9305E07299E1A17DE8AB4BF5B6F7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE0BCE8C54E3AEAFED42EBEC9BF223D3 /* XCGLogger-iOS.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/XCGLogger-iOS/XCGLogger-iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/XCGLogger-iOS/XCGLogger-iOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/XCGLogger-iOS/XCGLogger-iOS.modulemap";
-				PRODUCT_MODULE_NAME = XCGLogger;
-				PRODUCT_NAME = XCGLogger;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		69EEB8F45C762B4866F11B129C5BFF74 /* Release */ = {
+		8862F70B2BFB9C6123B3E641617AB2A6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF1762DF4BB8F367A257A147392A9970 /* XCGLogger-iOS.release.xcconfig */;
+			baseConfigurationReference = 2D30F0E079BA6371094CF336101D2821 /* Pods-KatsanaSDK macOS.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/XCGLogger-iOS/XCGLogger-iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/XCGLogger-iOS/XCGLogger-iOS-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/XCGLogger-iOS/XCGLogger-iOS.modulemap";
-				PRODUCT_MODULE_NAME = XCGLogger;
-				PRODUCT_NAME = XCGLogger;
-				SDKROOT = iphoneos;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MODULEMAP_FILE = "Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		85907282CDBBC8072A6B50D0D41ABB5C /* Release */ = {
+		8BC5E8436CD5BE84A72B334635791D54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01684ABEA430EF27E3D3329F82B2C8FD /* Siesta-iOS.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1833,7 +1816,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Siesta-iOS/Siesta-iOS-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Siesta-iOS/Siesta-iOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Siesta-iOS/Siesta-iOS.modulemap";
 				PRODUCT_MODULE_NAME = Siesta;
@@ -1841,7 +1824,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1849,270 +1832,7 @@
 			};
 			name = Release;
 		};
-		85DB2B1072E9A94C1E89223FB6420BDB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC5748796D8B93483CCAAC0FA001B386 /* XCGLogger-macOS.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/XCGLogger-macOS/XCGLogger-macOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/XCGLogger-macOS/XCGLogger-macOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/XCGLogger-macOS/XCGLogger-macOS.modulemap";
-				PRODUCT_MODULE_NAME = XCGLogger;
-				PRODUCT_NAME = XCGLogger;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		8610C364554A5BA31C4E723C56846E18 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63DC70DD59739C34EB7BBF10A1FB576B /* FastCoding-macOS.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/FastCoding-macOS/FastCoding-macOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FastCoding-macOS/FastCoding-macOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				MODULEMAP_FILE = "Target Support Files/FastCoding-macOS/FastCoding-macOS.modulemap";
-				PRODUCT_MODULE_NAME = FastCoding;
-				PRODUCT_NAME = FastCoding;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		87DEF8B203724721C3D69C6FF38BDBB4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB7422A6F000584F6CE4B32D02C36D01 /* ObjcExceptionBridging-macOS.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/ObjcExceptionBridging-macOS/ObjcExceptionBridging-macOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ObjcExceptionBridging-macOS/ObjcExceptionBridging-macOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/ObjcExceptionBridging-macOS/ObjcExceptionBridging-macOS.modulemap";
-				PRODUCT_MODULE_NAME = ObjcExceptionBridging;
-				PRODUCT_NAME = ObjcExceptionBridging;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		8FA804CA7C8C25AC06A6F5CD55B26780 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 972EF4F2DE488DCB8A397E8333EB5C39 /* FastCoding-iOS.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/FastCoding-iOS/FastCoding-iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FastCoding-iOS/FastCoding-iOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FastCoding-iOS/FastCoding-iOS.modulemap";
-				PRODUCT_MODULE_NAME = FastCoding;
-				PRODUCT_NAME = FastCoding;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		91B9FDB28FC20DB9632D9A99BF9FD854 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E40D7A13CD137674AF3CBA784E58B1D3 /* FastCoding-iOS.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/FastCoding-iOS/FastCoding-iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FastCoding-iOS/FastCoding-iOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FastCoding-iOS/FastCoding-iOS.modulemap";
-				PRODUCT_MODULE_NAME = FastCoding;
-				PRODUCT_NAME = FastCoding;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		93D548B5AC6D110B715C68C934A4FC8B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C8B55AB79C6FFF3545C27301CFAD630B /* Siesta-macOS.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/Siesta-macOS/Siesta-macOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Siesta-macOS/Siesta-macOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MODULEMAP_FILE = "Target Support Files/Siesta-macOS/Siesta-macOS.modulemap";
-				PRODUCT_MODULE_NAME = Siesta;
-				PRODUCT_NAME = Siesta;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		975E8390DE7E42EA496C1D387816C112 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7599762304FD8F2EBDD92357FB196C26 /* Siesta-iOS.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Siesta-iOS/Siesta-iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Siesta-iOS/Siesta-iOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Siesta-iOS/Siesta-iOS.modulemap";
-				PRODUCT_MODULE_NAME = Siesta;
-				PRODUCT_NAME = Siesta;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		9AF5CA59A7942F257EC8107E068C553B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C01F0F700FCABEF648917C116C14167B /* ObjcExceptionBridging-macOS.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/ObjcExceptionBridging-macOS/ObjcExceptionBridging-macOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ObjcExceptionBridging-macOS/ObjcExceptionBridging-macOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/ObjcExceptionBridging-macOS/ObjcExceptionBridging-macOS.modulemap";
-				PRODUCT_MODULE_NAME = ObjcExceptionBridging;
-				PRODUCT_NAME = ObjcExceptionBridging;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		BB23C9F4FDA8D14FEF1E22859429285D /* Release */ = {
+		92236969D2CAE522F4C49923D0CA0A98 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2139,6 +1859,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2161,8 +1882,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2174,7 +1895,39 @@
 			};
 			name = Release;
 		};
-		DC81B1438FC2D33261126753F3468CFE /* Debug */ = {
+		93601AFA0432E8D715D04E5F49C210DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E40D7A13CD137674AF3CBA784E58B1D3 /* FastCoding-iOS.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FastCoding-iOS/FastCoding-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FastCoding-iOS/FastCoding-iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FastCoding-iOS/FastCoding-iOS.modulemap";
+				PRODUCT_MODULE_NAME = FastCoding;
+				PRODUCT_NAME = FastCoding;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		94D663F2A5E10E3DBA580BD075610152 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2201,6 +1954,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2226,8 +1980,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2240,11 +1994,78 @@
 			};
 			name = Debug;
 		};
-		FFFA16E6D1E47F9DE9AD5D8B054CB04F /* Release */ = {
+		96359372B2CAA3D836010196E85E83B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FE86873181406A6A459AA1B7D7A2709 /* Pods-KatsanaSDK.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		96FD747B21D1848A520916BA0E035C38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6E4788739A14322D5C29404C9FF9E6E /* FastCoding-macOS.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FastCoding-macOS/FastCoding-macOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FastCoding-macOS/FastCoding-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MODULEMAP_FILE = "Target Support Files/FastCoding-macOS/FastCoding-macOS.modulemap";
+				PRODUCT_MODULE_NAME = FastCoding;
+				PRODUCT_NAME = FastCoding;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A7CF663BA3CB99E2CDA95AC71867CD84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E340055A9675C76359695B97A22D770 /* ObjcExceptionBridging-iOS.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -2272,23 +2093,189 @@
 			};
 			name = Release;
 		};
+		A825ADD2752EA7EA4F09832A1AB4AC10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 972EF4F2DE488DCB8A397E8333EB5C39 /* FastCoding-iOS.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FastCoding-iOS/FastCoding-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FastCoding-iOS/FastCoding-iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FastCoding-iOS/FastCoding-iOS.modulemap";
+				PRODUCT_MODULE_NAME = FastCoding;
+				PRODUCT_NAME = FastCoding;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AE8FD4D216E7DDD9151743BBF7D4CB14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63DC70DD59739C34EB7BBF10A1FB576B /* FastCoding-macOS.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FastCoding-macOS/FastCoding-macOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FastCoding-macOS/FastCoding-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MODULEMAP_FILE = "Target Support Files/FastCoding-macOS/FastCoding-macOS.modulemap";
+				PRODUCT_MODULE_NAME = FastCoding;
+				PRODUCT_NAME = FastCoding;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BC88CF4ECE4532B95D6CEAFB21ADB716 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C01F0F700FCABEF648917C116C14167B /* ObjcExceptionBridging-macOS.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ObjcExceptionBridging-macOS/ObjcExceptionBridging-macOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ObjcExceptionBridging-macOS/ObjcExceptionBridging-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/ObjcExceptionBridging-macOS/ObjcExceptionBridging-macOS.modulemap";
+				PRODUCT_MODULE_NAME = ObjcExceptionBridging;
+				PRODUCT_NAME = ObjcExceptionBridging;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EC7F60F3562F807BCEB7494DB16C9FF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BFDE2E86FBF072BC24692A1B37C79A5 /* Siesta-macOS.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Siesta-macOS/Siesta-macOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Siesta-macOS/Siesta-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/Siesta-macOS/Siesta-macOS.modulemap";
+				PRODUCT_MODULE_NAME = Siesta;
+				PRODUCT_NAME = Siesta;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FBE91E75BBD18B6CF7C5D4B187FA6020 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE0BCE8C54E3AEAFED42EBEC9BF223D3 /* XCGLogger-iOS.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/XCGLogger-iOS/XCGLogger-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/XCGLogger-iOS/XCGLogger-iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/XCGLogger-iOS/XCGLogger-iOS.modulemap";
+				PRODUCT_MODULE_NAME = XCGLogger;
+				PRODUCT_NAME = XCGLogger;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		004F06A0155DF0BC42A8CAAC7B17E5BC /* Build configuration list for PBXNativeTarget "XCGLogger-iOS" */ = {
+		08AD80A4D480CE76899127610FF89EA6 /* Build configuration list for PBXNativeTarget "ObjcExceptionBridging-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				693B9305E07299E1A17DE8AB4BF5B6F7 /* Debug */,
-				69EEB8F45C762B4866F11B129C5BFF74 /* Release */,
+				2E9179AE6A010FA63647AEC07A2EE386 /* Debug */,
+				A7CF663BA3CB99E2CDA95AC71867CD84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0083854085E4F782EA0B5C740E3D1312 /* Build configuration list for PBXNativeTarget "XCGLogger-macOS" */ = {
+		0B7B7F2FD789A52D06B2AEBF3DB70368 /* Build configuration list for PBXNativeTarget "ObjcExceptionBridging-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				85DB2B1072E9A94C1E89223FB6420BDB /* Debug */,
-				4F72D2BE14573588B66933B682339572 /* Release */,
+				36C0D2CF9FCBE237EEB8D29212F5EDB4 /* Debug */,
+				BC88CF4ECE4532B95D6CEAFB21ADB716 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DD69D1306FA18AC09E4A21171A08C56 /* Build configuration list for PBXNativeTarget "FastCoding-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A825ADD2752EA7EA4F09832A1AB4AC10 /* Debug */,
+				93601AFA0432E8D715D04E5F49C210DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2296,80 +2283,71 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DC81B1438FC2D33261126753F3468CFE /* Debug */,
-				BB23C9F4FDA8D14FEF1E22859429285D /* Release */,
+				94D663F2A5E10E3DBA580BD075610152 /* Debug */,
+				92236969D2CAE522F4C49923D0CA0A98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6410DFE6AAB8C5E2149C8C3AEBD604FD /* Build configuration list for PBXNativeTarget "FastCoding-macOS" */ = {
+		766810B66CB385B1F28D4545F2A8DC2F /* Build configuration list for PBXNativeTarget "Pods-KatsanaSDK macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1E923814AA611C96C2BD19FC6F5CFE91 /* Debug */,
-				8610C364554A5BA31C4E723C56846E18 /* Release */,
+				067A6446787F4DB84AE2D3D3A01165A1 /* Debug */,
+				8862F70B2BFB9C6123B3E641617AB2A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8B215DBF6B63C431D61EF99D1239CEC3 /* Build configuration list for PBXNativeTarget "Siesta-iOS" */ = {
+		7FC1450CB826C177F5F9549A37709EE1 /* Build configuration list for PBXNativeTarget "XCGLogger-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				975E8390DE7E42EA496C1D387816C112 /* Debug */,
-				85907282CDBBC8072A6B50D0D41ABB5C /* Release */,
+				2F5CBF876D7BE15A7E1AE4F77622AEF7 /* Debug */,
+				06A9E297382DC70B9B4656E14DDC40FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8E171EFF47FE4C0D14A8B3079B87D5EA /* Build configuration list for PBXNativeTarget "ObjcExceptionBridging-iOS" */ = {
+		8491670205D957FEBDDE65FF2EB7B9BB /* Build configuration list for PBXNativeTarget "XCGLogger-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D950235E6BFF9ED04A5570AA8BFE586 /* Debug */,
-				FFFA16E6D1E47F9DE9AD5D8B054CB04F /* Release */,
+				FBE91E75BBD18B6CF7C5D4B187FA6020 /* Debug */,
+				2B1769A9286B3FADE9C04B454C4FFB11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		927FAB7C74F5C0477CFCDAB68612BFF7 /* Build configuration list for PBXNativeTarget "ObjcExceptionBridging-macOS" */ = {
+		A9787B1AA1FAD968192DA6C41FF2D207 /* Build configuration list for PBXNativeTarget "Siesta-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				87DEF8B203724721C3D69C6FF38BDBB4 /* Debug */,
-				9AF5CA59A7942F257EC8107E068C553B /* Release */,
+				4E4E18DA4C5D2934B25822C16808A41C /* Debug */,
+				EC7F60F3562F807BCEB7494DB16C9FF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ABE06891515570F9D2A0F00AA682E7B4 /* Build configuration list for PBXNativeTarget "Pods-KatsanaSDK" */ = {
+		C0BFCCCDE3F5E05790766212750599EA /* Build configuration list for PBXNativeTarget "Siesta-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1A833F7559562AF40BFF97972F9BE8F3 /* Debug */,
-				68A68B0A456876D242796EB31DFDB5A3 /* Release */,
+				06EF4E7A21CD4C68322744915A011F2A /* Debug */,
+				8BC5E8436CD5BE84A72B334635791D54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CACBF4438DC364B68D4C61F9A87E1A38 /* Build configuration list for PBXNativeTarget "FastCoding-iOS" */ = {
+		D462E44F76EE0C05518F62D0FBCFCC2F /* Build configuration list for PBXNativeTarget "Pods-KatsanaSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8FA804CA7C8C25AC06A6F5CD55B26780 /* Debug */,
-				91B9FDB28FC20DB9632D9A99BF9FD854 /* Release */,
+				71AA88A5676A48EBBFE94AF8493E60A6 /* Debug */,
+				96359372B2CAA3D836010196E85E83B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CF1A6B288B5288CC5904521E87F81752 /* Build configuration list for PBXNativeTarget "Pods-KatsanaSDK macOS" */ = {
+		EF5DDAAC38ED6F2D03677AFF8EEECA9B /* Build configuration list for PBXNativeTarget "FastCoding-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				28D28743ED8F85AE8C0816D4AD9A0BF0 /* Debug */,
-				05A89C3A6C921EEECFBD42F68F46652F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D5D710ABB06854DF257614BF00D223D6 /* Build configuration list for PBXNativeTarget "Siesta-macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				93D548B5AC6D110B715C68C934A4FC8B /* Debug */,
-				03185D9D18682B8B1D1E2B636F751965 /* Release */,
+				96FD747B21D1848A520916BA0E035C38 /* Debug */,
+				AE8FD4D216E7DDD9151743BBF7D4CB14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

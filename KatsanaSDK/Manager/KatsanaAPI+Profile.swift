@@ -7,6 +7,7 @@
 //
 
 import Siesta
+import UIKit
 
 #if os(iOS)
     public typealias KMColor = UIColor
