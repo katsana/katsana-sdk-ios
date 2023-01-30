@@ -40,6 +40,8 @@ open class KatsanaAPI {
     
     public static let shared = KatsanaAPI()
     public var API : Service!
+    var cache: KTCacheManager!
+    
     var clientId : String = ""
     var clientSecret: String = ""
     var grantType: String = ""
@@ -134,7 +136,8 @@ open class KatsanaAPI {
 
     // MARK: Lifecycle
     
-    public init() {
+    public init(cache: KTCacheManager = KTCacheManager.shared) {
+        self.cache = cache
         self.setupLog()
     }
 

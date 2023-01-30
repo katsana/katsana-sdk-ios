@@ -14,6 +14,8 @@ let cacheVersion = "2.5"
 //Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer should not use and call methods in this class manually.
 @objcMembers
 public class KTCacheManager: NSObject {
+    var logger: Logger!
+    
     private static var _shared : KTCacheManager!
     public static var shared: KTCacheManager {
         get{
@@ -52,27 +54,6 @@ public class KTCacheManager: NSObject {
             _addresses = newValue
         }
     }
-//    private var _travels : [Travel]!
-//    private var travels : [Travel] {
-//        get{
-//            if _travels == nil{
-//                let path = CacheManager.shared.cacheDirectory().appending("/" + CacheManager.shared.cacheTravelsDataFilename())
-//                let url = URL(fileURLWithPath: path)
-//                if let data = try? Data(contentsOf: url){
-//                    if let unarchive = FastCoder.object(with: data) as? [Travel]{
-//                        _travels = unarchive
-//                    }
-//                }
-//            }
-//            if _travels == nil{
-//                _travels = [Travel]()
-//            }
-//            return _travels
-//        }
-//        set{
-//            _travels = newValue
-//        }
-//    }
     
     public var activities = [String: [VehicleActivity]]()
     private var liveShares = [LiveShare]()
@@ -108,7 +89,7 @@ public class KTCacheManager: NSObject {
         if let data = try? Data(contentsOf: url){
             let size = sizeForLocalFilePath(filePath: dataPath)
             let sizeStr = covertToFileString(with: size)
-            KatsanaAPI.shared.log.info("Cache data size = \(sizeStr)")
+            logger?.info("Cache data size = \(sizeStr)")
             if let unarchive = FastCoder.object(with: data) as? [String: Any]{
                 self.data = unarchive
                 
@@ -998,7 +979,7 @@ public class KTCacheManager: NSObject {
                                                 withIntermediateDirectories: false,
                                                 attributes: nil)
             } catch {
-                KatsanaAPI.shared.log.error("Error creating log folder in dir: \(error)")
+                logger?.error("Error creating log folder in dir: \(error)")
             }
         }
     }

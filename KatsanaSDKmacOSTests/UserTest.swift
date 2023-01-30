@@ -13,6 +13,7 @@ import Siesta
 
 final class UserTest: XCTestCase {
     var service: Service!
+    var cache: KTCacheManager!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -34,7 +35,7 @@ final class UserTest: XCTestCase {
         let sut = makeSUT()
         MockService.mockResponse(path: "profile", expectedResponse: ["email": "test@yahoo.com"])
         
-        let expectation = XCTestExpectation(description: "Open a file asynchronously.")
+        let expectation = XCTestExpectation(description: "Request user successfully")
         sut.requestUser { user in
             expectation.fulfill()
         } failure: { error in
@@ -47,9 +48,9 @@ final class UserTest: XCTestCase {
         let sut = makeSUT()
         MockService.mockResponse(path: "profile", expectedResponse: ["email": "test@yahoo.com"])
         
-        let expectation = XCTestExpectation(description: "Open a file asynchronously.")
+        let expectation = XCTestExpectation(description: "Current user is set")
         sut.requestUser { user in
-            XCTAssertEqual(user, nil)
+            XCTAssertEqual(user, sut.currentUser)
             expectation.fulfill()
         } failure: { error in
             XCTFail(error?.userMessage ?? "Error")
@@ -57,13 +58,33 @@ final class UserTest: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
     
+    func test_requestUser_lastUserCachedEqual() throws {
+        let expectation = XCTestExpectation(description: "Request user, user cached properly")
+        requestUserWithSuccess { user in
+            XCTAssertEqual(user.email, self.cache!.lastUser()?.email)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
     
     func makeSUT() -> KatsanaAPI{
-        let api = KatsanaAPI()
+        self.cache = MockCache()
+        let api = KatsanaAPI(cache: self.cache)
         api.API = service
         api.configure()
         api.setupTransformer()
         return api
+    }
+    
+    func requestUserWithSuccess(completion: @escaping (KTUser) -> Void){
+        let sut = makeSUT()
+        MockService.mockResponse(path: "profile", expectedResponse: ["email": "test@yahoo.com"])
+        sut.requestUser { user in
+            completion(user)
+        } failure: { error in
+            XCTFail(error?.userMessage ?? "Error")
+        }
     }
 
 }

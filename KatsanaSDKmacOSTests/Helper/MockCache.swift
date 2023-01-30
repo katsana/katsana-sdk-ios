@@ -1,5 +1,5 @@
 //
-//  MockResource.swift
+//  MockCache.swift
 //  KatsanaSDKmacOSTests
 //
 //  Created by Wan Ahmad Lutfi on 30/01/2023.
@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import Siesta
+@testable import KatsanaSDK
 
-//func MockResource -> Resource{
-//
-//}
+class MockCache: KTCacheManager{
+    
+}
