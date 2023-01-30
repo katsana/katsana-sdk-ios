@@ -672,11 +672,13 @@ public class KTCacheManager: NSObject {
     
     // MARK: Save data
     
-    @objc func autoSave()  {
+    @objc func autoSave(forceSave: Bool = false)  {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(autoSave), object: nil)
-        if let lastSavedCache = lastSavedCache, Date().timeIntervalSince(lastSavedCache) < 5{
-            perform(#selector(autoSave), with: nil, afterDelay: 3)
-            return
+        if !forceSave{
+            if let lastSavedCache = lastSavedCache, Date().timeIntervalSince(lastSavedCache) < 5{
+                perform(#selector(autoSave), with: nil, afterDelay: 3)
+                return
+            }
         }
         lastSavedCache = Date()
         
@@ -684,13 +686,6 @@ public class KTCacheManager: NSObject {
         let path = cacheDirectory().appending("/" + cacheDataFilename())
         try? data?.write(to: URL(fileURLWithPath: path))
     }
-    
-    //    func autoSave2()  {
-    //        return
-    //        let data = FastCoder.data(withRootObject: self.data)
-    //        let path = cacheDirectory().appending("/" + cacheDataFilename() + "2")
-    //        try? data?.write(to: URL(fileURLWithPath: path))
-    //    }
     
     @objc func autosaveAddress() {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(autosaveAddress), object: nil)

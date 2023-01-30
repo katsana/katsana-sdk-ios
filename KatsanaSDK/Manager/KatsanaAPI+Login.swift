@@ -186,9 +186,10 @@ extension KatsanaAPI {
             let user : KTUser? = resource.typedContent()
             if let user = user{
                 self.currentUser = user
+                self.cache?.cache(user: user)
                 completion(user)
                 self.log.info("Logged in user \(String(describing: user.userId)), \(user.email)")
-                self.cache?.cache(user: user)
+                
             }else{
                 failure(nil)
             }

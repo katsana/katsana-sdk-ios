@@ -8,7 +8,7 @@
 
 
 @objcMembers
-open class Fleet: NSObject {
+open class Fleet: NSObject, Codable {
     open var fleetId = 0
     open var name = ""
     open var deviceCount = 0

@@ -13,74 +13,89 @@ import Siesta
 
 final class UserTest: XCTestCase {
     var service: Service!
-    var cache: KTCacheManager!
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var cache: MockCache!
+    
+    override class func setUp() {
         UMKMockURLProtocol.enable()
         UMKMockURLProtocol.setVerificationEnabled(true)
     }
-
-    override func tearDownWithError() throws {
+    
+    override class func tearDown() {
         UMKMockURLProtocol.setVerificationEnabled(false)
         UMKMockURLProtocol.disable()
+    }
+
+    override func setUpWithError() throws {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+    }
+
+    override func tearDownWithError() throws {
+        
+//        cache?.clearCache()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
     
     override func setUp() {
         service = MockService.service()
     }
 
     func test_requestUser() throws {
-        let sut = makeSUT()
-        MockService.mockResponse(path: "profile", expectedResponse: ["email": "test@yahoo.com"])
-        
+        let sut = makeSUT(cache: MockCache())
         let expectation = XCTestExpectation(description: "Request user successfully")
-        sut.requestUser { user in
+        requestUserWithSuccess(api: sut) { user in
             expectation.fulfill()
-        } failure: { error in
-            XCTFail(error?.userMessage ?? "Error")
         }
         wait(for: [expectation], timeout: 0.1)
     }
     
     func test_requestUser_currentUserIsSet() throws {
-        let sut = makeSUT()
-        MockService.mockResponse(path: "profile", expectedResponse: ["email": "test@yahoo.com"])
-        
+        let sut = makeSUT(cache: MockCache())
         let expectation = XCTestExpectation(description: "Current user is set")
-        sut.requestUser { user in
+        requestUserWithSuccess(api: sut) { user in
             XCTAssertEqual(user, sut.currentUser)
             expectation.fulfill()
-        } failure: { error in
-            XCTFail(error?.userMessage ?? "Error")
         }
         wait(for: [expectation], timeout: 0.1)
     }
     
     func test_requestUser_lastUserCachedEqual() throws {
+        let cache = MockCache()
+        let sut = makeSUT(cache: cache)
+        let expectation = XCTestExpectation(description: "Request user, last user set properly")
+        requestUserWithSuccess(api: sut) { user in
+            XCTAssertEqual(user.email, cache.lastUser()?.email)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    func test_requestUser_userCachedCorrectlyFromDisk() throws {
+        let cache = MockCache(writeToDisk: true)
+        let sut = makeSUT(cache: cache)
+        
         let expectation = XCTestExpectation(description: "Request user, user cached properly")
-        requestUserWithSuccess { user in
-            XCTAssertEqual(user.email, self.cache!.lastUser()?.email)
+        requestUserWithSuccess(api: sut) { user in
+            XCTAssertEqual(user.email, cache.loadCachedUser().email)
+            cache.clearCache()
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
     }
     
     
-    func makeSUT() -> KatsanaAPI{
-        self.cache = MockCache()
-        let api = KatsanaAPI(cache: self.cache)
+    func makeSUT(cache: MockCache) -> KatsanaAPI{
+        let api = KatsanaAPI(cache: cache)
         api.API = service
         api.configure()
         api.setupTransformer()
         return api
     }
     
-    func requestUserWithSuccess(completion: @escaping (KTUser) -> Void){
-        let sut = makeSUT()
+    func requestUserWithSuccess(api: KatsanaAPI, completion: @escaping (KTUser) -> Void){
         MockService.mockResponse(path: "profile", expectedResponse: ["email": "test@yahoo.com"])
-        sut.requestUser { user in
+        api.requestUser { user in
             completion(user)
         } failure: { error in
             XCTFail(error?.userMessage ?? "Error")

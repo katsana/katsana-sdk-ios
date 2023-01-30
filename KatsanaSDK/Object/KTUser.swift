@@ -6,19 +6,47 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-public enum Gender : String{
+public enum Gender : String, Codable{
     case unknown
     case male
     case female
 }
 
 @objcMembers
-open class KTUser: NSObject {
+open class KTUser: NSObject, Codable {
     static let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
+    
+    enum CodingKeys: CodingKey {
+        case email
+        case userId
+        case address
+        case phoneHome
+        case phoneMobile
+        case identification
+        case fullname
+        case status
+        case emergencyFullName
+        case emergencyPhoneHome
+        case emergencyPhoneMobile
+        case imageURL
+        case thumbImageURL
+        case phoneMobileCountryCode
+        case postcode
+        case state
+        case country
+        case gender
+        case planId
+        case planName
+        case planDescription
+        case fleets
+        case birthday
+        case createdAt
+        case updatedAt
+    }
     
     open var email: String
     open var userId: String!
