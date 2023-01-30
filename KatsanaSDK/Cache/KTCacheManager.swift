@@ -82,35 +82,20 @@ public class KTCacheManager: NSObject {
         }catch{
             try? cacheVersion.write(toFile: versionPath, atomically: true, encoding: String.Encoding.ascii)
         }
-                
-        let dataPath = cacheDirectory().appending("/" + cacheDataFilename())
+        
+        let dataPath = cachePath()
+        let size = sizeForLocalFilePath(filePath: cachePath())
+        let sizeStr = covertToFileString(with: size)
+        logger?.info("Cache data size = \(sizeStr)")
         
         var url = URL(fileURLWithPath: dataPath)
-        if let data = try? Data(contentsOf: url){
-            let size = sizeForLocalFilePath(filePath: dataPath)
-            let sizeStr = covertToFileString(with: size)
-            logger?.info("Cache data size = \(sizeStr)")
-            if let unarchive = FastCoder.object(with: data) as? [String: Any]{
-                self.data = unarchive
-                
-                if let travelArray = unarchive[NSStringFromClass(Travel.self)] as? [[String: Any]]{
-                    for travelDicto in travelArray {
-                        if let travels = travelDicto["data"] as? [Travel] {
-                            for travel in travels{
-                                for trip in travel.trips{
-                                    if trip.locations.count > 100000{
-                                        trip.locations.removeAll()
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            if size > 500000{
-                purgeTravelOlderThan(days: 7)
-            }
+        if let data = loadCachedData(){
+            self.data = data
+        }
+        
+        clearLocationsIfNeeded(data: self.data)
+        if size > 500000{
+            purgeTravelOlderThan(days: 7)
         }
         
         let activitiesPath = cacheDirectory().appending("/" + cacheActivitiesDataFilename())
@@ -130,6 +115,16 @@ public class KTCacheManager: NSObject {
             }
         }
         print(dataPath)
+    }
+    
+    func loadCachedData() -> [String: Any]!{
+        let dataPath = cacheDirectory().appending("/" + cacheDataFilename())
+        if let data = try? Data(contentsOf: URL(fileURLWithPath: dataPath)){
+            if let unarchive = FastCoder.object(with: data) as? [String: Any]{
+                return unarchive
+            }
+        }
+        return nil
     }
     
     // MARK: Get Cache
@@ -203,12 +198,12 @@ public class KTCacheManager: NSObject {
     ///Get cached travel data given vehicle id and date
     public func trips(vehicleId:String, date:Date, toDate:Date! = nil) -> [KTTrip]! {
         //Check if date is today, return nil if more than specified time. No local cache is returned and  library should request a new data from server
-//        let today = Date()
-//        if date.isToday(), travelAccessVehicleId == vehicleId, let todayAccessDate = todayAccessDate, today.timeIntervalSince(todayAccessDate) > 60 * 4 {
-//            self.travelAccessVehicleId = vehicleId
-//            self.todayAccessDate = today
-//            return nil
-//        }
+        //        let today = Date()
+        //        if date.isToday(), travelAccessVehicleId == vehicleId, let todayAccessDate = todayAccessDate, today.timeIntervalSince(todayAccessDate) > 60 * 4 {
+        //            self.travelAccessVehicleId = vehicleId
+        //            self.todayAccessDate = today
+        //            return nil
+        //        }
         
         let classname = NSStringFromClass(Travel.self)
         if let travelArray = data[classname] as? [[String: Any]]{
@@ -266,7 +261,7 @@ public class KTCacheManager: NSObject {
     
     /*Get cached travel data given vehicle id and date with locations data.
      Previously, all locations are saved in same place as trip summaries, but due to memory issue, all travel locations are saved into separate file, a single file for a day travel.
-    */
+     */
     public func travelDetail(vehicleId:String, date:Date) -> Travel! {
         let dateStr = KTCacheManager.dateFormatter.string(from: date)
         let path = tripPath().appending("/\(dateStr).dat")
@@ -450,7 +445,7 @@ public class KTCacheManager: NSObject {
             }
             dataChanged = true
         }
-
+        
         if dataChanged{
             if let theUserIndex = theUserIndex {
                 travelDicto[theUserIndex]["data"] = theTravels
@@ -465,26 +460,26 @@ public class KTCacheManager: NSObject {
     
     ///For normal use of KatsanaSDK, this class is never called except when used for different purpose.
     public func cache(trip: KTTrip, vehicleId: String) {
-//        /Need cache trip to hdd
-//        var travels = [Travel]()
-//        var dates = [Date]()
-//        var currentDate : Date!
-//        for trip in trips{
-//            if let date = currentDate{
-//                if !date.isEqualToDateIgnoringTime(trip.date) {
-//                    currentDate = trip.date
-//                    dates.append(currentDate)
-//                }
-//            }else{
-//                currentDate = trip.date
-//                dates.append(currentDate)
-//            }
-//        }
-//        
-//        for date in dates{
-//            let theTravel = travel(vehicleId: vehicleId, date: date)
-//            travels.append(theTravel)
-//        }
+        //        /Need cache trip to hdd
+        //        var travels = [Travel]()
+        //        var dates = [Date]()
+        //        var currentDate : Date!
+        //        for trip in trips{
+        //            if let date = currentDate{
+        //                if !date.isEqualToDateIgnoringTime(trip.date) {
+        //                    currentDate = trip.date
+        //                    dates.append(currentDate)
+        //                }
+        //            }else{
+        //                currentDate = trip.date
+        //                dates.append(currentDate)
+        //            }
+        //        }
+        //
+        //        for date in dates{
+        //            let theTravel = travel(vehicleId: vehicleId, date: date)
+        //            travels.append(theTravel)
+        //        }
         //Save locations in separate file to reduce memory footprint
         cacheTripLocations(trip: trip)
         trip.locations.removeAll()
@@ -545,7 +540,7 @@ public class KTCacheManager: NSObject {
         }
         
         travel.updateDataFromTrip()
-
+        
         if let travelIndex = travelIndex, var travelDicto = travelDicto as? [[String: Any]]{
             theTravels[travelIndex] = travel
             travelDicto[theUserIndex]["data"] = theTravels
@@ -565,25 +560,25 @@ public class KTCacheManager: NSObject {
         let path = tripPath().appending("/\(dateStr).dat")
         var travel: Travel!
         if FileManager.default.fileExists(atPath: path), let data = try? Data(contentsOf: URL(fileURLWithPath: path)), let aTravel = FastCoder.object(with: data) as? Travel {
-                var foundIdx : Int!
-                for (idx, aTrip) in aTravel.trips.enumerated(){
-                    if aTrip.date == trip.date{
-                        foundIdx = idx
-                        break
-                    }
+            var foundIdx : Int!
+            for (idx, aTrip) in aTravel.trips.enumerated(){
+                if aTrip.date == trip.date{
+                    foundIdx = idx
+                    break
                 }
-                if let foundIdx = foundIdx{
-                    aTravel.trips.remove(at: foundIdx)
-                    aTravel.trips.insert(trip, at: foundIdx)
-                }else{
-                    var trips = aTravel.trips
-                    trips.insert(trip, at: 0)
-                    trips.sort(by: { (a, b) -> Bool in
-                        return a.date < b.date
-                    })
-                    aTravel.trips = trips
-                }
-                travel = aTravel
+            }
+            if let foundIdx = foundIdx{
+                aTravel.trips.remove(at: foundIdx)
+                aTravel.trips.insert(trip, at: foundIdx)
+            }else{
+                var trips = aTravel.trips
+                trips.insert(trip, at: 0)
+                trips.sort(by: { (a, b) -> Bool in
+                    return a.date < b.date
+                })
+                aTravel.trips = trips
+            }
+            travel = aTravel
         } else {
             travel = Travel()
             travel.trips = [trip]
@@ -622,7 +617,7 @@ public class KTCacheManager: NSObject {
         var needAdd = true
         var activities: [VehicleActivity]!
         if self.activities[userId] != nil{
-           activities = self.activities[userId]
+            activities = self.activities[userId]
         }else{
             activities = [VehicleActivity]()
             self.activities[userId] = activities
@@ -656,12 +651,12 @@ public class KTCacheManager: NSObject {
             try? FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
         }
         let filePath = path.appending("/" + identifier)
-        #if os(iOS) || os(watchOS) || os(tvOS)
+#if os(iOS) || os(watchOS) || os(tvOS)
         
         let data = image.jpegData(compressionQuality: 0.9)
-        #elseif os(OSX)
-            let data = image.tiffRepresentation
-        #endif
+#elseif os(OSX)
+        let data = image.tiffRepresentation
+#endif
         
         try? data?.write(to: URL(fileURLWithPath: filePath))
     }
@@ -690,12 +685,12 @@ public class KTCacheManager: NSObject {
         try? data?.write(to: URL(fileURLWithPath: path))
     }
     
-//    func autoSave2()  {
-//        return
-//        let data = FastCoder.data(withRootObject: self.data)
-//        let path = cacheDirectory().appending("/" + cacheDataFilename() + "2")
-//        try? data?.write(to: URL(fileURLWithPath: path))
-//    }
+    //    func autoSave2()  {
+    //        return
+    //        let data = FastCoder.data(withRootObject: self.data)
+    //        let path = cacheDirectory().appending("/" + cacheDataFilename() + "2")
+    //        try? data?.write(to: URL(fileURLWithPath: path))
+    //    }
     
     @objc func autosaveAddress() {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(autosaveAddress), object: nil)
@@ -723,10 +718,11 @@ public class KTCacheManager: NSObject {
         try? data?.write(to: URL(fileURLWithPath: path))
     }
     
+    // MARK: Data Clear
     
     ///Clear travel cache for specified date ranges
     public func clearTravelCache(vehicleId: String, date: Date! = nil, toDate: Date! = nil) {
-//        var dataChanged = false
+        //        var dataChanged = false
         let classname = NSStringFromClass(Travel.self)
         
         var travelDicto: [[String: Any]]!
@@ -738,7 +734,7 @@ public class KTCacheManager: NSObject {
         
         for (userIndex, dicto) in travelDicto.enumerated() {
             if let theVehicleId = dicto["id"] as? String, vehicleId == theVehicleId, var travels = dicto["data"] as? [Travel]{
-//                var indexset = IndexSet()
+                //                var indexset = IndexSet()
                 var startIndex : Int!
                 var endIndex : Int!
                 
@@ -789,9 +785,9 @@ public class KTCacheManager: NSObject {
         if var travelDicto = data[classname] as? [[String: Any]]{
             for (userIndex, dicto) in travelDicto.enumerated() {
                 if let theVehicleId = dicto["id"] as? String, vehicleId == theVehicleId, let travels = dicto["data"] as? [Travel]{
-//                    var indexset = IndexSet()
-//                    var startIndex : Int!
-//                    var endIndex : Int!
+                    //                    var indexset = IndexSet()
+                    //                    var startIndex : Int!
+                    //                    var endIndex : Int!
                     var dataChanged = false
                     
                     for (_, theTravel) in travels.enumerated() {
@@ -832,6 +828,22 @@ public class KTCacheManager: NSObject {
     
     func clearMemory() {
         KTCacheManager._shared = nil
+    }
+    
+    func clearLocationsIfNeeded(data: [String: Any]){
+        if let travelArray = data[NSStringFromClass(Travel.self)] as? [[String: Any]]{
+            for travelDicto in travelArray {
+                if let travels = travelDicto["data"] as? [Travel] {
+                    for travel in travels{
+                        for trip in travel.trips{
+                            if trip.locations.count > 100000{
+                                trip.locations.removeAll()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func purgeTravelOlderThan(days: Int) {
@@ -928,7 +940,7 @@ public class KTCacheManager: NSObject {
         }
         if trip.locations.count == 0, oldTrip.locations.count > 0{
             trip.locations = oldTrip.locations.map({$0})
-        }        
+        }
         return merged
     }
     
@@ -957,6 +969,10 @@ public class KTCacheManager: NSObject {
     func cacheDirectory() -> String {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)[0]
         return documentsPath
+    }
+    
+    func cachePath() -> String{
+        return cacheDirectory().appending("/" + cacheDataFilename())
     }
     
     private var _tripPath: String!

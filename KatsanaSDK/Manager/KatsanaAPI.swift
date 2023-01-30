@@ -316,8 +316,8 @@ open class KatsanaAPI {
     
     ///Load last logon user for offline viewing
     public func loadCachedUser() -> Void {
-        if let user = KTCacheManager.shared.lastUser(){
-            let vehicles = KTCacheManager.shared.vehicles(userId: user.userId)
+        if let user = cache?.lastUser(){
+            let vehicles = cache?.vehicles(userId: user.userId)
             self.currentUser = user
             self.vehicles = vehicles
         }
@@ -325,8 +325,8 @@ open class KatsanaAPI {
     
     ///Load cached vehicles
     public func loadCachedVehicles() -> Void {
-        if let user = KTCacheManager.shared.lastUser(){
-            let vehicles = KTCacheManager.shared.vehicles(userId: user.userId)
+        if let user = cache?.lastUser(){
+            let vehicles = cache?.vehicles(userId: user.userId)
             self.vehicles = vehicles
         }
     }
@@ -337,7 +337,7 @@ open class KatsanaAPI {
     }
     
     public func purgeTravelCacheOlderThan(days: Int) {
-        KTCacheManager.shared.purgeTravelOlderThan(days: days)
+        cache?.purgeTravelOlderThan(days: days)
     }
     
     // MARK: Error handling

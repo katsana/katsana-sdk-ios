@@ -112,7 +112,7 @@ extension KatsanaAPI {
             
             self.vehicles = vehicles
             if let vehicles = vehicles {
-                KTCacheManager.shared.cache(vehicles: vehicles)
+                self.cache?.cache(vehicles: vehicles)
                 
                 let vehicleIds = vehicles.map({$0.vehicleId!})
                 let combined = vehicleIds.joined(separator: ", ")
@@ -266,7 +266,7 @@ extension KatsanaAPI {
     
     ///Get latest cached travel locations from today to previous day count
     public func cachedVehicles(userId : String) -> [KTVehicle]! {
-        return KTCacheManager.shared.vehicles(userId:userId)
+        return self.cache?.vehicles(userId:userId)
     }
     
     public func wipeResources(vehicleId: String){

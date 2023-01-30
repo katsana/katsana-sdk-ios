@@ -10,5 +10,7 @@ import Foundation
 @testable import KatsanaSDK
 
 class MockCache: KTCacheManager{
-    
+    override func cacheDataFilename() -> String {
+        return "mockCacheData.dat"
+    }
 }

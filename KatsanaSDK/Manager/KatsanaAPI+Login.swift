@@ -113,7 +113,7 @@ extension KatsanaAPI {
                 completion(user)
                 NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
                 self.log.info("Logged in user \(String(describing: user.userId)), \(user.email)")
-                KTCacheManager.shared.cache(user: user)
+                self.cache?.cache(user: user)
             }else{
                 failure(nil)
             }
@@ -132,7 +132,7 @@ extension KatsanaAPI {
         authToken = nil
         NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
         log.info("Logged out user \(self.currentUser?.userId ?? "??"), \(self.currentUser?.email ?? "")")
-        KTCacheManager.shared.clearTravelCache(vehicleId: "-1")
+        self.cache?.clearTravelCache(vehicleId: "-1")
     }
     
     public func verify(password:String, completion: @escaping (_ success: Bool) -> Void) -> Void {
@@ -188,7 +188,7 @@ extension KatsanaAPI {
                 self.currentUser = user
                 completion(user)
                 self.log.info("Logged in user \(String(describing: user.userId)), \(user.email)")
-                KTCacheManager.shared.cache(user: user)
+                self.cache?.cache(user: user)
             }else{
                 failure(nil)
             }

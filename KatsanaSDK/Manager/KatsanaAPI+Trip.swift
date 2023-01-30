@@ -79,7 +79,7 @@ extension KatsanaAPI {
                     
                     //Cache history for days more than maxDaySummary, because it may already contain trip but still not finalized on the server
                     if Date().daysAfterDate((summary.date)!) > KatsanaAPI.maxDaySummary{
-                        KTCacheManager.shared.cache(travel: summary, vehicleId: vehicleId)
+                        self.cache?.cache(travel: summary, vehicleId: vehicleId)
                     }
                 }
                 travels.append(contentsOf: summaries)
@@ -106,9 +106,9 @@ extension KatsanaAPI {
         var travel : Travel!
         if !forceLoad{
             if loadLocations {
-                travel = KTCacheManager.shared.travelDetail(vehicleId: vehicleId, date: date)
+                travel = self.cache?.travelDetail(vehicleId: vehicleId, date: date)
             }else{
-                travel = KTCacheManager.shared.travel(vehicleId: vehicleId, date: date)
+                travel = self.cache?.travel(vehicleId: vehicleId, date: date)
             }
         }
         
@@ -167,7 +167,7 @@ extension KatsanaAPI {
                     }
                 }
                 travel.trips = newTrips
-                KTCacheManager.shared.cache(travel: travel, vehicleId: vehicleId) //Cache history
+                self.cache?.cache(travel: travel, vehicleId: vehicleId) //Cache history
             }
             completion(travel)
         }
@@ -236,7 +236,7 @@ extension KatsanaAPI {
             travel?.needLoadTripHistory = false
             travel?.vehicleId = summary.vehicleId
             if let travel = travel{
-                KTCacheManager.shared.cache(travel: travel, vehicleId: vehicleId) //Cache history
+                self.cache?.cache(travel: travel, vehicleId: vehicleId) //Cache history
             }
             completion(travel)
 
@@ -301,9 +301,9 @@ extension KatsanaAPI {
                         if summary.duration > 60, summary.distance > 1000{
                             newSummaries.append(summary)
                         }
-                        KTCacheManager.shared.cache(trip: summary, vehicleId: vehicleId)
+                        self.cache?.cache(trip: summary, vehicleId: vehicleId)
                     }
-                    if let travels = KTCacheManager.shared.latestTravels(vehicleId: vehicleId, count: 2){
+                    if let travels = self.cache?.latestTravels(vehicleId: vehicleId, count: 2){
                         var cachedTrips = [KTTrip]()
                         for travel in travels{
                             cachedTrips.append(contentsOf: travel.trips)
@@ -350,12 +350,12 @@ extension KatsanaAPI {
     
     ///Get latest cached travel locations from today to previous day count
     public func cacheLatestTrip(trip: KTTrip, vehicleId : String){
-        KTCacheManager.shared.cache(trip: trip, vehicleId: vehicleId)
+        self.cache?.cache(trip: trip, vehicleId: vehicleId)
     }
     
     ///Get latest cached travel locations from today to previous day count
     public func cachedTrips(vehicleId : String, fromDate: Date, toDate: Date) -> [KTTrip]! {
-        return KTCacheManager.shared.trips(vehicleId: vehicleId, date: fromDate, toDate: toDate)
+        return self.cache?.trips(vehicleId: vehicleId, date: fromDate, toDate: toDate)
     }
     
     ///Get latest cached travel locations from today to previous day count
@@ -363,7 +363,7 @@ extension KatsanaAPI {
         var date = Date()
         var travellocations = [Travel]()
         for _ in 0..<dayCount {
-            if let history = KTCacheManager.shared.travel(vehicleId: vehicleId, date: date){
+            if let history = self.cache?.travel(vehicleId: vehicleId, date: date){
                 travellocations.append(history)
             }
             date = date.dateBySubtractingDays(1)
@@ -373,7 +373,7 @@ extension KatsanaAPI {
     
     ///Get cached travel data with locations
     public func cachedTravelWithLocationsData(vehicleId : String, date : Date) -> Travel! {
-        return KTCacheManager.shared.travelDetail(vehicleId:vehicleId, date:date)
+        return self.cache?.travelDetail(vehicleId:vehicleId, date:date)
     }
     
     public func wipeTripSummariesResources(){
@@ -409,7 +409,7 @@ extension KatsanaAPI {
 
         //Check required from date
         while !loopDate.isEqualToDateIgnoringTime(toDate) {
-            let travel = KTCacheManager.shared.travel(vehicleId: vehicleId, date: loopDate)
+            let travel = self.cache?.travel(vehicleId: vehicleId, date: loopDate)
             
             //If have cached history, add to array if pass other condition
             if let travel = travel {
@@ -431,7 +431,7 @@ extension KatsanaAPI {
         //Check required to date
         loopDate = toDate
         while !loopDate.isEqualToDateIgnoringTime(fromDate) || loopDate == toDate {
-            let travel = KTCacheManager.shared.travel(vehicleId: vehicleId, date: loopDate)
+            let travel = self.cache?.travel(vehicleId: vehicleId, date: loopDate)
             //If have cached history, add to array
             if let travel = travel {
                 //Check if last 3 day
