@@ -68,4 +68,15 @@ extension KatsanaAPI{
             }
         }
     }
+    
+    public func requestUpgradeKatsanaPackage(data: [String: String], completion: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void = {_  in }) -> Void {
+        let path = "interest"
+        let resource = API.resource(path);
+        let parameters = data
+        resource.request(.post, json: NSDictionary(dictionary: parameters)).onSuccess({ (entity) in
+            completion()
+        }).onFailure({ (error) in
+            failure(error)
+        })
+    }
 }

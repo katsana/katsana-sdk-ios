@@ -102,6 +102,14 @@ extension KatsanaAPI {
         
         func handleResource() -> Void {
             let vehicles : [KTVehicle]? = resource.typedContent()
+            if let vehicles = vehicles{
+                for vehicle in vehicles {
+                    if let cachedVehicle = vehicleWith(vehicleId: vehicle.vehicleId){
+                        vehicle.reloadVideoRecordingData(with: cachedVehicle)
+                    }
+                }
+            }
+            
             self.vehicles = vehicles
             if let vehicles = vehicles {
                 KTCacheManager.shared.cache(vehicles: vehicles)

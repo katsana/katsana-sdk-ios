@@ -90,7 +90,7 @@ open class KatsanaAPI: NSObject {
     @objc internal(set) dynamic public var vehicles: [KTVehicle]!{
         willSet{
             if vehicles != nil {
-                print(vehicles)
+//                print(vehicles)
                 lastVehicleImeis = vehicles.map({ $0.imei})
             }
         }
@@ -193,6 +193,10 @@ open class KatsanaAPI: NSObject {
             $0.expirationTime = 10
         }
         
+        API.configure("operations/stream") {
+            $0.expirationTime = 10
+        }
+        
         //Vehicle summary today will request new data only after 4 minutes
         API.configure("vehicles/*/summaries/today") {
             $0.expirationTime = 4*60
@@ -272,6 +276,19 @@ open class KatsanaAPI: NSObject {
         
         API.configureTransformer("track/register") {
             ObjectJSONTransformer.RegisterVehicleObject(json: $0.content)
+        }
+        
+        API.configureTransformer("operations/stream") {
+            ObjectJSONTransformer.VideoRecordingObjects(json: $0.content)
+        }
+        
+        API.configureTransformer("operations/stream/show") {
+            ObjectJSONTransformer.VideoRecordingObject(json: $0.content)
+        }
+        
+        API.configureTransformer("operations/playback") {
+            ObjectJSONTransformer.VideoPlaybackObjects(json: $0.content)
+            
         }
     }
     
@@ -366,6 +383,19 @@ open class KatsanaAPI: NSObject {
                     }
                 }
                 if isUnassigned{
+                    newVehicles.append(vehicle)
+                }
+            }
+            return newVehicles
+        }
+        return nil
+    }
+    
+    public func vehicles(fleetId: Int) -> [KTVehicle]! {
+        if let _ = currentUser, let vehicles = vehicles{
+            var newVehicles = [KTVehicle]()
+            for vehicle in vehicles{
+                if vehicle.fleetIds.contains(fleetId){
                     newVehicles.append(vehicle)
                 }
             }

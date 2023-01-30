@@ -7,9 +7,14 @@
 //
 
 import FastCoding
+import UIKit
 
 @objcMembers
 open class KTVehicle: NSObject {
+    static let defaultImagePath = "default.marker.jpg"
+    static var handledDefaultImage = false
+    static var defaultImage: UIImage!
+    
     static let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -45,6 +50,10 @@ open class KTVehicle: NSObject {
     open var temperatureValue: Float = -1
     open var temperatureStatus: String!
     open var sensors = [Sensor]()
+    
+    open var videoRecording: VideoRecording!
+    ///State that shows if the vehicle supports MDVR.
+    open var requestVideoRecordingDate: Date!
     
     open var fleetIds = [Int]()
     
@@ -93,7 +102,7 @@ open class KTVehicle: NSObject {
     private var isLoadingThumbImage = false
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData", "timezone", "insuredExpiry", "insuredBy", "model", "manufacturer", "earliestTravelDate", "fleetIds", "driver"]
+        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData", "timezone", "insuredExpiry", "insuredBy", "model", "manufacturer", "earliestTravelDate", "fleetIds", "driver", "videoRecording", "requestVideoRecordingDate"]
     }
     
     ///Reload data given new vehicle data
@@ -122,6 +131,25 @@ open class KTVehicle: NSObject {
         manufacturer = vehicle.manufacturer
         fuelPercentage = vehicle.fuelPercentage
         driver = vehicle.driver
+        if let date = vehicle.requestVideoRecordingDate{
+            self.requestVideoRecordingDate = date
+        }
+        if let videoRecording = vehicle.videoRecording{
+            self.videoRecording = videoRecording
+        }
+    }
+    
+    ///Reload video recording data given the vehicle data
+    open func reloadVideoRecordingData(with vehicle: KTVehicle) {
+        guard userId == vehicle.userId, vehicleId == vehicle.vehicleId else {
+            return
+        }
+        if let date = vehicle.requestVideoRecordingDate{
+            self.requestVideoRecordingDate = date
+        }
+        if let videoRecording = vehicle.videoRecording{
+            self.videoRecording = videoRecording
+        }
     }
     
     func jsonPatch() -> [String: Any] {
@@ -200,11 +228,11 @@ open class KTVehicle: NSObject {
     
     open func image(completion: @escaping (_ image: KMImage) -> Void){
         guard imageURL != nil else {
-            completion(emptyImage())
+            completion(KTVehicle.emptyImage())
             return
         }
         if KatsanaAPI.shared.vehicleIdWithEmptyImages.contains(vehicleId) {
-            completion(emptyImage())
+            completion(KTVehicle.emptyImage())
             return
         }
         
@@ -238,14 +266,15 @@ open class KTVehicle: NSObject {
                     }
                     KatsanaAPI.shared.log.error("Error requesting vehicle image \(self.vehicleId!)")
                     self.isLoadingImage = false
-                    completion(self.emptyImage())
+                    completion(KTVehicle.emptyImage())
                 })
             }
         }
     }
     
-    private var _emptyImage: UIImage!
-    open func emptyImage() -> UIImage{
+    static var isLoadingDefaultImage = false
+    static private var _emptyImage: UIImage!
+    static public func emptyImage() -> UIImage{
         if let image = _emptyImage {
             return image
         }
@@ -256,12 +285,21 @@ open class KTVehicle: NSObject {
    
     open func thumbImage(completion: @escaping (_ image: KMImage) -> Void){
         guard thumbImageURL != nil else {
-            completion(emptyImage())
+            completion(KTVehicle.emptyImage())
             return
         }
         if KatsanaAPI.shared.vehicleIdWithEmptyImages.contains(vehicleId) {
-            completion(emptyImage())
+            if let image = KTVehicle.defaultImage{
+                completion(image)
+            }else{
+                completion(KTVehicle.emptyImage())
+            }
+            
             return
+        }
+        
+        if thumbImageURL == nil{
+            completion(KTVehicle.emptyImage())
         }
         
         if let image = thumbImage {
@@ -273,8 +311,19 @@ open class KTVehicle: NSObject {
             if isLoadingThumbImage {
                 thumbImageBlocks.append(completion)
             }else{
+                if self.thumbImageURL.hasSuffix("default.marker.jpg"){
+                    completion(KTVehicle.emptyImage())
+                    return
+                }
+                
                 isLoadingThumbImage = true
                 ImageRequest.shared.requestImage(path: thumbImageURL, completion: { (image) in
+                    if self.thumbImageURL.hasSuffix("default.marker.jpg"){
+                        KTVehicle.handledDefaultImage = true
+                        KTVehicle.defaultImage = image
+                        KTVehicle.isLoadingDefaultImage = true
+                    }
+                    
                     self.thumbImage = image
                     self.isLoadingThumbImage = false
                     for block in self.thumbImageBlocks{
@@ -282,6 +331,11 @@ open class KTVehicle: NSObject {
                     }
                     completion(image!)
                 }, failure: { (error) in
+                    if self.thumbImageURL.hasSuffix("default.marker.jpg"){
+                        KTVehicle.handledDefaultImage = true
+                        KTVehicle.defaultImage = KTVehicle.emptyImage()
+                    }
+                    
                     if let error = error as NSError?{
                         if error.code == 404{ //If not found just set the url as nil
                             self.thumbImageURL = nil
@@ -289,9 +343,10 @@ open class KTVehicle: NSObject {
                             KatsanaAPI.shared.vehicleIdWithEmptyImages.append(self.vehicleId)
                         }
                     }
-                    KatsanaAPI.shared.log.error("Error requesting vehicle thumb image vehicle id \(self.vehicleId!)")
+                    
+//                    KatsanaAPI.shared.log.error("Error requesting vehicle thumb image vehicle id \(self.vehicleId!)")
                     self.isLoadingThumbImage = false
-                    completion(self.emptyImage())
+                    completion(KTVehicle.emptyImage())
                 })
             }
         }

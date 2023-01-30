@@ -23,8 +23,22 @@ public extension KatsanaAPI{
     public func objc_requestAllVehicles(options:[String]! = nil, completion: @escaping (_ vehicles: [KTVehicle]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         requestAllVehicles(completion: { (vehicles) in
             completion(vehicles)
+            self.requestLiveStreamDevices { summaries in
+                print("Sfaf")
+            }
+//            self.requestPlaybacks { videoRecording in
+//                print("Saf")
+//            }
         }) { (error) in
             failure(error)
+        }
+        
+    }
+    
+    @available(swift, obsoleted: 1.0)
+    public func objc_requestLiveStreamDevices(completion: @escaping (_ streamDevices: [VideoRecording]?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        requestLiveStreamDevices { summaries in
+            completion(summaries)
         }
     }
     

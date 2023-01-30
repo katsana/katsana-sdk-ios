@@ -41,6 +41,17 @@ extension JSON {
         }
     }
     
+    public var dateWithoutTime2: Date? {
+        get {
+            switch self.type {
+            case .string:
+                return (self.object as! String).dateWithoutTime2
+            default:
+                return nil
+            }
+        }
+    }
+    
     public var dateTime: Date? {
         get {
             switch self.type {

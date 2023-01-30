@@ -16,6 +16,10 @@ public extension KatsanaAPI{
     func setupLog() -> Void {
         // Create a logger object with no destinations
         self.log = XCGLogger(identifier: "advancedLogger", includeDefaultDestinations: false)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        log.dateFormatter = formatter
         
         // Create a destination for the system console log (via NSLog)
         let systemDestination = AppleSystemLogDestination(identifier: "advancedLogger.systemDestination")
@@ -24,7 +28,7 @@ public extension KatsanaAPI{
         systemDestination.outputLevel = .info
         systemDestination.showLogIdentifier = false
         systemDestination.showFunctionName = false
-        systemDestination.showThreadName = true
+        systemDestination.showThreadName = false
         systemDestination.showLevel = true
         systemDestination.showFileName = true
         systemDestination.showLineNumber = true
@@ -52,7 +56,7 @@ public extension KatsanaAPI{
         fileDestination.outputLevel = .debug
         fileDestination.showLogIdentifier = false
         fileDestination.showFunctionName = false
-        fileDestination.showThreadName = true
+        fileDestination.showThreadName = false
         fileDestination.showLevel = true
         fileDestination.showFileName = true
         fileDestination.showLineNumber = true
@@ -74,6 +78,9 @@ public extension KatsanaAPI{
             let fileManager = FileManager.default
             try? fileManager.removeItem(atPath: path)
             UserDefaults.standard.set(Date(), forKey: "KatsanaSDKFirstDateLogged")
+            self.log.remove(destinationWithIdentifier: "advancedLogger.systemDestination")
+            self.log.remove(destinationWithIdentifier: "advancedLogger.fileDestination")
+            setupLog()
         }
     }
     

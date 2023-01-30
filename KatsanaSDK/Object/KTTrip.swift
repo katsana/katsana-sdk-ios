@@ -10,6 +10,8 @@ import FastCoding
 @objcMembers
 open class KTTrip: NSObject, NSCopying {
     open var id : String!
+    ///Alternate id set manually if required. Default to nil
+    open var alternateId: String!
     open var start: VehicleLocation!
     open var end: VehicleLocation!
     open var distance: Double = 0
@@ -33,7 +35,7 @@ open class KTTrip: NSObject, NSCopying {
     open var extraData = [String: Any]()
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData", "date", "id", "publicTransit"]
+        return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData", "date", "id", "publicTransit", "alternateId"]
     }
     
     public func copy(with zone: NSZone? = nil) -> Any {

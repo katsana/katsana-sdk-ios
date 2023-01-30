@@ -18,7 +18,25 @@ extension Date{
         return formatter
     }()
     
+    static let timeFormatter : DateFormatter = {
+        let formatter = DateFormatter()
+        let timezone = NSTimeZone.local
+        formatter.timeZone = timezone
+        formatter.dateFormat = "hh:mm:ss a"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
+    
 //    2017/4/11+14:45:57
+    
+    public func toStringWithTime(includeSeconds: Bool = true) -> String {
+        if includeSeconds{
+            Date.timeFormatter.dateFormat = "hh:mm:ss a"
+        }else{
+            Date.timeFormatter.dateFormat = "hh:mm a"
+        }
+        return Date.timeFormatter.string(from: self)
+    }
     
     public func toStringWithYearMonthDay() -> String {
         let dateComps = Calendar.current.dateComponents([.day, .month, .year], from: self)

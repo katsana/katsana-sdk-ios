@@ -27,6 +27,13 @@ extension String {
         }
     }
     
+    public var dateWithoutTime2: Date? {
+        get {
+            let text = Formatter.jsonDateWithoutTimeFormatter2.date(from: self)
+            return text
+        }
+    }
+    
     public var dateTime: Date? {
         get {
             return Formatter.jsonDateTimeFormatter.date(from: self)
@@ -46,6 +53,7 @@ class Formatter {
     private static var internalJsonDateFormatter: DateFormatter?
     private static var internalJsonDateGMTFormatter: DateFormatter?
     private static var internalJsonDateWithoutTimeFormatter: DateFormatter?
+    private static var internalJsonDateWithoutTimeFormatter2: DateFormatter?
     private static var internalJsonDateTimeFormatter: DateFormatter?
     private static var internalJsonDateTimeFormatter2: DateFormatter?
     
@@ -71,6 +79,16 @@ class Formatter {
         return internalJsonDateFormatter!
     }
     
+    static var jsonDateFormatter2: DateFormatter {
+        if (internalJsonDateFormatter == nil) {
+            internalJsonDateFormatter = DateFormatter()
+            internalJsonDateFormatter!.dateFormat = "yyyy-MM-dd hh:mm:ss"
+            
+            //            2013-11-18 03:31:02
+        }
+        return internalJsonDateFormatter!
+    }
+    
     static var jsonDateWithoutTimeFormatter: DateFormatter {
         if (internalJsonDateWithoutTimeFormatter == nil) {
             internalJsonDateWithoutTimeFormatter = DateFormatter()
@@ -79,6 +97,16 @@ class Formatter {
             //            2013-11-18 03:31:02
         }
         return internalJsonDateWithoutTimeFormatter!
+    }
+    
+    static var jsonDateWithoutTimeFormatter2: DateFormatter {
+        if (internalJsonDateWithoutTimeFormatter2 == nil) {
+            internalJsonDateWithoutTimeFormatter2 = DateFormatter()
+            internalJsonDateWithoutTimeFormatter2!.dateFormat = "dd/MM/yyyy"
+            
+            //            2013-11-18 03:31:02
+        }
+        return internalJsonDateWithoutTimeFormatter2!
     }
     
     static var jsonDateTimeFormatter: DateFormatter {

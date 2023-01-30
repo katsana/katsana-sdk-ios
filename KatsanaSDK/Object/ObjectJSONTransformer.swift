@@ -43,6 +43,10 @@ class ObjectJSONTransformer: NSObject {
         user.postcode = json["postcode"].stringValue
         user.birthdayText = json["birthday"].stringValue
         
+        user.planId = json["plan"]["id"].int
+        user.planName = json["plan"]["name"].string
+        user.planDescription = json["plan"]["description"].string
+        
         user.createdAt = json["created_at"].date(gmt: 0)
         user.updatedAt = json["updated_at"].date(gmt: 0)
         if let handler = KatsanaAPI.shared.objectInitializationHandler {
@@ -173,6 +177,83 @@ class ObjectJSONTransformer: NSObject {
             pos.extraData["harsh"] = harsh
         }
         return pos
+    }
+    
+    class func VideoRecordingObjects(json : JSON) -> [VideoRecording]{
+        let arr = json["vehicles"].arrayValue
+        let vehicles = arr.map{VideoRecordingObject(json: $0)}
+        return vehicles
+    }
+    
+    class func VideoRecordingObject(json : JSON) -> VideoRecording {
+        let video = VideoRecording()
+        var theChannels = [VideoRecordingChannel]()
+        let channels = json["dvr"]["channels"].dictionaryValue
+        for (key, value) in channels {
+            let theChannel = VideoRecordingChannel()
+            theChannel.name = value["name"].string
+            if let status = value["status"].string, status == "On"{
+                theChannel.isOn = true
+            }
+            theChannel.identifier = key
+            theChannels.append(theChannel)
+        }
+        theChannels.sort { a, b in
+            if let id1 = a.identifier, let id2 = b.identifier{
+                return id1 < id2
+            }
+            return false
+        }
+        video.channels = theChannels
+        video.liveStreamURL = json["dvr"]["liveStreamURL"].string
+        if let id = json["id"].int{
+            video.id = String(id)
+        }
+        if let ratio = json["dvr"]["ratio"].arrayObject as? [Int], ratio.count > 1{
+            video.horizontalRatio = ratio[0]
+            video.verticalRatio = ratio[1]
+        }
+        return video
+    }
+    
+    class func VideoPlaybackObjects(json : JSON) -> [VideoPlayback]{
+        var allPlaybacks = [VideoPlayback]()
+        let arr = json["vehicles"].arrayValue
+        for vehicle in arr{
+            let playbacksJSON = vehicle["dvr"]["playback"].arrayValue
+            let playbacks = playbacksJSON.map{VideoPlaybackObject(json: $0)}
+            allPlaybacks.append(contentsOf: playbacks)
+        }
+        return allPlaybacks
+    }
+    
+    class func VideoPlaybackObject(json : JSON) -> VideoPlayback {
+        let video = VideoPlayback()
+        video.channelIdentifier = json["channel"].string
+        if let id = json["channel"].int{
+            video.channelIdentifier = String(id)
+        }else{
+            video.channelIdentifier = json["channel"].string
+        }
+        if let id = json["id"].int{
+            video.id = String(id)
+        }else{
+            video.id = json["id"].string
+        }
+        if let deviceId = json["device_id"].int{
+            video.deviceId = String(deviceId)
+        }else{
+            video.deviceId = json["device_id"].string
+        }
+        
+        video.filename = json["filename"].string
+        
+        let date = json["date"].stringValue
+        let startTime = date + " " + json["start_time"].stringValue
+        video.startTime = Formatter.jsonDateFormatter2.date(from: startTime)
+        video.duration = CGFloat(json["duration"].floatValue)
+        video.endTime = video.startTime?.addingTimeInterval(video.duration)
+        return video
     }
     
     class func TravelSummariesObject(json : JSON) -> [Travel] {
@@ -339,10 +420,6 @@ class ObjectJSONTransformer: NSObject {
         subscribe.vehicleDescription = json["description"].stringValue
         subscribe.vehicleNumber = json["vehicle_number"].stringValue
         subscribe.isReseller = json["reseller"].boolValue
-        
-        if subscribe.vehicleNumber == "WXC 8377" {
-            print("sdf")
-        }
         
         subscribe.subscriptionId = json["subscription"]["id"].stringValue
         subscribe.subscriptionPrice = json["subscription"]["price"]["price"].intValue

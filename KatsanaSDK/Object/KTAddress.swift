@@ -108,7 +108,10 @@ open class KTAddress: NSObject {
         }
         
         var place = ""
-        if let sublocality = sublocality, sublocality.count > 0{
+        if let streetName = streetName, streetName.count > 0{
+            place = streetName
+        }
+        else if let sublocality = sublocality, sublocality.count > 0{
             if let city = city, city.contains(sublocality){
                 place = city
             }else{
@@ -123,6 +126,29 @@ open class KTAddress: NSObject {
         }
         else if let city = city, city.count > 0{
             place = city
+        }
+        else if let state = state{
+            place = state
+        }
+        if place.hasPrefix("Kampung") {
+            place = place.replacingOccurrences(of: "Kampung", with: "Kg")
+        }
+        _pointOfInterest = place
+        return place
+    }
+    
+    var _district : String!
+    open func district() -> String{
+        if let s = _district {
+            return s
+        }
+        
+        var place = ""
+        if let city = city, city.count > 0{
+            place = city
+        }
+        else if let locality = locality, locality.count > 0{
+            place = locality
         }
         else if let state = state{
             place = state

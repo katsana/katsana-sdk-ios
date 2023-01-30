@@ -9,9 +9,14 @@
 /* Begin PBXBuildFile section */
 		5A3D5B5E999A8B7991DB703C /* Pods_KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370766C63D4C0FE02F9C8E2B /* Pods_KatsanaSDK.framework */; };
 		65CFE8E479D695508F173AB4 /* Pods_KatsanaSDK_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0ABAD6C2A32616ED7574B6 /* Pods_KatsanaSDK_macOS.framework */; };
+		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
+		C164EAF329236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8290245A99F9008B0B1E /* KatsanaAPI+Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
+		C18A824128FCEF6000C3FF7D /* VideoRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824028FCEF6000C3FF7D /* VideoRecording.swift */; };
+		C18A824328FCEFD500C3FF7D /* VideoRecordingChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */; };
+		C18A824528FD050A00C3FF7D /* KatsanaAPI+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */; };
 		C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540A325256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540B025256AB700525603 /* KTAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AC25256AB600525603 /* KTAddress.swift */; };
@@ -133,9 +138,13 @@
 		6EC96362BBA9C531ED1079F0 /* Pods-KatsanaSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		710124ECF51BBFFF8B12D25A /* Pods-KatsanaSDK macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9F0ABAD6C2A32616ED7574B6 /* Pods_KatsanaSDK_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KatsanaSDK_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Fleet.swift"; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
+		C18A824028FCEF6000C3FF7D /* VideoRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecording.swift; sourceTree = "<group>"; };
+		C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingChannel.swift; sourceTree = "<group>"; };
+		C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Stream.swift"; sourceTree = "<group>"; };
 		C1F540A125256AA800525603 /* KTCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTCacheManager.swift; sourceTree = "<group>"; };
 		C1F540AC25256AB600525603 /* KTAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTAddress.swift; sourceTree = "<group>"; };
 		C1F540AD25256AB600525603 /* KTVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTVehicle.swift; sourceTree = "<group>"; };
@@ -306,6 +315,7 @@
 				C719175B1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift */,
 				C719175C1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift */,
 				C7729D651FCBA869002497DD /* KatsanaAPI+objc.swift */,
+				C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */,
 				C719175D1E48703B0041BC18 /* KatsanaAPI.swift */,
 				C719175E1E48703B0041BC18 /* KatsanaFormatter.swift */,
 			);
@@ -330,6 +340,9 @@
 				C7331297207B1EC800541BE8 /* VehicleSubscription.swift */,
 				C79CA23D1FE220F100A9F8E1 /* Insurer.swift */,
 				C17220C224628CA700A128B7 /* Fleet.swift */,
+				C18A824028FCEF6000C3FF7D /* VideoRecording.swift */,
+				C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */,
+				C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */,
 			);
 			name = Object;
 			path = KatsanaSDK/Object;
@@ -638,6 +651,7 @@
 				C71917991E48703B0041BC18 /* LiveShare.swift in Sources */,
 				C719177F1E48703B0041BC18 /* KatsanaAPI+Address.swift in Sources */,
 				C719177B1E48703B0041BC18 /* APIError.swift in Sources */,
+				C164EAF329236BD600C3A6E7 /* VideoPlayback.swift in Sources */,
 				C719178D1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift in Sources */,
 				C71917711E48703B0041BC18 /* Date+Extension.swift in Sources */,
 				C71917851E48703B0041BC18 /* KatsanaAPI+Other.swift in Sources */,
@@ -664,10 +678,12 @@
 				C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */,
 				C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */,
 				C719179C1E48703B0041BC18 /* Travel.swift in Sources */,
+				C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */,
 				C17220C324628CA700A128B7 /* Fleet.swift in Sources */,
 				C7729D661FCBA869002497DD /* KatsanaAPI+objc.swift in Sources */,
 				C71917D11E4884410041BC18 /* Just.swift in Sources */,
 				C1F540B025256AB700525603 /* KTAddress.swift in Sources */,
+				C18A824328FCEFD500C3FF7D /* VideoRecordingChannel.swift in Sources */,
 				C71917921E48703B0041BC18 /* KatsanaFormatter.swift in Sources */,
 				C71917781E48703B0041BC18 /* AddressRequest.swift in Sources */,
 				C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */,
@@ -693,6 +709,7 @@
 				C719177C1E48703B0041BC18 /* ImageRequest.swift in Sources */,
 				C71917A41E48703B0041BC18 /* VehicleActivity.swift in Sources */,
 				C719179A1E48703B0041BC18 /* ObjectJSONTransformer.swift in Sources */,
+				C18A824128FCEF6000C3FF7D /* VideoRecording.swift in Sources */,
 				C71917761E48703B0041BC18 /* UIImage+Extension.swift in Sources */,
 				C7331298207B1EC800541BE8 /* VehicleSubscription.swift in Sources */,
 				C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */,
@@ -700,6 +717,7 @@
 				C1F540B625256AB700525603 /* KTUser.swift in Sources */,
 				C71917901E48703B0041BC18 /* KatsanaAPI.swift in Sources */,
 				C71917D31E4884410041BC18 /* SwiftyJSON.swift in Sources */,
+				C18A824528FD050A00C3FF7D /* KatsanaAPI+Stream.swift in Sources */,
 				C719178A1E48703B0041BC18 /* KatsanaAPI+Trip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

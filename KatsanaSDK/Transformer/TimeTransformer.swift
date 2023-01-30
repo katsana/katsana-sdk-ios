@@ -56,13 +56,19 @@ public class TimeTransformer: ValueTransformer {
                         timeStr = String(format:NSLocalizedString("%.0f:%.0f hrs", comment: ""), 0, 0)
                     }
                 }else{
-                    minutes = round(minutes);
-                    timeStr = String(format:NSLocalizedString("%.0f min", comment: ""), minutes )
+                    let theMinutes = round(minutes);
+                    timeStr = String(format:NSLocalizedString("%.0f min", comment: ""), theMinutes )
                     if displayFormat == .full {
-                        timeStr = String(format:NSLocalizedString("%.0f minutes", comment: ""), minutes )
+                        timeStr = String(format:NSLocalizedString("%.0f minutes", comment: ""), theMinutes )
                     }
                     else if displayFormat == .hourShort{
-                        timeStr = String(format:NSLocalizedString("%.0f:%.0f hrs", comment: ""), 0, minutes)
+                        timeStr = String(format:NSLocalizedString("%.0f:%.0f hrs", comment: ""), 0, theMinutes)
+                    }
+                    else if displayFormat == .hourOrMinuteOnly{
+                        timeStr = String(format:NSLocalizedString("%.0f min", comment: ""), theMinutes )
+                    }else{
+                        let seconds = (minutes - floor(minutes)) * 60
+                        timeStr = String(format:NSLocalizedString("%.0f min %.0f secs", comment: ""), floor(minutes), seconds)
                     }
                 }
                 

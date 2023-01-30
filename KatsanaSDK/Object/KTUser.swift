@@ -41,6 +41,10 @@ open class KTUser: NSObject {
     open var country: String!
     open var gender: Gender = .unknown
     
+    open var planId: Int!
+    open var planName: String!
+    open var planDescription: String!
+    
     open var fleets = [Fleet]()
     
     open var genderText: String!{
@@ -220,6 +224,8 @@ open class KTUser: NSObject {
         }
         return nil
     }
+    
+    
     
     open func profileProgress() -> CGFloat {
         var progressCount :CGFloat = 0

@@ -50,7 +50,7 @@ extension KatsanaAPI {
                 }
             }
 
-            if let vehicle = vehicle, let idx = self.vehicles.index(of: vehicle){
+            if let vehicle = vehicle, let idx = self.vehicles.firstIndex(of: vehicle){
                 self.vehicles[idx] = vehicle
             }
             if insuranceExpiryChanged{

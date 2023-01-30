@@ -16,11 +16,11 @@ extension KatsanaAPI {
         let resource = API.resource(path);
         let request = resource.loadIfNeeded()
         
-        print("Requested vehicle summary \(vehicleId), \(Date())")
+//        print("Requested vehicle summary \(vehicleId), \(Date())")
         request?.onSuccess({(entity) in
             let summary : Travel? = resource.typedContent()
             summary?.vehicleId = vehicleId
-            print("Success get vehicle summary \(vehicleId), \(Date())")
+//            print("Success get vehicle summary \(vehicleId), \(Date())")
             completion(summary)
             }).onFailure({ (error) in
                 failure(error)

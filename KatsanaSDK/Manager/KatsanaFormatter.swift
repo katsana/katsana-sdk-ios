@@ -21,8 +21,8 @@
 
 @objcMembers
 public class KatsanaFormatter: NSObject {
-    static let knotToKMH : Double = 1.852
-    static let knotToMPH : Double = 1.15078
+    public static let knotToKMH : Double = 1.852
+    public static let knotToMPH : Double = 1.15078
     
     static var distanceFormat : DistanceFormat = .kilometer
     static var displayFormat : DisplayFormat = .short
@@ -81,17 +81,23 @@ public class KatsanaFormatter: NSObject {
         return convertTime(seconds: duration, displayFormat: format)
     }
     
-    public class func distanceStringFrom(meter: Double) -> String {
+    public class func distanceStringFrom(meter: Double, useFraction: Bool = true) -> String {
         var distance = "0 m"
-        if meter < 1000 {
-            distance = String(format: "%.0f m", meter)
-        }else{
-            switch distanceFormat {
-            case .kilometer:
+        switch distanceFormat {
+        case .kilometer:
+            if meter < 1000 {
+                distance = String(format: "%.0f m", meter)
+            }else{
+                numberDistanceFormatter.maximumFractionDigits = 0
                 distance = String(format: "%@ km", numberDistanceFormatter.string(from: NSNumber(value: meter/1000.0))!)
-            case .miles:
-                distance = String(format: "%@ mi", numberDistanceFormatter.string(from: NSNumber(value: meter*0.000621371))!)
             }
+        case .miles:
+            if useFraction{
+                numberDistanceFormatter.maximumFractionDigits = 1
+            }else{
+                numberDistanceFormatter.maximumFractionDigits = 0
+            }
+            distance = String(format: "%@ mi", numberDistanceFormatter.string(from: NSNumber(value: meter*0.000621371))!)
         }
         return distance
     }
@@ -130,7 +136,7 @@ public class KatsanaFormatter: NSObject {
         case .kilometer:
             speedString =  String(format: "%.0f km/h", speed * knotToKMH)
         case .miles:
-            speedString =  String(format: "%.0f mp/h", speed * knotToMPH)
+            speedString =  String(format: "%.0G mp/h", speed * knotToMPH)
         }
         return speedString
     }
