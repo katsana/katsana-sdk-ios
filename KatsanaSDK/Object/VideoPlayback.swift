@@ -6,7 +6,7 @@
 //  Copyright © 2022 pixelated. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 open class VideoPlayback: NSObject {
     open var id: String!

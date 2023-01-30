@@ -8,15 +8,13 @@
 
 import Siesta
 
-
 /// Class to request image from server. It is not included with KatsanaAPI because image request need a max async connection because the data is bigger tha json
-public class ImageRequest: NSObject {
+public class ImageRequest {
     public static let shared = ImageRequest()
     
     public var API : Service!
     
-    override init() {
-        super.init()
+    init() {
         configure()
     }
 

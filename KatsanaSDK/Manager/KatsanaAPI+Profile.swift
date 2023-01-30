@@ -7,7 +7,6 @@
 //
 
 import Siesta
-import UIKit
 
 #if os(iOS)
     public typealias KMColor = UIColor
@@ -83,7 +82,7 @@ extension KatsanaAPI {
     #if os(iOS)
         let scale = UIScreen.main.scale
     #elseif os(OSX)
-        let scale = (NSScreen.main()?.backingScaleFactor)! as CGFloat
+       let scale = (NSScreen.main?.backingScaleFactor)! as CGFloat
     #endif
     
         if scale > 1 {maxSize /= scale}

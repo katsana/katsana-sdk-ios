@@ -6,7 +6,6 @@
 //  Copyright © 2022 pixelated. All rights reserved.
 //
 
-import UIKit
 
 open class VideoRecording: NSObject {
     open var id: String!

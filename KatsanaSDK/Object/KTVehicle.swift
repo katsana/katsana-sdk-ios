@@ -7,13 +7,12 @@
 //
 
 import FastCoding
-import UIKit
 
 @objcMembers
 open class KTVehicle: NSObject {
     static let defaultImagePath = "default.marker.jpg"
     static var handledDefaultImage = false
-    static var defaultImage: UIImage!
+    static var defaultImage: KMImage!
     
     static let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
@@ -273,12 +272,12 @@ open class KTVehicle: NSObject {
     }
     
     static var isLoadingDefaultImage = false
-    static private var _emptyImage: UIImage!
-    static public func emptyImage() -> UIImage{
+    static private var _emptyImage: KMImage!
+    static public func emptyImage() -> KMImage{
         if let image = _emptyImage {
             return image
         }
-        let image = UIImage(color: UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1))
+        let image = KMImage(color: KMColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1))
         _emptyImage = image
         return image!
     }

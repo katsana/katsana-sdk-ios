@@ -8,7 +8,6 @@
 
 import CoreLocation
 import FastCoding
-import UIKit
 
 let cacheVersion = "2.5"
 

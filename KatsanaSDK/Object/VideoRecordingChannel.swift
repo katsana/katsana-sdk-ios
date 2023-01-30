@@ -6,7 +6,6 @@
 //  Copyright © 2022 pixelated. All rights reserved.
 //
 
-import UIKit
 
 open class VideoRecordingChannel: NSObject {
     open var identifier: String!

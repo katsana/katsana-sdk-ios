@@ -19,8 +19,7 @@
     case hourOrMinuteOnly
 }
 
-@objcMembers
-public class KatsanaFormatter: NSObject {
+public class KatsanaFormatter {
     public static let knotToKMH : Double = 1.852
     public static let knotToMPH : Double = 1.15078
     
