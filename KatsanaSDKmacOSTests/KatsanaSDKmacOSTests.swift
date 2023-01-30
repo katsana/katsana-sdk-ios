@@ -1,6 +1,6 @@
 //
-//  UserTests.swift
-//  KatsanaSDKTests
+//  KatsanaSDKmacOSTests.swift
+//  KatsanaSDKmacOSTests
 //
 //  Created by Wan Ahmad Lutfi on 30/01/2023.
 //  Copyright © 2023 pixelated. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 import KatsanaSDK
 
-final class UserTests: XCTestCase {
+final class KatsanaSDKmacOSTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -27,16 +27,5 @@ final class UserTests: XCTestCase {
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
-    func makeSUT() -> KatsanaAPI{
-        let api = KatsanaAPI()
-        return api
-    }
 
 }

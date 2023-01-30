@@ -13,3 +13,12 @@ platform :osx, '11.0'
     pod 'FastCoding'
 end
 
+target "KatsanaSDKmacOSTests" do
+platform :osx, '11.0'
+    pod 'Siesta'
+    pod 'XCGLogger'
+    pod 'FastCoding'
+    pod 'URLMock'
+end
+
+

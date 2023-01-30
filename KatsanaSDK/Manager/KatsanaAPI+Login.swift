@@ -182,7 +182,7 @@ extension KatsanaAPI {
     
     public func requestUser(completion: @escaping (_ user: KTUser) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void{
         let resource = self.API.resource("profile")
-        resource.loadIfNeeded()?.onSuccess({ (entity) in
+        resource.load().onSuccess({ (entity) in
             let user : KTUser? = resource.typedContent()
             if let user = user{
                 self.currentUser = user
