@@ -58,6 +58,7 @@ public class KTCacheManager: NSObject {
     public var activities = [String: [VehicleActivity]]()
     private var liveShares = [LiveShare]()
     private var data = [String: Any]()
+    private var codableData = [String: Codable]()
     
     private var expandedTripList: [String : Date]!
     private var travelAccessVehicleId = ""
@@ -92,6 +93,9 @@ public class KTCacheManager: NSObject {
         if let data = loadCachedData(){
             self.data = data
         }
+        if let codableData = try? loadCodableData(){
+            self.codableData = codableData
+        }
         
         clearLocationsIfNeeded(data: self.data)
         if size > 500000{
@@ -117,6 +121,21 @@ public class KTCacheManager: NSObject {
         print(dataPath)
     }
     
+    func loadCodableData() throws -> [String: Codable]! {
+        let dataPath = cacheDirectory().appending("/codable" + cacheDataFilename())
+        var theData = [String: Codable]()
+        
+        let data = try Data(contentsOf: URL(fileURLWithPath: dataPath))
+        let decodedData = try JSONDecoder().decode([String: Data].self, from: data)
+        for (key, value) in decodedData{
+            if let theClass = NSClassFromString(key) as? Codable.Type{
+                let theValue = try JSONDecoder().decode(theClass, from: value)
+                theData[key] = theValue
+            }
+        }
+        return theData
+    }
+    
     func loadCachedData() -> [String: Any]!{
         let dataPath = cacheDirectory().appending("/" + cacheDataFilename())
         if let data = try? Data(contentsOf: URL(fileURLWithPath: dataPath)){
@@ -131,7 +150,7 @@ public class KTCacheManager: NSObject {
     
     public func lastUser() -> KTUser! {
         let classname = NSStringFromClass(KTUser.self)
-        if let user = data[classname] as? KTUser{
+        if let user = codableData[classname] as? KTUser{
             return user
         }
         return nil
@@ -356,7 +375,8 @@ public class KTCacheManager: NSObject {
     
     public func cache(user: KTUser) {
         let classname = NSStringFromClass(KTUser.self)
-        data[classname] = user
+//        data[classname] = user
+        codableData[classname] = user
         autoSave()
     }
     
@@ -685,6 +705,18 @@ public class KTCacheManager: NSObject {
         let data = FastCoder.data(withRootObject: self.data)
         let path = cacheDirectory().appending("/" + cacheDataFilename())
         try? data?.write(to: URL(fileURLWithPath: path))
+        
+        let codablePath = cacheDirectory().appending("/codable" + cacheDataFilename())
+        var codableDataa = [String: Data]()
+        for (key, value) in codableData{
+            let data = try? JSONEncoder().encode(value)
+            codableDataa[key] = data
+        }
+        let finalCodableData = try? JSONEncoder().encode(codableDataa)
+        try? finalCodableData?.write(to: URL(fileURLWithPath: codablePath))
+        
+//        let theClass = NSClassFromString(key) as! Codable.Type
+        
     }
     
     @objc func autosaveAddress() {
@@ -814,7 +846,10 @@ public class KTCacheManager: NSObject {
         let dataPath = cacheDirectory().appending("/" + cacheDataFilename())
         let addressPath = cacheDirectory().appending("/" + cacheAddressDataFilename())
         let activityPath = cacheDirectory().appending("/" + cacheActivitiesDataFilename())
+        let codableDataPath = cacheDirectory().appending("/codable" + cacheDataFilename())
+        
         try? FileManager.default.removeItem(atPath: dataPath)
+        try? FileManager.default.removeItem(atPath: codableDataPath)
         try? FileManager.default.removeItem(atPath: addressPath)
         try? FileManager.default.removeItem(atPath: activityPath)
         try? FileManager.default.removeItem(atPath: tripPath())

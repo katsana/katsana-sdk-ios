@@ -38,7 +38,7 @@ class MockCache: KTCacheManager{
     
     
     func loadCachedUser() -> KTUser!{
-        if let data = loadCachedData(){
+        if let data = try? loadCodableData(){
             if let user = data[NSStringFromClass(KTUser.self)] as? KTUser{
                 return user
             }

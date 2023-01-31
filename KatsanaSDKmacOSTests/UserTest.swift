@@ -77,7 +77,10 @@ final class UserTest: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Request user, user cached properly")
         requestUserWithSuccess(api: sut) { user in
-            XCTAssertEqual(user.email, cache.loadCachedUser().email)
+            let cachedUser = cache.loadCachedUser()
+            XCTAssertNotNil(cachedUser)
+            XCTAssertEqual(user.email, cachedUser!.email)
+            XCTAssertEqual(user.createdAt, cachedUser!.createdAt)
             cache.clearCache()
             expectation.fulfill()
         }
@@ -94,7 +97,7 @@ final class UserTest: XCTestCase {
     }
     
     func requestUserWithSuccess(api: KatsanaAPI, completion: @escaping (KTUser) -> Void){
-        MockService.mockResponse(path: "profile", expectedResponse: ["email": "test@yahoo.com"])
+        MockService.mockResponse(path: "profile", expectedResponse: ["email": "test@yahoo.com", "userId": "1", "created_at": "2019-11-05 04:47:52"])
         api.requestUser { user in
             completion(user)
         } failure: { error in
