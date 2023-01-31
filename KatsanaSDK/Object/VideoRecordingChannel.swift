@@ -7,7 +7,14 @@
 //
 
 
-open class VideoRecordingChannel: NSObject {
+open class VideoRecordingChannel: Codable {
+    enum CodingKeys: CodingKey {
+        case identifier
+        case name
+        case isOn
+        case playbacks
+    }
+    
     open var identifier: String!
     open var name: String!
     open var isOn: Bool = false

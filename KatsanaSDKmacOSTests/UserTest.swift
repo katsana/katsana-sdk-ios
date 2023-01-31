@@ -14,6 +14,7 @@ import Siesta
 final class UserTest: XCTestCase {
     var service: Service!
     var cache: MockCache!
+    static var tempUser: KTUser!
     
     override class func setUp() {
         UMKMockURLProtocol.enable()
@@ -23,20 +24,9 @@ final class UserTest: XCTestCase {
     override class func tearDown() {
         UMKMockURLProtocol.setVerificationEnabled(false)
         UMKMockURLProtocol.disable()
+        UserTest.tempUser = nil
     }
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-    }
-
-    override func tearDownWithError() throws {
-        
-//        cache?.clearCache()
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-    
-    
     override func setUp() {
         service = MockService.service()
     }
@@ -54,7 +44,7 @@ final class UserTest: XCTestCase {
         let sut = makeSUT(cache: MockCache())
         let expectation = XCTestExpectation(description: "Current user is set")
         requestUserWithSuccess(api: sut) { user in
-            XCTAssertEqual(user, sut.currentUser)
+            XCTAssertEqual(user.email, sut.currentUser.email)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -91,6 +81,7 @@ final class UserTest: XCTestCase {
     func makeSUT(cache: MockCache) -> KatsanaAPI{
         let api = KatsanaAPI(cache: cache)
         api.API = service
+        api.authToken = "testToken"
         api.configure()
         api.setupTransformer()
         return api
@@ -98,7 +89,15 @@ final class UserTest: XCTestCase {
     
     func requestUserWithSuccess(api: KatsanaAPI, completion: @escaping (KTUser) -> Void){
         MockService.mockResponse(path: "profile", expectedResponse: ["email": "test@yahoo.com", "userId": "1", "created_at": "2019-11-05 04:47:52"])
+        
+        //Using MockService have small delay, so if there already data, we just return temp vehicles
+//        if let user = UserTest.tempUser{
+//            completion(user)
+//            return
+//        }
+        
         api.requestUser { user in
+//            UserTest.tempUser = user
             completion(user)
         } failure: { error in
             XCTFail(error?.userMessage ?? "Error")

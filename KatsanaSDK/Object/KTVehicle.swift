@@ -6,10 +6,39 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-import FastCoding
-
-@objcMembers
-open class KTVehicle: NSObject {
+open class KTVehicle: Codable {
+    
+    enum CodingKeys: CodingKey{
+        case userId
+        case vehicleId
+        case vehicleNumber
+        case vehicleDescription
+        case imei
+        case mode
+        case todayMaxSpeed
+        case odometer
+        case subscriptionEnd
+        case websocketSupported
+        case timezone
+        case imageURL
+        case thumbImageURL
+        case current
+        case driver
+        case fuelLitre
+        case fuelPercentage
+        case fuelCapacity
+        case fuelStatus
+        case temperatureValue
+        case temperatureStatus
+        case videoRecording
+        case requestVideoRecordingDate
+        case fleetIds
+        case model
+        case insuredBy
+        case insuredExpiry
+        case manufacturer
+    }
+    
     static let defaultImagePath = "default.marker.jpg"
     static var handledDefaultImage = false
     static var defaultImage: KMImage!
@@ -99,10 +128,6 @@ open class KTVehicle: NSObject {
     private var thumbImageBlocks = [(image: KMImage) -> Void]()
     private var isLoadingImage = false
     private var isLoadingThumbImage = false
-    
-    override open class func fastCodingKeys() -> [Any]? {
-        return ["userId", "vehicleId", "vehicleDescription", "vehicleNumber", "imei", "mode", "imageURL", "thumbImageURL", "subscriptionEnd", "websocketSupported", "extraData", "timezone", "insuredExpiry", "insuredBy", "model", "manufacturer", "earliestTravelDate", "fleetIds", "driver", "videoRecording", "requestVideoRecordingDate"]
-    }
     
     ///Reload data given new vehicle data
     open func reload(with vehicle: KTVehicle) {
@@ -355,4 +380,10 @@ open class KTVehicle: NSObject {
         return KTVehicle.dateFormatter.date(from: string)
     }
     
+}
+
+extension KTVehicle: Equatable{
+    public static func == (lhs: KTVehicle, rhs: KTVehicle) -> Bool {
+        return lhs.imei == rhs.imei
+    }
 }

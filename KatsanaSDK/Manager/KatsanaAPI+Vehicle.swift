@@ -81,7 +81,7 @@ extension KatsanaAPI {
     ///
     /// - parameter completion: completion
     public func requestAllVehicles(options:[String]! = nil, completion: @escaping (_ vehicles: [KTVehicle]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
-        guard self.currentUser != nil else {
+        guard authToken != nil else {
             failure(nil)
             return
         }
@@ -112,7 +112,7 @@ extension KatsanaAPI {
             
             self.vehicles = vehicles
             if let vehicles = vehicles {
-                self.cache?.cache(vehicles: vehicles)
+                self.cache?.cache(vehicles: vehicles, userId: self.currentUser?.userId ?? "0")
                 
                 let vehicleIds = vehicles.map({$0.vehicleId!})
                 let combined = vehicleIds.joined(separator: ", ")

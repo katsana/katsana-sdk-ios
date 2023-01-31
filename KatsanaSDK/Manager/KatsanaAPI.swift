@@ -59,11 +59,11 @@ open class KatsanaAPI {
     internal(set) public var lastLogSize: String!
     
     internal(set) public var tokenRefreshDate: Date!
-    @objc internal(set) dynamic public var currentUser: KTUser!
-    @objc public        dynamic        var currentVehicle: KTVehicle!{
+    internal(set) public var currentUser: KTUser!
+    internal(set) public var currentVehicle: KTVehicle!{
         willSet{
             if let newValue = newValue{
-                if let currentVehicle = currentVehicle, newValue != currentVehicle{
+                if let currentVehicle = currentVehicle, newValue.imei != currentVehicle.imei{
                     log.info("Current selected vehicle \(String(describing: newValue.vehicleId))")
                     lastVehicleIds = [newValue.vehicleId]
                 }else if currentVehicle == nil{
@@ -75,7 +75,7 @@ open class KatsanaAPI {
             }
         }
     }
-    @objc public dynamic var selectedVehicles: [KTVehicle]!{
+    public var selectedVehicles: [KTVehicle]!{
         willSet{
             if let newValue = newValue{
                 if let selectedVehicles = selectedVehicles, newValue != selectedVehicles{
@@ -88,7 +88,7 @@ open class KatsanaAPI {
             }
         }
     }
-    @objc internal(set) dynamic public var vehicles: [KTVehicle]!{
+    internal(set) public var vehicles: [KTVehicle]!{
         willSet{
             if vehicles != nil {
 //                print(vehicles)

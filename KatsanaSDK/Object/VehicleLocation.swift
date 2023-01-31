@@ -8,8 +8,24 @@
 
 import CoreLocation
 
-@objcMembers
-open class VehicleLocation: NSObject {
+open class VehicleLocation: NSObject, Codable{
+    enum CodingKeys: CodingKey{
+        case latitude
+        case longitude
+        case speed
+        case altitude
+        case course
+        case magneticHeading
+        case magneticHeadingAccuracy
+        case distance
+        case state
+        case voltage
+        case gsm
+        case ignitionState
+        case verticalAccuracy
+        case horizontalAccuracy
+    }
+    
     open var latitude: Double
     open var longitude: Double
     open var speed: Float = 0

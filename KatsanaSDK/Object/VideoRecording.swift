@@ -7,7 +7,15 @@
 //
 
 
-open class VideoRecording: NSObject {
+open class VideoRecording: Codable {
+    enum CodingKeys: CodingKey {
+        case id
+        case horizontalRatio
+        case verticalRatio
+        case channels
+        case liveStreamURL
+    }
+    
     open var id: String!
     open var horizontalRatio: Int!
     open var verticalRatio: Int!

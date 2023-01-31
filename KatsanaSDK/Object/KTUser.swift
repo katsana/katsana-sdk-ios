@@ -12,8 +12,7 @@ public enum Gender : String, Codable{
     case female
 }
 
-@objcMembers
-open class KTUser: NSObject, Codable {
+open class KTUser: Codable {
     static let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -138,17 +137,9 @@ open class KTUser: NSObject, Codable {
     private var isLoadingImage = false
     private var isLoadingThumbImage = false
     
-    ///Implemented to satisfy FastCoder and set default value
-    override init() {
-        email = ""
-    }
     
     init(email: String) {
         self.email = email
-    }
-    
-    override open class func fastCodingKeys() -> [Any]? {
-        return ["userId", "email", "address", "phoneHome", "phoneMobile", "fullname", "status", "createdAt", "imageURL", "thumbImageURL", "postcode", "phoneMobileCountryCode", "state", "country", "birthdayText", "genderText", "fleets"]
     }
     
     open func jsonPatch() -> [String: Any] {

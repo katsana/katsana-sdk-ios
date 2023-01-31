@@ -39,8 +39,17 @@ class MockCache: KTCacheManager{
     
     func loadCachedUser() -> KTUser!{
         if let data = try? loadCodableData(){
-            if let user = data[NSStringFromClass(KTUser.self)] as? KTUser{
+            if let user = data[NSStringFromClass(KTUser.self)]?["user"] as? KTUser{
                 return user
+            }
+        }
+        return nil
+    }
+    
+    func loadCachedVehicles() -> [KTVehicle]!{
+        if let data = try? loadCodableData(){
+            if let vehicles = data[NSStringFromClass(KTVehicle.self)]?["vehicles"] as? [KTVehicle]{
+                return vehicles
             }
         }
         return nil

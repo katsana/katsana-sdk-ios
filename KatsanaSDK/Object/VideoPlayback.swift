@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class VideoPlayback: NSObject {
+open class VideoPlayback: Codable {
     open var id: String!
     open var channelIdentifier: String!
     open var userId: String!
@@ -33,8 +33,7 @@ open class VideoPlayback: NSObject {
     }
 }
 
-@objcMembers
-open class DayVideoPlayback: NSObject {
+open class DayVideoPlayback: Codable {
     open var date: Date!
     open var playbacks = [VideoPlayback]()
     open var totalDuration: CGFloat = 0
