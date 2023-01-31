@@ -6,15 +6,10 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-@objcMembers
-open class KTInsurer: NSObject {
+open class KTInsurer {
     public var country: String
     public var name: String
     public var partner = false
-    
-    override open class func fastCodingKeys() -> [Any]? {
-        return ["country", "name", "partner"]
-    }
     
     init(name: String, country: String, partner: Bool = false) {
         self.country = country

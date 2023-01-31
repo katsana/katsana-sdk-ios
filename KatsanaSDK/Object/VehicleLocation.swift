@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-open class VehicleLocation: NSObject, Codable{
+open class VehicleLocation: Codable{
     enum CodingKeys: CodingKey{
         case latitude
         case longitude
@@ -50,12 +50,8 @@ open class VehicleLocation: NSObject, Codable{
     ///Extra data that user can save to vehicle location. Should have only value with codable support.
     open var extraData = [String: Any]()
     
-    override open class func fastCodingKeys() -> [Any]? {
-        return ["latitude", "longitude", "speed", "altitude", "course", "distance", "verticalAccuracy", "horizontalAccuracy", "state", "voltage", "gsm", "ignitionState", "trackedAt", "extraData", "magneticHeading", "magneticHeadingAccuracy"]
-    }
-    
     ///Implemented to satisfy FastCoder and set default value
-    override init() {
+    init() {
         self.latitude = 0
         self.longitude = 0
     }

@@ -8,7 +8,7 @@
 
 
 /// Class to convert Swifty JSON to API object
-class ObjectJSONTransformer: NSObject {
+class ObjectJSONTransformer {
     class func UserObject(json : JSON) -> KTUser {
         let email = json["email"].stringValue
         let user = KTUser(email: email)

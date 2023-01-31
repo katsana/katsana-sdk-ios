@@ -6,11 +6,20 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-import FastCoding
-
 ///The class contains information about vehicle travel for particular day.
-@objcMembers
-open class Travel: NSObject, NSCopying {
+open class Travel: NSCopying, Codable, Equatable {
+    enum CodingKeys: CodingKey {
+        case vehicleId
+        case maxSpeed
+        case distance
+        case idleDuration
+        case trips
+        case date
+        case lastUpdate
+        case violationCount
+        case tripCount
+    }
+    
     open var vehicleId : String!
     open var maxSpeed : Float = 0
     open var distance : Double = 0
@@ -86,10 +95,6 @@ open class Travel: NSObject, NSCopying {
     open var tripCount : Int = 0
 
     open var needLoadTripHistory = false
-    
-    override open class func fastCodingKeys() -> [Any]? {
-        return ["trips", "maxSpeed", "distance", "violationCount", "date", "idleDuration", "duration", "tripCount", "needLoadTripHistory", "vehicleId"]
-    }
     
     // MARK: Helper
     
@@ -168,9 +173,9 @@ open class Travel: NSObject, NSCopying {
     
     // MARK: Description
     
-    open override var description: String{
-        return String(format: "%@, trips:%@, maxSpeed:%.1f, date:%@", super.description, trips.description, maxSpeed, date?.description ?? "")
-    }
+//    open override var description: String{
+//        return String(format: "%@, trips:%@, maxSpeed:%.1f, date:%@", super.description, trips.description, maxSpeed, date?.description ?? "")
+//    }
     
     open class func separateTripsIntoTravels(trips : [KTTrip]) -> [Travel] {
         var travels = [Travel]()

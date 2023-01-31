@@ -55,6 +55,16 @@ class MockCache: KTCacheManager{
         return nil
     }
     
+    func loadCachedTrips() -> [Travel]!{
+        if let data = try? loadCodableData(){
+            if let theData = data[NSStringFromClass(Travel.self)]{
+                let trips = theData["travels"] as? [Travel]
+                return trips
+            }
+        }
+        return nil
+    }
+    
     // MARK: Save
     
     override func autoSave(forceSave: Bool = false) {

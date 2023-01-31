@@ -69,7 +69,7 @@ extension KatsanaAPI {
                         }
                     }
                     if duplicateHistoryNeedRemove != nil{
-                        travels.remove(at: travels.index(of: duplicateHistoryNeedRemove)!)
+                        travels.remove(at: travels.firstIndex(of: duplicateHistoryNeedRemove)!)
                     }
                     
                     
@@ -249,23 +249,12 @@ extension KatsanaAPI {
     ///Request trip summaries between dates.
     public func requestTripSummaries(vehicleId: String, options: [String]! = nil, fromDate: Date, toDate: Date, completion: @escaping (_ summaries:[KTTrip]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let datesWithHistory = requiredRangeToRequestTravelSummary(fromDate: fromDate, toDate: toDate, vehicleId: vehicleId)
-        var travels = datesWithHistory.cachedHistories
-        let newFromDate = datesWithHistory.fromDate.toStringWithYearMonthDay()
-        let newToDate = datesWithHistory.toDate.toStringWithYearMonthDay()
-        
-        var trips = [KTTrip]()
-        var date = fromDate
-        
 
         let path = "vehicles/" + vehicleId + "/travels/summaries/duration"
         var resource = API.resource(path)
 
         var timezone: NSTimeZone!
-        var vehicle = vehicleWith(vehicleId: vehicleId)
-        if vehicle == nil {
-            vehicle = currentVehicle
-        }
-        if let vehicle = vehicle, let timezoneText = vehicle.timezone{
+        if let vehicle = vehicleWith(vehicleId: vehicleId), let timezoneText = vehicle.timezone{
             timezone = NSTimeZone(name: timezoneText)
         }
         
@@ -285,6 +274,7 @@ extension KatsanaAPI {
             }else{
                 let params = "?start=\(fromDate.toStringWithYearMonthDayAndTime(timezone: timezone))&end=\(toDate.toStringWithYearMonthDayAndTime(timezone: timezone))"
                 resource = API.resource(path).relative(params)
+                print(resource.url)
             }
             
             let request = resource.loadIfNeeded()
@@ -333,19 +323,7 @@ extension KatsanaAPI {
                 handleResource()
             }
         }
-        
-        if vehicle == nil{
-            requestVehicle(vehicleId: vehicleId, completion: { (vehicle) in
-                if let vehicle = vehicle, let timezoneText = vehicle.timezone{
-                    timezone = NSTimeZone(name: timezoneText)
-                }
-                requestSummaries()
-            }) { (err) in
-                failure(err)
-            }
-        }else{
-            requestSummaries()
-        }
+        requestSummaries()
     }
     
     ///Get latest cached travel locations from today to previous day count

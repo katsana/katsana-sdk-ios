@@ -6,8 +6,7 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
-@objcMembers
-open class LiveShare: NSObject {
+open class LiveShare {
     open var deviceId : String!
     open var userId : String!
     open var token : String!
@@ -19,10 +18,6 @@ open class LiveShare: NSObject {
 //    open var updatedAt : Date!
     open var createdAt : Date!
     open var shareId : String!
-    
-    override open class func fastCodingKeys() -> [Any]! {
-        return ["deviceId", "userId", "token", "type", "shareDescription", "durationText", "startAt", "endAt", "updatedAt", "createdAt"]
-    }
     
     let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()

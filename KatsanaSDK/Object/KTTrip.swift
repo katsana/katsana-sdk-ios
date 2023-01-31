@@ -5,10 +5,24 @@
 //  Created by Wan Ahmad Lutfi on 26/01/2017.
 //  Copyright © 2017 pixelated. All rights reserved.
 //
-import FastCoding
 
-@objcMembers
-open class KTTrip: NSObject, NSCopying {
+open class KTTrip: NSCopying, Codable {
+    enum CodingKeys: CodingKey {
+        case id
+        case start
+        case end
+        case distance
+        case duration
+        case maxSpeed
+        case averageSpeed
+        case idleDuration
+        case score
+        case date
+        case publicTransit
+        case idles
+        case locations
+    }
+    
     open var id : String!
     ///Alternate id set manually if required. Default to nil
     open var alternateId: String!
@@ -24,7 +38,7 @@ open class KTTrip: NSObject, NSCopying {
     open var publicTransit = false
     
     open var idles = [VehicleLocation]()
-    @objc dynamic open var locations = [VehicleLocation]()
+    open var locations = [VehicleLocation]()
     open var violations = [VehicleActivity]()
     
     ///Next trip and prev trip automatically set when trips are set in Travel class
@@ -33,10 +47,6 @@ open class KTTrip: NSObject, NSCopying {
     
     //Extra data that user can set to trip
     open var extraData = [String: Any]()
-    
-    override open class func fastCodingKeys() -> [Any]? {
-        return ["start", "end", "distance", "duration", "maxSpeed", "averageSpeed", "idleDuration", "locations", "violations", "idles", "score", "extraData", "date", "id", "publicTransit", "alternateId"]
-    }
     
     public func copy(with zone: NSZone? = nil) -> Any {
         let trip = KTTrip()
@@ -61,11 +71,6 @@ open class KTTrip: NSObject, NSCopying {
     }
     
     // MARK: Logic
-    
-    ///Because locations size is high, need to load only when needed
-//    func loadLocations(completion: (_ locations: [VehicleLocation])->Void) {
-//        <#function body#>
-//    }
     
     open func durationToNextTrip() -> Float {
         if let nextTrip = nextTrip {

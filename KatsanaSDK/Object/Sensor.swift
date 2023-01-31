@@ -7,14 +7,13 @@
 //
 
 
-@objc public enum SensorType: Int{
+public enum SensorType{
     case arm
     case door
     case other
 }
 
-@objcMembers
-open class Sensor: NSObject {
+open class Sensor {
     open var input: Int = -1
     open var name = ""
     open var sensorType: SensorType = .other

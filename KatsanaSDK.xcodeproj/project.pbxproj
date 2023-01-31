@@ -24,7 +24,8 @@
 		C1051199298790B5006D9CB7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119729879051006D9CB7 /* Logger.swift */; };
 		C105119B29879167006D9CB7 /* MockCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119A29879167006D9CB7 /* MockCache.swift */; };
 		C105119D2988CB97006D9CB7 /* VehicleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119C2988CB97006D9CB7 /* VehicleTest.swift */; };
-		C105119F2988E7AC006D9CB7 /* TripTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119E2988E7AC006D9CB7 /* TripTest.swift */; };
+		C105119F2988E7AC006D9CB7 /* TripSummaryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */; };
+		C10511A12988FF4C006D9CB7 /* TripTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10511A02988FF4C006D9CB7 /* TripTest.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C164EAF329236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8290245A99F9008B0B1E /* KatsanaAPI+Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */; };
@@ -169,7 +170,8 @@
 		C105119729879051006D9CB7 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		C105119A29879167006D9CB7 /* MockCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCache.swift; sourceTree = "<group>"; };
 		C105119C2988CB97006D9CB7 /* VehicleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTest.swift; sourceTree = "<group>"; };
-		C105119E2988E7AC006D9CB7 /* TripTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTest.swift; sourceTree = "<group>"; };
+		C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryTest.swift; sourceTree = "<group>"; };
+		C10511A02988FF4C006D9CB7 /* TripTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTest.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Fleet.swift"; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
@@ -324,7 +326,8 @@
 				C1051185298778D1006D9CB7 /* KatsanaSDKmacOSTests.swift */,
 				C105118F29877ACC006D9CB7 /* UserTest.swift */,
 				C105119C2988CB97006D9CB7 /* VehicleTest.swift */,
-				C105119E2988E7AC006D9CB7 /* TripTest.swift */,
+				C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */,
+				C10511A02988FF4C006D9CB7 /* TripTest.swift */,
 			);
 			path = KatsanaSDKmacOSTests;
 			sourceTree = "<group>";
@@ -793,11 +796,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C105119F2988E7AC006D9CB7 /* TripTest.swift in Sources */,
+				C105119F2988E7AC006D9CB7 /* TripSummaryTest.swift in Sources */,
 				C105119B29879167006D9CB7 /* MockCache.swift in Sources */,
 				C105119D2988CB97006D9CB7 /* VehicleTest.swift in Sources */,
 				C105119029877ACC006D9CB7 /* UserTest.swift in Sources */,
 				C1051186298778D1006D9CB7 /* KatsanaSDKmacOSTests.swift in Sources */,
+				C10511A12988FF4C006D9CB7 /* TripTest.swift in Sources */,
 				C105119329877BE3006D9CB7 /* MockService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

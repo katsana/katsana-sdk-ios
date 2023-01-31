@@ -7,12 +7,12 @@
 //
 
 
-@objc public enum DistanceFormat : Int {
+public enum DistanceFormat {
     case kilometer
     case miles
 }
 
-@objc public enum DisplayFormat : Int {
+public enum DisplayFormat {
     case short
     case full
     case hourShort

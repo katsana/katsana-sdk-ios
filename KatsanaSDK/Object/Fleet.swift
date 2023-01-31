@@ -7,13 +7,9 @@
 //
 
 
-@objcMembers
-open class Fleet: NSObject, Codable {
+open class Fleet: Codable {
     open var fleetId = 0
     open var name = ""
     open var deviceCount = 0
     
-    override open class func fastCodingKeys() -> [Any]? {
-        return ["fleetId", "name", "deviceCount"]
-    }
 }

@@ -20,7 +20,7 @@ class MockService{
         return Service(baseURL: "https://api.katsana.com/", useDefaultTransformers: true, networking: testConfig)
     }
     
-    class func mockResponse(path: String, expectedResponse: [String: Any]){
+    class func mockResponse(path: String, expectedResponse: Any){
         UMKMockURLProtocol.expectMockHTTPGetRequest(with: URL(string: "https://api.katsana.com/\(path)")!, responseStatusCode: 200, responseJSON: expectedResponse)
     }
 }

@@ -6,8 +6,6 @@
 //  Copyright © 2022 pixelated. All rights reserved.
 //
 
-import Foundation
-
 open class VideoPlayback: Codable {
     open var id: String!
     open var channelIdentifier: String!
