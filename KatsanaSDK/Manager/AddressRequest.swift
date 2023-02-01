@@ -73,21 +73,20 @@ class AddressRequest {
         let longitude = String(format: "%.6f", location.longitude)
         Just.get(
             path,
-            params: ["latitude" : latitude, "longitude" : longitude]
-        ) { r in
-            if r.ok {
-                let content = r.content
-                let json = JSON(data: content!)
-                if json != JSON.null{
-                    let address = ObjectJSONTransformer.AddressObject(json: json)
-                    DispatchQueue.main.sync{completion(address)}
+            params: ["latitude" : latitude, "longitude" : longitude], asyncCompletionHandler:  { r in
+                if r.ok {
+                    let content = r.content
+                    let json = JSON(data: content!)
+                    if json != JSON.null{
+                        let address = ObjectJSONTransformer.AddressObject(json: json)
+                        DispatchQueue.main.sync{completion(address)}
+                    }else{
+                        DispatchQueue.main.sync{failure(nil)}
+                    }
                 }else{
-                    DispatchQueue.main.sync{failure(nil)}
+                    DispatchQueue.main.sync{failure(r.APIError())}
                 }
-            }else{
-                DispatchQueue.main.sync{failure(r.APIError())}
-            }
-        }
+            })
     }
     
     func appleGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (KTAddress) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {

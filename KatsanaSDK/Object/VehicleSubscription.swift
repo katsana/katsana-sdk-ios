@@ -7,7 +7,7 @@
 //
 
 
-@objc public enum VehicleSubscriptionStatus: Int{
+public enum VehicleSubscriptionStatus: Int{
     case active
     case expiring
     case expired

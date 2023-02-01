@@ -111,7 +111,7 @@ public extension UIImage {
 //    import Cocoa
     
     public extension NSImage {
-        public convenience init?(color: NSColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        convenience init?(color: NSColor, size: CGSize = CGSize(width: 1, height: 1)) {
             let image = NSImage(size: size)
             image.lockFocus()
             color.drawSwatch(in: NSMakeRect(0, 0, size.width, size.height))

@@ -107,7 +107,7 @@ open class KatsanaAPI {
             }
         }
     }
-    @objc private(set) dynamic public var lastVehicleIds: [String]!{
+    private(set) dynamic public var lastVehicleIds: [String]!{
         set{
             UserDefaults.standard.set(newValue, forKey: "lastVehicleIds")
         }
@@ -118,7 +118,7 @@ open class KatsanaAPI {
             return nil
         }
     }
-    @objc private(set) dynamic public var lastVehicleImeis: [String]!{
+    private(set) dynamic public var lastVehicleImeis: [String]!{
         set{
             UserDefaults.standard.set(newValue, forKey: "lastVehicleImeis")
         }

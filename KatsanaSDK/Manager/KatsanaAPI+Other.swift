@@ -19,16 +19,15 @@ extension KatsanaAPI{
         Just.post(
             path,
             headers: ["Authorization" : ("Bearer " + self.authToken)],
-            files: ["file": .data("avatar.png", data, "image/jpeg")]
-        ) { r in
-//            let strData = NSString(data: r.content!, encoding: String.Encoding.utf8.rawValue)
-            if r.ok {
-                DispatchQueue.main.sync{completion(true, nil)}
-                
-            }else{
-                DispatchQueue.main.sync{completion(false, r.APIError())}
-            }
-        }
+            files: ["file": .data("avatar.png", data, "image/jpeg")], asyncCompletionHandler:  { r in
+                //            let strData = NSString(data: r.content!, encoding: String.Encoding.utf8.rawValue)
+                if r.ok {
+                    DispatchQueue.main.sync{completion(true, nil)}
+                    
+                }else{
+                    DispatchQueue.main.sync{completion(false, r.APIError())}
+                }
+            })
     }
     
     /// Request custom response from other application using current KatsanaAPI endpoint.
@@ -59,14 +58,13 @@ extension KatsanaAPI{
         Just.get(
             fullPath,
             params:  parameters,
-            headers: defaultHeaders
-        ) { r in
-            let json = JSON(data: r.content!)
-            let dicto = json.dictionaryObject
-            DispatchQueue.main.sync {
-                completion(dicto, r.APIError())
-            }
-        }
+            headers: defaultHeaders, asyncCompletionHandler:  { r in
+                let json = JSON(data: r.content!)
+                let dicto = json.dictionaryObject
+                DispatchQueue.main.sync {
+                    completion(dicto, r.APIError())
+                }
+            })
     }
     
     public func requestUpgradeKatsanaPackage(data: [String: String], completion: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void = {_  in }) -> Void {

@@ -478,7 +478,7 @@ public class KTCacheManager: NSObject {
         var theTravels : [Travel]!
         let travelDicto = codableData[classname]
         
-        if let travelDicto = travelDicto as? [String: Codable]{
+        if let travelDicto = travelDicto{
             if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel] {
                 theTravels = travels
                 for (index, theTravel) in travels.enumerated() {
@@ -815,7 +815,7 @@ public class KTCacheManager: NSObject {
     }
     
     func clearLocationsIfNeeded(data: [String: [String: Codable]]){
-        if let travelDicto = data[NSStringFromClass(Travel.self)] as? [String: Any]{
+        if let travelDicto = data[NSStringFromClass(Travel.self)]{
             if let travels = travelDicto["travels"] as? [Travel] {
                 for travel in travels{
                     for trip in travel.trips{

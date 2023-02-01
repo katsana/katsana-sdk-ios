@@ -144,16 +144,15 @@ extension KatsanaAPI {
         Just.post(
             path,
             data: ["password" : password],
-            headers: ["Authorization" : ("Bearer " + self.authToken)]
-        ) { r in
-            if r.ok{
-                let json = JSON(data: r.content!)
-                let success = json["success"].boolValue
-                DispatchQueue.main.sync{completion(success)}
-            }else{
-                DispatchQueue.main.sync{completion(false)}
-            }
-        }
+            headers: ["Authorization" : ("Bearer " + self.authToken)], asyncCompletionHandler:  { r in
+                if r.ok{
+                    let json = JSON(data: r.content!)
+                    let success = json["success"].boolValue
+                    DispatchQueue.main.sync{completion(success)}
+                }else{
+                    DispatchQueue.main.sync{completion(false)}
+                }
+            })
     }
     
     public func refreshToken(completion: @escaping (_ success: Bool) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {

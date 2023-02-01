@@ -114,7 +114,6 @@
 		C751054F1D742B5F00F4C341 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751054E1D742B5F00F4C341 /* MapKit.framework */; };
 		C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751055F1D742D0500F4C341 /* UIKit.framework */; };
 		C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75105631D742D8600F4C341 /* CoreLocation.framework */; };
-		C7729D661FCBA869002497DD /* KatsanaAPI+objc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7729D651FCBA869002497DD /* KatsanaAPI+objc.swift */; };
 		C78B22151D75754B002E25C3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
 		C79CA23E1FE220F100A9F8E1 /* Insurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79CA23D1FE220F100A9F8E1 /* Insurer.swift */; };
 		C79CA23F1FE220F100A9F8E1 /* Insurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79CA23D1FE220F100A9F8E1 /* Insurer.swift */; };
@@ -218,7 +217,6 @@
 		C751055D1D742CE100F4C341 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C751055F1D742D0500F4C341 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C75105631D742D8600F4C341 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		C7729D651FCBA869002497DD /* KatsanaAPI+objc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+objc.swift"; sourceTree = "<group>"; };
 		C78B22141D75754B002E25C3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C79CA23D1FE220F100A9F8E1 /* Insurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insurer.swift; sourceTree = "<group>"; };
 		C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -349,7 +347,6 @@
 				C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */,
 				C719175B1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift */,
 				C719175C1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift */,
-				C7729D651FCBA869002497DD /* KatsanaAPI+objc.swift */,
 				C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */,
 				C719175D1E48703B0041BC18 /* KatsanaAPI.swift */,
 				C719175E1E48703B0041BC18 /* KatsanaFormatter.swift */,
@@ -744,7 +741,6 @@
 				C719179C1E48703B0041BC18 /* Travel.swift in Sources */,
 				C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */,
 				C17220C324628CA700A128B7 /* Fleet.swift in Sources */,
-				C7729D661FCBA869002497DD /* KatsanaAPI+objc.swift in Sources */,
 				C71917D11E4884410041BC18 /* Just.swift in Sources */,
 				C1F540B025256AB700525603 /* KTAddress.swift in Sources */,
 				C105119829879051006D9CB7 /* Logger.swift in Sources */,
