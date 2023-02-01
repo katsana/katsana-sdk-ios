@@ -10,14 +10,21 @@ import CoreLocation
 
 /// Class to request address from server. We are not using Siesta API because Siesta cache response in memory. Address may be called multiple times and we need to cache in KMKTCacheManager to save it in hdd
 class AddressRequest {
-
-   class func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (KTAddress?, Error?) -> Void) -> Void {
-        KTCacheManager.shared.address(for: location) { (address) in
+    let api: KatsanaAPI
+    let cacheManager: KTCacheManager
+    
+    init(api: KatsanaAPI, cacheManager: KTCacheManager) {
+        self.api = api
+        self.cacheManager = cacheManager
+    }
+        
+   func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (KTAddress?, Error?) -> Void) -> Void {
+        cacheManager.address(for: location) { (address) in
             if address != nil{
                 completion(address, nil)
             }else{
                 self.appleGeoAddress(from: location, completion: { (address) in
-                    KTCacheManager.shared.cache(address: address)
+                    self.cacheManager.cache(address: address)
                     completion(address, nil)
                     
                     let optimizedAddress = address.optimizedAddress()
@@ -28,22 +35,22 @@ class AddressRequest {
                             useAppleAddress = false
                         }
                     }
-                    if (optimizedAddress.count) <= 10 || !useAppleAddress, let handler = KatsanaAPI.shared.addressHandler{
+                    if (optimizedAddress.count) <= 10 || !useAppleAddress, let handler = self.api.addressHandler{
                         handler(location, {googleAddress in
                             if let googleAddress = googleAddress{
-                                KTCacheManager.shared.cache(address: googleAddress)
+                                self.cacheManager.cache(address: googleAddress)
                                 completion(googleAddress, nil)
                             }else{
                                 completion(address, nil)
                             }
                         })
                     }else{
-                        KTCacheManager.shared.cache(address: address)
+                        self.cacheManager.cache(address: address)
                         completion(address, nil)
                     }
                 
                 }, failure: { (error) in
-                    if let handler = KatsanaAPI.shared.addressHandler{
+                    if let handler = self.api.addressHandler{
                         handler(location, {address in
                             if let address = address{
                                 completion(address, nil)
@@ -59,8 +66,8 @@ class AddressRequest {
         }
     }
     
-    class func platformGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (KTAddress) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        let path = KatsanaAPI.shared.baseURL().absoluteString + "address/"
+    func platformGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (KTAddress) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+        let path = api.baseURL().absoluteString + "address/"
         let latitude = String(format: "%.6f", location.latitude)
         let longitude = String(format: "%.6f", location.longitude)
         Just.get(
@@ -82,7 +89,7 @@ class AddressRequest {
         }
     }
     
-    class func appleGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (KTAddress) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    func appleGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (KTAddress) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let geocoder = CLGeocoder()
         let clLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
         geocoder.reverseGeocodeLocation(clLocation, completionHandler: { (placemarks, error) in

@@ -26,7 +26,7 @@ extension KatsanaAPI{
             }
         }).onFailure({ (error) in
             failure(error)
-            self.log.error("Error getting vehicle subscriptions, \(error)")
+            self.log?.error("Error getting vehicle subscriptions, \(error)")
         })
         
         if request == nil {
@@ -51,7 +51,7 @@ extension KatsanaAPI{
 //            }
 //        }).onFailure({ (error) in
 //            failure(error)
-//            self.log.error("Error getting vehicle subscription \(id), \(error)")
+//            self.log?.error("Error getting vehicle subscription \(id), \(error)")
 //        })
 //    }
     
@@ -79,7 +79,7 @@ extension KatsanaAPI{
             }
         }).onFailure({ (error) in
             failure(error)
-            self.log.error("Error getting pay subscriptions url, \(error)")
+            self.log?.error("Error getting pay subscriptions url, \(error)")
         })
     }
     
@@ -103,7 +103,7 @@ extension KatsanaAPI{
             completion()
         }).onFailure({ (error) in
             failure(error)
-            self.log.error("Error notify Customer Support to renew terminated subscriptions, \(error)")
+            self.log?.error("Error notify Customer Support to renew terminated subscriptions, \(error)")
         })
     }
     
@@ -121,7 +121,7 @@ extension KatsanaAPI{
 //            }
 //        }).onFailure({ (error) in
 //            failure(error)
-//            self.log.error("Error getting upgrade subscriptions url, \(error)")
+//            self.log?.error("Error getting upgrade subscriptions url, \(error)")
 //        })
 //    }
     

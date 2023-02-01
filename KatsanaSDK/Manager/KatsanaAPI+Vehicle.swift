@@ -23,7 +23,7 @@ extension KatsanaAPI {
         
         guard authToken != nil else {
             failure(nil)
-//            self.log.warning("Auth token is nil")
+//            self.log?.warning("Auth token is nil")
             return
         }
         
@@ -55,7 +55,7 @@ extension KatsanaAPI {
                 }
                 
                 completion(cachedVehicle)
-                self.log.warning("Getting new instance of KTVehicle because vehicle list still not loaded")
+                self.log?.warning("Getting new instance of KTVehicle because vehicle list still not loaded")
             }else{
                 if let vehicle = vehicle{
                     currentVehicle = vehicle
@@ -70,7 +70,7 @@ extension KatsanaAPI {
             handleResource()
         }).onFailure({ (error) in
             failure(error)
-            self.error("Error getting vehicle id \(vehicleId), \(error)", identifier: "errorVehicleId", duration: 60*3)
+            self.log?.error("Error getting vehicle id \(vehicleId), \(error)")
         })
         
         if request == nil { handleResource()}
@@ -116,7 +116,7 @@ extension KatsanaAPI {
                 
                 let vehicleIds = vehicles.map({$0.vehicleId!})
                 let combined = vehicleIds.joined(separator: ", ")
-                self.log.info("Got vehicle id's \(combined)")
+                self.log?.info("Got vehicle id's \(combined)")
             }
             completion(vehicles)
         }
@@ -125,7 +125,7 @@ extension KatsanaAPI {
             handleResource()
         }).onFailure({ (error) in
             failure(error)
-            self.log.error("Error getting all vehicle list \(error)")
+            self.log?.error("Error getting all vehicle list \(error)")
         })
         
         if request == nil {
@@ -145,7 +145,7 @@ extension KatsanaAPI {
             completion(location)
             }).onFailure({ (error) in
                 failure(error)
-                self.log.error("Error getting vehicle location vehicle id \(vehicleId), \(error)")
+                self.log?.error("Error getting vehicle location vehicle id \(vehicleId), \(error)")
             })
         
         if request == nil {
@@ -194,7 +194,7 @@ extension KatsanaAPI {
 
             }else{
                 failure(error)
-                self.log.error("Error checking vehicle availability \(error)")
+                self.log?.error("Error checking vehicle availability \(error)")
             }
         }
     }
@@ -225,7 +225,7 @@ extension KatsanaAPI {
                 }else{
                     failure(error)
                 }
-                self.log.error("Error register vehicle \(String(describing: error.errorDescription))")
+                self.log?.error("Error register vehicle \(String(describing: error.errorDescription))")
         }
     }
     
@@ -239,7 +239,7 @@ extension KatsanaAPI {
             completion(insurers!)
         }).onFailure({ (error) in
             failure(error)
-            self.log.error("Error getting insurers")
+            self.log?.error("Error getting insurers")
         })
         
         if request == nil {
@@ -252,7 +252,7 @@ extension KatsanaAPI {
     
     public func vehicleWith(vehicleId: String) -> KTVehicle! {
         guard (vehicles != nil) else {
-//            self.log.info("No vehicle given vehicle id \(vehicleId)")
+//            self.log?.info("No vehicle given vehicle id \(vehicleId)")
             return nil
         }
         

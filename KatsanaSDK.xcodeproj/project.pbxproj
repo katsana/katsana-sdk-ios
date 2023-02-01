@@ -63,8 +63,6 @@
 		C719177D1E48703B0041BC18 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917531E48703B0041BC18 /* ImageRequest.swift */; };
 		C719177E1E48703B0041BC18 /* KatsanaAPI+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917541E48703B0041BC18 /* KatsanaAPI+Address.swift */; };
 		C719177F1E48703B0041BC18 /* KatsanaAPI+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917541E48703B0041BC18 /* KatsanaAPI+Address.swift */; };
-		C71917801E48703B0041BC18 /* KatsanaAPI+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917551E48703B0041BC18 /* KatsanaAPI+Log.swift */; };
-		C71917811E48703B0041BC18 /* KatsanaAPI+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917551E48703B0041BC18 /* KatsanaAPI+Log.swift */; };
 		C71917821E48703B0041BC18 /* KatsanaAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917561E48703B0041BC18 /* KatsanaAPI+Login.swift */; };
 		C71917831E48703B0041BC18 /* KatsanaAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917561E48703B0041BC18 /* KatsanaAPI+Login.swift */; };
 		C71917841E48703B0041BC18 /* KatsanaAPI+Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917571E48703B0041BC18 /* KatsanaAPI+Other.swift */; };
@@ -196,7 +194,6 @@
 		C71917521E48703B0041BC18 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		C71917531E48703B0041BC18 /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		C71917541E48703B0041BC18 /* KatsanaAPI+Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Address.swift"; sourceTree = "<group>"; };
-		C71917551E48703B0041BC18 /* KatsanaAPI+Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Log.swift"; sourceTree = "<group>"; };
 		C71917561E48703B0041BC18 /* KatsanaAPI+Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Login.swift"; sourceTree = "<group>"; };
 		C71917571E48703B0041BC18 /* KatsanaAPI+Other.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Other.swift"; sourceTree = "<group>"; };
 		C71917581E48703B0041BC18 /* KatsanaAPI+Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Profile.swift"; sourceTree = "<group>"; };
@@ -382,7 +379,6 @@
 				C71917521E48703B0041BC18 /* APIError.swift */,
 				C71917531E48703B0041BC18 /* ImageRequest.swift */,
 				C71917541E48703B0041BC18 /* KatsanaAPI+Address.swift */,
-				C71917551E48703B0041BC18 /* KatsanaAPI+Log.swift */,
 				C71917561E48703B0041BC18 /* KatsanaAPI+Login.swift */,
 				C71917571E48703B0041BC18 /* KatsanaAPI+Other.swift */,
 				C71917581E48703B0041BC18 /* KatsanaAPI+Profile.swift */,
@@ -774,16 +770,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KatsanaSDKmacOSTests/Pods-KatsanaSDKmacOSTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-macOS/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/Siesta-macOS/Siesta.framework",
-				"${BUILT_PRODUCTS_DIR}/XCGLogger-macOS/XCGLogger.framework",
 				"${BUILT_PRODUCTS_DIR}/URLMock/URLMock.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siesta.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URLMock.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -832,7 +824,6 @@
 				C1051199298790B5006D9CB7 /* Logger.swift in Sources */,
 				C1F540B725256AB700525603 /* KTUser.swift in Sources */,
 				C1F540B325256AB700525603 /* KTVehicle.swift in Sources */,
-				C71917811E48703B0041BC18 /* KatsanaAPI+Log.swift in Sources */,
 				C71917871E48703B0041BC18 /* KatsanaAPI+Profile.swift in Sources */,
 				C719176F1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */,
 				C1F540B125256AB700525603 /* KTAddress.swift in Sources */,
@@ -882,7 +873,6 @@
 				C16C8290245A99F9008B0B1E /* KatsanaAPI+Fleet.swift in Sources */,
 				C71917821E48703B0041BC18 /* KatsanaAPI+Login.swift in Sources */,
 				C71917CB1E4884410041BC18 /* DateHelper.swift in Sources */,
-				C71917801E48703B0041BC18 /* KatsanaAPI+Log.swift in Sources */,
 				C71917861E48703B0041BC18 /* KatsanaAPI+Profile.swift in Sources */,
 				C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */,
 				C79CA23E1FE220F100A9F8E1 /* Insurer.swift in Sources */,

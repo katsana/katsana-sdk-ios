@@ -7,7 +7,6 @@
 //
 
 import Siesta
-import XCGLogger
 import CoreLocation
 
 open class KatsanaAPI {
@@ -20,7 +19,7 @@ open class KatsanaAPI {
     public static let authTokenUpdatedNotification = Notification.Name(rawValue: "authTokenUpdatedNotification")
     public static let insuranceExpiryDateChangedNotification = Notification.Name(rawValue: "insuranceExpiryDateChangedNotification")
     public static let defaultBaseURL: URL = URL(string: "https://api.katsana.com/")!
-    public internal(set) var log : XCGLogger!
+    
     
     
     ///Default options when requesting vehicle or all vehicles
@@ -34,13 +33,19 @@ open class KatsanaAPI {
     ///Specify time cache is saved in day
     public var logSavedDuration = 7
     ///Use this handler if need to have extra setup when object is initialized
-    public var objectInitializationHandler : ((JSON, Any) -> (Void))!
+    public var objectInitializationHandler : ((JSON, Any) -> (Void))!{
+        didSet{
+            ObjectJSONTransformer.objectInitializationHandler = objectInitializationHandler
+        }
+    }
     ///Call outside address handler if address from SDK deemed not valid
     public var addressHandler : ((CLLocationCoordinate2D, _ completion: @escaping (KTAddress?) -> Void) -> Void)!
     
     public static let shared = KatsanaAPI()
     public var API : Service!
+    public internal(set) var log : Logger!
     var cache: KTCacheManager!
+    var addressRequester: AddressRequest!
     
     var clientId : String = ""
     var clientSecret: String = ""
@@ -64,10 +69,10 @@ open class KatsanaAPI {
         willSet{
             if let newValue = newValue{
                 if let currentVehicle = currentVehicle, newValue.imei != currentVehicle.imei{
-                    log.info("Current selected vehicle \(String(describing: newValue.vehicleId))")
+                    log?.info("Current selected vehicle \(String(describing: newValue.vehicleId))")
                     lastVehicleIds = [newValue.vehicleId]
                 }else if currentVehicle == nil{
-                    log.info("Current selected vehicle \(String(describing: newValue.vehicleId))")
+                    log?.info("Current selected vehicle \(String(describing: newValue.vehicleId))")
                     lastVehicleIds = [newValue.vehicleId]
                 }
             }else{
@@ -79,10 +84,10 @@ open class KatsanaAPI {
         willSet{
             if let newValue = newValue{
                 if let selectedVehicles = selectedVehicles, newValue != selectedVehicles{
-//                    log.info("Current selected vehicles \(newValue.vehicleId)")
+//                    log?.info("Current selected vehicles \(newValue.vehicleId)")
                     lastVehicleIds = newValue.map({$0.vehicleId})
                 }else if selectedVehicles == nil{
-//                    log.info("Current selected vehicles \(newValue.vehicleId)")
+//                    log?.info("Current selected vehicles \(newValue.vehicleId)")
                     lastVehicleIds = newValue.map({$0.vehicleId})
                 }
             }
@@ -136,9 +141,9 @@ open class KatsanaAPI {
 
     // MARK: Lifecycle
     
-    public init(cache: KTCacheManager = KTCacheManager.shared) {
+    public init(cache: KTCacheManager = KTCacheManager.shared, logger: Logger! = nil) {
         self.cache = cache
-        self.setupLog()
+        self.log = logger
     }
 
     public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL) -> Void {
@@ -310,7 +315,7 @@ open class KatsanaAPI {
                 break
             }
         }
-        log.verbose("Websocket /(supported)")
+        log?.verbose("Websocket /(supported)")
         return supported
     }
     
@@ -358,15 +363,15 @@ open class KatsanaAPI {
             }
         }
         if !handled {
-            self.log.error(details)
+            self.log?.error(details)
         }
     }
     
     func handleUnauthorizedError(details: String) {
         refreshToken(completion: { (success) in
-            self.log.info("Token refreshed")
+            self.log?.info("Token refreshed")
         }) { (error) in
-            self.log.error("Error refreshing token, \(String(describing: error?.localizedDescription))")
+            self.log?.error("Error refreshing token, \(String(describing: error?.localizedDescription))")
         }
     }
     

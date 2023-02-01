@@ -59,7 +59,7 @@ extension KatsanaAPI {
             completion(vehicle)
         }.onFailure { (error) in
             failure(error)
-            self.log.error("Error save vehicle profile \(vehicleId), \(String(describing: error.errorDescription))")
+            self.log?.error("Error save vehicle profile \(vehicleId), \(String(describing: error.errorDescription))")
         }
     }
     
@@ -106,7 +106,7 @@ extension KatsanaAPI {
             if success{
                 completion(vehicle)
             }else{
-                self.log.error("Error save vehicle profile image \(vehicleId), \(String(describing: error))")
+                self.log?.error("Error save vehicle profile image \(vehicleId), \(String(describing: error))")
                 failure(error)
             }
         }

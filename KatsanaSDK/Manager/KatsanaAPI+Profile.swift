@@ -63,7 +63,7 @@ extension KatsanaAPI {
             NotificationCenter.default.post(name: KatsanaAPI.profileUpdatedNotification, object: nil)
         }.onFailure { (error) in
             failure(error)
-            self.log.error("Error save user profile \(error)")
+            self.log?.error("Error save user profile \(error)")
         }
     }
     
@@ -104,7 +104,7 @@ extension KatsanaAPI {
                 completion(self.currentUser)
             }else{
                 failure(error)
-                self.log.error("Error save user profile image \(String(describing: error))")
+                self.log?.error("Error save user profile image \(String(describing: error))")
             }
         }
     }

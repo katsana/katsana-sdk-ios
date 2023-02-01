@@ -21,7 +21,7 @@ extension KatsanaAPI{
 //            completion(summary)
 //        }).onFailure({ (error) in
 //            failure(error)
-//            self.log.error("Error getting trip summary today vehicle id \(vehicleId), \(error)")
+//            self.log?.error("Error getting trip summary today vehicle id \(vehicleId), \(error)")
 //        })
 //        
 //        if request == nil {

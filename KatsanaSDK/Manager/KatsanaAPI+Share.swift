@@ -37,7 +37,7 @@ extension KatsanaAPI {
                 if let content = r.content{
                     text = String(data: content, encoding: .utf8)!
                 }
-                self.log.error("Error requesting live share link \(vehicleId), error: \(text)")
+                self.log?.error("Error requesting live share link \(vehicleId), error: \(text)")
                 DispatchQueue.main.sync{failure(r.APIError())}
             }
         }
@@ -66,7 +66,7 @@ extension KatsanaAPI {
                 if let content = r.content{
                     text = String(data: content, encoding: .utf8)!
                 }
-                self.log.error("Error requesting live share link info \(vehicleId), \(text)")
+                self.log?.error("Error requesting live share link info \(vehicleId), \(text)")
                 failure(r.APIError())
                 
             }
@@ -88,7 +88,7 @@ extension KatsanaAPI {
                     text = String(data: content, encoding: .utf8)!
                 }
                 
-                self.log.error("Error deleting live share link \(vehicleId), \(text)")
+                self.log?.error("Error deleting live share link \(vehicleId), \(text)")
                 DispatchQueue.main.sync{completion(false)}
             }
         }

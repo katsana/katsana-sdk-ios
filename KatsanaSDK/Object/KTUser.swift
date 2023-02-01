@@ -197,7 +197,7 @@ open class KTUser: Codable {
                     }
                     completion(image!)
                 }, failure: { (error) in
-                    KatsanaAPI.shared.log.error("Error requesting user image \(self.email)")
+                    KatsanaAPI.shared.log?.error("Error requesting user image \(self.email)")
                     self.isLoadingImage = false
                 })
             }
@@ -226,7 +226,7 @@ open class KTUser: Codable {
                     }
                     completion(image!)
                 }, failure: { (error) in
-                    KatsanaAPI.shared.log.error("Error requesting user thumb image \(self.email)")
+                    KatsanaAPI.shared.log?.error("Error requesting user thumb image \(self.email)")
                     self.isLoadingThumbImage = false
                 })
             }

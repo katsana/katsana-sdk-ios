@@ -288,7 +288,7 @@ open class KTVehicle: Codable {
                             KatsanaAPI.shared.vehicleIdWithEmptyImages.append(self.vehicleId)
                         }
                     }
-                    KatsanaAPI.shared.log.error("Error requesting vehicle image \(self.vehicleId!)")
+                    KatsanaAPI.shared.log?.error("Error requesting vehicle image \(self.vehicleId!)")
                     self.isLoadingImage = false
                     completion(KTVehicle.emptyImage())
                 })
@@ -368,7 +368,7 @@ open class KTVehicle: Codable {
                         }
                     }
                     
-//                    KatsanaAPI.shared.log.error("Error requesting vehicle thumb image vehicle id \(self.vehicleId!)")
+//                    KatsanaAPI.shared.log?.error("Error requesting vehicle thumb image vehicle id \(self.vehicleId!)")
                     self.isLoadingThumbImage = false
                     completion(KTVehicle.emptyImage())
                 })

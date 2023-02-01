@@ -9,6 +9,9 @@
 
 /// Class to convert Swifty JSON to API object
 class ObjectJSONTransformer {
+    ///Use this handler if need to have extra setup when object is initialized
+    static public var objectInitializationHandler : ((JSON, Any) -> (Void))!
+    
     class func UserObject(json : JSON) -> KTUser {
         let email = json["email"].stringValue
         let user = KTUser(email: email)
@@ -49,9 +52,7 @@ class ObjectJSONTransformer {
         
         user.createdAt = json["created_at"].date(gmt: 0)
         user.updatedAt = json["updated_at"].date(gmt: 0)
-        if let handler = KatsanaAPI.shared.objectInitializationHandler {
-            handler(json, KTUser.self)
-        }
+        objectInitializationHandler?(json, KTUser.self)
         return user
     }
     
@@ -147,9 +148,7 @@ class ObjectJSONTransformer {
             vehicle.extraData["features"] = features
         }
         
-        if let handler = KatsanaAPI.shared.objectInitializationHandler {
-            handler(json, vehicle)
-        }
+        objectInitializationHandler?(json, KTUser.self)
         
         return vehicle
     }
@@ -286,9 +285,7 @@ class ObjectJSONTransformer {
         history.idleDuration = json["idle_duration"].doubleValue
         history.date = json["date"].dateWithoutTime
 //        /change date to local date and check UTC time again
-        if let handler = KatsanaAPI.shared.objectInitializationHandler {
-            handler(json, history)
-        }
+        objectInitializationHandler?(json, KTUser.self)
         return history
     }
     
@@ -299,9 +296,7 @@ class ObjectJSONTransformer {
         history.violationCount = json["summary"]["violation"].intValue
         history.trips = json["trips"].arrayValue.map{TripObject(json: $0)}
         history.date = json["duration"]["from"].date(gmt: 0)
-        if let handler = KatsanaAPI.shared.objectInitializationHandler {
-            handler(json, history)
-        }
+        objectInitializationHandler?(json, KTUser.self)
         return history
     }
     
@@ -325,9 +320,7 @@ class ObjectJSONTransformer {
             trip.publicTransit = true
         }
         
-        if let handler = KatsanaAPI.shared.objectInitializationHandler {
-            handler(json, trip)
-        }
+        objectInitializationHandler?(json, KTUser.self)
         return trip
     }
     

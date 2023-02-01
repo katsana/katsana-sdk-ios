@@ -8,7 +8,11 @@
 
 import Foundation
 
-protocol Logger{
+public protocol Logger{
     func info(_ text: String)
     func error(_ text: String)
+    func verbose(_ text: String)
+    func warning(_ text: String)
+    func debug(_ text: String)
+    
 }

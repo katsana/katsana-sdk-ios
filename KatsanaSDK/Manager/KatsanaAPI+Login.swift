@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import XCGLogger
 import Siesta
 
 extension KatsanaAPI {
@@ -112,7 +111,7 @@ extension KatsanaAPI {
                 self.currentUser = user
                 completion(user)
                 NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
-                self.log.info("Logged in user \(String(describing: user.userId)), \(user.email)")
+                self.log?.info("Logged in user \(String(describing: user.userId)), \(user.email)")
                 self.cache?.cache(user: user)
             }else{
                 failure(nil)
@@ -131,7 +130,7 @@ extension KatsanaAPI {
         currentUser = nil
         authToken = nil
         NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
-        log.info("Logged out user \(self.currentUser?.userId ?? "??"), \(self.currentUser?.email ?? "")")
+        log?.info("Logged out user \(self.currentUser?.userId ?? "??"), \(self.currentUser?.email ?? "")")
         self.cache?.clearTravelCache(vehicleId: "-1")
     }
     
@@ -188,7 +187,7 @@ extension KatsanaAPI {
                 self.currentUser = user
                 self.cache?.cache(user: user)
                 completion(user)
-                self.log.info("Logged in user \(String(describing: user.userId)), \(user.email)")
+                self.log?.info("Logged in user \(String(describing: user.userId)), \(user.email)")
                 
             }else{
                 failure(nil)
