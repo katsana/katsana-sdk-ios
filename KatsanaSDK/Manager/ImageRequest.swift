@@ -12,7 +12,7 @@ import Siesta
 public class ImageRequest {
     public static let shared = ImageRequest()
     
-    public var API : Service!
+    var API : Service!
     
     init() {
         configure()
@@ -35,20 +35,19 @@ public class ImageRequest {
         }
         
         Just.get(
-            path
-        ) { r in
-            if r.ok {
-                let content = r.content
-                if let image = KMImage(data: content!), let lastComponent = url?.lastPathComponent{
-                    KTCacheManager.shared.cache(image: image, identifier: lastComponent)
-                    DispatchQueue.main.sync{completion(image)}
+            path, asyncCompletionHandler:  { r in
+                if r.ok {
+                    let content = r.content
+                    if let image = KMImage(data: content!), let lastComponent = url?.lastPathComponent{
+                        KTCacheManager.shared.cache(image: image, identifier: lastComponent)
+                        DispatchQueue.main.sync{completion(image)}
+                    }else{
+                        DispatchQueue.main.sync{failure(r.error)}
+                    }
                 }else{
-                    DispatchQueue.main.sync{failure(r.error)}
+                    DispatchQueue.main.sync{failure(r.APIError())}
                 }
-            }else{
-                DispatchQueue.main.sync{failure(r.APIError())}
-            }
-        }
+            })
     }
     
 }

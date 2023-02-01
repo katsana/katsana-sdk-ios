@@ -9,11 +9,6 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
-@import UIKit;
-@import CoreLocation;
-
-#import <CoreLocation/CoreLocation.h>
 #import <KatsanaSDK/KatsanaSDK-Swift.h>
-#import "FastCoder.h"
 
 #endif /* PrefixHeader_pch */

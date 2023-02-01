@@ -3,13 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0AB3E5FA42ED8EC4CAAF5234 /* Pods_KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCBC4EBA968BE6965ED8B746 /* Pods_KatsanaSDK.framework */; };
-		AE3FF2FED10129365E8F7918 /* Pods_KatsanaSDKmacOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B031C572513CDCC9640152 /* Pods_KatsanaSDKmacOSTests.framework */; };
-		B3CC34FBC5C593A75EA9D98C /* Pods_KatsanaSDK_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630EF8F45B5240CA0173AC3F /* Pods_KatsanaSDK_macOS.framework */; };
 		C105117A298775ED006D9CB7 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1051179298775ED006D9CB7 /* UserTests.swift */; };
 		C105117B2987767B006D9CB7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
 		C105117C298776A2006D9CB7 /* VideoRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824028FCEF6000C3FF7D /* VideoRecording.swift */; };
@@ -35,6 +32,10 @@
 		C18A824528FD050A00C3FF7D /* KatsanaAPI+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */; };
 		C1A3E405298A1A8F00931529 /* AddressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A3E404298A1A8F00931529 /* AddressTest.swift */; };
 		C1A3E407298A213800931529 /* ActivityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A3E406298A213800931529 /* ActivityTest.swift */; };
+		C1A3E40B298A356100931529 /* Siesta in Frameworks */ = {isa = PBXBuildFile; productRef = C1A3E40A298A356100931529 /* Siesta */; };
+		C1A3E40D298A362400931529 /* Siesta in Frameworks */ = {isa = PBXBuildFile; productRef = C1A3E40C298A362400931529 /* Siesta */; };
+		C1A3E412298A38A400931529 /* URLMock in Frameworks */ = {isa = PBXBuildFile; productRef = C1A3E411298A38A400931529 /* URLMock */; };
+		C1A3E414298A38A900931529 /* URLMock in Frameworks */ = {isa = PBXBuildFile; productRef = C1A3E413298A38A900931529 /* URLMock */; };
 		C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540A325256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540B025256AB700525603 /* KTAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AC25256AB600525603 /* KTAddress.swift */; };
@@ -106,13 +107,10 @@
 		C71917F01E48935B0041BC18 /* KatsanaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C71917EA1E4893500041BC18 /* KatsanaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C71917F11E48935B0041BC18 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = C71917EB1E4893500041BC18 /* PrefixHeader.pch */; };
 		C71917F21E4897EF0041BC18 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
-		C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72773781DDBF59A00312F90 /* Cocoa.framework */; };
 		C7331295207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7331294207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift */; };
 		C7331296207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7331294207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift */; };
 		C7331298207B1EC800541BE8 /* VehicleSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7331297207B1EC800541BE8 /* VehicleSubscription.swift */; };
 		C7331299207B1EC800541BE8 /* VehicleSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7331297207B1EC800541BE8 /* VehicleSubscription.swift */; };
-		C74927BF1DDA8A3200A0767E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927BE1DDA8A3200A0767E /* CoreLocation.framework */; };
-		C74927C11DDA8A3D00A0767E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927C01DDA8A3D00A0767E /* MapKit.framework */; };
 		C751054F1D742B5F00F4C341 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751054E1D742B5F00F4C341 /* MapKit.framework */; };
 		C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C751055F1D742D0500F4C341 /* UIKit.framework */; };
 		C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75105631D742D8600F4C341 /* CoreLocation.framework */; };
@@ -154,16 +152,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		344F6BC66932662D2D7FC344 /* Pods-KatsanaSDK macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK macOS.debug.xcconfig"; path = "Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS.debug.xcconfig"; sourceTree = "<group>"; };
-		472723423C863A84D644F315 /* Pods-KatsanaSDKmacOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDKmacOSTests.debug.xcconfig"; path = "Target Support Files/Pods-KatsanaSDKmacOSTests/Pods-KatsanaSDKmacOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		630EF8F45B5240CA0173AC3F /* Pods_KatsanaSDK_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KatsanaSDK_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		77D7B9950939AA54816F7683 /* Pods-KatsanaSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK.debug.xcconfig"; path = "Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK.debug.xcconfig"; sourceTree = "<group>"; };
-		8612EDEC51097419A3E19B87 /* Pods-KatsanaSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK.release.xcconfig"; path = "Target Support Files/Pods-KatsanaSDK/Pods-KatsanaSDK.release.xcconfig"; sourceTree = "<group>"; };
-		A4B031C572513CDCC9640152 /* Pods_KatsanaSDKmacOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KatsanaSDKmacOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1051179298775ED006D9CB7 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		C1051183298778D1006D9CB7 /* KatsanaSDKmacOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKmacOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1051185298778D1006D9CB7 /* KatsanaSDKmacOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKmacOSTests.swift; sourceTree = "<group>"; };
-		C105118D298779FE006D9CB7 /* FastCoding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FastCoding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C105118F29877ACC006D9CB7 /* UserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
 		C105119229877BE3006D9CB7 /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		C105119729879051006D9CB7 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -219,13 +210,9 @@
 		C71917E91E4893500041BC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C71917EA1E4893500041BC18 /* KatsanaSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KatsanaSDK.h; sourceTree = "<group>"; };
 		C71917EB1E4893500041BC18 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		C72773781DDBF59A00312F90 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		C7331294207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Subscribe.swift"; sourceTree = "<group>"; };
 		C7331297207B1EC800541BE8 /* VehicleSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleSubscription.swift; sourceTree = "<group>"; };
 		C74927861DDA831600A0767E /* KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C74927BE1DDA8A3200A0767E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
-		C74927C01DDA8A3D00A0767E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
-		C74927C21DDA8AF300A0767E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C751054E1D742B5F00F4C341 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C751055D1D742CE100F4C341 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -237,9 +224,6 @@
 		C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKTests.swift; sourceTree = "<group>"; };
 		C7A4BF791DAF077E007E90B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCBC4EBA968BE6965ED8B746 /* Pods_KatsanaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KatsanaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E72FD8837D12213DD8D701BE /* Pods-KatsanaSDK macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDK macOS.release.xcconfig"; path = "Target Support Files/Pods-KatsanaSDK macOS/Pods-KatsanaSDK macOS.release.xcconfig"; sourceTree = "<group>"; };
-		EBC1DD07F7B7F56160659105 /* Pods-KatsanaSDKmacOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KatsanaSDKmacOSTests.release.xcconfig"; path = "Target Support Files/Pods-KatsanaSDKmacOSTests/Pods-KatsanaSDKmacOSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,8 +231,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A3E414298A38A900931529 /* URLMock in Frameworks */,
 				C1051187298778D1006D9CB7 /* KatsanaSDK.framework in Frameworks */,
-				AE3FF2FED10129365E8F7918 /* Pods_KatsanaSDKmacOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,10 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C72773791DDBF59A00312F90 /* Cocoa.framework in Frameworks */,
-				C74927C11DDA8A3D00A0767E /* MapKit.framework in Frameworks */,
-				C74927BF1DDA8A3200A0767E /* CoreLocation.framework in Frameworks */,
-				B3CC34FBC5C593A75EA9D98C /* Pods_KatsanaSDK_macOS.framework in Frameworks */,
+				C1A3E40D298A362400931529 /* Siesta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,10 +248,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A3E40B298A356100931529 /* Siesta in Frameworks */,
 				C75105641D742D8600F4C341 /* CoreLocation.framework in Frameworks */,
 				C75105601D742D0500F4C341 /* UIKit.framework in Frameworks */,
 				C751054F1D742B5F00F4C341 /* MapKit.framework in Frameworks */,
-				0AB3E5FA42ED8EC4CAAF5234 /* Pods_KatsanaSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +259,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A3E412298A38A400931529 /* URLMock in Frameworks */,
 				C7A4BF7A1DAF077E007E90B8 /* KatsanaSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,34 +270,13 @@
 		5DD901B866D20EE7A742A486 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C105118D298779FE006D9CB7 /* FastCoding.framework */,
 				C71917C51E4884410041BC18 /* Library */,
-				C72773781DDBF59A00312F90 /* Cocoa.framework */,
-				C74927C21DDA8AF300A0767E /* Foundation.framework */,
-				C74927C01DDA8A3D00A0767E /* MapKit.framework */,
-				C74927BE1DDA8A3200A0767E /* CoreLocation.framework */,
 				C75105631D742D8600F4C341 /* CoreLocation.framework */,
 				C751055F1D742D0500F4C341 /* UIKit.framework */,
 				C751055D1D742CE100F4C341 /* CoreGraphics.framework */,
 				C751054E1D742B5F00F4C341 /* MapKit.framework */,
-				DCBC4EBA968BE6965ED8B746 /* Pods_KatsanaSDK.framework */,
-				630EF8F45B5240CA0173AC3F /* Pods_KatsanaSDK_macOS.framework */,
-				A4B031C572513CDCC9640152 /* Pods_KatsanaSDKmacOSTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		848CC63940A30AE8C703CE03 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				77D7B9950939AA54816F7683 /* Pods-KatsanaSDK.debug.xcconfig */,
-				8612EDEC51097419A3E19B87 /* Pods-KatsanaSDK.release.xcconfig */,
-				344F6BC66932662D2D7FC344 /* Pods-KatsanaSDK macOS.debug.xcconfig */,
-				E72FD8837D12213DD8D701BE /* Pods-KatsanaSDK macOS.release.xcconfig */,
-				472723423C863A84D644F315 /* Pods-KatsanaSDKmacOSTests.debug.xcconfig */,
-				EBC1DD07F7B7F56160659105 /* Pods-KatsanaSDKmacOSTests.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		C1051184298778D1006D9CB7 /* KatsanaSDKmacOSTests */ = {
@@ -480,7 +441,6 @@
 				C1051184298778D1006D9CB7 /* KatsanaSDKmacOSTests */,
 				C75104FE1D7422BF00F4C341 /* Products */,
 				5DD901B866D20EE7A742A486 /* Frameworks */,
-				848CC63940A30AE8C703CE03 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -533,11 +493,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C105118A298778D1006D9CB7 /* Build configuration list for PBXNativeTarget "KatsanaSDKmacOSTests" */;
 			buildPhases = (
-				C4CA4997726A6E47AC620A2A /* [CP] Check Pods Manifest.lock */,
 				C105117F298778D1006D9CB7 /* Sources */,
 				C1051180298778D1006D9CB7 /* Frameworks */,
 				C1051181298778D1006D9CB7 /* Resources */,
-				CB34EC38044184A1B676EA85 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -545,6 +503,9 @@
 				C1051189298778D1006D9CB7 /* PBXTargetDependency */,
 			);
 			name = KatsanaSDKmacOSTests;
+			packageProductDependencies = (
+				C1A3E413298A38A900931529 /* URLMock */,
+			);
 			productName = KatsanaSDKmacOSTests;
 			productReference = C1051183298778D1006D9CB7 /* KatsanaSDKmacOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -553,7 +514,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C749279C1DDA831600A0767E /* Build configuration list for PBXNativeTarget "KatsanaSDK macOS" */;
 			buildPhases = (
-				8829E28C8BBBDBA8D791A826 /* [CP] Check Pods Manifest.lock */,
 				C74927811DDA831600A0767E /* Sources */,
 				C74927821DDA831600A0767E /* Frameworks */,
 				C74927831DDA831600A0767E /* Headers */,
@@ -564,6 +524,9 @@
 			dependencies = (
 			);
 			name = "KatsanaSDK macOS";
+			packageProductDependencies = (
+				C1A3E40C298A362400931529 /* Siesta */,
+			);
 			productName = "KatsanaSDK-Mac";
 			productReference = C74927861DDA831600A0767E /* KatsanaSDK.framework */;
 			productType = "com.apple.product-type.framework";
@@ -572,7 +535,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C75105111D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaSDK" */;
 			buildPhases = (
-				475E60B88F70854E066D29D1 /* [CP] Check Pods Manifest.lock */,
 				C75104F81D7422BF00F4C341 /* Sources */,
 				C75104F91D7422BF00F4C341 /* Frameworks */,
 				C75104FA1D7422BF00F4C341 /* Headers */,
@@ -584,6 +546,9 @@
 			dependencies = (
 			);
 			name = KatsanaSDK;
+			packageProductDependencies = (
+				C1A3E40A298A356100931529 /* Siesta */,
+			);
 			productName = KatsanaAPI;
 			productReference = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */;
 			productType = "com.apple.product-type.framework";
@@ -602,6 +567,9 @@
 				C7A4BF7C1DAF077E007E90B8 /* PBXTargetDependency */,
 			);
 			name = KatsanaSDKTests;
+			packageProductDependencies = (
+				C1A3E411298A38A400931529 /* URLMock */,
+			);
 			productName = KatsanaSDKTests;
 			productReference = C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -651,6 +619,10 @@
 				Base,
 			);
 			mainGroup = C75104F31D7422BF00F4C341;
+			packageReferences = (
+				C1A3E409298A356100931529 /* XCRemoteSwiftPackageReference "siesta" */,
+				C1A3E40E298A384800931529 /* XCRemoteSwiftPackageReference "URLMock" */,
+			);
 			productRefGroup = C75104FE1D7422BF00F4C341 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -695,95 +667,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		475E60B88F70854E066D29D1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-KatsanaSDK-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8829E28C8BBBDBA8D791A826 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-KatsanaSDK macOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C4CA4997726A6E47AC620A2A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-KatsanaSDKmacOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CB34EC38044184A1B676EA85 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KatsanaSDKmacOSTests/Pods-KatsanaSDKmacOSTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Siesta-macOS/Siesta.framework",
-				"${BUILT_PRODUCTS_DIR}/URLMock/URLMock.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siesta.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URLMock.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KatsanaSDKmacOSTests/Pods-KatsanaSDKmacOSTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C105117F298778D1006D9CB7 /* Sources */ = {
@@ -930,7 +813,6 @@
 /* Begin XCBuildConfiguration section */
 		C105118B298778D1006D9CB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 472723423C863A84D644F315 /* Pods-KatsanaSDKmacOSTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -958,7 +840,6 @@
 		};
 		C105118C298778D1006D9CB7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EBC1DD07F7B7F56160659105 /* Pods-KatsanaSDKmacOSTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -983,7 +864,6 @@
 		};
 		C749278B1DDA831600A0767E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 344F6BC66932662D2D7FC344 /* Pods-KatsanaSDK macOS.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1000,7 +880,11 @@
 				GCC_PREFIX_HEADER = KatsanaSDK/macOS/PrefixHeader.pch;
 				INFOPLIST_FILE = KatsanaSDK/macOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pixelated.KatsanaSDK-macOS";
 				PRODUCT_MODULE_NAME = KatsanaSDK;
@@ -1015,7 +899,6 @@
 		};
 		C749278C1DDA831600A0767E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E72FD8837D12213DD8D701BE /* Pods-KatsanaSDK macOS.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1032,7 +915,11 @@
 				GCC_PREFIX_HEADER = KatsanaSDK/macOS/PrefixHeader.pch;
 				INFOPLIST_FILE = KatsanaSDK/macOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pixelated.KatsanaSDK-macOS";
 				PRODUCT_MODULE_NAME = KatsanaSDK;
@@ -1151,7 +1038,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1162,7 +1050,6 @@
 		};
 		C75105121D7422BF00F4C341 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77D7B9950939AA54816F7683 /* Pods-KatsanaSDK.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -1181,7 +1068,11 @@
 				INFOPLIST_FILE = KatsanaSDK/iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDK;
 				PRODUCT_NAME = KatsanaSDK;
@@ -1194,7 +1085,6 @@
 		};
 		C75105131D7422BF00F4C341 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8612EDEC51097419A3E19B87 /* Pods-KatsanaSDK.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -1213,7 +1103,11 @@
 				INFOPLIST_FILE = KatsanaSDK/iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDK;
 				PRODUCT_NAME = KatsanaSDK;
@@ -1231,7 +1125,11 @@
 				DEVELOPMENT_TEAM = 47CF2FS3SX;
 				INFOPLIST_FILE = KatsanaSDKTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1249,7 +1147,11 @@
 				DEVELOPMENT_TEAM = 47CF2FS3SX;
 				INFOPLIST_FILE = KatsanaSDKTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -1306,6 +1208,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C1A3E409298A356100931529 /* XCRemoteSwiftPackageReference "siesta" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bustoutsolutions/siesta";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		C1A3E40E298A384800931529 /* XCRemoteSwiftPackageReference "URLMock" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/prachigauriar/URLMock";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C1A3E40A298A356100931529 /* Siesta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1A3E409298A356100931529 /* XCRemoteSwiftPackageReference "siesta" */;
+			productName = Siesta;
+		};
+		C1A3E40C298A362400931529 /* Siesta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1A3E409298A356100931529 /* XCRemoteSwiftPackageReference "siesta" */;
+			productName = Siesta;
+		};
+		C1A3E411298A38A400931529 /* URLMock */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1A3E40E298A384800931529 /* XCRemoteSwiftPackageReference "URLMock" */;
+			productName = URLMock;
+		};
+		C1A3E413298A38A900931529 /* URLMock */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1A3E40E298A384800931529 /* XCRemoteSwiftPackageReference "URLMock" */;
+			productName = URLMock;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C75104F41D7422BF00F4C341 /* Project object */;
 }

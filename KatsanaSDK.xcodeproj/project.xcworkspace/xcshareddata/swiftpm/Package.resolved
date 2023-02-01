@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire",
+      "state" : {
+        "revision" : "78424be314842833c04bc3bef5b72e85fff99204",
+        "version" : "5.6.4"
+      }
+    },
+    {
+      "identity" : "siesta",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bustoutsolutions/siesta",
+      "state" : {
+        "revision" : "43f34046ebb5beb6802200353c473af303bbc31e",
+        "version" : "1.5.2"
+      }
+    },
+    {
+      "identity" : "urlmock",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/prachigauriar/URLMock",
+      "state" : {
+        "revision" : "6d52a5e64c9f5e3a1248de6269d100fe39c5bdc8",
+        "version" : "1.3.6"
+      }
+    }
+  ],
+  "version" : 2
+}

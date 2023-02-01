@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:KatsanaAPI.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
