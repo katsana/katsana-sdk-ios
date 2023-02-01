@@ -21,7 +21,6 @@ open class KatsanaAPI {
     public static let defaultBaseURL: URL = URL(string: "https://api.katsana.com/")!
     
     
-    
     ///Default options when requesting vehicle or all vehicles
     public var defaultRequestVehicleOptions: [String]!
     ///Default options when requesting travel or trip
@@ -39,9 +38,16 @@ open class KatsanaAPI {
         }
     }
     ///Call outside address handler if address from SDK deemed not valid
-    public var addressHandler : ((CLLocationCoordinate2D, _ completion: @escaping (KTAddress?) -> Void) -> Void)!
+    public var addressHandler : ((CLLocationCoordinate2D, _ completion: @escaping (KTAddress?) -> Void) -> Void)!{
+        didSet{
+            addressRequester?.addressHandler = addressHandler
+        }
+    }
     
-    public static let shared = KatsanaAPI()
+    public static let shared: KatsanaAPI = {
+        let shared = KatsanaAPI(cache: KTCacheManager.shared, logger: nil)
+        return shared
+    }()
     public var API : Service!
     public internal(set) var log : Logger!
     var cache: KTCacheManager!
@@ -144,27 +150,22 @@ open class KatsanaAPI {
     public init(cache: KTCacheManager = KTCacheManager.shared, logger: Logger! = nil) {
         self.cache = cache
         self.log = logger
+        API = Service(baseURL: KatsanaAPI.defaultBaseURL)
+        self.addressRequester = AddressRequest(baseURL: baseURL(), cacheManager: cache)
     }
 
-    public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL) -> Void {
+    public func configure(baseURL : URL = KatsanaAPI.defaultBaseURL) -> Void {
         configure(baseURL : baseURL, clientId: "", clientSecret:"", grantType: "")
     }
     
-    public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, clientId : String = "", clientSecret: String = "", grantType: String = "") -> Void {
-        shared.API = Service(baseURL: baseURL)
-        shared.configure()
-        shared.setupTransformer()
-        shared.clientId = clientId
-        shared.clientSecret = clientSecret
-        shared.grantType = grantType
-    }
-    
-    ///Configure API using access token
-    public class func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, accessToken: String) -> Void {
-        shared.API = Service(baseURL: baseURL)
-        shared.authToken = accessToken
-        shared.configure()
-        shared.setupTransformer()
+    public func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, clientId : String = "", clientSecret: String = "", grantType: String = "") -> Void {
+        API = Service(baseURL: baseURL)
+        configure()
+        setupTransformer()
+        self.clientId = clientId
+        self.clientSecret = clientSecret
+        self.grantType = grantType
+        addressRequester.baseURL = baseURL
     }
     
     ///Configure API using access token
@@ -173,6 +174,7 @@ open class KatsanaAPI {
         authToken = accessToken
         configure()
         setupTransformer()
+        addressRequester.baseURL = baseURL
     }
     
     func configure() {

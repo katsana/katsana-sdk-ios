@@ -170,19 +170,19 @@ open class VehicleActivity: Codable {
         return CLLocationCoordinate2DMake(latitude, longitude)
     }
     
-    open func vehicle() -> KTVehicle! {
-        return KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)
-    }
-    
-    open func address(completion: @escaping (String?) -> Void) -> Void {
-        guard latitude != 0 || longitude != 0 else {
-            completion("")
-            return
-        }
-        KatsanaAPI.shared.requestAddress(for: coordinate(), completion: {address in
-            completion(address?.optimizedAddress())
-        })
-    }
+//    open func vehicle() -> KTVehicle! {
+//        return KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)
+//    }
+//    
+//    open func address(completion: @escaping (String?) -> Void) -> Void {
+//        guard latitude != 0 || longitude != 0 else {
+//            completion("")
+//            return
+//        }
+//        KatsanaAPI.shared.requestAddress(for: coordinate(), completion: {address in
+//            completion(address?.optimizedAddress())
+//        })
+//    }
 
     // MARK: Display
     

@@ -10,11 +10,12 @@ import CoreLocation
 
 /// Class to request address from server. We are not using Siesta API because Siesta cache response in memory. Address may be called multiple times and we need to cache in KMKTCacheManager to save it in hdd
 class AddressRequest {
-    let api: KatsanaAPI
+    var baseURL: URL
     let cacheManager: KTCacheManager
+    public var addressHandler : ((CLLocationCoordinate2D, _ completion: @escaping (KTAddress?) -> Void) -> Void)!
     
-    init(api: KatsanaAPI, cacheManager: KTCacheManager) {
-        self.api = api
+    init(baseURL: URL, cacheManager: KTCacheManager) {
+        self.baseURL = baseURL
         self.cacheManager = cacheManager
     }
         
@@ -35,7 +36,7 @@ class AddressRequest {
                             useAppleAddress = false
                         }
                     }
-                    if (optimizedAddress.count) <= 10 || !useAppleAddress, let handler = self.api.addressHandler{
+                    if (optimizedAddress.count) <= 10 || !useAppleAddress, let handler = self.addressHandler{
                         handler(location, {googleAddress in
                             if let googleAddress = googleAddress{
                                 self.cacheManager.cache(address: googleAddress)
@@ -50,7 +51,7 @@ class AddressRequest {
                     }
                 
                 }, failure: { (error) in
-                    if let handler = self.api.addressHandler{
+                    if let handler = self.addressHandler{
                         handler(location, {address in
                             if let address = address{
                                 completion(address, nil)
@@ -67,7 +68,7 @@ class AddressRequest {
     }
     
     func platformGeoAddress(from location:CLLocationCoordinate2D, completion:@escaping (KTAddress) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
-        let path = api.baseURL().absoluteString + "address/"
+        let path = baseURL.absoluteString + "address/"
         let latitude = String(format: "%.6f", location.latitude)
         let longitude = String(format: "%.6f", location.longitude)
         Just.get(
