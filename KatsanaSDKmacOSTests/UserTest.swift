@@ -96,12 +96,15 @@ final class UserTest: XCTestCase {
 //            return
 //        }
         
-        api.requestUser { user in
-//            UserTest.tempUser = user
-            completion(user)
-        } failure: { error in
-            XCTFail(error?.userMessage ?? "Error")
+        api.loadProfile { result in
+            switch result{
+            case .success(let user):
+                completion(user)
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            }
         }
+
     }
 
 }

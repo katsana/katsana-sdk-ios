@@ -9,6 +9,10 @@
 import Siesta
 import CoreLocation
 
+//protocol KatsanaAPIEvent{
+//
+//}
+
 open class KatsanaAPI {
     //Notifications
     public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserLogonSuccessNotification")

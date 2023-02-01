@@ -24,7 +24,6 @@
 		C10511A12988FF4C006D9CB7 /* TripTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10511A02988FF4C006D9CB7 /* TripTest.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C164EAF329236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
-		C16C8290245A99F9008B0B1E /* KatsanaAPI+Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
 		C18A824128FCEF6000C3FF7D /* VideoRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824028FCEF6000C3FF7D /* VideoRecording.swift */; };
@@ -162,7 +161,6 @@
 		C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryTest.swift; sourceTree = "<group>"; };
 		C10511A02988FF4C006D9CB7 /* TripTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTest.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
-		C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Fleet.swift"; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
 		C18A824028FCEF6000C3FF7D /* VideoRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecording.swift; sourceTree = "<group>"; };
@@ -344,7 +342,6 @@
 				C7331294207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift */,
 				C71917591E48703B0041BC18 /* KatsanaAPI+Share.swift */,
 				C719175A1E48703B0041BC18 /* KatsanaAPI+Trip.swift */,
-				C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */,
 				C719175B1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift */,
 				C719175C1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift */,
 				C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */,
@@ -749,7 +746,6 @@
 				C71917781E48703B0041BC18 /* AddressRequest.swift in Sources */,
 				C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */,
 				C71917A61E48703B0041BC18 /* VehicleLocation.swift in Sources */,
-				C16C8290245A99F9008B0B1E /* KatsanaAPI+Fleet.swift in Sources */,
 				C71917821E48703B0041BC18 /* KatsanaAPI+Login.swift in Sources */,
 				C71917CB1E4884410041BC18 /* DateHelper.swift in Sources */,
 				C71917861E48703B0041BC18 /* KatsanaAPI+Profile.swift in Sources */,

@@ -9,6 +9,42 @@
 import Foundation
 import Siesta
 
+enum KatsanaAPIError: Error {
+    case clientError([String])
+    case unknownError
+    case invalidParsedObject(String)
+    case invalidToken
+    case error(Error)
+    case notFound
+}
+
+extension KatsanaAPIError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .clientError(let values):
+            let text = values.joined(separator: ", ")
+            return NSLocalizedString(text, comment: "Client Error")
+        case .unknownError:
+            return NSLocalizedString("Unknown error", comment: "Unknown Error")
+        case .notFound:
+            return NSLocalizedString("Not found", comment: "Not found Error")
+        case .invalidParsedObject(let text):
+            return NSLocalizedString("Invalid parsed object", comment: "Invalid parsed object")
+        case .invalidToken:
+            return NSLocalizedString("Invalid token", comment: "Invalid token")
+        case .error(let error):
+            if error.localizedDescription.count > 0{
+                return error.localizedDescription
+            }
+            else if let error = error as? RequestError{
+                let text = error.userMessage
+                return text
+            }
+            return error.localizedDescription
+        }
+    }
+}
+
 struct SDKError {
     static let domain = "Katsana API Error Domain"
 }

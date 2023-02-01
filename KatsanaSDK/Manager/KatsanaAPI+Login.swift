@@ -32,7 +32,7 @@ extension KatsanaAPI {
         })
     }
 
-    public func login(email: String, password: String, completion: @escaping (_ user: KTUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func login(email: String, password: String, completion: @escaping (Result<KTUser, Error>) -> Void) {
         var data : Dictionary<String,String>
         let tokenKey = "access_token"
         let authPath = "oauth/token"
@@ -48,57 +48,27 @@ extension KatsanaAPI {
                     self.authToken = token
                     self.refreshToken = refreshToken
                     NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
-                    self.loadProfile(completion: { (user) in
-                        completion(user)
-                    }, failure: { (error) in
-                        self.loadProfile(completion: { (user) in
-                            completion(user)
-                        }, failure: { (error) in
-                            self.loadProfile(completion: { (user) in
-                                completion(user)
-                            }, failure: { (error) in
-                                failure(error)
-                            })
-                        })
-                        
-                    })
+                    self.loadProfile(completion: completion)
                 }else{
-                    failure(nil)
+                    completion(.failure(KatsanaAPIError.invalidToken))
                 }
             }
         }).onFailure({ (error) in
             print(error.errorDescription)
             let theError = NSError(domain: "KatsanaSDKErrorDomain", code: error.httpStatusCode ?? 0, userInfo: [NSLocalizedDescriptionKey: error.userMessage])
-            failure(theError)
+            completion(.failure(theError))
         })
         
     }
     
-    public func login(token: String, completion: @escaping (_ user: KTUser?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func login(token: String, completion: @escaping (Result<KTUser, Error>) -> Void) {
         if token.count > 0{
             self.authToken = token
-            
-            self.loadProfile(completion: { (user) in
-                NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
-                completion(user)
-            }, failure: { (error) in
-                self.loadProfile(completion: { (user) in
-                    NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
-                    completion(user)
-                }, failure: { (error) in
-                    self.loadProfile(completion: { (user) in
-                        NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
-                        completion(user)
-                    }, failure: { (error) in
-                        failure(error)
-                    })
-                })
-                
-            })
+            loadProfile(completion: completion)
         }
     }
     
-    private func loadProfile(completion: @escaping (_ user: KTUser?) -> Void, failure: @escaping (_ error: RequestError?) -> Void) {
+    func loadProfile(completion: @escaping (Result<KTUser, Error>) -> Void, retryCount: Int = 0, maxRetry: Int = 3) {
         var resource = self.API.resource("profile")
         if let options = defaultRequestProfileOptions{
             let text = options.joined(separator: ",")
@@ -109,15 +79,21 @@ extension KatsanaAPI {
             let user : KTUser? = resource.typedContent()
             if let user = user{
                 self.currentUser = user
-                completion(user)
+                self.cache?.cache(user: user)
+                completion(.success(user))
                 NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
                 self.log?.info("Logged in user \(String(describing: user.userId)), \(user.email)")
-                self.cache?.cache(user: user)
+                
             }else{
-                failure(nil)
+                completion(.failure(KatsanaAPIError.invalidParsedObject("User")))
             }
         }).onFailure({ (error) in
-            failure(error)
+            if retryCount < maxRetry{
+                self.loadProfile(completion: completion, retryCount: retryCount+1)
+            }else{
+                completion(.failure(error))
+            }
+            
         })
     }
         
@@ -178,21 +154,21 @@ extension KatsanaAPI {
         })
     }
     
-    public func requestUser(completion: @escaping (_ user: KTUser) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void{
-        let resource = self.API.resource("profile")
-        resource.load().onSuccess({ (entity) in
-            let user : KTUser? = resource.typedContent()
-            if let user = user{
-                self.currentUser = user
-                self.cache?.cache(user: user)
-                completion(user)
-                self.log?.info("Logged in user \(String(describing: user.userId)), \(user.email)")
-                
-            }else{
-                failure(nil)
-            }
-        }).onFailure({ (error) in
-            failure(error)
-        })
-    }
+//    public func requestUser(completion: @escaping (_ user: KTUser) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void{
+//        let resource = self.API.resource("profile")
+//        resource.load().onSuccess({ (entity) in
+//            let user : KTUser? = resource.typedContent()
+//            if let user = user{
+//                self.currentUser = user
+//                self.cache?.cache(user: user)
+//                completion(user)
+//                self.log?.info("Logged in user \(String(describing: user.userId)), \(user.email)")
+//
+//            }else{
+//                failure(nil)
+//            }
+//        }).onFailure({ (error) in
+//            failure(error)
+//        })
+//    }
 }
