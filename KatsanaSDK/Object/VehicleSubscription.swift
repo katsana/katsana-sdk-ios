@@ -15,11 +15,7 @@
     case unknown
 }
 
-@objcMembers
-open class VehicleSubscription: NSObject {
-    override open class func fastCodingKeys() -> [Any]? {
-        return ["deviceId", "deviceImei", "vehicleNumber", "vehicleDescription", "vehicleExpiredAt", "subscriptionId", "subscriptionPrice", "subscriptionStartAt", "subscriptionEndAt", "subscriptionPriceWithTax", "subscriptionTax", "planId", "planName", "planDescription", "planPrice", "planBillingCycle", "planQuickBooksId", "planRenewalAddonId", "planTagId", "planType", "planCreatedAt", "planUpdatedAt", "isReseller"]
-    }
+open class VehicleSubscription: Codable {
     
     open var deviceId: String!
     open var deviceImei: String!

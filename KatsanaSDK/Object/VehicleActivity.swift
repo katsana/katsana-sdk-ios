@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-@objc public enum ActivityType : Int {
+public enum ActivityType : Int {
     case none
     case tripStart
     case time
@@ -29,13 +29,32 @@ import CoreLocation
     //More can be added
 }
 
-@objcMembers
-open class VehicleActivity: NSObject {
-    internal var privateAttributedMessage: NSAttributedString!
-    
-    override open class func fastCodingKeys() -> [Any]? {
-        return ["vehicleId", "message", "distance", "duration", "latitude", "longitude", "startTime", "endTime", "startPosition", "endPosition", "violationId", "policyId", "policyKey", "maxSpeed", "averageSpeed", "identifier", "altitude", "course", "speed", "timeString"]
+open class VehicleActivity: Codable {
+    enum CodingKeys: CodingKey {
+        case vehicleId
+        case message
+        case distance
+        case duration
+        case latitude
+        case longitude
+        case altitude
+        case course
+        case speed
+        case maxSpeed
+        case averageSpeed
+        case timeString
+        case startTime
+        case endTime
+        case startPosition
+        case endPosition
+        case identifier
+        case violationId
+        case policyId
+        case policyKey
     }
+    
+    
+    internal var privateAttributedMessage: NSAttributedString!
     
     open var vehicleId: String!
     open var message: String!
@@ -46,9 +65,10 @@ open class VehicleActivity: NSObject {
         get{
             //Implement function updateAttributedMessage in extension for lazy attributed message initialization
             if privateAttributedMessage == nil {
-                if self.responds(to: Selector(("updateAttributedMessage"))) {
-                    perform(Selector(("updateAttributedMessage")))
-                }
+                #warning("Deleted in v3, need handle later, check requirement in the app")
+//                if self.responds(to: Selector(("updateAttributedMessage"))) {
+//                    perform(Selector(("updateAttributedMessage")))
+//                }
             }
             return privateAttributedMessage
         }
@@ -119,12 +139,11 @@ open class VehicleActivity: NSObject {
     /// Policy string from server
     var policyKey: String!
     
-    convenience override init() {
+    convenience init() {
         self.init(dictionary: nil, identifier: nil)
     }
     
     public init(dictionary:[String : Any]! = nil, identifier:String! = nil) {
-        super.init()
         if dictionary != nil {
             self.policyKey = dictionary["type"] as? String
             self.vehicleId = (dictionary["device_id"] as? NSNumber)?.stringValue
@@ -175,8 +194,8 @@ open class VehicleActivity: NSObject {
         return KatsanaFormatter.speedStringFrom(knot: Double(maxSpeed))
     }
     
-    open override var description: String{
-        return "\(super.description): \(message!) \(startTime)"
-    }
+//    open override var description: String{
+//        return "\(super.description): \(message!) \(startTime)"
+//    }
     
 }

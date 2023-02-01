@@ -1,5 +1,4 @@
 PODS:
-  - FastCoding (3.3)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
@@ -18,26 +17,23 @@ PODS:
     - ObjcExceptionBridging
 
 DEPENDENCIES:
-  - FastCoding
   - Siesta
   - URLMock
   - XCGLogger
 
 SPEC REPOS:
   trunk:
-    - FastCoding
     - ObjcExceptionBridging
     - Siesta
     - URLMock
     - XCGLogger
 
 SPEC CHECKSUMS:
-  FastCoding: 3b590f7143a229780fa744b35084d85d9461587e
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   Siesta: d1e1966af43ffca170f658ad6d987228a5b40873
   URLMock: 5b7bf0d4e271f8075a7e15a5c4edd311b02b85c2
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: 9ce6043b6b4743d9f902a1c970a2e645b7314523
+PODFILE CHECKSUM: 468a0bf6d08b6f426b32a487cfa7822f0b89a4ea
 
 COCOAPODS: 1.11.3

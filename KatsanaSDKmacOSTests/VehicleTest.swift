@@ -13,7 +13,7 @@ import Siesta
 
 final class VehicleTest: XCTestCase {
     var service: Service!
-    var cache: MockCache!
+    var cache: CacheManagerSpy!
     static var tempVehicles: [KTVehicle]!
     
     override class func setUp() {
@@ -32,7 +32,7 @@ final class VehicleTest: XCTestCase {
     }
 
     func test_requestVehicles() throws {
-        let sut = makeSUT(cache: MockCache())
+        let sut = makeSUT(cache: CacheManagerSpy())
         let expectation = XCTestExpectation(description: "Request vehicles successfully")
         requestVehiclesWithSuccess(api: sut) { vehicles in
             XCTAssertEqual(vehicles.count > 0, true)
@@ -42,7 +42,7 @@ final class VehicleTest: XCTestCase {
     }
     
     func test_vehicleCurrentLocationCorrect() throws {
-        let sut = makeSUT(cache: MockCache())
+        let sut = makeSUT(cache: CacheManagerSpy())
         let expectation = XCTestExpectation(description: "Request locations successfully")
         requestVehiclesWithSuccess(api: sut) { vehicles in
             let first = vehicles.first!
@@ -54,7 +54,7 @@ final class VehicleTest: XCTestCase {
     }
     
     func test_vehicleWebsocket_isTrue() throws {
-        let sut = makeSUT(cache: MockCache())
+        let sut = makeSUT(cache: CacheManagerSpy())
         let expectation = XCTestExpectation(description: "Request websocket successfully")
         requestVehiclesWithSuccess(api: sut) { vehicles in
             let first = vehicles.first!
@@ -65,7 +65,7 @@ final class VehicleTest: XCTestCase {
     }
     
     func test_requestUser_currentVehiclesIsSet() throws {
-        let sut = makeSUT(cache: MockCache())
+        let sut = makeSUT(cache: CacheManagerSpy())
         let expectation = XCTestExpectation(description: "Current vehicles is set")
         requestVehiclesWithSuccess(api: sut) { vehicles in
             XCTAssertEqual(vehicles, sut.vehicles)
@@ -75,7 +75,7 @@ final class VehicleTest: XCTestCase {
     }
 //
     func test_requestUser_lastUserCachedEqual() throws {
-        let cache = MockCache()
+        let cache = CacheManagerSpy()
         let sut = makeSUT(cache: cache)
         let expectation = XCTestExpectation(description: "Request user, last user set properly")
         requestVehiclesWithSuccess(api: sut) { vehicles in
@@ -87,7 +87,7 @@ final class VehicleTest: XCTestCase {
     }
 //
     func test_requestUser_userCachedCorrectlyFromDisk() throws {
-        let cache = MockCache(writeToDisk: true)
+        let cache = CacheManagerSpy(writeToDisk: true)
         let sut = makeSUT(cache: cache)
 
         let expectation = XCTestExpectation(description: "Request user, user cached properly")
@@ -102,7 +102,7 @@ final class VehicleTest: XCTestCase {
     }
     
     
-    func makeSUT(cache: MockCache) -> KatsanaAPI{
+    func makeSUT(cache: CacheManagerSpy) -> KatsanaAPI{
         let api = KatsanaAPI(cache: cache)
         api.API = service
         api.authToken = "testToken"

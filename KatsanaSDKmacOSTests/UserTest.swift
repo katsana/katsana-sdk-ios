@@ -13,7 +13,7 @@ import Siesta
 
 final class UserTest: XCTestCase {
     var service: Service!
-    var cache: MockCache!
+    var cache: CacheManagerSpy!
     static var tempUser: KTUser!
     
     override class func setUp() {
@@ -32,7 +32,7 @@ final class UserTest: XCTestCase {
     }
 
     func test_requestUser() throws {
-        let sut = makeSUT(cache: MockCache())
+        let sut = makeSUT(cache: CacheManagerSpy())
         let expectation = XCTestExpectation(description: "Request user successfully")
         requestUserWithSuccess(api: sut) { user in
             expectation.fulfill()
@@ -41,7 +41,7 @@ final class UserTest: XCTestCase {
     }
     
     func test_requestUser_currentUserIsSet() throws {
-        let sut = makeSUT(cache: MockCache())
+        let sut = makeSUT(cache: CacheManagerSpy())
         let expectation = XCTestExpectation(description: "Current user is set")
         requestUserWithSuccess(api: sut) { user in
             XCTAssertEqual(user.email, sut.currentUser.email)
@@ -51,7 +51,7 @@ final class UserTest: XCTestCase {
     }
     
     func test_requestUser_lastUserCachedEqual() throws {
-        let cache = MockCache()
+        let cache = CacheManagerSpy()
         let sut = makeSUT(cache: cache)
         let expectation = XCTestExpectation(description: "Request user, last user set properly")
         requestUserWithSuccess(api: sut) { user in
@@ -62,7 +62,7 @@ final class UserTest: XCTestCase {
     }
     
     func test_requestUser_userCachedCorrectlyFromDisk() throws {
-        let cache = MockCache(writeToDisk: true)
+        let cache = CacheManagerSpy(writeToDisk: true)
         let sut = makeSUT(cache: cache)
         
         let expectation = XCTestExpectation(description: "Request user, user cached properly")
@@ -78,7 +78,7 @@ final class UserTest: XCTestCase {
     }
     
     
-    func makeSUT(cache: MockCache) -> KatsanaAPI{
+    func makeSUT(cache: CacheManagerSpy) -> KatsanaAPI{
         let api = KatsanaAPI(cache: cache)
         api.API = service
         api.authToken = "testToken"

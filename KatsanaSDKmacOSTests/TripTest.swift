@@ -13,12 +13,12 @@ import Siesta
 
 final class TripTest: XCTestCase {
     var service: Service!
-    static var cache: MockCache!
+    static var cache: CacheManagerSpy!
     
     override class func setUp() {
         UMKMockURLProtocol.enable()
         UMKMockURLProtocol.setVerificationEnabled(true)
-        TripSummaryTest.cache = MockCache(writeToDisk: true)
+        TripSummaryTest.cache = CacheManagerSpy(writeToDisk: true)
     }
     
     override class func tearDown() {

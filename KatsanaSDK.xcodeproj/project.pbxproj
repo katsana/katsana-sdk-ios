@@ -17,12 +17,11 @@
 		C105117E298776F5006D9CB7 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C1051186298778D1006D9CB7 /* KatsanaSDKmacOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1051185298778D1006D9CB7 /* KatsanaSDKmacOSTests.swift */; };
 		C1051187298778D1006D9CB7 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927861DDA831600A0767E /* KatsanaSDK.framework */; };
-		C105118E298779FE006D9CB7 /* FastCoding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105118D298779FE006D9CB7 /* FastCoding.framework */; };
 		C105119029877ACC006D9CB7 /* UserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105118F29877ACC006D9CB7 /* UserTest.swift */; };
 		C105119329877BE3006D9CB7 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119229877BE3006D9CB7 /* MockService.swift */; };
 		C105119829879051006D9CB7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119729879051006D9CB7 /* Logger.swift */; };
 		C1051199298790B5006D9CB7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119729879051006D9CB7 /* Logger.swift */; };
-		C105119B29879167006D9CB7 /* MockCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119A29879167006D9CB7 /* MockCache.swift */; };
+		C105119B29879167006D9CB7 /* CacheManagerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119A29879167006D9CB7 /* CacheManagerSpy.swift */; };
 		C105119D2988CB97006D9CB7 /* VehicleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119C2988CB97006D9CB7 /* VehicleTest.swift */; };
 		C105119F2988E7AC006D9CB7 /* TripSummaryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */; };
 		C10511A12988FF4C006D9CB7 /* TripTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10511A02988FF4C006D9CB7 /* TripTest.swift */; };
@@ -34,6 +33,8 @@
 		C18A824128FCEF6000C3FF7D /* VideoRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824028FCEF6000C3FF7D /* VideoRecording.swift */; };
 		C18A824328FCEFD500C3FF7D /* VideoRecordingChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */; };
 		C18A824528FD050A00C3FF7D /* KatsanaAPI+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */; };
+		C1A3E405298A1A8F00931529 /* AddressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A3E404298A1A8F00931529 /* AddressTest.swift */; };
+		C1A3E407298A213800931529 /* ActivityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A3E406298A213800931529 /* ActivityTest.swift */; };
 		C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540A325256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540B025256AB700525603 /* KTAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AC25256AB600525603 /* KTAddress.swift */; };
@@ -168,7 +169,7 @@
 		C105118F29877ACC006D9CB7 /* UserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
 		C105119229877BE3006D9CB7 /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		C105119729879051006D9CB7 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		C105119A29879167006D9CB7 /* MockCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCache.swift; sourceTree = "<group>"; };
+		C105119A29879167006D9CB7 /* CacheManagerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManagerSpy.swift; sourceTree = "<group>"; };
 		C105119C2988CB97006D9CB7 /* VehicleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTest.swift; sourceTree = "<group>"; };
 		C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryTest.swift; sourceTree = "<group>"; };
 		C10511A02988FF4C006D9CB7 /* TripTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTest.swift; sourceTree = "<group>"; };
@@ -179,6 +180,8 @@
 		C18A824028FCEF6000C3FF7D /* VideoRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecording.swift; sourceTree = "<group>"; };
 		C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingChannel.swift; sourceTree = "<group>"; };
 		C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Stream.swift"; sourceTree = "<group>"; };
+		C1A3E404298A1A8F00931529 /* AddressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTest.swift; sourceTree = "<group>"; };
+		C1A3E406298A213800931529 /* ActivityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTest.swift; sourceTree = "<group>"; };
 		C1F540A125256AA800525603 /* KTCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTCacheManager.swift; sourceTree = "<group>"; };
 		C1F540AC25256AB600525603 /* KTAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTAddress.swift; sourceTree = "<group>"; };
 		C1F540AD25256AB600525603 /* KTVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTVehicle.swift; sourceTree = "<group>"; };
@@ -247,7 +250,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C105118E298779FE006D9CB7 /* FastCoding.framework in Frameworks */,
 				C1051187298778D1006D9CB7 /* KatsanaSDK.framework in Frameworks */,
 				AE3FF2FED10129365E8F7918 /* Pods_KatsanaSDKmacOSTests.framework in Frameworks */,
 			);
@@ -328,6 +330,8 @@
 				C105119C2988CB97006D9CB7 /* VehicleTest.swift */,
 				C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */,
 				C10511A02988FF4C006D9CB7 /* TripTest.swift */,
+				C1A3E404298A1A8F00931529 /* AddressTest.swift */,
+				C1A3E406298A213800931529 /* ActivityTest.swift */,
 			);
 			path = KatsanaSDKmacOSTests;
 			sourceTree = "<group>";
@@ -336,7 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				C105119229877BE3006D9CB7 /* MockService.swift */,
-				C105119A29879167006D9CB7 /* MockCache.swift */,
+				C105119A29879167006D9CB7 /* CacheManagerSpy.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -770,7 +774,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KatsanaSDKmacOSTests/Pods-KatsanaSDKmacOSTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FastCoding-macOS/FastCoding.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging-macOS/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/Siesta-macOS/Siesta.framework",
 				"${BUILT_PRODUCTS_DIR}/XCGLogger-macOS/XCGLogger.framework",
@@ -778,7 +781,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FastCoding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siesta.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
@@ -797,9 +799,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C105119F2988E7AC006D9CB7 /* TripSummaryTest.swift in Sources */,
-				C105119B29879167006D9CB7 /* MockCache.swift in Sources */,
+				C105119B29879167006D9CB7 /* CacheManagerSpy.swift in Sources */,
+				C1A3E405298A1A8F00931529 /* AddressTest.swift in Sources */,
 				C105119D2988CB97006D9CB7 /* VehicleTest.swift in Sources */,
 				C105119029877ACC006D9CB7 /* UserTest.swift in Sources */,
+				C1A3E407298A213800931529 /* ActivityTest.swift in Sources */,
 				C1051186298778D1006D9CB7 /* KatsanaSDKmacOSTests.swift in Sources */,
 				C10511A12988FF4C006D9CB7 /* TripTest.swift in Sources */,
 				C105119329877BE3006D9CB7 /* MockService.swift in Sources */,

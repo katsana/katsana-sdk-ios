@@ -6,7 +6,20 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
-open class LiveShare {
+open class LiveShare: Codable {
+    enum CodingKeys: CodingKey {
+        case deviceId
+        case userId
+        case token
+        case shareDescription
+        case duration
+        case startAt
+        case endAt
+        case url
+        case createdAt
+        case shareId
+    }
+    
     open var deviceId : String!
     open var userId : String!
     open var token : String!

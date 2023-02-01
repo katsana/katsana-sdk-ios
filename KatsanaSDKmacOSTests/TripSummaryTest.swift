@@ -13,12 +13,12 @@ import Siesta
 
 final class TripSummaryTest: XCTestCase {
     var service: Service!
-    static var cache: MockCache!
+    static var cache: CacheManagerSpy!
     
     override class func setUp() {
         UMKMockURLProtocol.enable()
         UMKMockURLProtocol.setVerificationEnabled(true)
-        TripSummaryTest.cache = MockCache(writeToDisk: true)
+        TripSummaryTest.cache = CacheManagerSpy(writeToDisk: true)
     }
     
     override class func tearDown() {
@@ -67,7 +67,7 @@ final class TripSummaryTest: XCTestCase {
     }
 
     func test_requestTrips_tripsCachedCorrectlyFromDisk() throws {
-        let cache = MockCache(writeToDisk: true)
+        let cache = CacheManagerSpy(writeToDisk: true)
         let sut = makeSUT()
 
         let expectation = XCTestExpectation(description: "Request user, user cached properly")

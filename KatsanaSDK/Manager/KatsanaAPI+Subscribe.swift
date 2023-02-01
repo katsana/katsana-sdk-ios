@@ -13,10 +13,12 @@ extension KatsanaAPI{
         let path = "subscriptions"
         let resource = API.resource(path);
         let request = resource.loadIfNeeded()
+        let userId = currentUser?.userId ?? "0"
+        
         
         request?.onSuccess({(entity) in
             if let summaries : [VehicleSubscription] = resource.typedContent(){
-                self.cache?.cache(vehicleSubscription: summaries)
+                self.cache?.cache(vehicleSubscription: summaries, userId: userId)
                 NotificationCenter.default.post(name: KatsanaAPI.subscriptionRequestedNotification, object: summaries)
                 completion(summaries)
             }else{

@@ -7,12 +7,10 @@
 //
 
 import CoreLocation
-import FastCoding
 
-let cacheVersion = "2.5"
+let cacheVersion = "2.9"
 
 //Manage and cache reusable KatsanaSDK data including as travel, address, live share, image and vehicle activity. For most part, the framework manages all the caching and developer should not use and call methods in this class manually.
-@objcMembers
 public class KTCacheManager: NSObject {
     var logger: Logger!
     
@@ -36,14 +34,9 @@ public class KTCacheManager: NSObject {
     private var addresses : [KTAddress] {
         get{
             if _addresses == nil{
-                let addressPath = KTCacheManager.shared.cacheDirectory().appending("/" + KTCacheManager.shared.cacheAddressDataFilename())
-                let url = URL(fileURLWithPath: addressPath)
-                if let data = try? Data(contentsOf: url){
-                    if let unarchive = FastCoder.object(with: data) as? [KTAddress]{
-                        _addresses = unarchive
-                        purgeOldAddresses()
-                    }
-                }
+                let theAddresses = loadCachedAddresses()
+                _addresses = theAddresses
+                purgeOldAddresses()
             }
             if _addresses == nil{
                 _addresses = [KTAddress]()
@@ -57,7 +50,6 @@ public class KTCacheManager: NSObject {
     
     public var activities = [String: [VehicleActivity]]()
     private var liveShares = [LiveShare]()
-    private var data = [String: Any]()
     
     private var codableData = [String: [String: Codable]]()
     private var codableTripsData = [[String: Codable]]()
@@ -92,35 +84,17 @@ public class KTCacheManager: NSObject {
         let sizeStr = covertToFileString(with: size)
         logger?.info("Cache data size = \(sizeStr)")
         
-        var url = URL(fileURLWithPath: dataPath)
-        if let data = loadCachedData(){
-            self.data = data
-        }
         if let codableData = try? loadCodableData(){
             self.codableData = codableData
         }
         
-        clearLocationsIfNeeded(data: self.data)
+        clearLocationsIfNeeded(data: self.codableData)
         if size > 500000{
             purgeTravelOlderThan(days: 7)
         }
         
-        let activitiesPath = cacheDirectory().appending("/" + cacheActivitiesDataFilename())
-        url = URL(fileURLWithPath: activitiesPath)
-        if let data = try? Data(contentsOf: url){
-            if let unarchive = FastCoder.object(with: data) as? [String: [VehicleActivity]]{
-                //Sort activities date
-                var newDicto = [String: [VehicleActivity]]()
-                for (key, value) in unarchive {
-                    let sort = value.sorted { (a, b) -> Bool in
-                        return a.startTime.timeIntervalSince(b.startTime) > 0
-                    }
-                    newDicto[key] = sort
-                }
-                self.activities = newDicto
-                purgeOldActivities()
-            }
-        }
+        self.activities = loadCachedActivities() ?? [:]
+        purgeOldActivities()
         print(dataPath)
     }
     
@@ -156,11 +130,29 @@ public class KTCacheManager: NSObject {
         return theData
     }
     
-    func loadCachedData() -> [String: Any]!{
-        let dataPath = cacheDirectory().appending("/" + cacheDataFilename())
-        if let data = try? Data(contentsOf: URL(fileURLWithPath: dataPath)){
-            if let unarchive = FastCoder.object(with: data) as? [String: Any]{
-                return unarchive
+    func loadCachedAddresses() -> [KTAddress]!{
+        let addressPath = KTCacheManager.shared.cacheDirectory().appending("/" + KTCacheManager.shared.cacheAddressDataFilename())
+        let url = URL(fileURLWithPath: addressPath)
+        if let data = try? Data(contentsOf: url){
+            return try? JSONDecoder().decode([KTAddress].self, from: data)
+        }
+        return nil
+    }
+    
+    func loadCachedActivities() -> [String: [VehicleActivity]]!{
+        let activitiesPath = cacheDirectory().appending("/" + cacheActivitiesDataFilename())
+        let url = URL(fileURLWithPath: activitiesPath)
+        if let data = try? Data(contentsOf: url){
+            if let unarchive = try? JSONDecoder().decode([String: [VehicleActivity]].self, from: data){
+                //Sort activities date
+                var newDicto = [String: [VehicleActivity]]()
+                for (key, value) in unarchive {
+                    let sort = value.sorted { (a, b) -> Bool in
+                        return a.startTime.timeIntervalSince(b.startTime) > 0
+                    }
+                    newDicto[key] = sort
+                }
+                return newDicto
             }
         }
         return nil
@@ -186,7 +178,7 @@ public class KTCacheManager: NSObject {
     
     public func vehicleSubscriptions(userId: String) -> [VehicleSubscription]! {
         let classname = NSStringFromClass(VehicleSubscription.self)
-        if let vehiclesData = data[classname] as? [String: Any], let id = vehiclesData["user"] as? String, userId == id, let subcriptions = vehiclesData["subscriptions"] as? [VehicleSubscription]{
+        if let vehiclesData = codableData[classname], let id = vehiclesData["user"] as? String, userId == id, let subcriptions = vehiclesData["subscriptions"] as? [VehicleSubscription]{
             return subcriptions
         }
         return nil
@@ -243,20 +235,18 @@ public class KTCacheManager: NSObject {
         //        }
         
         let classname = NSStringFromClass(Travel.self)
-        if let travelArray = data[classname] as? [[String: Any]]{
+        if let travelDicto = codableData[classname]{
             var trips = [KTTrip]()
-            for travelDicto in travelArray {
-                if let travelVehicleId = travelDicto["id"] as? String, let travels = travelDicto["travels"] as? [Travel] {
-                    for travel in travels{
-                        if toDate == nil {
-                            if travelVehicleId == vehicleId, travel.date.timeIntervalSince(date) > 0{
+            if let travelVehicleId = travelDicto["id"] as? String, let travels = travelDicto["travels"] as? [Travel] {
+                for travel in travels{
+                    if toDate == nil {
+                        if travelVehicleId == vehicleId, travel.date.timeIntervalSince(date) > 0{
+                            trips.append(contentsOf: travel.trips)
+                        }
+                    }else{
+                        if travelVehicleId == vehicleId{
+                            if (travel.date.isLaterThanDate(date) && travel.date.isEarlierThanDate(toDate)) {
                                 trips.append(contentsOf: travel.trips)
-                            }
-                        }else{
-                            if travelVehicleId == vehicleId{
-                                if (travel.date.isLaterThanDate(date) && travel.date.isEarlierThanDate(toDate)) {
-                                    trips.append(contentsOf: travel.trips)
-                                }
                             }
                         }
                     }
@@ -311,6 +301,7 @@ public class KTCacheManager: NSObject {
     }
     
     public func address(for coordinate: CLLocationCoordinate2D, completion: @escaping (_ address: KTAddress?) -> Void) {
+        
         let keepAddressDuration : TimeInterval = 60*60*24 * 3*30 //Keep address for 3 months
         let addresses = self.addresses
         DispatchQueue.global(qos: .background).async {
@@ -402,12 +393,10 @@ public class KTCacheManager: NSObject {
         autoSave()
     }
     
-    public func cache(vehicleSubscription: [VehicleSubscription]) {
+    public func cache(vehicleSubscription: [VehicleSubscription], userId: String) {
         let classname = NSStringFromClass(VehicleSubscription.self)
-        if let user = data[NSStringFromClass(KTUser.self)] as? KTUser{
-            data[classname] = ["subscriptions": vehicleSubscription, "user": user.userId]
-            autoSave()
-        }
+        codableData[classname] = ["subscriptions": vehicleSubscription, "user": userId]
+        autoSave()
     }
     
     public func cache(travel: Travel, vehicleId: String) {
@@ -421,7 +410,7 @@ public class KTCacheManager: NSObject {
         let classname = NSStringFromClass(Travel.self)
         
         var travelDicto: [String: Codable]!
-        if let array = data[classname] as? [String: Codable]{
+        if let array = codableData[classname]{
             travelDicto = array
         }else{
             travelDicto = [String: Codable]()
@@ -487,7 +476,7 @@ public class KTCacheManager: NSObject {
         var travel: Travel!
         var travelIndex: Int!
         var theTravels : [Travel]!
-        let travelDicto = data[classname]
+        let travelDicto = codableData[classname]
         
         if let travelDicto = travelDicto as? [String: Codable]{
             if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel] {
@@ -536,7 +525,7 @@ public class KTCacheManager: NSObject {
         
         travel.updateDataFromTrip()
         
-        if let travelIndex = travelIndex, var travelDicto = travelDicto as? [String: Codable]{
+        if let travelIndex = travelIndex, var travelDicto = travelDicto{
             theTravels[travelIndex] = travel
             travelDicto = ["id": vehicleId, "travels": theTravels ?? [Travel]()]
             codableData[classname] = travelDicto
@@ -554,7 +543,7 @@ public class KTCacheManager: NSObject {
         let dateStr = KTCacheManager.dateFormatter.string(from: trip.date)
         let path = tripPath().appending("/\(dateStr).dat")
         var travel: Travel!
-        if FileManager.default.fileExists(atPath: path), let data = try? Data(contentsOf: URL(fileURLWithPath: path)), let aTravel = FastCoder.object(with: data) as? Travel {
+        if FileManager.default.fileExists(atPath: path), let data = try? Data(contentsOf: URL(fileURLWithPath: path)), let aTravel = try? JSONDecoder().decode(Travel.self, from: data) {
             var foundIdx : Int!
             for (idx, aTrip) in aTravel.trips.enumerated(){
                 if aTrip.date == trip.date{
@@ -632,13 +621,6 @@ public class KTCacheManager: NSObject {
         }
     }
     
-    public func cache(liveShare: LiveShare) {
-        let path = cacheDirectory().appending("/" + cacheLiveShareFilename())
-        liveShares.append(liveShare)
-        let data = FastCoder.data(withRootObject: liveShares) as NSData
-        data.write(toFile: path, atomically: true)
-    }
-    
     public func cache(image: KMImage, identifier: String) {
         let dir = cacheDirectory()
         let path = dir.appending("/Images")
@@ -677,9 +659,9 @@ public class KTCacheManager: NSObject {
         }
         lastSavedCache = Date()
         
-        let data = FastCoder.data(withRootObject: self.data)
-        let path = cacheDirectory().appending("/" + cacheDataFilename())
-        try? data?.write(to: URL(fileURLWithPath: path))
+//        let data = FastCoder.data(withRootObject: self.data)
+//        let path = cacheDirectory().appending("/" + cacheDataFilename())
+//        try? data?.write(to: URL(fileURLWithPath: path))
         
         //codableData
         let codablePath = cacheDirectory().appending("/codable" + cacheDataFilename())
@@ -708,7 +690,7 @@ public class KTCacheManager: NSObject {
         }
         lastSavedAddressCache = Date()
         
-        let data = FastCoder.data(withRootObject: self.addresses)
+        let data = try? JSONEncoder().encode(self.addresses)
         let path = cacheDirectory().appending("/" + cacheAddressDataFilename())
         try? data?.write(to: URL(fileURLWithPath: path))
     }
@@ -721,7 +703,7 @@ public class KTCacheManager: NSObject {
         }
         lastSavedActivitiesCache = Date()
         
-        let data = FastCoder.data(withRootObject: self.activities)
+        let data = try? JSONEncoder().encode(self.activities)
         let path = cacheDirectory().appending("/" + cacheActivitiesDataFilename())
         try? data?.write(to: URL(fileURLWithPath: path))
     }
@@ -734,7 +716,7 @@ public class KTCacheManager: NSObject {
         let classname = NSStringFromClass(Travel.self)
         
         var travelDicto: [String: Codable]!
-        if let array = data[classname] as? [String: Codable]{
+        if let array = codableData[classname]{
             travelDicto = array
         }else{
             travelDicto = [String: Codable]()
@@ -748,7 +730,7 @@ public class KTCacheManager: NSObject {
                 if date == nil, toDate == nil {
                     //Remove all data
                     travelDicto["travels"] = nil
-                    data[classname] = travelDicto
+                    codableData[classname] = travelDicto
                     autoSave()
                 }else{
                     for (index, theTravel) in travels.enumerated() {
@@ -832,7 +814,7 @@ public class KTCacheManager: NSObject {
         KTCacheManager._shared = nil
     }
     
-    func clearLocationsIfNeeded(data: [String: Any]){
+    func clearLocationsIfNeeded(data: [String: [String: Codable]]){
         if let travelDicto = data[NSStringFromClass(Travel.self)] as? [String: Any]{
             if let travels = travelDicto["travels"] as? [Travel] {
                 for travel in travels{

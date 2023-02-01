@@ -20,10 +20,6 @@ class CacheManagerSpy: KTCacheManager{
         return "mockCacheData.dat"
     }
     
-    override func cacheAddressDataFilename() -> String {
-        return "mockCacheAddress.dat"
-    }
-    
     override func cacheTravelsDataFilename() -> String {
         return "mockTravel.dat"
     }

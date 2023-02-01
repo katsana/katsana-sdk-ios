@@ -8,8 +8,8 @@
 
 import CoreLocation
 
-@objcMembers
-open class KTAddress: NSObject {
+open class KTAddress: Codable {
+    
     open var latitude: Double
     open var longitude: Double
     open var streetNumber: String!
@@ -25,11 +25,7 @@ open class KTAddress: NSObject {
     open var address: String!
     open var updateDate = Date()
     
-    override open class func fastCodingKeys() -> [Any]?{
-        return ["latitude", "longitude", "streetNumber", "streetName", "locality", "sublocality", "city", "postcode", "country", "address", "updateDate", "state", "subAdministrativeArea"]
-    }
-    
-    override public init() {
+    public init() {
         self.latitude = 0
         self.longitude = 0
     }
@@ -180,5 +176,14 @@ open class KTAddress: NSObject {
     
     open func coordinate() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake(latitude, longitude)
+    }
+}
+
+extension KTAddress: Equatable{
+    public static func == (lhs: KTAddress, rhs: KTAddress) -> Bool {
+        if lhs.latitude == rhs.latitude, lhs.longitude == rhs.longitude, lhs.optimizedAddress() == rhs.optimizedAddress(){
+            return true
+        }
+        return false
     }
 }
