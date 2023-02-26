@@ -156,7 +156,9 @@ class ObjectJSONTransformer {
     class func VehicleLocationObject(json : JSON) -> VehicleLocation {
         let latitude = json["latitude"].doubleValue
         let longitude = json["longitude"].doubleValue
-        let pos = VehicleLocation(latitude: latitude, longitude: longitude)
+        let date = json["tracked_at"].date(gmt: 0)
+        
+        let pos = VehicleLocation(latitude: latitude, longitude: longitude, trackedAt: date ?? Date())
         
         pos.altitude = json["altitude"].doubleValue
         pos.course = json["course"].doubleValue
@@ -169,8 +171,7 @@ class ObjectJSONTransformer {
         pos.voltage = json["voltage"].stringValue
         pos.gsm = json["gsm"].stringValue
         pos.ignitionState = json["ignition"].boolValue
-        let date = json["tracked_at"].date(gmt: 0)
-        pos.trackedAt = date
+        
         
         if let harsh = json["harsh"].dictionaryObject{
             pos.extraData["harsh"] = harsh

@@ -77,13 +77,19 @@ final class UserTest: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
     
-    
-    func makeSUT(cache: CacheManagerSpy) -> KatsanaAPI{
+    weak var weakAPI: KatsanaAPI!
+    func makeSUT(cache: CacheManagerSpy, file: StaticString = #filePath, line: UInt = #line) -> KatsanaAPI{
         let api = KatsanaAPI(cache: cache)
         api.API = service
         api.authToken = "testToken"
         api.configure()
         api.setupTransformer()
+        
+        weakAPI = api
+//        addTeardownBlock { [weak weakAPI] in
+//            XCTAssertNil(weakAPI, "Instance should be nil", file: file, line: line)
+//        }
+        
         return api
     }
     

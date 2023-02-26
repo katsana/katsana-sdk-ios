@@ -24,6 +24,7 @@ open class VehicleLocation: Codable{
         case ignitionState
         case verticalAccuracy
         case horizontalAccuracy
+        case trackedAt
     }
     
     open var latitude: Double
@@ -46,19 +47,14 @@ open class VehicleLocation: Codable{
     private(set) open var address: String!
     private(set) open var addressObject: KTAddress!
     
-    open var trackedAt: Date!
+    public let trackedAt: Date
     ///Extra data that user can save to vehicle location. Should have only value with codable support.
     open var extraData = [String: Any]()
     
-    ///Implemented to satisfy FastCoder and set default value
-    init() {
-        self.latitude = 0
-        self.longitude = 0
-    }
-    
-    public init(latitude: Double, longitude: Double) {
+    public init(latitude: Double, longitude: Double, trackedAt: Date) {
         self.latitude = latitude
         self.longitude = longitude
+        self.trackedAt = trackedAt
     }
     
     open func coordinate() -> CLLocationCoordinate2D {

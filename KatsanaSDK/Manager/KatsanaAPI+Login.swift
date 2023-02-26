@@ -75,7 +75,8 @@ extension KatsanaAPI {
             resource = resource.withParam("includes", text)
         }
         
-        resource.loadIfNeeded()?.onSuccess({ (entity) in
+        resource.loadIfNeeded()?.onSuccess({[weak self] (entity) in
+            guard let self else {return}
             let user : KTUser? = resource.typedContent()
             if let user = user{
                 self.currentUser = user
@@ -87,7 +88,8 @@ extension KatsanaAPI {
             }else{
                 completion(.failure(KatsanaAPIError.invalidParsedObject("User")))
             }
-        }).onFailure({ (error) in
+        }).onFailure({ [weak self] (error) in
+            guard let self else {return}
             if retryCount < maxRetry{
                 self.loadProfile(completion: completion, retryCount: retryCount+1)
             }else{

@@ -12,11 +12,11 @@ open class KTAddress: Codable {
     
     open var latitude: Double
     open var longitude: Double
-    open var streetNumber: String!
-    open var streetName: String!
-    open var locality: String!
-    open var sublocality: String!
-    open var subAdministrativeArea: String!
+    open var streetNumber: String?
+    open var streetName: String?
+    open var locality: String?
+    open var sublocality: String?
+    open var subAdministrativeArea: String?
     open var postcode: Int = -1
     open var city: String!
     open var state: String!

@@ -119,7 +119,8 @@ extension KatsanaAPI {
                     needLoad = true
                     break
                 }
-                else if trip.locations.count > 3, let last = trip.locations.last?.trackedAt, let secondLast = trip.locations[trip.locations.count-2].trackedAt{
+                else if trip.locations.count > 3, let last = trip.locations.last?.trackedAt{
+                    let secondLast = trip.locations[trip.locations.count-2].trackedAt
                     if last == secondLast{
                         needLoad = true
                         break

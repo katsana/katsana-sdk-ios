@@ -26,8 +26,8 @@ open class KTTrip: NSCopying, Codable {
     open var id : String!
     ///Alternate id set manually if required. Default to nil
     open var alternateId: String!
-    open var start: VehicleLocation!
-    open var end: VehicleLocation!
+    open var start: VehicleLocation?
+    open var end: VehicleLocation?
     open var distance: Double = 0
     open var duration: Double = 0
     open var maxSpeed: Float = 0
@@ -42,8 +42,8 @@ open class KTTrip: NSCopying, Codable {
     open var violations = [VehicleActivity]()
     
     ///Next trip and prev trip automatically set when trips are set in Travel class
-    weak open var nextTrip: KTTrip!
-    weak open var prevTrip: KTTrip!
+    weak open var nextTrip: KTTrip?
+    weak open var prevTrip: KTTrip?
     
     //Extra data that user can set to trip
     open var extraData = [String: Any]()
@@ -73,8 +73,8 @@ open class KTTrip: NSCopying, Codable {
     // MARK: Logic
     
     open func durationToNextTrip() -> Float {
-        if let nextTrip = nextTrip {
-            let duration = nextTrip.start.trackedAt.timeIntervalSince(end.trackedAt)
+        if let nextTripStart = nextTrip?.start, let end {
+            let duration = nextTripStart.trackedAt.timeIntervalSince(end.trackedAt)
             return Float(duration)
         }
         return 0
