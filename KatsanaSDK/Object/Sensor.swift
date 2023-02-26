@@ -17,8 +17,8 @@ open class Sensor {
     open var input: Int = -1
     open var name = ""
     open var sensorType: SensorType = .other
-    open var event: String!
-    open var deviceType: String!
+    open var event: String?
+    open var deviceType: String?
     
     public func title() -> String {
         switch sensorType {

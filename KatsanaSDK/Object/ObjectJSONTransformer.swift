@@ -277,26 +277,29 @@ class ObjectJSONTransformer {
     }
     
     class func TravelSummaryObject(json : JSON) -> Travel {
-        let history = Travel()
+        let date = json["date"].dateWithoutTime
+        let history = Travel(date: date ?? Date())
         history.maxSpeed = json["max_speed"].floatValue
         history.distance = json["distance"].doubleValue
         history.violationCount = json["violation"].intValue
         history.tripCount = json["trip"].intValue
         history.duration = json["duration"].doubleValue
         history.idleDuration = json["idle_duration"].doubleValue
-        history.date = json["date"].dateWithoutTime
+        
 //        /change date to local date and check UTC time again
         objectInitializationHandler?(json, KTUser.self)
         return history
     }
     
     class func TravelObject(json : JSON) -> Travel {
-        let history = Travel()
+        let date = json["duration"]["from"].date(gmt: 0)
+        
+        let history = Travel(date: date ?? Date())
         history.maxSpeed = json["summary"]["max_speed"].floatValue
         history.distance = json["summary"]["distance"].doubleValue
         history.violationCount = json["summary"]["violation"].intValue
         history.trips = json["trips"].arrayValue.map{TripObject(json: $0)}
-        history.date = json["duration"]["from"].date(gmt: 0)
+        
         objectInitializationHandler?(json, KTUser.self)
         return history
     }
@@ -407,15 +410,17 @@ class ObjectJSONTransformer {
     }
 
     class func VehicleSubscriptionObject(json : JSON) -> VehicleSubscription {
-        let subscribe = VehicleSubscription()
-        subscribe.deviceId = json["device_id"].stringValue
+        let deviceId = json["device_id"].stringValue
+        let subscriptionId = json["subscription"]["id"].stringValue
+        
+        let subscribe = VehicleSubscription(deviceId: deviceId, subscriptionId: subscriptionId)
         subscribe.deviceImei = json["device_imei"].stringValue
         subscribe.vehicleExpiredAt = json["expired_at"].date(gmt: 0)
         subscribe.vehicleDescription = json["description"].stringValue
         subscribe.vehicleNumber = json["vehicle_number"].stringValue
         subscribe.isReseller = json["reseller"].boolValue
         
-        subscribe.subscriptionId = json["subscription"]["id"].stringValue
+        
         subscribe.subscriptionPrice = json["subscription"]["price"]["price"].intValue
         subscribe.subscriptionPriceWithTax = json["subscription"]["price"]["price_with_tax"].intValue
         subscribe.subscriptionTax = json["subscription"]["price"]["tax"].floatValue

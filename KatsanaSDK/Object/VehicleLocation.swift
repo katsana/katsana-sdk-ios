@@ -44,8 +44,8 @@ open class VehicleLocation: Codable{
     open var verticalAccuracy: Float = 0
     open var horizontalAccuracy: Float = 0
     
-    private(set) open var address: String!
-    private(set) open var addressObject: KTAddress!
+    private(set) open var address: String?
+    private(set) open var addressObject: KTAddress?
     
     public let trackedAt: Date
     ///Extra data that user can save to vehicle location. Should have only value with codable support.

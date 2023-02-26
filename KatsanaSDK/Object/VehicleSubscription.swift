@@ -17,35 +17,42 @@ public enum VehicleSubscriptionStatus: Int{
 
 open class VehicleSubscription: Codable {
     
-    open var deviceId: String!
-    open var deviceImei: String!
-    open var vehicleNumber: String!
-    open var vehicleDescription: String!
-    open var vehicleExpiredAt: Date!
+    public let deviceId: String
+    public let subscriptionId: String
     
-    open var subscriptionId: String!
+    open var deviceImei: String?
+    open var vehicleNumber: String?
+    open var vehicleDescription: String?
+    open var vehicleExpiredAt: Date?
+    
+    
     open var subscriptionPrice: Int = 0
     open var subscriptionPriceWithTax: Int = 0
     open var subscriptionTax: Float = 0
     
-    open var subscriptionStartAt: Date!
-    open var subscriptionEndAt: Date!
+    open var subscriptionStartAt: Date?
+    open var subscriptionEndAt: Date?
     
-    open var planId: String!
-    open var planName: String!
-    open var planDescription: String!
+    open var planId: String?
+    open var planName: String?
+    open var planDescription: String?
     open var planPrice: Int = 0
 //    open var planTaxRate: Int = 0 //Should not be used
 //    open var planTaxValue: Int = 0 //Should not be used
     open var planBillingCycle: Int = 0
-    open var planQuickBooksId: String!
-    open var planRenewalAddonId: String!
-    open var planTagId: String!
-    open var planType: String!
-    open var planCreatedAt: Date!
-    open var planUpdatedAt: Date!
+    open var planQuickBooksId: String?
+    open var planRenewalAddonId: String?
+    open var planTagId: String?
+    open var planType: String?
+    open var planCreatedAt: Date?
+    open var planUpdatedAt: Date?
     
     open var isReseller = false
+    
+    init(deviceId: String, subscriptionId: String){
+        self.deviceId = deviceId
+        self.subscriptionId = subscriptionId
+    }
     
     open func status() -> VehicleSubscriptionStatus {
         if let date = vehicleExpiredAt {

@@ -78,7 +78,7 @@ extension KatsanaAPI {
                     summary.vehicleId = vehicleId
                     
                     //Cache history for days more than maxDaySummary, because it may already contain trip but still not finalized on the server
-                    if Date().daysAfterDate((summary.date)!) > KatsanaAPI.maxDaySummary{
+                    if Date().daysAfterDate((summary.date)) > KatsanaAPI.maxDaySummary{
                         self.cache?.cache(travel: summary, vehicleId: vehicleId)
                     }
                 }
@@ -156,7 +156,7 @@ extension KatsanaAPI {
             
             if let travel = travel {
                 travel.lastUpdate = Date() //Set last update date
-                travel.date = date
+                travel.updateDate(date)
                 travel.vehicleId = vehicleId
                 var newTrips = [KTTrip]()
                 for trip in travel.trips {
@@ -188,8 +188,8 @@ extension KatsanaAPI {
     
     ///Request travel using given summary. Summary only give duration and trip count, if cached history is different from the summary, reload and return it
     public func requestTravelUsing(summary: Travel, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
-        
-        guard let vehicleId = summary.vehicleId, let date = summary.date else {
+        let date = summary.date
+        guard let vehicleId = summary.vehicleId else {
             return
         }
         
@@ -393,7 +393,7 @@ extension KatsanaAPI {
             //If have cached history, add to array if pass other condition
             if let travel = travel {
                 //Check if last 3 day
-                if Date().daysAfterDate((travel.date)!) <= KatsanaAPI.maxDaySummary {
+                if Date().daysAfterDate((travel.date)) <= KatsanaAPI.maxDaySummary {
                     //Check if current date is 5 minutes than last try update date and trips is 0
 //                    if Date().minutesAfterDate(travel.lastUpdate) > 5 || travel.trips.count == 0 {
                         break
@@ -414,7 +414,7 @@ extension KatsanaAPI {
             //If have cached history, add to array
             if let travel = travel {
                 //Check if last 3 day
-                if Date().daysAfterDate((travel.date)!) <= KatsanaAPI.maxDaySummary {
+                if Date().daysAfterDate((travel.date)) <= KatsanaAPI.maxDaySummary {
                     //Check if current date is 5 minutes than last try update date and trips is 0
 //                    if Date().minutesAfterDate(travel.lastUpdate) > 5 || travel.trips.count == 0 {
                         break

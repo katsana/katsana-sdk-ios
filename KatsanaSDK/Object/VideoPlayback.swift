@@ -7,21 +7,21 @@
 //
 
 open class VideoPlayback: Codable {
-    open var id: String!
-    open var channelIdentifier: String!
-    open var userId: String!
-    open var deviceId: String!
-    open var vacronDeviceId: String!
-    open var filename: String!
-    open var startTime: Date!
-    open var endTime: Date!
+    open var id: String?
+    open var channelIdentifier: String?
+    open var userId: String?
+    open var deviceId: String?
+    open var vacronDeviceId: String?
+    open var filename: String?
+    open var startTime: Date?
+    open var endTime: Date?
     open var duration: CGFloat = 0
     
-    open var url: String!
-    open var previewURL: String!
+    open var url: String?
+    open var previewURL: String?
 //    open var channelId
     
-    open var startTimeText: String!{
+    open var startTimeText: String?{
         get{
             if let startTime{
                 return startTime.toStringWithTime(includeSeconds: false)
@@ -32,11 +32,11 @@ open class VideoPlayback: Codable {
 }
 
 open class DayVideoPlayback: Codable {
-    open var date: Date!
+    open var date: Date?
     open var playbacks = [VideoPlayback]()
     open var totalDuration: CGFloat = 0
     
-    open var dayText: String!{
+    open var dayText: String?{
         get{
             if let date{
                 return String(date.day())
@@ -44,7 +44,7 @@ open class DayVideoPlayback: Codable {
             return nil
         }
     }
-    open var monthText: String!{
+    open var monthText: String?{
         get{
             if let date{
                 return date.shortMonthToString()
@@ -58,7 +58,7 @@ open class DayVideoPlayback: Codable {
             return "\(playbacks.count) files"
         }
     }
-    open var durationText: String!{
+    open var durationText: String?{
         get{
             var totalDuration: CGFloat = 0
             for playback in playbacks {
@@ -78,7 +78,7 @@ public extension Array where Element: VideoPlayback {
         var days = [DayVideoPlayback]()
         func getOrCreateDayPlayback(_ date: Date) -> DayVideoPlayback{
             for channel in days {
-                if channel.date.isEqualToDateIgnoringTime(date){
+                if let channelDate = channel.date, channelDate.isEqualToDateIgnoringTime(date){
                     return channel
                 }
             }
@@ -89,13 +89,16 @@ public extension Array where Element: VideoPlayback {
         }
         
         for playback in self{
-            if playback.channelIdentifier == channelId{
-                let day = getOrCreateDayPlayback(playback.startTime)
+            if playback.channelIdentifier == channelId, let startTime = playback.startTime{
+                let day = getOrCreateDayPlayback(startTime)
                 day.addPlayback(playback)
             }
         }
         days.sort { a,b in
-            return a.date < b.date
+            guard let aDate = a.date, let bDate = b.date else{
+                return false
+            }
+            return aDate < bDate
         }
         
         return days

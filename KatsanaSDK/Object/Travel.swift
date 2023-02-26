@@ -20,13 +20,14 @@ open class Travel: NSCopying, Codable, Equatable {
         case tripCount
     }
     
-    open var vehicleId : String!
+    public var date : Date
+    open var vehicleId : String?
     open var maxSpeed : Float = 0
     open var distance : Double = 0
     open var idleDuration : Double = 0
     
     public func copy(with zone: NSZone? = nil) -> Any {
-        let travel = Travel()
+        let travel = Travel(date: date)
         travel.vehicleId = vehicleId
         travel.maxSpeed = maxSpeed
         travel.distance = distance
@@ -39,7 +40,6 @@ open class Travel: NSCopying, Codable, Equatable {
             newTrips.append(newTrip)
         }
         travel.trips = newTrips
-        travel.date = date
         travel.lastUpdate = lastUpdate
         travel.violationCount = violationCount
         travel.tripCount = tripCount
@@ -88,18 +88,22 @@ open class Travel: NSCopying, Codable, Equatable {
         }
     }
     
-    open var date : Date!
+    
     open var lastUpdate = Date()
     
     open var violationCount : Int = 0
     open var tripCount : Int = 0
-
+    
     open var needLoadTripHistory = false
+    
+    public init(date: Date){
+        self.date = date
+    }
     
     // MARK: Helper
     
-    open var _vehicle : KTVehicle!
-    open func owner() -> KTVehicle! {
+    open var _vehicle : KTVehicle?
+    open func owner() -> KTVehicle? {
         if _vehicle == nil, let vehicleId = vehicleId {
             _vehicle = KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)
         }
@@ -145,7 +149,7 @@ open class Travel: NSCopying, Codable, Equatable {
     // MARK: Logic
     
     ///Get trip at specified time, return nil if not found
-    open func trip(at time: Date) -> KTTrip! {
+    open func trip(at time: Date) -> KTTrip? {
         for trip in trips {
             if let startTime = trip.start?.trackedAt, let endTime = trip.end?.trackedAt  {
                 if time.timeIntervalSince(startTime) >= 0, endTime.timeIntervalSince(time) >= 0 {
@@ -156,14 +160,14 @@ open class Travel: NSCopying, Codable, Equatable {
         return nil
     }
     
+    func updateDate(_ date: Date){
+        self.date = date
+    }
+    
     // MARK: Equatable Protocol
     
     static public func ==(a: Travel, b: Travel) -> Bool
     {
-        guard a.date != nil, b.date != nil else {
-            return false
-        }
-        
         var equal = false
         if Calendar.current.isDate(a.date, equalTo: b.date, toGranularity: .day), a.trips.count == b.trips.count, fabs(a.distance - b.distance) < 50 {
             equal = true
@@ -182,8 +186,7 @@ open class Travel: NSCopying, Codable, Equatable {
         var currentTravel: Travel!
         for trip in trips{
             if currentTravel == nil{
-                currentTravel = Travel()
-                currentTravel.date = trip.date
+                currentTravel = Travel(date: trip.date)
                 currentTravel.trips = [KTTrip]()
                 travels.append(currentTravel)
             }
@@ -191,8 +194,7 @@ open class Travel: NSCopying, Codable, Equatable {
                 //Do nothing
             }else{
                 //If date not same, create new travel
-                currentTravel = Travel()
-                currentTravel.date = trip.date
+                currentTravel = Travel(date: trip.date)
                 travels.append(currentTravel)
             }
             currentTravel.trips.append(trip)
@@ -214,7 +216,8 @@ open class Travel: NSCopying, Codable, Equatable {
         self.duration = duration
         self.maxSpeed = Float(maxSpeed)
         if let date = trips.first?.date{
-            self.date = date
+            //Warning: Need check if set date is required
+//            self.date = date
         }
     }
     

@@ -15,8 +15,8 @@ open class VideoRecordingChannel: Codable {
         case playbacks
     }
     
-    open var identifier: String!
-    open var name: String!
+    open var identifier: String?
+    open var name: String?
     open var isOn: Bool = false
     open var playbacks = [VideoPlayback]()
     

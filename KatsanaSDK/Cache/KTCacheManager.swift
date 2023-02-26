@@ -482,7 +482,7 @@ public class KTCacheManager: NSObject {
             if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel] {
                 theTravels = travels
                 for (index, theTravel) in travels.enumerated() {
-                    if let travelDate = theTravel.date, travelDate.isEqualToDateIgnoringTime(trip.date){
+                    if theTravel.date.isEqualToDateIgnoringTime(trip.date){
                         travel = theTravel
                         travelIndex = index
                     }
@@ -517,8 +517,7 @@ public class KTCacheManager: NSObject {
                 travel.trips = trips
             }
         }else{
-            travel = Travel()
-            travel.date = trip.date
+            travel = Travel(date: trip.date)
             travel.vehicleId = vehicleId
             travel.trips = [trip]
         }
@@ -564,7 +563,7 @@ public class KTCacheManager: NSObject {
             }
             travel = aTravel
         } else {
-            travel = Travel()
+            travel = Travel(date: trip.date)
             travel.trips = [trip]
             travel.updateDataFromTrip()
         }

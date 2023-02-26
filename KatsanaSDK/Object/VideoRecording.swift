@@ -16,11 +16,11 @@ open class VideoRecording: Codable {
         case liveStreamURL
     }
     
-    open var id: String!
-    open var horizontalRatio: Int!
-    open var verticalRatio: Int!
+    open var id: String?
+    open var horizontalRatio: Int?
+    open var verticalRatio: Int?
     open var channels = [VideoRecordingChannel]()
-    open var liveStreamURL: String!
+    open var liveStreamURL: String?
     
     open func liveStreamURLTruncated() -> String!{
         if let url = liveStreamURL{

@@ -56,9 +56,9 @@ open class VehicleActivity: Codable {
     
     internal var privateAttributedMessage: NSAttributedString!
     
-    open var vehicleId: String!
-    open var message: String!
-    open var attributedMessage: NSAttributedString!{
+    open var vehicleId: String?
+    open var message: String?
+    open var attributedMessage: NSAttributedString?{
         set{
             privateAttributedMessage = newValue
         }
@@ -73,7 +73,7 @@ open class VehicleActivity: Codable {
             return privateAttributedMessage
         }
     }
-    open var address: String!
+    open var address: String?
     
     open var distance: Float = 0
     open var duration: Float = 0
@@ -92,7 +92,7 @@ open class VehicleActivity: Codable {
     open var startPosition: Int = 0
     open var endPosition: Int = 0
     
-    open var identifier : String!
+    open var identifier : String?
     open var violationId: Int = 0
     open var policyId: Int = 0
     open lazy var type: ActivityType = {
@@ -131,13 +131,13 @@ open class VehicleActivity: Codable {
         case "fuel-low":
             type = .fuelLow
         default:
-            print("Policy " + self.policyKey + " not handled")
+            print("Policy " + (self.policyKey ?? "??") + " not handled")
         }
         return type
     }()
     
     /// Policy string from server
-    var policyKey: String!
+    var policyKey: String?
     
     convenience init() {
         self.init(dictionary: nil, identifier: nil)
