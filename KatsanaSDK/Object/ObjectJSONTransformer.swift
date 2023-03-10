@@ -22,6 +22,10 @@ class ObjectJSONTransformer: NSObject {
         user.emergencyPhoneMobile = json["meta"]["phone"]["mobile"].stringValue
         user.imageURL = json["avatar"]["url"].stringValue
         
+        user.picName = json["company"]["person_in_charges"]["name"].string
+        user.picPhoneNumber = json["company"]["person_in_charges"]["phone_number"].string
+        user.companyName = json["company"]["name"].string
+        
         user.address = json["address"].stringValue
         if let gender = json["gender"].string, (gender == "male" || gender == "female"){
             user.gender = Gender(rawValue: gender)!

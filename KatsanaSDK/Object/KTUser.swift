@@ -29,6 +29,11 @@ open class KTUser: NSObject {
     open var fullname: String!
     open var status: Int = 0
     
+    open var picName: String!
+    open var picPhoneNumber: String!
+    open var companyName: String!
+    
+    
     open var emergencyFullName: String!
     open var emergencyPhoneHome: String!
     open var emergencyPhoneMobile: String!
