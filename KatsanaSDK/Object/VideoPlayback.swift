@@ -5,6 +5,7 @@
 //  Created by Wan Ahmad Lutfi on 15/11/2022.
 //  Copyright © 2022 pixelated. All rights reserved.
 //
+import Foundation
 
 open class VideoPlayback: Codable {
     open var id: String?

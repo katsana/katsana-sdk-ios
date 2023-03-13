@@ -9,9 +9,12 @@
 import Siesta
 
 #if os(iOS)
+import UIKit
     public typealias KMColor = UIColor
     public typealias KMImage = UIImage
 #elseif os(OSX)
+import AppKit
+
     public typealias KMColor = NSColor
     public typealias KMImage = NSImage
 #endif

@@ -5,6 +5,7 @@
 //  Created by Wan Ahmad Lutf Wan Md Hatta on 30/11/2016.
 //  Copyright © 2016 pixelated. All rights reserved.
 //
+import Foundation
 
 open class LiveShare: Codable {
     enum CodingKeys: CodingKey {

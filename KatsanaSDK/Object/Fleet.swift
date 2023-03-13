@@ -7,9 +7,8 @@
 //
 
 
-open class Fleet: Codable {
-    open var fleetId = 0
-    open var name = ""
-    open var deviceCount = 0
-    
+public struct Fleet: Codable {
+    public let fleetId: Int
+    public let name: String
+    public let deviceCount: Int
 }

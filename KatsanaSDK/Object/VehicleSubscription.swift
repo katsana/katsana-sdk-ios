@@ -5,7 +5,7 @@
 //  Created by Wan Lutfi on 09/04/2018.
 //  Copyright © 2018 pixelated. All rights reserved.
 //
-
+import Foundation
 
 public enum VehicleSubscriptionStatus: Int{
     case active

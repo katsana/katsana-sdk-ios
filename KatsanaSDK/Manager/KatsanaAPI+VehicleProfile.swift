@@ -6,7 +6,14 @@
 //  Copyright © 2016 pixelated. All rights reserved.
 //
 
+import Foundation
 import Siesta
+
+#if os(iOS)
+import UIKit
+#elseif os(OSX)
+import AppKit
+#endif
 
 extension KatsanaAPI {
 

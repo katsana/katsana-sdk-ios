@@ -7,9 +7,9 @@
 //
 
 open class KTInsurer {
-    public var country: String
-    public var name: String
-    public var partner = false
+    public let country: String
+    public let name: String
+    public let partner: Bool
     
     init(name: String, country: String, partner: Bool = false) {
         self.country = country

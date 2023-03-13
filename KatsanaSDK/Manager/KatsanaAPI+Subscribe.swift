@@ -6,6 +6,7 @@
 //  Copyright © 2018 pixelated. All rights reserved.
 //
 
+import Foundation
 import Siesta
 
 extension KatsanaAPI{

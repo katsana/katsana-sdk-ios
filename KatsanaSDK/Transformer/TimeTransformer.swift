@@ -5,6 +5,7 @@
 //  Created by Wan Ahmad Lutfi on 02/02/2017.
 //  Copyright © 2017 pixelated. All rights reserved.
 //
+import Foundation
 
 @objcMembers
 public class TimeTransformer: ValueTransformer {

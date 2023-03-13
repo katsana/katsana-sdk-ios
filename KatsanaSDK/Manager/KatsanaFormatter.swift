@@ -5,7 +5,7 @@
 //  Created by Wan Ahmad Lutfi on 26/10/2016.
 //  Copyright © 2016 pixelated. All rights reserved.
 //
-
+import Foundation
 
 public enum DistanceFormat {
     case kilometer

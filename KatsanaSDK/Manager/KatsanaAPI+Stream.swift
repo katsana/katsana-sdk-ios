@@ -101,8 +101,8 @@ extension KatsanaAPI{
                 }
                 var thePlaybacks = [VideoPlayback]()
                 for playback in playbacks{
-                    if vehicleId == playback.deviceId{
-                        let channel = getOrCreateChannel(playback.channelIdentifier)
+                    if vehicleId == playback.deviceId, let id = playback.channelIdentifier{
+                        let channel = getOrCreateChannel(id)
                         channel.addPlayback(playback)
                         thePlaybacks.append(playback)
                     }

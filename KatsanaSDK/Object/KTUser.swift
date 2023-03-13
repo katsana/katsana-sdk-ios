@@ -5,6 +5,7 @@
 //  Created by Wan Ahmad Lutfi on 27/01/2017.
 //  Copyright © 2017 pixelated. All rights reserved.
 //
+import Foundation
 
 public enum Gender : String, Codable{
     case unknown

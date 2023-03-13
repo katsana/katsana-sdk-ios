@@ -5,6 +5,7 @@
 //  Created by Wan Ahmad Lutfi on 26/01/2017.
 //  Copyright © 2017 pixelated. All rights reserved.
 //
+import Foundation
 
 open class KTVehicle: Codable {
     

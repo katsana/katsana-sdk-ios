@@ -5,7 +5,7 @@
 //  Created by Wan Ahmad Lutfi on 13/10/2016.
 //  Copyright © 2016 pixelated. All rights reserved.
 //
-
+import Foundation
 
 /// Class to convert Swifty JSON to API object
 class ObjectJSONTransformer {
@@ -32,10 +32,11 @@ class ObjectJSONTransformer {
         if let fleets = json["fleets"].array{
             var theFleets = [Fleet]()
             for fleet in fleets{
-                let aFleet = Fleet()
-                aFleet.fleetId = fleet["id"].intValue
-                aFleet.name = fleet["name"].stringValue
-                aFleet.deviceCount = fleet["devices"].intValue
+                let fleetId = fleet["id"].intValue
+                let name = fleet["name"].stringValue
+                let deviceCount = fleet["devices"].intValue
+                let aFleet = Fleet(fleetId: fleetId, name: name, deviceCount: deviceCount)
+                
                 theFleets.append(aFleet)
             }
             user.fleets = theFleets

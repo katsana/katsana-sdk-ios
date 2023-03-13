@@ -5,6 +5,7 @@
 //  Created by Wan Ahmad Lutfi on 17/10/2016.
 //  Copyright © 2016 pixelated. All rights reserved.
 //
+import Foundation
 
 extension KatsanaAPI{
     
