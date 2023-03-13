@@ -7,34 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C105117A298775ED006D9CB7 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1051179298775ED006D9CB7 /* UserTests.swift */; };
 		C105117B2987767B006D9CB7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
 		C105117C298776A2006D9CB7 /* VideoRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824028FCEF6000C3FF7D /* VideoRecording.swift */; };
 		C105117D298776BA006D9CB7 /* VideoRecordingChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */; };
 		C105117E298776F5006D9CB7 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
-		C1051186298778D1006D9CB7 /* KatsanaSDKmacOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1051185298778D1006D9CB7 /* KatsanaSDKmacOSTests.swift */; };
-		C1051187298778D1006D9CB7 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927861DDA831600A0767E /* KatsanaSDK.framework */; };
-		C105119029877ACC006D9CB7 /* UserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105118F29877ACC006D9CB7 /* UserTest.swift */; };
-		C105119329877BE3006D9CB7 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119229877BE3006D9CB7 /* MockService.swift */; };
 		C105119829879051006D9CB7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119729879051006D9CB7 /* Logger.swift */; };
 		C1051199298790B5006D9CB7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119729879051006D9CB7 /* Logger.swift */; };
-		C105119B29879167006D9CB7 /* CacheManagerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119A29879167006D9CB7 /* CacheManagerSpy.swift */; };
-		C105119D2988CB97006D9CB7 /* VehicleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119C2988CB97006D9CB7 /* VehicleTest.swift */; };
-		C105119F2988E7AC006D9CB7 /* TripSummaryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */; };
-		C10511A12988FF4C006D9CB7 /* TripTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10511A02988FF4C006D9CB7 /* TripTest.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C164EAF329236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
+		C1751B1629BFEC91009C8795 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B1429BFEC91009C8795 /* URLSessionHTTPClient.swift */; };
+		C1751B1729BFEC91009C8795 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B1429BFEC91009C8795 /* URLSessionHTTPClient.swift */; };
+		C1751B1829BFEC91009C8795 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B1529BFEC91009C8795 /* HTTPClient.swift */; };
+		C1751B1929BFEC91009C8795 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B1529BFEC91009C8795 /* HTTPClient.swift */; };
+		C1751B3329BFEDE1009C8795 /* KatsanaSDKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B3229BFEDE1009C8795 /* KatsanaSDKTest.swift */; };
+		C1751B3429BFEDE1009C8795 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74927861DDA831600A0767E /* KatsanaSDK.framework */; };
+		C1751B3A29BFEDEC009C8795 /* TripSummaryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */; };
+		C1751B3B29BFEDEC009C8795 /* UserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105118F29877ACC006D9CB7 /* UserTest.swift */; };
+		C1751B3C29BFEDEC009C8795 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B1B29BFECCC009C8795 /* URLProtocolStub.swift */; };
+		C1751B3D29BFEDEC009C8795 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119229877BE3006D9CB7 /* MockService.swift */; };
+		C1751B3E29BFEDEC009C8795 /* VehicleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119C2988CB97006D9CB7 /* VehicleTest.swift */; };
+		C1751B3F29BFEDEC009C8795 /* CacheManagerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119A29879167006D9CB7 /* CacheManagerSpy.swift */; };
+		C1751B4029BFEDEC009C8795 /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B1C29BFECCC009C8795 /* XCTestCase+MemoryLeak.swift */; };
+		C1751B4129BFEDEC009C8795 /* ActivityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A3E406298A213800931529 /* ActivityTest.swift */; };
+		C1751B4229BFEDEC009C8795 /* TripTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10511A02988FF4C006D9CB7 /* TripTest.swift */; };
+		C1751B4329BFEDEC009C8795 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B1D29BFECCC009C8795 /* TestHelpers.swift */; };
+		C1751B4429BFEDEC009C8795 /* AddressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A3E404298A1A8F00931529 /* AddressTest.swift */; };
+		C1751B4529BFEDEC009C8795 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B2129BFED07009C8795 /* URLSessionHTTPClientTests.swift */; };
+		C1751B4729BFEE1F009C8795 /* URLMock in Frameworks */ = {isa = PBXBuildFile; productRef = C1751B4629BFEE1F009C8795 /* URLMock */; };
 		C18A824128FCEF6000C3FF7D /* VideoRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824028FCEF6000C3FF7D /* VideoRecording.swift */; };
 		C18A824328FCEFD500C3FF7D /* VideoRecordingChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */; };
 		C18A824528FD050A00C3FF7D /* KatsanaAPI+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */; };
-		C1A3E405298A1A8F00931529 /* AddressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A3E404298A1A8F00931529 /* AddressTest.swift */; };
-		C1A3E407298A213800931529 /* ActivityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A3E406298A213800931529 /* ActivityTest.swift */; };
 		C1A3E40B298A356100931529 /* Siesta in Frameworks */ = {isa = PBXBuildFile; productRef = C1A3E40A298A356100931529 /* Siesta */; };
 		C1A3E40D298A362400931529 /* Siesta in Frameworks */ = {isa = PBXBuildFile; productRef = C1A3E40C298A362400931529 /* Siesta */; };
-		C1A3E412298A38A400931529 /* URLMock in Frameworks */ = {isa = PBXBuildFile; productRef = C1A3E411298A38A400931529 /* URLMock */; };
-		C1A3E414298A38A900931529 /* URLMock in Frameworks */ = {isa = PBXBuildFile; productRef = C1A3E413298A38A900931529 /* URLMock */; };
 		C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540A325256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540B025256AB700525603 /* KTAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AC25256AB600525603 /* KTAddress.swift */; };
@@ -112,24 +118,15 @@
 		C78B22151D75754B002E25C3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
 		C79CA23E1FE220F100A9F8E1 /* Insurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79CA23D1FE220F100A9F8E1 /* Insurer.swift */; };
 		C79CA23F1FE220F100A9F8E1 /* Insurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79CA23D1FE220F100A9F8E1 /* Insurer.swift */; };
-		C7A4BF781DAF077E007E90B8 /* KatsanaSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */; };
-		C7A4BF7A1DAF077E007E90B8 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C1051188298778D1006D9CB7 /* PBXContainerItemProxy */ = {
+		C1751B3529BFEDE1009C8795 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C75104F41D7422BF00F4C341 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C74927851DDA831600A0767E;
 			remoteInfo = "KatsanaSDK macOS";
-		};
-		C7A4BF7B1DAF077E007E90B8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C75104F41D7422BF00F4C341 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C75104FC1D7422BF00F4C341;
-			remoteInfo = KatsanaSDK;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -146,9 +143,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C1051179298775ED006D9CB7 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
-		C1051183298778D1006D9CB7 /* KatsanaSDKmacOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKmacOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1051185298778D1006D9CB7 /* KatsanaSDKmacOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKmacOSTests.swift; sourceTree = "<group>"; };
 		C105118F29877ACC006D9CB7 /* UserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
 		C105119229877BE3006D9CB7 /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		C105119729879051006D9CB7 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -159,6 +153,14 @@
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
+		C1751B1429BFEC91009C8795 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		C1751B1529BFEC91009C8795 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		C1751B1B29BFECCC009C8795 /* URLProtocolStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
+		C1751B1C29BFECCC009C8795 /* XCTestCase+MemoryLeak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeak.swift"; sourceTree = "<group>"; };
+		C1751B1D29BFECCC009C8795 /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		C1751B2129BFED07009C8795 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
+		C1751B3029BFEDE1009C8795 /* KatsanaSDKTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1751B3229BFEDE1009C8795 /* KatsanaSDKTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKTest.swift; sourceTree = "<group>"; };
 		C18A824028FCEF6000C3FF7D /* VideoRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecording.swift; sourceTree = "<group>"; };
 		C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingChannel.swift; sourceTree = "<group>"; };
 		C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Stream.swift"; sourceTree = "<group>"; };
@@ -207,18 +209,15 @@
 		C75105631D742D8600F4C341 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C78B22141D75754B002E25C3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C79CA23D1FE220F100A9F8E1 /* Insurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insurer.swift; sourceTree = "<group>"; };
-		C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKTests.swift; sourceTree = "<group>"; };
-		C7A4BF791DAF077E007E90B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C1051180298778D1006D9CB7 /* Frameworks */ = {
+		C1751B2D29BFEDE1009C8795 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1A3E414298A38A900931529 /* URLMock in Frameworks */,
-				C1051187298778D1006D9CB7 /* KatsanaSDK.framework in Frameworks */,
+				C1751B4729BFEE1F009C8795 /* URLMock in Frameworks */,
+				C1751B3429BFEDE1009C8795 /* KatsanaSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,15 +240,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7A4BF721DAF077E007E90B8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1A3E412298A38A400931529 /* URLMock in Frameworks */,
-				C7A4BF7A1DAF077E007E90B8 /* KatsanaSDK.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -265,19 +255,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C1051184298778D1006D9CB7 /* KatsanaSDKmacOSTests */ = {
+		C1051184298778D1006D9CB7 /* KatsanaSDKTests */ = {
 			isa = PBXGroup;
 			children = (
+				C1751B1A29BFECCC009C8795 /* Helpers */,
 				C105119129877BD6006D9CB7 /* Helper */,
-				C1051185298778D1006D9CB7 /* KatsanaSDKmacOSTests.swift */,
 				C105118F29877ACC006D9CB7 /* UserTest.swift */,
 				C105119C2988CB97006D9CB7 /* VehicleTest.swift */,
 				C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */,
 				C10511A02988FF4C006D9CB7 /* TripTest.swift */,
 				C1A3E404298A1A8F00931529 /* AddressTest.swift */,
 				C1A3E406298A213800931529 /* ActivityTest.swift */,
+				C1751B2129BFED07009C8795 /* URLSessionHTTPClientTests.swift */,
 			);
-			path = KatsanaSDKmacOSTests;
+			path = KatsanaSDKTests;
 			sourceTree = "<group>";
 		};
 		C105119129877BD6006D9CB7 /* Helper */ = {
@@ -295,6 +286,33 @@
 				C105119729879051006D9CB7 /* Logger.swift */,
 			);
 			path = Logger;
+			sourceTree = "<group>";
+		};
+		C1751B1329BFEC70009C8795 /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				C1751B1529BFEC91009C8795 /* HTTPClient.swift */,
+				C1751B1429BFEC91009C8795 /* URLSessionHTTPClient.swift */,
+			);
+			path = Infra;
+			sourceTree = "<group>";
+		};
+		C1751B1A29BFECCC009C8795 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C1751B1B29BFECCC009C8795 /* URLProtocolStub.swift */,
+				C1751B1C29BFECCC009C8795 /* XCTestCase+MemoryLeak.swift */,
+				C1751B1D29BFECCC009C8795 /* TestHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C1751B3129BFEDE1009C8795 /* KatsanaSDKTest */ = {
+			isa = PBXGroup;
+			children = (
+				C1751B3229BFEDE1009C8795 /* KatsanaSDKTest.swift */,
+			);
+			path = KatsanaSDKTest;
 			sourceTree = "<group>";
 		};
 		C71917481E48703B0041BC18 /* Cache */ = {
@@ -390,6 +408,7 @@
 		C75104F31D7422BF00F4C341 = {
 			isa = PBXGroup;
 			children = (
+				C1751B1329BFEC70009C8795 /* Infra */,
 				C105119629879046006D9CB7 /* Logger */,
 				C78B22141D75754B002E25C3 /* LICENSE */,
 				C71917481E48703B0041BC18 /* Cache */,
@@ -397,8 +416,8 @@
 				C71917501E48703B0041BC18 /* Manager */,
 				C719175F1E48703B0041BC18 /* Object */,
 				C719176A1E48703B0041BC18 /* Transformer */,
-				C7A4BF761DAF077E007E90B8 /* KatsanaSDKTests */,
-				C1051184298778D1006D9CB7 /* KatsanaSDKmacOSTests */,
+				C1051184298778D1006D9CB7 /* KatsanaSDKTests */,
+				C1751B3129BFEDE1009C8795 /* KatsanaSDKTest */,
 				C75104FE1D7422BF00F4C341 /* Products */,
 				5DD901B866D20EE7A742A486 /* Frameworks */,
 			);
@@ -408,21 +427,10 @@
 			isa = PBXGroup;
 			children = (
 				C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */,
-				C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */,
 				C74927861DDA831600A0767E /* KatsanaSDK.framework */,
-				C1051183298778D1006D9CB7 /* KatsanaSDKmacOSTests.xctest */,
+				C1751B3029BFEDE1009C8795 /* KatsanaSDKTest.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		C7A4BF761DAF077E007E90B8 /* KatsanaSDKTests */ = {
-			isa = PBXGroup;
-			children = (
-				C7A4BF771DAF077E007E90B8 /* KatsanaSDKTests.swift */,
-				C1051179298775ED006D9CB7 /* UserTests.swift */,
-				C7A4BF791DAF077E007E90B8 /* Info.plist */,
-			);
-			path = KatsanaSDKTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,25 +453,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C1051182298778D1006D9CB7 /* KatsanaSDKmacOSTests */ = {
+		C1751B2F29BFEDE1009C8795 /* KatsanaSDKTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C105118A298778D1006D9CB7 /* Build configuration list for PBXNativeTarget "KatsanaSDKmacOSTests" */;
+			buildConfigurationList = C1751B3729BFEDE1009C8795 /* Build configuration list for PBXNativeTarget "KatsanaSDKTest" */;
 			buildPhases = (
-				C105117F298778D1006D9CB7 /* Sources */,
-				C1051180298778D1006D9CB7 /* Frameworks */,
-				C1051181298778D1006D9CB7 /* Resources */,
+				C1751B2C29BFEDE1009C8795 /* Sources */,
+				C1751B2D29BFEDE1009C8795 /* Frameworks */,
+				C1751B2E29BFEDE1009C8795 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C1051189298778D1006D9CB7 /* PBXTargetDependency */,
+				C1751B3629BFEDE1009C8795 /* PBXTargetDependency */,
 			);
-			name = KatsanaSDKmacOSTests;
+			name = KatsanaSDKTest;
 			packageProductDependencies = (
-				C1A3E413298A38A900931529 /* URLMock */,
+				C1751B4629BFEE1F009C8795 /* URLMock */,
 			);
-			productName = KatsanaSDKmacOSTests;
-			productReference = C1051183298778D1006D9CB7 /* KatsanaSDKmacOSTests.xctest */;
+			productName = KatsanaSDKTest;
+			productReference = C1751B3029BFEDE1009C8795 /* KatsanaSDKTest.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		C74927851DDA831600A0767E /* KatsanaSDK macOS */ = {
@@ -509,27 +517,6 @@
 			productReference = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C7A4BF741DAF077E007E90B8 /* KatsanaSDKTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C7A4BF7D1DAF077E007E90B8 /* Build configuration list for PBXNativeTarget "KatsanaSDKTests" */;
-			buildPhases = (
-				C7A4BF711DAF077E007E90B8 /* Sources */,
-				C7A4BF721DAF077E007E90B8 /* Frameworks */,
-				C7A4BF731DAF077E007E90B8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C7A4BF7C1DAF077E007E90B8 /* PBXTargetDependency */,
-			);
-			name = KatsanaSDKTests;
-			packageProductDependencies = (
-				C1A3E411298A38A400931529 /* URLMock */,
-			);
-			productName = KatsanaSDKTests;
-			productReference = C7A4BF751DAF077E007E90B8 /* KatsanaSDKTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -540,10 +527,8 @@
 				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = pixelated;
 				TargetAttributes = {
-					C1051182298778D1006D9CB7 = {
+					C1751B2F29BFEDE1009C8795 = {
 						CreatedOnToolsVersion = 14.2;
-						DevelopmentTeam = 47CF2FS3SX;
-						ProvisioningStyle = Automatic;
 					};
 					C74927851DDA831600A0767E = {
 						CreatedOnToolsVersion = 8.0;
@@ -555,12 +540,6 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 47CF2FS3SX;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Automatic;
-					};
-					C7A4BF741DAF077E007E90B8 = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 47CF2FS3SX;
-						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -585,14 +564,13 @@
 			targets = (
 				C75104FC1D7422BF00F4C341 /* KatsanaSDK */,
 				C74927851DDA831600A0767E /* KatsanaSDK macOS */,
-				C7A4BF741DAF077E007E90B8 /* KatsanaSDKTests */,
-				C1051182298778D1006D9CB7 /* KatsanaSDKmacOSTests */,
+				C1751B2F29BFEDE1009C8795 /* KatsanaSDKTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C1051181298778D1006D9CB7 /* Resources */ = {
+		C1751B2E29BFEDE1009C8795 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -615,29 +593,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7A4BF731DAF077E007E90B8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C105117F298778D1006D9CB7 /* Sources */ = {
+		C1751B2C29BFEDE1009C8795 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C105119F2988E7AC006D9CB7 /* TripSummaryTest.swift in Sources */,
-				C105119B29879167006D9CB7 /* CacheManagerSpy.swift in Sources */,
-				C1A3E405298A1A8F00931529 /* AddressTest.swift in Sources */,
-				C105119D2988CB97006D9CB7 /* VehicleTest.swift in Sources */,
-				C105119029877ACC006D9CB7 /* UserTest.swift in Sources */,
-				C1A3E407298A213800931529 /* ActivityTest.swift in Sources */,
-				C1051186298778D1006D9CB7 /* KatsanaSDKmacOSTests.swift in Sources */,
-				C10511A12988FF4C006D9CB7 /* TripTest.swift in Sources */,
-				C105119329877BE3006D9CB7 /* MockService.swift in Sources */,
+				C1751B4229BFEDEC009C8795 /* TripTest.swift in Sources */,
+				C1751B3F29BFEDEC009C8795 /* CacheManagerSpy.swift in Sources */,
+				C1751B3329BFEDE1009C8795 /* KatsanaSDKTest.swift in Sources */,
+				C1751B3D29BFEDEC009C8795 /* MockService.swift in Sources */,
+				C1751B3E29BFEDEC009C8795 /* VehicleTest.swift in Sources */,
+				C1751B3B29BFEDEC009C8795 /* UserTest.swift in Sources */,
+				C1751B4429BFEDEC009C8795 /* AddressTest.swift in Sources */,
+				C1751B4329BFEDEC009C8795 /* TestHelpers.swift in Sources */,
+				C1751B4129BFEDEC009C8795 /* ActivityTest.swift in Sources */,
+				C1751B3A29BFEDEC009C8795 /* TripSummaryTest.swift in Sources */,
+				C1751B4029BFEDEC009C8795 /* XCTestCase+MemoryLeak.swift in Sources */,
+				C1751B4529BFEDEC009C8795 /* URLSessionHTTPClientTests.swift in Sources */,
+				C1751B3C29BFEDEC009C8795 /* URLProtocolStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +626,7 @@
 				C7331296207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift in Sources */,
 				C71917D21E4884410041BC18 /* Just.swift in Sources */,
 				C1F540B525256AB700525603 /* KTTrip.swift in Sources */,
+				C1751B1929BFEC91009C8795 /* HTTPClient.swift in Sources */,
 				C71917931E48703B0041BC18 /* KatsanaFormatter.swift in Sources */,
 				C79CA23F1FE220F100A9F8E1 /* Insurer.swift in Sources */,
 				C71917791E48703B0041BC18 /* AddressRequest.swift in Sources */,
@@ -687,6 +663,7 @@
 				C71917911E48703B0041BC18 /* KatsanaAPI.swift in Sources */,
 				C71917D41E4884410041BC18 /* SwiftyJSON.swift in Sources */,
 				C719178B1E48703B0041BC18 /* KatsanaAPI+Trip.swift in Sources */,
+				C1751B1729BFEC91009C8795 /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,39 +710,27 @@
 				C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */,
 				C71917741E48703B0041BC18 /* String+Date.swift in Sources */,
 				C1F540B625256AB700525603 /* KTUser.swift in Sources */,
+				C1751B1629BFEC91009C8795 /* URLSessionHTTPClient.swift in Sources */,
 				C71917901E48703B0041BC18 /* KatsanaAPI.swift in Sources */,
+				C1751B1829BFEC91009C8795 /* HTTPClient.swift in Sources */,
 				C71917D31E4884410041BC18 /* SwiftyJSON.swift in Sources */,
 				C18A824528FD050A00C3FF7D /* KatsanaAPI+Stream.swift in Sources */,
 				C719178A1E48703B0041BC18 /* KatsanaAPI+Trip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7A4BF711DAF077E007E90B8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C105117A298775ED006D9CB7 /* UserTests.swift in Sources */,
-				C7A4BF781DAF077E007E90B8 /* KatsanaSDKTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C1051189298778D1006D9CB7 /* PBXTargetDependency */ = {
+		C1751B3629BFEDE1009C8795 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C74927851DDA831600A0767E /* KatsanaSDK macOS */;
-			targetProxy = C1051188298778D1006D9CB7 /* PBXContainerItemProxy */;
-		};
-		C7A4BF7C1DAF077E007E90B8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C75104FC1D7422BF00F4C341 /* KatsanaSDK */;
-			targetProxy = C7A4BF7B1DAF077E007E90B8 /* PBXContainerItemProxy */;
+			targetProxy = C1751B3529BFEDE1009C8795 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		C105118B298778D1006D9CB7 /* Debug */ = {
+		C1751B3829BFEDE1009C8795 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -782,7 +747,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDKmacOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.katsana.KatsanaSDKTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -792,7 +757,7 @@
 			};
 			name = Debug;
 		};
-		C105118C298778D1006D9CB7 /* Release */ = {
+		C1751B3929BFEDE1009C8795 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -808,7 +773,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDKmacOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.katsana.KatsanaSDKTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1069,56 +1034,14 @@
 			};
 			name = Release;
 		};
-		C7A4BF7E1DAF077E007E90B8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEVELOPMENT_TEAM = 47CF2FS3SX;
-				INFOPLIST_FILE = KatsanaSDKTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDKTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		C7A4BF7F1DAF077E007E90B8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEVELOPMENT_TEAM = 47CF2FS3SX;
-				INFOPLIST_FILE = KatsanaSDKTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDKTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C105118A298778D1006D9CB7 /* Build configuration list for PBXNativeTarget "KatsanaSDKmacOSTests" */ = {
+		C1751B3729BFEDE1009C8795 /* Build configuration list for PBXNativeTarget "KatsanaSDKTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C105118B298778D1006D9CB7 /* Debug */,
-				C105118C298778D1006D9CB7 /* Release */,
+				C1751B3829BFEDE1009C8795 /* Debug */,
+				C1751B3929BFEDE1009C8795 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1150,15 +1073,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7A4BF7D1DAF077E007E90B8 /* Build configuration list for PBXNativeTarget "KatsanaSDKTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C7A4BF7E1DAF077E007E90B8 /* Debug */,
-				C7A4BF7F1DAF077E007E90B8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -1181,6 +1095,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C1751B4629BFEE1F009C8795 /* URLMock */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1A3E40E298A384800931529 /* XCRemoteSwiftPackageReference "URLMock" */;
+			productName = URLMock;
+		};
 		C1A3E40A298A356100931529 /* Siesta */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C1A3E409298A356100931529 /* XCRemoteSwiftPackageReference "siesta" */;
@@ -1190,16 +1109,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C1A3E409298A356100931529 /* XCRemoteSwiftPackageReference "siesta" */;
 			productName = Siesta;
-		};
-		C1A3E411298A38A400931529 /* URLMock */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C1A3E40E298A384800931529 /* XCRemoteSwiftPackageReference "URLMock" */;
-			productName = URLMock;
-		};
-		C1A3E413298A38A900931529 /* URLMock */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C1A3E40E298A384800931529 /* XCRemoteSwiftPackageReference "URLMock" */;
-			productName = URLMock;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

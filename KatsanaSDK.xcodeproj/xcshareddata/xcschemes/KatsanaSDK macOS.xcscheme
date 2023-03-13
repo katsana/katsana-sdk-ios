@@ -44,9 +44,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C1051182298778D1006D9CB7"
-               BuildableName = "KatsanaSDKmacOSTests.xctest"
-               BlueprintName = "KatsanaSDKmacOSTests"
+               BlueprintIdentifier = "C1751B2F29BFEDE1009C8795"
+               BuildableName = "KatsanaSDKTest.xctest"
+               BlueprintName = "KatsanaSDKTest"
                ReferencedContainer = "container:KatsanaSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
