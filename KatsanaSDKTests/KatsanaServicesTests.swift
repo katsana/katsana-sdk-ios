@@ -9,11 +9,19 @@
 import XCTest
 import KatsanaSDK
 
-class KatsanaServices{
-    let client: URLSessionHTTPClient
+class KatsanaServices: UserService{
+    let baseURL: URL
+    let client: HTTPClient
+    let userLoader: RemoteLoader<KTUser>
     
-    init(session: URLSession = URLSession(configuration: .ephemeral)) {
-        self.client = URLSessionHTTPClient(session: session)
+    init(baseURL: URL, client: HTTPClient) {
+        self.baseURL = baseURL
+        self.client = client
+        userLoader = RemoteLoader(url: baseURL, client: client, mapper: UserMapper.map)
+    }
+    
+    func getUserProfile(completion: Result<KatsanaSDK.KTUser, Error>) {
+        
     }
     
     
@@ -26,3 +34,16 @@ final class KatsanaServicesTests: XCTestCase {
     }
 
 }
+
+//class KatsanaServicesSpy: KatsanaServices{
+//    let client: URLSessionHTTPClient
+//    
+//    init(session: URLSession = URLSession(configuration: .ephemeral)) {
+//        self.client = URLSessionHTTPClient(session: session)
+//    }
+//    
+//    func getUserProfile(completion: Result<KTUser, Error>) {
+//        
+//    }
+//    
+//}
