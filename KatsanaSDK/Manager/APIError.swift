@@ -53,13 +53,19 @@ public extension HTTPResult{
     func APIError() -> Error! {
         if !ok{
             if let content = content{
-                let json = JSON(data:content)
-                let message = json["message"].stringValue
-                let statusCode = json["status_code"].intValue
+                do{
+                    let json = try JSON(data:content)
+                    let message = json["message"].stringValue
+                    let statusCode = json["status_code"].intValue
+                    
+                    let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  message, NSLocalizedFailureReasonErrorKey : message]
+                    let error = NSError(domain: SDKError.domain, code: statusCode, userInfo: userInfo)
+                    return error
+                }
+                catch{
+                    return error
+                }
                 
-                let userInfo: [String : String] = [ NSLocalizedDescriptionKey :  message, NSLocalizedFailureReasonErrorKey : message]
-                let error = NSError(domain: SDKError.domain, code: statusCode, userInfo: userInfo)
-                return error
             }
         }
         return nil

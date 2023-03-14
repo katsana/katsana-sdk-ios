@@ -25,8 +25,8 @@ extension KatsanaAPI {
             fullPath,
             json: ["duration" : durationText],
             headers: ["Authorization" : ("Bearer " + self.authToken)], asyncCompletionHandler:  { r in
-                if r.ok {
-                    let json = JSON(data: r.content!)
+                if r.ok, let json = try? JSON(data: r.content!) {
+                    
                     let liveShare = ObjectJSONTransformer.LiveShareObject(json: json)
                     liveShare.duration = Int(duration)
                     DispatchQueue.main.sync{completion(liveShare)}
@@ -49,8 +49,8 @@ extension KatsanaAPI {
         Just.get(
             fullPath,
             headers: ["Authorization" : ("Bearer " + self.authToken)], asyncCompletionHandler:  { r in
-                if r.ok {
-                    let json = JSON(data: r.content!)
+                if r.ok, let json = try? JSON(data: r.content!) {
+                    
                     let array = json.arrayValue
                     var liveShares = [LiveShare]()
                     for aJson in array{

@@ -123,8 +123,8 @@ extension KatsanaAPI {
             path,
             data: ["password" : password],
             headers: ["Authorization" : ("Bearer " + self.authToken)], asyncCompletionHandler:  { r in
-                if r.ok{
-                    let json = JSON(data: r.content!)
+                if r.ok, let json = try? JSON(data: r.content!){
+                    
                     let success = json["success"].boolValue
                     DispatchQueue.main.sync{completion(success)}
                 }else{

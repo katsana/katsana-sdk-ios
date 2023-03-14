@@ -60,11 +60,17 @@ extension KatsanaAPI{
             fullPath,
             params:  parameters,
             headers: defaultHeaders, asyncCompletionHandler:  { r in
-                let json = JSON(data: r.content!)
-                let dicto = json.dictionaryObject
-                DispatchQueue.main.sync {
-                    completion(dicto, r.APIError())
+                if let json = try? JSON(data: r.content!){
+                    let dicto = json.dictionaryObject
+                    DispatchQueue.main.sync {
+                        completion(dicto, r.APIError())
+                    }
+                }else{
+                    DispatchQueue.main.sync {
+                        completion(nil, r.APIError())
+                    }
                 }
+                
             })
     }
     

@@ -76,13 +76,19 @@ class AddressRequest {
             params: ["latitude" : latitude, "longitude" : longitude], asyncCompletionHandler:  { r in
                 if r.ok {
                     let content = r.content
-                    let json = JSON(data: content!)
-                    if json != JSON.null{
-                        let address = ObjectJSONTransformer.AddressObject(json: json)
-                        DispatchQueue.main.sync{completion(address)}
-                    }else{
-                        DispatchQueue.main.sync{failure(nil)}
+                    do{
+                        let json = try JSON(data: content!)
+                        if json != JSON.null{
+                            let address = ObjectJSONTransformer.AddressObject(json: json)
+                            DispatchQueue.main.sync{completion(address)}
+                        }else{
+                            DispatchQueue.main.sync{failure(nil)}
+                        }
                     }
+                    catch{
+                        DispatchQueue.main.sync{failure(error)}
+                    }
+                    
                 }else{
                     DispatchQueue.main.sync{failure(r.APIError())}
                 }
