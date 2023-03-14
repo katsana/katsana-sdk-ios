@@ -48,8 +48,8 @@ public class KTUser: Codable {
         case updatedAt
     }
     
-    public var email: String
-    public var userId: String!
+    public let email: String
+    public let userId: String
     public var address: String!
     public var phoneHome: String!
     public var phoneMobile: String!
@@ -139,7 +139,8 @@ public class KTUser: Codable {
     private var isLoadingThumbImage = false
     
     
-    public init(email: String) {
+    public init(userID:String, email: String) {
+        self.userId = userID
         self.email = email
     }
     

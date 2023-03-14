@@ -14,8 +14,10 @@ class ObjectJSONTransformer {
     
     class func UserObject(json : JSON) -> KTUser {
         let email = json["email"].stringValue
-        let user = KTUser(email: email)
-        user.userId = json["id"].stringValue
+        let userId = json["id"].stringValue
+        
+        let user = KTUser(userID: userId, email: email)
+        
         user.address = json["address"].stringValue
         user.phoneHome = json["phone_home"].stringValue
         user.phoneMobile = json["phone_mobile"].stringValue

@@ -14,7 +14,7 @@ public class UserMapper{
         let email: String
         
         var user: KTUser {
-            KTUser(email: email)
+            KTUser(userID: "\(id)", email: email)
         }
     }
     
