@@ -29,12 +29,13 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C7A4BF741DAF077E007E90B8"
-               BuildableName = "KatsanaSDKTests.xctest"
-               BlueprintName = "KatsanaSDKTests"
+               BlueprintIdentifier = "C1751B2F29BFEDE1009C8795"
+               BuildableName = "KatsanaSDKTest.xctest"
+               BlueprintName = "KatsanaSDKTest"
                ReferencedContainer = "container:KatsanaSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
