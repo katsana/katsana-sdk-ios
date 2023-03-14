@@ -13,7 +13,7 @@ public enum Gender : String, Codable{
     case female
 }
 
-open class KTUser: Codable {
+public class KTUser: Codable {
     static let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -48,34 +48,34 @@ open class KTUser: Codable {
         case updatedAt
     }
     
-    open var email: String
-    open var userId: String!
-    open var address: String!
-    open var phoneHome: String!
-    open var phoneMobile: String!
-    open var identification: String!
-    open var fullname: String!
-    open var status: Int = 0
+    public var email: String
+    public var userId: String!
+    public var address: String!
+    public var phoneHome: String!
+    public var phoneMobile: String!
+    public var identification: String!
+    public var fullname: String!
+    public var status: Int = 0
     
-    open var emergencyFullName: String!
-    open var emergencyPhoneHome: String!
-    open var emergencyPhoneMobile: String!
-    open var imageURL: String!
-    open var thumbImageURL: String!
+    public var emergencyFullName: String!
+    public var emergencyPhoneHome: String!
+    public var emergencyPhoneMobile: String!
+    public var imageURL: String!
+    public var thumbImageURL: String!
     
-    open var phoneMobileCountryCode: String!
-    open var postcode: String!
-    open var state: String!
-    open var country: String!
-    open var gender: Gender = .unknown
+    public var phoneMobileCountryCode: String!
+    public var postcode: String!
+    public var state: String!
+    public var country: String!
+    public var gender: Gender = .unknown
     
-    open var planId: Int!
-    open var planName: String!
-    open var planDescription: String!
+    public var planId: Int!
+    public var planName: String!
+    public var planDescription: String!
     
-    open var fleets = [Fleet]()
+    public var fleets = [Fleet]()
     
-    open var genderText: String!{
+    public var genderText: String!{
         get{
             if gender == .unknown{
                 return nil
@@ -96,7 +96,7 @@ open class KTUser: Codable {
         }
     }
     
-    open var birthday: Date!{
+    public var birthday: Date!{
         didSet{
             if let birthday = birthday {
                 let dateStr = KTUser.dateFormatter.string(from: birthday)
@@ -111,7 +111,7 @@ open class KTUser: Codable {
             
         }
     }
-    open var birthdayText: String!{
+    public var birthdayText: String!{
         didSet{
             if let birthdayText = birthdayText {
                 let date = KTUser.dateFormatter.date(from: birthdayText)
@@ -127,11 +127,11 @@ open class KTUser: Codable {
         }
     }
     
-    open var createdAt: Date!
-    open var updatedAt: Date!
+    public var createdAt: Date!
+    public var updatedAt: Date!
     
-    private(set) open var image : KMImage!
-    private(set) open var thumbImage : KMImage!
+    private(set) public var image : KMImage!
+    private(set) public var thumbImage : KMImage!
     
     private var imageBlocks = [(image: KMImage) -> Void]()
     private var thumbImageBlocks = [(image: KMImage) -> Void]()
@@ -139,11 +139,11 @@ open class KTUser: Codable {
     private var isLoadingThumbImage = false
     
     
-    init(email: String) {
+    public init(email: String) {
         self.email = email
     }
     
-    open func jsonPatch() -> [String: Any] {
+    public func jsonPatch() -> [String: Any] {
         var dicto = [String: Any]()
         if let address = address{
             dicto["address"] = address
@@ -171,11 +171,11 @@ open class KTUser: Codable {
     
     // MARK: Image
     
-    open func updateImage(_ image: KMImage) {
+    public func updateImage(_ image: KMImage) {
         self.image = image
     }
     
-    open func image(completion: @escaping (_ image: KMImage) -> Void){
+    public func image(completion: @escaping (_ image: KMImage) -> Void){
         guard imageURL != nil else {
             return
         }
@@ -205,7 +205,7 @@ open class KTUser: Codable {
         }
     }
     
-    open func thumbImage(completion: @escaping (_ image: KMImage) -> Void){
+    public func thumbImage(completion: @escaping (_ image: KMImage) -> Void){
         guard thumbImageURL != nil else {
             return
         }
@@ -236,7 +236,7 @@ open class KTUser: Codable {
     
     // MARK: helper
     
-    open func fleet(id: Int) -> Fleet!{
+    public func fleet(id: Int) -> Fleet!{
         for fleet in fleets{
             if fleet.fleetId == id{
                 return fleet
@@ -247,7 +247,7 @@ open class KTUser: Codable {
     
     
     
-    open func profileProgress() -> CGFloat {
+    public func profileProgress() -> CGFloat {
         var progressCount :CGFloat = 0
         let totalCount:CGFloat = 8 - 1
         
@@ -292,7 +292,7 @@ open class KTUser: Codable {
         return false
     }
     
-    open func date(from string: String) -> Date! {
+    public func date(from string: String) -> Date! {
         return KTUser.dateFormatter.date(from: string)
     }
 }
