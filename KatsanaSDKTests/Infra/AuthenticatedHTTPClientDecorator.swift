@@ -31,6 +31,22 @@ final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
         
         XCTAssertEqual(client.requests, [signedRequest])
     }
+    
+    func test_sendRequest_withSuccessTokenRequest_completesWithDecorateeResult() throws{
+        let request = testRequest()
+        let values = (Data("anyData".utf8), HTTPURLResponse(statusCode: 200))
+        
+        let token = AccessToken(token: "anyToken")
+        let (sut, client) = makeSUT(tokenResult: .success(token))
+        
+        var receivedResult: HTTPClient.Result?
+        _ = sut.send(request, completion: { receivedResult = $0})
+        client.complete(withStatusCode: 200, data: values.0)
+        
+        let receivedValues = try XCTUnwrap(receivedResult).get()
+        XCTAssertEqual(receivedValues.0, values.0)
+        XCTAssertEqual(receivedValues.1.statusCode, values.1.statusCode)
+    }
 
     
     // MARK: Helpers
