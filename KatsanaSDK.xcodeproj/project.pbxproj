@@ -51,6 +51,7 @@
 		C1FAE72529C17B99001D3D86 /* KatsanaServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */; };
 		C1FAE72829C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72729C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift */; };
 		C1FAE72B29C17FE1001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72929C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift */; };
+		C1FAE72E29C197AB001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72C29C197A7001D3D86 /* AuthenticatedHTTPClientDecorator.swift */; };
 		C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */; };
 		C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174C1E48703B0041BC18 /* Date+Extension.swift */; };
 		C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174D1E48703B0041BC18 /* JSON+Date.swift */; };
@@ -153,6 +154,7 @@
 		C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaServiceFactory.swift; sourceTree = "<group>"; };
 		C1FAE72729C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeak.swift"; sourceTree = "<group>"; };
 		C1FAE72929C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedHTTPClientDecorator.swift; sourceTree = "<group>"; };
+		C1FAE72C29C197A7001D3D86 /* AuthenticatedHTTPClientDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedHTTPClientDecorator.swift; sourceTree = "<group>"; };
 		C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate+Extension.swift"; sourceTree = "<group>"; };
 		C719174C1E48703B0041BC18 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C719174D1E48703B0041BC18 /* JSON+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Date.swift"; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				C1751B1529BFEC91009C8795 /* HTTPClient.swift */,
 				C1751B1429BFEC91009C8795 /* URLSessionHTTPClient.swift */,
 				C1751B4E29C02120009C8795 /* RemoteLoader.swift */,
+				C1FAE72C29C197A7001D3D86 /* AuthenticatedHTTPClientDecorator.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				C71917CB1E4884410041BC18 /* DateHelper.swift in Sources */,
 				C71917861E48703B0041BC18 /* KatsanaAPI+Profile.swift in Sources */,
 				C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */,
+				C1FAE72E29C197AB001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */,
 				C79CA23E1FE220F100A9F8E1 /* Insurer.swift in Sources */,
 				C71917981E48703B0041BC18 /* LiveShare.swift in Sources */,
 				C719177E1E48703B0041BC18 /* KatsanaAPI+Address.swift in Sources */,
