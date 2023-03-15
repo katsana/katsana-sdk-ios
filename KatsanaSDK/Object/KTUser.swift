@@ -7,10 +7,15 @@
 //
 import Foundation
 
-public enum Gender : String, Codable{
-    case unknown
+public enum Gender : String, Codable, Equatable{
     case male
     case female
+}
+
+public struct UserPlan: Codable, Equatable{
+    public let id: Int?
+    public let name: String
+    public let description: String?
 }
 
 public class KTUser: Codable {
@@ -20,128 +25,37 @@ public class KTUser: Codable {
         return formatter
     }()
     
-    enum CodingKeys: CodingKey {
-        case email
-        case userId
-        case address
-        case phoneHome
-        case phoneMobile
-        case identification
-        case fullname
-        case status
-        case emergencyFullName
-        case emergencyPhoneHome
-        case emergencyPhoneMobile
-        case imageURL
-        case thumbImageURL
-        case phoneMobileCountryCode
-        case postcode
-        case state
-        case country
-        case gender
-        case planId
-        case planName
-        case planDescription
-        case fleets
-        case birthday
-        case createdAt
-        case updatedAt
-    }
-    
     public let email: String
     public let userId: String
-    public var address: String!
-    public var phoneHome: String!
-    public var phoneMobile: String!
-    public var identification: String!
-    public var fullname: String!
-    public var status: Int = 0
     
-    public var emergencyFullName: String!
-    public var emergencyPhoneHome: String!
-    public var emergencyPhoneMobile: String!
-    public var imageURL: String!
-    public var thumbImageURL: String!
+    public let createdAt: Date
+    public var updatedAt: Date
+    public let imageURL: String?
+
+    public var fullname: String?
+    public var gender: Gender?
+    public var address: String?
+    public var phoneHome: String?
+    public var phoneMobile: String?
+    public var identification: String?
+    public var phoneMobileCountryCode: String?
+    public var postcode: String?
+    public var state: String?
+    public var country: String?
+    public var birthday: Date?
     
-    public var phoneMobileCountryCode: String!
-    public var postcode: String!
-    public var state: String!
-    public var country: String!
-    public var gender: Gender = .unknown
-    
-    public var planId: Int!
-    public var planName: String!
-    public var planDescription: String!
-    
-    public var fleets = [Fleet]()
-    
-    public var genderText: String!{
-        get{
-            if gender == .unknown{
-                return nil
-            }
-            return gender.rawValue.capitalized
-        }
-        set{
-            if let newValue = newValue{
-                if newValue.lowercased() == "male" {
-                    gender = .male
-                }
-                else if newValue.lowercased() == "female" {
-                    gender = .female
-                }
-            }else{
-                gender = .unknown
-            }
-        }
-    }
-    
-    public var birthday: Date!{
-        didSet{
-            if let birthday = birthday {
-                let dateStr = KTUser.dateFormatter.string(from: birthday)
-                if let birthdayText = birthdayText, dateStr == birthdayText{
-                    
-                }else{
-                    birthdayText = dateStr
-                }
-            }else{
-                birthdayText = ""
-            }
-            
-        }
-    }
-    public var birthdayText: String!{
-        didSet{
-            if let birthdayText = birthdayText {
-                let date = KTUser.dateFormatter.date(from: birthdayText)
-                if let birthday = birthday, date == birthday {
-                    //Do nothing
-                }else if date != nil{
-                    birthday = date
-                }
-            }else{
-                birthday = nil
-            }
-            
-        }
-    }
-    
-    public var createdAt: Date!
-    public var updatedAt: Date!
-    
-    private(set) public var image : KMImage!
-    private(set) public var thumbImage : KMImage!
-    
-    private var imageBlocks = [(image: KMImage) -> Void]()
-    private var thumbImageBlocks = [(image: KMImage) -> Void]()
-    private var isLoadingImage = false
-    private var isLoadingThumbImage = false
+    public let plan: UserPlan?
+    public let fleets: [Fleet]
     
     
-    public init(userID:String, email: String) {
-        self.userId = userID
+    public init(userId:String, email: String, imageURL: String?, plan: UserPlan?, fleets: [Fleet] = [], createdAt: Date, updatedAt: Date! = nil ) {
+        self.userId = userId
         self.email = email
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt ?? createdAt
+        self.imageURL = imageURL
+        self.plan = plan
+        self.fleets = fleets
     }
     
     public func jsonPatch() -> [String: Any] {
@@ -158,81 +72,7 @@ public class KTUser: Codable {
         if let fullname = fullname{
             dicto["fullname"] = fullname
         }
-        if let emergencyFullName = emergencyFullName{
-            dicto["meta.emergency.fullname"] = emergencyFullName
-        }
-        if let emergencyPhoneHome = emergencyPhoneHome{
-            dicto["meta.emergency.phone.home"] = emergencyPhoneHome
-        }
-        if let emergencyPhoneMobile = emergencyPhoneMobile{
-            dicto["meta.emergency.phone.mobile"] = emergencyPhoneMobile
-        }
         return dicto
-    }
-    
-    // MARK: Image
-    
-    public func updateImage(_ image: KMImage) {
-        self.image = image
-    }
-    
-    public func image(completion: @escaping (_ image: KMImage) -> Void){
-        guard imageURL != nil else {
-            return
-        }
-        
-        if let image = image {
-            completion(image)
-        }else if let path = NSURL(string: imageURL)?.lastPathComponent, let image = KTCacheManager.shared.image(for: path){
-            self.image = image
-            completion(image)
-        }else{
-            if isLoadingImage {
-                imageBlocks.append(completion)
-            }else{
-                isLoadingImage = true
-                ImageRequest.shared.requestImage(path: imageURL, completion: { (image) in
-                    self.image = image
-                    self.isLoadingImage = false
-                    for block in self.imageBlocks{
-                        block(image!)
-                    }
-                    completion(image!)
-                }, failure: { (error) in
-                    KatsanaAPI.shared.log?.error("Error requesting user image \(self.email)")
-                    self.isLoadingImage = false
-                })
-            }
-        }
-    }
-    
-    public func thumbImage(completion: @escaping (_ image: KMImage) -> Void){
-        guard thumbImageURL != nil else {
-            return
-        }
-        
-        if let image = thumbImage {
-            completion(image)
-        }else if let path = NSURL(string: thumbImageURL)?.lastPathComponent, let image = KTCacheManager.shared.image(for: path){
-            completion(image)
-        }else{
-            if isLoadingThumbImage {
-                thumbImageBlocks.append(completion)
-            }else{
-                isLoadingThumbImage = true
-                ImageRequest.shared.requestImage(path: thumbImageURL, completion: { (image) in
-                    self.thumbImage = image
-                    self.isLoadingThumbImage = false
-                    for block in self.thumbImageBlocks{
-                        block(image!)
-                    }
-                    completion(image!)
-                }, failure: { (error) in
-                    KatsanaAPI.shared.log?.error("Error requesting user thumb image \(self.email)")
-                    self.isLoadingThumbImage = false
-                })
-            }
-        }
     }
     
     // MARK: helper
@@ -245,8 +85,6 @@ public class KTUser: Codable {
         }
         return nil
     }
-    
-    
     
     public func profileProgress() -> CGFloat {
         var progressCount :CGFloat = 0
@@ -270,12 +108,10 @@ public class KTUser: Codable {
         if let postcode = postcode, postcode.count > 0{
             progressCount += 1
         }
-        if gender != .unknown{
+        if gender != nil{
             progressCount += 1
         }
-        if let imageURL = imageURL,  imageURL.count > 0{
-            progressCount += 1
-        }else if image != nil{
+        if let imageURL, imageURL.count > 0{
             progressCount += 1
         }
         let progress = progressCount/totalCount
@@ -296,5 +132,21 @@ public class KTUser: Codable {
     public func date(from string: String) -> Date! {
         return KTUser.dateFormatter.date(from: string)
     }
+    
+    // MARK: Need remove
+    
+    open func updateImage(_ image: KMImage) {
+//        self.image = image
+    }
 }
 
+extension KTUser: Equatable{
+    public static func == (lhs: KTUser, rhs: KTUser) -> Bool {
+        if lhs.email == rhs.email, lhs.userId == rhs.userId, lhs.fleets == rhs.fleets, lhs.plan == rhs.plan, lhs.createdAt == rhs.createdAt{
+            return true
+        }
+        return false
+    }
+    
+    
+}
