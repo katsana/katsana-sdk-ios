@@ -41,6 +41,9 @@
 		C1FAE6FB29C0592E001D3D86 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE6FA29C0592E001D3D86 /* UserMapper.swift */; };
 		C1FAE6FE29C059D4001D3D86 /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE6FD29C059D4001D3D86 /* HTTPURLResponse+StatusCode.swift */; };
 		C1FAE70129C05B19001D3D86 /* UserMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE6FF29C05AF2001D3D86 /* UserMapperTests.swift */; };
+		C1FAE70629C15901001D3D86 /* RemoteLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE70429C158EA001D3D86 /* RemoteLoaderTests.swift */; };
+		C1FAE70A29C15941001D3D86 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE70829C15932001D3D86 /* HTTPClientSpy.swift */; };
+		C1FAE70D29C1631E001D3D86 /* LoaderHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE70B29C1626A001D3D86 /* LoaderHelpers.swift */; };
 		C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */; };
 		C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174C1E48703B0041BC18 /* Date+Extension.swift */; };
 		C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174D1E48703B0041BC18 /* JSON+Date.swift */; };
@@ -123,6 +126,9 @@
 		C1FAE6FA29C0592E001D3D86 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		C1FAE6FD29C059D4001D3D86 /* HTTPURLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+StatusCode.swift"; sourceTree = "<group>"; };
 		C1FAE6FF29C05AF2001D3D86 /* UserMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapperTests.swift; sourceTree = "<group>"; };
+		C1FAE70429C158EA001D3D86 /* RemoteLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoaderTests.swift; sourceTree = "<group>"; };
+		C1FAE70829C15932001D3D86 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
+		C1FAE70B29C1626A001D3D86 /* LoaderHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderHelpers.swift; sourceTree = "<group>"; };
 		C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate+Extension.swift"; sourceTree = "<group>"; };
 		C719174C1E48703B0041BC18 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C719174D1E48703B0041BC18 /* JSON+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Date.swift"; sourceTree = "<group>"; };
@@ -200,14 +206,13 @@
 			isa = PBXGroup;
 			children = (
 				C1751B1A29BFECCC009C8795 /* Helpers */,
+				C1FAE70329C158DA001D3D86 /* Infra */,
 				C105118F29877ACC006D9CB7 /* UserTest.swift */,
 				C105119C2988CB97006D9CB7 /* VehicleTest.swift */,
 				C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */,
 				C10511A02988FF4C006D9CB7 /* TripTest.swift */,
 				C1A3E404298A1A8F00931529 /* AddressTest.swift */,
 				C1A3E406298A213800931529 /* ActivityTest.swift */,
-				C1751B2129BFED07009C8795 /* URLSessionHTTPClientTests.swift */,
-				C1751B4C29C018C8009C8795 /* KatsanaServicesTests.swift */,
 				C1FAE6FF29C05AF2001D3D86 /* UserMapperTests.swift */,
 			);
 			path = KatsanaSDKTests;
@@ -236,9 +241,9 @@
 			children = (
 				C105119229877BE3006D9CB7 /* MockService.swift */,
 				C105119A29879167006D9CB7 /* CacheManagerSpy.swift */,
-				C1751B1B29BFECCC009C8795 /* URLProtocolStub.swift */,
 				C1751B1C29BFECCC009C8795 /* XCTestCase+MemoryLeak.swift */,
 				C1751B1D29BFECCC009C8795 /* TestHelpers.swift */,
+				C1FAE70B29C1626A001D3D86 /* LoaderHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -273,6 +278,26 @@
 				C1FAE6FD29C059D4001D3D86 /* HTTPURLResponse+StatusCode.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		C1FAE70329C158DA001D3D86 /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				C1FAE70729C15925001D3D86 /* Helpers */,
+				C1FAE70429C158EA001D3D86 /* RemoteLoaderTests.swift */,
+				C1751B2129BFED07009C8795 /* URLSessionHTTPClientTests.swift */,
+				C1751B4C29C018C8009C8795 /* KatsanaServicesTests.swift */,
+			);
+			path = Infra;
+			sourceTree = "<group>";
+		};
+		C1FAE70729C15925001D3D86 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C1751B1B29BFECCC009C8795 /* URLProtocolStub.swift */,
+				C1FAE70829C15932001D3D86 /* HTTPClientSpy.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C71917481E48703B0041BC18 /* Cache */ = {
@@ -368,10 +393,10 @@
 		C75104F31D7422BF00F4C341 = {
 			isa = PBXGroup;
 			children = (
+				C1751B4829BFEE6D009C8795 /* Endpoints */,
 				C1FAE6F929C05924001D3D86 /* Mapper */,
 				C1751B4B29C018A2009C8795 /* API */,
 				C1751B1329BFEC70009C8795 /* Infra */,
-				C1751B4829BFEE6D009C8795 /* Endpoints */,
 				C105119629879046006D9CB7 /* Logger */,
 				C78B22141D75754B002E25C3 /* LICENSE */,
 				C71917481E48703B0041BC18 /* Cache */,
@@ -518,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1751B4229BFEDEC009C8795 /* TripTest.swift in Sources */,
+				C1FAE70629C15901001D3D86 /* RemoteLoaderTests.swift in Sources */,
 				C1751B3F29BFEDEC009C8795 /* CacheManagerSpy.swift in Sources */,
 				C1751B3D29BFEDEC009C8795 /* MockService.swift in Sources */,
 				C1751B3E29BFEDEC009C8795 /* VehicleTest.swift in Sources */,
@@ -525,7 +551,9 @@
 				C1751B4429BFEDEC009C8795 /* AddressTest.swift in Sources */,
 				C1751B4329BFEDEC009C8795 /* TestHelpers.swift in Sources */,
 				C1751B4129BFEDEC009C8795 /* ActivityTest.swift in Sources */,
+				C1FAE70A29C15941001D3D86 /* HTTPClientSpy.swift in Sources */,
 				C1751B3A29BFEDEC009C8795 /* TripSummaryTest.swift in Sources */,
+				C1FAE70D29C1631E001D3D86 /* LoaderHelpers.swift in Sources */,
 				C1751B4029BFEDEC009C8795 /* XCTestCase+MemoryLeak.swift in Sources */,
 				C1751B4529BFEDEC009C8795 /* URLSessionHTTPClientTests.swift in Sources */,
 				C1FAE70129C05B19001D3D86 /* UserMapperTests.swift in Sources */,
