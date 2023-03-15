@@ -8,6 +8,8 @@
 
 import Foundation
 
+public typealias ResourceResultClosure<Resource> = (Result<Resource, Error>) -> Void
+
 public class RemoteLoader<Resource> {
     private let client: HTTPClient
     private let url: URL
