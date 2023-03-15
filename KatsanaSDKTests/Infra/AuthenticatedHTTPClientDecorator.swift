@@ -17,6 +17,14 @@ class AuthenticatedHTTPClientDecorator: HTTPClient{
     let decoratee: HTTPClient
     var token: AccessToken?
     
+    public enum Error: Swift.Error {
+        case unauthorized
+    }
+    
+    class EmptyTask: HTTPClientTask{
+        func cancel() {}
+    }
+    
     init(decoratee: HTTPClient) {
         self.decoratee = decoratee
     }
@@ -26,35 +34,54 @@ class AuthenticatedHTTPClientDecorator: HTTPClient{
     }
     
     func send(_ urlRequest: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
-        
-        return Task()
-    }
-    
-    private func signedRequest(for request: URLRequest) -> URLRequest{
-        return request
-    }
-    
-    class Task: HTTPClientTask{
-        func cancel() {
-            
+        do{
+            let signedRequest = try self.signedRequest(for: urlRequest)
+            return decoratee.send(signedRequest, completion: completion)
+        }
+        catch{
+            completion(.failure(error))
+            return EmptyTask()
         }
     }
     
+    func signedRequest(for request: URLRequest) throws -> URLRequest{
+        guard let token else {
+            throw Error.unauthorized
+        }
+        
+        var updatedRequest = request
+        updatedRequest.setValue("Bearer \(token.token)", forHTTPHeaderField: "Authorization ")
+        return request
+
+    }
     
 }
 
 final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
     
-    func test(){
+    func test_sendRequest_withNoTokenReturnEmptyRequest(){
         let client = HTTPClientSpy()
+        let unsignedRequest = testRequest()
         
-        let signedRequest = URLRequest(url: anyURL())
         let sut = AuthenticatedHTTPClientDecorator(decoratee: client)
+        _ = sut.send(unsignedRequest, completion: {_ in})
         
-//        sut.send(<#T##URLRequest#>, completion: <#T##(Result<(Data, HTTPURLResponse), Error>) -> Void#>)
-        
-//        XCTAssertEqual(client.requests, [signedRequest])
+        XCTAssertEqual(client.requests, [])
     }
+    
+    func test_sendRequest_withTokenReturnRequest(){
+        let client = HTTPClientSpy()
+        let request = testRequest()
+        
+        let sut = AuthenticatedHTTPClientDecorator(decoratee: client)
+        sut.sign(AccessToken(token: "anyToken"))
+        let signedRequest = try? sut.signedRequest(for: request)
+        
+        _ = sut.send(request, completion: {_ in})
+        
+        XCTAssertEqual(client.requests, [signedRequest])
+    }
+
     
     // MARK: Helpers
     
