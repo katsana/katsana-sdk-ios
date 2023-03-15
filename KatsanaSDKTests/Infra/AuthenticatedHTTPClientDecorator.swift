@@ -11,7 +11,7 @@ import KatsanaSDK
 
 final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
     
-    func test_sendRequest_withNoTokenReturnEmptyRequest(){
+    func test_sendRequest_withFailedTokenRequest_fails(){
         let unsignedRequest = testRequest()
         let (sut, client) = makeSUT(tokenResult: .failure(anyNSError()))
         
@@ -20,14 +20,16 @@ final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
         XCTAssertEqual(client.requests, [])
     }
     
-    func test_sendRequest_withTokenReturnSuccessfulRequest(){
+    func test_sendRequest_withSuccessTokenSuccess_signRequestWithToken(){
         
         let request = testRequest()
-        let (sut, client) = makeSUT(tokenResult: .success(AccessToken(token: "anyToken")))
-
+        let token = AccessToken(token: "anyToken")
+        let (sut, client) = makeSUT(tokenResult: .success(token))
+        
+        let signedRequest = sut.signedRequest(for: request, token: token)
         _ = sut.send(request, completion: {_ in})
         
-        XCTAssertEqual(client.requests.count, 1)
+        XCTAssertEqual(client.requests, [signedRequest])
     }
 
     
