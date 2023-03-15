@@ -21,7 +21,7 @@ final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
         XCTAssertEqual(client.requests, [])
     }
     
-    func test_sendRequest_withTokenReturnRequest(){
+    func test_sendRequest_withTokenReturnSuccesfulRequest(){
         let client = HTTPClientSpy()
         let request = testRequest()
         
