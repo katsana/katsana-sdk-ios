@@ -45,8 +45,6 @@ class UserMapperMapperTests: XCTestCase {
     
     // MARK: - Helpers
         
-    func makeJSON(_ item: [String: Any]) -> Data {
-        return try! JSONSerialization.data(withJSONObject: item)
-    }
+
     
 }
