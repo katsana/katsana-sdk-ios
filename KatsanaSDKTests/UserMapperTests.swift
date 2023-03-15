@@ -35,7 +35,7 @@ class UserMapperMapperTests: XCTestCase {
         let fleet = Fleet(fleetId: 2, name: "Main Fleet", deviceCount: 10)
         let fleet2 = Fleet(fleetId: 6, name: "Secondary Fleet", deviceCount: 2)
         
-        let (item, json) = makeItem(id: 220, email: "developer-demo@katsana.com", fleets: [fleet, fleet2])
+        let (item, json) = makeUser(id: 220, email: "developer-demo@katsana.com", fleets: [fleet, fleet2])
         let data = makeJSON(json)
 
         let result = try UserMapper.map(data, from: HTTPURLResponse(statusCode: 200))
@@ -49,7 +49,7 @@ class UserMapperMapperTests: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: item)
     }
     
-    private func makeItem(id: Int,
+    private func makeUser(id: Int,
                           email: String,
                           imageURL: String = "null",
                           plan: UserPlan? = nil,
@@ -145,13 +145,6 @@ class UserMapperMapperTests: XCTestCase {
             theFleets.append(json)
         }
         return theFleets
-//        if let data = try? JSONSerialization.data(withJSONObject: ["fleets": theFleets]){
-//            let text = String(data: data, encoding: String.Encoding.utf8)?.appending(appending)
-//            return text
-//        }else{
-//            return nil
-//        }
-        
     }
     
     func convertStringToDictionary(text: String) -> [String:Any]? {
