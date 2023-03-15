@@ -20,7 +20,7 @@ final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
         XCTAssertEqual(client.requests, [])
     }
     
-    func test_sendRequest_withTokenReturnSuccesfulRequest(){
+    func test_sendRequest_withTokenReturnSuccessfulRequest(){
         
         let request = testRequest()
         let (sut, client) = makeSUT(tokenResult: .success(AccessToken(token: "anyToken")))
