@@ -10,6 +10,11 @@ import Foundation
 
 public typealias ResourceResultClosure<Resource> = (Result<Resource, Error>) -> Void
 
+public struct HTTPResponseError: Error{
+    let statusCode: Int
+    let message: String
+}
+
 public class RemoteLoader<Resource> {
     private let client: HTTPClient
     private let url: URL
@@ -18,6 +23,7 @@ public class RemoteLoader<Resource> {
     public enum Error: Swift.Error {
         case connectivity
         case invalidData
+        case invalidHTTPResponse(HTTPResponseError)
     }
     
     public typealias Result = Swift.Result<Resource, Swift.Error>
@@ -31,17 +37,22 @@ public class RemoteLoader<Resource> {
     
     public func load(completion: @escaping (Result) -> Void) {
         client.send(URLRequest(url: url)) {[weak self] result in
-            guard let self else {return}
+            guard let self = self else {return}
             
             switch result {
             case .success((let data, let response)):
-                completion(self.map(data, from: response))
+                if let errorResponse = self.mapInvalidHTTPResponseError(data, from: response){
+                    completion(.failure(errorResponse))
+                }else{
+                    completion(self.map(data, from: response))
+                }
+                
             case .failure:
                 completion(.failure(Error.connectivity))
             }
         }
     }
-    
+
     private func map(_ data: Data, from response: HTTPURLResponse) -> Result {
         do {
             return .success(try mapper(data,response))
@@ -49,4 +60,23 @@ public class RemoteLoader<Resource> {
             return .failure(Error.invalidData)
         }
     }
+}
+
+extension RemoteLoader{
+    private func mapInvalidHTTPResponseError(_ data:Data, from response: HTTPURLResponse) -> HTTPResponseError?{
+        let status = response.statusCode
+        guard (200...299).contains(status) else {
+            do{
+                let json = try JSON(data: data)
+                let message = json["message"].string
+                return HTTPResponseError(statusCode: status, message: message ?? "Unknown error")
+            }
+            catch{
+                return HTTPResponseError(statusCode: status, message: "Unknown error")
+            }
+            
+        }
+        return nil
+    }
+    
 }
