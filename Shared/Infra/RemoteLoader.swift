@@ -30,7 +30,7 @@ public class RemoteLoader<Resource> {
     }
     
     public func load(completion: @escaping (Result) -> Void) {
-        client.send(request: URLRequest(url: url)) {[weak self] result in
+        client.send(URLRequest(url: url)) {[weak self] result in
             guard let self else {return}
             
             switch result {

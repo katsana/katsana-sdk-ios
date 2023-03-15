@@ -24,7 +24,7 @@ public final class URLSessionHTTPClient: HTTPClient {
         }
     }
 
-    public func send(request urlRequest: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
+    public func send(_ urlRequest: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
         let task = session.dataTask(with: urlRequest) { data, response, error in
             completion(Result {
                 if let error = error {

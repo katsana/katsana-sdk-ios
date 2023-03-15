@@ -26,7 +26,7 @@ class HTTPClientSpy: HTTPClient {
         return messages.compactMap { $0.url }
     }
     
-    func send(request urlRequest: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
+    func send(_ urlRequest: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
         messages.append((urlRequest, completion))
         return Task { [weak self] in
             self?.cancelledRequests.append(urlRequest)
