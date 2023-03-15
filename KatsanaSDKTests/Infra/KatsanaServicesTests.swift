@@ -12,13 +12,10 @@ import KatsanaSDK
 final class KatsanaServicesTests: XCTestCase {
 
     func test_loadUserProfile_deliverUserProfile() throws {
-        let url = URL(string: "https://api.katsana.com/")!
-        let client = HTTPClientSpy()
         
-        let factory = KatsanaServiceFactory(baseURL: url, client: client)
+        let (sut, client) = makeSUT()
+        let loader = sut.makeUserProfileLoader()
         let (user, json) = makeUser(id: 232, email: anyEmail())
-        
-        let loader = factory.makeUserProfileLoader()
         expect(loader, toCompleteWith: .success(user)) {
             let data = makeJSON(json)
             client.complete(withStatusCode: 200, data: data)
@@ -26,6 +23,18 @@ final class KatsanaServicesTests: XCTestCase {
     }
     
     // MARK: Helper
+    
+    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: KatsanaServiceFactory, client: HTTPClientSpy){
+        let url = URL(string: "https://anyurl.com/")!
+        let client = HTTPClientSpy()
+        
+        let factory = KatsanaServiceFactory(baseURL: url, client: client)
+        
+        trackForMemoryLeaks(client, file: file, line: line)
+        trackForMemoryLeaks(factory, file: file, line: line)
+        
+        return (factory, client)
+    }
     
     
     private func expect<Resource>(_ sut: RemoteLoader<Resource>, toCompleteWith expectedResult: RemoteLoader<Resource>.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) where Resource: Equatable {
