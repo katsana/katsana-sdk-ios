@@ -33,10 +33,14 @@ final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
     
     // MARK: Helpers
     
-    func makeSUT(tokenResult: TokenService.Result) -> (sut: AuthenticatedHTTPClientDecorator, client: HTTPClientSpy){
+    func makeSUT(tokenResult: TokenService.Result, file: StaticString = #filePath, line: UInt = #line) -> (sut: AuthenticatedHTTPClientDecorator, client: HTTPClientSpy){
         let client = HTTPClientSpy()
         let tokenStub = TokenServiceStub(stub: tokenResult)
         let sut = AuthenticatedHTTPClientDecorator(decoratee: client, tokenService: tokenStub)
+        
+        trackForMemoryLeaks(client, file: file, line: line)
+        trackForMemoryLeaks(tokenStub, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, client)
     }
