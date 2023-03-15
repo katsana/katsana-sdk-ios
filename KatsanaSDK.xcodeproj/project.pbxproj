@@ -50,7 +50,7 @@
 		C1FAE71E29C17A30001D3D86 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
 		C1FAE72529C17B99001D3D86 /* KatsanaServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */; };
 		C1FAE72829C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72729C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift */; };
-		C1FAE72A29C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72929C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift */; };
+		C1FAE72B29C17FE1001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72929C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift */; };
 		C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */; };
 		C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174C1E48703B0041BC18 /* Date+Extension.swift */; };
 		C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174D1E48703B0041BC18 /* JSON+Date.swift */; };
@@ -643,6 +643,7 @@
 				C1751B4429BFEDEC009C8795 /* AddressTest.swift in Sources */,
 				C1751B4329BFEDEC009C8795 /* TestHelpers.swift in Sources */,
 				C1751B4129BFEDEC009C8795 /* ActivityTest.swift in Sources */,
+				C1FAE72B29C17FE1001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */,
 				C1FAE71529C1779C001D3D86 /* UserEndpointTests.swift in Sources */,
 				C1FAE70A29C15941001D3D86 /* HTTPClientSpy.swift in Sources */,
 				C1751B3A29BFEDEC009C8795 /* TripSummaryTest.swift in Sources */,
@@ -660,7 +661,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1FAE72829C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift in Sources */,
-				C1FAE72A29C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */,
 				C1FAE71D29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

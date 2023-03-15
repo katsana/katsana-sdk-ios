@@ -15,17 +15,21 @@ class HTTPClientSpy: HTTPClient {
         func cancel() { callback() }
     }
     
-    private var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
-    private(set) var cancelledURLs = [URL]()
+    private var messages = [(url: URLRequest, completion: (HTTPClient.Result) -> Void)]()
+    private(set) var cancelledRequests = [URLRequest]()
     
     var requestedURLs: [URL] {
-        return messages.map { $0.url }
+        return messages.compactMap { $0.url.url }
     }
     
-    func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
-        messages.append((url, completion))
+    var requests: [URLRequest] {
+        return messages.compactMap { $0.url }
+    }
+    
+    func send(request urlRequest: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
+        messages.append((urlRequest, completion))
         return Task { [weak self] in
-            self?.cancelledURLs.append(url)
+            self?.cancelledRequests.append(urlRequest)
         }
     }
     
