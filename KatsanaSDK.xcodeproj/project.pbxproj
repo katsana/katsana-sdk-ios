@@ -46,6 +46,9 @@
 		C1FAE70D29C1631E001D3D86 /* LoaderHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE70B29C1626A001D3D86 /* LoaderHelpers.swift */; };
 		C1FAE71129C16A36001D3D86 /* URL+QueryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE71029C16A36001D3D86 /* URL+QueryItems.swift */; };
 		C1FAE71529C1779C001D3D86 /* UserEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE71329C17798001D3D86 /* UserEndpointTests.swift */; };
+		C1FAE71D29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE71C29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift */; };
+		C1FAE71E29C17A30001D3D86 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
+		C1FAE72529C17B99001D3D86 /* KatsanaServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */; };
 		C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */; };
 		C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174C1E48703B0041BC18 /* Date+Extension.swift */; };
 		C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174D1E48703B0041BC18 /* JSON+Date.swift */; };
@@ -81,6 +84,16 @@
 		C78B22151D75754B002E25C3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C78B22141D75754B002E25C3 /* LICENSE */; };
 		C79CA23E1FE220F100A9F8E1 /* Insurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79CA23D1FE220F100A9F8E1 /* Insurer.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C1FAE71F29C17A30001D3D86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C75104F41D7422BF00F4C341 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C75104FC1D7422BF00F4C341;
+			remoteInfo = KatsanaSDK;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C7A4BF9B1DAF0F0B007E90B8 /* CopyFiles */ = {
@@ -133,6 +146,9 @@
 		C1FAE70B29C1626A001D3D86 /* LoaderHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderHelpers.swift; sourceTree = "<group>"; };
 		C1FAE71029C16A36001D3D86 /* URL+QueryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+QueryItems.swift"; sourceTree = "<group>"; };
 		C1FAE71329C17798001D3D86 /* UserEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpointTests.swift; sourceTree = "<group>"; };
+		C1FAE71A29C17A30001D3D86 /* KatsanaSDKEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1FAE71C29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKEndToEndTests.swift; sourceTree = "<group>"; };
+		C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaServiceFactory.swift; sourceTree = "<group>"; };
 		C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate+Extension.swift"; sourceTree = "<group>"; };
 		C719174C1E48703B0041BC18 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C719174D1E48703B0041BC18 /* JSON+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Date.swift"; sourceTree = "<group>"; };
@@ -181,6 +197,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1FAE71729C17A30001D3D86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1FAE71E29C17A30001D3D86 /* KatsanaSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C75104F91D7422BF00F4C341 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -218,7 +242,6 @@
 				C10511A02988FF4C006D9CB7 /* TripTest.swift */,
 				C1A3E404298A1A8F00931529 /* AddressTest.swift */,
 				C1A3E406298A213800931529 /* ActivityTest.swift */,
-				C1FAE6FF29C05AF2001D3D86 /* UserMapperTests.swift */,
 			);
 			path = KatsanaSDKTests;
 			sourceTree = "<group>";
@@ -294,6 +317,7 @@
 			children = (
 				C1FAE70F29C169F7001D3D86 /* Helper */,
 				C1751B1329BFEC70009C8795 /* Infra */,
+				C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -310,9 +334,18 @@
 		C1FAE71229C1778A001D3D86 /* User API */ = {
 			isa = PBXGroup;
 			children = (
+				C1FAE6FF29C05AF2001D3D86 /* UserMapperTests.swift */,
 				C1FAE71329C17798001D3D86 /* UserEndpointTests.swift */,
 			);
 			path = "User API";
+			sourceTree = "<group>";
+		};
+		C1FAE71B29C17A30001D3D86 /* KatsanaSDKEndToEndTests */ = {
+			isa = PBXGroup;
+			children = (
+				C1FAE71C29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift */,
+			);
+			path = KatsanaSDKEndToEndTests;
 			sourceTree = "<group>";
 		};
 		C71917481E48703B0041BC18 /* Cache */ = {
@@ -419,6 +452,7 @@
 				C719175F1E48703B0041BC18 /* Object */,
 				C719176A1E48703B0041BC18 /* Transformer */,
 				C1051184298778D1006D9CB7 /* KatsanaSDKTests */,
+				C1FAE71B29C17A30001D3D86 /* KatsanaSDKEndToEndTests */,
 				C75104FE1D7422BF00F4C341 /* Products */,
 				5DD901B866D20EE7A742A486 /* Frameworks */,
 			);
@@ -429,6 +463,7 @@
 			children = (
 				C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */,
 				C1751B3029BFEDE1009C8795 /* KatsanaSDKTest.xctest */,
+				C1FAE71A29C17A30001D3D86 /* KatsanaSDKEndToEndTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -466,6 +501,24 @@
 			productReference = C1751B3029BFEDE1009C8795 /* KatsanaSDKTest.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C1FAE71929C17A30001D3D86 /* KatsanaSDKEndToEndTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1FAE72129C17A30001D3D86 /* Build configuration list for PBXNativeTarget "KatsanaSDKEndToEndTests" */;
+			buildPhases = (
+				C1FAE71629C17A30001D3D86 /* Sources */,
+				C1FAE71729C17A30001D3D86 /* Frameworks */,
+				C1FAE71829C17A30001D3D86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1FAE72029C17A30001D3D86 /* PBXTargetDependency */,
+			);
+			name = KatsanaSDKEndToEndTests;
+			productName = KatsanaSDKEndToEndTests;
+			productReference = C1FAE71A29C17A30001D3D86 /* KatsanaSDKEndToEndTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C75104FC1D7422BF00F4C341 /* KatsanaSDK */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C75105111D7422BF00F4C341 /* Build configuration list for PBXNativeTarget "KatsanaSDK" */;
@@ -501,6 +554,9 @@
 					C1751B2F29BFEDE1009C8795 = {
 						CreatedOnToolsVersion = 14.2;
 					};
+					C1FAE71929C17A30001D3D86 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					C75104FC1D7422BF00F4C341 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 47CF2FS3SX;
@@ -529,12 +585,20 @@
 			targets = (
 				C75104FC1D7422BF00F4C341 /* KatsanaSDK */,
 				C1751B2F29BFEDE1009C8795 /* KatsanaSDKTest */,
+				C1FAE71929C17A30001D3D86 /* KatsanaSDKEndToEndTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C1751B2E29BFEDE1009C8795 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1FAE71829C17A30001D3D86 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -577,6 +641,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1FAE71629C17A30001D3D86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1FAE71D29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C75104F81D7422BF00F4C341 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -595,6 +667,7 @@
 				C18A824328FCEFD500C3FF7D /* VideoRecordingChannel.swift in Sources */,
 				C71917921E48703B0041BC18 /* KatsanaFormatter.swift in Sources */,
 				C71917781E48703B0041BC18 /* AddressRequest.swift in Sources */,
+				C1FAE72529C17B99001D3D86 /* KatsanaServiceFactory.swift in Sources */,
 				C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */,
 				C71917A61E48703B0041BC18 /* VehicleLocation.swift in Sources */,
 				C1FAE6FB29C0592E001D3D86 /* UserMapper.swift in Sources */,
@@ -635,6 +708,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C1FAE72029C17A30001D3D86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C75104FC1D7422BF00F4C341 /* KatsanaSDK */;
+			targetProxy = C1FAE71F29C17A30001D3D86 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C1751B3829BFEDE1009C8795 /* Debug */ = {
@@ -693,6 +774,57 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C1FAE72229C17A30001D3D86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 47CF2FS3SX;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.katsana.KatsanaSDKEndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C1FAE72329C17A30001D3D86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 47CF2FS3SX;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.katsana.KatsanaSDKEndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -901,6 +1033,15 @@
 			buildConfigurations = (
 				C1751B3829BFEDE1009C8795 /* Debug */,
 				C1751B3929BFEDE1009C8795 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1FAE72129C17A30001D3D86 /* Build configuration list for PBXNativeTarget "KatsanaSDKEndToEndTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1FAE72229C17A30001D3D86 /* Debug */,
+				C1FAE72329C17A30001D3D86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

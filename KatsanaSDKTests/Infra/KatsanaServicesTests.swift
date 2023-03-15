@@ -9,22 +9,6 @@
 import XCTest
 import KatsanaSDK
 
-class KatsanaServiceFactory{
-    let baseURL: URL
-    let client: HTTPClient
-    
-    init(baseURL: URL, client: HTTPClient) {
-        self.baseURL = baseURL
-        self.client = client
-    }
-    
-    func makeUserProfileLoader(includes params: [String]? = nil) -> RemoteLoader<KTUser>{
-        let url = UserProfileEndpoint.get(includes: params).url(baseURL: baseURL)
-        return RemoteLoader(url: url, client: client, mapper: UserMapper.map)
-    }
-    
-}
-
 final class KatsanaServicesTests: XCTestCase {
 
     func test_loadUserProfile_deliverUserProfile() throws {
@@ -42,6 +26,7 @@ final class KatsanaServicesTests: XCTestCase {
     }
     
     // MARK: Helper
+    
     
     private func expect<Resource>(_ sut: RemoteLoader<Resource>, toCompleteWith expectedResult: RemoteLoader<Resource>.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) where Resource: Equatable {
         let exp = expectation(description: "Wait for load completion")
