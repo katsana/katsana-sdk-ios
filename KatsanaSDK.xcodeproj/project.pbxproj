@@ -50,6 +50,7 @@
 		C1FAE71E29C17A30001D3D86 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
 		C1FAE72529C17B99001D3D86 /* KatsanaServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */; };
 		C1FAE72829C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72729C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift */; };
+		C1FAE72A29C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72929C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift */; };
 		C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */; };
 		C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174C1E48703B0041BC18 /* Date+Extension.swift */; };
 		C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174D1E48703B0041BC18 /* JSON+Date.swift */; };
@@ -151,6 +152,7 @@
 		C1FAE71C29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKEndToEndTests.swift; sourceTree = "<group>"; };
 		C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaServiceFactory.swift; sourceTree = "<group>"; };
 		C1FAE72729C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeak.swift"; sourceTree = "<group>"; };
+		C1FAE72929C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedHTTPClientDecorator.swift; sourceTree = "<group>"; };
 		C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate+Extension.swift"; sourceTree = "<group>"; };
 		C719174C1E48703B0041BC18 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C719174D1E48703B0041BC18 /* JSON+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Date.swift"; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				C1FAE70429C158EA001D3D86 /* RemoteLoaderTests.swift */,
 				C1751B2129BFED07009C8795 /* URLSessionHTTPClientTests.swift */,
 				C1751B4C29C018C8009C8795 /* KatsanaServicesTests.swift */,
+				C1FAE72929C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1FAE72829C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift in Sources */,
+				C1FAE72A29C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */,
 				C1FAE71D29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

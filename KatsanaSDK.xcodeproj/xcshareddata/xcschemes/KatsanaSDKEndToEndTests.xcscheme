@@ -5,22 +5,6 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
-      <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C75104FC1D7422BF00F4C341"
-               BuildableName = "KatsanaSDK.framework"
-               BlueprintName = "KatsanaSDK"
-               ReferencedContainer = "container:KatsanaSDK.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -44,9 +28,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C1751B2F29BFEDE1009C8795"
-               BuildableName = "KatsanaSDKTest.xctest"
-               BlueprintName = "KatsanaSDKTest"
+               BlueprintIdentifier = "C1FAE71929C17A30001D3D86"
+               BuildableName = "KatsanaSDKEndToEndTests.xctest"
+               BlueprintName = "KatsanaSDKEndToEndTests"
                ReferencedContainer = "container:KatsanaSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -69,15 +53,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C75104FC1D7422BF00F4C341"
-            BuildableName = "KatsanaSDK.framework"
-            BlueprintName = "KatsanaSDK"
-            ReferencedContainer = "container:KatsanaSDK.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
