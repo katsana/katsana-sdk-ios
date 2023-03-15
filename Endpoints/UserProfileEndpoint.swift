@@ -19,8 +19,10 @@ public enum UserProfileEndpoint {
     }
 }
 
+public typealias ResourceResult<Resource> = (Result<Resource, Error>) -> Void
+
 public protocol UserService{
-    func getUserProfile(completion: Result<KTUser, Error>)
+    func getUserProfile(completion: @escaping ResourceResult<KTUser>)
 }
 
 public protocol LoginService{
