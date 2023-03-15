@@ -53,6 +53,8 @@
 		C1FAE72B29C17FE1001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72929C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift */; };
 		C1FAE72E29C197AB001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72C29C197A7001D3D86 /* AuthenticatedHTTPClientDecorator.swift */; };
 		C1FAE73129C19916001D3D86 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72F29C198E7001D3D86 /* TokenService.swift */; };
+		C1FAE73629C1A576001D3D86 /* TokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE73429C1A573001D3D86 /* TokenServiceTests.swift */; };
+		C1FAE73929C1A599001D3D86 /* TokenServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE73729C1A589001D3D86 /* TokenServiceStub.swift */; };
 		C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */; };
 		C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174C1E48703B0041BC18 /* Date+Extension.swift */; };
 		C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174D1E48703B0041BC18 /* JSON+Date.swift */; };
@@ -157,6 +159,8 @@
 		C1FAE72929C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedHTTPClientDecorator.swift; sourceTree = "<group>"; };
 		C1FAE72C29C197A7001D3D86 /* AuthenticatedHTTPClientDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedHTTPClientDecorator.swift; sourceTree = "<group>"; };
 		C1FAE72F29C198E7001D3D86 /* TokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
+		C1FAE73429C1A573001D3D86 /* TokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenServiceTests.swift; sourceTree = "<group>"; };
+		C1FAE73729C1A589001D3D86 /* TokenServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenServiceStub.swift; sourceTree = "<group>"; };
 		C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate+Extension.swift"; sourceTree = "<group>"; };
 		C719174C1E48703B0041BC18 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C719174D1E48703B0041BC18 /* JSON+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Date.swift"; sourceTree = "<group>"; };
@@ -310,6 +314,7 @@
 				C1751B2129BFED07009C8795 /* URLSessionHTTPClientTests.swift */,
 				C1751B4C29C018C8009C8795 /* KatsanaServicesTests.swift */,
 				C1FAE72929C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift */,
+				C1FAE73429C1A573001D3D86 /* TokenServiceTests.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 			children = (
 				C1751B1B29BFECCC009C8795 /* URLProtocolStub.swift */,
 				C1FAE70829C15932001D3D86 /* HTTPClientSpy.swift */,
+				C1FAE73729C1A589001D3D86 /* TokenServiceStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -656,9 +662,11 @@
 				C1FAE70D29C1631E001D3D86 /* LoaderHelpers.swift in Sources */,
 				C1751B4029BFEDEC009C8795 /* XCTestCase+MemoryLeak.swift in Sources */,
 				C1751B4529BFEDEC009C8795 /* URLSessionHTTPClientTests.swift in Sources */,
+				C1FAE73929C1A599001D3D86 /* TokenServiceStub.swift in Sources */,
 				C1FAE70129C05B19001D3D86 /* UserMapperTests.swift in Sources */,
 				C1751B3C29BFEDEC009C8795 /* URLProtocolStub.swift in Sources */,
 				C1751B4D29C018C8009C8795 /* KatsanaServicesTests.swift in Sources */,
+				C1FAE73629C1A576001D3D86 /* TokenServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

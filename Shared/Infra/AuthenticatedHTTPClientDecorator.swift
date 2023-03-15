@@ -55,7 +55,7 @@ public class AuthenticatedHTTPClientDecorator: HTTPClient{
             switch result{
             case let .success(token):
                 let signedRequest = self.signedRequest(for: urlRequest, token: token)
-                task.wrapped = decoratee.send(signedRequest, completion: {theResult in
+                task.wrapped = self.decoratee.send(signedRequest, completion: {theResult in
                     task.complete(with: theResult)
                 })
             case let .failure(error):

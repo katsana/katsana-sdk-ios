@@ -12,22 +12,18 @@ import KatsanaSDK
 final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
     
     func test_sendRequest_withNoTokenReturnEmptyRequest(){
-        let client = HTTPClientSpy()
         let unsignedRequest = testRequest()
-        let tokenStub = TokenServiceStub(stub: .failure(anyNSError()))
+        let (sut, client) = makeSUT(tokenResult: .failure(anyNSError()))
         
-        let sut = AuthenticatedHTTPClientDecorator(decoratee: client, tokenService: tokenStub)
         _ = sut.send(unsignedRequest, completion: {_ in})
         
         XCTAssertEqual(client.requests, [])
     }
     
     func test_sendRequest_withTokenReturnSuccesfulRequest(){
-        let client = HTTPClientSpy()
-        let request = testRequest()
-        let tokenStub = TokenServiceStub(stub: .success(AccessToken(token: "anyToken")))
         
-        let sut = AuthenticatedHTTPClientDecorator(decoratee: client, tokenService: tokenStub)
+        let request = testRequest()
+        let (sut, client) = makeSUT(tokenResult: .success(AccessToken(token: "anyToken")))
 
         _ = sut.send(request, completion: {_ in})
         
@@ -37,22 +33,18 @@ final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
     
     // MARK: Helpers
     
+    func makeSUT(tokenResult: TokenService.Result) -> (sut: AuthenticatedHTTPClientDecorator, client: HTTPClientSpy){
+        let client = HTTPClientSpy()
+        let tokenStub = TokenServiceStub(stub: tokenResult)
+        let sut = AuthenticatedHTTPClientDecorator(decoratee: client, tokenService: tokenStub)
+        
+        return (sut, client)
+    }
+    
     func testRequest() -> URLRequest{
         return URLRequest(url: URL(string: "/test")!)
     }
 
 }
 
-class TokenServiceStub: TokenService{
-    let stub: Result<AccessToken, Error>
-    
-    init(stub: Result<KatsanaSDK.AccessToken, Error>) {
-        self.stub = stub
-    }
-    
-    func getToken(completion: (Result<KatsanaSDK.AccessToken, Error>) -> Void) {
-        completion(stub)
-    }
-    
-    
-}
+

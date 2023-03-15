@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct AccessToken{
+public struct AccessToken: Equatable{
     public let token: String
     
     public init(token: String) {
@@ -17,5 +17,7 @@ public struct AccessToken{
 }
 
 public protocol TokenService{
-    func getToken(completion: (Result<AccessToken, Error>) -> Void)
+    typealias Result = Swift.Result<AccessToken, Error>
+    
+    func getToken(completion: @escaping (Result) -> Void)
 }
