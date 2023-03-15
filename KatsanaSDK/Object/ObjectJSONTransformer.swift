@@ -13,50 +13,7 @@ class ObjectJSONTransformer {
     static public var objectInitializationHandler : ((JSON, Any) -> (Void))!
     
     class func UserObject(json : JSON) -> KTUser {
-        let email = json["email"].stringValue
-        let userId = json["id"].stringValue
-        
-        let user = KTUser(userID: userId, email: email)
-        
-        user.address = json["address"].stringValue
-        user.phoneHome = json["phone_home"].stringValue
-        user.phoneMobile = json["phone_mobile"].stringValue
-        user.fullname = json["fullname"].stringValue
-        user.emergencyFullName = json["meta"]["fullname"].stringValue
-        user.emergencyPhoneHome = json["meta"]["phone"]["home"].stringValue
-        user.emergencyPhoneMobile = json["meta"]["phone"]["mobile"].stringValue
-        user.imageURL = json["avatar"]["url"].stringValue
-        
-        user.address = json["address"].stringValue
-        if let gender = json["gender"].string, (gender == "male" || gender == "female"){
-            user.gender = Gender(rawValue: gender)!
-        }
-        if let fleets = json["fleets"].array{
-            var theFleets = [Fleet]()
-            for fleet in fleets{
-                let fleetId = fleet["id"].intValue
-                let name = fleet["name"].stringValue
-                let deviceCount = fleet["devices"].intValue
-                let aFleet = Fleet(fleetId: fleetId, name: name, deviceCount: deviceCount)
-                
-                theFleets.append(aFleet)
-            }
-            user.fleets = theFleets
-        }
-        
-        user.country = json["country"].stringValue
-        user.state = json["state"].stringValue
-        user.postcode = json["postcode"].stringValue
-        user.birthdayText = json["birthday"].stringValue
-        
-        user.planId = json["plan"]["id"].int
-        user.planName = json["plan"]["name"].string
-        user.planDescription = json["plan"]["description"].string
-        
-        user.createdAt = json["created_at"].date(gmt: 0)
-        user.updatedAt = json["updated_at"].date(gmt: 0)
-        objectInitializationHandler?(json, KTUser.self)
-        return user
+        return UserMapper.mapJSON(json)
     }
     
     class func VehiclesObject(json : JSON) -> [KTVehicle]{

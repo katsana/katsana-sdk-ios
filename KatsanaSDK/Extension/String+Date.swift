@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     
-    func date(gmt: Float) -> Date? {
+    public func date(gmt: Float) -> Date? {
         return Formatter.jsonDateFormatter(gmt: gmt).date(from: self)
     }
     

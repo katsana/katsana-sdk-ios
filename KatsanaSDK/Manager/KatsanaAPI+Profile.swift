@@ -43,10 +43,10 @@ extension KatsanaAPI {
                         user.phoneMobile = value
                     }
                     else if key == "birthday"{
-                        user.birthdayText = value
+//                        user.birthdayText = value
                     }
                     else if key == "gender"{
-                        user.genderText = value.lowercased()
+                        user.gender = Gender(rawValue: value.lowercased())
                     }
                     else if key == "address"{
                         user.address = value
