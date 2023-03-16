@@ -70,8 +70,8 @@ public class AuthenticatedHTTPClientDecorator: HTTPClient{
     public func signedRequest(for request: URLRequest, token: AccessToken) -> URLRequest{
         
         var updatedRequest = request
-        updatedRequest.setValue("Bearer \(token.token)", forHTTPHeaderField: "Authorization ")
-        return request
+        updatedRequest.setValue("Bearer \(token.token)", forHTTPHeaderField: "Authorization")
+        return updatedRequest
 
     }
     
