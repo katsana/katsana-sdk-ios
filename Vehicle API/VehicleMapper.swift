@@ -38,7 +38,8 @@ public class VehicleMapper{
     public static func map(_ data: Data, from response: HTTPURLResponse) throws -> KTVehicle {
         do{
             let json = try JSON(data: data)
-            return mapJSON(json)
+            let dicto = json["device"]
+            return mapJSON(dicto)
         }
         catch{
             throw Error.invalidData
