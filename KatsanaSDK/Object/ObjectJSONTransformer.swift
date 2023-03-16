@@ -29,46 +29,49 @@ class ObjectJSONTransformer {
             dicto = json
         }
         
-        let vehicle = KTVehicle()
-        vehicle.userId = dicto["user_id"].stringValue
-        vehicle.vehicleId = dicto["id"].stringValue
-        vehicle.driver = dicto["live_status"]["driver"].string
+        let userId = dicto["user_id"].stringValue
+        let vehicleId = dicto["id"].stringValue
+        let imei = dicto["imei"].stringValue
         
-        vehicle.imei = dicto["imei"].stringValue
+        var fleetIds = [Int]()
+        if let fleets = dicto["fleets"].array{
+            for fleet in fleets{
+                if let id = fleet.int{
+                    fleetIds.append(id)
+                }
+            }
+        }
+        let features = dicto["features"].arrayObject as? [String]
+        let websocketSupported = dicto["meta"]["websocket"].boolValue
+        
+        
+        let vehicle = KTVehicle(vehicleId: vehicleId, userId: userId, imei: imei, fleetIds: fleetIds, features: features, websocketSupported: websocketSupported)
+
+        vehicle.driver = dicto["live_status"]["driver"].string
         vehicle.mode = dicto["mode"].stringValue
         vehicle.timezone = dicto["timezone"].stringValue
         vehicle.todayMaxSpeed = dicto["today_max_speed"].floatValue
         vehicle.imageURL = dicto["avatar"].stringValue
         vehicle.thumbImageURL = dicto["marker"].stringValue
         vehicle.odometer = dicto["odometer"].doubleValue
-        vehicle.websocketSupported = dicto["meta"]["websocket"].boolValue
         vehicle.earliestTravelDate = dicto["earliest_date"].dateWithoutTime
-        if let fuel = dicto["fuel_percentage"].float{
-            vehicle.fuelPercentage = fuel
-        }
-        
-        if let fleets = dicto["fleets"].array{
-            var fleedIds = [Int]()
-            for fleet in fleets{
-                if let id = fleet.int{
-                    fleedIds.append(id)
-                }
-            }
-            vehicle.fleetIds = fleedIds
-        }
         
         if let val = dicto["sensors"]["temperature"]["value"].float{
-            vehicle.temperatureValue = val
-            vehicle.temperatureStatus = dicto["sensors"]["temperature"]["status"].stringValue
+            let status = dicto["sensors"]["temperature"]["status"].stringValue
+            let temperature = TemperatureSensor(value: val, status: status)
+            vehicle.temperatureSensor = temperature
         }
         if let val = dicto["sensors"]["fuel"]["capacity"].float{
-            let litre = dicto["sensors"]["fuel"]["litre"].stringValue
-            if let litreFloat = Float(litre){
-                vehicle.fuelLitre = litreFloat
+            let litreText = dicto["sensors"]["fuel"]["litre"].stringValue
+            var litre: Float = 0
+            if let litreFloat = Float(litreText){
+                litre = litreFloat
             }
-            vehicle.fuelPercentage = dicto["sensors"]["fuel"]["percentage"].floatValue
-            vehicle.fuelCapacity = val
-            vehicle.fuelStatus = dicto["sensors"]["fuel"]["status"].string
+            let fuelPercentage = dicto["sensors"]["fuel"]["percentage"].floatValue
+            let status = dicto["sensors"]["fuel"]["status"].string
+            
+            let fuel = FuelSensor(litre: litre, percentage: fuelPercentage, capacity: val, status: status)
+            vehicle.fuelSensor = fuel
         }
         
         
@@ -98,15 +101,13 @@ class ObjectJSONTransformer {
         vehicle.vehicleDescription = dicto["description"].stringValue
         vehicle.manufacturer = dicto["manufacturer"].stringValue
         vehicle.model = dicto["model"].stringValue
-        vehicle.insuredExpiryText = dicto["insured"]["expiry"].stringValue
+        vehicle.insuredExpiry = dicto["insured"]["expiry"].date
         vehicle.insuredBy = dicto["insured"]["by"].stringValue
         
         vehicle.subscriptionEnd = dicto["ends_at"].date
         vehicle.current = self.VehicleLocationObject(json: dicto["current"])
         
-        if let features = dicto["features"].arrayObject{
-            vehicle.extraData["features"] = features
-        }
+        
         
         objectInitializationHandler?(json, KTUser.self)
         

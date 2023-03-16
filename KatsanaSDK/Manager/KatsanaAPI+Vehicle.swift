@@ -114,7 +114,7 @@ extension KatsanaAPI {
             if let vehicles = vehicles {
                 self.cache?.cache(vehicles: vehicles, userId: self.currentUser?.userId ?? "0")
                 
-                let vehicleIds = vehicles.map({$0.vehicleId!})
+                let vehicleIds = vehicles.map({$0.vehicleId})
                 let combined = vehicleIds.joined(separator: ", ")
                 self.log?.info("Got vehicle id's \(combined)")
             }
@@ -163,7 +163,7 @@ extension KatsanaAPI {
         for vehicle in vehicles {
             let vehicleId = vehicle.vehicleId
             var count = 0
-            requestVehicleLocation(vehicleId: vehicleId!, completion: { (vehicleLocation) in
+            requestVehicleLocation(vehicleId: vehicleId, completion: { (vehicleLocation) in
                 vehicle.current = vehicleLocation
                 count += 1
                 
@@ -257,7 +257,7 @@ extension KatsanaAPI {
         }
         
         for vehicle in vehicles{
-            if let id = vehicle.vehicleId, id == vehicleId {
+            if vehicle.vehicleId == vehicleId {
                 return vehicle
             }
         }

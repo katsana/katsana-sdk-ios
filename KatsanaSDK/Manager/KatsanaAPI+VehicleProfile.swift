@@ -49,10 +49,14 @@ extension KatsanaAPI {
                         vehicle?.insuredBy = value
                     }
                     else if key == "insured_expiry"{
-                        if vehicle?.insuredExpiryText != value{
-                            insuranceExpiryChanged = true
+                        if let insuredExpiry = vehicle?.insuredExpiry {
+                            let dateStr = KTVehicle.dateFormatter.string(from: insuredExpiry)
+                            if dateStr != value{
+                                insuranceExpiryChanged = true
+                            }
                         }
-                        vehicle?.insuredExpiryText = value
+                        let date = KTVehicle.dateFormatter.date(from: value)
+                        vehicle?.insuredExpiry = date
                     }
                 }
             }

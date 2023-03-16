@@ -7,13 +7,13 @@
 //
 
 
-public enum SensorType{
+public enum SensorType: Codable{
     case arm
     case door
     case other
 }
 
-open class Sensor {
+open class Sensor: Codable {
     open var input: Int = -1
     open var name = ""
     open var sensorType: SensorType = .other
