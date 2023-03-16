@@ -7,18 +7,26 @@
 //
 
 
-public enum SensorType: Codable{
+public enum SensorType: Codable, Equatable{
     case arm
     case door
     case other
 }
 
-open class Sensor: Codable {
-    open var input: Int = -1
-    open var name = ""
-    open var sensorType: SensorType = .other
-    open var event: String?
-    open var deviceType: String?
+public class Sensor: Codable {
+    public let input: Int
+    public let name: String
+    public let sensorType: SensorType
+    public let event: String
+    public let deviceType: String
+    
+    init(input: Int, name: String, sensorType: SensorType, event: String, deviceType: String) {
+        self.input = input
+        self.name = name
+        self.sensorType = sensorType
+        self.event = event
+        self.deviceType = deviceType
+    }
     
     public func title() -> String {
         switch sensorType {
