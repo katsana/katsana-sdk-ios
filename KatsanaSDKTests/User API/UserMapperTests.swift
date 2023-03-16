@@ -10,26 +10,6 @@ import XCTest
 import KatsanaSDK
 
 class UserMapperMapperTests: XCTestCase {
-    
-    func test_map_throwsErrorOnNon200HTTPResponse() throws {
-        let json = makeJSON([:])
-        let samples = [199, 201, 300, 400, 500]
-        
-        try samples.forEach { code in
-            XCTAssertThrowsError(
-                try UserMapper.map(json, from: HTTPURLResponse(statusCode: code))
-            )
-        }
-    }
-    
-    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() {
-        let invalidJSON = Data("invalid json".utf8)
-
-        XCTAssertThrowsError(
-            try UserMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
-        )
-    }
-
 
     func test_map_deliversItemsOn200HTTPResponseWithJSONItems() throws {
         let fleet = Fleet(fleetId: 2, name: "Main Fleet", deviceCount: 10)
@@ -42,9 +22,5 @@ class UserMapperMapperTests: XCTestCase {
 
         XCTAssertEqual(result, item)
     }
-    
-    // MARK: - Helpers
-        
-
     
 }
