@@ -11,8 +11,11 @@ import KatsanaSDK
 
 final class KatsanaSDKEndToEndTests: XCTestCase {
     
-    func test_endToEndTestServerGETUserResult_matchesTestData() {
-        switch getUserResult(params: ["fleets", "plan", "company"]) {
+    func test_endToEndTestServerGETUser_matchesTestData() {
+        let sut = makeSUT()
+        switch getResult(loader: {
+            sut.makeUserProfileLoader(includes: ["fleets", "plan", "company"])
+        }) {
         case let .success(user)?:
             XCTAssertGreaterThanOrEqual(user.email.count, 1)
             XCTAssertGreaterThanOrEqual(user.fleets.count, 1)
@@ -25,6 +28,7 @@ final class KatsanaSDKEndToEndTests: XCTestCase {
             XCTFail("Expected successful feed result, got no result instead")
         }
     }
+
     
     // MARK: - Helpers
     
@@ -42,12 +46,11 @@ final class KatsanaSDKEndToEndTests: XCTestCase {
     }
     
     
-    private func getUserResult(params: [String]?, file: StaticString = #filePath, line: UInt = #line) -> Swift.Result<KTUser, Error>? {
-        let sut = makeSUT()
+    private func getResult<Resource>(loader: () -> RemoteLoader<Resource>, file: StaticString = #filePath, line: UInt = #line) -> Swift.Result<Resource, Error>? {
         let exp = expectation(description: "Wait for load completion")
         
-        var receivedResult: Swift.Result<KTUser, Error>?
-        let loader = sut.makeUserProfileLoader(includes: params)
+        var receivedResult: Swift.Result<Resource, Error>?
+        let loader = loader()
         loader.load { result in
             receivedResult = result
             exp.fulfill()
@@ -55,10 +58,6 @@ final class KatsanaSDKEndToEndTests: XCTestCase {
         wait(for: [exp], timeout: 5.0)
         
         return receivedResult
-    }
-    
-    private var testServerURL: URL {
-        return URL(string: "https://essentialdeveloper.com/feed-case-study/test-api/feed")!
     }
     
     private func ephemeralClient(file: StaticString = #filePath, line: UInt = #line) -> HTTPClient {
