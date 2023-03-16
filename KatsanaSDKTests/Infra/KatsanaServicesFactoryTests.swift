@@ -9,7 +9,7 @@
 import XCTest
 import KatsanaSDK
 
-final class KatsanaServicesTests: XCTestCase {
+final class KatsanaServicesFactoryTests: XCTestCase {
 
     func test_loadUserProfile_deliverUserProfile() throws {
         
