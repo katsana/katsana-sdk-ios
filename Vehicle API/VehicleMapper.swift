@@ -25,8 +25,8 @@ class VehicleMapper{
     
     public static func mapJSON(_ dicto: JSON) -> KTVehicle {
         
-        let userId = dicto["user_id"].stringValue
-        let vehicleId = dicto["id"].stringValue
+        let userId = dicto["user_id"].int
+        let vehicleId = dicto["id"].intValue
         let imei = dicto["imei"].stringValue
         
         var fleetIds = [Int]()

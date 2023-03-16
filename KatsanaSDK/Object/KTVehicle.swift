@@ -58,9 +58,9 @@ public class KTVehicle: Codable {
         return formatter
     }()
     
-    public let vehicleId: String
+    public let vehicleId: Int
     ///Owner id for this vehicle
-    public let userId : String?
+    public let userId : Int?
     ///Imei of the beacon
     public let imei : String
     public let fleetIds: [Int]
@@ -96,7 +96,7 @@ public class KTVehicle: Codable {
     public var insuredBy: String!
     public var insuredExpiry: Date!
     
-    public init(vehicleId: String, userId: String?, imei: String, fleetIds: [Int] = [], features: [String]? = nil, websocketSupported: Bool = false) {
+    public init(vehicleId: Int, userId: Int?, imei: String, fleetIds: [Int] = [], features: [String]? = nil, websocketSupported: Bool = false) {
         self.vehicleId = vehicleId
         self.userId = userId
         self.imei = imei

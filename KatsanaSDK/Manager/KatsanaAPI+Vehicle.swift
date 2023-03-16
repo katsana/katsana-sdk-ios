@@ -15,7 +15,7 @@ extension KatsanaAPI {
     ///
     /// - parameter vehicleId:  vehicle id
     /// - parameter completion: completion
-    public func requestVehicle(vehicleId: String, options: [String]! = nil, completion: @escaping (_ vehicle: KTVehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestVehicle(vehicleId: Int, options: [String]! = nil, completion: @escaping (_ vehicle: KTVehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let cachedVehicle = vehicleWith(vehicleId: vehicleId)
         if (cachedVehicle != nil) {
             currentVehicle = cachedVehicle!
@@ -27,7 +27,7 @@ extension KatsanaAPI {
             return
         }
         
-        let path = "vehicles/" + vehicleId
+        let path = "vehicles/\(vehicleId)"
         var resource = API.resource(path)
         
         //Check for options
@@ -114,7 +114,7 @@ extension KatsanaAPI {
             if let vehicles = vehicles {
                 self.cache?.cache(vehicles: vehicles, userId: self.currentUser?.userId ?? "0")
                 
-                let vehicleIds = vehicles.map({$0.vehicleId})
+                let vehicleIds = vehicles.map({"\($0.vehicleId)"})
                 let combined = vehicleIds.joined(separator: ", ")
                 self.log?.info("Got vehicle id's \(combined)")
             }
@@ -133,8 +133,8 @@ extension KatsanaAPI {
         }
     }
     
-    public func requestVehicleLocation(vehicleId: String, completion: @escaping (_ vehicleLocation: VehicleLocation?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
-        let path = "vehicles/" + vehicleId + "/location"
+    public func requestVehicleLocation(vehicleId: Int, completion: @escaping (_ vehicleLocation: VehicleLocation?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        let path = "vehicles/\(vehicleId)/location"
         let resource = API.resource(path);
         let request = resource.loadIfNeeded()
         let vehicle = vehicleWith(vehicleId: vehicleId)
@@ -250,7 +250,7 @@ extension KatsanaAPI {
     
     // MARK: Logic
     
-    public func vehicleWith(vehicleId: String) -> KTVehicle! {
+    public func vehicleWith(vehicleId: Int) -> KTVehicle! {
         guard (vehicles != nil) else {
 //            self.log?.info("No vehicle given vehicle id \(vehicleId)")
             return nil

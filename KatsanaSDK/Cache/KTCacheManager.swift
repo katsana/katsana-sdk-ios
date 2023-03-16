@@ -56,7 +56,7 @@ public class KTCacheManager: NSObject {
     
     
     private var expandedTripList: [String : Date]!
-    private var travelAccessVehicleId = ""
+    private var travelAccessVehicleId = 0
     private var todayAccessDate: Date!
     
     private var lastSavedCache : Date!
@@ -192,11 +192,11 @@ public class KTCacheManager: NSObject {
     }
     
     ///Get latest cached travel data
-    public func latestTravels(vehicleId: String, count: Int = 1) -> [Travel]! {
+    public func latestTravels(vehicleId: Int, count: Int = 1) -> [Travel]! {
         let classname = NSStringFromClass(Travel.self)
         if let travelDicto = codableData[classname]{
             var theTravels : [Travel]!
-            if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel] {
+            if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel] {
                 theTravels = travels
             }
             if theTravels != nil {
@@ -261,7 +261,7 @@ public class KTCacheManager: NSObject {
     }
     
     ///Get cached travel data given vehicle id and date without locations data
-    public func travel(vehicleId:String, date:Date) -> Travel! {
+    public func travel(vehicleId:Int, date:Date) -> Travel! {
         //Check if date is today, return nil if more than specified time. No local cache is returned and  library should request a new data from server
         let today = Date()
         if date.isToday(), travelAccessVehicleId == vehicleId, let todayAccessDate = todayAccessDate, today.timeIntervalSince(todayAccessDate) > 60 * 4 {
@@ -272,7 +272,7 @@ public class KTCacheManager: NSObject {
         
         let classname = NSStringFromClass(Travel.self)
         if let travelDicto = codableData[classname]{
-            if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel] {
+            if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel] {
                 for travel in travels {
                     let startDay = travel.date.dateAtStartOfDay()
                     if startDay.isEqualToDateIgnoringTime(date){
@@ -287,7 +287,7 @@ public class KTCacheManager: NSObject {
     /*Get cached travel data given vehicle id and date with locations data.
      Previously, all locations are saved in same place as trip summaries, but due to memory issue, all travel locations are saved into separate file, a single file for a day travel.
      */
-    public func travelDetail(vehicleId:String, date:Date) -> Travel! {
+    public func travelDetail(vehicleId:Int, date:Date) -> Travel! {
         let dateStr = KTCacheManager.dateFormatter.string(from: date)
         let path = tripPath().appending("/\(dateStr).dat")
         if FileManager.default.fileExists(atPath: path) {
@@ -399,7 +399,7 @@ public class KTCacheManager: NSObject {
         autoSave()
     }
     
-    public func cache(travel: Travel, vehicleId: String) {
+    public func cache(travel: Travel, vehicleId: Int) {
         let aTravel = travel.copy() as! Travel
         for trip in aTravel.trips{
             cacheTripLocations(trip: trip)
@@ -420,7 +420,7 @@ public class KTCacheManager: NSObject {
         var needRemoveTravelIndex : Int!
         var theTravels : [Travel]!
         
-        if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel]{
+        if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel]{
             theTravels = travels
             for (index, theTravel) in travels.enumerated() {
                 //Check if same date
@@ -467,7 +467,7 @@ public class KTCacheManager: NSObject {
     }
     
     ///For normal use of KatsanaSDK, this class is never called except when used for different purpose.
-    public func cache(trip: KTTrip, vehicleId: String) {
+    public func cache(trip: KTTrip, vehicleId: Int) {
         //Save locations in separate file to reduce memory footprint
         cacheTripLocations(trip: trip)
         trip.locations.removeAll()
@@ -479,7 +479,7 @@ public class KTCacheManager: NSObject {
         let travelDicto = codableData[classname]
         
         if let travelDicto = travelDicto{
-            if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel] {
+            if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel] {
                 theTravels = travels
                 for (index, theTravel) in travels.enumerated() {
                     if theTravel.date.isEqualToDateIgnoringTime(trip.date){

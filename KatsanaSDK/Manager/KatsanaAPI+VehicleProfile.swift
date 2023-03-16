@@ -20,13 +20,13 @@ extension KatsanaAPI {
     /// Save vehicle profile data
     ///
     /// 
-    public func saveVehicleProfile(vehicleId: String, data: [String: Any], completion: @escaping (_ vehicle: KTVehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func saveVehicleProfile(vehicleId: Int, data: [String: Any], completion: @escaping (_ vehicle: KTVehicle?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let vehicle = vehicleWith(vehicleId: vehicleId)
         guard vehicle != nil else {
             return
         }
 
-        let path = "vehicles/" + vehicleId
+        let path = "vehicles/\(vehicleId)"
         let resource = self.API.resource(path)
 
         resource.request(.patch, json: data).onSuccess { entity in
@@ -79,7 +79,7 @@ extension KatsanaAPI {
     /// - parameter vehicleId:  vehicle id
     /// - parameter image:      image to save
     /// - parameter completion: return vehicle
-    public func saveVehicleProfileImage(vehicleId: String, image : KMImage?, completion: @escaping (_ vehicle: KTVehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
+    public func saveVehicleProfileImage(vehicleId: Int, image : KMImage?, completion: @escaping (_ vehicle: KTVehicle?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         let vehicle = vehicleWith(vehicleId: vehicleId)
         guard vehicle != nil else {
             return
@@ -112,7 +112,7 @@ extension KatsanaAPI {
         
         //Just put it although still not saved
         vehicle?.updateImage(finalImage)
-        let path = self.baseURL().absoluteString + "vehicles/" + vehicleId + "/avatar"
+        let path = self.baseURL().absoluteString + "vehicles/\(vehicleId)/avatar"
         uploadImage(image: finalImage, path: path) { (success, error) in
             if success{
                 completion(vehicle)

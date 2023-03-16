@@ -23,7 +23,7 @@ extension KatsanaAPI{
                 }
                 
                 for summary in summaries {
-                    if let id = summary.id, let vehicle = self.vehicleWith(vehicleId: id){
+                    if let id = summary.id, let theId = Int(id), let vehicle = self.vehicleWith(vehicleId: theId){
                         vehicle.videoRecording = summary
                     }
                 }
@@ -46,7 +46,7 @@ extension KatsanaAPI{
     public func requestLiveStream(vehicle:KTVehicle, channel: String! = nil, completion: @escaping (_ videoRecording:VideoRecording?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let path = "operations/stream/show"
         
-        var resource = API.resource(path).withParam("vehicleID", vehicle.vehicleId)
+        var resource = API.resource(path).withParam("vehicleID", "\(vehicle.vehicleId)")
         if let channel{
             resource = resource.withParam("channel", channel)
         }

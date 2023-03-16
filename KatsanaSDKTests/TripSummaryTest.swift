@@ -59,7 +59,7 @@ final class TripSummaryTest: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Request user, user cached properly")
         requestTripsWithSuccess(api: sut) { vehicles in
-            let cachedTravels = TripSummaryTest.cache!.latestTravels(vehicleId: "1", count: 1)
+            let cachedTravels = TripSummaryTest.cache!.latestTravels(vehicleId: 1, count: 1)
             XCTAssertEqual(cachedTravels?.first!.distance, 40098)
             expectation.fulfill()
         }
@@ -96,7 +96,7 @@ final class TripSummaryTest: XCTestCase {
         let date = Date(timeIntervalSince1970: 10)
         let date2 = Date(timeIntervalSince1970: 100)
         
-        api.requestTripSummaries(vehicleId: "1", fromDate: date, toDate: date2) { summaries in
+        api.requestTripSummaries(vehicleId: 1, fromDate: date, toDate: date2) { summaries in
             completion(summaries!)
         } failure: { error in
             XCTFail(error?.userMessage ?? "Error")

@@ -12,8 +12,8 @@ import Siesta
 extension KatsanaAPI {
     @nonobjc static let maxDaySummary = 3;
     
-    public func requestTravelSummaryToday(vehicleId: String, completion: @escaping (_ summary: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
-        let path = "vehicles/" + vehicleId + "/summaries/today"
+    public func requestTravelSummaryToday(vehicleId: Int, completion: @escaping (_ summary: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        let path = "vehicles/\(vehicleId)/summaries/today"
         let resource = API.resource(path);
         let request = resource.loadIfNeeded()
         
@@ -35,7 +35,7 @@ extension KatsanaAPI {
     }
     
     ///Request travel summaries between dates. Only trip count is loaded, travel details are omitted.
-    public func requestTravelSummaries(vehicleId: String, fromDate: Date!, toDate: Date, forceRequest: Bool = false, completion: @escaping (_ summaries:[Travel]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestTravelSummaries(vehicleId: Int, fromDate: Date!, toDate: Date, forceRequest: Bool = false, completion: @escaping (_ summaries:[Travel]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let dates = validateRange(fromDate: fromDate, toDate: toDate)
         var newFromDate = dates.fromDate
         var newToDate = dates.toDate
@@ -48,7 +48,7 @@ extension KatsanaAPI {
             travels = datesWithHistory.cachedHistories
         }
 
-        let path = "vehicles/" + vehicleId + "/summaries/duration"
+        let path = "vehicles/\(vehicleId)/summaries/duration"
         
         let resource = API.resource(path).withParam("start", newFromDate.toStringWithYearMonthDay()).withParam("end",newToDate.toStringWithYearMonthDay());
         let request = resource.loadIfNeeded()
@@ -103,7 +103,7 @@ extension KatsanaAPI {
     }
     
     ///Request travel details for given date
-    public func requestTravel(for date: Date, vehicleId: String, loadLocations: Bool = false, forceLoad: Bool = false, options: [String]! = nil, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestTravel(for date: Date, vehicleId: Int, loadLocations: Bool = false, forceLoad: Bool = false, options: [String]! = nil, completion: @escaping (_ history: Travel?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         var travel : Travel!
         if !forceLoad{
             if loadLocations {
@@ -140,7 +140,7 @@ extension KatsanaAPI {
             }
         }
         
-        let path = "vehicles/" + vehicleId + "/travels/" + date.toStringWithYearMonthDay()
+        let path = "vehicles/\(vehicleId)/travels/" + date.toStringWithYearMonthDay()
         var resource = API.resource(path)
         
         //Check for options
@@ -249,10 +249,10 @@ extension KatsanaAPI {
     }
     
     ///Request trip summaries between dates.
-    public func requestTripSummaries(vehicleId: String, options: [String]! = nil, fromDate: Date, toDate: Date, completion: @escaping (_ summaries:[KTTrip]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestTripSummaries(vehicleId: Int, options: [String]! = nil, fromDate: Date, toDate: Date, completion: @escaping (_ summaries:[KTTrip]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let datesWithHistory = requiredRangeToRequestTravelSummary(fromDate: fromDate, toDate: toDate, vehicleId: vehicleId)
 
-        let path = "vehicles/" + vehicleId + "/travels/summaries/duration"
+        let path = "vehicles/\(vehicleId)/travels/summaries/duration"
         var resource = API.resource(path)
 
         var timezone: NSTimeZone!
@@ -329,7 +329,7 @@ extension KatsanaAPI {
     }
     
     ///Get latest cached travel locations from today to previous day count
-    public func cacheLatestTrip(trip: KTTrip, vehicleId : String){
+    public func cacheLatestTrip(trip: KTTrip, vehicleId : Int){
         self.cache?.cache(trip: trip, vehicleId: vehicleId)
     }
     
@@ -339,7 +339,7 @@ extension KatsanaAPI {
     }
     
     ///Get latest cached travel locations from today to previous day count
-    public func latestCachedTravels(vehicleId : String, dayCount : Int) -> [Travel]! {
+    public func latestCachedTravels(vehicleId : Int, dayCount : Int) -> [Travel]! {
         var date = Date()
         var travellocations = [Travel]()
         for _ in 0..<dayCount {
@@ -352,7 +352,7 @@ extension KatsanaAPI {
     }
     
     ///Get cached travel data with locations
-    public func cachedTravelWithLocationsData(vehicleId : String, date : Date) -> Travel! {
+    public func cachedTravelWithLocationsData(vehicleId : Int, date : Date) -> Travel! {
         return self.cache?.travelDetail(vehicleId:vehicleId, date:date)
     }
     
@@ -380,7 +380,7 @@ extension KatsanaAPI {
     }
     
     //!Check required date range from given dates that require to update data from server. Basically give date range by user, cached data is checked if already available, the dates then filtered based on the cached data. However if it is latest dates, need check more condition because the latest data may still not uploaded to the server from the vechle itself.
-    func requiredRangeToRequestTravelSummary(fromDate : Date, toDate : Date, vehicleId : String) -> (fromDate : Date, toDate : Date, cachedHistories : [Travel]) {
+    func requiredRangeToRequestTravelSummary(fromDate : Date, toDate : Date, vehicleId : Int) -> (fromDate : Date, toDate : Date, cachedHistories : [Travel]) {
         var travels = [Travel]()
         var dates : (fromDate : Date, toDate : Date, cachedHistories : [Travel])
         

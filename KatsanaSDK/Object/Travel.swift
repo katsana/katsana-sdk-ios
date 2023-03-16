@@ -22,7 +22,7 @@ open class Travel: NSCopying, Codable, Equatable {
     }
     
     public var date : Date
-    open var vehicleId : String?
+    open var vehicleId : Int?
     open var maxSpeed : Float = 0
     open var distance : Double = 0
     open var idleDuration : Double = 0

@@ -111,12 +111,12 @@ open class KatsanaAPI {
             }
         }
     }
-    private(set) dynamic public var lastVehicleIds: [String]!{
+    private(set) dynamic public var lastVehicleIds: [Int]!{
         set{
             UserDefaults.standard.set(newValue, forKey: "lastVehicleIds")
         }
         get{
-            if let ids = UserDefaults.standard.value(forKey: "lastVehicleIds") as? [String]{
+            if let ids = UserDefaults.standard.value(forKey: "lastVehicleIds") as? [Int]{
                 return ids
             }
             return nil
