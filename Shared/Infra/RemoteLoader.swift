@@ -10,7 +10,7 @@ import Foundation
 
 public typealias ResourceResultClosure<Resource> = (Result<Resource, Error>) -> Void
 
-public struct HTTPResponseError: Error{
+public struct HTTPResponseError: Error, Equatable{
     let statusCode: Int
     let message: String
 }
@@ -20,7 +20,7 @@ public class RemoteLoader<Resource> {
     private let url: URL
     private let mapper: Mapper
     
-    public enum Error: Swift.Error {
+    public enum Error: Swift.Error, Equatable {
         case connectivity
         case invalidData
         case invalidHTTPResponse(HTTPResponseError)

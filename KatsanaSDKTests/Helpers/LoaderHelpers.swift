@@ -18,7 +18,7 @@ extension XCTestCase{
                           createdAt: String = "2019-11-05 04:47:52",
                           updatedAt: String? = "2019-11-05 04:47:52") -> (model: KTUser, json: [String: Any]) {
         
-        let item = KTUser(userId: "\(id)", email: email, imageURL: imageURL, plan: plan, fleets: fleets, createdAt: createdAt.date(gmt: 0)!, updatedAt: updatedAt?.date(gmt: 0))
+        let item = KTUser(userId: "\(id)", email: email, imageURL: imageURL, plan: plan, company: nil, fleets: fleets, createdAt: createdAt.date(gmt: 0)!, updatedAt: updatedAt?.date(gmt: 0))
         
         let fleetsDicto = makeFleetsJSONText(fleets, appending: ",")
         let planText = plan != nil ? """
