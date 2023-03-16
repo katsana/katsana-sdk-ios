@@ -20,34 +20,6 @@ public struct FuelSensor: Codable{
 }
 
 public class KTVehicle: Codable {
-    enum CodingKeys: CodingKey{
-        case userId
-        case vehicleId
-        case vehicleNumber
-        case vehicleDescription
-        case imei
-        case mode
-        case todayMaxSpeed
-        case odometer
-        case subscriptionEnd
-        case websocketSupported
-        case timezone
-        case imageURL
-        case thumbImageURL
-        case current
-        case driver
-        case videoRecording
-        case requestVideoRecordingDate
-        case fleetIds
-        case model
-        case insuredBy
-        case insuredExpiry
-        case manufacturer
-        case features
-        case temperatureSensor
-        case fuelSensor
-        case sensors
-    }
     
     static let defaultImagePath = "default.marker.jpg"
     static var defaultImage: KMImage!
@@ -71,8 +43,8 @@ public class KTVehicle: Codable {
     public var fuelSensor: FuelSensor?
     public var sensors: [Sensor]?
     
-    public var vehicleDescription = ""
-    public var vehicleNumber = ""
+    public var vehicleDescription: String
+    public var vehicleNumber: String
     
     public var mode: String!
     public var todayMaxSpeed: Float = 0
@@ -91,10 +63,10 @@ public class KTVehicle: Codable {
     ///State that shows if the vehicle supports MDVR.
     public var requestVideoRecordingDate: Date?
     
-    public var manufacturer: String!
-    public var model: String!
-    public var insuredBy: String!
-    public var insuredExpiry: Date!
+    public var manufacturer: String?
+    public var model: String?
+    public var insuredBy: String?
+    public var insuredExpiry: Date?
     
     public init(vehicleId: Int, userId: Int?, imei: String, fleetIds: [Int] = [], features: [String]? = nil, websocketSupported: Bool = false) {
         self.vehicleId = vehicleId
@@ -103,6 +75,8 @@ public class KTVehicle: Codable {
         self.fleetIds = fleetIds
         self.features = features
         self.websocketSupported = websocketSupported
+        self.vehicleNumber = ""
+        self.vehicleDescription = ""
     }
     
     ///Reload data given new vehicle data
