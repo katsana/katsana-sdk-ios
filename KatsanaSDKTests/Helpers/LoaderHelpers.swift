@@ -108,7 +108,7 @@ extension XCTestCase{
         return theFleets
     }
     
-    private func convertStringToDictionary(text: String) -> [String:Any]? {
+    func convertStringToDictionary(text: String) -> [String:Any]? {
         if let data = text.data(using: .utf8) {
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyObject]

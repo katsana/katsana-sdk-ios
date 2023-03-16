@@ -8,7 +8,14 @@
 
 import CoreLocation
 
-open class VehicleLocation: Codable{
+open class VehicleLocation: Codable, Equatable{
+    public static func == (lhs: VehicleLocation, rhs: VehicleLocation) -> Bool {
+        if lhs.latitude == rhs.latitude, lhs.longitude == rhs.longitude, lhs.speed == rhs.speed{
+            return true
+        }
+        return false
+    }
+    
     enum CodingKeys: CodingKey{
         case latitude
         case longitude

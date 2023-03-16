@@ -8,7 +8,7 @@
 
 import Foundation
 
-class VehicleMapper{
+public class VehicleMapper{
     public enum Error: Swift.Error {
         case invalidData
     }
@@ -74,17 +74,19 @@ class VehicleMapper{
         if let sensors = dicto["sensors"]["others"].array{
             var theSensors = [Sensor]()
             for sensor in sensors{
-                let aSensor = Sensor()
-                aSensor.event = sensor["event"].stringValue
-                aSensor.input = sensor["input"].intValue
-                aSensor.name = sensor["name"].stringValue
+                let event = sensor["event"].stringValue
+                let input = sensor["input"].intValue
+                let name = sensor["name"].stringValue
+                var aSensorType = SensorType.other
                 let sensorType = sensor["sensor"].stringValue
                 if sensorType.lowercased() == "arm"{
-                    aSensor.sensorType = .arm
+                    aSensorType = .arm
                 }else if sensorType.lowercased() == "door"{
-                    aSensor.sensorType = .door
+                    aSensorType = .door
                 }
-                aSensor.deviceType = sensor["type"].stringValue
+                let deviceType = sensor["type"].stringValue
+                
+                let aSensor = Sensor(input: input, name: name, sensorType: aSensorType, event: event, deviceType: deviceType)
                 theSensors.append(aSensor)
             }
             vehicle.sensors = theSensors

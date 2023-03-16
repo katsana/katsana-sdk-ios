@@ -7,12 +7,12 @@
 //
 import Foundation
 
-public struct TemperatureSensor: Codable{
+public struct TemperatureSensor: Codable, Equatable{
     let value: Float
     let status: String?
 }
 
-public struct FuelSensor: Codable{
+public struct FuelSensor: Codable, Equatable{
     let litre: Float
     let percentage: Float
     let capacity: Float
@@ -47,8 +47,8 @@ public class KTVehicle: Codable {
     public var vehicleNumber: String
     
     public var mode: String!
-    public var todayMaxSpeed: Float = 0
-    public var odometer: Double = 0
+    public var todayMaxSpeed: Float
+    public var odometer: Double
     ///Date when this vehicle subscription ended
     public var subscriptionEnd: Date?
     public var timezone: String?
@@ -77,6 +77,8 @@ public class KTVehicle: Codable {
         self.websocketSupported = websocketSupported
         self.vehicleNumber = ""
         self.vehicleDescription = ""
+        self.todayMaxSpeed = 0
+        self.odometer = 0
     }
     
     ///Reload data given new vehicle data
