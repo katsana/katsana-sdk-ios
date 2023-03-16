@@ -22,6 +22,18 @@ final class KatsanaServicesFactoryTests: XCTestCase {
         }
     }
     
+    func test_loadSingleVehicle_deliverVehicle() throws {
+        let (sut, client) = makeSUT()
+        let vehicleId = 5
+        let loader = sut.makeVehicleLoader(vehicleId: vehicleId)
+        let (vehicle, json) = makePartialVehicle(vehicleId: vehicleId, userId: 9, imei: "imei5")
+        
+        expect(loader, toCompleteWith: .success(vehicle)) {
+            let data = makeJSON(json)
+            client.complete(withStatusCode: 200, data: data)
+        }
+    }
+    
     func test_loadVehicles_deliverVehicles() throws {
         let (sut, client) = makeSUT()
         let loader = sut.makeVehiclesLoader()
