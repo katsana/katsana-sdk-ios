@@ -52,6 +52,10 @@ public class UserMapper{
         let planName = json["plan"]["name"].string
         let planDescription = json["plan"]["description"].string
         
+        let picName = json["company"]["person_in_charges"]["name"].string
+        let picPhoneNumber = json["company"]["person_in_charges"]["phone_number"].string
+        let companyName = json["company"]["name"].string
+        
         var theFleets = [Fleet]()
         if let fleets = json["fleets"].array{
             for fleet in fleets{
@@ -67,8 +71,13 @@ public class UserMapper{
         if let planName{
             plan = UserPlan(id: planId, name: planName, description: planDescription)
         }
+        var company: Company?
+        if let companyName{
+            company = Company(companyName: companyName, personInChargeName: picName, personInChargeNumber: picPhoneNumber)
+        }
         
-        let user = KTUser(userId: userId, email: email, imageURL: imageURL, plan: plan, fleets: theFleets, createdAt: createdAt ?? Date(), updatedAt: updatedAt)
+        
+        let user = KTUser(userId: userId, email: email, imageURL: imageURL, plan: plan, company: company, fleets: theFleets, createdAt: createdAt ?? Date(), updatedAt: updatedAt)
         
         user.address = json["address"].stringValue
         user.phoneHome = json["phone_home"].stringValue

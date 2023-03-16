@@ -17,6 +17,7 @@ final class KatsanaSDKEndToEndTests: XCTestCase {
             XCTAssertGreaterThanOrEqual(user.email.count, 1)
             XCTAssertGreaterThanOrEqual(user.fleets.count, 1)
             XCTAssertNotNil(user.plan)
+            XCTAssertNotNil(user.company)
         case let .failure(error)?:
             XCTFail("Expected successful feed result, got \(error) instead")
             

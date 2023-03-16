@@ -18,6 +18,12 @@ public struct UserPlan: Codable, Equatable{
     public let description: String?
 }
 
+public struct Company: Codable, Equatable{
+    public let companyName: String
+    public let personInChargeName: String?
+    public let personInChargeNumber: String?
+}
+
 public class KTUser: Codable {
     static let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
@@ -45,10 +51,11 @@ public class KTUser: Codable {
     public var birthday: Date?
     
     public let plan: UserPlan?
+    public let company: Company?
     public let fleets: [Fleet]
     
     
-    public init(userId:String, email: String, imageURL: String?, plan: UserPlan?, fleets: [Fleet] = [], createdAt: Date, updatedAt: Date! = nil ) {
+    public init(userId:String, email: String, imageURL: String?, plan: UserPlan?, company: Company?, fleets: [Fleet] = [], createdAt: Date, updatedAt: Date! = nil ) {
         self.userId = userId
         self.email = email
         self.createdAt = createdAt
@@ -56,6 +63,7 @@ public class KTUser: Codable {
         self.imageURL = imageURL
         self.plan = plan
         self.fleets = fleets
+        self.company = company
     }
     
     public func jsonPatch() -> [String: Any] {
