@@ -9,30 +9,14 @@
 import Foundation
 
 public class UserMapper{
-//    private struct Root: Decodable {
-//        let id: Int
-//        let email: String
-//
-//        var user: KTUser {
-//            KTUser(userID: "\(id)", email: email)
-//        }
-//    }
-    
-    private static var OK_200: Int { return 200 }
     
     public enum Error: Swift.Error {
         case invalidData
     }
     
     public static func map(_ data: Data, from response: HTTPURLResponse) throws -> KTUser {
-        guard response.isOK else{
-            throw Error.invalidData
-        }
-        
         do{
             let json = try JSON(data: data)
-            
-            
 //            objectInitializationHandler?(json, KTUser.self)
             return mapJSON(json)
         }

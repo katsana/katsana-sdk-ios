@@ -11,8 +11,13 @@ import Foundation
 public typealias ResourceResultClosure<Resource> = (Result<Resource, Error>) -> Void
 
 public struct HTTPResponseError: Error, Equatable{
-    let statusCode: Int
-    let message: String
+    public let statusCode: Int
+    public let message: String
+    
+    public init(statusCode: Int, message: String) {
+        self.statusCode = statusCode
+        self.message = message
+    }
 }
 
 public class RemoteLoader<Resource> {
@@ -41,8 +46,8 @@ public class RemoteLoader<Resource> {
             
             switch result {
             case .success((let data, let response)):
-                if let errorResponse = self.mapInvalidHTTPResponseError(data, from: response){
-                    completion(.failure(errorResponse))
+                if let error = self.mapInvalidHTTPResponseError(data, from: response){
+                    completion(.failure(error))
                 }else{
                     completion(self.map(data, from: response))
                 }

@@ -58,6 +58,7 @@
 		C1FAE73C29C284A8001D3D86 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE73B29C284A8001D3D86 /* Secret.swift */; };
 		C1FAE73D29C284F7001D3D86 /* TokenServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE73729C1A589001D3D86 /* TokenServiceStub.swift */; };
 		C1FAE74029C2AA05001D3D86 /* VehicleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE73F29C2AA05001D3D86 /* VehicleMapper.swift */; };
+		C1FAE74329C2AB31001D3D86 /* VehicleMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE74229C2AB31001D3D86 /* VehicleMapperTests.swift */; };
 		C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */; };
 		C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174C1E48703B0041BC18 /* Date+Extension.swift */; };
 		C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174D1E48703B0041BC18 /* JSON+Date.swift */; };
@@ -166,6 +167,7 @@
 		C1FAE73729C1A589001D3D86 /* TokenServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenServiceStub.swift; sourceTree = "<group>"; };
 		C1FAE73B29C284A8001D3D86 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		C1FAE73F29C2AA05001D3D86 /* VehicleMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleMapper.swift; sourceTree = "<group>"; };
+		C1FAE74229C2AB31001D3D86 /* VehicleMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleMapperTests.swift; sourceTree = "<group>"; };
 		C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate+Extension.swift"; sourceTree = "<group>"; };
 		C719174C1E48703B0041BC18 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C719174D1E48703B0041BC18 /* JSON+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Date.swift"; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 		C1051184298778D1006D9CB7 /* KatsanaSDKTests */ = {
 			isa = PBXGroup;
 			children = (
+				C1FAE74129C2AB1A001D3D86 /* Vehicle API */,
 				C1FAE71229C1778A001D3D86 /* User API */,
 				C1751B1A29BFECCC009C8795 /* Helpers */,
 				C1FAE70329C158DA001D3D86 /* Infra */,
@@ -377,6 +380,14 @@
 			isa = PBXGroup;
 			children = (
 				C1FAE73F29C2AA05001D3D86 /* VehicleMapper.swift */,
+			);
+			path = "Vehicle API";
+			sourceTree = "<group>";
+		};
+		C1FAE74129C2AB1A001D3D86 /* Vehicle API */ = {
+			isa = PBXGroup;
+			children = (
+				C1FAE74229C2AB31001D3D86 /* VehicleMapperTests.swift */,
 			);
 			path = "Vehicle API";
 			sourceTree = "<group>";
@@ -684,6 +695,7 @@
 				C1FAE72829C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift in Sources */,
 				C1FAE73D29C284F7001D3D86 /* TokenServiceStub.swift in Sources */,
 				C1FAE73C29C284A8001D3D86 /* Secret.swift in Sources */,
+				C1FAE74329C2AB31001D3D86 /* VehicleMapperTests.swift in Sources */,
 				C1FAE71D29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift in Sources */,
 				C1FAE74029C2AA05001D3D86 /* VehicleMapper.swift in Sources */,
 			);

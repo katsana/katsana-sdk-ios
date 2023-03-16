@@ -54,7 +54,7 @@ class RemoteLoaderTests: XCTestCase {
             client.complete(withStatusCode: 200, data: anyData())
         })
     }
-        
+    
     func test_load_deliversMappedResource() {
         let resource = "a resource"
         let (sut, client) = makeSUT(mapper: { data, _ in
@@ -64,6 +64,24 @@ class RemoteLoaderTests: XCTestCase {
         expect(sut, toCompleteWith: .success(resource), when: {
             client.complete(withStatusCode: 200, data: Data(resource.utf8))
         })
+    }
+    
+    func test_load_throwsErrorOnNon2XXHTTPResponseWithErrorMessage() throws {
+        let samples = [199, 300, 400, 500]
+        
+        samples.forEach { code in
+            let message = "non 2XX message description"
+            let resource = ["message": message]
+            let data = try! JSONEncoder().encode(resource)
+            
+            let (sut, client) = makeSUT(mapper: { data, _ in
+                String(data: data, encoding: .utf8)!
+            })
+            let error = HTTPResponseError(statusCode: code, message: message)
+            expect(sut, toCompleteWith: .failure(error), when: {
+                client.complete(withStatusCode: code, data: data)
+            })
+        }
     }
     
     func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
@@ -113,6 +131,12 @@ class RemoteLoaderTests: XCTestCase {
                 XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)
                 
             case let (.failure(receivedError as RemoteLoader<String>.Error), .failure(expectedError as RemoteLoader<String>.Error)):
+                if case let .invalidHTTPResponse(receivedResponseError) = receivedError, case let .invalidHTTPResponse(expectedResponseError) = expectedError {
+                    XCTAssertEqual(receivedResponseError, expectedResponseError, file: file, line: line)
+                }else{
+                    XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+                }
+            case let (.failure(receivedError as HTTPResponseError), .failure(expectedError as HTTPResponseError)):
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)
                 
             default:
