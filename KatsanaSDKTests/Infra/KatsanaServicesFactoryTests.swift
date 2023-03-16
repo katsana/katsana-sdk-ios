@@ -22,6 +22,19 @@ final class KatsanaServicesFactoryTests: XCTestCase {
         }
     }
     
+    func test_loadVehicles_deliverVehicles() throws {
+        let (sut, client) = makeSUT()
+        let loader = sut.makeVehiclesLoader()
+        let (vehicle1, json1) = makePartialVehicle(vehicleId: 1, userId: 20, imei: "imei1")
+        let (vehicle2, json2) = makePartialVehicle(vehicleId: 2, userId: 30, imei: "imei2")
+        let theJson = ["devices": [json1, json2]]
+        
+        expect(loader, toCompleteWith: .success([vehicle1, vehicle2])) {
+            let data = makeJSON(theJson)
+            client.complete(withStatusCode: 200, data: data)
+        }
+    }
+    
     // MARK: Helper
     
     func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: KatsanaServiceFactory, client: HTTPClientSpy){

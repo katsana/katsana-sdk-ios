@@ -108,6 +108,20 @@ extension XCTestCase{
         return theFleets
     }
     
+    func makePartialVehicle(vehicleId: Int, userId: Int, imei: String) -> (model: KTVehicle, json: [String: Any]){
+        let vehicle = KTVehicle(vehicleId: vehicleId, userId: userId, imei: imei)
+        
+        let json = [
+            "id": vehicleId,
+            "user_id": userId,
+            "imei": imei,
+        ].compactMapValues { $0 }
+        return (vehicle, json)
+    }
+    
+    
+    // MARK: Helper
+    
     func convertStringToDictionary(text: String) -> [String:Any]? {
         if let data = text.data(using: .utf8) {
             do {

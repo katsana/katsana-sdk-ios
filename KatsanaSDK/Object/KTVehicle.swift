@@ -198,6 +198,9 @@ extension KTVehicle{
 
 extension KTVehicle: Equatable{
     public static func == (lhs: KTVehicle, rhs: KTVehicle) -> Bool {
-        return lhs.imei == rhs.imei
+        if lhs.imei == rhs.imei, lhs.vehicleId == rhs.vehicleId, lhs.userId == rhs.userId{
+            return true
+        }
+        return false
     }
 }

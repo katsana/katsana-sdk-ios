@@ -22,4 +22,9 @@ public class KatsanaServiceFactory{
         return RemoteLoader(url: url, client: client, mapper: UserMapper.map)
     }
     
+    public func makeVehiclesLoader(includes params: [String]? = nil) -> RemoteLoader<[KTVehicle]>{
+        let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
+        return RemoteLoader(url: url, client: client, mapper: VehiclesMapper.map)
+    }
+    
 }

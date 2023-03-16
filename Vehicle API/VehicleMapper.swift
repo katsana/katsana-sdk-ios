@@ -8,6 +8,28 @@
 
 import Foundation
 
+public class VehiclesMapper{
+    public enum Error: Swift.Error {
+        case invalidData
+    }
+    
+    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [KTVehicle] {
+        do{
+            let json = try JSON(data: data)
+            return mapJSON(json)
+        }
+        catch{
+            throw Error.invalidData
+        }
+    }
+    
+    public static func mapJSON(_ json: JSON) -> [KTVehicle] {
+        let arr = json["devices"].arrayValue
+        let vehicles = arr.map(VehicleMapper.mapJSON)
+        return vehicles
+    }
+}
+
 public class VehicleMapper{
     public enum Error: Swift.Error {
         case invalidData
