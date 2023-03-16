@@ -59,6 +59,8 @@
 		C1FAE73D29C284F7001D3D86 /* TokenServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE73729C1A589001D3D86 /* TokenServiceStub.swift */; };
 		C1FAE74429C2B5F2001D3D86 /* VehicleMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE74229C2AB31001D3D86 /* VehicleMapperTests.swift */; };
 		C1FAE74829C2C514001D3D86 /* VehicleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE73F29C2AA05001D3D86 /* VehicleMapper.swift */; };
+		C1FAE74B29C2D63D001D3D86 /* VehicleEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE74929C2D631001D3D86 /* VehicleEndpoint.swift */; };
+		C1FAE74E29C2D702001D3D86 /* VehicleEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE74C29C2D6F6001D3D86 /* VehicleEndpointTests.swift */; };
 		C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */; };
 		C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174C1E48703B0041BC18 /* Date+Extension.swift */; };
 		C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174D1E48703B0041BC18 /* JSON+Date.swift */; };
@@ -168,6 +170,8 @@
 		C1FAE73B29C284A8001D3D86 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		C1FAE73F29C2AA05001D3D86 /* VehicleMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleMapper.swift; sourceTree = "<group>"; };
 		C1FAE74229C2AB31001D3D86 /* VehicleMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleMapperTests.swift; sourceTree = "<group>"; };
+		C1FAE74929C2D631001D3D86 /* VehicleEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleEndpoint.swift; sourceTree = "<group>"; };
+		C1FAE74C29C2D6F6001D3D86 /* VehicleEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleEndpointTests.swift; sourceTree = "<group>"; };
 		C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate+Extension.swift"; sourceTree = "<group>"; };
 		C719174C1E48703B0041BC18 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C719174D1E48703B0041BC18 /* JSON+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Date.swift"; sourceTree = "<group>"; };
@@ -380,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				C1FAE73F29C2AA05001D3D86 /* VehicleMapper.swift */,
+				C1FAE74929C2D631001D3D86 /* VehicleEndpoint.swift */,
 			);
 			path = "Vehicle API";
 			sourceTree = "<group>";
@@ -388,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				C1FAE74229C2AB31001D3D86 /* VehicleMapperTests.swift */,
+				C1FAE74C29C2D6F6001D3D86 /* VehicleEndpointTests.swift */,
 			);
 			path = "Vehicle API";
 			sourceTree = "<group>";
@@ -665,6 +671,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1751B4229BFEDEC009C8795 /* TripTest.swift in Sources */,
+				C1FAE74E29C2D702001D3D86 /* VehicleEndpointTests.swift in Sources */,
 				C1FAE70629C15901001D3D86 /* RemoteLoaderTests.swift in Sources */,
 				C1751B3F29BFEDEC009C8795 /* CacheManagerSpy.swift in Sources */,
 				C1751B3D29BFEDEC009C8795 /* MockService.swift in Sources */,
@@ -706,6 +713,7 @@
 			files = (
 				C7331295207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift in Sources */,
 				C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */,
+				C1FAE74B29C2D63D001D3D86 /* VehicleEndpoint.swift in Sources */,
 				C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */,
 				C1FAE71129C16A36001D3D86 /* URL+QueryItems.swift in Sources */,
 				C719179C1E48703B0041BC18 /* Travel.swift in Sources */,
