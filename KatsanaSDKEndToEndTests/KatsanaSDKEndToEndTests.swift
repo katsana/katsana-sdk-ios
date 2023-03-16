@@ -46,6 +46,21 @@ final class KatsanaSDKEndToEndTests: XCTestCase {
             XCTFail("Expected successful feed result, got no result instead")
         }
     }
+    
+    func test_endToEndTestServerGETVehicles_matchesTestData() {
+        let sut = makeSUT()
+        switch getResult(loader: {
+            sut.makeVehiclesLoader()
+        }) {
+        case let .success(vehicles)?:
+            XCTAssertGreaterThanOrEqual(vehicles.count, 10)
+        case let .failure(error)?:
+            XCTFail("Expected successful feed result, got \(error) instead")
+            
+        default:
+            XCTFail("Expected successful feed result, got no result instead")
+        }
+    }
 
     
     // MARK: - Helpers
