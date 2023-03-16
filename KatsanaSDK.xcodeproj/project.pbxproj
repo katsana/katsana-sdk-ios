@@ -57,8 +57,8 @@
 		C1FAE73929C1A599001D3D86 /* TokenServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE73729C1A589001D3D86 /* TokenServiceStub.swift */; };
 		C1FAE73C29C284A8001D3D86 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE73B29C284A8001D3D86 /* Secret.swift */; };
 		C1FAE73D29C284F7001D3D86 /* TokenServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE73729C1A589001D3D86 /* TokenServiceStub.swift */; };
-		C1FAE74029C2AA05001D3D86 /* VehicleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE73F29C2AA05001D3D86 /* VehicleMapper.swift */; };
 		C1FAE74429C2B5F2001D3D86 /* VehicleMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE74229C2AB31001D3D86 /* VehicleMapperTests.swift */; };
+		C1FAE74829C2C514001D3D86 /* VehicleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE73F29C2AA05001D3D86 /* VehicleMapper.swift */; };
 		C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */; };
 		C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174C1E48703B0041BC18 /* Date+Extension.swift */; };
 		C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719174D1E48703B0041BC18 /* JSON+Date.swift */; };
@@ -697,7 +697,6 @@
 				C1FAE73D29C284F7001D3D86 /* TokenServiceStub.swift in Sources */,
 				C1FAE73C29C284A8001D3D86 /* Secret.swift in Sources */,
 				C1FAE71D29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift in Sources */,
-				C1FAE74029C2AA05001D3D86 /* VehicleMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +709,7 @@
 				C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */,
 				C1FAE71129C16A36001D3D86 /* URL+QueryItems.swift in Sources */,
 				C719179C1E48703B0041BC18 /* Travel.swift in Sources */,
+				C1FAE74829C2C514001D3D86 /* VehicleMapper.swift in Sources */,
 				C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */,
 				C17220C324628CA700A128B7 /* Fleet.swift in Sources */,
 				C1751B4F29C02120009C8795 /* RemoteLoader.swift in Sources */,
