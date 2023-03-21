@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class KatsanaServiceFactory{
+open class KatsanaServiceFactory{
     let baseURL: URL
     let client: HTTPClient
     
