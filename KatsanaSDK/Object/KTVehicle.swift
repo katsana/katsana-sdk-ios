@@ -196,6 +196,13 @@ extension KTVehicle{
     }
 }
 
+extension KTVehicle: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        return "KTVehicle(imei: \(imei), vehicleId: \(vehicleId), userId: \(String(describing: userId))"
+    }
+}
+
 extension KTVehicle: Equatable{
     public static func == (lhs: KTVehicle, rhs: KTVehicle) -> Bool {
         if lhs.imei == rhs.imei, lhs.vehicleId == rhs.vehicleId, lhs.userId == rhs.userId{

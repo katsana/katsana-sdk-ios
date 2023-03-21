@@ -41,7 +41,7 @@ class VehicleMapperMapperTests: XCTestCase {
     
     func makeVehicle() -> [String: Any]{
         let text = """
-{
+{ "device": {
   "id": 10,
   "user_id": 16,
   "imei": "anyImei",
@@ -163,9 +163,10 @@ class VehicleMapperMapperTests: XCTestCase {
     ]
   }
 }
+}
 """
         
-        var json = convertStringToDictionary(text: text)!
+        let json = try! convertStringToDictionary(text: text)
 //        json["fleets"] = fleetsDicto
         return  json
     }

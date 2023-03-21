@@ -40,14 +40,15 @@ public class UserMapper{
         let picPhoneNumber = json["company"]["person_in_charges"]["phone_number"].string
         let companyName = json["company"]["name"].string
         
-        var theFleets = [Fleet]()
+        var theFleets: [Fleet]?
         if let fleets = json["fleets"].array{
+            theFleets = [Fleet]()
             for fleet in fleets{
                 let fleetId = fleet["id"].intValue
                 let name = fleet["name"].stringValue
                 let deviceCount = fleet["devices"].intValue
                 let aFleet = Fleet(fleetId: fleetId, name: name, deviceCount: deviceCount)
-                theFleets.append(aFleet)
+                theFleets?.append(aFleet)
             }
         }
         

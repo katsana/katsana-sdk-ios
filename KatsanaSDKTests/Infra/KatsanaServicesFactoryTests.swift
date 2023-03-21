@@ -28,8 +28,10 @@ final class KatsanaServicesFactoryTests: XCTestCase {
         let loader = sut.makeVehicleLoader(vehicleId: vehicleId)
         let (vehicle, json) = makePartialVehicle(vehicleId: vehicleId, userId: 9, imei: "imei5")
         
+        let theJson = ["device": json]
+        
         expect(loader, toCompleteWith: .success(vehicle)) {
-            let data = makeJSON(json)
+            let data = makeJSON(theJson)
             client.complete(withStatusCode: 200, data: data)
         }
     }

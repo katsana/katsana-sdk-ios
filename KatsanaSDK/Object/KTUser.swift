@@ -52,10 +52,10 @@ public class KTUser: Codable {
     
     public let plan: UserPlan?
     public let company: Company?
-    public let fleets: [Fleet]
+    public let fleets: [Fleet]?
     
     
-    public init(userId:String, email: String, imageURL: String?, plan: UserPlan?, company: Company?, fleets: [Fleet] = [], createdAt: Date, updatedAt: Date! = nil ) {
+    public init(userId:String, email: String, imageURL: String?, plan: UserPlan?, company: Company?, fleets: [Fleet]?, createdAt: Date, updatedAt: Date! = nil ) {
         self.userId = userId
         self.email = email
         self.createdAt = createdAt
@@ -86,6 +86,8 @@ public class KTUser: Codable {
     // MARK: helper
     
     public func fleet(id: Int) -> Fleet!{
+        guard let fleets else {return nil}
+        
         for fleet in fleets{
             if fleet.fleetId == id{
                 return fleet
@@ -148,6 +150,13 @@ public class KTUser: Codable {
     }
 }
 
+extension KTUser: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        return "KTUser(email: \(email), userId: \(userId), fleets: \(String(describing: fleets)), plan:\(String(describing: plan)), createdAt:\(createdAt)"
+    }
+}
+
 extension KTUser: Equatable{
     public static func == (lhs: KTUser, rhs: KTUser) -> Bool {
         if lhs.email == rhs.email, lhs.userId == rhs.userId, lhs.fleets == rhs.fleets, lhs.plan == rhs.plan, lhs.createdAt == rhs.createdAt{
@@ -155,6 +164,4 @@ extension KTUser: Equatable{
         }
         return false
     }
-    
-    
 }

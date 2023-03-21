@@ -14,13 +14,13 @@ extension XCTestCase{
                           email: String,
                           imageURL: String = "null",
                           plan: UserPlan? = nil,
-                          fleets: [Fleet] = [],
+                          fleets: [Fleet]? = nil,
                           createdAt: String = "2019-11-05 04:47:52",
                           updatedAt: String? = "2019-11-05 04:47:52") -> (model: KTUser, json: [String: Any]) {
         
         let item = KTUser(userId: "\(id)", email: email, imageURL: imageURL, plan: plan, company: nil, fleets: fleets, createdAt: createdAt.date(gmt: 0)!, updatedAt: updatedAt?.date(gmt: 0))
         
-        let fleetsDicto = makeFleetsJSONText(fleets, appending: ",")
+        
         let planText = plan != nil ? """
                 "plan": {
                     "name": "\(plan!.name)",
@@ -85,8 +85,12 @@ extension XCTestCase{
         }
     }
 """
-        var json = convertStringToDictionary(text: text)!
-        json["fleets"] = fleetsDicto
+        var json = try! convertStringToDictionary(text: text)
+        if let fleets{
+            let fleetsDicto = makeFleetsJSONText(fleets, appending: ",")
+            json["fleets"] = fleetsDicto
+        }
+        
         return (item, json)
     }
     
@@ -122,15 +126,20 @@ extension XCTestCase{
     
     // MARK: Helper
     
-    func convertStringToDictionary(text: String) -> [String:Any]? {
+    enum GenericError: Swift.Error{
+        case invalidData
+    }
+    
+    func convertStringToDictionary(text: String) throws -> [String:Any] {
         if let data = text.data(using: .utf8) {
             do {
-                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyObject]
-                return json
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyObject]{
+                    return json
+                }
             } catch {
-                print("Something went wrong")
+                throw error
             }
         }
-        return nil
+        throw GenericError.invalidData
     }
 }

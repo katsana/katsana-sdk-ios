@@ -18,7 +18,7 @@ final class KatsanaSDKEndToEndTests: XCTestCase {
         }) {
         case let .success(user)?:
             XCTAssertGreaterThanOrEqual(user.email.count, 1)
-            XCTAssertGreaterThanOrEqual(user.fleets.count, 1)
+            XCTAssertGreaterThanOrEqual(user.fleets!.count, 1)
             XCTAssertNotNil(user.plan)
             XCTAssertNotNil(user.company)
         case let .failure(error)?:
