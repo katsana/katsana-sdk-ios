@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C105119829879051006D9CB7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119729879051006D9CB7 /* Logger.swift */; };
 		C11FECB829CAE371003914DC /* LoadFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECB629CAE361003914DC /* LoadFromCacheUseCaseTests.swift */; };
+		C11FECC029CBBD91003914DC /* CacheTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECBA29CBBD3E003914DC /* CacheTestHelpers.swift */; };
+		C11FECC129CBBD95003914DC /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECBD29CBBD6D003914DC /* SharedTestHelpers.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
@@ -129,6 +131,8 @@
 		C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryTest.swift; sourceTree = "<group>"; };
 		C10511A02988FF4C006D9CB7 /* TripTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTest.swift; sourceTree = "<group>"; };
 		C11FECB629CAE361003914DC /* LoadFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
+		C11FECBA29CBBD3E003914DC /* CacheTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheTestHelpers.swift; sourceTree = "<group>"; };
+		C11FECBD29CBBD6D003914DC /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
@@ -287,6 +291,7 @@
 		C11FECAF29CADEA6003914DC /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				C11FECB929CBBD2D003914DC /* Helpers */,
 				C11FECB629CAE361003914DC /* LoadFromCacheUseCaseTests.swift */,
 			);
 			path = Cache;
@@ -343,10 +348,27 @@
 		C11FECB529CAE26C003914DC /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C11FECBC29CBBD64003914DC /* Helpers */,
 				C11FECAF29CADEA6003914DC /* Cache */,
 				C11FECB129CAE1B4003914DC /* API */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		C11FECB929CBBD2D003914DC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C11FECBA29CBBD3E003914DC /* CacheTestHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C11FECBC29CBBD64003914DC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C11FECBD29CBBD6D003914DC /* SharedTestHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C1751B1329BFEC70009C8795 /* Infra */ = {
@@ -720,6 +742,8 @@
 				C1751B4229BFEDEC009C8795 /* TripTest.swift in Sources */,
 				C1FAE74E29C2D702001D3D86 /* VehicleEndpointTests.swift in Sources */,
 				C1FAE70629C15901001D3D86 /* RemoteLoaderTests.swift in Sources */,
+				C11FECC029CBBD91003914DC /* CacheTestHelpers.swift in Sources */,
+				C11FECC129CBBD95003914DC /* SharedTestHelpers.swift in Sources */,
 				C1751B3F29BFEDEC009C8795 /* CacheManagerSpy.swift in Sources */,
 				C1751B3D29BFEDEC009C8795 /* MockService.swift in Sources */,
 				C1751B3E29BFEDEC009C8795 /* VehicleTest.swift in Sources */,

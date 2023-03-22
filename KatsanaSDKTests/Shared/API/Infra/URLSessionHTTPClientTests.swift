@@ -23,6 +23,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         makeSUT().send(URLRequest(url: url)) { _ in }
 
         wait(for: [exp], timeout: 1.0)
+        URLProtocolStub.removeStub()
     }
     
     func test_cancelGetFromURLTask_cancelsURLRequest() {

@@ -10,6 +10,24 @@ import XCTest
 import Foundation
 import KatsanaSDK
 
+final class FeedCachePolicy {
+    private init() {}
+
+    private static let calendar = Calendar(identifier: .gregorian)
+
+    private static var maxCacheAgeInDays: Int {
+        return 7
+    }
+
+    static func validate(_ timestamp: Date, against date: Date) -> Bool {
+        guard let maxCacheAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to: timestamp) else {
+            return false
+        }
+        return date < maxCacheAge
+    }
+}
+
+
 public typealias CachedResource<Resource> = (resource: Resource, timestamp: Date)
 
 public protocol FeedStore{
@@ -72,6 +90,10 @@ class FeedStoreSpy<R>: FeedStore where R: Equatable{
     func completeRetrievalWithEmptyCache(at index: Int = 0) {
         retrievalCompletions[index](.success(.none))
     }
+    
+    func completeRetrieval(with resource: Resource, timestamp: Date, at index: Int = 0) {
+        retrievalCompletions[index](.success(CachedResource<Resource>(resource: resource, timestamp: timestamp)))
+    }
 }
 
 public final class LocalLoader<Resource, FeedStoreType: FeedStore> where Resource: Equatable, Resource == FeedStoreType.Resource{
@@ -92,13 +114,10 @@ public final class LocalLoader<Resource, FeedStoreType: FeedStore> where Resourc
             switch result {
             case let .failure(error):
                 completion(.failure(error))
-//            case let .success(.some(cache)): // where FeedCachePolicy.validate(cache.timestamp, against: self.currentDate()):
-//                completion(.success(cache.feed.toModels()))
-//
+            case let .success(.some(cache)) where FeedCachePolicy.validate(cache.timestamp, against: self.currentDate()):
+                completion(.success(cache.resource))
             case .success:
                 completion(.success(nil))
-            default:
-                ()
             }
         }
     }
@@ -133,6 +152,17 @@ class LoadFromCacheUseCaseTests: XCTestCase {
 
         expect(sut, toCompleteWith: .success(nil), when: {
             store.completeRetrievalWithEmptyCache()
+        })
+    }
+    
+    func test_load_deliversCachedResourceOnNonExpiredCache() {
+        let resource = "test data"
+        let fixedCurrentDate = Date()
+        let nonExpiredTimestamp = fixedCurrentDate.minusFeedCacheMaxAge().adding(seconds: 1)
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+
+        expect(sut, toCompleteWith: .success(resource), when: {
+            store.completeRetrieval(with: resource, timestamp: nonExpiredTimestamp)
         })
     }
     
