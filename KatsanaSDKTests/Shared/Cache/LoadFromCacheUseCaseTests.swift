@@ -105,6 +105,30 @@ class LoadFromCacheUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
+    func test_load_hasNoSideEffectsOnCacheExpiration() {
+        let resource = "test data"
+        let fixedCurrentDate = Date()
+        let expirationTimestamp = fixedCurrentDate.minusResourceCacheMaxAge()
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+
+        sut.load { _ in }
+        store.completeRetrieval(with: resource, timestamp: expirationTimestamp)
+
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
+    }
+
+    func test_load_hasNoSideEffectsOnExpiredCache() {
+        let resource = "test data"
+        let fixedCurrentDate = Date()
+        let expiredTimestamp = fixedCurrentDate.minusResourceCacheMaxAge().adding(seconds: -1)
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+
+        sut.load { _ in }
+        store.completeRetrieval(with: resource, timestamp: expiredTimestamp)
+
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
+    }
+    
     // MARK: - Helpers
     
     typealias CacheResourceStoreSpyType = CacheResourceStoreSpy<String>
