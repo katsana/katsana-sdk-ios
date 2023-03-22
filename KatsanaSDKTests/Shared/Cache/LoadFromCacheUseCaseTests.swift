@@ -68,6 +68,10 @@ class FeedStoreSpy<R>: FeedStore where R: Equatable{
     func completeRetrieval(with error: Error, at index: Int = 0) {
         retrievalCompletions[index](.failure(error))
     }
+    
+    func completeRetrievalWithEmptyCache(at index: Int = 0) {
+        retrievalCompletions[index](.success(.none))
+    }
 }
 
 public final class LocalLoader<Resource, FeedStoreType: FeedStore> where Resource: Equatable, Resource == FeedStoreType.Resource{
@@ -79,7 +83,7 @@ public final class LocalLoader<Resource, FeedStoreType: FeedStore> where Resourc
         self.currentDate = currentDate
     }
     
-    public typealias LoadResult = Swift.Result<Resource, Error>
+    public typealias LoadResult = Swift.Result<Resource?, Error>
 
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in
@@ -88,13 +92,13 @@ public final class LocalLoader<Resource, FeedStoreType: FeedStore> where Resourc
             switch result {
             case let .failure(error):
                 completion(.failure(error))
-            default:
-                ()
 //            case let .success(.some(cache)): // where FeedCachePolicy.validate(cache.timestamp, against: self.currentDate()):
 //                completion(.success(cache.feed.toModels()))
 //
-//            case .success:
-//                completion(.success([]))
+            case .success:
+                completion(.success(nil))
+            default:
+                ()
             }
         }
     }
@@ -121,6 +125,14 @@ class LoadFromCacheUseCaseTests: XCTestCase {
         
         expect(sut, toCompleteWith: .failure(retrievalError), when: {
             store.completeRetrieval(with: retrievalError)
+        })
+    }
+    
+    func test_load_deliversNoResourceOnEmptyCache() {
+        let (sut, store) = makeSUT()
+
+        expect(sut, toCompleteWith: .success(nil), when: {
+            store.completeRetrievalWithEmptyCache()
         })
     }
     
