@@ -129,6 +129,19 @@ class LoadFromCacheUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
+    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let store = CacheResourceStoreSpyType()
+        var sut: LocalLoaderType? = LocalLoaderType(store: store, currentDate: Date.init)
+
+        var receivedResults = [LocalLoaderType.LoadResult]()
+        sut?.load { receivedResults.append($0) }
+
+        sut = nil
+        store.completeRetrievalWithEmptyCache()
+
+        XCTAssertTrue(receivedResults.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     typealias CacheResourceStoreSpyType = CacheResourceStoreSpy<String>
