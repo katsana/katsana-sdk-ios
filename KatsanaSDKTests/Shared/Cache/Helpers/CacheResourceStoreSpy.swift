@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import KatsanaSDK
 
 class CacheResourceStoreSpy<R>: CacheResourceStore where R: Equatable{
     typealias Resource = R
