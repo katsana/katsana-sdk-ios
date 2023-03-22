@@ -14,6 +14,7 @@
 		C11FECC329CBC07A003914DC /* CacheResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECC229CBC07A003914DC /* CacheResourceStore.swift */; };
 		C11FECC529CBC0B4003914DC /* ResourceCachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECC429CBC0B4003914DC /* ResourceCachePolicy.swift */; };
 		C11FECC729CBC0DE003914DC /* LocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECC629CBC0DE003914DC /* LocalLoader.swift */; };
+		C11FECC929CBC117003914DC /* CacheResourceStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECC829CBC117003914DC /* CacheResourceStoreSpy.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
@@ -139,6 +140,7 @@
 		C11FECC229CBC07A003914DC /* CacheResourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheResourceStore.swift; sourceTree = "<group>"; };
 		C11FECC429CBC0B4003914DC /* ResourceCachePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCachePolicy.swift; sourceTree = "<group>"; };
 		C11FECC629CBC0DE003914DC /* LocalLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalLoader.swift; sourceTree = "<group>"; };
+		C11FECC829CBC117003914DC /* CacheResourceStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheResourceStoreSpy.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				C11FECBA29CBBD3E003914DC /* CacheTestHelpers.swift */,
+				C11FECC829CBC117003914DC /* CacheResourceStoreSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -840,6 +843,7 @@
 				C11FECC329CBC07A003914DC /* CacheResourceStore.swift in Sources */,
 				C1FAE73129C19916001D3D86 /* TokenService.swift in Sources */,
 				C7331298207B1EC800541BE8 /* VehicleSubscription.swift in Sources */,
+				C11FECC929CBC117003914DC /* CacheResourceStoreSpy.swift in Sources */,
 				C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */,
 				C71917741E48703B0041BC18 /* String+Date.swift in Sources */,
 				C11FECC529CBC0B4003914DC /* ResourceCachePolicy.swift in Sources */,
