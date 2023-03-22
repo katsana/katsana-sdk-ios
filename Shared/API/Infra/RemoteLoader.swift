@@ -34,7 +34,7 @@ public class RemoteLoader<Resource> {
     public typealias Result = Swift.Result<Resource, Swift.Error>
     public typealias Mapper = (Data, HTTPURLResponse) throws -> Resource
     
-    public init(url: URL,client: HTTPClient, mapper: @escaping Mapper) {
+    public init(url: URL, client: HTTPClient, mapper: @escaping Mapper) {
         self.url = url
         self.client = client
         self.mapper = mapper

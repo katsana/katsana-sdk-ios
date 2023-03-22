@@ -256,10 +256,7 @@
 		C1051184298778D1006D9CB7 /* KatsanaSDKTests */ = {
 			isa = PBXGroup;
 			children = (
-				C1FAE74129C2AB1A001D3D86 /* Vehicle API */,
-				C1FAE71229C1778A001D3D86 /* User API */,
-				C1751B1A29BFECCC009C8795 /* Helpers */,
-				C1FAE70329C158DA001D3D86 /* Infra */,
+				C11FECB529CAE26C003914DC /* Shared */,
 				C105118F29877ACC006D9CB7 /* UserTest.swift */,
 				C105119C2988CB97006D9CB7 /* VehicleTest.swift */,
 				C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */,
@@ -276,6 +273,77 @@
 				C105119729879051006D9CB7 /* Logger.swift */,
 			);
 			path = Logger;
+			sourceTree = "<group>";
+		};
+		C11FECAE29CADE9B003914DC /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		C11FECAF29CADEA6003914DC /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		C11FECB029CAE1A4003914DC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C1751B4829BFEE6D009C8795 /* User API */,
+				C1FAE73E29C2A9F0001D3D86 /* Vehicle API */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		C11FECB129CAE1B4003914DC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C1751B1A29BFECCC009C8795 /* Helpers */,
+				C1FAE70329C158DA001D3D86 /* Infra */,
+				C1FAE74129C2AB1A001D3D86 /* Vehicle API */,
+				C1FAE71229C1778A001D3D86 /* User API */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		C11FECB229CAE200003914DC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C11FECB329CAE20B003914DC /* Helpers */,
+				C1751B1329BFEC70009C8795 /* Infra */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		C11FECB329CAE20B003914DC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C1FAE6FD29C059D4001D3D86 /* HTTPURLResponse+StatusCode.swift */,
+				C1FAE71029C16A36001D3D86 /* URL+QueryItems.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C11FECB429CAE256003914DC /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				C105119629879046006D9CB7 /* Logger */,
+				C71917481E48703B0041BC18 /* Cache */,
+				C71917501E48703B0041BC18 /* Manager */,
+			);
+			path = Old;
+			sourceTree = "<group>";
+		};
+		C11FECB529CAE26C003914DC /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C11FECAF29CADEA6003914DC /* Cache */,
+				C11FECB129CAE1B4003914DC /* API */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		C1751B1329BFEC70009C8795 /* Infra */ = {
@@ -337,20 +405,26 @@
 		C1FAE70E29C169F1001D3D86 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				C1FAE70F29C169F7001D3D86 /* Helper */,
-				C1751B1329BFEC70009C8795 /* Infra */,
+				C1FAE70F29C169F7001D3D86 /* Helpers */,
+				C11FECAE29CADE9B003914DC /* Cache */,
+				C11FECB229CAE200003914DC /* API */,
 				C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		C1FAE70F29C169F7001D3D86 /* Helper */ = {
+		C1FAE70F29C169F7001D3D86 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				C1FAE6FD29C059D4001D3D86 /* HTTPURLResponse+StatusCode.swift */,
-				C1FAE71029C16A36001D3D86 /* URL+QueryItems.swift */,
+				C719175E1E48703B0041BC18 /* KatsanaFormatter.swift */,
+				C719176B1E48703B0041BC18 /* TimeTransformer.swift */,
+				C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */,
+				C719174C1E48703B0041BC18 /* Date+Extension.swift */,
+				C719174D1E48703B0041BC18 /* JSON+Date.swift */,
+				C719174E1E48703B0041BC18 /* String+Date.swift */,
+				C719174F1E48703B0041BC18 /* UIImage+Extension.swift */,
 			);
-			path = Helper;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C1FAE71229C1778A001D3D86 /* User API */ = {
@@ -403,21 +477,7 @@
 			children = (
 				C1F540A125256AA800525603 /* KTCacheManager.swift */,
 			);
-			name = Cache;
-			path = KatsanaSDK/Cache;
-			sourceTree = "<group>";
-		};
-		C719174A1E48703B0041BC18 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				C719174B1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift */,
-				C719174C1E48703B0041BC18 /* Date+Extension.swift */,
-				C719174D1E48703B0041BC18 /* JSON+Date.swift */,
-				C719174E1E48703B0041BC18 /* String+Date.swift */,
-				C719174F1E48703B0041BC18 /* UIImage+Extension.swift */,
-			);
-			name = Extension;
-			path = KatsanaSDK/Extension;
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		C71917501E48703B0041BC18 /* Manager */ = {
@@ -437,13 +497,11 @@
 				C719175C1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift */,
 				C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */,
 				C719175D1E48703B0041BC18 /* KatsanaAPI.swift */,
-				C719175E1E48703B0041BC18 /* KatsanaFormatter.swift */,
 			);
-			name = Manager;
-			path = KatsanaSDK/Manager;
+			path = Manager;
 			sourceTree = "<group>";
 		};
-		C719175F1E48703B0041BC18 /* Object */ = {
+		C719175F1E48703B0041BC18 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
 				C1F540AC25256AB600525603 /* KTAddress.swift */,
@@ -464,17 +522,8 @@
 				C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */,
 				C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */,
 			);
-			name = Object;
-			path = KatsanaSDK/Object;
-			sourceTree = "<group>";
-		};
-		C719176A1E48703B0041BC18 /* Transformer */ = {
-			isa = PBXGroup;
-			children = (
-				C719176B1E48703B0041BC18 /* TimeTransformer.swift */,
-			);
-			name = Transformer;
-			path = KatsanaSDK/Transformer;
+			name = Objects;
+			path = KatsanaSDK/Objects;
 			sourceTree = "<group>";
 		};
 		C71917C51E4884410041BC18 /* Library */ = {
@@ -492,15 +541,10 @@
 			isa = PBXGroup;
 			children = (
 				C1FAE70E29C169F1001D3D86 /* Shared */,
-				C1751B4829BFEE6D009C8795 /* User API */,
-				C1FAE73E29C2A9F0001D3D86 /* Vehicle API */,
-				C105119629879046006D9CB7 /* Logger */,
+				C11FECB429CAE256003914DC /* Old */,
+				C719175F1E48703B0041BC18 /* Objects */,
+				C11FECB029CAE1A4003914DC /* API */,
 				C78B22141D75754B002E25C3 /* LICENSE */,
-				C71917481E48703B0041BC18 /* Cache */,
-				C719174A1E48703B0041BC18 /* Extension */,
-				C71917501E48703B0041BC18 /* Manager */,
-				C719175F1E48703B0041BC18 /* Object */,
-				C719176A1E48703B0041BC18 /* Transformer */,
 				C1051184298778D1006D9CB7 /* KatsanaSDKTests */,
 				C1FAE71B29C17A30001D3D86 /* KatsanaSDKEndToEndTests */,
 				C75104FE1D7422BF00F4C341 /* Products */,
