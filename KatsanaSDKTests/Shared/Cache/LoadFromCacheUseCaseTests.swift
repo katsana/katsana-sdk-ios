@@ -53,6 +53,17 @@ class LoadFromCacheUseCaseTests: XCTestCase {
         })
     }
     
+    func test_load_deliversNoResourceOnCacheExpiration() {
+        let resource = "test data"
+        let fixedCurrentDate = Date()
+        let expirationTimestamp = fixedCurrentDate.minusResourceCacheMaxAge()
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+
+        expect(sut, toCompleteWith: .success(nil), when: {
+            store.completeRetrieval(with: resource, timestamp: expirationTimestamp)
+        })
+    }
+    
     // MARK: - Helpers
     
     typealias CacheResourceStoreSpyType = CacheResourceStoreSpy<String>
