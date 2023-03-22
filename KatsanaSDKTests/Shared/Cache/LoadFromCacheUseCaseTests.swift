@@ -10,7 +10,7 @@ import XCTest
 import Foundation
 import KatsanaSDK
 
-final class FeedCachePolicy {
+final class ResourceCachePolicy {
     private init() {}
 
     private static let calendar = Calendar(identifier: .gregorian)
@@ -30,7 +30,7 @@ final class FeedCachePolicy {
 
 public typealias CachedResource<Resource> = (resource: Resource, timestamp: Date)
 
-public protocol FeedStore{
+public protocol CacheResourceStore{
     associatedtype Resource where Resource: Equatable
     
     typealias DeletionResult = Result<Void, Error>
@@ -44,22 +44,22 @@ public protocol FeedStore{
 
     /// The completion handler can be invoked in any thread.
     /// Clients are responsible to dispatch to appropriate threads, if needed.
-    func deleteCachedFeed(completion: @escaping DeletionCompletion)
+    func deleteCachedResource(completion: @escaping DeletionCompletion)
 
     /// The completion handler can be invoked in any thread.
     /// Clients are responsible to dispatch to appropriate threads, if needed.
-    func insert(_ feed: Resource, timestamp: Date, completion: @escaping InsertionCompletion)
+    func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion)
 
     /// The completion handler can be invoked in any thread.
     /// Clients are responsible to dispatch to appropriate threads, if needed.
     func retrieve(completion: @escaping RetrievalCompletion)
 }
 
-class FeedStoreSpy<R>: FeedStore where R: Equatable{
+class CacheResourceStoreSpy<R>: CacheResourceStore where R: Equatable{
     typealias Resource = R
     
     enum ReceivedMessage: Equatable {
-        case deleteCachedFeed
+        case deleteCachedResource
         case insert(Resource, Date)
         case retrieve
     }
@@ -70,11 +70,11 @@ class FeedStoreSpy<R>: FeedStore where R: Equatable{
     private var insertionCompletions = [InsertionCompletion]()
     private var retrievalCompletions = [RetrievalCompletion]()
     
-    func deleteCachedFeed(completion: @escaping DeletionCompletion) {
+    func deleteCachedResource(completion: @escaping DeletionCompletion) {
         
     }
     
-    func insert(_ feed: Resource, timestamp: Date, completion: @escaping InsertionCompletion) {
+    func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion) {
         
     }
     
@@ -96,11 +96,11 @@ class FeedStoreSpy<R>: FeedStore where R: Equatable{
     }
 }
 
-public final class LocalLoader<Resource, FeedStoreType: FeedStore> where Resource: Equatable, Resource == FeedStoreType.Resource{
-    private let store: FeedStoreType
+public final class LocalLoader<Resource, CacheResourceStoreType: CacheResourceStore> where Resource: Equatable, Resource == CacheResourceStoreType.Resource{
+    private let store: CacheResourceStoreType
     private let currentDate: () -> Date
 
-    public init(store: FeedStoreType, currentDate: @escaping () -> Date) {
+    public init(store: CacheResourceStoreType, currentDate: @escaping () -> Date) {
         self.store = store
         self.currentDate = currentDate
     }
@@ -114,7 +114,7 @@ public final class LocalLoader<Resource, FeedStoreType: FeedStore> where Resourc
             switch result {
             case let .failure(error):
                 completion(.failure(error))
-            case let .success(.some(cache)) where FeedCachePolicy.validate(cache.timestamp, against: self.currentDate()):
+            case let .success(.some(cache)) where ResourceCachePolicy.validate(cache.timestamp, against: self.currentDate()):
                 completion(.success(cache.resource))
             case .success:
                 completion(.success(nil))
@@ -158,7 +158,7 @@ class LoadFromCacheUseCaseTests: XCTestCase {
     func test_load_deliversCachedResourceOnNonExpiredCache() {
         let resource = "test data"
         let fixedCurrentDate = Date()
-        let nonExpiredTimestamp = fixedCurrentDate.minusFeedCacheMaxAge().adding(seconds: 1)
+        let nonExpiredTimestamp = fixedCurrentDate.minusResourceCacheMaxAge().adding(seconds: 1)
         let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
 
         expect(sut, toCompleteWith: .success(resource), when: {
@@ -168,11 +168,11 @@ class LoadFromCacheUseCaseTests: XCTestCase {
     
     // MARK: - Helpers
     
-    typealias FeedStoreSpyType = FeedStoreSpy<String>
-    typealias LocalLoaderType = LocalLoader<String, FeedStoreSpyType>
+    typealias CacheResourceStoreSpyType = CacheResourceStoreSpy<String>
+    typealias LocalLoaderType = LocalLoader<String, CacheResourceStoreSpyType>
     
-    private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #filePath, line: UInt = #line) -> (sut: LocalLoaderType, store: FeedStoreSpyType) {
-        let store = FeedStoreSpyType()
+    private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #filePath, line: UInt = #line) -> (sut: LocalLoaderType, store: CacheResourceStoreSpyType) {
+        let store = CacheResourceStoreSpyType()
         let sut = LocalLoaderType(store: store, currentDate: currentDate)
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)

@@ -10,7 +10,7 @@ import Foundation
 
 
 extension Date {
-    func minusFeedCacheMaxAge() -> Date {
+    func minusResourceCacheMaxAge() -> Date {
         return adding(days: -feedCacheMaxAgeInDays)
     }
 
