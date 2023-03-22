@@ -10,24 +10,6 @@ import XCTest
 import Foundation
 import KatsanaSDK
 
-final class ResourceCachePolicy {
-    private init() {}
-
-    private static let calendar = Calendar(identifier: .gregorian)
-
-    private static var maxCacheAgeInDays: Int {
-        return 7
-    }
-
-    static func validate(_ timestamp: Date, against date: Date) -> Bool {
-        guard let maxCacheAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to: timestamp) else {
-            return false
-        }
-        return date < maxCacheAge
-    }
-}
-
-
 class CacheResourceStoreSpy<R>: CacheResourceStore where R: Equatable{
     typealias Resource = R
     
@@ -66,33 +48,6 @@ class CacheResourceStoreSpy<R>: CacheResourceStore where R: Equatable{
     
     func completeRetrieval(with resource: Resource, timestamp: Date, at index: Int = 0) {
         retrievalCompletions[index](.success(CachedResource<Resource>(resource: resource, timestamp: timestamp)))
-    }
-}
-
-public final class LocalLoader<Resource, CacheResourceStoreType: CacheResourceStore> where Resource: Equatable, Resource == CacheResourceStoreType.Resource{
-    private let store: CacheResourceStoreType
-    private let currentDate: () -> Date
-
-    public init(store: CacheResourceStoreType, currentDate: @escaping () -> Date) {
-        self.store = store
-        self.currentDate = currentDate
-    }
-    
-    public typealias LoadResult = Swift.Result<Resource?, Error>
-
-    public func load(completion: @escaping (LoadResult) -> Void) {
-        store.retrieve { [weak self] result in
-            guard let self = self else { return }
-
-            switch result {
-            case let .failure(error):
-                completion(.failure(error))
-            case let .success(.some(cache)) where ResourceCachePolicy.validate(cache.timestamp, against: self.currentDate()):
-                completion(.success(cache.resource))
-            case .success:
-                completion(.success(nil))
-            }
-        }
     }
 }
 
