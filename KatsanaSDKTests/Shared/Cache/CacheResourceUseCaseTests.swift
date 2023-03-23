@@ -15,7 +15,15 @@ final class CacheFeedUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages.count, 0)
     }
     
+    func test_save_requestsCacheDeletion() {
+        let (sut, store) = makeSUT()
 
+        sut.save(anyResource()){_ in}
+
+        XCTAssertEqual(store.receivedMessages, [.deleteCachedResource])
+    }
+
+    
     // MARK: - Helpers
     
     typealias CacheResourceStoreSpyType = CacheResourceStoreSpy<String>
@@ -45,6 +53,10 @@ final class CacheFeedUseCaseTests: XCTestCase {
     }
     
     private func anyResource() -> String{
+        return "test data"
+    }
+    
+    private func anyResource2() -> String{
         return "test data"
     }
 }

@@ -25,7 +25,8 @@ class CacheResourceStoreSpy<R>: ResourceStore where R: Equatable{
     private var retrievalCompletions = [RetrievalCompletion]()
     
     func deleteCachedResource(completion: @escaping DeletionCompletion) {
-        
+        deletionCompletions.append(completion)
+        receivedMessages.append(.deleteCachedResource)
     }
     
     func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion) {
