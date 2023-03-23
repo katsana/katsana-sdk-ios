@@ -8,11 +8,11 @@
 
 import Foundation
 
-public final class LocalLoader<Resource, CacheResourceStoreType: ResourceStore> where Resource: Equatable, Resource == CacheResourceStoreType.Resource{
-    private let store: CacheResourceStoreType
+public final class LocalLoader<Resource, ResourceStoreType: ResourceStore> where Resource: Equatable, Resource == ResourceStoreType.Resource{
+    private let store: ResourceStoreType
     private let currentDate: () -> Date
 
-    public init(store: CacheResourceStoreType, currentDate: @escaping () -> Date) {
+    public init(store: ResourceStoreType, currentDate: @escaping () -> Date) {
         self.store = store
         self.currentDate = currentDate
     }
