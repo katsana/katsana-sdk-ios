@@ -59,3 +59,24 @@ extension LocalLoader {
         }
     }
 }
+
+extension LocalLoader {
+    public typealias ValidationResult = Result<Void, Error>
+
+    public func validateCache(completion: @escaping (ValidationResult) -> Void) {
+        store.retrieve { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .failure:
+                self.store.deleteCachedResource(completion: completion)
+                
+            case let .success(.some(cache)) where !ResourceCachePolicy.validate(cache.timestamp, against: self.currentDate()):
+                self.store.deleteCachedResource(completion: completion)
+                
+            case .success:
+                completion(.success(()))
+            }
+        }
+    }
+}

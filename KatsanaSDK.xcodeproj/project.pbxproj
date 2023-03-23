@@ -23,6 +23,7 @@
 		C11FECDE29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECDD29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift */; };
 		C11FECE129CC0AFA003914DC /* CodableResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECE029CC0AFA003914DC /* CodableResourceStore.swift */; };
 		C11FECE429CC0BDA003914DC /* CacheResourceUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECE229CC0BBD003914DC /* CacheResourceUseCaseTests.swift */; };
+		C11FECE629CC107E003914DC /* ValidateResourceCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECE529CC107E003914DC /* ValidateResourceCacheUseCaseTests.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
@@ -157,6 +158,7 @@
 		C11FECDD29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableDeleteResourceStoreSpecs.swift"; sourceTree = "<group>"; };
 		C11FECE029CC0AFA003914DC /* CodableResourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableResourceStore.swift; sourceTree = "<group>"; };
 		C11FECE229CC0BBD003914DC /* CacheResourceUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheResourceUseCaseTests.swift; sourceTree = "<group>"; };
+		C11FECE529CC107E003914DC /* ValidateResourceCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateResourceCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				C11FECB929CBBD2D003914DC /* Helpers */,
 				C11FECB629CAE361003914DC /* LoadFromCacheUseCaseTests.swift */,
 				C11FECE229CC0BBD003914DC /* CacheResourceUseCaseTests.swift */,
+				C11FECE529CC107E003914DC /* ValidateResourceCacheUseCaseTests.swift */,
 				C11FECCB29CBC478003914DC /* CodableFeedStoreTests.swift */,
 			);
 			path = Cache;
@@ -821,6 +824,7 @@
 				C11FECB829CAE371003914DC /* LoadFromCacheUseCaseTests.swift in Sources */,
 				C1FAE74429C2B5F2001D3D86 /* VehicleMapperTests.swift in Sources */,
 				C1FAE70129C05B19001D3D86 /* UserMapperTests.swift in Sources */,
+				C11FECE629CC107E003914DC /* ValidateResourceCacheUseCaseTests.swift in Sources */,
 				C1751B3C29BFEDEC009C8795 /* URLProtocolStub.swift in Sources */,
 				C1751B4D29C018C8009C8795 /* KatsanaServicesFactoryTests.swift in Sources */,
 				C11FECCA29CBC13F003914DC /* CacheResourceStoreSpy.swift in Sources */,
