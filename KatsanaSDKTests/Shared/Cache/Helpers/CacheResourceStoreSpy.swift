@@ -38,7 +38,8 @@ class CacheResourceStoreSpy<R>: ResourceStore where R: Equatable{
     }
     
     func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion) {
-        
+        insertionCompletions.append(completion)
+        receivedMessages.append(.insert(resource, timestamp))
     }
     
     func retrieve(completion: @escaping RetrievalCompletion) {

@@ -33,6 +33,17 @@ final class CacheFeedUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.deleteCachedResource])
     }
     
+    func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletion() {
+        let timestamp = Date()
+        let item = anyResource()
+        let (sut, store) = makeSUT(currentDate: { timestamp })
+        
+        sut.save(item){_ in}
+        store.completeDeletionSuccessfully()
+        
+        XCTAssertEqual(store.receivedMessages, [.deleteCachedResource, .insert(item, timestamp)])
+    }
+    
     // MARK: - Helpers
     
     typealias CacheResourceStoreSpyType = CacheResourceStoreSpy<String>
