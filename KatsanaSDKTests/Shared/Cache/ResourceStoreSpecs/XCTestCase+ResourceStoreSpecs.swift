@@ -27,15 +27,14 @@ extension ResourceStoreSpecs where Self: XCTestCase {
         expect(sut, toRetrieve: .success(.some((resource: resource, timestamp: timestamp))), file: file, line: line)
     }
 
-//    func assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
-//        let feed = uniqueImageFeed().local
-//        let timestamp = Date()
-//
-//        insert((feed, timestamp), to: sut)
-//
-//        expect(sut, toRetrieveTwice: .success(.some((feed: feed, timestamp: timestamp))), file: file, line: line)
-//    }
-//
+    func assertThatRetrieveHasNoSideEffectsOnNonEmptyCache<R: ResourceStore>(resource: R.Resource, on sut: R, file: StaticString = #file, line: UInt = #line) {
+        let timestamp = Date()
+
+        insert((resource, timestamp), to: sut)
+
+        expect(sut, toRetrieveTwice: .success(.some((resource: resource, timestamp: timestamp))), file: file, line: line)
+    }
+
 //    func assertThatInsertDeliversNoErrorOnEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
 //        let insertionError = insert((uniqueImageFeed().local, Date()), to: sut)
 //
