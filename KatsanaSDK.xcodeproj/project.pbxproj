@@ -21,6 +21,7 @@
 		C11FECDA29CC023E003914DC /* XCTestCase+FailableRetrieveResourceStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECD829CC023A003914DC /* XCTestCase+FailableRetrieveResourceStoreSpecs.swift */; };
 		C11FECDC29CC0525003914DC /* XCTestCase+FailableInsertResourceStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECDB29CC0525003914DC /* XCTestCase+FailableInsertResourceStoreSpecs.swift */; };
 		C11FECDE29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECDD29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift */; };
+		C11FECE129CC0AFA003914DC /* CodableResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECE029CC0AFA003914DC /* CodableResourceStore.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
@@ -153,6 +154,7 @@
 		C11FECD829CC023A003914DC /* XCTestCase+FailableRetrieveResourceStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableRetrieveResourceStoreSpecs.swift"; sourceTree = "<group>"; };
 		C11FECDB29CC0525003914DC /* XCTestCase+FailableInsertResourceStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableInsertResourceStoreSpecs.swift"; sourceTree = "<group>"; };
 		C11FECDD29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableDeleteResourceStoreSpecs.swift"; sourceTree = "<group>"; };
+		C11FECE029CC0AFA003914DC /* CodableResourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableResourceStore.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 		C11FECAE29CADE9B003914DC /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				C11FECDF29CC0AEA003914DC /* Infra */,
 				C11FECC229CBC07A003914DC /* ResourceStore.swift */,
 				C11FECC429CBC0B4003914DC /* ResourceCachePolicy.swift */,
 				C11FECC629CBC0DE003914DC /* LocalLoader.swift */,
@@ -407,6 +410,14 @@
 				C11FECDD29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift */,
 			);
 			path = ResourceStoreSpecs;
+			sourceTree = "<group>";
+		};
+		C11FECDF29CC0AEA003914DC /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				C11FECE029CC0AFA003914DC /* CodableResourceStore.swift */,
+			);
+			path = Infra;
 			sourceTree = "<group>";
 		};
 		C1751B1329BFEC70009C8795 /* Infra */ = {
@@ -847,6 +858,7 @@
 				C1FAE72529C17B99001D3D86 /* KatsanaServiceFactory.swift in Sources */,
 				C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */,
 				C71917A61E48703B0041BC18 /* VehicleLocation.swift in Sources */,
+				C11FECE129CC0AFA003914DC /* CodableResourceStore.swift in Sources */,
 				C1FAE6FB29C0592E001D3D86 /* UserMapper.swift in Sources */,
 				C71917821E48703B0041BC18 /* KatsanaAPI+Login.swift in Sources */,
 				C71917CB1E4884410041BC18 /* DateHelper.swift in Sources */,
