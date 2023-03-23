@@ -15,9 +15,9 @@
 		C11FECC529CBC0B4003914DC /* ResourceCachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECC429CBC0B4003914DC /* ResourceCachePolicy.swift */; };
 		C11FECC729CBC0DE003914DC /* LocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECC629CBC0DE003914DC /* LocalLoader.swift */; };
 		C11FECCA29CBC13F003914DC /* CacheResourceStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECC829CBC117003914DC /* CacheResourceStoreSpy.swift */; };
-		C11FECCC29CBC478003914DC /* CodableFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECCB29CBC478003914DC /* CodableFeedStoreTests.swift */; };
 		C11FECD229CBDE65003914DC /* XCTestCase+ResourceStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECD029CBDE57003914DC /* XCTestCase+ResourceStoreSpecs.swift */; };
 		C11FECD329CBDE68003914DC /* ResourceStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECCE29CBDE00003914DC /* ResourceStoreSpecs.swift */; };
+		C11FECD729CBF6B6003914DC /* CodableFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECCB29CBC478003914DC /* CodableFeedStoreTests.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
@@ -768,6 +768,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11FECD729CBF6B6003914DC /* CodableFeedStoreTests.swift in Sources */,
 				C1751B4229BFEDEC009C8795 /* TripTest.swift in Sources */,
 				C1FAE74E29C2D702001D3D86 /* VehicleEndpointTests.swift in Sources */,
 				C1FAE70629C15901001D3D86 /* RemoteLoaderTests.swift in Sources */,
@@ -831,7 +832,6 @@
 				C18A824328FCEFD500C3FF7D /* VideoRecordingChannel.swift in Sources */,
 				C71917921E48703B0041BC18 /* KatsanaFormatter.swift in Sources */,
 				C71917781E48703B0041BC18 /* AddressRequest.swift in Sources */,
-				C11FECCC29CBC478003914DC /* CodableFeedStoreTests.swift in Sources */,
 				C1FAE72529C17B99001D3D86 /* KatsanaServiceFactory.swift in Sources */,
 				C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */,
 				C71917A61E48703B0041BC18 /* VehicleLocation.swift in Sources */,
