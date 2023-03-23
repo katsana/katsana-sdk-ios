@@ -25,7 +25,19 @@ public class CodableResourceStore<R>: ResourceStore where R: Equatable, R: Codab
     }
     
     public func deleteCachedResource(completion: @escaping DeletionCompletion){
-        
+        let storeURL = self.storeURL
+        queue.async(flags: .barrier) {
+            guard FileManager.default.fileExists(atPath: storeURL.path) else {
+                return completion(.success(()))
+            }
+            
+            do {
+                try FileManager.default.removeItem(at: storeURL)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
     }
     
     public func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion){
@@ -144,39 +156,39 @@ class CodableFeedStoreTests: XCTestCase, FailableResourceStoreSpecs {
     
     func test_delete_deliversNoErrorOnEmptyCache() {
         let sut = makeSUT()
-//        assertThatDeleteDeliversNoErrorOnEmptyCache(on: sut)
+        assertThatDeleteDeliversNoErrorOnEmptyCache(on: sut)
     }
     
     func test_delete_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
-//        assertThatDeleteHasNoSideEffectsOnEmptyCache(on: sut)
+        assertThatDeleteHasNoSideEffectsOnEmptyCache(on: sut)
     }
     
     func test_delete_deliversNoErrorOnNonEmptyCache() {
         let sut = makeSUT()
-//        assertThatDeleteDeliversNoErrorOnNonEmptyCache(on: sut)
+        assertThatDeleteDeliversNoErrorOnNonEmptyCache(resource: anyResource(), on: sut)
     }
     
     func test_delete_emptiesPreviouslyInsertedCache() {
         let sut = makeSUT()
-//        assertThatDeleteEmptiesPreviouslyInsertedCache(on: sut)
+        assertThatDeleteEmptiesPreviouslyInsertedCache(resource: anyResource(), on: sut)
     }
     
     func test_delete_deliversErrorOnDeletionError() {
         let sut = makeSUT(storeURL: noDeletePermissionURL())
         
-//        assertThatDeleteDeliversErrorOnDeletionError(on: sut)
+        assertThatDeleteDeliversErrorOnDeletionError(on: sut)
     }
     
     func test_delete_hasNoSideEffectsOnDeletionError() {
         let sut = makeSUT(storeURL: noDeletePermissionURL())
         
-//        assertThatDeleteHasNoSideEffectsOnDeletionError(on: sut)
+        assertThatDeleteHasNoSideEffectsOnDeletionError(on: sut)
     }
     
     func test_storeSideEffects_runSerially() {
         let sut = makeSUT()
-//        assertThatSideEffectsRunSerially(on: sut)
+        assertThatSideEffectsRunSerially(resource: anyResource(), resource2: anyResource2(), on: sut)
     }
     
     // - MARK: Helpers
