@@ -49,16 +49,16 @@ extension ResourceStoreSpecs where Self: XCTestCase {
         XCTAssertNil(insertionError, "Expected to override cache successfully", file: file, line: line)
     }
 
-//    func assertThatInsertOverridesPreviouslyInsertedCacheValues(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
-//        insert((uniqueImageFeed().local, Date()), to: sut)
-//
-//        let latestFeed = uniqueImageFeed().local
-//        let latestTimestamp = Date()
-//        insert((latestFeed, latestTimestamp), to: sut)
-//
-//        expect(sut, toRetrieve: .success(.some((feed: latestFeed, timestamp: latestTimestamp))), file: file, line: line)
-//    }
-//
+    func assertThatInsertOverridesPreviouslyInsertedCacheValues<R: ResourceStore>(resource: R.Resource, resource2: R.Resource, on sut: R, file: StaticString = #file, line: UInt = #line) {
+        insert((resource, Date()), to: sut)
+
+        let latestResource = resource2
+        let latestTimestamp = Date()
+        insert((latestResource, latestTimestamp), to: sut)
+
+        expect(sut, toRetrieve: .success(.some((resource: latestResource, timestamp: latestTimestamp))), file: file, line: line)
+    }
+
 //    func assertThatDeleteDeliversNoErrorOnEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
 //        let deletionError = deleteCache(from: sut)
 //

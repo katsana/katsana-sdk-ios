@@ -126,7 +126,7 @@ class CodableFeedStoreTests: XCTestCase, FailableResourceStoreSpecs {
     
     func test_insert_overridesPreviouslyInsertedCacheValues() {
         let sut = makeSUT()
-//        assertThatInsertOverridesPreviouslyInsertedCacheValues(on: sut)
+        assertThatInsertOverridesPreviouslyInsertedCacheValues(resource: anyResource(), resource2: anyResource2(), on: sut)
     }
     
     
