@@ -27,6 +27,29 @@ final class KatsanaSDKCacheIntegrationTests: XCTestCase {
         expect(feedLoader, toLoad: nil)
     }
     
+    func test_loadFeed_deliversItemsSavedOnASeparateInstance() {
+        let loaderToPerformSave = makeResourceLoader()
+        let loaderToPerformLoad = makeResourceLoader()
+        let resource = anyResource()
+        
+        save(resource, with: loaderToPerformSave)
+        
+        expect(loaderToPerformLoad, toLoad: resource)
+    }
+    
+    func test_saveFeed_overridesItemsSavedOnASeparateInstance() {
+        let loaderToPerformFirstSave = makeResourceLoader()
+        let loaderToPerformLastSave = makeResourceLoader()
+        let loaderToPerformLoad = makeResourceLoader()
+        let firstFeed = anyResource()
+        let latestFeed = anyResource2()
+        
+        save(firstFeed, with: loaderToPerformFirstSave)
+        save(latestFeed, with: loaderToPerformLastSave)
+        
+        expect(loaderToPerformLoad, toLoad: latestFeed)
+    }
+    
     
     // MARK: Helpers
     
@@ -101,5 +124,12 @@ final class KatsanaSDKCacheIntegrationTests: XCTestCase {
         return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
     }
     
+    private func anyResource() -> String{
+        return "test data"
+    }
+    
+    private func anyResource2() -> String{
+        return "test data2"
+    }
 
 }
