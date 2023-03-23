@@ -9,7 +9,7 @@
 import Foundation
 import KatsanaSDK
 
-class CacheResourceStoreSpy<R>: CacheResourceStore where R: Equatable{
+class CacheResourceStoreSpy<R>: ResourceStore where R: Equatable{
     typealias Resource = R
     
     enum ReceivedMessage: Equatable {

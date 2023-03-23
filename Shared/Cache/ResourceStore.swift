@@ -10,7 +10,7 @@ import Foundation
 
 public typealias CachedResource<Resource> = (resource: Resource, timestamp: Date)
 
-public protocol CacheResourceStore{
+public protocol ResourceStore{
     associatedtype Resource where Resource: Equatable
     
     typealias DeletionResult = Result<Void, Error>
