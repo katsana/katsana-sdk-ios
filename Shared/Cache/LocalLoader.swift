@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class LocalLoader<Resource, ResourceStoreType: ResourceStore> where Resource: Equatable, Resource == ResourceStoreType.Resource{
+public final class LocalLoader<Resource, ResourceStoreType: ResourceStore>: ResourceLoader where Resource: Equatable, Resource == ResourceStoreType.Resource{
     private let store: ResourceStoreType
     private let currentDate: () -> Date
 
