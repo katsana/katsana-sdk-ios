@@ -97,6 +97,31 @@ class ValidateResourceCacheUseCaseTests: XCTestCase {
         })
     }
     
+    func test_validateCache_succeedsOnNonExpiredCache() {
+        let resource = anyResource()
+        let fixedCurrentDate = Date()
+        let nonExpiredTimestamp = fixedCurrentDate.minusResourceCacheMaxAge().adding(seconds: 1)
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+
+        expect(sut, toCompleteWith: .success(()), when: {
+            store.completeRetrieval(with: resource, timestamp: nonExpiredTimestamp)
+        })
+    }
+    
+    func test_validateCache_failsOnDeletionErrorOfExpiredCache() {
+        let resource = anyResource()
+        let fixedCurrentDate = Date()
+        let expiredTimestamp = fixedCurrentDate.minusResourceCacheMaxAge().adding(seconds: -1)
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+        let deletionError = anyNSError()
+        
+        expect(sut, toCompleteWith: .failure(deletionError), when: {
+            store.completeRetrieval(with: resource, timestamp: expiredTimestamp)
+            store.completeDeletion(with: deletionError)
+        })
+    }
+    
+    
     // MARK: - Helpers
     
     typealias CacheResourceStoreSpyType = CacheResourceStoreSpy<String>
