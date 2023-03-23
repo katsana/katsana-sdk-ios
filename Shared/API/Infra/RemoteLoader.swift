@@ -20,7 +20,7 @@ public struct HTTPResponseError: Error, Equatable{
     }
 }
 
-public class RemoteLoader<Resource> {
+public class RemoteLoader<Resource>: ResourceLoader {
     private let client: HTTPClient
     private let url: URL
     private let mapper: Mapper

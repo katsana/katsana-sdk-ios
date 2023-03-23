@@ -27,6 +27,7 @@
 		C11FECEE29CC172C003914DC /* KatsanaSDKCacheIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECED29CC172C003914DC /* KatsanaSDKCacheIntegrationTests.swift */; };
 		C11FECEF29CC172C003914DC /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
 		C11FECF529CC1826003914DC /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B1C29BFECCC009C8795 /* XCTestCase+MemoryLeak.swift */; };
+		C11FECFD29CC271B003914DC /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECFC29CC271B003914DC /* ResourceLoader.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
@@ -171,6 +172,7 @@
 		C11FECE529CC107E003914DC /* ValidateResourceCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateResourceCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		C11FECEB29CC172C003914DC /* KatsanaSDKCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11FECED29CC172C003914DC /* KatsanaSDKCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKCacheIntegrationTests.swift; sourceTree = "<group>"; };
+		C11FECFC29CC271B003914DC /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
@@ -455,6 +457,14 @@
 			path = KatsanaSDKCacheIntegrationTests;
 			sourceTree = "<group>";
 		};
+		C11FECFB29CC2711003914DC /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				C11FECFC29CC271B003914DC /* ResourceLoader.swift */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
 		C1751B1329BFEC70009C8795 /* Infra */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,6 +523,7 @@
 		C1FAE70E29C169F1001D3D86 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C11FECFB29CC2711003914DC /* Feature */,
 				C1FAE70F29C169F7001D3D86 /* Helpers */,
 				C11FECAE29CADE9B003914DC /* Cache */,
 				C11FECB229CAE200003914DC /* API */,
@@ -917,6 +928,7 @@
 			files = (
 				C7331295207B1E5300541BE8 /* KatsanaAPI+Subscribe.swift in Sources */,
 				C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */,
+				C11FECFD29CC271B003914DC /* ResourceLoader.swift in Sources */,
 				C1FAE74B29C2D63D001D3D86 /* VehicleEndpoint.swift in Sources */,
 				C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */,
 				C1FAE71129C16A36001D3D86 /* URL+QueryItems.swift in Sources */,
