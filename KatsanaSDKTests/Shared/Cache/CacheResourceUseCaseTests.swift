@@ -70,6 +70,19 @@ final class CacheFeedUseCaseTests: XCTestCase {
         }
     }
     
+    func test_save_doesNotDeliverDeletionErrorAfterSUTInstanceHasBeenDeallocated() {
+        let store = CacheResourceStoreSpyType()
+        var sut: LocalLoaderType? = LocalLoaderType(store: store, currentDate: Date.init)
+        
+        var receivedResults = [LocalLoaderType.SaveResult]()
+        sut?.save(anyResource()) { receivedResults.append($0) }
+        
+        sut = nil
+        store.completeDeletion(with: anyNSError())
+        
+        XCTAssertTrue(receivedResults.isEmpty)
+    }
+    
     
     // MARK: - Helpers
     
