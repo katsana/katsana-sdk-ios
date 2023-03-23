@@ -46,6 +46,18 @@ class ValidateResourceCacheUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
+    func test_validateCache_deletesCacheOnExpiration() {
+        let resource = anyResource()
+        let fixedCurrentDate = Date()
+        let expirationTimestamp = fixedCurrentDate.minusResourceCacheMaxAge()
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+        
+        sut.validateCache { _ in }
+        store.completeRetrieval(with: resource, timestamp: expirationTimestamp)
+        
+        XCTAssertEqual(store.receivedMessages, [.retrieve, .deleteCachedResource])
+    }
+    
     // MARK: - Helpers
     
     typealias CacheResourceStoreSpyType = CacheResourceStoreSpy<String>
