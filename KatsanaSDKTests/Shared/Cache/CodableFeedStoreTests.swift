@@ -84,15 +84,15 @@ class CodableFeedStoreTests: XCTestCase, FailableResourceStoreSpecs {
     
     func test_retrieve_deliversFoundValuesOnNonEmptyCache() {
         let sut = makeSUT()
-        let resource = "test data"
-        assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(resource: resource, on: sut)
+
+        assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(resource: anyResource(), on: sut)
     }
     
     
     func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
         let sut = makeSUT()
-        let resource = "test data"
-        assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(resource: resource, on: sut)
+        
+        assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(resource: anyResource(), on: sut)
     }
     
     func test_retrieve_deliversFailureOnRetrievalError() {
@@ -115,16 +115,13 @@ class CodableFeedStoreTests: XCTestCase, FailableResourceStoreSpecs {
     
     func test_insert_deliversNoErrorOnEmptyCache() {
         let sut = makeSUT()
-        let resource = "test data"
         
-        assertThatInsertDeliversNoErrorOnEmptyCache(resource: resource, on: sut)
+        assertThatInsertDeliversNoErrorOnEmptyCache(resource: anyResource(), on: sut)
     }
     
     func test_insert_deliversNoErrorOnNonEmptyCache() {
         let sut = makeSUT()
-        let resource = "test data"
-        let resource2 = "test data2"
-        assertThatInsertDeliversNoErrorOnNonEmptyCache(resource: resource, resource2: resource2, on: sut)
+        assertThatInsertDeliversNoErrorOnNonEmptyCache(resource: anyResource(), resource2: anyResource2(), on: sut)
     }
     
     func test_insert_overridesPreviouslyInsertedCacheValues() {
@@ -215,6 +212,14 @@ class CodableFeedStoreTests: XCTestCase, FailableResourceStoreSpecs {
     
     private func noDeletePermissionURL() -> URL {
         return FileManager.default.urls(for: .cachesDirectory, in: .systemDomainMask).first!
+    }
+    
+    private func anyResource() -> String{
+        return "test data"
+    }
+    
+    private func anyResource2() -> String{
+        return "test data 2"
     }
     
 }
