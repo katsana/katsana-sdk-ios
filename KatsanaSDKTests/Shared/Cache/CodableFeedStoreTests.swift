@@ -108,9 +108,9 @@ class CodableFeedStoreTests: XCTestCase, FailableResourceStoreSpecs {
         let storeURL = testSpecificStoreURL()
         let sut = makeSUT(storeURL: storeURL)
         
-//        try! "invalid data".write(to: storeURL, atomically: false, encoding: .utf8)
+        try! "invalid data".write(to: storeURL, atomically: false, encoding: .utf8)
         
-//        assertThatRetrieveHasNoSideEffectsOnFailure(on: sut)
+        assertThatRetrieveHasNoSideEffectsOnFailure(on: sut)
     }
     
     func test_insert_deliversNoErrorOnEmptyCache() {
