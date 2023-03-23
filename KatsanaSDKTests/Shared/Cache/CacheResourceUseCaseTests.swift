@@ -83,6 +83,20 @@ final class CacheFeedUseCaseTests: XCTestCase {
         XCTAssertTrue(receivedResults.isEmpty)
     }
     
+    func test_save_doesNotDeliverInsertionErrorAfterSUTInstanceHasBeenDeallocated() {
+        let store = CacheResourceStoreSpyType()
+        var sut: LocalLoaderType? = LocalLoaderType(store: store, currentDate: Date.init)
+        
+        var receivedResults = [LocalLoaderType.SaveResult]()
+        sut?.save(anyResource()) { receivedResults.append($0) }
+        
+        store.completeDeletionSuccessfully()
+        sut = nil
+        store.completeInsertion(with: anyNSError())
+        
+        XCTAssertTrue(receivedResults.isEmpty)
+    }
+    
     
     // MARK: - Helpers
     
