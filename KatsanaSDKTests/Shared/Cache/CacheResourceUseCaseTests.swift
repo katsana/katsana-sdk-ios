@@ -23,6 +23,15 @@ final class CacheFeedUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.deleteCachedResource])
     }
 
+    func test_save_doesNotRequestCacheInsertionOnDeletionError() {
+        let (sut, store) = makeSUT()
+        let deletionError = anyNSError()
+
+        sut.save(anyResource()){_ in}
+        store.completeDeletion(with: deletionError)
+
+        XCTAssertEqual(store.receivedMessages, [.deleteCachedResource])
+    }
     
     // MARK: - Helpers
     

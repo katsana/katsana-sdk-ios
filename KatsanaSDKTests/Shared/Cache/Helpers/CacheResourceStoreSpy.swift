@@ -29,6 +29,14 @@ class CacheResourceStoreSpy<R>: ResourceStore where R: Equatable{
         receivedMessages.append(.deleteCachedResource)
     }
     
+    func completeDeletion(with error: Error, at index: Int = 0) {
+        deletionCompletions[index](.failure(error))
+    }
+    
+    func completeDeletionSuccessfully(at index: Int = 0) {
+        deletionCompletions[index](.success(()))
+    }
+    
     func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion) {
         
     }
