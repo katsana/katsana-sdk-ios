@@ -41,14 +41,14 @@ extension ResourceStoreSpecs where Self: XCTestCase {
         XCTAssertNil(insertionError, "Expected to insert cache successfully", file: file, line: line)
     }
 
-//    func assertThatInsertDeliversNoErrorOnNonEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
-//        insert((uniqueImageFeed().local, Date()), to: sut)
-//
-//        let insertionError = insert((uniqueImageFeed().local, Date()), to: sut)
-//
-//        XCTAssertNil(insertionError, "Expected to override cache successfully", file: file, line: line)
-//    }
-//
+    func assertThatInsertDeliversNoErrorOnNonEmptyCache<R: ResourceStore>(resource: R.Resource, resource2: R.Resource, on sut: R, file: StaticString = #file, line: UInt = #line) {
+        insert((resource, Date()), to: sut)
+
+        let insertionError = insert((resource2, Date()), to: sut)
+
+        XCTAssertNil(insertionError, "Expected to override cache successfully", file: file, line: line)
+    }
+
 //    func assertThatInsertOverridesPreviouslyInsertedCacheValues(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
 //        insert((uniqueImageFeed().local, Date()), to: sut)
 //
