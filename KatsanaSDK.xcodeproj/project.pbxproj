@@ -18,6 +18,7 @@
 		C11FECD229CBDE65003914DC /* XCTestCase+ResourceStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECD029CBDE57003914DC /* XCTestCase+ResourceStoreSpecs.swift */; };
 		C11FECD329CBDE68003914DC /* ResourceStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECCE29CBDE00003914DC /* ResourceStoreSpecs.swift */; };
 		C11FECD729CBF6B6003914DC /* CodableFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECCB29CBC478003914DC /* CodableFeedStoreTests.swift */; };
+		C11FECDA29CC023E003914DC /* XCTestCase+FailableRetrieveResourceStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECD829CC023A003914DC /* XCTestCase+FailableRetrieveResourceStoreSpecs.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
@@ -147,6 +148,7 @@
 		C11FECCB29CBC478003914DC /* CodableFeedStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableFeedStoreTests.swift; sourceTree = "<group>"; };
 		C11FECCE29CBDE00003914DC /* ResourceStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceStoreSpecs.swift; sourceTree = "<group>"; };
 		C11FECD029CBDE57003914DC /* XCTestCase+ResourceStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+ResourceStoreSpecs.swift"; sourceTree = "<group>"; };
+		C11FECD829CC023A003914DC /* XCTestCase+FailableRetrieveResourceStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableRetrieveResourceStoreSpecs.swift"; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 			children = (
 				C11FECCE29CBDE00003914DC /* ResourceStoreSpecs.swift */,
 				C11FECD029CBDE57003914DC /* XCTestCase+ResourceStoreSpecs.swift */,
+				C11FECD829CC023A003914DC /* XCTestCase+FailableRetrieveResourceStoreSpecs.swift */,
 			);
 			path = ResourceStoreSpecs;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 				C1FAE70A29C15941001D3D86 /* HTTPClientSpy.swift in Sources */,
 				C11FECD229CBDE65003914DC /* XCTestCase+ResourceStoreSpecs.swift in Sources */,
 				C1751B3A29BFEDEC009C8795 /* TripSummaryTest.swift in Sources */,
+				C11FECDA29CC023E003914DC /* XCTestCase+FailableRetrieveResourceStoreSpecs.swift in Sources */,
 				C1FAE70D29C1631E001D3D86 /* LoaderHelpers.swift in Sources */,
 				C11FECD329CBDE68003914DC /* ResourceStoreSpecs.swift in Sources */,
 				C1751B4029BFEDEC009C8795 /* XCTestCase+MemoryLeak.swift in Sources */,
