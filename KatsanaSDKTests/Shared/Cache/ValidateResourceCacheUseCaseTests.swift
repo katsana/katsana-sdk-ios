@@ -121,6 +121,30 @@ class ValidateResourceCacheUseCaseTests: XCTestCase {
         })
     }
     
+    func test_validateCache_succeedsOnSuccessfulDeletionOfExpiredCache() {
+        let resource = anyResource()
+        let fixedCurrentDate = Date()
+        let expiredTimestamp = fixedCurrentDate.minusResourceCacheMaxAge().adding(seconds: -1)
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+        
+        expect(sut, toCompleteWith: .success(()), when: {
+            store.completeRetrieval(with: resource, timestamp: expiredTimestamp)
+            store.completeDeletionSuccessfully()
+        })
+    }
+    
+    func test_validateCache_doesNotDeleteInvalidCacheAfterSUTInstanceHasBeenDeallocated() {
+        let store = CacheResourceStoreSpyType()
+        var sut: LocalLoaderType? = LocalLoaderType(store: store, currentDate: Date.init)
+        
+        sut?.validateCache { _ in }
+        
+        sut = nil
+        store.completeRetrieval(with: anyNSError())
+        
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
+    }
+    
     
     // MARK: - Helpers
     
