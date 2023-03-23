@@ -115,8 +115,9 @@ class CodableFeedStoreTests: XCTestCase, FailableResourceStoreSpecs {
     
     func test_insert_deliversNoErrorOnEmptyCache() {
         let sut = makeSUT()
-
-//        assertThatInsertDeliversNoErrorOnEmptyCache(on: sut)
+        let resource = "test data"
+        
+        assertThatInsertDeliversNoErrorOnEmptyCache(resource: resource, on: sut)
     }
     
     func test_insert_deliversNoErrorOnNonEmptyCache() {
