@@ -80,6 +80,23 @@ class ValidateResourceCacheUseCaseTests: XCTestCase {
         })
     }
     
+    func test_validateCache_succeedsOnSuccessfulDeletionOfFailedRetrieval() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteWith: .success(()), when: {
+            store.completeRetrieval(with: anyNSError())
+            store.completeDeletionSuccessfully()
+        })
+    }
+    
+    func test_validateCache_succeedsOnEmptyCache() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteWith: .success(()), when: {
+            store.completeRetrievalWithEmptyCache()
+        })
+    }
+    
     // MARK: - Helpers
     
     typealias CacheResourceStoreSpyType = CacheResourceStoreSpy<String>
