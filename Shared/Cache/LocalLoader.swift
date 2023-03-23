@@ -35,9 +35,9 @@ public final class LocalLoader<Resource, ResourceStoreType: ResourceStore>: Reso
     }
 }
 
-extension LocalLoader {
-    public typealias SaveResult = Result<Void, Error>
-    
+extension LocalLoader: ResourceCache {
+    public typealias SaveResource = Resource
+
     public func save(_ resource: Resource, completion: @escaping (SaveResult) -> Void) {
         store.deleteCachedResource { [weak self] deletionResult in
             guard let self = self else { return }
