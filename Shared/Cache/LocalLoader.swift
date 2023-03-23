@@ -34,3 +34,28 @@ public final class LocalLoader<Resource, ResourceStoreType: ResourceStore> where
         }
     }
 }
+
+extension LocalLoader {
+    public typealias SaveResult = Result<Void, Error>
+    
+    public func save(_ resource: Resource, completion: @escaping (SaveResult) -> Void) {
+        store.deleteCachedResource { [weak self] deletionResult in
+            guard let self = self else { return }
+            
+            switch deletionResult{
+            case .success:
+                self.cache(resource, with: completion)
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    private func cache(_ resource: Resource, with completion: @escaping (SaveResult) -> Void) {
+        store.insert(resource, timestamp: currentDate()) { [weak self] error in
+            guard self != nil else { return }
+            
+            completion(error)
+        }
+    }
+}

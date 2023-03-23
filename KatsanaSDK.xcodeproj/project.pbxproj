@@ -22,6 +22,7 @@
 		C11FECDC29CC0525003914DC /* XCTestCase+FailableInsertResourceStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECDB29CC0525003914DC /* XCTestCase+FailableInsertResourceStoreSpecs.swift */; };
 		C11FECDE29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECDD29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift */; };
 		C11FECE129CC0AFA003914DC /* CodableResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECE029CC0AFA003914DC /* CodableResourceStore.swift */; };
+		C11FECE429CC0BDA003914DC /* CacheResourceUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECE229CC0BBD003914DC /* CacheResourceUseCaseTests.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
@@ -155,6 +156,7 @@
 		C11FECDB29CC0525003914DC /* XCTestCase+FailableInsertResourceStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableInsertResourceStoreSpecs.swift"; sourceTree = "<group>"; };
 		C11FECDD29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableDeleteResourceStoreSpecs.swift"; sourceTree = "<group>"; };
 		C11FECE029CC0AFA003914DC /* CodableResourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableResourceStore.swift; sourceTree = "<group>"; };
+		C11FECE229CC0BBD003914DC /* CacheResourceUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheResourceUseCaseTests.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				C11FECCD29CBDDEE003914DC /* ResourceStoreSpecs */,
 				C11FECB929CBBD2D003914DC /* Helpers */,
 				C11FECB629CAE361003914DC /* LoadFromCacheUseCaseTests.swift */,
+				C11FECE229CC0BBD003914DC /* CacheResourceUseCaseTests.swift */,
 				C11FECCB29CBC478003914DC /* CodableFeedStoreTests.swift */,
 			);
 			path = Cache;
@@ -788,6 +791,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11FECE429CC0BDA003914DC /* CacheResourceUseCaseTests.swift in Sources */,
 				C11FECD729CBF6B6003914DC /* CodableFeedStoreTests.swift in Sources */,
 				C1751B4229BFEDEC009C8795 /* TripTest.swift in Sources */,
 				C11FECDE29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift in Sources */,
