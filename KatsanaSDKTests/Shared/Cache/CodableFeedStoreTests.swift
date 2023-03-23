@@ -11,6 +11,11 @@ import KatsanaSDK
 
 public class CodableResourceStore<R>: ResourceStore where R: Equatable, R: Codable{
     public typealias Resource = R
+    
+    private struct Cache: Codable {
+        let resource: Resource
+        let timestamp: Date
+    }
         
     private let storeURL: URL
     private let queue = DispatchQueue(label: "\(CodableResourceStore.self)Queue", qos: .userInitiated, attributes: .concurrent)
@@ -24,7 +29,18 @@ public class CodableResourceStore<R>: ResourceStore where R: Equatable, R: Codab
     }
     
     public func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion){
-        
+        let storeURL = self.storeURL
+        queue.async(flags: .barrier) {
+            do {
+                let encoder = JSONEncoder()
+                let cache = Cache(resource: resource, timestamp: timestamp)
+                let encoded = try encoder.encode(cache)
+                try encoded.write(to: storeURL)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
     }
     
     public func retrieve(completion: @escaping RetrievalCompletion){
@@ -33,14 +49,14 @@ public class CodableResourceStore<R>: ResourceStore where R: Equatable, R: Codab
             guard let data = try? Data(contentsOf: storeURL) else {
                 return completion(.success(.none))
             }
-//
-//            do {
-//                let decoder = JSONDecoder()
-//                let cache = try decoder.decode(R.self, from: data)
-//                completion(.success((cache, cache.timestamp)))
-//            } catch {
-//                completion(.failure(error))
-//            }
+
+            do {
+                let decoder = JSONDecoder()
+                let cache = try decoder.decode(Cache.self, from: data)
+                completion(.success((cache.resource, cache.timestamp)))
+            } catch {
+                completion(.failure(error))
+            }
         }
     }
 }
@@ -67,7 +83,9 @@ class CodableFeedStoreTests: XCTestCase, FailableResourceStoreSpecs {
     }
     
     func test_insert_deliversErrorOnInsertionError() {
-        
+        let sut = makeSUT()
+        let resource = "test data"
+        assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(resource: resource, on: sut)
     }
     
     func test_insert_hasNoSideEffectsOnInsertionError() {

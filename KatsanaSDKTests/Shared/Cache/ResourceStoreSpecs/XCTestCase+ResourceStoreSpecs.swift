@@ -19,15 +19,14 @@ extension ResourceStoreSpecs where Self: XCTestCase {
         expect(sut, toRetrieveTwice: .success(.none), file: file, line: line)
     }
 
-//    func assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
-//        let feed = uniqueImageFeed().local
-//        let timestamp = Date()
-//
-//        insert((feed, timestamp), to: sut)
-//
-//        expect(sut, toRetrieve: .success(.some((feed: feed, timestamp: timestamp))), file: file, line: line)
-//    }
-//
+    func assertThatRetrieveDeliversFoundValuesOnNonEmptyCache<R: ResourceStore>(resource: R.Resource, on sut: R, file: StaticString = #file, line: UInt = #line) {
+        let timestamp = Date()
+
+        insert((resource, timestamp), to: sut)
+
+        expect(sut, toRetrieve: .success(.some((resource: resource, timestamp: timestamp))), file: file, line: line)
+    }
+
 //    func assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
 //        let feed = uniqueImageFeed().local
 //        let timestamp = Date()
@@ -158,16 +157,16 @@ extension ResourceStoreSpecs where Self: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-//    @discardableResult
-//    func insert(_ cache: (feed: [LocalFeedImage], timestamp: Date), to sut: FeedStore) -> Error? {
-//        let exp = expectation(description: "Wait for cache insertion")
-//        var insertionError: Error?
-//        sut.insert(cache.feed, timestamp: cache.timestamp) { result in
-//            if case let .failure(error) = result { insertionError = error}
-//            exp.fulfill()
-//        }
-//        wait(for: [exp], timeout: 1.0)
-//        return insertionError
-//    }
+    @discardableResult
+    func insert<R: ResourceStore, Resource>(_ cache: (resource: Resource, timestamp: Date), to sut: R) -> Error? where Resource == R.Resource{
+        let exp = expectation(description: "Wait for cache insertion")
+        var insertionError: Error?
+        sut.insert(cache.resource, timestamp: cache.timestamp) { result in
+            if case let .failure(error) = result { insertionError = error}
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+        return insertionError
+    }
 }
 
