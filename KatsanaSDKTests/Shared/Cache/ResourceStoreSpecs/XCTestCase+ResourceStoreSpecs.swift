@@ -15,10 +15,10 @@ extension ResourceStoreSpecs where Self: XCTestCase {
         expect(sut, toRetrieve: .success(.none), file: file, line: line)
     }
     
-//    func assertThatRetrieveHasNoSideEffectsOnEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
-//        expect(sut, toRetrieveTwice: .success(.none), file: file, line: line)
-//    }
-//
+    func assertThatRetrieveHasNoSideEffectsOnEmptyCache<R: ResourceStore>(on sut: R, file: StaticString = #file, line: UInt = #line) {
+        expect(sut, toRetrieveTwice: .success(.none), file: file, line: line)
+    }
+
 //    func assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
 //        let feed = uniqueImageFeed().local
 //        let timestamp = Date()
@@ -129,11 +129,11 @@ extension ResourceStoreSpecs where Self: XCTestCase {
 //        wait(for: [exp], timeout: 3.0)
 //        return deletionError
 //    }
-//
-//    func expect(_ sut: FeedStore, toRetrieveTwice expectedResult: FeedStore.RetrievalResult, file: StaticString = #file, line: UInt = #line) {
-//        expect(sut, toRetrieve: expectedResult, file: file, line: line)
-//        expect(sut, toRetrieve: expectedResult, file: file, line: line)
-//    }
+
+    func expect<R: ResourceStore>(_ sut: R, toRetrieveTwice expectedResult: R.RetrievalResult, file: StaticString = #file, line: UInt = #line) {
+        expect(sut, toRetrieve: expectedResult, file: file, line: line)
+        expect(sut, toRetrieve: expectedResult, file: file, line: line)
+    }
     
     func expect<R: ResourceStore>(_ sut: R, toRetrieve expectedResult: R.RetrievalResult, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for cache retrieval")
