@@ -55,7 +55,7 @@ final class KatsanaServicesFactoryTests: XCTestCase {
         let url = URL(string: "https://anyurl.com/")!
         let client = HTTPClientSpy()
         
-        let factory = KatsanaServiceFactory(baseURL: url, client: client)
+        let factory = KatsanaServiceFactory(baseURL: url, baseStoreURL: url, client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(factory, file: file, line: line)

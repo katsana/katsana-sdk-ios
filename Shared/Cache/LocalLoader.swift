@@ -12,7 +12,7 @@ public enum LocalLoaderError: Swift.Error{
     case notFound
 }
 
-public final class LocalLoader<Resource, S: ResourceStore>: ResourceLoader where Resource: Equatable, Resource == S.Resource{
+public final class LocalLoader<Resource, S: ResourceStore>: ResourceLoader where Resource: Equatable, S.Resource == Resource{
     private let store: S
     private let currentDate: () -> Date
     
