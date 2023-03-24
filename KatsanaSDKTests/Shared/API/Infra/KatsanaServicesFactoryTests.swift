@@ -64,7 +64,7 @@ final class KatsanaServicesFactoryTests: XCTestCase {
     }
     
     
-    private func expect<Resource>(_ sut: RemoteLoader<Resource>, toCompleteWith expectedResult: RemoteLoader<Resource>.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) where Resource: Equatable {
+    private func expect<Resource>(_ sut: RemoteLoader<Resource>, toCompleteWith expectedResult: Result<Resource, Error>, when action: () -> Void, file: StaticString = #file, line: UInt = #line) where Resource: Equatable {
         let exp = expectation(description: "Wait for load completion")
 
         sut.load { receivedResult in

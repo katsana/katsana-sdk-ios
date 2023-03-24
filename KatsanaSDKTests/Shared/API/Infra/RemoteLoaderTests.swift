@@ -89,7 +89,7 @@ class RemoteLoaderTests: XCTestCase {
         let client = HTTPClientSpy()
         var sut: RemoteLoader<String>? = RemoteLoader<String>(url: url, client: client, mapper: { _, _ in "any" })
         
-        var capturedResults = [RemoteLoader<String>.Result]()
+        var capturedResults = [RemoteLoader<String>.LoadResult]()
         sut?.load { capturedResults.append($0) }
 
         sut = nil
@@ -113,7 +113,7 @@ class RemoteLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    private func failure(_ error: RemoteLoader<String>.Error) -> RemoteLoader<String>.Result {
+    private func failure(_ error: RemoteLoader<String>.Error) -> RemoteLoader<String>.LoadResult {
         return .failure(error)
     }
     
@@ -122,7 +122,7 @@ class RemoteLoaderTests: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
-    private func expect(_ sut: RemoteLoader<String>, toCompleteWith expectedResult: RemoteLoader<String>.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: RemoteLoader<String>, toCompleteWith expectedResult: RemoteLoader<String>.LoadResult, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for load completion")
         
         sut.load { receivedResult in

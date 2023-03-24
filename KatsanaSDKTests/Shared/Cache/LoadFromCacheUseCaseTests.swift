@@ -37,7 +37,7 @@ class LoadFromCacheUseCaseTests: XCTestCase {
     func test_load_deliversNoResourceOnEmptyCache() {
         let (sut, store) = makeSUT()
 
-        expect(sut, toCompleteWith: .success(nil), when: {
+        expect(sut, toCompleteWith: .failure(LocalLoaderError.notFound), when: {
             store.completeRetrievalWithEmptyCache()
         })
     }
@@ -59,7 +59,7 @@ class LoadFromCacheUseCaseTests: XCTestCase {
         let expirationTimestamp = fixedCurrentDate.minusResourceCacheMaxAge()
         let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
 
-        expect(sut, toCompleteWith: .success(nil), when: {
+        expect(sut, toCompleteWith: .failure(LocalLoaderError.notFound), when: {
             store.completeRetrieval(with: resource, timestamp: expirationTimestamp)
         })
     }
@@ -70,7 +70,7 @@ class LoadFromCacheUseCaseTests: XCTestCase {
         let expirationTimestamp = fixedCurrentDate.minusResourceCacheMaxAge().adding(seconds: -1)
         let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
 
-        expect(sut, toCompleteWith: .success(nil), when: {
+        expect(sut, toCompleteWith: .failure(LocalLoaderError.notFound), when: {
             store.completeRetrieval(with: resource, timestamp: expirationTimestamp)
         })
     }

@@ -31,7 +31,6 @@ public class RemoteLoader<Resource>: ResourceLoader {
         case invalidHTTPResponse(HTTPResponseError)
     }
     
-    public typealias Result = Swift.Result<Resource, Swift.Error>
     public typealias Mapper = (Data, HTTPURLResponse) throws -> Resource
     
     public init(url: URL, client: HTTPClient, mapper: @escaping Mapper) {
@@ -40,7 +39,7 @@ public class RemoteLoader<Resource>: ResourceLoader {
         self.mapper = mapper
     }
     
-    public func load(completion: @escaping (Result) -> Void) {
+    public func load(completion: @escaping (LoadResult) -> Void) {
         client.send(URLRequest(url: url)) {[weak self] result in
             guard let self = self else {return}
             
@@ -58,7 +57,7 @@ public class RemoteLoader<Resource>: ResourceLoader {
         }
     }
 
-    private func map(_ data: Data, from response: HTTPURLResponse) -> Result {
+    private func map(_ data: Data, from response: HTTPURLResponse) -> LoadResult {
         do {
             return .success(try mapper(data,response))
         } catch {

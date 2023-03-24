@@ -8,16 +8,18 @@
 
 import Foundation
 
-public final class LocalLoader<Resource, ResourceStoreType: ResourceStore>: ResourceLoader where Resource: Equatable, Resource == ResourceStoreType.Resource{
-    private let store: ResourceStoreType
-    private let currentDate: () -> Date
+public enum LocalLoaderError: Swift.Error{
+    case notFound
+}
 
-    public init(store: ResourceStoreType, currentDate: @escaping () -> Date) {
+public final class LocalLoader<Resource, S: ResourceStore>: ResourceLoader where Resource: Equatable, Resource == S.Resource{
+    private let store: S
+    private let currentDate: () -> Date
+    
+    public init(store: S, currentDate: @escaping () -> Date) {
         self.store = store
         self.currentDate = currentDate
     }
-    
-    public typealias LoadResult = Swift.Result<Resource?, Error>
 
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in
@@ -29,7 +31,7 @@ public final class LocalLoader<Resource, ResourceStoreType: ResourceStore>: Reso
             case let .success(.some(cache)) where ResourceCachePolicy.validate(cache.timestamp, against: self.currentDate()):
                 completion(.success(cache.resource))
             case .success:
-                completion(.success(nil))
+                completion(.failure(LocalLoaderError.notFound))
             }
         }
     }
