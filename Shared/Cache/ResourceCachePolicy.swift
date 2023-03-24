@@ -8,19 +8,28 @@
 
 import Foundation
 
-final class ResourceCachePolicy {
-    private init() {}
+public final class ResourceCachePolicy {
 
-    private static let calendar = Calendar(identifier: .gregorian)
+    private let calendar = Calendar(identifier: .gregorian)
 
     private static var maxCacheAgeInDays: Int {
         return 7
     }
+    
+    private let maxCacheAgeInSeconds: () -> Int
+    
+    public init(maxCacheAgeInSeconds: @escaping () -> Int){
+        self.maxCacheAgeInSeconds = maxCacheAgeInSeconds
+    }
 
-    static func validate(_ timestamp: Date, against date: Date) -> Bool {
-        guard let maxCacheAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to: timestamp) else {
+    func validate(_ timestamp: Date, against date: Date) -> Bool {
+        guard let maxCacheAge = calendar.date(byAdding: .second, value: maxCacheAgeInSeconds(), to: timestamp) else {
             return false
         }
         return date < maxCacheAge
+    }
+    
+    public static var defaultPolicy: ResourceCachePolicy{
+        ResourceCachePolicy(maxCacheAgeInSeconds: {maxCacheAgeInDays*24*60*60})
     }
 }

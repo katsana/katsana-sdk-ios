@@ -14,11 +14,13 @@ public enum LocalLoaderError: Swift.Error{
 
 public final class LocalLoader<Resource, S: ResourceStore>: ResourceLoader where Resource: Equatable, S.Resource == Resource{
     private let store: S
+    private let cachePolicy: ResourceCachePolicy
     private let currentDate: () -> Date
     
-    public init(store: S, currentDate: @escaping () -> Date) {
+    public init(store: S, cachePolicy: ResourceCachePolicy = .defaultPolicy, currentDate: @escaping () -> Date) {
         self.store = store
         self.currentDate = currentDate
+        self.cachePolicy = cachePolicy
     }
 
     public func load(completion: @escaping (LoadResult) -> Void) {
@@ -28,7 +30,7 @@ public final class LocalLoader<Resource, S: ResourceStore>: ResourceLoader where
             switch result {
             case let .failure(error):
                 completion(.failure(error))
-            case let .success(.some(cache)) where ResourceCachePolicy.validate(cache.timestamp, against: self.currentDate()):
+            case let .success(.some(cache)) where self.cachePolicy.validate(cache.timestamp, against: self.currentDate()):
                 completion(.success(cache.resource))
             case .success:
                 completion(.failure(LocalLoaderError.notFound))
@@ -73,7 +75,7 @@ extension LocalLoader {
             case .failure:
                 self.store.deleteCachedResource(completion: completion)
                 
-            case let .success(.some(cache)) where !ResourceCachePolicy.validate(cache.timestamp, against: self.currentDate()):
+            case let .success(.some(cache)) where !self.cachePolicy.validate(cache.timestamp, against: self.currentDate()):
                 self.store.deleteCachedResource(completion: completion)
                 
             case .success:
