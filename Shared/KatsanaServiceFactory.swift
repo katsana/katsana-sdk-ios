@@ -35,10 +35,12 @@ open class KatsanaServiceFactory{
         return RemoteLoader(url: url, client: client, mapper: VehiclesMapper.map)
     }
     
-    public func makeLocalLoader<Resource>(_ type: Resource.Type, maxCacheAgeInSeconds: Float) -> LocalLoader<Resource, CodableResourceStore<Resource>>{
+    public func makeLocalLoader<Resource>(_ type: Resource.Type, maxCacheAgeInSeconds: Int) -> LocalLoader<Resource, CodableResourceStore<Resource>>{
         let classname = String(describing: Resource.self)
         let url = baseStoreURL.appendingPathComponent(classname + ".store")
-        let loader = LocalLoader(store: CodableResourceStore<Resource>(storeURL: url), currentDate: Date.init)
+        
+        let policy = ResourceCachePolicy { maxCacheAgeInSeconds }
+        let loader = LocalLoader(store: CodableResourceStore<Resource>(storeURL: url), cachePolicy: policy, currentDate: Date.init)
         return loader
     }
     
