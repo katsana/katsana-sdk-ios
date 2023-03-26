@@ -8,9 +8,9 @@
 
 import Foundation
 
-open class KatsanaServiceFactory{
+public class KatsanaServiceFactory{
     let baseURL: URL
-    let baseStoreURL: URL
+    public let baseStoreURL: URL
     let client: HTTPClient
     
     public init(baseURL: URL, baseStoreURL: URL, client: HTTPClient) {
@@ -35,13 +35,20 @@ open class KatsanaServiceFactory{
         return RemoteLoader(url: url, client: client, mapper: VehiclesMapper.map)
     }
     
-    public func makeLocalLoader<Resource>(_ type: Resource.Type, maxCacheAgeInSeconds: Int) -> LocalLoader<Resource, CodableResourceStore<Resource>>{
+    public func makeLocalLoader<Resource>(_ type: Resource.Type, maxCacheAgeInSeconds: Int) -> AnyLocalLoader<Resource> where Resource: Codable, Resource: Equatable{
         let classname = String(describing: Resource.self)
         let url = baseStoreURL.appendingPathComponent(classname + ".store")
+        let store = CodableResourceStore<Resource>(storeURL: url)
+        return makeLocalLoader(type, maxCacheAgeInSeconds: maxCacheAgeInSeconds, store: {store})
+    }
+    
+    public func makeLocalLoader<Resource, S: ResourceStore>(_ type: Resource.Type, maxCacheAgeInSeconds: Int, store: ()->S) -> AnyLocalLoader<Resource> where S.Resource == Resource{
+
+        let theStore = store()
         
         let policy = ResourceCachePolicy { maxCacheAgeInSeconds }
-        let loader = LocalLoader(store: CodableResourceStore<Resource>(storeURL: url), cachePolicy: policy, currentDate: Date.init)
-        return loader
+        let loader = LocalLoader(store: theStore, cachePolicy: policy, currentDate: Date.init)
+        return AnyLocalLoader(wrappedLoader: loader)
     }
     
 }

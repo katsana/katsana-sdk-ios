@@ -29,6 +29,7 @@
 		C11FECF529CC1826003914DC /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B1C29BFECCC009C8795 /* XCTestCase+MemoryLeak.swift */; };
 		C11FECFD29CC271B003914DC /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECFC29CC271B003914DC /* ResourceLoader.swift */; };
 		C11FECFF29CC2808003914DC /* ResourceCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECFE29CC2808003914DC /* ResourceCache.swift */; };
+		C11FED0929D0295F003914DC /* AnyLocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0829D0295F003914DC /* AnyLocalLoader.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
@@ -175,6 +176,7 @@
 		C11FECED29CC172C003914DC /* KatsanaSDKCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKCacheIntegrationTests.swift; sourceTree = "<group>"; };
 		C11FECFC29CC271B003914DC /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		C11FECFE29CC2808003914DC /* ResourceCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCache.swift; sourceTree = "<group>"; };
+		C11FED0829D0295F003914DC /* AnyLocalLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyLocalLoader.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				C11FECC229CBC07A003914DC /* ResourceStore.swift */,
 				C11FECC429CBC0B4003914DC /* ResourceCachePolicy.swift */,
 				C11FECC629CBC0DE003914DC /* LocalLoader.swift */,
+				C11FED0829D0295F003914DC /* AnyLocalLoader.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -950,6 +953,7 @@
 				C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */,
 				C71917A61E48703B0041BC18 /* VehicleLocation.swift in Sources */,
 				C11FECE129CC0AFA003914DC /* CodableResourceStore.swift in Sources */,
+				C11FED0929D0295F003914DC /* AnyLocalLoader.swift in Sources */,
 				C1FAE6FB29C0592E001D3D86 /* UserMapper.swift in Sources */,
 				C71917821E48703B0041BC18 /* KatsanaAPI+Login.swift in Sources */,
 				C71917CB1E4884410041BC18 /* DateHelper.swift in Sources */,

@@ -10,7 +10,7 @@ import Foundation
 
 public protocol ResourceCache {
     associatedtype SaveResource
-    typealias SaveResult = Result<Void, Error>
+    typealias SaveResult = Swift.Result<Void, Error>
 
     func save(_ resource: SaveResource, completion: @escaping (SaveResult) -> Void)
 }

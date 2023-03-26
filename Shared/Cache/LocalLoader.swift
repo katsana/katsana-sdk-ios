@@ -13,6 +13,8 @@ public enum LocalLoaderError: Swift.Error{
 }
 
 public final class LocalLoader<Resource, S: ResourceStore>: ResourceLoader where Resource: Equatable, S.Resource == Resource{
+    public typealias LoadResource = Resource
+    
     private let store: S
     private let cachePolicy: ResourceCachePolicy
     private let currentDate: () -> Date

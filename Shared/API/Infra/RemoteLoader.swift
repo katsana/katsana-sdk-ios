@@ -21,6 +21,8 @@ public struct HTTPResponseError: Error, Equatable{
 }
 
 public class RemoteLoader<Resource>: ResourceLoader {
+    public typealias LoadResource = Resource
+    
     private let client: HTTPClient
     private let url: URL
     private let mapper: Mapper

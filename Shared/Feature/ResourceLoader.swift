@@ -9,17 +9,19 @@
 import Foundation
 
 public protocol ResourceLoader{
-    associatedtype Resource
-    typealias LoadResult = Swift.Result<Resource, Swift.Error>
+    associatedtype LoadResource
+    typealias LoadResult = Result<LoadResource, Swift.Error>
     
     func load(completion: @escaping (LoadResult) -> Void)
     
 }
 
 public class AnyResourceLoader<Resource>: ResourceLoader {
+    public typealias LoadResource = Resource
+    
     private let loaderObject:  (@escaping (Result<Resource, any Error>) -> Void) -> ()
 
-    public init<L: ResourceLoader>(wrappedLoader: L) where L.Resource == Resource {
+    public init<L: ResourceLoader>(wrappedLoader: L) where L.LoadResource == Resource {
         self.loaderObject = wrappedLoader.load
     }
     
