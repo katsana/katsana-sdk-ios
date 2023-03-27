@@ -30,6 +30,8 @@
 		C11FECFD29CC271B003914DC /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECFC29CC271B003914DC /* ResourceLoader.swift */; };
 		C11FECFF29CC2808003914DC /* ResourceCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECFE29CC2808003914DC /* ResourceCache.swift */; };
 		C11FED0929D0295F003914DC /* AnyLocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0829D0295F003914DC /* AnyLocalLoader.swift */; };
+		C11FED0B29D032C4003914DC /* AnyResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0A29D032C4003914DC /* AnyResourceStore.swift */; };
+		C11FED0D29D0FAAA003914DC /* ResourceStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0C29D0FAAA003914DC /* ResourceStoreManager.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
@@ -177,6 +179,8 @@
 		C11FECFC29CC271B003914DC /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		C11FECFE29CC2808003914DC /* ResourceCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCache.swift; sourceTree = "<group>"; };
 		C11FED0829D0295F003914DC /* AnyLocalLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyLocalLoader.swift; sourceTree = "<group>"; };
+		C11FED0A29D032C4003914DC /* AnyResourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyResourceStore.swift; sourceTree = "<group>"; };
+		C11FED0C29D0FAAA003914DC /* ResourceStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceStoreManager.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
@@ -341,6 +345,8 @@
 				C11FECC429CBC0B4003914DC /* ResourceCachePolicy.swift */,
 				C11FECC629CBC0DE003914DC /* LocalLoader.swift */,
 				C11FED0829D0295F003914DC /* AnyLocalLoader.swift */,
+				C11FED0A29D032C4003914DC /* AnyResourceStore.swift */,
+				C11FED0C29D0FAAA003914DC /* ResourceStoreManager.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -937,6 +943,7 @@
 				C11FECFD29CC271B003914DC /* ResourceLoader.swift in Sources */,
 				C1FAE74B29C2D63D001D3D86 /* VehicleEndpoint.swift in Sources */,
 				C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */,
+				C11FED0D29D0FAAA003914DC /* ResourceStoreManager.swift in Sources */,
 				C1FAE71129C16A36001D3D86 /* URL+QueryItems.swift in Sources */,
 				C719179C1E48703B0041BC18 /* Travel.swift in Sources */,
 				C1FAE74829C2C514001D3D86 /* VehicleMapper.swift in Sources */,
@@ -980,6 +987,7 @@
 				C11FECC729CBC0DE003914DC /* LocalLoader.swift in Sources */,
 				C1FAE6FE29C059D4001D3D86 /* HTTPURLResponse+StatusCode.swift in Sources */,
 				C71917761E48703B0041BC18 /* UIImage+Extension.swift in Sources */,
+				C11FED0B29D032C4003914DC /* AnyResourceStore.swift in Sources */,
 				C11FECC329CBC07A003914DC /* ResourceStore.swift in Sources */,
 				C11FECFF29CC2808003914DC /* ResourceCache.swift in Sources */,
 				C1FAE73129C19916001D3D86 /* TokenService.swift in Sources */,

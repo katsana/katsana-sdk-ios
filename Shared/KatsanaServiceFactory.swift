@@ -8,15 +8,18 @@
 
 import Foundation
 
-public class KatsanaServiceFactory{
+
+open class KatsanaServiceFactory{
     let baseURL: URL
     public let baseStoreURL: URL
     let client: HTTPClient
+    let storeManager: ResourceStoreManager
     
-    public init(baseURL: URL, baseStoreURL: URL, client: HTTPClient) {
+    public init(baseURL: URL, baseStoreURL: URL, client: HTTPClient, storeManager: ResourceStoreManager) {
         self.baseURL = baseURL
         self.baseStoreURL = baseStoreURL
         self.client = client
+        self.storeManager = storeManager
     }
     
     public func makeUserProfileLoader(includes params: [String]? = nil) -> RemoteLoader<KTUser>{
@@ -35,14 +38,12 @@ public class KatsanaServiceFactory{
         return RemoteLoader(url: url, client: client, mapper: VehiclesMapper.map)
     }
     
-    public func makeLocalLoader<Resource>(_ type: Resource.Type, maxCacheAgeInSeconds: Int) -> AnyLocalLoader<Resource> where Resource: Codable, Resource: Equatable{
-        let classname = String(describing: Resource.self)
-        let url = baseStoreURL.appendingPathComponent(classname + ".store")
-        let store = CodableResourceStore<Resource>(storeURL: url)
+    public func makeLocalLoader<Resource>(_ type: Resource.Type, maxCacheAgeInSeconds: Int) -> AnyLocalLoader<Resource> where Resource: Equatable, Resource: Codable{
+        let store = storeManager.delegate.makeStore(type)
         return makeLocalLoader(type, maxCacheAgeInSeconds: maxCacheAgeInSeconds, store: {store})
     }
     
-    public func makeLocalLoader<Resource, S: ResourceStore>(_ type: Resource.Type, maxCacheAgeInSeconds: Int, store: ()->S) -> AnyLocalLoader<Resource> where S.Resource == Resource{
+    private func makeLocalLoader<Resource, S: ResourceStore>(_ type: Resource.Type, maxCacheAgeInSeconds: Int, store: ()->S) -> AnyLocalLoader<Resource> where S.Resource == Resource{
 
         let theStore = store()
         
