@@ -39,7 +39,7 @@ open class KatsanaServiceFactory{
     }
     
     public func makeLocalLoader<Resource>(_ type: Resource.Type, maxCacheAgeInSeconds: Int) -> AnyLocalLoader<Resource> where Resource: Equatable, Resource: Codable{
-        let store = storeManager.delegate.makeStore(type)
+        let store = storeManager.getStore(type: type)
         return makeLocalLoader(type, maxCacheAgeInSeconds: maxCacheAgeInSeconds, store: {store})
     }
     

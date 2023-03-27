@@ -14,13 +14,13 @@ public protocol ResourceStoreManagerDelegate{
 
 public class ResourceStoreManager{
     private var stores = [Any]()
-    public var delegate: ResourceStoreManagerDelegate
+    private let delegate: ResourceStoreManagerDelegate
     
     public init(delegate: ResourceStoreManagerDelegate) {
         self.delegate = delegate
     }
     
-    private func getStore<R>(type: R.Type) -> AnyResourceStore<R> where R: Equatable, R: Codable{
+    public func getStore<R>(type: R.Type) -> AnyResourceStore<R> where R: Equatable, R: Codable{
         var store: Any?
         for aStore in stores{
             if let aStore = aStore as? AnyResourceStore<R>{
