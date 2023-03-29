@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Combine
 
 open class KatsanaServiceFactory{
     let baseURL: URL
@@ -53,3 +53,43 @@ open class KatsanaServiceFactory{
     }
     
 }
+
+extension KatsanaServiceFactory{
+    public func makePublisher<Resource>(
+        request:URLRequest,
+        includes params: [String]? = nil,
+        maxCacheAgeInSeconds: Int = 60,
+        mapper: @escaping (Data, HTTPURLResponse) throws -> Resource)
+    -> AnyPublisher<Resource, Error> where Resource: Equatable, Resource: Codable{
+        let localLoader = makeLocalLoader(Resource.self, maxCacheAgeInSeconds: maxCacheAgeInSeconds)
+        let client = self.client
+        
+        return localLoader
+            .loadPublisher()
+            .fallback(to: {
+                return client
+                    .getPublisher(urlRequest: request)
+                    .tryMap(mapper)
+                    .caching(to: localLoader)
+            })
+    }
+    
+    public func makeVehiclesLoaderPublisher(includes params: [String]? = nil) -> AnyPublisher<[KTVehicle], Error>{
+        let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
+        return makePublisher(request: URLRequest(url: url), mapper: VehiclesMapper.map)
+    
+//        return client
+//            .getPublisher(urlRequest: URLRequest(url: url))
+//            .tryMap(VehiclesMapper.map)
+//            .caching(to: localLoader)
+//            .fallback(to: localLoader.loadPublisher)
+//            .eraseToAnyPublisher()
+
+    }
+    
+    public func makeUserLoaderPublisher(includes params: [String]? = nil) -> AnyPublisher<KTUser, Error>{
+        let url = UserProfileEndpoint.get(includes: params).url(baseURL: baseURL)
+        return makePublisher(request: URLRequest(url: url), mapper: UserMapper.map)
+    }
+}
+

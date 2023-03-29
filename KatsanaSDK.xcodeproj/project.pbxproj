@@ -32,6 +32,7 @@
 		C11FED0929D0295F003914DC /* AnyLocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0829D0295F003914DC /* AnyLocalLoader.swift */; };
 		C11FED0B29D032C4003914DC /* AnyResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0A29D032C4003914DC /* AnyResourceStore.swift */; };
 		C11FED0D29D0FAAA003914DC /* ResourceStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0C29D0FAAA003914DC /* ResourceStoreManager.swift */; };
+		C1515A0229D3DAD200473156 /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1515A0129D3DAD200473156 /* CombineHelpers.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
@@ -181,6 +182,7 @@
 		C11FED0829D0295F003914DC /* AnyLocalLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyLocalLoader.swift; sourceTree = "<group>"; };
 		C11FED0A29D032C4003914DC /* AnyResourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyResourceStore.swift; sourceTree = "<group>"; };
 		C11FED0C29D0FAAA003914DC /* ResourceStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceStoreManager.swift; sourceTree = "<group>"; };
+		C1515A0129D3DAD200473156 /* CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineHelpers.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
@@ -554,6 +556,7 @@
 				C719174D1E48703B0041BC18 /* JSON+Date.swift */,
 				C719174E1E48703B0041BC18 /* String+Date.swift */,
 				C719174F1E48703B0041BC18 /* UIImage+Extension.swift */,
+				C1515A0129D3DAD200473156 /* CombineHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -971,6 +974,7 @@
 				C71917981E48703B0041BC18 /* LiveShare.swift in Sources */,
 				C719177E1E48703B0041BC18 /* KatsanaAPI+Address.swift in Sources */,
 				C1F540B225256AB700525603 /* KTVehicle.swift in Sources */,
+				C1515A0229D3DAD200473156 /* CombineHelpers.swift in Sources */,
 				C719177A1E48703B0041BC18 /* APIError.swift in Sources */,
 				C719178C1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift in Sources */,
 				C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */,
@@ -1319,7 +1323,7 @@
 				GCC_PREFIX_HEADER = KatsanaSDK/iOS/PrefixHeader.pch;
 				GENERATE_INFOPLIST_FILE = YES;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1359,7 +1363,7 @@
 				GCC_PREFIX_HEADER = KatsanaSDK/iOS/PrefixHeader.pch;
 				GENERATE_INFOPLIST_FILE = YES;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
