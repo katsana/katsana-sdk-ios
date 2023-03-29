@@ -74,7 +74,7 @@ extension KatsanaServiceFactory{
             })
     }
     
-    public func makeVehiclesLoaderPublisher(includes params: [String]? = nil) -> AnyPublisher<[KTVehicle], Error>{
+    public func makeVehiclesPublisher(includes params: [String]? = nil) -> AnyPublisher<[KTVehicle], Error>{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
         return makePublisher(request: URLRequest(url: url), mapper: VehiclesMapper.map)
     
@@ -87,7 +87,7 @@ extension KatsanaServiceFactory{
 
     }
     
-    public func makeUserLoaderPublisher(includes params: [String]? = nil) -> AnyPublisher<KTUser, Error>{
+    public func makeUserPublisher(includes params: [String]? = nil) -> AnyPublisher<KTUser, Error>{
         let url = UserProfileEndpoint.get(includes: params).url(baseURL: baseURL)
         return makePublisher(request: URLRequest(url: url), mapper: UserMapper.map)
     }
