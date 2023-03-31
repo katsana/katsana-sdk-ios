@@ -10,6 +10,11 @@ import Foundation
 public struct TemperatureSensor: Codable, Equatable{
     public let value: Float
     public let status: String?
+    
+    public init(value: Float, status: String?) {
+        self.value = value
+        self.status = status
+    }
 }
 
 public struct FuelSensor: Codable, Equatable{
@@ -17,6 +22,13 @@ public struct FuelSensor: Codable, Equatable{
     public let percentage: Float
     public let capacity: Float
     public let status: String?
+    
+    public init(litre: Float, percentage: Float, capacity: Float, status: String?) {
+        self.litre = litre
+        self.percentage = percentage
+        self.capacity = capacity
+        self.status = status
+    }
 }
 
 public class KTVehicle: Codable {

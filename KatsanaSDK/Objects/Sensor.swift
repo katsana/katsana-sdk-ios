@@ -20,7 +20,7 @@ public class Sensor: Codable {
     public let event: String
     public let deviceType: String
     
-    init(input: Int, name: String, sensorType: SensorType, event: String, deviceType: String) {
+    public init(input: Int, name: String, sensorType: SensorType, event: String, deviceType: String) {
         self.input = input
         self.name = name
         self.sensorType = sensorType
