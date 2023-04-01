@@ -32,6 +32,7 @@
 		C11FED0929D0295F003914DC /* AnyLocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0829D0295F003914DC /* AnyLocalLoader.swift */; };
 		C11FED0B29D032C4003914DC /* AnyResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0A29D032C4003914DC /* AnyResourceStore.swift */; };
 		C11FED0D29D0FAAA003914DC /* ResourceStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0C29D0FAAA003914DC /* ResourceStoreManager.swift */; };
+		C145A5B629D8ECED00E3FC6E /* AppleReverseGeoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C145A5B529D8ECED00E3FC6E /* AppleReverseGeoStore.swift */; };
 		C1515A0229D3DAD200473156 /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1515A0129D3DAD200473156 /* CombineHelpers.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
@@ -182,6 +183,7 @@
 		C11FED0829D0295F003914DC /* AnyLocalLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyLocalLoader.swift; sourceTree = "<group>"; };
 		C11FED0A29D032C4003914DC /* AnyResourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyResourceStore.swift; sourceTree = "<group>"; };
 		C11FED0C29D0FAAA003914DC /* ResourceStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceStoreManager.swift; sourceTree = "<group>"; };
+		C145A5B529D8ECED00E3FC6E /* AppleReverseGeoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleReverseGeoStore.swift; sourceTree = "<group>"; };
 		C1515A0129D3DAD200473156 /* CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineHelpers.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				C11FECE029CC0AFA003914DC /* CodableResourceStore.swift */,
+				C145A5B529D8ECED00E3FC6E /* AppleReverseGeoStore.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -477,6 +480,13 @@
 				C11FECFE29CC2808003914DC /* ResourceCache.swift */,
 			);
 			path = Feature;
+			sourceTree = "<group>";
+		};
+		C145A5B429D8ECA800E3FC6E /* Address */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Address;
 			sourceTree = "<group>";
 		};
 		C1751B1329BFEC70009C8795 /* Infra */ = {
@@ -539,6 +549,7 @@
 			children = (
 				C11FECFB29CC2711003914DC /* Feature */,
 				C1FAE70F29C169F7001D3D86 /* Helpers */,
+				C145A5B429D8ECA800E3FC6E /* Address */,
 				C11FECAE29CADE9B003914DC /* Cache */,
 				C11FECB229CAE200003914DC /* API */,
 				C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */,
@@ -994,6 +1005,7 @@
 				C11FED0B29D032C4003914DC /* AnyResourceStore.swift in Sources */,
 				C11FECC329CBC07A003914DC /* ResourceStore.swift in Sources */,
 				C11FECFF29CC2808003914DC /* ResourceCache.swift in Sources */,
+				C145A5B629D8ECED00E3FC6E /* AppleReverseGeoStore.swift in Sources */,
 				C1FAE73129C19916001D3D86 /* TokenService.swift in Sources */,
 				C7331298207B1EC800541BE8 /* VehicleSubscription.swift in Sources */,
 				C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */,

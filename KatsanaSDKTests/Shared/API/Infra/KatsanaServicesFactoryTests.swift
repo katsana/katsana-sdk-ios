@@ -9,7 +9,7 @@
 import XCTest
 import KatsanaSDK
 
-final class KatsanaServicesFactoryTests: XCTestCase {
+final class KatsanaServicesFactoryTests: XCTestCase, ResourceStoreManagerDelegate {    
 
     func test_loadUserProfile_deliverUserProfile() throws {
         
@@ -55,7 +55,8 @@ final class KatsanaServicesFactoryTests: XCTestCase {
         let url = URL(string: "https://anyurl.com/")!
         let client = HTTPClientSpy()
         
-        let factory = KatsanaServiceFactory(baseURL: url, baseStoreURL: url, client: client)
+        let storeManager = ResourceStoreManager(delegate: self)
+        let factory = KatsanaServiceFactory(baseURL: url, baseStoreURL: url, client: client, storeManager: storeManager)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(factory, file: file, line: line)
@@ -90,7 +91,20 @@ final class KatsanaServicesFactoryTests: XCTestCase {
     func anyEmail() -> String{
         return "any@email.com"
     }
+    
+    func makeStore<Resource, S>(_ type: Resource.Type) -> KatsanaSDK.AnyResourceStore<Resource> where Resource : Decodable, Resource : Encodable, Resource : Equatable, S : KatsanaSDK.AnyResourceStore<Resource> {
+        let classname = String(describing: Resource.self)
+        let url = localStoreURL.appendingPathComponent("tests_" + classname + ".store")
+        let store = CodableResourceStore<Resource>(storeURL: url)
+        let anyStore = AnyResourceStore(store)
+        return anyStore
+    }
 
+    private lazy var localStoreURL: URL = {
+        let arrayPaths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+        let cacheDirectoryPath = arrayPaths[0]
+        return cacheDirectoryPath
+    }()
 }
 
 //class KatsanaServicesSpy: KatsanaServices{
