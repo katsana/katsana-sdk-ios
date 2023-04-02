@@ -16,6 +16,8 @@ import Contacts
 class AppleReverseGeocodingClient: ReverseGeocodingClient{
     let geocoder: CLGeocoder
     
+    public struct UnexpectedValuesRepresentation: Error {}
+    
     init(geocoder: CLGeocoder = CLGeocoder()){
         self.geocoder = geocoder
     }
@@ -31,8 +33,10 @@ class AppleReverseGeocodingClient: ReverseGeocodingClient{
                     completion(.failure(error))
                 }
             }
-            if let error{
+            else if let error{
                 completion(.failure(error))
+            }else{
+                completion(.failure(UnexpectedValuesRepresentation()))
             }
         }
     }
@@ -56,7 +60,6 @@ class AppleReverseGeocodingClientTests: XCTestCase {
         }
     }
 
-
     func test_getAddresss_succeedsOnRequestSuccess() {
         let (sut, spy) = makeSUT()
         
@@ -66,6 +69,14 @@ class AppleReverseGeocodingClientTests: XCTestCase {
 
         expect(sut, coordinate: anyCoordinate(), toCompleteWith: .success(address(with: anyLocation()))) {
             spy.completeRequest(with: placemark)
+        }
+    }
+    
+    func test_getAddresss_failsOnInvalidRepresentationCases() {
+        let (sut, spy) = makeSUT()
+
+        expect(sut, coordinate: anyCoordinate(), toCompleteWith: .failure(AppleReverseGeocodingClient.UnexpectedValuesRepresentation())) {
+            spy.completeRequest(with: (nil, nil))
         }
     }
     
