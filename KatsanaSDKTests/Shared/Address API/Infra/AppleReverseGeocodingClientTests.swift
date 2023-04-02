@@ -9,6 +9,9 @@
 import XCTest
 import KatsanaSDK
 import CoreLocation
+import Intents
+import Contacts
+
 
 class AppleReverseGeocodingClient: ReverseGeocodingClient{
     let geocoder: CLGeocoder
@@ -18,8 +21,16 @@ class AppleReverseGeocodingClient: ReverseGeocodingClient{
     }
     
     func getAddress(_ coordinate: (latitude: Double, longitude: Double), completion: @escaping (Result<KTAddress, Error>) -> Void){
-        geocoder.reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)) { placemark, error in
-            completion(.failure(error!))
+        geocoder.reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)) { placemarks, error in
+            if let placemark = placemarks?.first{
+                if let location = placemark.location{
+                    let address = KTAddress(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                    completion(.success(address))
+                }
+            }
+            if let error{
+                completion(.failure(error))
+            }
         }
     }
 
@@ -41,29 +52,19 @@ class AppleReverseGeocodingClientTests: XCTestCase {
             spy.completeRequest(with: anyNSError())
         }
     }
-//
-//    func test_getFromURL_failsOnAllInvalidRepresentationCases() {
-//        XCTAssertNotNil(resultErrorFor((data: nil, response: nil, error: nil)))
-//        XCTAssertNotNil(resultErrorFor((data: nil, response: nonHTTPURLResponse(), error: nil)))
-//        XCTAssertNotNil(resultErrorFor((data: anyData(), response: nil, error: nil)))
-//        XCTAssertNotNil(resultErrorFor((data: anyData(), response: nil, error: anyNSError())))
-//        XCTAssertNotNil(resultErrorFor((data: nil, response: nonHTTPURLResponse(), error: anyNSError())))
-//        XCTAssertNotNil(resultErrorFor((data: nil, response: anyHTTPURLResponse(), error: anyNSError())))
-//        XCTAssertNotNil(resultErrorFor((data: anyData(), response: nonHTTPURLResponse(), error: anyNSError())))
-//        XCTAssertNotNil(resultErrorFor((data: anyData(), response: anyHTTPURLResponse(), error: anyNSError())))
-//        XCTAssertNotNil(resultErrorFor((data: anyData(), response: nonHTTPURLResponse(), error: nil)))
-//    }
-//
-//    func test_getFromURL_succeedsOnHTTPURLResponseWithData() {
-//        let data = anyData()
-//        let response = anyHTTPURLResponse()
-//
-//        let receivedValues = resultValuesFor((data: data, response: response, error: nil))
-//
-//        XCTAssertEqual(receivedValues?.data, data)
-//        XCTAssertEqual(receivedValues?.response.url, response.url)
-//        XCTAssertEqual(receivedValues?.response.statusCode, response.statusCode)
-//    }
+
+
+    func test_getAddresss_succeedsOnRequestSuccess() {
+        let (sut, spy) = makeSUT()
+        
+        let placemark = CLPlacemark(location: anyLocation(),
+                                     name: "any name",
+                                     postalAddress: nil)
+
+        expect(sut, coordinate: anyCoordinate(), toCompleteWith: .success(address(with: anyLocation()))) {
+            spy.completeRequest(with: placemark)
+        }
+    }
 //
 //    func test_getFromURL_succeedsWithEmptyDataOnHTTPURLResponseWithNilData() {
 //        let response = anyHTTPURLResponse()
@@ -107,6 +108,14 @@ class AppleReverseGeocodingClientTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
+    func anyLocation() -> CLLocation{
+        return CLLocation(latitude: anyCoordinate().latitude, longitude: anyCoordinate().longitude)
+    }
+    
+    func address(with location: CLLocation) -> KTAddress{
+        return KTAddress(latitude: anyLocation().coordinate.latitude, longitude: anyLocation().coordinate.longitude)
+    }
+    
 }
 
 class GeocoderStub: CLGeocoder{
@@ -122,5 +131,9 @@ class GeocoderStub: CLGeocoder{
     
     func completeRequest(with error: Error, at index: Int = 0) {
         requests[index](nil, error)
+    }
+    
+    func completeRequest(with placemark: CLPlacemark, at index: Int = 0) {
+        requests[index]([placemark], nil)
     }
 }

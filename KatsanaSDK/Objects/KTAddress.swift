@@ -30,7 +30,7 @@ open class KTAddress: Codable {
         self.longitude = 0
     }
     
-    init(latitude: Double, longitude: Double) {
+    public init(latitude: Double, longitude: Double) {
         self.latitude = latitude
         self.longitude = longitude
     }
