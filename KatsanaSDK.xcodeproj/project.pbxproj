@@ -382,7 +382,7 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		C11FECB129CAE1B4003914DC /* API */ = {
+		C11FECB129CAE1B4003914DC /* HTTP API */ = {
 			isa = PBXGroup;
 			children = (
 				C1751B1A29BFECCC009C8795 /* Helpers */,
@@ -390,7 +390,7 @@
 				C1FAE74129C2AB1A001D3D86 /* Vehicle API */,
 				C1FAE71229C1778A001D3D86 /* User API */,
 			);
-			path = API;
+			path = "HTTP API";
 			sourceTree = "<group>";
 		};
 		C11FECB229CAE200003914DC /* HTTP API */ = {
@@ -426,7 +426,7 @@
 			children = (
 				C11FECBC29CBBD64003914DC /* Helpers */,
 				C11FECAF29CADEA6003914DC /* Cache */,
-				C11FECB129CAE1B4003914DC /* API */,
+				C11FECB129CAE1B4003914DC /* HTTP API */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
