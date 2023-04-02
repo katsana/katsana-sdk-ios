@@ -17,7 +17,7 @@ open class KTAddress: Codable {
     open var locality: String?
     open var sublocality: String?
     open var subAdministrativeArea: String?
-    open var postcode: Int = -1
+    open var postcode: String?
     open var city: String!
     open var state: String!
     open var country: String!
@@ -74,9 +74,8 @@ open class KTAddress: Codable {
         if let sublocality = sublocality, sublocality.count > 0{
             components.append(sublocality)
         }
-        if postcode > 0{
-            let post = "\(postcode)"
-            components.append(post)
+        if let postcode{
+            components.append(postcode)
         }
         if let locality = locality, locality.count > 0{
             components.append(locality)

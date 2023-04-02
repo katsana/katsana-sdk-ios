@@ -102,27 +102,24 @@ class AddressRequest {
             if let error = error{
                 failure(error)
             }else{
-                if let dicto = placemarks?.first?.addressDictionary{
+                if let placemark = placemarks?.first{
                     let address = KTAddress()
                     address.latitude = location.latitude
                     address.longitude = location.longitude
-                    address.streetName = dicto["Street"] as? String
-                    let postcode = dicto["ZIP"] as? String
-                    if let postcode = postcode, let postcodeInt = Int(postcode){
-                        address.postcode = postcodeInt
-                    }
-                    address.country = dicto["Country"] as? String
-                    address.city = dicto["City"] as? String
-                    address.state = dicto["State"] as? String
-                    address.sublocality = dicto["SubLocality"] as? String
-                    address.locality = dicto["Locality"] as? String
-                    address.state = dicto["State"] as? String
-                    address.subAdministrativeArea = dicto["SubAdministrativeArea"] as? String
+                    address.streetName = placemark.thoroughfare
+                    address.postcode = placemark.postalCode
                     
-                    var addressComps = dicto["FormattedAddressLines"] as? [String]
-                    addressComps?.removeLast()
-                    let addressStr = addressComps?.joined(separator: ", ")
-                    address.address = addressStr
+                    address.country = placemark.country
+                    address.city = placemark.locality
+                    address.state = placemark.administrativeArea
+                    address.sublocality = placemark.subLocality
+                    address.locality = placemark.locality
+                    address.subAdministrativeArea = placemark.subAdministrativeArea
+                    
+//                    var addressComps = dicto["FormattedAddressLines"] as? [String]
+//                    addressComps?.removeLast()
+//                    let addressStr = addressComps?.joined(separator: ", ")
+//                    address.address = addressStr
                     completion(address)
                 }
                 

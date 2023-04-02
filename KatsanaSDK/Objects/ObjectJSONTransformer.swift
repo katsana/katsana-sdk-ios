@@ -216,7 +216,7 @@ class ObjectJSONTransformer {
         address.locality = json["locality"].stringValue
         address.city = json["locality"].stringValue
         address.sublocality = json["sublocality"].stringValue
-        address.postcode = json["postcode"].intValue
+        address.postcode = json["postcode"].stringValue
         address.country = json["country"].stringValue
         address.address = json["address"].stringValue
         return address
