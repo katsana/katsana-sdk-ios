@@ -62,6 +62,7 @@
 		C18A824528FD050A00C3FF7D /* KatsanaAPI+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */; };
 		C1A3E40B298A356100931529 /* Siesta in Frameworks */ = {isa = PBXBuildFile; productRef = C1A3E40A298A356100931529 /* Siesta */; };
 		C1DF2B4129D925C900596E70 /* CLPlaceMarkMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B4029D925C900596E70 /* CLPlaceMarkMapper.swift */; };
+		C1DF2B4429D929CD00596E70 /* AppleReverseGeocodingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B4329D929CD00596E70 /* AppleReverseGeocodingClient.swift */; };
 		C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540B025256AB700525603 /* KTAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AC25256AB600525603 /* KTAddress.swift */; };
 		C1F540B225256AB700525603 /* KTVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AD25256AB600525603 /* KTVehicle.swift */; };
@@ -209,6 +210,7 @@
 		C1A3E404298A1A8F00931529 /* AddressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTest.swift; sourceTree = "<group>"; };
 		C1A3E406298A213800931529 /* ActivityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTest.swift; sourceTree = "<group>"; };
 		C1DF2B4029D925C900596E70 /* CLPlaceMarkMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLPlaceMarkMapper.swift; sourceTree = "<group>"; };
+		C1DF2B4329D929CD00596E70 /* AppleReverseGeocodingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleReverseGeocodingClient.swift; sourceTree = "<group>"; };
 		C1F540A125256AA800525603 /* KTCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTCacheManager.swift; sourceTree = "<group>"; };
 		C1F540AC25256AB600525603 /* KTAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTAddress.swift; sourceTree = "<group>"; };
 		C1F540AD25256AB600525603 /* KTVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTVehicle.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 		C145A5BC29D9149900E3FC6E /* Address API */ = {
 			isa = PBXGroup;
 			children = (
+				C1DF2B4229D929BE00596E70 /* Infra */,
 				C145A5BA29D8F25700E3FC6E /* ReverseGeocodingClient.swift */,
 				C1DF2B4029D925C900596E70 /* CLPlaceMarkMapper.swift */,
 			);
@@ -552,6 +555,14 @@
 				C1751B4929BFEE79009C8795 /* UserProfileEndpoint.swift */,
 			);
 			path = "User API";
+			sourceTree = "<group>";
+		};
+		C1DF2B4229D929BE00596E70 /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				C1DF2B4329D929CD00596E70 /* AppleReverseGeocodingClient.swift */,
+			);
+			path = Infra;
 			sourceTree = "<group>";
 		};
 		C1FAE70329C158DA001D3D86 /* Infra */ = {
@@ -1019,6 +1030,7 @@
 				C1FAE72E29C197AB001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */,
 				C79CA23E1FE220F100A9F8E1 /* Insurer.swift in Sources */,
 				C71917981E48703B0041BC18 /* LiveShare.swift in Sources */,
+				C1DF2B4429D929CD00596E70 /* AppleReverseGeocodingClient.swift in Sources */,
 				C719177E1E48703B0041BC18 /* KatsanaAPI+Address.swift in Sources */,
 				C1F540B225256AB700525603 /* KTVehicle.swift in Sources */,
 				C1DF2B4129D925C900596E70 /* CLPlaceMarkMapper.swift in Sources */,

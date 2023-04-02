@@ -12,37 +12,6 @@ import CoreLocation
 import Intents
 import Contacts
 
-
-class AppleReverseGeocodingClient: ReverseGeocodingClient{
-    let geocoder: CLGeocoder
-    
-    public struct UnexpectedValuesRepresentation: Error {}
-    
-    init(geocoder: CLGeocoder = CLGeocoder()){
-        self.geocoder = geocoder
-    }
-    
-    func getAddress(_ coordinate: (latitude: Double, longitude: Double), completion: @escaping (Result<KTAddress, Error>) -> Void){
-        geocoder.reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)) { placemarks, error in
-            if let placemark = placemarks?.first{
-                do{
-                    let address = try CLPlaceMarkAddressMapper.map(placemark)
-                    completion(.success(address))
-                }
-                catch{
-                    completion(.failure(error))
-                }
-            }
-            else if let error{
-                completion(.failure(error))
-            }else{
-                completion(.failure(UnexpectedValuesRepresentation()))
-            }
-        }
-    }
-
-}
-
 class AppleReverseGeocodingClientTests: XCTestCase {
     func test_getAddress_performsReverseGeocoding() {
         let (sut, spy) = makeSUT()
