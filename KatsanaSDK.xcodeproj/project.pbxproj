@@ -33,6 +33,8 @@
 		C11FED0B29D032C4003914DC /* AnyResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0A29D032C4003914DC /* AnyResourceStore.swift */; };
 		C11FED0D29D0FAAA003914DC /* ResourceStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0C29D0FAAA003914DC /* ResourceStoreManager.swift */; };
 		C145A5B629D8ECED00E3FC6E /* AppleReverseGeoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C145A5B529D8ECED00E3FC6E /* AppleReverseGeoStore.swift */; };
+		C145A5B929D8F09900E3FC6E /* AppleReverseGeoStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C145A5B729D8F08F00E3FC6E /* AppleReverseGeoStoreTests.swift */; };
+		C145A5BB29D8F25700E3FC6E /* ReverseGeocodingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C145A5BA29D8F25700E3FC6E /* ReverseGeocodingClient.swift */; };
 		C1515A0229D3DAD200473156 /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1515A0129D3DAD200473156 /* CombineHelpers.swift */; };
 		C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
@@ -184,6 +186,8 @@
 		C11FED0A29D032C4003914DC /* AnyResourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyResourceStore.swift; sourceTree = "<group>"; };
 		C11FED0C29D0FAAA003914DC /* ResourceStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceStoreManager.swift; sourceTree = "<group>"; };
 		C145A5B529D8ECED00E3FC6E /* AppleReverseGeoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleReverseGeoStore.swift; sourceTree = "<group>"; };
+		C145A5B729D8F08F00E3FC6E /* AppleReverseGeoStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleReverseGeoStoreTests.swift; sourceTree = "<group>"; };
+		C145A5BA29D8F25700E3FC6E /* ReverseGeocodingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseGeocodingClient.swift; sourceTree = "<group>"; };
 		C1515A0129D3DAD200473156 /* CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineHelpers.swift; sourceTree = "<group>"; };
 		C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 				C11FECE229CC0BBD003914DC /* CacheResourceUseCaseTests.swift */,
 				C11FECE529CC107E003914DC /* ValidateResourceCacheUseCaseTests.swift */,
 				C11FECCB29CBC478003914DC /* CodableFeedStoreTests.swift */,
+				C145A5B729D8F08F00E3FC6E /* AppleReverseGeoStoreTests.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -388,13 +393,13 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		C11FECB229CAE200003914DC /* API */ = {
+		C11FECB229CAE200003914DC /* HTTP API */ = {
 			isa = PBXGroup;
 			children = (
 				C11FECB329CAE20B003914DC /* Helpers */,
 				C1751B1329BFEC70009C8795 /* Infra */,
 			);
-			path = API;
+			path = "HTTP API";
 			sourceTree = "<group>";
 		};
 		C11FECB329CAE20B003914DC /* Helpers */ = {
@@ -459,8 +464,8 @@
 		C11FECDF29CC0AEA003914DC /* Infra */ = {
 			isa = PBXGroup;
 			children = (
-				C11FECE029CC0AFA003914DC /* CodableResourceStore.swift */,
 				C145A5B529D8ECED00E3FC6E /* AppleReverseGeoStore.swift */,
+				C11FECE029CC0AFA003914DC /* CodableResourceStore.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -482,11 +487,12 @@
 			path = Feature;
 			sourceTree = "<group>";
 		};
-		C145A5B429D8ECA800E3FC6E /* Address */ = {
+		C145A5BC29D9149900E3FC6E /* Address API */ = {
 			isa = PBXGroup;
 			children = (
+				C145A5BA29D8F25700E3FC6E /* ReverseGeocodingClient.swift */,
 			);
-			path = Address;
+			path = "Address API";
 			sourceTree = "<group>";
 		};
 		C1751B1329BFEC70009C8795 /* Infra */ = {
@@ -549,9 +555,9 @@
 			children = (
 				C11FECFB29CC2711003914DC /* Feature */,
 				C1FAE70F29C169F7001D3D86 /* Helpers */,
-				C145A5B429D8ECA800E3FC6E /* Address */,
 				C11FECAE29CADE9B003914DC /* Cache */,
-				C11FECB229CAE200003914DC /* API */,
+				C145A5BC29D9149900E3FC6E /* Address API */,
+				C11FECB229CAE200003914DC /* HTTP API */,
 				C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */,
 			);
 			path = Shared;
@@ -934,6 +940,7 @@
 				C1751B4D29C018C8009C8795 /* KatsanaServicesFactoryTests.swift in Sources */,
 				C11FECCA29CBC13F003914DC /* CacheResourceStoreSpy.swift in Sources */,
 				C1FAE73629C1A576001D3D86 /* TokenServiceTests.swift in Sources */,
+				C145A5B929D8F09900E3FC6E /* AppleReverseGeoStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -958,6 +965,7 @@
 				C1FAE74B29C2D63D001D3D86 /* VehicleEndpoint.swift in Sources */,
 				C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */,
 				C11FED0D29D0FAAA003914DC /* ResourceStoreManager.swift in Sources */,
+				C145A5BB29D8F25700E3FC6E /* ReverseGeocodingClient.swift in Sources */,
 				C1FAE71129C16A36001D3D86 /* URL+QueryItems.swift in Sources */,
 				C719179C1E48703B0041BC18 /* Travel.swift in Sources */,
 				C1FAE74829C2C514001D3D86 /* VehicleMapper.swift in Sources */,
