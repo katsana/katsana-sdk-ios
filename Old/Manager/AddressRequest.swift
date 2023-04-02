@@ -103,24 +103,19 @@ class AddressRequest {
                 failure(error)
             }else{
                 if let placemark = placemarks?.first{
-                    let address = KTAddress()
-                    address.latitude = location.latitude
-                    address.longitude = location.longitude
-                    address.streetName = placemark.thoroughfare
-                    address.postcode = placemark.postalCode
+                    do{
+                        let address = try CLPlaceMarkAddressMapper.map(placemark)
+                        completion(address)
+                    }catch{
+                        failure(error)
+                    }
                     
-                    address.country = placemark.country
-                    address.city = placemark.locality
-                    address.state = placemark.administrativeArea
-                    address.sublocality = placemark.subLocality
-                    address.locality = placemark.locality
-                    address.subAdministrativeArea = placemark.subAdministrativeArea
                     
 //                    var addressComps = dicto["FormattedAddressLines"] as? [String]
 //                    addressComps?.removeLast()
 //                    let addressStr = addressComps?.joined(separator: ", ")
 //                    address.address = addressStr
-                    completion(address)
+                    
                 }
                 
             }

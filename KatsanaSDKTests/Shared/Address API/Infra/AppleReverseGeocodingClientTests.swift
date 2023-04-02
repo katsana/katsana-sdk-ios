@@ -23,9 +23,12 @@ class AppleReverseGeocodingClient: ReverseGeocodingClient{
     func getAddress(_ coordinate: (latitude: Double, longitude: Double), completion: @escaping (Result<KTAddress, Error>) -> Void){
         geocoder.reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)) { placemarks, error in
             if let placemark = placemarks?.first{
-                if let location = placemark.location{
-                    let address = KTAddress(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                do{
+                    let address = try CLPlaceMarkAddressMapper.map(placemark)
                     completion(.success(address))
+                }
+                catch{
+                    completion(.failure(error))
                 }
             }
             if let error{
@@ -65,17 +68,7 @@ class AppleReverseGeocodingClientTests: XCTestCase {
             spy.completeRequest(with: placemark)
         }
     }
-//
-//    func test_getFromURL_succeedsWithEmptyDataOnHTTPURLResponseWithNilData() {
-//        let response = anyHTTPURLResponse()
-//
-//        let receivedValues = resultValuesFor((data: nil, response: response, error: nil))
-//
-//        let emptyData = Data()
-//        XCTAssertEqual(receivedValues?.data, emptyData)
-//        XCTAssertEqual(receivedValues?.response.url, response.url)
-//        XCTAssertEqual(receivedValues?.response.statusCode, response.statusCode)
-//    }
+    
     
     // MARK: - Helpers
 
@@ -135,5 +128,9 @@ class GeocoderStub: CLGeocoder{
     
     func completeRequest(with placemark: CLPlacemark, at index: Int = 0) {
         requests[index]([placemark], nil)
+    }
+    
+    func completeRequest(with result: ([CLPlacemark]?, Error?), at index: Int = 0) {
+        requests[index](result.0, result.1)
     }
 }
