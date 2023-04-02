@@ -13,6 +13,7 @@ open class KatsanaServiceFactory{
     let baseURL: URL
     public let baseStoreURL: URL
     let client: HTTPClient
+    let reverseGeocodingClient: ReverseGeocodingClient = AppleReverseGeocodingClient()
     let storeManager: ResourceStoreManager
     
     public init(baseURL: URL, baseStoreURL: URL, client: HTTPClient, storeManager: ResourceStoreManager) {
@@ -90,6 +91,11 @@ extension KatsanaServiceFactory{
     public func makeUserPublisher(includes params: [String]? = nil) -> AnyPublisher<KTUser, Error>{
         let url = UserProfileEndpoint.get(includes: params).url(baseURL: baseURL)
         return makePublisher(request: URLRequest(url: url), mapper: UserMapper.map)
+    }
+    
+    public func makeAddressPublisher(coordinate: (latitude: Double, longitude: Double)) -> AnyPublisher<KTAddress, Error>{
+        return reverseGeocodingClient
+            .getPublisher(coordinate: coordinate)
     }
 }
 

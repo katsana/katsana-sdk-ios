@@ -18,11 +18,11 @@ open class KTAddress: Codable {
     open var sublocality: String?
     open var subAdministrativeArea: String?
     open var postcode: String?
-    open var city: String!
-    open var state: String!
-    open var country: String!
+    open var city: String?
+    open var state: String?
+    open var country: String?
     
-    open var address: String!
+    open var address: String?
     open var updateDate = Date()
     
     public init() {
@@ -57,7 +57,7 @@ open class KTAddress: Codable {
         var address = components.joined(separator: ", ")
         if address.count == 0 {
             if self.address != nil {
-                address = self.address
+                address = self.address!
             }
         }
         return address
@@ -90,7 +90,7 @@ open class KTAddress: Codable {
         var address = components.joined(separator: ", ")
         if address.count == 0 {
             if self.address != nil {
-                address = self.address
+                address = self.address!
             }
         }
         return address

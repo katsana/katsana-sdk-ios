@@ -25,6 +25,19 @@ public extension HTTPClient {
     }
 }
 
+public extension ReverseGeocodingClient {
+    typealias Publisher = AnyPublisher<KTAddress, Error>
+    
+    func getPublisher(coordinate: (latitude: Double, longitude: Double)) -> Publisher {
+        return Deferred {
+            Future { completion in
+                self.getAddress(coordinate, completion: completion)
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+}
+
 extension Publisher {
     func caching<R: ResourceCache>(to cache: R) -> AnyPublisher<Output, Failure> where Output == R.SaveResource{
         handleEvents(receiveOutput: cache.saveIgnoringResult).eraseToAnyPublisher()
