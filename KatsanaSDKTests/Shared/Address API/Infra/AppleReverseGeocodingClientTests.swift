@@ -26,7 +26,7 @@ class AppleReverseGeocodingClient: ReverseGeocodingClient{
 }
 
 class AppleReverseGeocodingClientTests: XCTestCase {
-    func test_getAddress_performsGetAddress() {
+    func test_getAddress_performsReverseGeocoding() {
         let (sut, spy) = makeSUT()
         
         sut.getAddress(anyCoordinate()) { _ in }
