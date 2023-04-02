@@ -19,7 +19,7 @@ class AppleReverseGeocodingClient: ReverseGeocodingClient{
     
     func getAddress(_ coordinate: (latitude: Double, longitude: Double), completion: @escaping (Result<KTAddress, Error>) -> Void){
         geocoder.reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)) { placemark, error in
-            
+            completion(.failure(error!))
         }
     }
 
@@ -33,19 +33,14 @@ class AppleReverseGeocodingClientTests: XCTestCase {
         XCTAssertEqual(spy.requestCount, 1)
     }
     
-//    func test_cancelGetFromURLTask_cancelsURLRequest() {
-//        let receivedError = resultErrorFor(taskHandler: { $0.cancel() }) as NSError?
-//
-//        XCTAssertEqual(receivedError?.code, URLError.cancelled.rawValue)
-//    }
-//
-//    func test_getFromURL_failsOnRequestError() {
-//        let requestError = anyNSError()
-//
-//        let receivedError = resultErrorFor((data: nil, response: nil, error: requestError))
-//
-//        XCTAssertNotNil(receivedError)
-//    }
+
+    func test_getAddress_failsOnRequestError() {
+        let (sut, spy) = makeSUT()
+
+        expect(sut, coordinate: anyCoordinate(), toCompleteWith: .failure(anyNSError())) {
+            spy.completeRequest(with: anyNSError())
+        }
+    }
 //
 //    func test_getFromURL_failsOnAllInvalidRepresentationCases() {
 //        XCTAssertNotNil(resultErrorFor((data: nil, response: nil, error: nil)))
@@ -90,6 +85,27 @@ class AppleReverseGeocodingClientTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, geocoder)
     }
+    
+    private func expect(_ sut: ReverseGeocodingClient, coordinate: (latitude: Double, longitude: Double), toCompleteWith expectedResult: ReverseGeocodingClient.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Wait for load completion")
+        
+        sut.getAddress(coordinate) { receivedResult in
+            switch (receivedResult, expectedResult) {
+            case let (.success(receivedItems), .success(expectedItems)):
+                XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)
+                
+            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
+                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+            default:
+                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+    }
 
 }
 
@@ -102,5 +118,9 @@ class GeocoderStub: CLGeocoder{
     
     override func reverseGeocodeLocation(_ location: CLLocation, completionHandler: @escaping CLGeocodeCompletionHandler) {
         requests.append(completionHandler)
+    }
+    
+    func completeRequest(with error: Error, at index: Int = 0) {
+        requests[index](nil, error)
     }
 }
