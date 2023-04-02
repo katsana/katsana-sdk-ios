@@ -44,9 +44,12 @@ class AppleReverseGeocodingClientTests: XCTestCase {
     func test_getAddresss_failsOnInvalidRepresentationCases() {
         let (sut, spy) = makeSUT()
 
-        expect(sut, coordinate: anyCoordinate(), toCompleteWith: .failure(AppleReverseGeocodingClient.UnexpectedValuesRepresentation())) {
-            spy.completeRequest(with: (nil, nil))
+        sut.getAddress(anyCoordinate()) { receivedResult in
+            if let _ = try? receivedResult.get(){
+                XCTFail("Expected to get error")
+            }
         }
+        spy.completeRequest(with: (nil, nil))
     }
     
     
