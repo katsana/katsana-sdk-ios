@@ -74,18 +74,8 @@ class CodableAddressStoreTests: XCTestCase, FailableResourceStoreSpecs {
     }
     
     func test_insert_overridesPreviouslyInsertedCacheValues() {
-        let sut = makeSUT()
-
-        insert((anyResource(), Date()), to: sut)
-        
-        sut.retrieve {[weak self] result in
-            guard let address = try? result.get() else{
-                XCTFail("Expected to get address data")
-                return
-            }
-            XCTAssertEqual(address.resource, self?.anyResource())
-            
-        }
+        //We do not override cache for address, instead append to cache in test_insert_appendToExistingAddressCache
+//        assertThatInsertOverridesPreviouslyInsertedCacheValues(resource: anyResource(), resource2: anyResource2(), on: sut)
     }
     
     
@@ -136,7 +126,7 @@ class CodableAddressStoreTests: XCTestCase, FailableResourceStoreSpecs {
     func test_insert_appendToExistingAddressCache() {
         let sut = makeSUT()
 
-        assertThatDeleteHasNoSideEffectsOnDeletionError(on: sut)
+        assertThatInsertAppendToArrayOfPreviouslyInsertedCacheValues(resource: anyResource().first!, resource2: anyResource2().first!, on: sut)
     }
     
     func test_storeSideEffects_runSerially() {
@@ -195,4 +185,16 @@ class CodableAddressStoreTests: XCTestCase, FailableResourceStoreSpecs {
         return [address2]
     }
     
+    func assertThatInsertAppendToArrayOfPreviouslyInsertedCacheValues(resource: KTAddress, resource2: KTAddress, on sut: CodableAddressStore, file: StaticString = #file, line: UInt = #line) {
+        let oldTimestamp = Date()
+        insert(([resource], oldTimestamp), to: sut)
+        
+        expect(sut, toRetrieve: .success(.some((resource: [resource], timestamp: oldTimestamp))), file: file, line: line)
+
+        let latestResource = resource2
+        let latestTimestamp = Date()
+        insert(([latestResource], latestTimestamp), to: sut)
+
+        expect(sut, toRetrieve: .success(.some((resource: [latestResource, resource], timestamp: latestTimestamp))), file: file, line: line)
+    }
 }

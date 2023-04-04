@@ -49,7 +49,12 @@ public class CodableAddressStore: ResourceStore{
                     let foundCache = try? result.get()
                     var newCache: Cache?
                     if let foundCache{
-                        newCache = Cache(resource: foundCache.resource, timestamp: timestamp)
+                        var newResource = [KTAddress]()
+                        newResource.append(contentsOf: foundCache.resource)
+                        if let first = resource.first{
+                            newResource.insert(first, at: 0)
+                        }
+                        newCache = Cache(resource: newResource, timestamp: timestamp)
                     }else{
                         newCache = Cache(resource: resource, timestamp: timestamp)
                     }
@@ -90,22 +95,39 @@ public class CodableAddressStore: ResourceStore{
                 handleRetrieve()
             }
         }
-
+    }
+    
+    public func retrieveAddress(with coordinate: (latitude: Double, longitude: Double), completion: @escaping (KTAddress?) -> Void){
+        self.retrieve { result in
+            if let addresses = try? result.get()?.resource{
+                for address in addresses{
+                    let coord = Coordinate(latitude: address.latitude, longitude: address.longitude)
+                    let otherCoord = Coordinate(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                    
+                    if coord.equal(otherCoord){
+                        completion(address)
+                    }
+                }
+            }else{
+                completion(nil)
+            }
+        }
     }
 }
 
-struct Coordinate{
+private struct Coordinate{
     let latitude: Double
     let longitude: Double
 }
 
-//private extension Double{
-//    static let epsilon = 0.005
-//
-//    func coordinateValueEqual(_ location: Double) -> Bool {
-//        if fabs(self - location) < CLLocationCoordinate2D.epsilon {
-//            return true
-//        }
-//        return false
-//    }
-//}
+private extension Coordinate{
+    static let epsilon = 0.005
+    
+    func equal(_ location: Coordinate) -> Bool {
+        if fabs(latitude - location.latitude) < Coordinate.epsilon && fabs(longitude - location.longitude) < Coordinate.epsilon {
+            return true
+        }
+        return false
+        
+    }
+}
