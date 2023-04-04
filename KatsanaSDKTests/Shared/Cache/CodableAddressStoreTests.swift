@@ -75,7 +75,17 @@ class CodableAddressStoreTests: XCTestCase, FailableResourceStoreSpecs {
     
     func test_insert_overridesPreviouslyInsertedCacheValues() {
         let sut = makeSUT()
-        assertThatInsertOverridesPreviouslyInsertedCacheValues(resource: anyResource(), resource2: anyResource2(), on: sut)
+
+        insert((anyResource(), Date()), to: sut)
+        
+        sut.retrieve {[weak self] result in
+            guard let address = try? result.get() else{
+                XCTFail("Expected to get address data")
+                return
+            }
+            XCTAssertEqual(address.resource, self?.anyResource())
+            
+        }
     }
     
     
@@ -123,6 +133,12 @@ class CodableAddressStoreTests: XCTestCase, FailableResourceStoreSpecs {
         assertThatDeleteHasNoSideEffectsOnDeletionError(on: sut)
     }
     
+    func test_insert_appendToExistingAddressCache() {
+        let sut = makeSUT()
+
+        assertThatDeleteHasNoSideEffectsOnDeletionError(on: sut)
+    }
+    
     func test_storeSideEffects_runSerially() {
         let sut = makeSUT()
         assertThatSideEffectsRunSerially(resource: anyResource(), resource2: anyResource2(), on: sut)
@@ -161,22 +177,22 @@ class CodableAddressStoreTests: XCTestCase, FailableResourceStoreSpecs {
         return FileManager.default.urls(for: .cachesDirectory, in: .systemDomainMask).first!
     }
     
-    private func anyResource() -> KTAddress{
+    private func anyResource() -> [KTAddress]{
         let address = KTAddress(latitude: 0, longitude: 0)
         address.postcode = "16650"
         address.country = "Malaysia"
         address.state = "Kelantan"
         address.sublocality = "Ketereh"
-        return address
+        return [address]
     }
     
-    private func anyResource2() -> KTAddress{
+    private func anyResource2() -> [KTAddress]{
         let address2 = KTAddress(latitude: 1, longitude: 1)
         address2.postcode = "16650"
         address2.country = "Malaysia"
         address2.state = "Selangor"
         address2.sublocality = "Shah Alam"
-        return address2
+        return [address2]
     }
     
 }

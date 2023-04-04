@@ -9,7 +9,7 @@
 import Foundation
 
 public class CodableAddressStore: ResourceStore{
-    public typealias Resource = KTAddress
+    public typealias Resource = [KTAddress]
     
     private struct Cache: Codable {
         let resource: Resource
@@ -29,7 +29,6 @@ public class CodableAddressStore: ResourceStore{
             guard FileManager.default.fileExists(atPath: storeURL.path) else {
                 return completion(.success(()))
             }
-            
             do {
                 try FileManager.default.removeItem(at: storeURL)
                 completion(.success(()))
@@ -41,26 +40,40 @@ public class CodableAddressStore: ResourceStore{
     
     public func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion){
         let storeURL = self.storeURL
-        queue.async(flags: .barrier) {
-            do {
-                let encoder = JSONEncoder()
-                let cache = Cache(resource: resource, timestamp: timestamp)
-                let encoded = try encoder.encode(cache)
-                try encoded.write(to: storeURL)
-                completion(.success(()))
-            } catch {
-                completion(.failure(error))
+        queue.async(flags: .barrier) {[weak self] in
+            guard let self else {return}
+            
+            self.retrieveAddress(runSerially: true) { result in
+                do {
+                    let encoder = JSONEncoder()
+                    let foundCache = try? result.get()
+                    var newCache: Cache?
+                    if let foundCache{
+                        newCache = Cache(resource: foundCache.resource, timestamp: timestamp)
+                    }else{
+                        newCache = Cache(resource: resource, timestamp: timestamp)
+                    }
+                    let encoded = try encoder.encode(newCache)
+                    try encoded.write(to: storeURL)
+                    completion(.success(()))
+                } catch {
+                    completion(.failure(error))
+                }
             }
         }
     }
     
-    public func retrieve(completion: @escaping RetrievalCompletion){
+    public func retrieve(completion: @escaping RetrievalCompletion) {
+        retrieveAddress(completion: completion)
+    }
+    
+    private func retrieveAddress(runSerially: Bool = false, completion: @escaping RetrievalCompletion){
         let storeURL = self.storeURL
-        queue.async {
+        
+        func handleRetrieve(){
             guard let data = try? Data(contentsOf: storeURL) else {
                 return completion(.success(.none))
             }
-
             do {
                 let decoder = JSONDecoder()
                 let cache = try decoder.decode(Cache.self, from: data)
@@ -69,6 +82,15 @@ public class CodableAddressStore: ResourceStore{
                 completion(.failure(error))
             }
         }
+        
+        if runSerially{
+            handleRetrieve()
+        }else{
+            queue.async {
+                handleRetrieve()
+            }
+        }
+
     }
 }
 
