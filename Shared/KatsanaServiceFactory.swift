@@ -94,8 +94,13 @@ extension KatsanaServiceFactory{
     }
     
     public func makeAddressPublisher(coordinate: (latitude: Double, longitude: Double)) -> AnyPublisher<KTAddress, Error>{
+        let localLoader = makeLocalLoader(KTAddress.self, maxCacheAgeInSeconds: 60*60*60*24*7)
+        
         return reverseGeocodingClient
             .getPublisher(coordinate: coordinate)
+            .caching(to: localLoader)
     }
+    
+    
 }
 

@@ -57,7 +57,7 @@ class AppleReverseGeocodingClientTests: XCTestCase {
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (ReverseGeocodingClient, GeocoderStub) {
         let geocoder = GeocoderStub()
-        let sut = AppleReverseGeocodingClient(geocoder: geocoder)
+        let sut = AppleReverseGeocodingClient(geocoder: {geocoder})
         
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, geocoder)

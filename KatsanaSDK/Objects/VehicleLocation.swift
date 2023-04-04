@@ -176,3 +176,5 @@ open class VehicleLocation: Codable, Equatable{
         return date
     }
 }
+
+
