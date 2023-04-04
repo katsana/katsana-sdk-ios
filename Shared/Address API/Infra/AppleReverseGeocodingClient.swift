@@ -10,16 +10,16 @@ import Foundation
 import CoreLocation
 
 public class AppleReverseGeocodingClient: ReverseGeocodingClient{
-    let geocoder: CLGeocoder
+    let geocoder: () -> CLGeocoder
     
     private struct UnexpectedValuesRepresentation: Error {}
     
-    public init(geocoder: CLGeocoder = CLGeocoder()){
+    public init(geocoder: @escaping () -> CLGeocoder = {CLGeocoder()}){
         self.geocoder = geocoder
     }
     
     public func getAddress(_ coordinate: (latitude: Double, longitude: Double), completion: @escaping (Result<KTAddress, Error>) -> Void){
-        geocoder.reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)) { placemarks, error in
+        geocoder().reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)) { placemarks, error in
             if let placemark = placemarks?.first{
                 do{
                     let address = try CLPlaceMarkAddressMapper.map(placemark)
