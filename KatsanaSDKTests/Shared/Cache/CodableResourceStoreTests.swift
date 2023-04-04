@@ -9,7 +9,7 @@
 import XCTest
 import KatsanaSDK
 
-class CodableFeedStoreTests: XCTestCase, FailableResourceStoreSpecs {
+class CodableResourceStoreTests: XCTestCase, FailableResourceStoreSpecs {
     override func setUp() {
         super.setUp()
         setupEmptyStoreState()
