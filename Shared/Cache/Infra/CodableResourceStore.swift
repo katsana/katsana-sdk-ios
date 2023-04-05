@@ -111,8 +111,8 @@ extension CodableResourceStore: ResourceWithKeyStore{
         }
         do {
             let decoder = JSONDecoder()
-            let cache = try decoder.decode(Cache<[String: Resource]>.self, from: data)
-            return cache.resource
+            let cache = try decoder.decode([String: Resource].self, from: data)
+            return cache
         } catch {
             throw error
         }
