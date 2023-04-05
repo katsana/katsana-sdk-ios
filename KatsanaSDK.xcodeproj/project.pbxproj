@@ -72,6 +72,7 @@
 		C1DF2B5A29DD461100596E70 /* LoadResourceWithKeyFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5829DD460D00596E70 /* LoadResourceWithKeyFromCacheUseCaseTests.swift */; };
 		C1DF2B5C29DD47D200596E70 /* ResourceWithKeyCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5B29DD47D200596E70 /* ResourceWithKeyCache.swift */; };
 		C1DF2B5E29DD47DD00596E70 /* ResourceWithKeyLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5D29DD47DD00596E70 /* ResourceWithKeyLoader.swift */; };
+		C1DF2B6029DD4F2C00596E70 /* LocalResourceWithKeyLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5F29DD4F2C00596E70 /* LocalResourceWithKeyLoader.swift */; };
 		C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540B025256AB700525603 /* KTAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AC25256AB600525603 /* KTAddress.swift */; };
 		C1F540B225256AB700525603 /* KTVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AD25256AB600525603 /* KTVehicle.swift */; };
@@ -229,6 +230,7 @@
 		C1DF2B5829DD460D00596E70 /* LoadResourceWithKeyFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourceWithKeyFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		C1DF2B5B29DD47D200596E70 /* ResourceWithKeyCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceWithKeyCache.swift; sourceTree = "<group>"; };
 		C1DF2B5D29DD47DD00596E70 /* ResourceWithKeyLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceWithKeyLoader.swift; sourceTree = "<group>"; };
+		C1DF2B5F29DD4F2C00596E70 /* LocalResourceWithKeyLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalResourceWithKeyLoader.swift; sourceTree = "<group>"; };
 		C1F540A125256AA800525603 /* KTCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTCacheManager.swift; sourceTree = "<group>"; };
 		C1F540AC25256AB600525603 /* KTAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTAddress.swift; sourceTree = "<group>"; };
 		C1F540AD25256AB600525603 /* KTVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTVehicle.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				C11FECC429CBC0B4003914DC /* ResourceCachePolicy.swift */,
 				C1DF2B5229DD278E00596E70 /* ResourceWithKeyStore.swift */,
 				C11FECC629CBC0DE003914DC /* LocalLoader.swift */,
+				C1DF2B5F29DD4F2C00596E70 /* LocalResourceWithKeyLoader.swift */,
 				C11FED0829D0295F003914DC /* AnyLocalLoader.swift */,
 				C11FED0A29D032C4003914DC /* AnyResourceStore.swift */,
 				C11FED0C29D0FAAA003914DC /* ResourceStoreManager.swift */,
@@ -1086,6 +1089,7 @@
 				C1FAE6FE29C059D4001D3D86 /* HTTPURLResponse+StatusCode.swift in Sources */,
 				C71917761E48703B0041BC18 /* UIImage+Extension.swift in Sources */,
 				C1DF2B5729DD2EA500596E70 /* VehicleLocation+Distance.swift in Sources */,
+				C1DF2B6029DD4F2C00596E70 /* LocalResourceWithKeyLoader.swift in Sources */,
 				C11FED0B29D032C4003914DC /* AnyResourceStore.swift in Sources */,
 				C11FECC329CBC07A003914DC /* ResourceStore.swift in Sources */,
 				C11FECFF29CC2808003914DC /* ResourceCache.swift in Sources */,

@@ -9,49 +9,7 @@
 import XCTest
 import KatsanaSDK
 
-class LocalResourceWithKeyLoader<S: ResourceWithKeyStore>{
-    private let store: S
-    
-    public init(store: S) {
-        self.store = store
-    }
-}
 
-extension LocalResourceWithKeyLoader: ResourceWithKeyCache{
-    typealias R = S.Resource
-    
-    public enum SaveError: Error {
-        case failed
-    }
-    
-    func save(_ resource: R, for key: String) throws{
-        do {
-            try store.insert(resource, for: key)
-        } catch {
-            throw SaveError.failed
-        }
-    }
-}
-
-extension LocalResourceWithKeyLoader: ResourceWithKeyLoader {
-    typealias RL = S.Resource
-    
-    public enum LoadError: Error {
-        case failed
-        case notFound
-    }
-
-    func loadResource(from key: String) throws -> RL{
-        do {
-            if let resource = try store.retrieve(resourceForKey: key) {
-                return resource
-            }
-        } catch {
-            throw LoadError.failed
-        }
-        throw LoadError.notFound
-    }
-}
 
 
 class ResourceWithKeyStoreSpy<Resource>: ResourceWithKeyStore where Resource: Equatable{
