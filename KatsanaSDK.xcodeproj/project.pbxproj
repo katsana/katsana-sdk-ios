@@ -66,6 +66,9 @@
 		C1DF2B4629D92B5C00596E70 /* CLPlaceMarkAddressMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B4529D92B5C00596E70 /* CLPlaceMarkAddressMapperTests.swift */; };
 		C1DF2B4E29DBF02E00596E70 /* CodableAddressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B4D29DBF02E00596E70 /* CodableAddressStore.swift */; };
 		C1DF2B5129DBF21400596E70 /* CodableAddressStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B4F29DBF1F500596E70 /* CodableAddressStoreTests.swift */; };
+		C1DF2B5329DD278E00596E70 /* ResourceWithKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5229DD278E00596E70 /* ResourceWithKeyStore.swift */; };
+		C1DF2B5529DD2DD600596E70 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5429DD2DD600596E70 /* Coordinate.swift */; };
+		C1DF2B5729DD2EA500596E70 /* VehicleLocation+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5629DD2EA500596E70 /* VehicleLocation+Distance.swift */; };
 		C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540B025256AB700525603 /* KTAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AC25256AB600525603 /* KTAddress.swift */; };
 		C1F540B225256AB700525603 /* KTVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AD25256AB600525603 /* KTVehicle.swift */; };
@@ -217,6 +220,9 @@
 		C1DF2B4529D92B5C00596E70 /* CLPlaceMarkAddressMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLPlaceMarkAddressMapperTests.swift; sourceTree = "<group>"; };
 		C1DF2B4D29DBF02E00596E70 /* CodableAddressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableAddressStore.swift; sourceTree = "<group>"; };
 		C1DF2B4F29DBF1F500596E70 /* CodableAddressStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableAddressStoreTests.swift; sourceTree = "<group>"; };
+		C1DF2B5229DD278E00596E70 /* ResourceWithKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceWithKeyStore.swift; sourceTree = "<group>"; };
+		C1DF2B5429DD2DD600596E70 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		C1DF2B5629DD2EA500596E70 /* VehicleLocation+Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VehicleLocation+Distance.swift"; sourceTree = "<group>"; };
 		C1F540A125256AA800525603 /* KTCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTCacheManager.swift; sourceTree = "<group>"; };
 		C1F540AC25256AB600525603 /* KTAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTAddress.swift; sourceTree = "<group>"; };
 		C1F540AD25256AB600525603 /* KTVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTVehicle.swift; sourceTree = "<group>"; };
@@ -361,6 +367,7 @@
 				C11FECDF29CC0AEA003914DC /* Infra */,
 				C11FECC229CBC07A003914DC /* ResourceStore.swift */,
 				C11FECC429CBC0B4003914DC /* ResourceCachePolicy.swift */,
+				C1DF2B5229DD278E00596E70 /* ResourceWithKeyStore.swift */,
 				C11FECC629CBC0DE003914DC /* LocalLoader.swift */,
 				C11FED0829D0295F003914DC /* AnyLocalLoader.swift */,
 				C11FED0A29D032C4003914DC /* AnyResourceStore.swift */,
@@ -713,6 +720,8 @@
 				C16C8291245AB6FA008B0B1E /* Sensor.swift */,
 				C71917681E48703B0041BC18 /* VehicleActivity.swift */,
 				C71917691E48703B0041BC18 /* VehicleLocation.swift */,
+				C1DF2B5629DD2EA500596E70 /* VehicleLocation+Distance.swift */,
+				C1DF2B5429DD2DD600596E70 /* Coordinate.swift */,
 				C7331297207B1EC800541BE8 /* VehicleSubscription.swift */,
 				C79CA23D1FE220F100A9F8E1 /* Insurer.swift */,
 				C17220C224628CA700A128B7 /* Fleet.swift */,
@@ -1014,6 +1023,7 @@
 				C11FECFD29CC271B003914DC /* ResourceLoader.swift in Sources */,
 				C1FAE74B29C2D63D001D3D86 /* VehicleEndpoint.swift in Sources */,
 				C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */,
+				C1DF2B5529DD2DD600596E70 /* Coordinate.swift in Sources */,
 				C11FED0D29D0FAAA003914DC /* ResourceStoreManager.swift in Sources */,
 				C145A5BB29D8F25700E3FC6E /* ReverseGeocodingClient.swift in Sources */,
 				C1FAE71129C16A36001D3D86 /* URL+QueryItems.swift in Sources */,
@@ -1059,10 +1069,12 @@
 				C719177C1E48703B0041BC18 /* ImageRequest.swift in Sources */,
 				C71917A41E48703B0041BC18 /* VehicleActivity.swift in Sources */,
 				C719179A1E48703B0041BC18 /* ObjectJSONTransformer.swift in Sources */,
+				C1DF2B5329DD278E00596E70 /* ResourceWithKeyStore.swift in Sources */,
 				C18A824128FCEF6000C3FF7D /* VideoRecording.swift in Sources */,
 				C11FECC729CBC0DE003914DC /* LocalLoader.swift in Sources */,
 				C1FAE6FE29C059D4001D3D86 /* HTTPURLResponse+StatusCode.swift in Sources */,
 				C71917761E48703B0041BC18 /* UIImage+Extension.swift in Sources */,
+				C1DF2B5729DD2EA500596E70 /* VehicleLocation+Distance.swift in Sources */,
 				C11FED0B29D032C4003914DC /* AnyResourceStore.swift in Sources */,
 				C11FECC329CBC07A003914DC /* ResourceStore.swift in Sources */,
 				C11FECFF29CC2808003914DC /* ResourceCache.swift in Sources */,

@@ -104,7 +104,7 @@ public class CodableAddressStore: ResourceStore{
                     let coord = Coordinate(latitude: address.latitude, longitude: address.longitude)
                     let otherCoord = Coordinate(latitude: coordinate.latitude, longitude: coordinate.longitude)
                     
-                    if coord.equal(otherCoord){
+                    if coord == otherCoord{
                         completion(address)
                     }
                 }
@@ -115,19 +115,3 @@ public class CodableAddressStore: ResourceStore{
     }
 }
 
-private struct Coordinate{
-    let latitude: Double
-    let longitude: Double
-}
-
-private extension Coordinate{
-    static let epsilon = 0.005
-    
-    func equal(_ location: Coordinate) -> Bool {
-        if fabs(latitude - location.latitude) < Coordinate.epsilon && fabs(longitude - location.longitude) < Coordinate.epsilon {
-            return true
-        }
-        return false
-        
-    }
-}

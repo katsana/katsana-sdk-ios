@@ -6,7 +6,7 @@
 //  Copyright © 2017 pixelated. All rights reserved.
 //
 
-import CoreLocation
+import Foundation
 
 open class VehicleLocation: Codable, Equatable{
     public static func == (lhs: VehicleLocation, rhs: VehicleLocation) -> Bool {
@@ -64,54 +64,54 @@ open class VehicleLocation: Codable, Equatable{
         self.trackedAt = trackedAt
     }
     
-    open func coordinate() -> CLLocationCoordinate2D {
-        return CLLocationCoordinate2DMake(latitude, longitude)
+    open func coordinate() -> Coordinate {
+        return Coordinate(latitude: latitude, longitude: longitude)
     }
     
-    private var _lastCoordinate: CLLocationCoordinate2D!
+//    private var _lastCoordinate: CLLocationCoordinate2D!
     //Get address for current location
-    open func address(completion: @escaping (String?) -> Void) {
-        if let _lastCoordinate = _lastCoordinate, _lastCoordinate.equal(coordinate()) {
-            completion(address)
-            return
-        }else{
-            KatsanaAPI.shared.requestAddress(for: coordinate(), completion: { (address) in
-                self._lastCoordinate = self.coordinate()
-                self.address = address?.optimizedAddress()
-                self.addressObject = address
-                completion(self.address)
-            })
-        }
-    }
-    
-    //Get address for current location
-    open func addressObject(completion: @escaping (KTAddress?) -> Void) {
-        if let _lastCoordinate = _lastCoordinate, _lastCoordinate.equal(coordinate()), let addressObject = addressObject, addressObject.pointOfInterest().count > 0 {
-            completion(addressObject)
-            return
-        }else{
-            KatsanaAPI.shared.requestAddress(for: coordinate(), completion: { (address) in
-                self._lastCoordinate = self.coordinate()
-                self.address = address?.optimizedAddress()
-                self.addressObject = address
-                completion(self.addressObject)
-            })
-        }
-    }
-    
-    
-    //Get address for current location
-    open func fullAddress(completion: @escaping (String?) -> Void) {
-        if let addressObject = addressObject, addressObject.coordinate().equal(coordinate()){
-            completion(addressObject.fullAddress())
-        }else{
-            KatsanaAPI.shared.requestAddress(for: coordinate(), completion: { (address) in
-                let fullAddress = address?.fullAddress()
-                self.addressObject = address
-                completion(fullAddress)
-            })
-        }
-    }
+//    open func address(completion: @escaping (String?) -> Void) {
+//        if let _lastCoordinate = _lastCoordinate, _lastCoordinate.equal(coordinate()) {
+//            completion(address)
+//            return
+//        }else{
+//            KatsanaAPI.shared.requestAddress(for: coordinate(), completion: { (address) in
+//                self._lastCoordinate = self.coordinate()
+//                self.address = address?.optimizedAddress()
+//                self.addressObject = address
+//                completion(self.address)
+//            })
+//        }
+//    }
+//
+//    //Get address for current location
+//    open func addressObject(completion: @escaping (KTAddress?) -> Void) {
+//        if let _lastCoordinate = _lastCoordinate, _lastCoordinate.equal(coordinate()), let addressObject = addressObject, addressObject.pointOfInterest().count > 0 {
+//            completion(addressObject)
+//            return
+//        }else{
+//            KatsanaAPI.shared.requestAddress(for: coordinate(), completion: { (address) in
+//                self._lastCoordinate = self.coordinate()
+//                self.address = address?.optimizedAddress()
+//                self.addressObject = address
+//                completion(self.addressObject)
+//            })
+//        }
+//    }
+//
+//
+//    //Get address for current location
+//    open func fullAddress(completion: @escaping (String?) -> Void) {
+//        if let addressObject = addressObject, addressObject.coordinate().equal(coordinate()){
+//            completion(addressObject.fullAddress())
+//        }else{
+//            KatsanaAPI.shared.requestAddress(for: coordinate(), completion: { (address) in
+//                let fullAddress = address?.fullAddress()
+//                self.addressObject = address
+//                completion(fullAddress)
+//            })
+//        }
+//    }
     
     // MARK: Text
     
@@ -130,7 +130,7 @@ open class VehicleLocation: Codable, Equatable{
     open func locationEqualTo(location: VehicleLocation) -> Bool {
         let coord = coordinate()
         let otherCoord = location.coordinate()
-        return coord.equal(otherCoord)
+        return coord == otherCoord
     }
     
     ///Check if location equal to other location. Check exact coordinates values between locations
@@ -142,11 +142,11 @@ open class VehicleLocation: Codable, Equatable{
         return false
     }
     
-    open func locationEqualTo(coordinate: CLLocationCoordinate2D) -> Bool {
-        return coordinate.equal(self.coordinate())
+    open func locationEqualTo(coordinate: Coordinate) -> Bool {
+        return coordinate == self.coordinate()
     }
     
-    open func locationExactEqualTo(coordinate: CLLocationCoordinate2D) -> Bool {
+    open func locationExactEqualTo(coordinate: Coordinate) -> Bool {
         if latitude == coordinate.latitude, longitude == coordinate.longitude {
             return true
         }
@@ -158,19 +158,7 @@ open class VehicleLocation: Codable, Equatable{
         return distanceTo(coordinate: location.coordinate())
     }
     
-    ///Returns the distance (in meters) from the receiver’s location to the specified location.
-    open func distanceTo(coordinate: CLLocationCoordinate2D) -> Float {
-        let location = CLLocation(latitude: latitude, longitude: longitude)
-        let otherLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let distance = location.distance(from: otherLocation)
-        return Float(distance)
-    }
-    
     func localizedTrackedAt() -> Date! {
-        guard trackedAt != nil else {
-            return nil
-        }
-        
         let timezoneOffset = NSTimeZone.system.secondsFromGMT(for: trackedAt)
         let date = trackedAt.addingTimeInterval(TimeInterval(timezoneOffset))
         return date
