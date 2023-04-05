@@ -110,14 +110,14 @@ class LoadResourceWithKeyFromCacheUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve(resourceFor: key)])
     }
 
-//    func test_loadImageDataFromURL_failsOnStoreError() {
-//        let (sut, store) = makeSUT()
-//
-//        expect(sut, toCompleteWith: failed(), when: {
-//            let retrievalError = anyNSError()
-//            store.completeRetrieval(with: retrievalError)
-//        })
-//    }
+    func test_loadResourceFromKey_failsOnStoreError() {
+        let (sut, store) = makeSUT()
+
+        expect(sut, toCompleteWith: failed(), when: {
+            let retrievalError = anyNSError()
+            store.completeRetrieval(with: retrievalError)
+        })
+    }
 
 //    func test_loadImageDataFromURL_deliversNotFoundErrorOnNotFound() {
 //        let (sut, store) = makeSUT()
@@ -149,31 +149,31 @@ class LoadResourceWithKeyFromCacheUseCaseTests: XCTestCase {
         return (sut, store)
     }
 
-//    private func failed() -> Result<Data, Error> {
-//        return .failure(LocalResourceWithKeyLoader.LoadError.failed)
-//    }
+    private func failed() -> Result<LocalLoaderType.R, Error> {
+        return .failure(LocalLoaderType.LoadError.failed)
+    }
 //
 //    private func notFound() -> Result<Data, Error> {
 //        return .failure(LocalResourceWithKeyLoader.LoadError.notFound)
 //    }
     
-//    private func expect(_ sut: LocalResourceWithKeyLoader, toCompleteWith expectedResult: Result<Data, Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
-//        action()
-//
-//        let receivedResult = Result { try sut.loadImageData(from: anyURL()) }
-//
-//        switch (receivedResult, expectedResult) {
-//        case let (.success(receivedData), .success(expectedData)):
-//            XCTAssertEqual(receivedData, expectedData, file: file, line: line)
-//
-//        case (.failure(let receivedError as LocalResourceWithKeyLoader.LoadError),
-//              .failure(let expectedError as LocalResourceWithKeyLoader.LoadError)):
-//            XCTAssertEqual(receivedError, expectedError, file: file, line: line)
-//
-//        default:
-//            XCTFail("Expected result \(expectedResult), got \(receivedResult) instead", file: file, line: line)
-//        }
-//    }
+    private func expect(_ sut: LocalLoaderType, toCompleteWith expectedResult: Result<LocalLoaderType.R, Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        action()
+
+        let receivedResult = Result { try sut.loadResource(from: anyKey()) }
+
+        switch (receivedResult, expectedResult) {
+        case let (.success(receivedData), .success(expectedData)):
+            XCTAssertEqual(receivedData, expectedData, file: file, line: line)
+
+        case (.failure(let receivedError as LocalLoaderType.LoadError),
+              .failure(let expectedError as LocalLoaderType.LoadError)):
+            XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+
+        default:
+            XCTFail("Expected result \(expectedResult), got \(receivedResult) instead", file: file, line: line)
+        }
+    }
     
     func anyKey() -> String {
         return "any key"
