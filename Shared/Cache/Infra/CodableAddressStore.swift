@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class CodableAddressStore: ResourceStore{
+public class OldCodableAddressStore: ResourceStore{
     public typealias Resource = [KTAddress]
     
     private struct Cache: Codable {
@@ -17,7 +17,7 @@ public class CodableAddressStore: ResourceStore{
     }
         
     private let storeURL: URL
-    private let queue = DispatchQueue(label: "\(CodableAddressStore.self)Queue", qos: .userInitiated, attributes: .concurrent)
+    private let queue = DispatchQueue(label: "\(OldCodableAddressStore.self)Queue", qos: .userInitiated, attributes: .concurrent)
     
     public init(storeURL: URL) {
         self.storeURL = storeURL

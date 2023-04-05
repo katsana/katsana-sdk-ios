@@ -50,6 +50,32 @@ extension Publisher {
     }
 }
 
+extension Publisher{
+    func mapToArray() -> AnyPublisher<[Output], Error> {
+        return self
+            .map { response -> [Output] in
+                return [response]
+            }
+            .mapError({ error in
+                return error
+            })
+            .eraseToAnyPublisher()
+    }
+}
+
+extension Publisher where Output: Collection{
+    func mapToFirstElementFromArray() -> AnyPublisher<Output.Element, Error> {
+        return self
+            .map { response -> Output.Element in
+                return response.first!
+            }
+            .mapError({ error in
+                return error
+            })
+            .eraseToAnyPublisher()
+    }
+}
+
 extension ResourceCache {
     func saveIgnoringResult(_ resource: SaveResource) {
         save(resource) { _ in}
