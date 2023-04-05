@@ -91,3 +91,33 @@ public extension AnyLocalLoader {
         .eraseToAnyPublisher()
     }
 }
+
+public extension LocalResourceWithKeyLoader {
+    
+    func loadPublisher(key: String) -> AnyPublisher<S.Resource, Error> {
+        return Deferred {
+            Future { completion in
+                completion(Result {
+                    try self.loadResource(from:key)
+                })
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+}
+
+extension Publisher {
+    func caching<R: ResourceWithKeyCache>(to cache: R, using key: String) -> AnyPublisher<Output, Failure> where Output == R.R{
+        handleEvents(receiveOutput: { resource in
+            cache.saveIgnoringResult(resource, for: key)
+        }).eraseToAnyPublisher()
+    }
+}
+
+extension ResourceWithKeyCache {
+    func saveIgnoringResult(_ resource: R, for key: String) {
+        try? save(resource, for: key)
+    }
+}
+
+

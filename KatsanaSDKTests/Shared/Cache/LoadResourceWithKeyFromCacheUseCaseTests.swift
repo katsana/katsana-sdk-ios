@@ -9,9 +9,6 @@
 import XCTest
 import KatsanaSDK
 
-
-
-
 class ResourceWithKeyStoreSpy<Resource>: ResourceWithKeyStore where Resource: Equatable{
     
     enum Message: Equatable {

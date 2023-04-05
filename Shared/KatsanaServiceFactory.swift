@@ -98,32 +98,24 @@ extension KatsanaServiceFactory{
         let url = baseStoreURL.appendingPathComponent(classname + ".store")
         
         let store = CodableResourceStore<KTAddress>(storeURL: url)
-        let localLoader = makeLocalLoader(KTAddress.self, maxCacheAgeInSeconds: 60*60*60*24*7, store: {store})
-        
+        let localLoader = LocalResourceWithKeyLoader(store: store)
+
         let client = reverseGeocodingClient
         
         struct NotFoundError: Error {}
         
-//        return localLoader
-//            .loadPublisher()
-//            .tryFilter({ addresses in
-//                for address in addresses{
-//                    if Coordinate(address.latitude, address.longitude) == Coordinate(coordinate.latitude, coordinate.longitude){
-//                        return true
-//                    }
-//                }
-//                throw NotFoundError()
-//            })
-//            .fallback(to: {
-//                return client
-//                    .getPublisher(coordinate: coordinate)
-//                    .mapToArray()
-//                    .caching(to: localLoader)
-//            })
-//            .mapToFirstElementFromArray()
+        let key = Coordinate(coordinate.latitude, coordinate.longitude).stringRepresentation()
         
-        return reverseGeocodingClient
-            .getPublisher(coordinate: coordinate)
+        return localLoader
+            .loadPublisher(key: key)
+            .fallback(to: {
+                return client
+                    .getPublisher(coordinate: coordinate)
+                    .caching(to: localLoader, using: key)
+            })
+        
+//        return reverseGeocodingClient
+//            .getPublisher(coordinate: coordinate)
     }
     
     func mapAddress(address: KTAddress) -> [KTAddress]{

@@ -30,4 +30,8 @@ public struct Coordinate: Equatable{
         }
         return false
     }
+    
+    public func stringRepresentation() -> String{
+        return String(format: "(%.4f, %.4f", latitude, longitude)
+    }
 }
