@@ -119,14 +119,14 @@ class LoadResourceWithKeyFromCacheUseCaseTests: XCTestCase {
         })
     }
 
-//    func test_loadImageDataFromURL_deliversNotFoundErrorOnNotFound() {
-//        let (sut, store) = makeSUT()
-//
-//        expect(sut, toCompleteWith: notFound(), when: {
-//            store.completeRetrieval(with: .none)
-//        })
-//    }
-//
+    func test_loadResourceFromURL_deliversNotFoundErrorOnNotFound() {
+        let (sut, store) = makeSUT()
+
+        expect(sut, toCompleteWith: notFound(), when: {
+            store.completeRetrieval(with: .none)
+        })
+    }
+
 //    func test_loadImageDataFromURL_deliversStoredDataOnFoundData() {
 //        let (sut, store) = makeSUT()
 //        let foundData = anyData()
@@ -152,10 +152,10 @@ class LoadResourceWithKeyFromCacheUseCaseTests: XCTestCase {
     private func failed() -> Result<LocalLoaderType.R, Error> {
         return .failure(LocalLoaderType.LoadError.failed)
     }
-//
-//    private func notFound() -> Result<Data, Error> {
-//        return .failure(LocalResourceWithKeyLoader.LoadError.notFound)
-//    }
+
+    private func notFound() -> Result<LocalLoaderType.R, Error> {
+        return .failure(LocalLoaderType.LoadError.notFound)
+    }
     
     private func expect(_ sut: LocalLoaderType, toCompleteWith expectedResult: Result<LocalLoaderType.R, Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         action()
