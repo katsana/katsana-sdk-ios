@@ -101,15 +101,15 @@ class LoadResourceWithKeyFromCacheUseCaseTests: XCTestCase {
         XCTAssertTrue(store.receivedMessages.isEmpty)
     }
     
-//    func test_loadImageDataFromURL_requestsStoredDataForURL() {
-//        let (sut, store) = makeSUT()
-//        let url = anyURL()
-//
-//        _ = try? sut.loadImageData(from: url)
-//
-//        XCTAssertEqual(store.receivedMessages, [.retrieve(dataFor: url)])
-//    }
-//
+    func test_loadResourceFromKey_requestsStoredResourceForKey() {
+        let (sut, store) = makeSUT()
+        let key = anyKey()
+
+        _ = try? sut.loadResource(from: key)
+
+        XCTAssertEqual(store.receivedMessages, [.retrieve(resourceFor: key)])
+    }
+
 //    func test_loadImageDataFromURL_failsOnStoreError() {
 //        let (sut, store) = makeSUT()
 //
@@ -118,7 +118,7 @@ class LoadResourceWithKeyFromCacheUseCaseTests: XCTestCase {
 //            store.completeRetrieval(with: retrievalError)
 //        })
 //    }
-//
+
 //    func test_loadImageDataFromURL_deliversNotFoundErrorOnNotFound() {
 //        let (sut, store) = makeSUT()
 //
@@ -174,5 +174,9 @@ class LoadResourceWithKeyFromCacheUseCaseTests: XCTestCase {
 //            XCTFail("Expected result \(expectedResult), got \(receivedResult) instead", file: file, line: line)
 //        }
 //    }
+    
+    func anyKey() -> String {
+        return "any key"
+    }
     
 }
