@@ -119,7 +119,7 @@ class LoadResourceWithKeyFromCacheUseCaseTests: XCTestCase {
         })
     }
 
-    func test_loadResourceFromURL_deliversNotFoundErrorOnNotFound() {
+    func test_loadResourceFromKey_deliversNotFoundErrorOnNotFound() {
         let (sut, store) = makeSUT()
 
         expect(sut, toCompleteWith: notFound(), when: {
@@ -127,14 +127,14 @@ class LoadResourceWithKeyFromCacheUseCaseTests: XCTestCase {
         })
     }
 
-//    func test_loadImageDataFromURL_deliversStoredDataOnFoundData() {
-//        let (sut, store) = makeSUT()
-//        let foundData = anyData()
-//
-//        expect(sut, toCompleteWith: .success(foundData), when: {
-//            store.completeRetrieval(with: foundData)
-//        })
-//    }
+    func test_loadResourceFromKey_deliversStoredDataOnFoundData() {
+        let (sut, store) = makeSUT()
+        let foundData = anyResource()
+
+        expect(sut, toCompleteWith: .success(foundData), when: {
+            store.completeRetrieval(with: foundData)
+        })
+    }
 
     // MARK: - Helpers
     
@@ -177,6 +177,10 @@ class LoadResourceWithKeyFromCacheUseCaseTests: XCTestCase {
     
     func anyKey() -> String {
         return "any key"
+    }
+    
+    func anyResource() -> String {
+        return "any resource"
     }
     
 }
