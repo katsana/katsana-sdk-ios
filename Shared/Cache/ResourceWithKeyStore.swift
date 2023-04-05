@@ -11,9 +11,6 @@ import Foundation
 public protocol ResourceWithKeyStore {
     associatedtype Resource where Resource: Equatable
     
-    typealias RetrievalResult = Swift.Result<Resource?, Error>
-    typealias InsertionResult = Swift.Result<Void, Error>
-    
     func insert(_ resource: Resource, for key: String) throws
     func retrieve(resourceForKey key: String) throws -> Resource?
     

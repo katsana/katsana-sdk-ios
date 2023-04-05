@@ -91,7 +91,7 @@ extension CodableResourceStore: ResourceWithKeyStore{
         let storeURL = self.storeURL
 
         guard let data = try? Data(contentsOf: storeURL) else {
-            throw LoadError.failed
+            return nil
         }
         do {
             let decoder = JSONDecoder()

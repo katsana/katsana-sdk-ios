@@ -73,6 +73,7 @@
 		C1DF2B5C29DD47D200596E70 /* ResourceWithKeyCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5B29DD47D200596E70 /* ResourceWithKeyCache.swift */; };
 		C1DF2B5E29DD47DD00596E70 /* ResourceWithKeyLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5D29DD47DD00596E70 /* ResourceWithKeyLoader.swift */; };
 		C1DF2B6029DD4F2C00596E70 /* LocalResourceWithKeyLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5F29DD4F2C00596E70 /* LocalResourceWithKeyLoader.swift */; };
+		C1DF2B6229DD604B00596E70 /* CodableResourceWithKeyStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B6129DD604B00596E70 /* CodableResourceWithKeyStoreTests.swift */; };
 		C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540B025256AB700525603 /* KTAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AC25256AB600525603 /* KTAddress.swift */; };
 		C1F540B225256AB700525603 /* KTVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AD25256AB600525603 /* KTVehicle.swift */; };
@@ -231,6 +232,7 @@
 		C1DF2B5B29DD47D200596E70 /* ResourceWithKeyCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceWithKeyCache.swift; sourceTree = "<group>"; };
 		C1DF2B5D29DD47DD00596E70 /* ResourceWithKeyLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceWithKeyLoader.swift; sourceTree = "<group>"; };
 		C1DF2B5F29DD4F2C00596E70 /* LocalResourceWithKeyLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalResourceWithKeyLoader.swift; sourceTree = "<group>"; };
+		C1DF2B6129DD604B00596E70 /* CodableResourceWithKeyStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableResourceWithKeyStoreTests.swift; sourceTree = "<group>"; };
 		C1F540A125256AA800525603 /* KTCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTCacheManager.swift; sourceTree = "<group>"; };
 		C1F540AC25256AB600525603 /* KTAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTAddress.swift; sourceTree = "<group>"; };
 		C1F540AD25256AB600525603 /* KTVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTVehicle.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 				C11FECE229CC0BBD003914DC /* CacheResourceUseCaseTests.swift */,
 				C11FECE529CC107E003914DC /* ValidateResourceCacheUseCaseTests.swift */,
 				C11FECCB29CBC478003914DC /* CodableResourceStoreTests.swift */,
+				C1DF2B6129DD604B00596E70 /* CodableResourceWithKeyStoreTests.swift */,
 				C1DF2B5829DD460D00596E70 /* LoadResourceWithKeyFromCacheUseCaseTests.swift */,
 				C1DF2B4F29DBF1F500596E70 /* CodableAddressStoreTests.swift */,
 			);
@@ -1011,6 +1014,7 @@
 				C11FECE629CC107E003914DC /* ValidateResourceCacheUseCaseTests.swift in Sources */,
 				C1751B3C29BFEDEC009C8795 /* URLProtocolStub.swift in Sources */,
 				C1751B4D29C018C8009C8795 /* KatsanaServicesFactoryTests.swift in Sources */,
+				C1DF2B6229DD604B00596E70 /* CodableResourceWithKeyStoreTests.swift in Sources */,
 				C11FECCA29CBC13F003914DC /* CacheResourceStoreSpy.swift in Sources */,
 				C1FAE73629C1A576001D3D86 /* TokenServiceTests.swift in Sources */,
 			);
