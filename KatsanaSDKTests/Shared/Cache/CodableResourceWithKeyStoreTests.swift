@@ -17,15 +17,15 @@ class CodableResourceWithKeyStoreTests: XCTestCase {
         expect(sut, toCompleteRetrievalWith: notFound(), for: anyResource())
     }
     
-//    func test_retrieveImageData_deliversNotFoundWhenStoredDataURLDoesNotMatch() {
-//        let sut = makeSUT()
-//        let url = URL(string: "http://a-url.com")!
-//        let nonMatchingURL = URL(string: "http://another-url.com")!
-//
-//        insert(anyData(), for: url, into: sut)
-//
-//        expect(sut, toCompleteRetrievalWith: notFound(), for: nonMatchingURL)
-//    }
+    func test_retrieveResource_deliversNotFoundWhenStoredResourceKeyDoesNotMatch() {
+        let sut = makeSUT()
+        let key = "a key"
+        let nonMatchingKey = "other key"
+
+        insert(anyResource(), for: key, into: sut)
+
+        expect(sut, toCompleteRetrievalWith: notFound(), for: nonMatchingKey)
+    }
 //
 //    func test_retrieveImageData_deliversFoundDataWhenThereIsAStoredImageDataMatchingURL() {
 //        let sut = makeSUT()
