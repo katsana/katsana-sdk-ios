@@ -8,11 +8,16 @@
 
 import Foundation
 
+public protocol ReverseGeocodingClientTask {
+    func cancel()
+}
+
 public protocol ReverseGeocodingClient {
     typealias Result = Swift.Result<KTAddress, Error>
     
     /// The completion handler can be invoked in any thread.
     /// Clients are responsible to dispatch to appropriate threads, if needed.
-    func getAddress(_ coordinate: (latitude: Double, longitude: Double), completion: @escaping (Result) -> Void)
+    @discardableResult
+    func getAddress(_ coordinate: (latitude: Double, longitude: Double), completion: @escaping (Result) -> Void) -> ReverseGeocodingClientTask
     
 }

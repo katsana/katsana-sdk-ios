@@ -18,8 +18,17 @@ public class AppleReverseGeocodingClient: ReverseGeocodingClient{
         self.geocoder = geocoder
     }
     
-    public func getAddress(_ coordinate: (latitude: Double, longitude: Double), completion: @escaping (Result<KTAddress, Error>) -> Void){
-        geocoder().reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)) { placemarks, error in
+    private struct AppleReverseGeocodingClientTaskWrapper: ReverseGeocodingClientTask {
+        let wrapped: CLGeocoder
+        
+        func cancel() {
+            wrapped.cancelGeocode()
+        }
+    }
+    
+    public func getAddress(_ coordinate: (latitude: Double, longitude: Double), completion: @escaping (Result<KTAddress, Error>) -> Void) -> ReverseGeocodingClientTask{
+        let geocode = geocoder()
+        geocode.reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)) { placemarks, error in
             if let placemark = placemarks?.first{
                 do{
                     let address = try CLPlaceMarkAddressMapper.map(placemark)
@@ -35,5 +44,6 @@ public class AppleReverseGeocodingClient: ReverseGeocodingClient{
                 completion(.failure(UnexpectedValuesRepresentation()))
             }
         }
+        return AppleReverseGeocodingClientTaskWrapper(wrapped: geocode)
     }
 }

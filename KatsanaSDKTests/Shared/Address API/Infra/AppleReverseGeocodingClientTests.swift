@@ -20,7 +20,14 @@ class AppleReverseGeocodingClientTests: XCTestCase {
         XCTAssertEqual(spy.requestCount, 1)
     }
     
+    func test_cancelGetAddressTask_cancelsRequest() {
+        let (sut, spy) = makeSUT()
 
+        expect(sut, coordinate: anyCoordinate(), toCompleteWith: .failure(GeocoderStub.CancelError())) {
+            spy.cancelGeocode()
+        }
+    }
+    
     func test_getAddress_failsOnRequestError() {
         let (sut, spy) = makeSUT()
 
@@ -101,6 +108,8 @@ class GeocoderStub: CLGeocoder{
         return requests.count
     }
     
+    struct CancelError: Error{}
+    
     override func reverseGeocodeLocation(_ location: CLLocation, completionHandler: @escaping CLGeocodeCompletionHandler) {
         requests.append(completionHandler)
     }
@@ -115,5 +124,9 @@ class GeocoderStub: CLGeocoder{
     
     func completeRequest(with result: ([CLPlacemark]?, Error?), at index: Int = 0) {
         requests[index](result.0, result.1)
+    }
+    
+    override func cancelGeocode() {
+        requests[0](nil, CancelError())
     }
 }
