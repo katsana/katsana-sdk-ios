@@ -116,10 +116,32 @@ extension KatsanaServiceFactory{
             .eraseToAnyPublisher()
     }
     
-    func mapAddress(address: KTAddress) -> [KTAddress]{
-        return [KTAddress(latitude: 0, longitude: 0)]
+    public func makeImagePublisher(url: URL) -> AnyPublisher<Data, Error>{
+        let url = baseStoreURL.appendingPathComponent(url.relativeString + ".png")
+        
+        let store = CodableResourceStore<Data>(storeURL: url)
+        let localLoader = LocalResourceWithKeyLoader(store: store)
+
+        let client = client
+        
+        struct NotFoundError: Error {}
+        
+        let request = URLRequest(url: url)
+        let key = url.absoluteString
+        
+        return localLoader
+            .loadPublisher(key: key)
+            .fallback(to: {
+                return client
+                    .getPublisher(urlRequest: request)
+                    .map{(data, response) -> (Data) in
+                        return data
+                    }
+                    .caching(to: localLoader, using: key)
+            })
+            .subscribe(on: scheduler)
+            .eraseToAnyPublisher()
     }
-    
     
 }
 
