@@ -10,6 +10,15 @@ import XCTest
 import KatsanaSDK
 
 class CodableResourceWithKeyStoreTests: XCTestCase {
+    override func setUp() {
+        super.setUp()
+        setupEmptyStoreState()
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        undoStoreSideEffects()
+    }
     
     func test_retrieveImageData_deliversNotFoundWhenEmpty() {
         let sut = makeSUT()
@@ -37,35 +46,32 @@ class CodableResourceWithKeyStoreTests: XCTestCase {
         expect(sut, toCompleteRetrievalWith: found(storedData), for: matchingKey)
     }
 
-//    func test_retrieveImageData_deliversLastInsertedValue() {
-//        let sut = makeSUT()
-//        let firstStoredData = Data("first".utf8)
-//        let lastStoredData = Data("last".utf8)
-//        let url = URL(string: "http://a-url.com")!
-//
-//        insert(firstStoredData, for: url, into: sut)
-//        insert(lastStoredData, for: url, into: sut)
-//
-//        expect(sut, toCompleteRetrievalWith: found(lastStoredData), for: url)
-//    }
-//
-//    func test_sideEffects_runSerially() {
-//        let sut = makeSUT()
-//        let url = anyURL()
-//
-//        let op1 = expectation(description: "Operation 1")
-//        sut.insert([localImage(url: url)], timestamp: Date()) { _ in
-//            op1.fulfill()
-//        }
-//
-//        let op2 = expectation(description: "Operation 2")
-//        sut.insert(anyData(), for: url) { _ in    op2.fulfill() }
-//
-//        let op3 = expectation(description: "Operation 3")
-//        sut.insert(anyData(), for: url) { _ in op3.fulfill() }
-//
-//        wait(for: [op1, op2, op3], timeout: 5.0, enforceOrder: true)
-//    }
+    func test_retrieveResource_deliversLastInsertedValue() {
+        let sut = makeSUT()
+        let firstStoredData = "first data"
+        let lastStoredData = "last data"
+        let key = "a key"
+
+        insert(firstStoredData, for: key, into: sut)
+        insert(lastStoredData, for: key, into: sut)
+
+        expect(sut, toCompleteRetrievalWith: found(lastStoredData), for: key)
+    }
+    
+    func test_retrieveResource_hasNoSideEffectsWhenSaveOtherResource() {
+        let sut = makeSUT()
+        let aStoredData = "a data"
+        let otherStoredData = "other data"
+        let key = "a key"
+        let otherKey = "other key"
+
+        insert(aStoredData, for: key, into: sut)
+        insert(otherStoredData, for: otherKey, into: sut)
+
+        expect(sut, toCompleteRetrievalWith: found(aStoredData), for: key)
+        expect(sut, toCompleteRetrievalWith: found(otherStoredData), for: otherKey)
+    }
+
     
     // - MARK: Helpers
     
@@ -115,5 +121,17 @@ class CodableResourceWithKeyStoreTests: XCTestCase {
         } catch {
             XCTFail("Failed to insert \(resource) with error \(error)", file: file, line: line)
         }
+    }
+    
+    private func setupEmptyStoreState() {
+        deleteStoreArtifacts()
+    }
+    
+    private func undoStoreSideEffects() {
+        deleteStoreArtifacts()
+    }
+    
+    private func deleteStoreArtifacts() {
+        try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
 }
