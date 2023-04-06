@@ -101,8 +101,6 @@ extension KatsanaServiceFactory{
 
         let client = reverseGeocodingClient
         
-        struct NotFoundError: Error {}
-        
         let key = Coordinate(coordinate.latitude, coordinate.longitude).stringRepresentation()
         
         return localLoader
@@ -116,28 +114,36 @@ extension KatsanaServiceFactory{
             .eraseToAnyPublisher()
     }
     
-    public func makeImagePublisher(url: URL) -> AnyPublisher<Data, Error>{
-        let url = baseStoreURL.appendingPathComponent(url.relativeString + ".png")
+    public func makeImagePublisher(client: HTTPClient, url: URL, defaultImageData: Data?) -> AnyPublisher<Data, Error>{
         
-        let store = CodableResourceStore<Data>(storeURL: url)
+        let name = url.pathComponents[url.pathComponents.count-2] + "_" + url.lastPathComponent
+        let storeURL = baseStoreURL.appendingPathComponent(name)
+        
+        let store = CodableResourceStore<Data>(storeURL: storeURL)
         let localLoader = LocalResourceWithKeyLoader(store: store)
 
-        let client = client
-        
-        struct NotFoundError: Error {}
-        
         let request = URLRequest(url: url)
         let key = url.absoluteString
+        
+        let anError = NSError()
         
         return localLoader
             .loadPublisher(key: key)
             .fallback(to: {
                 return client
                     .getPublisher(urlRequest: request)
-                    .map{(data, response) -> (Data) in
+                    .tryMap({ data, response in
+                        if !(200...299).contains(response.statusCode){
+                            if (400...410).contains(response.statusCode), let defaultImageData{
+                                try? localLoader.save(defaultImageData, for: key)
+                                return defaultImageData
+                            }
+                            throw anError
+                        }
                         return data
-                    }
+                    })
                     .caching(to: localLoader, using: key)
+                    .eraseToAnyPublisher()
             })
             .subscribe(on: scheduler)
             .eraseToAnyPublisher()
