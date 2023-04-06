@@ -29,11 +29,13 @@ public extension ReverseGeocodingClient {
     typealias Publisher = AnyPublisher<KTAddress, Error>
     
     func getPublisher(coordinate: (latitude: Double, longitude: Double)) -> Publisher {
+        var task: ReverseGeocodingClientTask?
         return Deferred {
             Future { completion in
-                self.getAddress(coordinate, completion: completion)
+               task = self.getAddress(coordinate, completion: completion)
             }
         }
+        .handleEvents(receiveCancel: { task?.cancel()})
         .eraseToAnyPublisher()
     }
 }
