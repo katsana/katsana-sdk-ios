@@ -16,6 +16,13 @@ open class KatsanaServiceFactory{
     let reverseGeocodingClient: ReverseGeocodingClient = AppleReverseGeocodingClient()
     let storeManager: ResourceStoreManager
     
+    
+    private lazy var scheduler: AnyDispatchQueueScheduler = DispatchQueue(
+        label: "com.essentialdeveloper.infra.queue",
+        qos: .userInitiated,
+        attributes: .concurrent
+    ).eraseToAnyScheduler()
+    
     public init(baseURL: URL, baseStoreURL: URL, client: HTTPClient, storeManager: ResourceStoreManager) {
         self.baseURL = baseURL
         self.baseStoreURL = baseStoreURL
@@ -105,6 +112,8 @@ extension KatsanaServiceFactory{
                     .getPublisher(coordinate: coordinate)
                     .caching(to: localLoader, using: key)
             })
+            .subscribe(on: scheduler)
+            .eraseToAnyPublisher()
     }
     
     func mapAddress(address: KTAddress) -> [KTAddress]{
