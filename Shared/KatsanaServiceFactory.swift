@@ -78,14 +78,6 @@ extension KatsanaServiceFactory{
     public func makeVehiclesPublisher(includes params: [String]? = nil) -> AnyPublisher<[KTVehicle], Error>{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
         return makePublisher(request: URLRequest(url: url), mapper: VehiclesMapper.map)
-    
-//        return client
-//            .getPublisher(urlRequest: URLRequest(url: url))
-//            .tryMap(VehiclesMapper.map)
-//            .caching(to: localLoader)
-//            .fallback(to: localLoader.loadPublisher)
-//            .eraseToAnyPublisher()
-
     }
     
     public func makeUserPublisher(includes params: [String]? = nil) -> AnyPublisher<KTUser, Error>{
@@ -113,9 +105,6 @@ extension KatsanaServiceFactory{
                     .getPublisher(coordinate: coordinate)
                     .caching(to: localLoader, using: key)
             })
-        
-//        return reverseGeocodingClient
-//            .getPublisher(coordinate: coordinate)
     }
     
     func mapAddress(address: KTAddress) -> [KTAddress]{

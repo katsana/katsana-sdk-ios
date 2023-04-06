@@ -64,8 +64,6 @@
 		C1DF2B4129D925C900596E70 /* CLPlaceMarkMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B4029D925C900596E70 /* CLPlaceMarkMapper.swift */; };
 		C1DF2B4429D929CD00596E70 /* AppleReverseGeocodingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B4329D929CD00596E70 /* AppleReverseGeocodingClient.swift */; };
 		C1DF2B4629D92B5C00596E70 /* CLPlaceMarkAddressMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B4529D92B5C00596E70 /* CLPlaceMarkAddressMapperTests.swift */; };
-		C1DF2B4E29DBF02E00596E70 /* CodableAddressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B4D29DBF02E00596E70 /* CodableAddressStore.swift */; };
-		C1DF2B5129DBF21400596E70 /* CodableAddressStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B4F29DBF1F500596E70 /* CodableAddressStoreTests.swift */; };
 		C1DF2B5329DD278E00596E70 /* ResourceWithKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5229DD278E00596E70 /* ResourceWithKeyStore.swift */; };
 		C1DF2B5529DD2DD600596E70 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5429DD2DD600596E70 /* Coordinate.swift */; };
 		C1DF2B5729DD2EA500596E70 /* VehicleLocation+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B5629DD2EA500596E70 /* VehicleLocation+Distance.swift */; };
@@ -223,8 +221,6 @@
 		C1DF2B4029D925C900596E70 /* CLPlaceMarkMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLPlaceMarkMapper.swift; sourceTree = "<group>"; };
 		C1DF2B4329D929CD00596E70 /* AppleReverseGeocodingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleReverseGeocodingClient.swift; sourceTree = "<group>"; };
 		C1DF2B4529D92B5C00596E70 /* CLPlaceMarkAddressMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLPlaceMarkAddressMapperTests.swift; sourceTree = "<group>"; };
-		C1DF2B4D29DBF02E00596E70 /* CodableAddressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableAddressStore.swift; sourceTree = "<group>"; };
-		C1DF2B4F29DBF1F500596E70 /* CodableAddressStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableAddressStoreTests.swift; sourceTree = "<group>"; };
 		C1DF2B5229DD278E00596E70 /* ResourceWithKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceWithKeyStore.swift; sourceTree = "<group>"; };
 		C1DF2B5429DD2DD600596E70 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		C1DF2B5629DD2EA500596E70 /* VehicleLocation+Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VehicleLocation+Distance.swift"; sourceTree = "<group>"; };
@@ -398,7 +394,6 @@
 				C11FECCB29CBC478003914DC /* CodableResourceStoreTests.swift */,
 				C1DF2B6129DD604B00596E70 /* CodableResourceWithKeyStoreTests.swift */,
 				C1DF2B5829DD460D00596E70 /* LoadResourceWithKeyFromCacheUseCaseTests.swift */,
-				C1DF2B4F29DBF1F500596E70 /* CodableAddressStoreTests.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -496,7 +491,6 @@
 			isa = PBXGroup;
 			children = (
 				C11FECE029CC0AFA003914DC /* CodableResourceStore.swift */,
-				C1DF2B4D29DBF02E00596E70 /* CodableAddressStore.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -1002,7 +996,6 @@
 				C1751B3A29BFEDEC009C8795 /* TripSummaryTest.swift in Sources */,
 				C11FECDA29CC023E003914DC /* XCTestCase+FailableRetrieveResourceStoreSpecs.swift in Sources */,
 				C1FAE70D29C1631E001D3D86 /* LoaderHelpers.swift in Sources */,
-				C1DF2B5129DBF21400596E70 /* CodableAddressStoreTests.swift in Sources */,
 				C11FECD329CBDE68003914DC /* ResourceStoreSpecs.swift in Sources */,
 				C1751B4029BFEDEC009C8795 /* XCTestCase+MemoryLeak.swift in Sources */,
 				C1751B4529BFEDEC009C8795 /* URLSessionHTTPClientTests.swift in Sources */,
@@ -1047,7 +1040,6 @@
 				C719179C1E48703B0041BC18 /* Travel.swift in Sources */,
 				C1DF2B5E29DD47DD00596E70 /* ResourceWithKeyLoader.swift in Sources */,
 				C1FAE74829C2C514001D3D86 /* VehicleMapper.swift in Sources */,
-				C1DF2B4E29DBF02E00596E70 /* CodableAddressStore.swift in Sources */,
 				C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */,
 				C17220C324628CA700A128B7 /* Fleet.swift in Sources */,
 				C1751B4F29C02120009C8795 /* RemoteLoader.swift in Sources */,
