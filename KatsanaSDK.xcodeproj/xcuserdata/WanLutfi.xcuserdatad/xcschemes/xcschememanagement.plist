@@ -27,7 +27,7 @@
 		<key>KatsanaSDKCacheIntegrationTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>9</integer>
 		</dict>
 		<key>KatsanaSDKEndToEndTests.xcscheme_^#shared#^_</key>
 		<dict>
