@@ -1,0 +1,20 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: CI
+
+on:
+  push:
+    branches: [ "v3" ]
+  pull_request:
+    branches: [ "v3" ]
+
+jobs:
+  build-and-test_iOS:
+  
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build and test iOS
+      run: xcodebuild clean build test -project  KatsanaSDK.xcodeproj -scheme "KatsanaSDK_CI_iOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=latest,name=iPhone 13"
