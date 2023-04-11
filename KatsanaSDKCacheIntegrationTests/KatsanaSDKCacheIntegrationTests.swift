@@ -96,7 +96,12 @@ final class KatsanaSDKCacheIntegrationTests: XCTestCase {
                 XCTAssertEqual(loadedFeed, expectedResource, file: file, line: line)
 
             case let .failure(error):
-                XCTFail("Expected successful resource result, got \(error) instead", file: file, line: line)
+                if expectedResource == nil, let error = error as? LocalLoaderError, error == LocalLoaderError.notFound{
+                    //Success
+                }else{
+                    XCTFail("Expected successful resource result, got \(error) instead", file: file, line: line)
+                }
+                
             }
 
             exp.fulfill()

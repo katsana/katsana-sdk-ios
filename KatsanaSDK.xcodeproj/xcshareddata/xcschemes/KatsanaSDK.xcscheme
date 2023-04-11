@@ -50,6 +50,16 @@
                ReferencedContainer = "container:KatsanaSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C11FECEA29CC172C003914DC"
+               BuildableName = "KatsanaSDKCacheIntegrationTests.xctest"
+               BlueprintName = "KatsanaSDKCacheIntegrationTests"
+               ReferencedContainer = "container:KatsanaSDK.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
