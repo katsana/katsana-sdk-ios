@@ -9,7 +9,7 @@
 import XCTest
 import KatsanaSDK
 
-final class KatsanaSDKEndToEndTests: XCTestCase {
+final class KatsanaSDKEndToEndTests: XCTestCase, ResourceStoreManagerDelegate {
     
     func test_endToEndTestServerGETUser_matchesTestData() {
         let sut = makeSUT()
@@ -66,9 +66,10 @@ final class KatsanaSDKEndToEndTests: XCTestCase {
     // MARK: - Helpers
     
     func makeSUT() -> KatsanaServiceFactory{
+        let storeManager = ResourceStoreManager(delegate: self)
         let tokenService = TokenServiceStub(stub: .success(AccessToken(token: Secret.token)))
         let client = AuthenticatedHTTPClientDecorator(decoratee: ephemeralClient(), tokenService: tokenService)
-        let factory = KatsanaServiceFactory(baseURL: Secret.baseURL, client: client)
+        let factory = KatsanaServiceFactory(baseURL: Secret.baseURL, baseStoreURL: localStoreURL, client: client, storeManager: storeManager)
         
         trackForMemoryLeaks(client)
         trackForMemoryLeaks(factory)
@@ -97,6 +98,20 @@ final class KatsanaSDKEndToEndTests: XCTestCase {
         let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
         trackForMemoryLeaks(client, file: file, line: line)
         return client
+    }
+    
+    private lazy var localStoreURL: URL = {
+        let arrayPaths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+        let cacheDirectoryPath = arrayPaths[0]
+        return cacheDirectoryPath
+    }()
+    
+    func makeStore<Resource, S>(_ type: Resource.Type) -> KatsanaSDK.AnyResourceStore<Resource> where Resource : Decodable, Resource : Encodable, Resource : Equatable, S : KatsanaSDK.AnyResourceStore<Resource> {
+        let classname = String(describing: Resource.self) + "test"
+        let url = localStoreURL.appendingPathComponent(classname + ".store")
+        let store = CodableResourceStore<Resource>(storeURL: url)
+        let anyStore = AnyResourceStore(store)
+        return anyStore
     }
     
 }
