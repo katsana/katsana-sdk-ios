@@ -49,6 +49,7 @@ open class KTTrip: NSCopying, Codable {
     //Extra data that user can set to trip
     open var extraData = [String: Any]()
     
+    
     public func copy(with zone: NSZone? = nil) -> Any {
         let trip = KTTrip()
         trip.id = id

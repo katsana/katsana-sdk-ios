@@ -126,7 +126,7 @@ public class VehicleMapper{
         vehicle.insuredBy = dicto["insured"]["by"].stringValue
         
         vehicle.subscriptionEnd = dicto["ends_at"].date
-        vehicle.current = ObjectJSONTransformer.VehicleLocationObject(json: dicto["current"])
+        vehicle.current = VehicleLocationMapper.mapJSON(dicto["current"])
         
         return vehicle
     }
