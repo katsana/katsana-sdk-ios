@@ -72,14 +72,14 @@ extension KatsanaServiceFactory{
         let localLoader = makeLocalLoader(Resource.self, maxCacheAgeInSeconds: maxCacheAgeInSeconds)
         let client = self.client
         
-//        return localLoader
-//            .loadPublisher()
-//            .fallback(to: {
+        return localLoader
+            .loadPublisher()
+            .fallback(to: {
                 return client
                     .getPublisher(urlRequest: request)
                     .tryMap(mapper)
                     .caching(to: localLoader)
-//            })
+            })
     }
     
     public func makeVehiclesPublisher(includes params: [String]? = nil) -> AnyPublisher<[KTVehicle], Error>{
