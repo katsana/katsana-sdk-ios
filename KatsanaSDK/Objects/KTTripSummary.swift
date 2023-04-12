@@ -18,7 +18,7 @@ public class KTTripSummary: Codable, Equatable {
     public let violationCount: Int
     public let score: CGFloat
     
-    init(date: Date, distance: CGFloat, duration: CGFloat, idleDuration: CGFloat, maxSpeed: CGFloat, tripCount: Int, violationCount: Int, score: CGFloat) {
+    public init(date: Date, distance: CGFloat, duration: CGFloat, idleDuration: CGFloat, maxSpeed: CGFloat, tripCount: Int, violationCount: Int, score: CGFloat) {
         self.date = date
         self.distance = distance
         self.duration = duration
