@@ -38,11 +38,11 @@ extension Date{
         return Date.timeFormatter.string(from: self)
     }
     
-    public func toStringWithYearMonthDay() -> String {
-        let dateComps = Calendar.current.dateComponents([.day, .month, .year], from: self)
-        let str = "\(dateComps.year!)/\(dateComps.month!)/\(dateComps.day!)"
-        return str
-    }
+//    public func toStringWithYearMonthDay() -> String {
+//        let dateComps = Calendar.current.dateComponents([.day, .month, .year], from: self)
+//        let str = "\(dateComps.year!)/\(dateComps.month!)/\(dateComps.day!)"
+//        return str
+//    }
     
     public func toStringWithYearMonthDayAndTime(timezone: NSTimeZone! = nil) -> String {
         if let timezone = timezone {
