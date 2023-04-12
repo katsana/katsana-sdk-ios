@@ -92,6 +92,11 @@ extension KatsanaServiceFactory{
         return makePublisher(request: URLRequest(url: url), mapper: UserMapper.map)
     }
     
+    public func makeTripSummaryPublisher(vehicleId: Int, startDate: Date, endDate: Date) -> AnyPublisher<[KTTripSummary], Error>{
+        let url = TripSummaryEndpoint.get(vehicleId: vehicleId, fromDate: startDate, toDate: endDate).url(baseURL: baseURL)
+        return makePublisher(request: URLRequest(url: url), mapper: TripSummariesMapper.map)
+    }
+    
     public func makeAddressPublisher(coordinate: (latitude: Double, longitude: Double)) -> AnyPublisher<KTAddress, Error>{
         let classname = String(describing: KTAddress.self)
         let url = baseStoreURL.appendingPathComponent(classname + ".store")
