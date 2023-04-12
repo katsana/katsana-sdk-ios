@@ -9,7 +9,7 @@
 import Foundation
 
 public enum TripSummaryEndpoint {
-    case get(vehicleId: String, fromDate: Date, toDate: Date)
+    case get(vehicleId: Int, fromDate: Date, toDate: Date)
 
     public func url(baseURL: URL) -> URL {
         switch self {
@@ -18,7 +18,7 @@ public enum TripSummaryEndpoint {
             queryItems = [URLQueryItem(name: "start", value: fromDate.toStringWithYearMonthDay()),
                           URLQueryItem(name: "end", value: toDate.toStringWithYearMonthDay())].compactMap { $0 }
             
-            let urlString = baseURL.absoluteString + "/vehicles" + vehicleId + "/summaries/duration"
+            let urlString = baseURL.absoluteString + "/vehicles" + "\(vehicleId)" + "/summaries/duration"
             let url = URL(string: urlString)!
             
             let finalURL = URL.make(url: url, queryItems: queryItems)
@@ -27,7 +27,7 @@ public enum TripSummaryEndpoint {
     }
 }
 
-private extension Date{
+public extension Date{
     func toStringWithYearMonthDay() -> String {
         let dateComps = Calendar.current.dateComponents([.day, .month, .year], from: self)
         let str = "\(dateComps.year!)/\(dateComps.month!)/\(dateComps.day!)"

@@ -58,6 +58,7 @@
 		C1751B4D29C018C8009C8795 /* KatsanaServicesFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B4C29C018C8009C8795 /* KatsanaServicesFactoryTests.swift */; };
 		C1751B4F29C02120009C8795 /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B4E29C02120009C8795 /* RemoteLoader.swift */; };
 		C186126A29E67D2400171A3F /* TripSummaryEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186126929E67D2400171A3F /* TripSummaryEndpoint.swift */; };
+		C186126F29E67F5500171A3F /* TripSummaryEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186126D29E67F0000171A3F /* TripSummaryEndpointTests.swift */; };
 		C18A824128FCEF6000C3FF7D /* VideoRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824028FCEF6000C3FF7D /* VideoRecording.swift */; };
 		C18A824328FCEFD500C3FF7D /* VideoRecordingChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */; };
 		C18A824528FD050A00C3FF7D /* KatsanaAPI+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */; };
@@ -215,6 +216,7 @@
 		C1751B4C29C018C8009C8795 /* KatsanaServicesFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaServicesFactoryTests.swift; sourceTree = "<group>"; };
 		C1751B4E29C02120009C8795 /* RemoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoader.swift; sourceTree = "<group>"; };
 		C186126929E67D2400171A3F /* TripSummaryEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryEndpoint.swift; sourceTree = "<group>"; };
+		C186126D29E67F0000171A3F /* TripSummaryEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryEndpointTests.swift; sourceTree = "<group>"; };
 		C18A824028FCEF6000C3FF7D /* VideoRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecording.swift; sourceTree = "<group>"; };
 		C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingChannel.swift; sourceTree = "<group>"; };
 		C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Stream.swift"; sourceTree = "<group>"; };
@@ -415,8 +417,6 @@
 			children = (
 				C1751B1A29BFECCC009C8795 /* Helpers */,
 				C1FAE70329C158DA001D3D86 /* Infra */,
-				C1FAE74129C2AB1A001D3D86 /* Vehicle API */,
-				C1FAE71229C1778A001D3D86 /* User API */,
 			);
 			path = "HTTP API";
 			sourceTree = "<group>";
@@ -452,6 +452,7 @@
 		C11FECB529CAE26C003914DC /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C186126B29E67EA900171A3F /* API */,
 				C11FECBC29CBBD64003914DC /* Helpers */,
 				C11FECAF29CADEA6003914DC /* Cache */,
 				C11FECB129CAE1B4003914DC /* HTTP API */,
@@ -588,6 +589,24 @@
 			isa = PBXGroup;
 			children = (
 				C186126929E67D2400171A3F /* TripSummaryEndpoint.swift */,
+			);
+			path = "Trip Summary API";
+			sourceTree = "<group>";
+		};
+		C186126B29E67EA900171A3F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C186126C29E67EF000171A3F /* Trip Summary API */,
+				C1FAE74129C2AB1A001D3D86 /* Vehicle API */,
+				C1FAE71229C1778A001D3D86 /* User API */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		C186126C29E67EF000171A3F /* Trip Summary API */ = {
+			isa = PBXGroup;
+			children = (
+				C186126D29E67F0000171A3F /* TripSummaryEndpointTests.swift */,
 			);
 			path = "Trip Summary API";
 			sourceTree = "<group>";
@@ -1020,6 +1039,7 @@
 				C1751B4D29C018C8009C8795 /* KatsanaServicesFactoryTests.swift in Sources */,
 				C1DF2B6229DD604B00596E70 /* CodableResourceWithKeyStoreTests.swift in Sources */,
 				C11FECCA29CBC13F003914DC /* CacheResourceStoreSpy.swift in Sources */,
+				C186126F29E67F5500171A3F /* TripSummaryEndpointTests.swift in Sources */,
 				C1FAE73629C1A576001D3D86 /* TokenServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
