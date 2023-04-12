@@ -18,7 +18,7 @@ public enum TripSummaryEndpoint {
             queryItems = [URLQueryItem(name: "start", value: fromDate.toStringWithYearMonthDay()),
                           URLQueryItem(name: "end", value: toDate.toStringWithYearMonthDay())].compactMap { $0 }
             
-            let urlString = baseURL.absoluteString + "/vehicles" + "\(vehicleId)" + "/summaries/duration"
+            let urlString = baseURL.absoluteString + "/vehicles" + "/\(vehicleId)" + "/summaries/duration"
             let url = URL(string: urlString)!
             
             let finalURL = URL.make(url: url, queryItems: queryItems)
