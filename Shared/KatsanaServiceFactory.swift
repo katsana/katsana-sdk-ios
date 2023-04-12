@@ -94,7 +94,11 @@ extension KatsanaServiceFactory{
     
     public func makeTripSummaryPublisher(vehicleId: Int, startDate: Date, endDate: Date) -> AnyPublisher<[KTTripSummary], Error>{
         let url = TripSummaryEndpoint.get(vehicleId: vehicleId, fromDate: startDate, toDate: endDate).url(baseURL: baseURL)
-        return makePublisher(request: URLRequest(url: url), mapper: TripSummariesMapper.map)
+        
+        return client
+            .getPublisher(urlRequest: URLRequest(url: url))
+            .tryMap(TripSummariesMapper.map)
+            .eraseToAnyPublisher()
     }
     
     public func makeAddressPublisher(coordinate: (latitude: Double, longitude: Double)) -> AnyPublisher<KTAddress, Error>{
