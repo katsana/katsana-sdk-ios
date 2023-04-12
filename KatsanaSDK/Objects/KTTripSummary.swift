@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class KTTripSummary: Codable {
+public class KTTripSummary: Codable, Equatable {
     public let date: Date
     public let distance: CGFloat
     public let duration: CGFloat
@@ -29,4 +29,7 @@ public class KTTripSummary: Codable {
         self.score = score
     }
     
+    public static func == (lhs: KTTripSummary, rhs: KTTripSummary) -> Bool {
+        return (lhs.date == rhs.date && lhs.distance == rhs.distance && lhs.duration == rhs.duration)
+    }
 }
