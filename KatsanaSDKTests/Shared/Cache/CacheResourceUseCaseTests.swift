@@ -14,21 +14,14 @@ final class CacheFeedUseCaseTests: XCTestCase {
         let (_, store) = makeSUT()
         XCTAssertEqual(store.receivedMessages.count, 0)
     }
-    
-    func test_save_requestsCacheDeletion() {
-        let (sut, store) = makeSUT()
-
-        sut.save(anyResource()){_ in}
-
-        XCTAssertEqual(store.receivedMessages, [.deleteCachedResource])
-    }
 
     func test_save_doesNotRequestCacheInsertionOnDeletionError() {
         let (sut, store) = makeSUT()
         let deletionError = anyNSError()
+        store.completeDeletion(with: deletionError)
+
 
         sut.save(anyResource()){_ in}
-        store.completeDeletion(with: deletionError)
 
         XCTAssertEqual(store.receivedMessages, [.deleteCachedResource])
     }
@@ -69,34 +62,7 @@ final class CacheFeedUseCaseTests: XCTestCase {
             store.completeInsertionSuccessfully()
         }
     }
-    
-    func test_save_doesNotDeliverDeletionErrorAfterSUTInstanceHasBeenDeallocated() {
-        let store = CacheResourceStoreSpyType()
-        var sut: LocalLoaderType? = LocalLoaderType(store: store, currentDate: Date.init)
-        
-        var receivedResults = [LocalLoaderType.SaveResult]()
-        sut?.save(anyResource()) { receivedResults.append($0) }
-        
-        sut = nil
-        store.completeDeletion(with: anyNSError())
-        
-        XCTAssertTrue(receivedResults.isEmpty)
-    }
-    
-    func test_save_doesNotDeliverInsertionErrorAfterSUTInstanceHasBeenDeallocated() {
-        let store = CacheResourceStoreSpyType()
-        var sut: LocalLoaderType? = LocalLoaderType(store: store, currentDate: Date.init)
-        
-        var receivedResults = [LocalLoaderType.SaveResult]()
-        sut?.save(anyResource()) { receivedResults.append($0) }
-        
-        store.completeDeletionSuccessfully()
-        sut = nil
-        store.completeInsertion(with: anyNSError())
-        
-        XCTAssertTrue(receivedResults.isEmpty)
-    }
-    
+
     
     // MARK: - Helpers
     
@@ -113,6 +79,7 @@ final class CacheFeedUseCaseTests: XCTestCase {
 
     private func expect(_ sut: LocalLoaderType, toCompleteWithError expectedError: NSError?, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for save completion")
+        action()
 
         var receivedError: Error?
         sut.save(anyResource()) { result in
@@ -120,7 +87,6 @@ final class CacheFeedUseCaseTests: XCTestCase {
             exp.fulfill()
         }
 
-        action()
         wait(for: [exp], timeout: 1.0)
 
         XCTAssertEqual(receivedError as NSError?, expectedError, file: file, line: line)

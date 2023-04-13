@@ -20,34 +20,54 @@ class CacheResourceStoreSpy<R>: ResourceStore where R: Equatable{
 
     private(set) var receivedMessages = [ReceivedMessage]()
     
+    private var deletionResult: Result<Void, Error>?
+    private var insertionResult: Result<Void, Error>?
+    private var retrievalResult: Result<CachedResource<R>?, Error>?
+    
     private var deletionCompletions = [DeletionCompletion]()
     private var insertionCompletions = [InsertionCompletion]()
     private var retrievalCompletions = [RetrievalCompletion]()
+    
+    func deleteCachedResource() throws {
+        receivedMessages.append(.deleteCachedResource)
+        try deletionResult?.get()
+    }
+    
+    func insert(_ resource: R, timestamp: Date) throws {
+        receivedMessages.append(.insert(resource, timestamp))
+        try insertionResult?.get()
+    }
+    
+    func retrieve() throws -> KatsanaSDK.CachedResource<R>? {
+        receivedMessages.append(.retrieve)
+        return try retrievalResult?.get()
+    }
     
     func deleteCachedResource(completion: @escaping DeletionCompletion) {
         deletionCompletions.append(completion)
         receivedMessages.append(.deleteCachedResource)
     }
     
-    func completeDeletion(with error: Error, at index: Int = 0) {
-        deletionCompletions[index](.failure(error))
+    func completeDeletion(with error: Error) {
+        deletionResult = .failure(error)
     }
     
-    func completeDeletionSuccessfully(at index: Int = 0) {
-        deletionCompletions[index](.success(()))
+    func completeDeletionSuccessfully() {
+        deletionResult = .success(())
     }
+
     
     func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion) {
         insertionCompletions.append(completion)
         receivedMessages.append(.insert(resource, timestamp))
     }
     
-    func completeInsertion(with error: Error, at index: Int = 0) {
-        insertionCompletions[index](.failure(error))
+    func completeInsertion(with error: Error) {
+        insertionResult = .failure(error)
     }
     
-    func completeInsertionSuccessfully(at index: Int = 0) {
-        insertionCompletions[index](.success(()))
+    func completeInsertionSuccessfully() {
+        insertionResult = .success(())
     }
     
     
@@ -56,15 +76,15 @@ class CacheResourceStoreSpy<R>: ResourceStore where R: Equatable{
         receivedMessages.append(.retrieve)
     }
     
-    func completeRetrieval(with error: Error, at index: Int = 0) {
-        retrievalCompletions[index](.failure(error))
+    func completeRetrieval(with error: Error) {
+        retrievalResult = .failure(error)
     }
     
-    func completeRetrievalWithEmptyCache(at index: Int = 0) {
-        retrievalCompletions[index](.success(.none))
+    func completeRetrievalWithEmptyCache() {
+        retrievalResult = .success(.none)
     }
     
     func completeRetrieval(with resource: Resource, timestamp: Date, at index: Int = 0) {
-        retrievalCompletions[index](.success(CachedResource<Resource>(resource: resource, timestamp: timestamp)))
+        retrievalResult = .success(CachedResource(resource: resource, timestamp: timestamp))
     }
 }

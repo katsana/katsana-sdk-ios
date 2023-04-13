@@ -26,17 +26,15 @@ public final class LocalLoader<Resource, S: ResourceStore>: ResourceLoader where
     }
 
     public func load(completion: @escaping (LoadResult) -> Void) {
-        store.retrieve { [weak self] result in
-            guard let self = self else { return }
-
-            switch result {
-            case let .failure(error):
-                completion(.failure(error))
-            case let .success(.some(cache)) where self.cachePolicy.validate(cache.timestamp, against: self.currentDate()):
+        do{
+            if let cache = try store.retrieve(), self.cachePolicy.validate(cache.timestamp, against: currentDate()) {
                 completion(.success(cache.resource))
-            case .success:
+            }else{
                 completion(.failure(LocalLoaderError.notFound))
+
             }
+        }catch{
+            completion(.failure(error))
         }
     }
 }
@@ -45,43 +43,33 @@ extension LocalLoader: ResourceCache {
     public typealias SaveResource = Resource
 
     public func save(_ resource: Resource, completion: @escaping (SaveResult) -> Void) {
-        store.deleteCachedResource { [weak self] deletionResult in
-            guard let self = self else { return }
-            
-            switch deletionResult{
-            case .success:
-                self.cache(resource, with: completion)
-            case let .failure(error):
-                completion(.failure(error))
-            }
+        do{
+            try store.deleteCachedResource()
+            try store.insert(resource, timestamp: currentDate())
+            completion(.success(()))
         }
-    }
-    
-    private func cache(_ resource: Resource, with completion: @escaping (SaveResult) -> Void) {
-        store.insert(resource, timestamp: currentDate()) { [weak self] error in
-            guard self != nil else { return }
-            
-            completion(error)
+        catch{
+            completion(.failure(error))
         }
     }
 }
 
 extension LocalLoader {
+    private struct InvalidCache: Error {}
     public typealias ValidationResult = Result<Void, Error>
 
     public func validateCache(completion: @escaping (ValidationResult) -> Void) {
-        store.retrieve { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .failure:
-                self.store.deleteCachedResource(completion: completion)
-                
-            case let .success(.some(cache)) where !self.cachePolicy.validate(cache.timestamp, against: self.currentDate()):
-                self.store.deleteCachedResource(completion: completion)
-                
-            case .success:
+        do {
+            if let cache = try store.retrieve(), !self.cachePolicy.validate(cache.timestamp, against: currentDate()) {
+                throw InvalidCache()
+            }
+            completion(.success(()))
+        } catch {
+            do{
+                try store.deleteCachedResource()
                 completion(.success(()))
+            }catch{
+                completion(.failure(error))
             }
         }
     }

@@ -87,44 +87,17 @@ extension ResourceStoreSpecs where Self: XCTestCase {
         expect(sut, toRetrieve: .success(.none), file: file, line: line)
     }
 
-    func assertThatSideEffectsRunSerially<R: ResourceStore>(resource: R.Resource, resource2: R.Resource, on sut: R, file: StaticString = #file, line: UInt = #line) {
-        var completedOperationsInOrder = [XCTestExpectation]()
-
-        let op1 = expectation(description: "Operation 1")
-        sut.insert(resource, timestamp: Date()) { _ in
-            completedOperationsInOrder.append(op1)
-            op1.fulfill()
-        }
-
-        let op2 = expectation(description: "Operation 2")
-        sut.deleteCachedResource { _ in
-            completedOperationsInOrder.append(op2)
-            op2.fulfill()
-        }
-
-        let op3 = expectation(description: "Operation 3")
-        sut.insert(resource2, timestamp: Date()) { _ in
-            completedOperationsInOrder.append(op3)
-            op3.fulfill()
-        }
-
-        waitForExpectations(timeout: 5.0)
-
-        XCTAssertEqual(completedOperationsInOrder, [op1, op2, op3], "Expected side-effects to run serially but operations finished in the wrong order", file: file, line: line)
-    }
-
 }
 
 extension ResourceStoreSpecs where Self: XCTestCase {
     @discardableResult
     func deleteCache<R: ResourceStore>(from sut: R) -> Error? {
-        let exp = expectation(description: "Wait for cache deletion")
         var deletionError: Error?
-        sut.deleteCachedResource { result in
-            if case let .failure(error) = result { deletionError = error}
-            exp.fulfill()
+        do{
+            try sut.deleteCachedResource()
+        }catch{
+            deletionError = error
         }
-        wait(for: [exp], timeout: 3.0)
         return deletionError
     }
 
@@ -134,38 +107,30 @@ extension ResourceStoreSpecs where Self: XCTestCase {
     }
     
     func expect<R: ResourceStore>(_ sut: R, toRetrieve expectedResult: R.RetrievalResult, file: StaticString = #file, line: UInt = #line) {
-        let exp = expectation(description: "Wait for cache retrieval")
-        
-        sut.retrieve { retrievedResult in
-            switch (expectedResult, retrievedResult) {
-            case (.success(.none) , .success(.none)),
-                (.failure, .failure):
-                break
-                
-            case let (.success(.some((expectedFeed, expectedTimestamp))), .success(.some((retrievedFeed, retrievedTimestamp)))):
-                XCTAssertEqual(retrievedFeed, expectedFeed, file: file, line: line)
-                XCTAssertEqual(retrievedTimestamp, expectedTimestamp, file: file, line: line)
-                
-            default:
-                XCTFail("Expected to retrieve \(expectedResult), got \(retrievedResult) instead", file: file, line: line)
+        do{
+            let resource = try sut.retrieve()
+            let result = try expectedResult.get()
+            XCTAssertEqual(resource?.resource, result?.resource)
+            XCTAssertEqual(resource?.timestamp, result?.timestamp)
+
+        }catch{
+            switch expectedResult{
+            case .failure:
+                ()
+            case .success(_):
+                XCTFail("Expected to retrieve \(expectedResult)", file: file, line: line)
             }
-            
-            exp.fulfill()
         }
-        
-        wait(for: [exp], timeout: 1.0)
     }
     
     @discardableResult
     func insert<R: ResourceStore, Resource>(_ cache: (resource: Resource, timestamp: Date), to sut: R) -> Error? where Resource == R.Resource{
-        let exp = expectation(description: "Wait for cache insertion")
-        var insertionError: Error?
-        sut.insert(cache.resource, timestamp: cache.timestamp) { result in
-            if case let .failure(error) = result { insertionError = error}
-            exp.fulfill()
+        do{
+            try sut.insert(cache.resource, timestamp: cache.timestamp)
+        }catch{
+            return error
         }
-        wait(for: [exp], timeout: 1.0)
-        return insertionError
+        return nil
     }
 }
 

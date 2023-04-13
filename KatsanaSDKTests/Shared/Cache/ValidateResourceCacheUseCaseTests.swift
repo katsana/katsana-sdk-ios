@@ -19,8 +19,8 @@ class ValidateResourceCacheUseCaseTests: XCTestCase {
     func test_validateCache_deletesCacheOnRetrievalError() {
         let (sut, store) = makeSUT()
         
-        sut.validateCache { _ in }
         store.completeRetrieval(with: anyNSError())
+        sut.validateCache { _ in }
         
         XCTAssertEqual(store.receivedMessages, [.retrieve, .deleteCachedResource])
     }
@@ -52,8 +52,8 @@ class ValidateResourceCacheUseCaseTests: XCTestCase {
         let expirationTimestamp = fixedCurrentDate.minusResourceCacheMaxAge()
         let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
         
-        sut.validateCache { _ in }
         store.completeRetrieval(with: resource, timestamp: expirationTimestamp)
+        sut.validateCache { _ in }
         
         XCTAssertEqual(store.receivedMessages, [.retrieve, .deleteCachedResource])
     }
@@ -64,8 +64,8 @@ class ValidateResourceCacheUseCaseTests: XCTestCase {
         let expiredTimestamp = fixedCurrentDate.minusResourceCacheMaxAge().adding(seconds: -1)
         let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
         
-        sut.validateCache { _ in }
         store.completeRetrieval(with: resource, timestamp: expiredTimestamp)
+        sut.validateCache { _ in }
         
         XCTAssertEqual(store.receivedMessages, [.retrieve, .deleteCachedResource])
     }
@@ -162,6 +162,7 @@ class ValidateResourceCacheUseCaseTests: XCTestCase {
     private func expect(_ sut: LocalLoaderType, toCompleteWith expectedResult: LocalLoaderType.ValidationResult, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for load completion")
         
+        action()
         sut.validateCache { receivedResult in
             switch (receivedResult, expectedResult) {
             case (.success, .success):
@@ -177,7 +178,6 @@ class ValidateResourceCacheUseCaseTests: XCTestCase {
             exp.fulfill()
         }
         
-        action()
         wait(for: [exp], timeout: 1.0)
     }
     

@@ -21,16 +21,10 @@ public protocol ResourceStore{
 
     typealias RetrievalResult = Result<CachedResource<Resource>?, Error>
     typealias RetrievalCompletion = (RetrievalResult) -> Void
-
-    /// The completion handler can be invoked in any thread.
-    /// Clients are responsible to dispatch to appropriate threads, if needed.
-    func deleteCachedResource(completion: @escaping DeletionCompletion)
-
-    /// The completion handler can be invoked in any thread.
-    /// Clients are responsible to dispatch to appropriate threads, if needed.
-    func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion)
-
-    /// The completion handler can be invoked in any thread.
-    /// Clients are responsible to dispatch to appropriate threads, if needed.
-    func retrieve(completion: @escaping RetrievalCompletion)
+    
+    func deleteCachedResource() throws
+    func insert(_ resource: Resource, timestamp: Date) throws
+    func retrieve() throws -> CachedResource<Resource>?
 }
+
+

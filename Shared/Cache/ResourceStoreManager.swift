@@ -32,18 +32,18 @@ public class ResourceStoreManager{
         return store as! AnyResourceStore<R>
     }
     
-    public func deleteCachedResource<R>(type: R.Type,  completion: @escaping ResourceStore.DeletionCompletion) where R: Equatable, R: Codable{
+    public func deleteCachedResource<R>(type: R.Type) throws where R: Equatable, R: Codable{
         let store = getStore(type: type)
-        store.deleteCachedResource(completion: completion)
+        try store.deleteCachedResource()
     }
     
-    public func insert<R>(type: R.Type, resource: R, timestamp: Date, completion: @escaping ResourceStore.InsertionCompletion) where R: Equatable, R: Codable {
+    public func insert<R>(type: R.Type, resource: R, timestamp: Date) throws where R: Equatable, R: Codable {
         let store = getStore(type: type)
-        store.insert(resource, timestamp: timestamp, completion: completion)
+        try store.insert(resource, timestamp: timestamp)
     }
     
-    public func retrieve<R>(type: R.Type, completion: @escaping (Result<CachedResource<R>?, Error>) -> Void) where R: Equatable, R: Codable {
+    public func retrieve<R>(type: R.Type) throws -> CachedResource<R>? where R: Equatable, R: Codable {
         let store = getStore(type: type)
-        store.retrieve(completion: completion)
+        return try store.retrieve()
     }
 }

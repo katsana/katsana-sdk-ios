@@ -11,9 +11,9 @@ import Foundation
 public class AnyResourceStore<Resource>: ResourceStore where Resource: Equatable{
     public typealias Resource = Resource
     
-    private let insertionObject:  (Resource, Date, @escaping InsertionCompletion) -> ()
-    private let deletionObject:  (@escaping DeletionCompletion) -> ()
-    private let retrieveObject:  (@escaping RetrievalCompletion) -> ()
+    private let insertionObject:  (Resource, Date) throws -> ()
+    private let deletionObject:  () throws -> ()
+    private let retrieveObject:  () throws -> CachedResource<Resource>?
 
     public init<L: ResourceStore>(_ wrapped: L) where L.Resource == Resource{
         self.deletionObject = wrapped.deleteCachedResource
@@ -21,16 +21,16 @@ public class AnyResourceStore<Resource>: ResourceStore where Resource: Equatable
         self.retrieveObject = wrapped.retrieve
     }
     
-    public func deleteCachedResource(completion: @escaping DeletionCompletion) {
-        deletionObject(completion)
+    public func deleteCachedResource() throws {
+        try deletionObject()
     }
     
-    public func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion) {
-        insertionObject(resource, timestamp, completion)
+    public func insert(_ resource: Resource, timestamp: Date) throws {
+        try insertionObject(resource, timestamp)
     }
     
-    public func retrieve(completion: @escaping RetrievalCompletion) {
-        retrieveObject(completion)
+    public func retrieve() throws -> CachedResource<Resource>? {
+        try retrieveObject()
     }
 
 }

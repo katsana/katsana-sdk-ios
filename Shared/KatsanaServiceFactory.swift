@@ -66,7 +66,7 @@ extension KatsanaServiceFactory{
     public func makePublisher<Resource>(
         request:URLRequest,
         includes params: [String]? = nil,
-        maxCacheAgeInSeconds: Int = 60*60,
+        maxCacheAgeInSeconds: Int = 10,
         mapper: @escaping (Data, HTTPURLResponse) throws -> Resource)
     -> AnyPublisher<Resource, Error> where Resource: Equatable, Resource: Codable{
         let localLoader = makeLocalLoader(Resource.self, maxCacheAgeInSeconds: maxCacheAgeInSeconds)

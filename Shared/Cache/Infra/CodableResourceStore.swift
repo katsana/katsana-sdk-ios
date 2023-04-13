@@ -9,6 +9,7 @@
 import Foundation
 
 public class CodableResourceStore<R>: ResourceStore where R: Equatable, R: Codable{
+    
     public typealias Resource = R
     
     private struct Cache<R2>: Codable where R2: Codable{
@@ -23,15 +24,37 @@ public class CodableResourceStore<R>: ResourceStore where R: Equatable, R: Codab
         self.storeURL = storeURL
     }
     
+    public func deleteCachedResource() throws {
+        let storeURL = self.storeURL
+        guard FileManager.default.fileExists(atPath: storeURL.path) else {
+            return
+        }
+        try FileManager.default.removeItem(at: storeURL)
+    }
+    
+    public func insert(_ resource: R, timestamp: Date) throws {
+        let storeURL = self.storeURL
+        let encoder = JSONEncoder()
+        let cache = Cache(resource: resource, timestamp: timestamp)
+        let encoded = try encoder.encode(cache)
+        try encoded.write(to: storeURL)
+    }
+    
+    public func retrieve() throws -> CachedResource<R>? {
+        let storeURL = self.storeURL
+        guard let data = try? Data(contentsOf: storeURL) else {
+            return .none
+        }
+        let decoder = JSONDecoder()
+        let cache = try decoder.decode(Cache<Resource>.self, from: data)
+        return (cache.resource, cache.timestamp)
+    }
+    
     public func deleteCachedResource(completion: @escaping DeletionCompletion){
         let storeURL = self.storeURL
-        queue.async(flags: .barrier) {
-            guard FileManager.default.fileExists(atPath: storeURL.path) else {
-                return completion(.success(()))
-            }
-            
+        queue.async(flags: .barrier) { [weak self] in
             do {
-                try FileManager.default.removeItem(at: storeURL)
+                try self?.deleteCachedResource()
                 completion(.success(()))
             } catch {
                 completion(.failure(error))
@@ -41,12 +64,9 @@ public class CodableResourceStore<R>: ResourceStore where R: Equatable, R: Codab
     
     public func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion){
         let storeURL = self.storeURL
-        queue.async(flags: .barrier) {
+        queue.async(flags: .barrier) { [weak self] in
             do {
-                let encoder = JSONEncoder()
-                let cache = Cache(resource: resource, timestamp: timestamp)
-                let encoded = try encoder.encode(cache)
-                try encoded.write(to: storeURL)
+                try self?.insert(resource, timestamp: timestamp)
                 completion(.success(()))
             } catch {
                 completion(.failure(error))
@@ -56,15 +76,10 @@ public class CodableResourceStore<R>: ResourceStore where R: Equatable, R: Codab
     
     public func retrieve(completion: @escaping RetrievalCompletion){
         let storeURL = self.storeURL
-        queue.async {
-            guard let data = try? Data(contentsOf: storeURL) else {
-                return completion(.success(.none))
-            }
-
+        queue.async { [weak self] in
             do {
-                let decoder = JSONDecoder()
-                let cache = try decoder.decode(Cache<Resource>.self, from: data)
-                completion(.success((cache.resource, cache.timestamp)))
+                let resource = try self?.retrieve()
+                completion(.success(resource))
             } catch {
                 completion(.failure(error))
             }

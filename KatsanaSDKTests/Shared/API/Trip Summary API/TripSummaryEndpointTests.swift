@@ -18,7 +18,7 @@ class TripSummaryEndpointTests: XCTestCase {
         
         XCTAssertEqual(received.scheme, "http", "scheme")
         XCTAssertEqual(received.host, "base-url.com", "host")
-        XCTAssertEqual(received.path, "/vehicles" + "\(1)" + "/summaries/duration", "path")
+        XCTAssertEqual(received.path, "/vehicles" + "/\(1)" + "/summaries/duration", "path")
     }
     
     
@@ -35,7 +35,7 @@ class TripSummaryEndpointTests: XCTestCase {
         
         XCTAssertEqual(received.scheme, "http", "scheme")
         XCTAssertEqual(received.host, "base-url.com", "host")
-        XCTAssertEqual(received.path, "/vehicles" + "\(1)" + "/summaries/duration", "path")
+        XCTAssertEqual(received.path, "/vehicles" + "/\(1)" + "/summaries/duration", "path")
         XCTAssertEqual(received.query?.contains("start=2023/4/11"), true)
         XCTAssertEqual(received.query?.contains("end=2023/4/12"), true)
 

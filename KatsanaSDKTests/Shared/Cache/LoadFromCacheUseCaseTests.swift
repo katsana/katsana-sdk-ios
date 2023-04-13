@@ -129,19 +129,6 @@ class LoadFromCacheUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
-    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-        let store = CacheResourceStoreSpyType()
-        var sut: LocalLoaderType? = LocalLoaderType(store: store, currentDate: Date.init)
-
-        var receivedResults = [LocalLoaderType.LoadResult]()
-        sut?.load { receivedResults.append($0) }
-
-        sut = nil
-        store.completeRetrievalWithEmptyCache()
-
-        XCTAssertTrue(receivedResults.isEmpty)
-    }
-    
     // MARK: - Helpers
     
     typealias CacheResourceStoreSpyType = CacheResourceStoreSpy<String>
@@ -157,6 +144,7 @@ class LoadFromCacheUseCaseTests: XCTestCase {
     
     private func expect(_ sut: LocalLoaderType, toCompleteWith expectedResult: LocalLoaderType.LoadResult, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for load completion")
+        action()
 
         sut.load { receivedResult in
             switch (receivedResult, expectedResult) {
@@ -173,7 +161,6 @@ class LoadFromCacheUseCaseTests: XCTestCase {
             exp.fulfill()
         }
 
-        action()
         wait(for: [exp], timeout: 1.0)
     }
     
