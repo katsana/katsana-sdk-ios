@@ -8,7 +8,7 @@
 import Foundation
 
 ///The class contains information about vehicle travel for particular day.
-open class Travel: NSCopying, Codable, Equatable {
+open class KTDayTravel: NSCopying, Codable, Equatable {
     enum CodingKeys: CodingKey {
         case vehicleId
         case maxSpeed
@@ -28,7 +28,7 @@ open class Travel: NSCopying, Codable, Equatable {
     open var idleDuration : Double = 0
     
     public func copy(with zone: NSZone? = nil) -> Any {
-        let travel = Travel(date: date)
+        let travel = KTDayTravel(date: date)
         travel.vehicleId = vehicleId
         travel.maxSpeed = maxSpeed
         travel.distance = distance
@@ -71,21 +71,21 @@ open class Travel: NSCopying, Codable, Equatable {
             tripCount = trips.count
             
             //Set previous and next trip
-            for (index, trip) in trips.enumerated() {
-                if index == 0 {
-                    if trips.count > 1{
-                        trip.nextTrip = trips[1]
-                    }
-                }else if index == trips.count - 1{
-                    trip.prevTrip = trips[index-1];
-                }
-                else {
-                    trip.prevTrip = trips[index-1];
-                    if (trips.count > index+1) {
-                        trip.nextTrip = trips[index+1];
-                    }
-                }
-            }
+//            for (index, trip) in trips.enumerated() {
+//                if index == 0 {
+//                    if trips.count > 1{
+//                        trip.nextTrip = trips[1]
+//                    }
+//                }else if index == trips.count - 1{
+//                    trip.prevTrip = trips[index-1];
+//                }
+//                else {
+//                    trip.prevTrip = trips[index-1];
+//                    if (trips.count > index+1) {
+//                        trip.nextTrip = trips[index+1];
+//                    }
+//                }
+//            }
         }
     }
     
@@ -167,7 +167,7 @@ open class Travel: NSCopying, Codable, Equatable {
     
     // MARK: Equatable Protocol
     
-    static public func ==(a: Travel, b: Travel) -> Bool
+    static public func ==(a: KTDayTravel, b: KTDayTravel) -> Bool
     {
         var equal = false
         if Calendar.current.isDate(a.date, equalTo: b.date, toGranularity: .day), a.trips.count == b.trips.count, fabs(a.distance - b.distance) < 50 {
@@ -182,12 +182,12 @@ open class Travel: NSCopying, Codable, Equatable {
 //        return String(format: "%@, trips:%@, maxSpeed:%.1f, date:%@", super.description, trips.description, maxSpeed, date?.description ?? "")
 //    }
     
-    open class func separateTripsIntoTravels(trips : [KTTrip]) -> [Travel] {
-        var travels = [Travel]()
-        var currentTravel: Travel!
+    open class func separateTripsIntoTravels(trips : [KTTrip]) -> [KTDayTravel] {
+        var travels = [KTDayTravel]()
+        var currentTravel: KTDayTravel!
         for trip in trips{
             if currentTravel == nil{
-                currentTravel = Travel(date: trip.date)
+                currentTravel = KTDayTravel(date: trip.date)
                 currentTravel.trips = [KTTrip]()
                 travels.append(currentTravel)
             }
@@ -195,7 +195,7 @@ open class Travel: NSCopying, Codable, Equatable {
                 //Do nothing
             }else{
                 //If date not same, create new travel
-                currentTravel = Travel(date: trip.date)
+                currentTravel = KTDayTravel(date: trip.date)
                 travels.append(currentTravel)
             }
             currentTravel.trips.append(trip)

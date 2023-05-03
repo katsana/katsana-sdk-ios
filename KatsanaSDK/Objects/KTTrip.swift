@@ -43,8 +43,8 @@ open class KTTrip: NSCopying, Codable {
     open var violations = [VehicleActivity]()
     
     ///Next trip and prev trip automatically set when trips are set in Travel class
-    weak open var nextTrip: KTTrip?
-    weak open var prevTrip: KTTrip?
+//    weak open var nextTrip: KTTrip?
+//    weak open var prevTrip: KTTrip?
     
     //Extra data that user can set to trip
     open var extraData = [String: Any]()
@@ -65,8 +65,8 @@ open class KTTrip: NSCopying, Codable {
         trip.score = score
         trip.date = date
         trip.violations = violations
-        trip.nextTrip = nextTrip
-        trip.prevTrip = prevTrip
+//        trip.nextTrip = nextTrip
+//        trip.prevTrip = prevTrip
         trip.extraData = extraData
         trip.publicTransit = publicTransit
         return trip
@@ -74,17 +74,17 @@ open class KTTrip: NSCopying, Codable {
     
     // MARK: Logic
     
-    open func durationToNextTrip() -> Float {
-        if let nextTripStart = nextTrip?.start, let end {
-            let duration = nextTripStart.trackedAt.timeIntervalSince(end.trackedAt)
-            return Float(duration)
-        }
-        return 0
-    }
-    
-    open func durationToNextTripString() -> String {
-        return KatsanaFormatter.durationStringFrom(seconds: Double(durationToNextTrip()))
-    }
+//    open func durationToNextTrip() -> Float {
+//        if let nextTripStart = nextTrip?.start, let end {
+//            let duration = nextTripStart.trackedAt.timeIntervalSince(end.trackedAt)
+//            return Float(duration)
+//        }
+//        return 0
+//    }
+//    
+//    open func durationToNextTripString() -> String {
+//        return KatsanaFormatter.durationStringFrom(seconds: Double(durationToNextTrip()))
+//    }
     
     open func maxSpeedString() -> String {
         return KatsanaFormatter.speedStringFrom(knot: Double(maxSpeed))

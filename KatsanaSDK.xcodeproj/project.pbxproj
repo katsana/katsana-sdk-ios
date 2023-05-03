@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C105119829879051006D9CB7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105119729879051006D9CB7 /* Logger.swift */; };
+		C118BA202A0200B70068D7D2 /* TripEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C118BA1F2A0200B70068D7D2 /* TripEndpoint.swift */; };
+		C118BA222A0200BF0068D7D2 /* TripMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C118BA212A0200BF0068D7D2 /* TripMapper.swift */; };
 		C11FECB829CAE371003914DC /* LoadFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECB629CAE361003914DC /* LoadFromCacheUseCaseTests.swift */; };
 		C11FECC029CBBD91003914DC /* CacheTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECBA29CBBD3E003914DC /* CacheTestHelpers.swift */; };
 		C11FECC129CBBD95003914DC /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECBD29CBBD6D003914DC /* SharedTestHelpers.swift */; };
@@ -128,7 +130,7 @@
 		C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917611E48703B0041BC18 /* Travel+Extension.swift */; };
 		C71917981E48703B0041BC18 /* LiveShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917621E48703B0041BC18 /* LiveShare.swift */; };
 		C719179A1E48703B0041BC18 /* ObjectJSONTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917631E48703B0041BC18 /* ObjectJSONTransformer.swift */; };
-		C719179C1E48703B0041BC18 /* Travel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917641E48703B0041BC18 /* Travel.swift */; };
+		C719179C1E48703B0041BC18 /* KTDayTravel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917641E48703B0041BC18 /* KTDayTravel.swift */; };
 		C71917A41E48703B0041BC18 /* VehicleActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917681E48703B0041BC18 /* VehicleActivity.swift */; };
 		C71917A61E48703B0041BC18 /* VehicleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917691E48703B0041BC18 /* VehicleLocation.swift */; };
 		C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719176B1E48703B0041BC18 /* TimeTransformer.swift */; };
@@ -180,6 +182,8 @@
 		C105119C2988CB97006D9CB7 /* VehicleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTest.swift; sourceTree = "<group>"; };
 		C105119E2988E7AC006D9CB7 /* TripSummaryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryTest.swift; sourceTree = "<group>"; };
 		C10511A02988FF4C006D9CB7 /* TripTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTest.swift; sourceTree = "<group>"; };
+		C118BA1F2A0200B70068D7D2 /* TripEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripEndpoint.swift; sourceTree = "<group>"; };
+		C118BA212A0200BF0068D7D2 /* TripMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMapper.swift; sourceTree = "<group>"; };
 		C11FECB629CAE361003914DC /* LoadFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		C11FECBA29CBBD3E003914DC /* CacheTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheTestHelpers.swift; sourceTree = "<group>"; };
 		C11FECBD29CBBD6D003914DC /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -291,7 +295,7 @@
 		C71917611E48703B0041BC18 /* Travel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Travel+Extension.swift"; sourceTree = "<group>"; };
 		C71917621E48703B0041BC18 /* LiveShare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveShare.swift; sourceTree = "<group>"; };
 		C71917631E48703B0041BC18 /* ObjectJSONTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectJSONTransformer.swift; sourceTree = "<group>"; };
-		C71917641E48703B0041BC18 /* Travel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Travel.swift; sourceTree = "<group>"; };
+		C71917641E48703B0041BC18 /* KTDayTravel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTDayTravel.swift; sourceTree = "<group>"; };
 		C71917681E48703B0041BC18 /* VehicleActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleActivity.swift; sourceTree = "<group>"; };
 		C71917691E48703B0041BC18 /* VehicleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocation.swift; sourceTree = "<group>"; };
 		C719176B1E48703B0041BC18 /* TimeTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTransformer.swift; sourceTree = "<group>"; };
@@ -381,6 +385,15 @@
 			path = Logger;
 			sourceTree = "<group>";
 		};
+		C118BA1E2A02009D0068D7D2 /* Trips API */ = {
+			isa = PBXGroup;
+			children = (
+				C118BA1F2A0200B70068D7D2 /* TripEndpoint.swift */,
+				C118BA212A0200BF0068D7D2 /* TripMapper.swift */,
+			);
+			path = "Trips API";
+			sourceTree = "<group>";
+		};
 		C11FECAE29CADE9B003914DC /* Cache */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +430,7 @@
 			children = (
 				C186127729E681D900171A3F /* VehicleActivityMapper.swift */,
 				C186127529E6813400171A3F /* VehicleLocationMapper.swift */,
+				C118BA1E2A02009D0068D7D2 /* Trips API */,
 				C186126829E67D1200171A3F /* Trip Summary API */,
 				C1751B4829BFEE6D009C8795 /* User API */,
 				C1FAE73E29C2A9F0001D3D86 /* Vehicle API */,
@@ -764,6 +778,7 @@
 			isa = PBXGroup;
 			children = (
 				C1F540AC25256AB600525603 /* KTAddress.swift */,
+				C71917641E48703B0041BC18 /* KTDayTravel.swift */,
 				C1F540AE25256AB600525603 /* KTTrip.swift */,
 				C186127929E6861F00171A3F /* KTTripSummary.swift */,
 				C1F540AF25256AB600525603 /* KTUser.swift */,
@@ -771,7 +786,6 @@
 				C71917611E48703B0041BC18 /* Travel+Extension.swift */,
 				C71917621E48703B0041BC18 /* LiveShare.swift */,
 				C71917631E48703B0041BC18 /* ObjectJSONTransformer.swift */,
-				C71917641E48703B0041BC18 /* Travel.swift */,
 				C16C8291245AB6FA008B0B1E /* Sensor.swift */,
 				C71917681E48703B0041BC18 /* VehicleActivity.swift */,
 				C71917691E48703B0041BC18 /* VehicleLocation.swift */,
@@ -1086,7 +1100,7 @@
 				C11FED0D29D0FAAA003914DC /* ResourceStoreManager.swift in Sources */,
 				C145A5BB29D8F25700E3FC6E /* ReverseGeocodingClient.swift in Sources */,
 				C1FAE71129C16A36001D3D86 /* URL+QueryItems.swift in Sources */,
-				C719179C1E48703B0041BC18 /* Travel.swift in Sources */,
+				C719179C1E48703B0041BC18 /* KTDayTravel.swift in Sources */,
 				C1DF2B5E29DD47DD00596E70 /* ResourceWithKeyLoader.swift in Sources */,
 				C1FAE74829C2C514001D3D86 /* VehicleMapper.swift in Sources */,
 				C164EAF229236BD600C3A6E7 /* VideoPlayback.swift in Sources */,
@@ -1104,9 +1118,11 @@
 				C186127629E6813400171A3F /* VehicleLocationMapper.swift in Sources */,
 				C11FECE129CC0AFA003914DC /* CodableResourceStore.swift in Sources */,
 				C11FED0929D0295F003914DC /* AnyLocalLoader.swift in Sources */,
+				C118BA202A0200B70068D7D2 /* TripEndpoint.swift in Sources */,
 				C1FAE6FB29C0592E001D3D86 /* UserMapper.swift in Sources */,
 				C71917821E48703B0041BC18 /* KatsanaAPI+Login.swift in Sources */,
 				C71917CB1E4884410041BC18 /* DateHelper.swift in Sources */,
+				C118BA222A0200BF0068D7D2 /* TripMapper.swift in Sources */,
 				C71917861E48703B0041BC18 /* KatsanaAPI+Profile.swift in Sources */,
 				C719176E1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */,
 				C1FAE72E29C197AB001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */,

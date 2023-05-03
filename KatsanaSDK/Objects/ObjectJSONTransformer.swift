@@ -134,8 +134,8 @@ class ObjectJSONTransformer {
         return video
     }
     
-    class func TravelSummariesObject(json : JSON) -> [Travel] {
-        var summaries = [Travel]()
+    class func TravelSummariesObject(json : JSON) -> [KTDayTravel] {
+        var summaries = [KTDayTravel]()
         let array = json.arrayValue
         for jsonObj in array {
             let history = TravelSummaryObject(json: jsonObj)
@@ -154,9 +154,9 @@ class ObjectJSONTransformer {
         return summaries
     }
     
-    class func TravelSummaryObject(json : JSON) -> Travel {
+    class func TravelSummaryObject(json : JSON) -> KTDayTravel {
         let date = json["date"].dateWithoutTime
-        let history = Travel(date: date ?? Date())
+        let history = KTDayTravel(date: date ?? Date())
         history.maxSpeed = json["max_speed"].floatValue
         history.distance = json["distance"].doubleValue
         history.violationCount = json["violation"].intValue
@@ -169,10 +169,10 @@ class ObjectJSONTransformer {
         return history
     }
     
-    class func TravelObject(json : JSON) -> Travel {
+    class func TravelObject(json : JSON) -> KTDayTravel {
         let date = json["duration"]["from"].date(gmt: 0)
         
-        let history = Travel(date: date ?? Date())
+        let history = KTDayTravel(date: date ?? Date())
         history.maxSpeed = json["summary"]["max_speed"].floatValue
         history.distance = json["summary"]["distance"].doubleValue
         history.violationCount = json["summary"]["violation"].intValue

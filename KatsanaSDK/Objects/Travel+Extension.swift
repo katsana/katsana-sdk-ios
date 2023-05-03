@@ -9,7 +9,7 @@
 import Foundation
 
 ///Currently, this extension no need to be used because ios <10 cannot use Measurement
-extension Travel{
+extension KTDayTravel{
 
     public func averageSpeedStringNew() -> String {
         let speed = self.averageSpeed()

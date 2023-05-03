@@ -114,7 +114,7 @@ public class KTCacheManager: NSObject {
                         }
                     }
                     else if key2 == "travels"{
-                        if let theValue = try? JSONDecoder().decode([Travel].self, from: value2){
+                        if let theValue = try? JSONDecoder().decode([KTDayTravel].self, from: value2){
                             aData[key2] = theValue
                         }
                     }
@@ -192,11 +192,11 @@ public class KTCacheManager: NSObject {
     }
     
     ///Get latest cached travel data
-    public func latestTravels(vehicleId: Int, count: Int = 1) -> [Travel]! {
-        let classname = NSStringFromClass(Travel.self)
+    public func latestTravels(vehicleId: Int, count: Int = 1) -> [KTDayTravel]! {
+        let classname = NSStringFromClass(KTDayTravel.self)
         if let travelDicto = codableData[classname]{
-            var theTravels : [Travel]!
-            if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel] {
+            var theTravels : [KTDayTravel]!
+            if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [KTDayTravel] {
                 theTravels = travels
             }
             if theTravels != nil {
@@ -209,7 +209,7 @@ public class KTCacheManager: NSObject {
                     }
                 }
                 else{
-                    var newTravels = [Travel]()
+                    var newTravels = [KTDayTravel]()
                     for (index, travel) in theTravels.enumerated() {
                         if index == count - 1 {
                             break
@@ -234,10 +234,10 @@ public class KTCacheManager: NSObject {
         //            return nil
         //        }
         
-        let classname = NSStringFromClass(Travel.self)
+        let classname = NSStringFromClass(KTDayTravel.self)
         if let travelDicto = codableData[classname]{
             var trips = [KTTrip]()
-            if let travelVehicleId = travelDicto["id"] as? String, let travels = travelDicto["travels"] as? [Travel] {
+            if let travelVehicleId = travelDicto["id"] as? String, let travels = travelDicto["travels"] as? [KTDayTravel] {
                 for travel in travels{
                     if toDate == nil {
                         if travelVehicleId == vehicleId, travel.date.timeIntervalSince(date) > 0{
@@ -261,7 +261,7 @@ public class KTCacheManager: NSObject {
     }
     
     ///Get cached travel data given vehicle id and date without locations data
-    public func travel(vehicleId:Int, date:Date) -> Travel! {
+    public func travel(vehicleId:Int, date:Date) -> KTDayTravel! {
         //Check if date is today, return nil if more than specified time. No local cache is returned and  library should request a new data from server
         let today = Date()
         if date.isToday(), travelAccessVehicleId == vehicleId, let todayAccessDate = todayAccessDate, today.timeIntervalSince(todayAccessDate) > 60 * 4 {
@@ -270,9 +270,9 @@ public class KTCacheManager: NSObject {
             return nil
         }
         
-        let classname = NSStringFromClass(Travel.self)
+        let classname = NSStringFromClass(KTDayTravel.self)
         if let travelDicto = codableData[classname]{
-            if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel] {
+            if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [KTDayTravel] {
                 for travel in travels {
                     let startDay = travel.date.dateAtStartOfDay()
                     if startDay.isEqualToDateIgnoringTime(date){
@@ -287,12 +287,12 @@ public class KTCacheManager: NSObject {
     /*Get cached travel data given vehicle id and date with locations data.
      Previously, all locations are saved in same place as trip summaries, but due to memory issue, all travel locations are saved into separate file, a single file for a day travel.
      */
-    public func travelDetail(vehicleId:Int, date:Date) -> Travel! {
+    public func travelDetail(vehicleId:Int, date:Date) -> KTDayTravel! {
         let dateStr = KTCacheManager.dateFormatter.string(from: date)
         let path = tripPath().appending("/\(dateStr).dat")
         if FileManager.default.fileExists(atPath: path) {
             if let data = try? Data(contentsOf: URL(fileURLWithPath: path)){
-                if let decodedData = try? JSONDecoder().decode(Travel.self, from: data){
+                if let decodedData = try? JSONDecoder().decode(KTDayTravel.self, from: data){
                     return decodedData
                 }
             }
@@ -399,15 +399,15 @@ public class KTCacheManager: NSObject {
         autoSave()
     }
     
-    public func cache(travel: Travel, vehicleId: Int) {
-        let aTravel = travel.copy() as! Travel
+    public func cache(travel: KTDayTravel, vehicleId: Int) {
+        let aTravel = travel.copy() as! KTDayTravel
         for trip in aTravel.trips{
             cacheTripLocations(trip: trip)
             trip.locations.removeAll()
         }
         
         var dataChanged = false
-        let classname = NSStringFromClass(Travel.self)
+        let classname = NSStringFromClass(KTDayTravel.self)
         
         var travelDicto: [String: Codable]!
         if let array = codableData[classname]{
@@ -418,9 +418,9 @@ public class KTCacheManager: NSObject {
         
         var needAdd = true
         var needRemoveTravelIndex : Int!
-        var theTravels : [Travel]!
+        var theTravels : [KTDayTravel]!
         
-        if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel]{
+        if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [KTDayTravel]{
             theTravels = travels
             for (index, theTravel) in travels.enumerated() {
                 //Check if same date
@@ -472,14 +472,14 @@ public class KTCacheManager: NSObject {
         cacheTripLocations(trip: trip)
         trip.locations.removeAll()
         
-        let classname = NSStringFromClass(Travel.self)
-        var travel: Travel!
+        let classname = NSStringFromClass(KTDayTravel.self)
+        var travel: KTDayTravel!
         var travelIndex: Int!
-        var theTravels : [Travel]!
+        var theTravels : [KTDayTravel]!
         let travelDicto = codableData[classname]
         
         if let travelDicto = travelDicto{
-            if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel] {
+            if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [KTDayTravel] {
                 theTravels = travels
                 for (index, theTravel) in travels.enumerated() {
                     if theTravel.date.isEqualToDateIgnoringTime(trip.date){
@@ -517,7 +517,7 @@ public class KTCacheManager: NSObject {
                 travel.trips = trips
             }
         }else{
-            travel = Travel(date: trip.date)
+            travel = KTDayTravel(date: trip.date)
             travel.vehicleId = vehicleId
             travel.trips = [trip]
         }
@@ -526,7 +526,7 @@ public class KTCacheManager: NSObject {
         
         if let travelIndex = travelIndex, var travelDicto = travelDicto{
             theTravels[travelIndex] = travel
-            travelDicto = ["id": vehicleId, "travels": theTravels ?? [Travel]()]
+            travelDicto = ["id": vehicleId, "travels": theTravels ?? [KTDayTravel]()]
             codableData[classname] = travelDicto
             autoSave()
         }else{
@@ -541,8 +541,8 @@ public class KTCacheManager: NSObject {
         
         let dateStr = KTCacheManager.dateFormatter.string(from: trip.date)
         let path = tripPath().appending("/\(dateStr).dat")
-        var travel: Travel!
-        if FileManager.default.fileExists(atPath: path), let data = try? Data(contentsOf: URL(fileURLWithPath: path)), let aTravel = try? JSONDecoder().decode(Travel.self, from: data) {
+        var travel: KTDayTravel!
+        if FileManager.default.fileExists(atPath: path), let data = try? Data(contentsOf: URL(fileURLWithPath: path)), let aTravel = try? JSONDecoder().decode(KTDayTravel.self, from: data) {
             var foundIdx : Int!
             for (idx, aTrip) in aTravel.trips.enumerated(){
                 if aTrip.date == trip.date{
@@ -563,7 +563,7 @@ public class KTCacheManager: NSObject {
             }
             travel = aTravel
         } else {
-            travel = Travel(date: trip.date)
+            travel = KTDayTravel(date: trip.date)
             travel.trips = [trip]
             travel.updateDataFromTrip()
         }
@@ -712,7 +712,7 @@ public class KTCacheManager: NSObject {
     ///Clear travel cache for specified date ranges
     public func clearTravelCache(vehicleId: String, date: Date! = nil, toDate: Date! = nil) {
         //        var dataChanged = false
-        let classname = NSStringFromClass(Travel.self)
+        let classname = NSStringFromClass(KTDayTravel.self)
         
         var travelDicto: [String: Codable]!
         if let array = codableData[classname]{
@@ -721,7 +721,7 @@ public class KTCacheManager: NSObject {
             travelDicto = [String: Codable]()
         }
         
-            if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, var travels = travelDicto["travels"] as? [Travel]{
+            if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, var travels = travelDicto["travels"] as? [KTDayTravel]{
                 //                var indexset = IndexSet()
                 var startIndex : Int!
                 var endIndex : Int!
@@ -766,10 +766,10 @@ public class KTCacheManager: NSObject {
     
     ///Clear travel cache for specified date ranges
     public func clearTripCache(vehicleId: String, date: Date, toDate: Date) {
-        let classname = NSStringFromClass(Travel.self)
+        let classname = NSStringFromClass(KTDayTravel.self)
         
         if var travelDicto = codableData[classname]{
-            if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [Travel]{
+            if let theVehicleId = travelDicto["id"] as? String, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [KTDayTravel]{
                 var dataChanged = false
                 
                 for (_, theTravel) in travels.enumerated() {
@@ -814,8 +814,8 @@ public class KTCacheManager: NSObject {
     }
     
     func clearLocationsIfNeeded(data: [String: [String: Codable]]){
-        if let travelDicto = data[NSStringFromClass(Travel.self)]{
-            if let travels = travelDicto["travels"] as? [Travel] {
+        if let travelDicto = data[NSStringFromClass(KTDayTravel.self)]{
+            if let travels = travelDicto["travels"] as? [KTDayTravel] {
                 for travel in travels{
                     for trip in travel.trips{
                         if trip.locations.count > 100000{
@@ -839,14 +839,14 @@ public class KTCacheManager: NSObject {
         }
         
         if canContinue {
-            let classname = NSStringFromClass(Travel.self)
+            let classname = NSStringFromClass(KTDayTravel.self)
             
             if var travelDicto = codableData[classname]{
-                if var travels = travelDicto["travels"] as? [Travel] {
+                if var travels = travelDicto["travels"] as? [KTDayTravel] {
                     travels.sort(by: { (a, b) -> Bool in //Latest is last
                         a.date < b.date
                     })
-                    var newTravels = [Travel]()
+                    var newTravels = [KTDayTravel]()
                     for (index, travel) in travels.enumerated().reversed(){
                         if Date().daysAfterDate(travel.date) > days{
                             newTravels = Array(travels.suffix(from: index))

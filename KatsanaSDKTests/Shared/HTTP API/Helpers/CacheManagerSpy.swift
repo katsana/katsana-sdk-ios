@@ -51,10 +51,10 @@ class CacheManagerSpy: KTCacheManager{
         return nil
     }
     
-    func loadCachedTrips() -> [Travel]!{
+    func loadCachedTrips() -> [KTDayTravel]!{
         if let data = try? loadCodableData(){
-            if let theData = data[NSStringFromClass(Travel.self)]{
-                let trips = theData["travels"] as? [Travel]
+            if let theData = data[NSStringFromClass(KTDayTravel.self)]{
+                let trips = theData["travels"] as? [KTDayTravel]
                 return trips
             }
         }

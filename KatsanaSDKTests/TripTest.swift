@@ -75,7 +75,7 @@ final class TripTest: XCTestCase {
         return api
     }
     
-    func requestTravelsWithSuccess(api: KatsanaAPI, completion: @escaping (Travel) -> Void){
+    func requestTravelsWithSuccess(api: KatsanaAPI, completion: @escaping (KTDayTravel) -> Void){
         let date = Date(timeIntervalSince1970: 10)
         let path = "vehicles/1/travels/" + date.toStringWithYearMonthDay()
         
