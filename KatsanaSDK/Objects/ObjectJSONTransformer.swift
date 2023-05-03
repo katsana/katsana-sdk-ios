@@ -161,8 +161,8 @@ class ObjectJSONTransformer {
         history.distance = json["distance"].doubleValue
         history.violationCount = json["violation"].intValue
         history.tripCount = json["trip"].intValue
-        history.duration = json["duration"].doubleValue
-        history.idleDuration = json["idle_duration"].doubleValue
+//        history.duration = json["duration"].doubleValue
+//        history.idleDuration = json["idle_duration"].doubleValue
         
 //        /change date to local date and check UTC time again
         objectInitializationHandler?(json, KTUser.self)

@@ -13,7 +13,6 @@ public class KTDayTravel: NSCopying, Codable, Equatable {
         case vehicleId
         case maxSpeed
         case distance
-        case idleDuration
         case trips
         case date
         case lastUpdate
@@ -25,15 +24,12 @@ public class KTDayTravel: NSCopying, Codable, Equatable {
     public var vehicleId : Int?
     public var maxSpeed : Float = 0
     public var distance : Double = 0
-    public var idleDuration : Double = 0
     
     public func copy(with zone: NSZone? = nil) -> Any {
         let travel = KTDayTravel(date: date)
         travel.vehicleId = vehicleId
         travel.maxSpeed = maxSpeed
         travel.distance = distance
-        travel.idleDuration = idleDuration
-        travel.duration = duration
         
         var newTrips = [KTTrip]()
         for trip in trips{
@@ -48,20 +44,17 @@ public class KTDayTravel: NSCopying, Codable, Equatable {
         return travel
     }
     
-    private var _duration : Double = 0
-    public var duration : Double{
-        set{
-            _duration = newValue
-        }
+    public var idleDuration : Double{
         get{
-            if trips.count > 0 {
-                var totalDuration : Double = 0
-                for trip in trips {
-                    totalDuration += trip.duration
-                }
-                _duration = totalDuration
-            }
-            return _duration
+            let total = trips.map{$0.idleDuration}.reduce(0, +)
+            return Double(total)
+        }
+    }
+
+    public var duration : Double{
+        get{
+            let total = trips.map{$0.duration}.reduce(0, +)
+            return Double(total)
         }
     }
     
@@ -215,7 +208,7 @@ public class KTDayTravel: NSCopying, Codable, Equatable {
             maxSpeed = max(maxSpeed, CGFloat(trip.maxSpeed))
         }
         self.distance = distance
-        self.duration = duration
+//        self.duration = duration
         self.maxSpeed = Float(maxSpeed)
         if let date = trips.first?.startDate(){
             //Warning: Need check if set date is required
