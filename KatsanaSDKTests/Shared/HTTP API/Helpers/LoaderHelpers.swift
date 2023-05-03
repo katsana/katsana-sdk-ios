@@ -122,41 +122,5 @@ extension XCTestCase{
         ].compactMapValues { $0 }
         return (vehicle, json)
     }
-    
-    
-    // MARK: Helper
-    
-    enum GenericError: Swift.Error{
-        case invalidData
-    }
-    
-    func convertStringToDictionary(text: String) throws -> [String:Any] {
-        if let data = text.data(using: .utf8) {
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                if let json = json as? [String:AnyObject]{
-                    return json
-                }else{
-                    print("sf")
-                }
-            } catch {
-                throw error
-            }
-        }
-        throw GenericError.invalidData
-    }
-    
-    func convertStringToArray(text: String) throws -> [Any] {
-        if let data = text.data(using: .utf8) {
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                if let json = json as? [AnyObject]{
-                    return json
-                }
-            } catch {
-                throw error
-            }
-        }
-        throw GenericError.invalidData
-    }
+
 }

@@ -9,21 +9,13 @@
 import Foundation
 
 public class DayTravelMapper{
-    private static var formatter: DateFormatter?
-    private static var dateFormatter: DateFormatter {
-        if (formatter == nil) {
-            formatter = DateFormatter()
-            formatter!.dateFormat = "yyyy-MM-dd"
-        }
-        return formatter!
-    }
     
     public enum Error: Swift.Error {
         case invalidData
         case invalidDateFormat
     }
     
-    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> KTTripSummary {
+    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> KTDayTravel {
         do{
             let json = try JSON(data: data)
             return try mapJSON(json)
@@ -33,24 +25,17 @@ public class DayTravelMapper{
         }
     }
     
-    public static func mapJSON(_ json: JSON) throws -> KTTripSummary {
-        let date = json["date"].stringValue
-
-        let distance = json["distance"].doubleValue
-        let duration = json["duration"].doubleValue
-        let idleDuration = json["idle_duration"].doubleValue
-        let maxSpeed = json["max_speed"].doubleValue
-        let tripCount = json["trip"].intValue
-        let violationCount = json["violation"].intValue
-        let score = json["score"].doubleValue
+    public static func mapJSON(_ json: JSON) throws -> KTDayTravel {
+        guard let date = json["duration"]["from"].date(gmt: 0) else{
+            throw Error.invalidDateFormat
+        }
         
-//        let dateText = TripSummaryMapper.dateFormatter.date(from: date)
-//        if dateText == nil{
-//            throw Error.invalidDateFormat
-//        }
+        let history = KTDayTravel(date: date)
+        history.maxSpeed = json["summary"]["max_speed"].floatValue
+        history.distance = json["summary"]["distance"].doubleValue
+        history.violationCount = json["summary"]["violation"].intValue
+        history.trips = json["trips"].arrayValue.map{ try! TripMapper.mapJSON($0)}
         
-        throw Error.invalidDateFormat
-
-//        return KTTripSummary(date: dateText!, distance: distance, duration: duration, idleDuration: idleDuration, maxSpeed: maxSpeed, tripCount: tripCount, violationCount: violationCount, score: score)
+        return history
     }
 }
