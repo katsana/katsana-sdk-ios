@@ -76,6 +76,3 @@ public class TripSummaryMapper{
     }
 }
 
-extension String{
-    
-}
