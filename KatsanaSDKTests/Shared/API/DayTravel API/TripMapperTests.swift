@@ -24,8 +24,11 @@ class TripMapperTests: XCTestCase {
         XCTAssertEqual(result.duration, 50)
         XCTAssertEqual(result.idleDuration, 30)
         XCTAssertEqual(result.maxSpeed, 90)
-//        XCTAssertEqual(result.tripCount, 5)
-//        XCTAssertEqual(result.violationCount, 10)
+        XCTAssertEqual(result.locations.count, 4)
+        XCTAssertEqual(result.idles.count, 1)
+        XCTAssertEqual(result.start.latitude, 3.1)
+        XCTAssertEqual(result.start.longitude, 102.2)
+
         XCTAssertEqual(result.score, 99)
     }
     
@@ -37,8 +40,8 @@ class TripMapperTests: XCTestCase {
       "id": 5,
       "start": {
         "id": 634113,
-        "latitude": 3.0090999,
-        "longitude": 101.7583183,
+        "latitude": 3.1,
+        "longitude": 102.2,
         "odometer": 191304,
         "tracked_at": "\(startDate)"
       },
