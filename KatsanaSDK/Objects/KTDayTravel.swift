@@ -8,7 +8,7 @@
 import Foundation
 
 ///The class contains information about vehicle travel for particular day.
-open class KTDayTravel: NSCopying, Codable, Equatable {
+public class KTDayTravel: NSCopying, Codable, Equatable {
     enum CodingKeys: CodingKey {
         case vehicleId
         case maxSpeed
@@ -22,10 +22,10 @@ open class KTDayTravel: NSCopying, Codable, Equatable {
     }
     
     public var date : Date
-    open var vehicleId : Int?
-    open var maxSpeed : Float = 0
-    open var distance : Double = 0
-    open var idleDuration : Double = 0
+    public var vehicleId : Int?
+    public var maxSpeed : Float = 0
+    public var distance : Double = 0
+    public var idleDuration : Double = 0
     
     public func copy(with zone: NSZone? = nil) -> Any {
         let travel = KTDayTravel(date: date)
@@ -49,7 +49,7 @@ open class KTDayTravel: NSCopying, Codable, Equatable {
     }
     
     private var _duration : Double = 0
-    open var duration : Double{
+    public var duration : Double{
         set{
             _duration = newValue
         }
@@ -65,7 +65,7 @@ open class KTDayTravel: NSCopying, Codable, Equatable {
         }
     }
     
-    open var trips = [KTTrip](){
+    public var trips = [KTTrip](){
         didSet{
             //Set trip count explicitly
             tripCount = trips.count
@@ -90,12 +90,12 @@ open class KTDayTravel: NSCopying, Codable, Equatable {
     }
     
     
-    open var lastUpdate = Date()
+    public var lastUpdate = Date()
     
-    open var violationCount : Int = 0
-    open var tripCount : Int = 0
+    public var violationCount : Int = 0
+    public var tripCount : Int = 0
     
-    open var needLoadTripHistory = false
+    public var needLoadTripHistory = false
     
     public init(date: Date){
         self.date = date
@@ -103,15 +103,15 @@ open class KTDayTravel: NSCopying, Codable, Equatable {
     
     // MARK: Helper
     
-    open var _vehicle : KTVehicle?
-    open func owner() -> KTVehicle? {
+    public var _vehicle : KTVehicle?
+    public func owner() -> KTVehicle? {
         if _vehicle == nil, let vehicleId = vehicleId {
             _vehicle = KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)
         }
         return _vehicle
     }
     
-    open func averageSpeed() -> Double {
+    public func averageSpeed() -> Double {
         var totalSpeed : Float = 0
         for trip in trips {
             totalSpeed = trip.averageSpeed
@@ -120,11 +120,11 @@ open class KTDayTravel: NSCopying, Codable, Equatable {
         return Double(averageSpeed)
     }
     
-    open func averageSpeedString() -> String {
+    public func averageSpeedString() -> String {
         return KatsanaFormatter.speedStringFrom(knot: averageSpeed())
     }
     
-    open func idleDurationString() -> String {
+    public func idleDurationString() -> String {
         var duration : Float = 0;
         for trip in trips {
             duration += trip.idleDuration
@@ -135,22 +135,22 @@ open class KTDayTravel: NSCopying, Codable, Equatable {
         return KatsanaFormatter.durationStringFrom(seconds: Double(duration))
     }
     
-    open func todayMaxSpeedString() -> String {
+    public func todayMaxSpeedString() -> String {
         return KatsanaFormatter.speedStringFrom(knot: Double(maxSpeed))
     }
     
-    open func totalDistanceString() -> String {
+    public func totalDistanceString() -> String {
         return KatsanaFormatter.distanceStringFrom(meter: distance)
     }
     
-    open func totalDurationString() -> String {
+    public func totalDurationString() -> String {
         return KatsanaFormatter.durationStringFrom(seconds: duration)
     }
     
     // MARK: Logic
     
     ///Get trip at specified time, return nil if not found
-    open func trip(at time: Date) -> KTTrip? {
+    public func trip(at time: Date) -> KTTrip? {
         for trip in trips {
             let startTime = trip.start.trackedAt
             let endTime = trip.end.trackedAt
@@ -179,11 +179,11 @@ open class KTDayTravel: NSCopying, Codable, Equatable {
     
     // MARK: Description
     
-//    open override var description: String{
+//    public override var description: String{
 //        return String(format: "%@, trips:%@, maxSpeed:%.1f, date:%@", super.description, trips.description, maxSpeed, date?.description ?? "")
 //    }
     
-    open class func separateTripsIntoTravels(trips : [KTTrip]) -> [KTDayTravel] {
+    public class func separateTripsIntoTravels(trips : [KTTrip]) -> [KTDayTravel] {
         var travels = [KTDayTravel]()
         var currentTravel: KTDayTravel!
         for trip in trips{
