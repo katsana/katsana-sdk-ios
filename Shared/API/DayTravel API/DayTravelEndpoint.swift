@@ -17,7 +17,7 @@ public enum DayTravelEndpoint {
             var queryItems: [URLQueryItem]?
 //            queryItems = [URLQueryItem(name: "start", value: date.toStringWithYearMonthDay())]
             
-            let urlString = baseURL.absoluteString + "/vehicles" + "/\(vehicleId)" + "/travels/ " + date.toStringWithYearMonthDay()
+            let urlString = baseURL.absoluteString + "/vehicles" + "/\(vehicleId)" + "/travels/" + date.toStringWithYearMonthDay()
             let url = URL(string: urlString)!
             
             let finalURL = URL.make(url: url, queryItems: queryItems)
