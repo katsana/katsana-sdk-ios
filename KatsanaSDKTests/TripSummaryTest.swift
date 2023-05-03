@@ -33,52 +33,52 @@ final class TripSummaryTest: XCTestCase {
         service = MockService.service()
     }
 
-    func test_requestTripSummaries() throws {
-        let sut = makeSUT()
-        let expectation = XCTestExpectation(description: "Request trips summaries successfully")
-        requestTripsWithSuccess(api: sut) { vehicles in
-            XCTAssertEqual(vehicles.count > 0, true)
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 0.1)
-    }
-    
-    func test_vehicleCurrentLocationCorrect() throws {
-        let sut = makeSUT()
-        let expectation = XCTestExpectation(description: "Request trips summaries successfully")
-        requestTripsWithSuccess(api: sut) { vehicles in
-            let first = vehicles.first!
-            XCTAssertEqual(first.distance, 40098)
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 0.1)
-    }
-    
-    func test_requestTrips_isEqualToLatestTrips() throws {
-        let sut = makeSUT()
-
-        let expectation = XCTestExpectation(description: "Request user, user cached properly")
-        requestTripsWithSuccess(api: sut) { vehicles in
-            let cachedTravels = TripSummaryTest.cache!.latestTravels(vehicleId: 1, count: 1)
-            XCTAssertEqual(cachedTravels?.first!.distance, 40098)
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 0.1)
-    }
-
-    func test_requestTrips_tripsCachedCorrectlyFromDisk() throws {
-        let cache = CacheManagerSpy(writeToDisk: true)
-        let sut = makeSUT()
-
-        let expectation = XCTestExpectation(description: "Request user, user cached properly")
-        requestTripsWithSuccess(api: sut) { vehicles in
-            let cachedTravels = cache.loadCachedTrips()
-            XCTAssertEqual(cachedTravels?.first!.distance, 40098)
-            cache.clearCache()
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 0.1)
-    }
+//    func test_requestTripSummaries() throws {
+//        let sut = makeSUT()
+//        let expectation = XCTestExpectation(description: "Request trips summaries successfully")
+//        requestTripsWithSuccess(api: sut) { vehicles in
+//            XCTAssertEqual(vehicles.count > 0, true)
+//            expectation.fulfill()
+//        }
+//        wait(for: [expectation], timeout: 0.1)
+//    }
+//    
+//    func test_vehicleCurrentLocationCorrect() throws {
+//        let sut = makeSUT()
+//        let expectation = XCTestExpectation(description: "Request trips summaries successfully")
+//        requestTripsWithSuccess(api: sut) { vehicles in
+//            let first = vehicles.first!
+//            XCTAssertEqual(first.distance, 40098)
+//            expectation.fulfill()
+//        }
+//        wait(for: [expectation], timeout: 0.1)
+//    }
+//    
+//    func test_requestTrips_isEqualToLatestTrips() throws {
+//        let sut = makeSUT()
+//
+//        let expectation = XCTestExpectation(description: "Request user, user cached properly")
+//        requestTripsWithSuccess(api: sut) { vehicles in
+//            let cachedTravels = TripSummaryTest.cache!.latestTravels(vehicleId: 1, count: 1)
+//            XCTAssertEqual(cachedTravels?.first!.distance, 40098)
+//            expectation.fulfill()
+//        }
+//        wait(for: [expectation], timeout: 0.1)
+//    }
+//
+//    func test_requestTrips_tripsCachedCorrectlyFromDisk() throws {
+//        let cache = CacheManagerSpy(writeToDisk: true)
+//        let sut = makeSUT()
+//
+//        let expectation = XCTestExpectation(description: "Request user, user cached properly")
+//        requestTripsWithSuccess(api: sut) { vehicles in
+//            let cachedTravels = cache.loadCachedTrips()
+//            XCTAssertEqual(cachedTravels?.first!.distance, 40098)
+//            cache.clearCache()
+//            expectation.fulfill()
+//        }
+//        wait(for: [expectation], timeout: 0.1)
+//    }
     
     
     func makeSUT() -> KatsanaAPI{

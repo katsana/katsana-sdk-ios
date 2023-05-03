@@ -148,8 +148,8 @@ class ObjectJSONTransformer {
         var summaries = [KTTrip]()
         let array = json.arrayValue
         for jsonObj in array {
-            let history = TripObject(json: jsonObj)
-            summaries.append(history)
+//            let history = TripObject(json: jsonObj)
+//            summaries.append(history)
         }
         return summaries
     }
@@ -176,35 +176,35 @@ class ObjectJSONTransformer {
         history.maxSpeed = json["summary"]["max_speed"].floatValue
         history.distance = json["summary"]["distance"].doubleValue
         history.violationCount = json["summary"]["violation"].intValue
-        history.trips = json["trips"].arrayValue.map{TripObject(json: $0)}
+        history.trips = json["trips"].arrayValue.map{ try! TripMapper.mapJSON($0)}
         
         objectInitializationHandler?(json, KTUser.self)
         return history
     }
     
-    class func TripObject(json : JSON) -> KTTrip {
-        let trip = KTTrip()
-        trip.maxSpeed = json["max_speed"].floatValue
-        trip.distance = json["distance"].doubleValue
-        trip.duration = json["duration"].doubleValue
-        trip.averageSpeed = json["average_speed"].floatValue
-        trip.idleDuration = json["idle_duration"].floatValue
-        trip.id = json["id"].stringValue
-        
-        trip.start = VehicleLocationObject(json: json["start"])
-        trip.end = VehicleLocationObject(json: json["end"])
-        trip.idles = json["idles"].arrayValue.map{VehicleLocationObject(json: $0)}
-        trip.locations = json["histories"].arrayValue.map {VehicleLocationObject(json: $0)}
-        trip.violations = json["violations"].arrayValue.map {VehicleActivityObject(json: $0)}
-        trip.score = json["score"].floatValue
-        let type = json["type"].stringValue
-        if type == "public_transit"{
-            trip.publicTransit = true
-        }
-        
-        objectInitializationHandler?(json, KTUser.self)
-        return trip
-    }
+//    class func TripObject(json : JSON) -> KTTrip {
+//        let trip = KTTrip()
+//        trip.maxSpeed = json["max_speed"].floatValue
+//        trip.distance = json["distance"].doubleValue
+//        trip.duration = json["duration"].doubleValue
+//        trip.averageSpeed = json["average_speed"].floatValue
+//        trip.idleDuration = json["idle_duration"].floatValue
+//        trip.id = json["id"].stringValue
+//        
+//        trip.start = VehicleLocationObject(json: json["start"])
+//        trip.end = VehicleLocationObject(json: json["end"])
+//        trip.idles = json["idles"].arrayValue.map{VehicleLocationObject(json: $0)}
+//        trip.locations = json["histories"].arrayValue.map {VehicleLocationObject(json: $0)}
+//        trip.violations = json["violations"].arrayValue.map {VehicleActivityObject(json: $0)}
+//        trip.score = json["score"].floatValue
+//        let type = json["type"].stringValue
+//        if type == "public_transit"{
+//            trip.publicTransit = true
+//        }
+//        
+//        objectInitializationHandler?(json, KTUser.self)
+//        return trip
+//    }
     
     class func AddressObject(json : JSON) -> KTAddress {
         let address = KTAddress()

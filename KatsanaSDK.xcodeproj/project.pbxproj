@@ -12,6 +12,7 @@
 		C118BA242A02012A0068D7D2 /* DayTravelEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C118BA232A02012A0068D7D2 /* DayTravelEndpoint.swift */; };
 		C118BA262A0201320068D7D2 /* DayTravelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C118BA252A0201320068D7D2 /* DayTravelMapper.swift */; };
 		C118BA2B2A0202910068D7D2 /* DayTravelEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C118BA282A02027F0068D7D2 /* DayTravelEndpointTests.swift */; };
+		C118BA2D2A0206200068D7D2 /* TripMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C118BA2C2A0206200068D7D2 /* TripMapperTests.swift */; };
 		C11FECB829CAE371003914DC /* LoadFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECB629CAE361003914DC /* LoadFromCacheUseCaseTests.swift */; };
 		C11FECC029CBBD91003914DC /* CacheTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECBA29CBBD3E003914DC /* CacheTestHelpers.swift */; };
 		C11FECC129CBBD95003914DC /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECBD29CBBD6D003914DC /* SharedTestHelpers.swift */; };
@@ -188,6 +189,7 @@
 		C118BA232A02012A0068D7D2 /* DayTravelEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTravelEndpoint.swift; sourceTree = "<group>"; };
 		C118BA252A0201320068D7D2 /* DayTravelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTravelMapper.swift; sourceTree = "<group>"; };
 		C118BA282A02027F0068D7D2 /* DayTravelEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTravelEndpointTests.swift; sourceTree = "<group>"; };
+		C118BA2C2A0206200068D7D2 /* TripMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMapperTests.swift; sourceTree = "<group>"; };
 		C11FECB629CAE361003914DC /* LoadFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		C11FECBA29CBBD3E003914DC /* CacheTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheTestHelpers.swift; sourceTree = "<group>"; };
 		C11FECBD29CBBD6D003914DC /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				C118BA282A02027F0068D7D2 /* DayTravelEndpointTests.swift */,
+				C118BA2C2A0206200068D7D2 /* TripMapperTests.swift */,
 			);
 			path = "DayTravel API";
 			sourceTree = "<group>";
@@ -1046,6 +1049,7 @@
 				C11FECE429CC0BDA003914DC /* CacheResourceUseCaseTests.swift in Sources */,
 				C11FECD729CBF6B6003914DC /* CodableResourceStoreTests.swift in Sources */,
 				C1DF2B5A29DD461100596E70 /* LoadResourceWithKeyFromCacheUseCaseTests.swift in Sources */,
+				C118BA2D2A0206200068D7D2 /* TripMapperTests.swift in Sources */,
 				C1751B4229BFEDEC009C8795 /* TripTest.swift in Sources */,
 				C1DF2B4629D92B5C00596E70 /* CLPlaceMarkAddressMapperTests.swift in Sources */,
 				C145A5C329D9196700E3FC6E /* AddressAPI+TestHelpers.swift in Sources */,

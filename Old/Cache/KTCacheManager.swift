@@ -482,7 +482,7 @@ public class KTCacheManager: NSObject {
             if let theVehicleId = travelDicto["id"] as? Int, vehicleId == theVehicleId, let travels = travelDicto["travels"] as? [KTDayTravel] {
                 theTravels = travels
                 for (index, theTravel) in travels.enumerated() {
-                    if theTravel.date.isEqualToDateIgnoringTime(trip.date){
+                    if theTravel.date.isEqualToDateIgnoringTime(trip.startDate()){
                         travel = theTravel
                         travelIndex = index
                     }
@@ -494,7 +494,7 @@ public class KTCacheManager: NSObject {
         if let travel = travel{
             for aTrip in travel.trips {
                 //If less than 2 minute consider as same trip
-                if fabs(aTrip.date.timeIntervalSince(trip.date)) < 2*60 {
+                if fabs(aTrip.startDate().timeIntervalSince(trip.startDate())) < 2*60 {
                     if trip.locations.count > aTrip.locations.count {
                         aTrip.locations = trip.locations
                     }
@@ -512,12 +512,12 @@ public class KTCacheManager: NSObject {
                 var trips = travel.trips
                 trips.append(trip)
                 trips.sort(by: { (a, b) -> Bool in
-                    return a.date < b.date
+                    return a.startDate() < b.startDate()
                 })
                 travel.trips = trips
             }
         }else{
-            travel = KTDayTravel(date: trip.date)
+            travel = KTDayTravel(date: trip.startDate())
             travel.vehicleId = vehicleId
             travel.trips = [trip]
         }
@@ -539,13 +539,13 @@ public class KTCacheManager: NSObject {
             return
         }
         
-        let dateStr = KTCacheManager.dateFormatter.string(from: trip.date)
+        let dateStr = KTCacheManager.dateFormatter.string(from: trip.startDate())
         let path = tripPath().appending("/\(dateStr).dat")
         var travel: KTDayTravel!
         if FileManager.default.fileExists(atPath: path), let data = try? Data(contentsOf: URL(fileURLWithPath: path)), let aTravel = try? JSONDecoder().decode(KTDayTravel.self, from: data) {
             var foundIdx : Int!
             for (idx, aTrip) in aTravel.trips.enumerated(){
-                if aTrip.date == trip.date{
+                if aTrip.startDate() == trip.startDate(){
                     foundIdx = idx
                     break
                 }
@@ -557,13 +557,13 @@ public class KTCacheManager: NSObject {
                 var trips = aTravel.trips
                 trips.insert(trip, at: 0)
                 trips.sort(by: { (a, b) -> Bool in
-                    return a.date < b.date
+                    return a.startDate() < b.startDate()
                 })
                 aTravel.trips = trips
             }
             travel = aTravel
         } else {
-            travel = KTDayTravel(date: trip.date)
+            travel = KTDayTravel(date: trip.startDate())
             travel.trips = [trip]
             travel.updateDataFromTrip()
         }
@@ -775,7 +775,7 @@ public class KTCacheManager: NSObject {
                 for (_, theTravel) in travels.enumerated() {
                     var indexesNeedClear = [Int]()
                     for (tripIndex, trip) in theTravel.trips.enumerated(){
-                        if trip.date.timeIntervalSince(date) >= 0, trip.date.timeIntervalSince(toDate) <= 0{
+                        if trip.startDate().timeIntervalSince(date) >= 0, trip.startDate().timeIntervalSince(toDate) <= 0{
                             indexesNeedClear.append(tripIndex)
                             dataChanged = true
                         }

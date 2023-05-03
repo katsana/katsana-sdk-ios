@@ -152,10 +152,11 @@ open class KTDayTravel: NSCopying, Codable, Equatable {
     ///Get trip at specified time, return nil if not found
     open func trip(at time: Date) -> KTTrip? {
         for trip in trips {
-            if let startTime = trip.start?.trackedAt, let endTime = trip.end?.trackedAt  {
-                if time.timeIntervalSince(startTime) >= 0, endTime.timeIntervalSince(time) >= 0 {
-                    return trip
-                }
+            let startTime = trip.start.trackedAt
+            let endTime = trip.end.trackedAt
+            
+            if time.timeIntervalSince(startTime) >= 0, endTime.timeIntervalSince(time) >= 0 {
+                return trip
             }
         }
         return nil
@@ -187,15 +188,15 @@ open class KTDayTravel: NSCopying, Codable, Equatable {
         var currentTravel: KTDayTravel!
         for trip in trips{
             if currentTravel == nil{
-                currentTravel = KTDayTravel(date: trip.date)
+                currentTravel = KTDayTravel(date: trip.startDate())
                 currentTravel.trips = [KTTrip]()
                 travels.append(currentTravel)
             }
-            else if trip.date.isEqualToDateIgnoringTime(currentTravel.date){
+            else if trip.startDate().isEqualToDateIgnoringTime(currentTravel.date){
                 //Do nothing
             }else{
                 //If date not same, create new travel
-                currentTravel = KTDayTravel(date: trip.date)
+                currentTravel = KTDayTravel(date: trip.startDate())
                 travels.append(currentTravel)
             }
             currentTravel.trips.append(trip)
@@ -216,7 +217,7 @@ open class KTDayTravel: NSCopying, Codable, Equatable {
         self.distance = distance
         self.duration = duration
         self.maxSpeed = Float(maxSpeed)
-        if let date = trips.first?.date{
+        if let date = trips.first?.startDate(){
             //Warning: Need check if set date is required
 //            self.date = date
         }

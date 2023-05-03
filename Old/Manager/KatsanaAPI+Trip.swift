@@ -161,9 +161,6 @@ extension KatsanaAPI {
                 travel.vehicleId = vehicleId
                 var newTrips = [KTTrip]()
                 for trip in travel.trips {
-                    if let date =  trip.start?.trackedAt{
-                        trip.date = date
-                    }
                     if trip.duration > 60, trip.distance > 10{
                         newTrips.append(trip)
                     }
@@ -285,11 +282,11 @@ extension KatsanaAPI {
                 if let summaries : [KTTrip] = resource.typedContent(){
                     var newSummaries = [KTTrip]()
                     for summary in summaries{
-                        if let date = summary.start?.trackedAt{
-                            summary.date = date
-                        }else if summary.locations.count > 0, let date = summary.locations.first?.trackedAt{
-                            summary.date = date
-                        }
+//                        if let date = summary.start?.trackedAt{
+//                            summary.date = date
+//                        }else if summary.locations.count > 0, let date = summary.locations.first?.trackedAt{
+//                            summary.date = date
+//                        }
                         if summary.duration > 60, summary.distance > 1000{
                             newSummaries.append(summary)
                         }
@@ -303,7 +300,7 @@ extension KatsanaAPI {
                         
                         if let lastTrip = summaries.last{
                             for trip in cachedTrips{
-                                if trip.date.timeIntervalSince(lastTrip.date) > 0{
+                                if trip.startDate().timeIntervalSince(lastTrip.startDate()) > 0{
                                     newSummaries.append(trip)
                                 }
                             }

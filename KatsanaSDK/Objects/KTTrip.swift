@@ -18,7 +18,6 @@ open class KTTrip: NSCopying, Codable {
         case averageSpeed
         case idleDuration
         case score
-        case date
         case publicTransit
         case idles
         case locations
@@ -27,19 +26,18 @@ open class KTTrip: NSCopying, Codable {
     open var id : String!
     ///Alternate id set manually if required. Default to nil
     open var alternateId: String!
-    open var start: VehicleLocation?
-    open var end: VehicleLocation?
+    public let start: VehicleLocation
+    public let end: VehicleLocation
     open var distance: Double = 0
     open var duration: Double = 0
     open var maxSpeed: Float = 0
     open var averageSpeed: Float = 0
     open var idleDuration: Float = 0
     open var score: Float = -1
-    open var date = Date(timeIntervalSinceReferenceDate: 0)
     open var publicTransit = false
     
     open var idles = [VehicleLocation]()
-    open var locations = [VehicleLocation]()
+    public var locations: [VehicleLocation]
     open var violations = [VehicleActivity]()
     
     ///Next trip and prev trip automatically set when trips are set in Travel class
@@ -49,21 +47,24 @@ open class KTTrip: NSCopying, Codable {
     //Extra data that user can set to trip
     open var extraData = [String: Any]()
     
+    init(start: VehicleLocation, end: VehicleLocation, locations: [VehicleLocation]) {
+        self.start = start
+        self.end = end
+        self.locations = locations
+    }
+    
     
     public func copy(with zone: NSZone? = nil) -> Any {
-        let trip = KTTrip()
+        let trip = KTTrip(start: start, end: end, locations: locations)
         trip.id = id
         trip.maxSpeed = maxSpeed
         trip.distance = distance
         trip.averageSpeed = averageSpeed
         trip.idleDuration = idleDuration
         trip.duration = duration
-        trip.start = start
-        trip.end = end
         trip.locations = locations
         trip.idles = idles
         trip.score = score
-        trip.date = date
         trip.violations = violations
 //        trip.nextTrip = nextTrip
 //        trip.prevTrip = prevTrip
@@ -81,10 +82,14 @@ open class KTTrip: NSCopying, Codable {
 //        }
 //        return 0
 //    }
-//    
+//
 //    open func durationToNextTripString() -> String {
 //        return KatsanaFormatter.durationStringFrom(seconds: Double(durationToNextTrip()))
 //    }
+    
+    public func startDate() -> Date{
+        return start.trackedAt
+    }
     
     open func maxSpeedString() -> String {
         return KatsanaFormatter.speedStringFrom(knot: Double(maxSpeed))
