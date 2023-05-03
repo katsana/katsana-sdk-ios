@@ -7,7 +7,7 @@
 //
 import Foundation
 
-open class KTTrip: NSCopying, Codable {
+public class KTTrip: NSCopying, Codable {
     enum CodingKeys: CodingKey {
         case id
         case start
@@ -23,29 +23,29 @@ open class KTTrip: NSCopying, Codable {
         case locations
     }
     
-    open var id : String!
+    public var id : String!
     ///Alternate id set manually if required. Default to nil
-    open var alternateId: String!
+    public var alternateId: String!
     public let start: VehicleLocation
     public let end: VehicleLocation
-    open var distance: Double = 0
-    open var duration: Double = 0
-    open var maxSpeed: Float = 0
-    open var averageSpeed: Float = 0
-    open var idleDuration: Float = 0
-    open var score: Float = -1
-    open var publicTransit = false
+    public var distance: Double = 0
+    public var duration: Double = 0
+    public var maxSpeed: Float = 0
+    public var averageSpeed: Float = 0
+    public var idleDuration: Float = 0
+    public var score: Float = -1
+    public var publicTransit = false
     
-    open var idles = [VehicleLocation]()
+    public var idles = [VehicleLocation]()
     public var locations: [VehicleLocation]
-    open var violations = [VehicleActivity]()
+    public var violations = [VehicleActivity]()
     
     ///Next trip and prev trip automatically set when trips are set in Travel class
-//    weak open var nextTrip: KTTrip?
-//    weak open var prevTrip: KTTrip?
+//    weak public var nextTrip: KTTrip?
+//    weak public var prevTrip: KTTrip?
     
     //Extra data that user can set to trip
-    open var extraData = [String: Any]()
+    public var extraData = [String: Any]()
     
     init(start: VehicleLocation, end: VehicleLocation, locations: [VehicleLocation]) {
         self.start = start
@@ -75,7 +75,7 @@ open class KTTrip: NSCopying, Codable {
     
     // MARK: Logic
     
-//    open func durationToNextTrip() -> Float {
+//    public func durationToNextTrip() -> Float {
 //        if let nextTripStart = nextTrip?.start, let end {
 //            let duration = nextTripStart.trackedAt.timeIntervalSince(end.trackedAt)
 //            return Float(duration)
@@ -83,7 +83,7 @@ open class KTTrip: NSCopying, Codable {
 //        return 0
 //    }
 //
-//    open func durationToNextTripString() -> String {
+//    public func durationToNextTripString() -> String {
 //        return KatsanaFormatter.durationStringFrom(seconds: Double(durationToNextTrip()))
 //    }
     
@@ -91,19 +91,19 @@ open class KTTrip: NSCopying, Codable {
         return start.trackedAt
     }
     
-    open func maxSpeedString() -> String {
+    public func maxSpeedString() -> String {
         return KatsanaFormatter.speedStringFrom(knot: Double(maxSpeed))
     }
     
-    open func averageSpeedString() -> String {
+    public func averageSpeedString() -> String {
         return KatsanaFormatter.speedStringFrom(knot: Double(averageSpeed))
     }
     
-    open func durationString() -> String {
+    public func durationString() -> String {
         return KatsanaFormatter.durationStringFrom(seconds: duration)
     }
     
-    open func distanceString() -> String {
+    public func distanceString() -> String {
         return KatsanaFormatter.distanceStringFrom(meter: distance)
     }
 }
