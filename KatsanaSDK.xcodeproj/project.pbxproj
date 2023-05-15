@@ -156,20 +156,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C118BAC02A0868C30068D7D2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C118BABB2A0868C20068D7D2 /* SharedUI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C1751AC829BF0C42009C8795;
-			remoteInfo = SharedUI;
-		};
-		C118BAC22A0868C30068D7D2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C118BABB2A0868C20068D7D2 /* SharedUI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C1751AD029BF0C42009C8795;
-			remoteInfo = SharedUITests;
-		};
 		C11FECF029CC172C003914DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C75104F41D7422BF00F4C341 /* Project object */;
@@ -218,7 +204,6 @@
 		C118BA3A2A021BB50068D7D2 /* TodayTravelSummaryEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTravelSummaryEndpointTests.swift; sourceTree = "<group>"; };
 		C118BA3C2A021CB50068D7D2 /* KTDayTravelSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KTDayTravelSummary.swift; sourceTree = "<group>"; };
 		C118BA402A021F100068D7D2 /* DayTravelSummaryMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTravelSummaryMapperTests.swift; sourceTree = "<group>"; };
-		C118BABB2A0868C20068D7D2 /* SharedUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SharedUI.xcodeproj; path = "../Katsana/Katsana-v3/Shared/SharedUI.xcodeproj"; sourceTree = "<group>"; };
 		C11FECB629CAE361003914DC /* LoadFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		C11FECBA29CBBD3E003914DC /* CacheTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheTestHelpers.swift; sourceTree = "<group>"; };
 		C11FECBD29CBBD6D003914DC /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -465,15 +450,6 @@
 				C118BA402A021F100068D7D2 /* DayTravelSummaryMapperTests.swift */,
 			);
 			path = "DayTravelSummary API";
-			sourceTree = "<group>";
-		};
-		C118BABC2A0868C20068D7D2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C118BAC12A0868C30068D7D2 /* SharedUI.framework */,
-				C118BAC32A0868C30068D7D2 /* SharedUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		C11FECAE29CADE9B003914DC /* Cache */ = {
@@ -902,7 +878,6 @@
 		C75104F31D7422BF00F4C341 = {
 			isa = PBXGroup;
 			children = (
-				C118BABB2A0868C20068D7D2 /* SharedUI.xcodeproj */,
 				C1FAE70E29C169F1001D3D86 /* Shared */,
 				C11FECB429CAE256003914DC /* Old */,
 				C719175F1E48703B0041BC18 /* Objects */,
@@ -1060,12 +1035,6 @@
 			);
 			productRefGroup = C75104FE1D7422BF00F4C341 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = C118BABC2A0868C20068D7D2 /* Products */;
-					ProjectRef = C118BABB2A0868C20068D7D2 /* SharedUI.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				C75104FC1D7422BF00F4C341 /* KatsanaSDK */,
@@ -1075,23 +1044,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		C118BAC12A0868C30068D7D2 /* SharedUI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SharedUI.framework;
-			remoteRef = C118BAC02A0868C30068D7D2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C118BAC32A0868C30068D7D2 /* SharedUITests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SharedUITests.xctest;
-			remoteRef = C118BAC22A0868C30068D7D2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C11FECE929CC172C003914DC /* Resources */ = {
@@ -1647,7 +1599,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -1687,7 +1638,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;
 		};
