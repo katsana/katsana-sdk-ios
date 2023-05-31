@@ -15,17 +15,25 @@
     case unknown
 }
 
+
 @objcMembers
 open class VehicleSubscription: NSObject {
     override open class func fastCodingKeys() -> [Any]? {
         return ["deviceId", "deviceImei", "vehicleNumber", "vehicleDescription", "vehicleExpiredAt", "subscriptionId", "subscriptionPrice", "subscriptionStartAt", "subscriptionEndAt", "subscriptionPriceWithTax", "subscriptionTax", "planId", "planName", "planDescription", "planPrice", "planBillingCycle", "planQuickBooksId", "planRenewalAddonId", "planTagId", "planType", "planCreatedAt", "planUpdatedAt", "isReseller"]
     }
     
+    public enum RenewalStatus: String{
+        case normal
+        case processing
+    }
+
+    
     open var deviceId: String!
     open var deviceImei: String!
     open var vehicleNumber: String!
     open var vehicleDescription: String!
     open var vehicleExpiredAt: Date!
+    open var renewalStatus = RenewalStatus.normal
     
     open var subscriptionId: String!
     open var subscriptionPrice: Int = 0

@@ -415,6 +415,33 @@ class ObjectJSONTransformer: NSObject {
         }
         return subscribes
     }
+    
+    class func VehicleBillingRenewalsObject(json : JSON) -> [VehicleSubscription] {
+        var subscribes = [VehicleSubscription]()
+        let array = json["devices"].arrayValue
+        for jsonObj in array {
+            let history = VehicleBillingRenewalObject(json: jsonObj)
+            subscribes.append(history)
+        }
+        return subscribes
+    }
+    
+    class func VehicleBillingRenewalObject(json : JSON) -> VehicleSubscription {
+        let subscribe = VehicleSubscription()
+        subscribe.deviceId = json["id"].stringValue
+        subscribe.vehicleExpiredAt = json["ends_at"].date(gmt: 0)
+        subscribe.vehicleDescription = json["description"].stringValue
+        subscribe.vehicleNumber = json["plate_number"].stringValue
+        subscribe.isReseller = json["reseller"].boolValue
+        
+        
+        subscribe.renewalStatus = VehicleSubscription.RenewalStatus(rawValue: json["renewal_status"].stringValue) ?? .normal
+        subscribe.subscriptionStartAt = json["subscription"]["starts_date"].date(gmt: 0)
+        subscribe.subscriptionEndAt = json["subscription"]["expiry_date"].date(gmt: 0)
+        subscribe.planName = json["subsciption"]["name"].stringValue
+        
+        return subscribe
+    }
 
     class func VehicleSubscriptionObject(json : JSON) -> VehicleSubscription {
         let subscribe = VehicleSubscription()

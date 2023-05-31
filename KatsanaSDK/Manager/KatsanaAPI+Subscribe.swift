@@ -9,6 +9,34 @@
 import Siesta
 
 extension KatsanaAPI{
+    
+    public func requestBilingRenewals(completion: @escaping (_ subscriptions: [VehicleSubscription]) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        let path = "bilings/renewals"
+        let resource = API.resource(path);
+        let request = resource.loadIfNeeded()
+        
+        request?.onSuccess({(entity) in
+            if let summaries : [VehicleSubscription] = resource.typedContent(){
+                KTCacheManager.shared.cache(vehicleSubscription: summaries)
+                NotificationCenter.default.post(name: KatsanaAPI.subscriptionRequestedNotification, object: summaries)
+                completion(summaries)
+            }else{
+                failure(nil)
+            }
+        }).onFailure({ (error) in
+            failure(error)
+            self.log.error("Error getting vehicle subscriptions, \(error)")
+        })
+        
+        if request == nil {
+            if let summaries : [VehicleSubscription] = resource.typedContent(){
+                completion(summaries)
+            }else{
+                failure(nil)
+            }
+        }
+    }
+    
     public func requestSubscriptions(completion: @escaping (_ subscriptions: [VehicleSubscription]) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let path = "subscriptions"
         let resource = API.resource(path);
@@ -78,6 +106,33 @@ extension KatsanaAPI{
         }).onFailure({ (error) in
             failure(error)
             self.log.error("Error getting pay subscriptions url, \(error)")
+        })
+    }
+    
+    public func notifySupportKatsanaForQuotation(subscriptions: [VehicleSubscription], completion: @escaping () -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+        
+        var params = [String: Any]()
+        var newIds = [Int]()
+        for subscription in subscriptions{
+            if let val = Int(subscription.deviceId){
+                newIds.append(val)
+            }
+        }
+        params["device_id"] = newIds
+        
+        let path = "/bilings/renewals/quotation"
+        let resource = API.resource(path);
+        
+        resource.request(.post, json: NSDictionary(dictionary: params)).onSuccess({(entity) in
+//            let test = entity.content as? JSON
+//            print(entity)
+            for subscription in subscriptions {
+                subscription.renewalStatus = .processing
+            }
+            completion()
+        }).onFailure({ (error) in
+            failure(error)
+            self.log.error("Error notify Customer Support to renew terminated subscriptions, \(error)")
         })
     }
     

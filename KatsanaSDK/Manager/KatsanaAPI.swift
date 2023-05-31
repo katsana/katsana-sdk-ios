@@ -269,6 +269,9 @@ open class KatsanaAPI: NSObject {
         API.configureTransformer("subscriptions") {
             ObjectJSONTransformer.VehicleSubscriptionsObject(json: $0.content)
         }
+        API.configureTransformer("bilings/renewals") {
+            ObjectJSONTransformer.VehicleBillingRenewalsObject(json: $0.content)
+        }
         
 //        API.configureTransformer("subscriptions/*") {
 //            ObjectJSONTransformer.VehicleSubscriptionObject(json: $0.content)
