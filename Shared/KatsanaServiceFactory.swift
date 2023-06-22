@@ -84,6 +84,30 @@ extension KatsanaServiceFactory{
             .eraseToAnyPublisher()
     }
     
+    public func makePublisherWithCachedKey<Resource>(
+        request:URLRequest,
+        includes params: [String]? = nil,
+        maxCacheAgeInSeconds: Int = 60*60,
+        cacheKey: String,
+        mapper: @escaping (Data, HTTPURLResponse) throws -> Resource)
+    -> AnyPublisher<Resource, Error> where Resource: Equatable, Resource: Codable{
+        let url = baseStoreURL.appendingPathComponent(String(describing: Resource.self) + ".store")
+        let store = CodableResourceStore<Resource>(storeURL: url)
+        let localLoader = LocalResourceWithKeyLoader(store: store)
+        let client = self.client
+        
+        return localLoader
+            .loadPublisher(key: cacheKey)
+            .fallback(to: {
+                return client
+                    .getPublisher(urlRequest: request)
+                    .tryMap(mapper)
+                    .caching(to: localLoader, using: cacheKey)
+            })
+            .subscribe(on: scheduler)
+            .eraseToAnyPublisher()
+    }
+    
     public func makeVehiclesPublisher(includes params: [String]? = nil) -> AnyPublisher<[KTVehicle], Error>{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
         return makePublisher(request: URLRequest(url: url), mapper: VehiclesMapper.map)
@@ -96,8 +120,8 @@ extension KatsanaServiceFactory{
     
     public func makeDayTravelPublisher(vehicleId: Int, date: Date) -> AnyPublisher<KTDayTravel, Error>{
         let url = DayTravelEndpoint.get(vehicleId: vehicleId, date: date).url(baseURL: baseURL)
-        
-        return makePublisher(request: URLRequest(url: url), maxCacheAgeInSeconds: 60*60*24*7, mapper: DayTravelMapper.map)
+        let key = "\(vehicleId)_\(String(describing: date))"
+        return makePublisherWithCachedKey(request:  URLRequest(url: url), cacheKey: key, mapper: DayTravelMapper.map)
     }
     
     public func makeTripSummaryPublisher(vehicleId: Int, startDate: Date, endDate: Date) -> AnyPublisher<[KTTripSummary], Error>{
