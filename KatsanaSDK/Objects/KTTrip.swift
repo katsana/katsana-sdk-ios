@@ -47,7 +47,7 @@ public class KTTrip: NSCopying, Codable {
     //Extra data that user can set to trip
     public var extraData = [String: Any]()
     
-    init(start: VehicleLocation, end: VehicleLocation, locations: [VehicleLocation]) {
+    public init(start: VehicleLocation, end: VehicleLocation, locations: [VehicleLocation]) {
         self.start = start
         self.end = end
         self.locations = locations

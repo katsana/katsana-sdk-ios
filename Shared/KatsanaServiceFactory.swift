@@ -97,10 +97,7 @@ extension KatsanaServiceFactory{
     public func makeDayTravelPublisher(vehicleId: Int, date: Date) -> AnyPublisher<KTDayTravel, Error>{
         let url = DayTravelEndpoint.get(vehicleId: vehicleId, date: date).url(baseURL: baseURL)
         
-        return client
-            .getPublisher(urlRequest: URLRequest(url: url))
-            .tryMap(DayTravelMapper.map)
-            .eraseToAnyPublisher()
+        return makePublisher(request: URLRequest(url: url), maxCacheAgeInSeconds: 60*60*24*7, mapper: DayTravelMapper.map)
     }
     
     public func makeTripSummaryPublisher(vehicleId: Int, startDate: Date, endDate: Date) -> AnyPublisher<[KTTripSummary], Error>{
