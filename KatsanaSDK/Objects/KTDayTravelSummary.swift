@@ -1,22 +1,35 @@
 //
 //  KTDayTravelSummary.swift
-//  KatsanaSDKTest
+//  KatsanaSDK
 //
-//  Created by Wan Ahmad Lutfi on 03/05/2023.
+//  Created by Wan Ahmad Lutfi on 12/04/2023.
 //  Copyright © 2023 pixelated. All rights reserved.
 //
 
 import Foundation
 
-public struct KTDayTravelSummary: Codable, Equatable {
-    
-    public let date : Date
-    public let distance : Double
-    public let duration : Double
-    public let idleDuration : Double
-    public let maxSpeed : Double
-    public let tripCount : Int
+public class KTDayTravelSummary: Codable, Equatable {
+    public let date: Date
+    public let distance: CGFloat
+    public let duration: CGFloat
+    public let idleDuration: CGFloat
+    public let maxSpeed: CGFloat
+    public let tripCount: Int
     public let violationCount: Int
-    public let score: Double
+    public let score: CGFloat
     
+    public init(date: Date, distance: CGFloat, duration: CGFloat, idleDuration: CGFloat, maxSpeed: CGFloat, tripCount: Int, violationCount: Int, score: CGFloat) {
+        self.date = date
+        self.distance = distance
+        self.duration = duration
+        self.idleDuration = idleDuration
+        self.maxSpeed = maxSpeed
+        self.tripCount = tripCount
+        self.violationCount = violationCount
+        self.score = score
+    }
+    
+    public static func == (lhs: KTDayTravelSummary, rhs: KTDayTravelSummary) -> Bool {
+        return (lhs.date == rhs.date && lhs.distance == rhs.distance && lhs.duration == rhs.duration)
+    }
 }

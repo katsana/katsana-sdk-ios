@@ -13,7 +13,7 @@ public class TripSummariesMapper{
         case invalidData
     }
     
-    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [KTTripSummary] {
+    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [KTDayTravelSummary] {
         do{
             let json = try JSON(data: data)
             return try mapJSON(json)
@@ -23,7 +23,7 @@ public class TripSummariesMapper{
         }
     }
     
-    public static func mapJSON(_ json: JSON) throws -> [KTTripSummary] {
+    public static func mapJSON(_ json: JSON) throws -> [KTDayTravelSummary] {
         let arr = json.arrayValue
         let vehicles = try arr.map(TripSummaryMapper.mapJSON)
         return vehicles
@@ -45,7 +45,7 @@ public class TripSummaryMapper{
         case invalidDateFormat
     }
     
-    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> KTTripSummary {
+    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> KTDayTravelSummary {
         do{
             let json = try JSON(data: data)
 //            objectInitializationHandler?(json, KTUser.self)
@@ -56,7 +56,7 @@ public class TripSummaryMapper{
         }
     }
     
-    public static func mapJSON(_ json: JSON) throws -> KTTripSummary {
+    public static func mapJSON(_ json: JSON) throws -> KTDayTravelSummary {
         let date = json["date"].stringValue
 
         let distance = json["distance"].doubleValue
@@ -72,7 +72,7 @@ public class TripSummaryMapper{
             throw Error.invalidDateFormat
         }
         
-        return KTTripSummary(date: dateText!, distance: distance, duration: duration, idleDuration: idleDuration, maxSpeed: maxSpeed, tripCount: tripCount, violationCount: violationCount, score: score)
+        return KTDayTravelSummary(date: dateText!, distance: distance, duration: duration, idleDuration: idleDuration, maxSpeed: maxSpeed, tripCount: tripCount, violationCount: violationCount, score: score)
     }
 }
 

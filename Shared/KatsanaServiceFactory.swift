@@ -124,7 +124,7 @@ extension KatsanaServiceFactory{
         return makePublisherWithCachedKey(request:  URLRequest(url: url), cacheKey: key, mapper: DayTravelMapper.map)
     }
     
-    public func makeTripSummaryPublisher(vehicleId: Int, startDate: Date, endDate: Date) -> AnyPublisher<[KTTripSummary], Error>{
+    public func makeTripSummaryPublisher(vehicleId: Int, startDate: Date, endDate: Date) -> AnyPublisher<[KTDayTravelSummary], Error>{
         let url = TripSummaryEndpoint.get(vehicleId: vehicleId, fromDate: startDate, toDate: endDate).url(baseURL: baseURL)
         
         return client
