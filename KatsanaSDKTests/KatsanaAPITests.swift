@@ -11,6 +11,10 @@ import KatsanaSDK
 
 class KatsanaAPI{
     var isAuthenticated = false
+    
+    func login(email: String, password: String){
+        isAuthenticated = true
+    }
 }
 
 final class KatsanaAPITests: XCTestCase {
@@ -19,6 +23,12 @@ final class KatsanaAPITests: XCTestCase {
         let sut = makeSUT()
         
         XCTAssertTrue(!sut.isAuthenticated)
+    }
+    
+    func test_login_authenticateWhenSuccess() {
+        let sut = makeSUT()
+        sut.login(email: "test", password: "1212")
+        XCTAssertTrue(sut.isAuthenticated)
     }
     
     func makeSUT() -> KatsanaAPI{
