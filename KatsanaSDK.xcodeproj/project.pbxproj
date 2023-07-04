@@ -75,6 +75,8 @@
 		C186127629E6813400171A3F /* VehicleLocationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186127529E6813400171A3F /* VehicleLocationMapper.swift */; };
 		C186127829E681D900171A3F /* VehicleActivityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186127729E681D900171A3F /* VehicleActivityMapper.swift */; };
 		C186127A29E6861F00171A3F /* KTDayTravelSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186127929E6861F00171A3F /* KTDayTravelSummary.swift */; };
+		C186A1C02A54DDED00EE2AF2 /* KatsanaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186A1BF2A54DDED00EE2AF2 /* KatsanaAPI.swift */; };
+		C186A1C32A54DE1400EE2AF2 /* KatsanaAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186A1C12A54DE1100EE2AF2 /* KatsanaAPITests.swift */; };
 		C18A824128FCEF6000C3FF7D /* VideoRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824028FCEF6000C3FF7D /* VideoRecording.swift */; };
 		C18A824328FCEFD500C3FF7D /* VideoRecordingChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */; };
 		C18A824528FD050A00C3FF7D /* KatsanaAPI+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */; };
@@ -249,6 +251,8 @@
 		C186127529E6813400171A3F /* VehicleLocationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleLocationMapper.swift; sourceTree = "<group>"; };
 		C186127729E681D900171A3F /* VehicleActivityMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleActivityMapper.swift; sourceTree = "<group>"; };
 		C186127929E6861F00171A3F /* KTDayTravelSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KTDayTravelSummary.swift; sourceTree = "<group>"; };
+		C186A1BF2A54DDED00EE2AF2 /* KatsanaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaAPI.swift; sourceTree = "<group>"; };
+		C186A1C12A54DE1100EE2AF2 /* KatsanaAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaAPITests.swift; sourceTree = "<group>"; };
 		C18A824028FCEF6000C3FF7D /* VideoRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecording.swift; sourceTree = "<group>"; };
 		C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingChannel.swift; sourceTree = "<group>"; };
 		C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Stream.swift"; sourceTree = "<group>"; };
@@ -391,6 +395,7 @@
 				C10511A02988FF4C006D9CB7 /* TripTest.swift */,
 				C1A3E404298A1A8F00931529 /* AddressTest.swift */,
 				C1A3E406298A213800931529 /* ActivityTest.swift */,
+				C186A1C12A54DE1100EE2AF2 /* KatsanaAPITests.swift */,
 			);
 			path = KatsanaSDKTests;
 			sourceTree = "<group>";
@@ -740,6 +745,7 @@
 				C11FECB229CAE200003914DC /* HTTP API */,
 				C145A5BC29D9149900E3FC6E /* Address API */,
 				C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */,
+				C186A1BF2A54DDED00EE2AF2 /* KatsanaAPI.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1093,6 +1099,7 @@
 				C1DF2B5A29DD461100596E70 /* LoadResourceWithKeyFromCacheUseCaseTests.swift in Sources */,
 				C118BA2D2A0206200068D7D2 /* TripMapperTests.swift in Sources */,
 				C1751B4229BFEDEC009C8795 /* TripTest.swift in Sources */,
+				C186A1C32A54DE1400EE2AF2 /* KatsanaAPITests.swift in Sources */,
 				C1DF2B4629D92B5C00596E70 /* CLPlaceMarkAddressMapperTests.swift in Sources */,
 				C145A5C329D9196700E3FC6E /* AddressAPI+TestHelpers.swift in Sources */,
 				C11FECDE29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift in Sources */,
@@ -1183,6 +1190,7 @@
 				C71917A61E48703B0041BC18 /* VehicleLocation.swift in Sources */,
 				C186127629E6813400171A3F /* VehicleLocationMapper.swift in Sources */,
 				C11FECE129CC0AFA003914DC /* CodableResourceStore.swift in Sources */,
+				C186A1C02A54DDED00EE2AF2 /* KatsanaAPI.swift in Sources */,
 				C11FED0929D0295F003914DC /* AnyLocalLoader.swift in Sources */,
 				C1FAE6FB29C0592E001D3D86 /* UserMapper.swift in Sources */,
 				C71917821E48703B0041BC18 /* KatsanaAPI+Login.swift in Sources */,
