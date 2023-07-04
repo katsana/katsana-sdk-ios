@@ -9,7 +9,7 @@
 import Foundation
 import Siesta
 
-extension KatsanaAPI {
+extension KatsanaAPI_Old {
 
     /// Request vehicle given vehicleId. currentVehicle variable will be set from vehicle requested
     ///

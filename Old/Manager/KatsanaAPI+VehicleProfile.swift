@@ -15,7 +15,7 @@ import UIKit
 import AppKit
 #endif
 
-extension KatsanaAPI {
+extension KatsanaAPI_Old {
 
     /// Save vehicle profile data
     ///
@@ -65,7 +65,7 @@ extension KatsanaAPI {
                 self.vehicles[idx] = vehicle
             }
             if insuranceExpiryChanged{
-                NotificationCenter.default.post(name: KatsanaAPI.insuranceExpiryDateChangedNotification, object: vehicle)
+                NotificationCenter.default.post(name: KatsanaAPI_Old.insuranceExpiryDateChangedNotification, object: vehicle)
             }
             completion(vehicle)
         }.onFailure { (error) in

@@ -8,7 +8,7 @@
 import Foundation
 import Siesta
 
-extension KatsanaAPI{
+extension KatsanaAPI_Old{
     ///Request live stream devices for supported vehicles
     public func requestLiveStreamDevices(completion: @escaping (_ summaries:[VideoRecording]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let path = "operations/stream"

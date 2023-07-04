@@ -20,7 +20,7 @@ import AppKit
 #endif
 
 
-extension KatsanaAPI {
+extension KatsanaAPI_Old {
     public func saveCurrentUserProfile(data: [String: Any], completion: @escaping (_ user: KTUser) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let resource = self.API.resource("profile")
         let user = currentUser!
@@ -63,7 +63,7 @@ extension KatsanaAPI {
                 }
             }
             completion(user)
-            NotificationCenter.default.post(name: KatsanaAPI.profileUpdatedNotification, object: nil)
+            NotificationCenter.default.post(name: KatsanaAPI_Old.profileUpdatedNotification, object: nil)
         }.onFailure { (error) in
             failure(error)
             self.log?.error("Error save user profile \(error)")

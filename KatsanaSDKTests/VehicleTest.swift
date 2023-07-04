@@ -102,8 +102,8 @@ final class VehicleTest: XCTestCase {
     }
     
     
-    func makeSUT(cache: CacheManagerSpy) -> KatsanaAPI{
-        let api = KatsanaAPI(cache: cache)
+    func makeSUT(cache: CacheManagerSpy) -> KatsanaAPI_Old{
+        let api = KatsanaAPI_Old(cache: cache)
         api.API = service
         api.authToken = "testToken"
         api.configure()
@@ -111,7 +111,7 @@ final class VehicleTest: XCTestCase {
         return api
     }
     
-    func requestVehiclesWithSuccess(api: KatsanaAPI, completion: @escaping ([KTVehicle]) -> Void){
+    func requestVehiclesWithSuccess(api: KatsanaAPI_Old, completion: @escaping ([KTVehicle]) -> Void){
         MockService.mockResponse(path: "vehicles", expectedResponse: ["devices": [["id":489,"user_id":81,"imei":"123456","description":"Focus","vehicle_number":"ABC123","manufacturer":"Ford","model":"Focus", "meta": ["today":["date":"2023-01-12","max_speed":60], "websocket":true], "current": ["latitude":3,"longitude":100,"speed":0,"state":"stopped","ignition":0,"voltage":13052,"battery":91,"gsm":4,"tracked_at":"2023-01-12 07:46:37"]]]])
         
         //Using MockService have small delay, so if there already data, we just return temp vehicles

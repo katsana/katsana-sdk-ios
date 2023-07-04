@@ -13,7 +13,7 @@ import CoreLocation
 //
 //}
 
-open class KatsanaAPI {
+open class KatsanaAPI_Old {
     //Notifications
     public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserLogonSuccessNotification")
     public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
@@ -48,8 +48,8 @@ open class KatsanaAPI {
         }
     }
     
-    public static let shared: KatsanaAPI = {
-        let shared = KatsanaAPI(cache: KTCacheManager.shared, logger: nil)
+    public static let shared: KatsanaAPI_Old = {
+        let shared = KatsanaAPI_Old(cache: KTCacheManager.shared, logger: nil)
         return shared
     }()
     public var API : Service!
@@ -140,7 +140,7 @@ open class KatsanaAPI {
                 // Rerun existing configuration closure using new value
                 API.invalidateConfiguration()
             }
-            NotificationCenter.default.post(name: KatsanaAPI.authTokenUpdatedNotification, object: self)
+            NotificationCenter.default.post(name: KatsanaAPI_Old.authTokenUpdatedNotification, object: self)
             // Wipe any Siesta’s cached state if auth token changes
             API.wipeResources()
         }
@@ -154,15 +154,15 @@ open class KatsanaAPI {
     public init(cache: KTCacheManager = KTCacheManager.shared, logger: Logger! = nil) {
         self.cache = cache
         self.log = logger
-        API = Service(baseURL: KatsanaAPI.defaultBaseURL)
+        API = Service(baseURL: KatsanaAPI_Old.defaultBaseURL)
         self.addressRequester = AddressRequest(baseURL: baseURL(), cacheManager: cache)
     }
 
-    public func configure(baseURL : URL = KatsanaAPI.defaultBaseURL) -> Void {
+    public func configure(baseURL : URL = KatsanaAPI_Old.defaultBaseURL) -> Void {
         configure(baseURL : baseURL, clientId: "", clientSecret:"", grantType: "")
     }
     
-    public func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, clientId : String = "", clientSecret: String = "", grantType: String = "") -> Void {
+    public func configure(baseURL : URL = KatsanaAPI_Old.defaultBaseURL, clientId : String = "", clientSecret: String = "", grantType: String = "") -> Void {
         API = Service(baseURL: baseURL)
         configure()
         setupTransformer()
@@ -173,7 +173,7 @@ open class KatsanaAPI {
     }
     
     ///Configure API using access token
-    public func configure(baseURL : URL = KatsanaAPI.defaultBaseURL, accessToken: String) -> Void {
+    public func configure(baseURL : URL = KatsanaAPI_Old.defaultBaseURL, accessToken: String) -> Void {
         API = Service(baseURL: baseURL)
         authToken = accessToken
         configure()

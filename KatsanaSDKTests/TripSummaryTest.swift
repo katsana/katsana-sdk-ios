@@ -81,8 +81,8 @@ final class TripSummaryTest: XCTestCase {
 //    }
     
     
-    func makeSUT() -> KatsanaAPI{
-        let api = KatsanaAPI(cache: TripSummaryTest.cache)
+    func makeSUT() -> KatsanaAPI_Old{
+        let api = KatsanaAPI_Old(cache: TripSummaryTest.cache)
         api.API = service
         api.authToken = "testToken"
         api.configure()
@@ -90,7 +90,7 @@ final class TripSummaryTest: XCTestCase {
         return api
     }
     
-    func requestTripsWithSuccess(api: KatsanaAPI, completion: @escaping ([KTTrip]) -> Void){
+    func requestTripsWithSuccess(api: KatsanaAPI_Old, completion: @escaping ([KTTrip]) -> Void){
         MockService.mockResponse(path: "vehicles/1/travels/summaries/duration?start=1970-01-01+07:30:10&end=1970-01-01+07:31:40", expectedResponse: [["date":"2023-01-10","distance":40098,"duration":5641,"idle_duration":1787,"max_speed":62.095055,"trip":5,"violation":0,"score":66]])
         
         let date = Date(timeIntervalSince1970: 10)

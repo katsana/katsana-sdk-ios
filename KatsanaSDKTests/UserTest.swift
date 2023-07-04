@@ -77,9 +77,9 @@ final class UserTest: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
     
-    weak var weakAPI: KatsanaAPI!
-    func makeSUT(cache: CacheManagerSpy, file: StaticString = #filePath, line: UInt = #line) -> KatsanaAPI{
-        let api = KatsanaAPI(cache: cache)
+    weak var weakAPI: KatsanaAPI_Old!
+    func makeSUT(cache: CacheManagerSpy, file: StaticString = #filePath, line: UInt = #line) -> KatsanaAPI_Old{
+        let api = KatsanaAPI_Old(cache: cache)
         api.API = service
         api.authToken = "testToken"
         api.configure()
@@ -93,7 +93,7 @@ final class UserTest: XCTestCase {
         return api
     }
     
-    func requestUserWithSuccess(api: KatsanaAPI, completion: @escaping (KTUser) -> Void){
+    func requestUserWithSuccess(api: KatsanaAPI_Old, completion: @escaping (KTUser) -> Void){
         MockService.mockResponse(path: "profile", expectedResponse: ["email": "test@yahoo.com", "userId": "1", "created_at": "2019-11-05 04:47:52"])
         
         //Using MockService have small delay, so if there already data, we just return temp vehicles

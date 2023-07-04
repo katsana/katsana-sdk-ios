@@ -99,7 +99,7 @@ public class KTDayTravel: NSCopying, Codable, Equatable {
     public var _vehicle : KTVehicle?
     public func owner() -> KTVehicle? {
         if _vehicle == nil, let vehicleId = vehicleId {
-            _vehicle = KatsanaAPI.shared.vehicleWith(vehicleId: vehicleId)
+            _vehicle = KatsanaAPI_Old.shared.vehicleWith(vehicleId: vehicleId)
         }
         return _vehicle
     }

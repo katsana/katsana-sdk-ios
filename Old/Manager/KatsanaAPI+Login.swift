@@ -9,7 +9,7 @@
 import Foundation
 import Siesta
 
-extension KatsanaAPI {
+extension KatsanaAPI_Old {
     
     public func loginJWT(name: String, password: String, nameKey: String = "email", authPath: String = "auth", completion: @escaping () -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         //        let useOAuth2 = false
@@ -22,7 +22,7 @@ extension KatsanaAPI {
 //                let refreshToken = json["refresh_token"].stringValue
 //                self.refreshToken = refreshToken
                 self.authToken = token
-                NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
+                NotificationCenter.default.post(name: KatsanaAPI_Old.userSuccessLoginNotification, object: nil)
                 completion()
             }else{
                 failure(nil)
@@ -47,7 +47,7 @@ extension KatsanaAPI {
                 if token.count > 0 {
                     self.authToken = token
                     self.refreshToken = refreshToken
-                    NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
+                    NotificationCenter.default.post(name: KatsanaAPI_Old.userSuccessLoginNotification, object: nil)
                     self.loadProfile(completion: completion)
                 }else{
                     completion(.failure(KatsanaAPIError.invalidToken))
@@ -82,7 +82,7 @@ extension KatsanaAPI {
                 self.currentUser = user
                 self.cache?.cache(user: user)
                 completion(.success(user))
-                NotificationCenter.default.post(name: KatsanaAPI.userSuccessLoginNotification, object: nil)
+                NotificationCenter.default.post(name: KatsanaAPI_Old.userSuccessLoginNotification, object: nil)
                 self.log?.info("Logged in user \(String(describing: user.userId)), \(user.email)")
                 
             }else{
@@ -100,14 +100,14 @@ extension KatsanaAPI {
     }
         
     public func logout() -> Void {
-        NotificationCenter.default.post(name: KatsanaAPI.userWillLogoutNotification, object: nil)
+        NotificationCenter.default.post(name: KatsanaAPI_Old.userWillLogoutNotification, object: nil)
         currentVehicle = nil
         if vehicles != nil {
             vehicles = nil
         }
         currentUser = nil
         authToken = nil
-        NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
+        NotificationCenter.default.post(name: KatsanaAPI_Old.userDidLogoutNotification, object: nil)
         log?.info("Logged out user \(self.currentUser?.userId ?? "??"), \(self.currentUser?.email ?? "")")
         self.cache?.clearTravelCache(vehicleId: "-1")
     }

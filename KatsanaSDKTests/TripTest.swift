@@ -66,8 +66,8 @@ final class TripTest: XCTestCase {
 //        wait(for: [expectation], timeout: 0.1)
 //    }
 
-    func makeSUT() -> KatsanaAPI{
-        let api = KatsanaAPI(cache: TripSummaryTest.cache)
+    func makeSUT() -> KatsanaAPI_Old{
+        let api = KatsanaAPI_Old(cache: TripSummaryTest.cache)
         api.API = service
         api.authToken = "testToken"
         api.configure()
@@ -75,7 +75,7 @@ final class TripTest: XCTestCase {
         return api
     }
     
-    func requestTravelsWithSuccess(api: KatsanaAPI, completion: @escaping (KTDayTravel) -> Void){
+    func requestTravelsWithSuccess(api: KatsanaAPI_Old, completion: @escaping (KTDayTravel) -> Void){
         let date = Date(timeIntervalSince1970: 10)
         let path = "vehicles/1/travels/" + date.toStringWithYearMonthDay()
         

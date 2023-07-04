@@ -7,7 +7,7 @@
 //
 import CoreLocation
 
-extension KatsanaAPI {
+extension KatsanaAPI_Old {
     public func requestAddress(for location:CLLocationCoordinate2D, completion: @escaping (KTAddress?) -> Void, failure: @escaping (_ error: Error?) -> Void = {_ in }) -> Void {
         addressRequester!.requestAddress(for: location) { (address, error) in
             if error != nil{

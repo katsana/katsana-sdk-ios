@@ -134,7 +134,7 @@
 		C719178A1E48703B0041BC18 /* KatsanaAPI+Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719175A1E48703B0041BC18 /* KatsanaAPI+Trip.swift */; };
 		C719178C1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719175B1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift */; };
 		C719178E1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719175C1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift */; };
-		C71917901E48703B0041BC18 /* KatsanaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719175D1E48703B0041BC18 /* KatsanaAPI.swift */; };
+		C71917901E48703B0041BC18 /* KatsanaAPI_Old.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719175D1E48703B0041BC18 /* KatsanaAPI_Old.swift */; };
 		C71917921E48703B0041BC18 /* KatsanaFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719175E1E48703B0041BC18 /* KatsanaFormatter.swift */; };
 		C71917961E48703B0041BC18 /* Travel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917611E48703B0041BC18 /* Travel+Extension.swift */; };
 		C71917981E48703B0041BC18 /* LiveShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71917621E48703B0041BC18 /* LiveShare.swift */; };
@@ -308,7 +308,7 @@
 		C719175A1E48703B0041BC18 /* KatsanaAPI+Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Trip.swift"; sourceTree = "<group>"; };
 		C719175B1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Vehicle.swift"; sourceTree = "<group>"; };
 		C719175C1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+VehicleProfile.swift"; sourceTree = "<group>"; };
-		C719175D1E48703B0041BC18 /* KatsanaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatsanaAPI.swift; sourceTree = "<group>"; };
+		C719175D1E48703B0041BC18 /* KatsanaAPI_Old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatsanaAPI_Old.swift; sourceTree = "<group>"; };
 		C719175E1E48703B0041BC18 /* KatsanaFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatsanaFormatter.swift; sourceTree = "<group>"; };
 		C71917611E48703B0041BC18 /* Travel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Travel+Extension.swift"; sourceTree = "<group>"; };
 		C71917621E48703B0041BC18 /* LiveShare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveShare.swift; sourceTree = "<group>"; };
@@ -828,7 +828,7 @@
 				C719175B1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift */,
 				C719175C1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift */,
 				C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */,
-				C719175D1E48703B0041BC18 /* KatsanaAPI.swift */,
+				C719175D1E48703B0041BC18 /* KatsanaAPI_Old.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1233,7 +1233,7 @@
 				C11FECC529CBC0B4003914DC /* ResourceCachePolicy.swift in Sources */,
 				C1F540B625256AB700525603 /* KTUser.swift in Sources */,
 				C1751B1629BFEC91009C8795 /* URLSessionHTTPClient.swift in Sources */,
-				C71917901E48703B0041BC18 /* KatsanaAPI.swift in Sources */,
+				C71917901E48703B0041BC18 /* KatsanaAPI_Old.swift in Sources */,
 				C1751B1829BFEC91009C8795 /* HTTPClient.swift in Sources */,
 				C71917D31E4884410041BC18 /* SwiftyJSON.swift in Sources */,
 				C18A824528FD050A00C3FF7D /* KatsanaAPI+Stream.swift in Sources */,

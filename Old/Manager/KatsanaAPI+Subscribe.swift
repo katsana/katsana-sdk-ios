@@ -9,7 +9,7 @@
 import Foundation
 import Siesta
 
-extension KatsanaAPI{
+extension KatsanaAPI_Old{
     public func requestSubscriptions(completion: @escaping (_ subscriptions: [VehicleSubscription]) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let path = "subscriptions"
         let resource = API.resource(path);
@@ -20,7 +20,7 @@ extension KatsanaAPI{
         request?.onSuccess({(entity) in
             if let summaries : [VehicleSubscription] = resource.typedContent(){
                 self.cache?.cache(vehicleSubscription: summaries, userId: userId)
-                NotificationCenter.default.post(name: KatsanaAPI.subscriptionRequestedNotification, object: summaries)
+                NotificationCenter.default.post(name: KatsanaAPI_Old.subscriptionRequestedNotification, object: summaries)
                 completion(summaries)
             }else{
                 failure(nil)

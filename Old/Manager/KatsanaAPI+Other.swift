@@ -7,7 +7,7 @@
 //
 import Foundation
 
-extension KatsanaAPI{
+extension KatsanaAPI_Old{
     
     func uploadImage(image : KMImage, path : String, completion : @escaping (Bool, Error?) -> Void) -> Void {
         //        let path = self.baseURL().absoluteString + "profile/avatar"

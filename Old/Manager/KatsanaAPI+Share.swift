@@ -9,7 +9,7 @@
 import Foundation
 
 
-extension KatsanaAPI {
+extension KatsanaAPI_Old {
     
     
     /// Request live share link. Duration is in minute format
