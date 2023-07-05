@@ -54,11 +54,19 @@ final class HTTPLoginServiceTests: XCTestCase {
         XCTAssertEqual(client.requests.count, 0)
     }
     
+    func test_login_sendLoginRequest() {
+        let (sut, client) = makeSUT()
+        sut.login(email: "any", password: "any"){_ in}
+        
+        XCTAssertEqual(client.requests.count, 1)
+    }
+    
     // MARK: Helper
     
-    func makeSUT() -> (HTTPLoginService, HTTPClientSpy){
+    func makeSUT(credential: Credential? = nil) -> (HTTPLoginService, HTTPClientSpy){
         let client = HTTPClientSpy()
-        let sut = HTTPLoginService(baseURL: anyURL(), credential: anyCredential(), httpClient: client)
+        let acredential = credential ?? anyCredential()
+        let sut = HTTPLoginService(baseURL: anyURL(), credential: acredential, httpClient: client)
         return (sut, client)
     }
     
@@ -81,7 +89,7 @@ final class HTTPLoginServiceTests: XCTestCase {
 //        }
 //        wait(for: [exp], timeout: 1.0)
 //    }
-//    
+//
     func anyCredential() -> Credential{
         return Credential(clientId: "", clientSecret: "", scope: "", grantType: "")
     }
