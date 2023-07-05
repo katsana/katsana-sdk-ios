@@ -98,6 +98,7 @@
 		C1DF2B6229DD604B00596E70 /* CodableResourceWithKeyStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF2B6129DD604B00596E70 /* CodableResourceWithKeyStoreTests.swift */; };
 		C1EE7C4B2A55B3C500BBCE77 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE7C4A2A55B3C500BBCE77 /* LoginService.swift */; };
 		C1EE7C4D2A55B3E900BBCE77 /* HTTPLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE7C4C2A55B3E900BBCE77 /* HTTPLoginService.swift */; };
+		C1EE7C4F2A55B79300BBCE77 /* KeychainTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE7C4E2A55B79300BBCE77 /* KeychainTokenService.swift */; };
 		C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540B025256AB700525603 /* KTAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AC25256AB600525603 /* KTAddress.swift */; };
 		C1F540B225256AB700525603 /* KTVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AD25256AB600525603 /* KTVehicle.swift */; };
@@ -281,6 +282,7 @@
 		C1DF2B6129DD604B00596E70 /* CodableResourceWithKeyStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableResourceWithKeyStoreTests.swift; sourceTree = "<group>"; };
 		C1EE7C4A2A55B3C500BBCE77 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		C1EE7C4C2A55B3E900BBCE77 /* HTTPLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPLoginService.swift; sourceTree = "<group>"; };
+		C1EE7C4E2A55B79300BBCE77 /* KeychainTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenService.swift; sourceTree = "<group>"; };
 		C1F540A125256AA800525603 /* KTCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTCacheManager.swift; sourceTree = "<group>"; };
 		C1F540AC25256AB600525603 /* KTAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTAddress.swift; sourceTree = "<group>"; };
 		C1F540AD25256AB600525603 /* KTVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTVehicle.swift; sourceTree = "<group>"; };
@@ -664,6 +666,7 @@
 				C1751B4E29C02120009C8795 /* RemoteLoader.swift */,
 				C1FAE72C29C197A7001D3D86 /* AuthenticatedHTTPClientDecorator.swift */,
 				C1EE7C4C2A55B3E900BBCE77 /* HTTPLoginService.swift */,
+				C1EE7C4E2A55B79300BBCE77 /* KeychainTokenService.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -1217,6 +1220,7 @@
 				C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */,
 				C71917A61E48703B0041BC18 /* VehicleLocation.swift in Sources */,
 				C186127629E6813400171A3F /* VehicleLocationMapper.swift in Sources */,
+				C1EE7C4F2A55B79300BBCE77 /* KeychainTokenService.swift in Sources */,
 				C11FECE129CC0AFA003914DC /* CodableResourceStore.swift in Sources */,
 				C186A1C02A54DDED00EE2AF2 /* KatsanaAPI.swift in Sources */,
 				C11FED0929D0295F003914DC /* AnyLocalLoader.swift in Sources */,

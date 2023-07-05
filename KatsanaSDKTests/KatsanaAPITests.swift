@@ -14,18 +14,18 @@ class KatsanaAPI{
     let baseURL: URL
     let credential: Credential
     let httpClient: HTTPClient
-    let tokenService: TokenService
-    var loginService: LoginService
+    let tokenService: KeychainTokenService
+    var loginService: HTTPLoginService
     
     var isAuthenticated = false
     
     private var cancellable: Cancellable?
     
-    init(baseURL: URL, credential: Credential, httpClient: HTTPClient, tokenService: TokenService) {
+    init(baseURL: URL, credential: Credential, httpClient: HTTPClient) {
         self.baseURL = baseURL
         self.credential = credential
         self.httpClient = httpClient
-        self.tokenService = tokenService
+        self.tokenService = KeychainTokenService()
         loginService = HTTPLoginService(baseURL: baseURL, credential: credential, httpClient: httpClient)
     }
     
@@ -33,24 +33,13 @@ class KatsanaAPI{
         loginService.login(email: email, password: password) {[weak self] result in
             switch result{
             case .success(let token):
+                self?.tokenService.token = token
                 self?.isAuthenticated = true
             case .failure(let error):
                 self?.isAuthenticated = false
             }
             completion(result)
         }
-    }
-    
-    private func makeLoginPublisher(username: String, password: String, credential: Credential) -> AnyPublisher<AccessToken, Error>{
-        let url = LoginEndpoint.get.url(baseURL: baseURL)
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = try? credential.data()
-        return httpClient
-            .getPublisher(urlRequest: request)
-            .tryMap(LoginMapper.map)
-//            .subscribe(on: scheduler)
-            .eraseToAnyPublisher()
     }
 }
 
@@ -101,7 +90,7 @@ final class KatsanaAPITests: XCTestCase {
         let credential = Credential(clientId: "", clientSecret: "", scope: "", grantType: "")
         let client = HTTPClientSpy()
 
-        let sut = KatsanaAPI(baseURL: anyURL(), credential: credential, httpClient: client, tokenService: theTokenService)
+        let sut = KatsanaAPI(baseURL: anyURL(), credential: credential, httpClient: client)
         return (sut, client)
     }
     

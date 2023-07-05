@@ -26,6 +26,6 @@ public protocol TokenService{
 public protocol TokenCache {
     typealias Result = Swift.Result<Void, Error>
 
-    func save(_ token: AccessToken, completion: @escaping (Result) -> Void)
+    func save(user: String, token: AccessToken, completion: @escaping (Result) -> Void)
 }
 
