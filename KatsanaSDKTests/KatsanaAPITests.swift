@@ -15,69 +15,30 @@ class KatsanaAPI{
     let credential: Credential
     let httpClient: HTTPClient
     let tokenService: TokenService
+    var loginService: LoginService
+    
     var isAuthenticated = false
     
     private var cancellable: Cancellable?
-
     
     init(baseURL: URL, credential: Credential, httpClient: HTTPClient, tokenService: TokenService) {
         self.baseURL = baseURL
         self.credential = credential
         self.httpClient = httpClient
         self.tokenService = tokenService
+        loginService = HTTPLoginService(baseURL: baseURL, credential: credential, httpClient: httpClient)
     }
     
     func login(email: String, password: String, completion: @escaping (AccessTokenResult) -> Void){
-        let url = LoginEndpoint.get.url(baseURL: baseURL)
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = try? credential.data()
-        
-        httpClient.send(request) {[weak self] result in
+        loginService.login(email: email, password: password) {[weak self] result in
             switch result{
-            case .success((let data, let response)):
-                do{
-                    let token = try LoginMapper.map(data, from: response)
-                    self?.isAuthenticated = true
-                    completion(.success(token))
-                }
-                catch{
-                    self?.isAuthenticated = false
-                    completion(.failure(error))
-                }
+            case .success(let token):
+                self?.isAuthenticated = true
             case .failure(let error):
                 self?.isAuthenticated = false
-                completion(.failure(error))
             }
+            completion(result)
         }
-        
-//        let publisher = makeLoginPublisher(username: email, password: password, credential: credential)
-//
-//        cancellable = publisher.handleEvents(receiveCancel: { [weak self] in
-//            })
-//            .sink(
-//                receiveCompletion: { [weak self] completion in
-//                    switch completion {
-//                    case .finished: break
-//
-//                    case let .failure(error):
-//                        ()
-//                    }
-//
-//                }, receiveValue: { [weak self] resource in
-//                    print(resource)
-//
-//                })
-//
-//        tokenService.getToken {[weak self] result in
-//            self?.isAuthenticated = ((try? result.get()) != nil)
-//            completion(result)
-//        }
-//
-//        public func makeLoginPublisher(includes params: [String]? = nil) -> AnyPublisher<AccessToken, Error>{
-//            let url = LoginEndpoint.get.url(baseURL: baseURL)
-//            return makePublisher(request: URLRequest(url: url), mapper: LoginMapper.map)
-//        }
     }
     
     private func makeLoginPublisher(username: String, password: String, credential: Credential) -> AnyPublisher<AccessToken, Error>{
