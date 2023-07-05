@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct AccessToken: Equatable{
+public struct AccessToken: Equatable, Codable{
     public let token: String
     
     public init(token: String) {
