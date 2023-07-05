@@ -24,7 +24,7 @@ final class TokenServiceTests: XCTestCase {
     
     // MARK: Helper
     
-    private func expect(_ sut: TokenServiceStub, toCompleteWith expectedResult: TokenService.Result, file: StaticString = #file, line: UInt = #line){
+    private func expect(_ sut: TokenServiceStub, toCompleteWith expectedResult: AccessTokenResult, file: StaticString = #file, line: UInt = #line){
         let exp = expectation(description: "Wait for load completion")
 
         sut.getToken { receivedResult in

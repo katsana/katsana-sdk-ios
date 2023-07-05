@@ -8,6 +8,9 @@
 
 import Foundation
 
+public typealias AccessTokenResult = Swift.Result<AccessToken, Error>
+
+
 public struct AccessToken: Equatable, Codable{
     public let token: String
     
@@ -17,9 +20,7 @@ public struct AccessToken: Equatable, Codable{
 }
 
 public protocol TokenService{
-    typealias Result = Swift.Result<AccessToken, Error>
-    
-    func getToken(completion: @escaping (Result) -> Void)
+    func getToken(completion: @escaping (AccessTokenResult) -> Void)
 }
 
 public protocol TokenCache {

@@ -27,7 +27,7 @@ class KatsanaAPI{
         self.tokenService = tokenService
     }
     
-    func login(email: String, password: String, completion: @escaping (TokenService.Result) -> Void){
+    func login(email: String, password: String, completion: @escaping (AccessTokenResult) -> Void){
         let url = LoginEndpoint.get.url(baseURL: baseURL)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

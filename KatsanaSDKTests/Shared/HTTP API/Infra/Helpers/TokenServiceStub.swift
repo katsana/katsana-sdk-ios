@@ -10,13 +10,13 @@ import Foundation
 import KatsanaSDK
 
 class TokenServiceStub: TokenService{
-    private let stub: TokenService.Result
+    private let stub: AccessTokenResult
     
-    init(stub: TokenService.Result) {
+    init(stub: AccessTokenResult) {
         self.stub = stub
     }
     
-    func getToken(completion: @escaping (TokenService.Result) -> Void) {
+    func getToken(completion: @escaping (AccessTokenResult) -> Void) {
         completion(stub)
     }
 }

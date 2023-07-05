@@ -51,7 +51,7 @@ final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
     
     // MARK: Helpers
     
-    func makeSUT(tokenResult: TokenService.Result, file: StaticString = #filePath, line: UInt = #line) -> (sut: AuthenticatedHTTPClientDecorator, client: HTTPClientSpy){
+    func makeSUT(tokenResult: AccessTokenResult, file: StaticString = #filePath, line: UInt = #line) -> (sut: AuthenticatedHTTPClientDecorator, client: HTTPClientSpy){
         let client = HTTPClientSpy()
         let tokenStub = TokenServiceStub(stub: tokenResult)
         let sut = AuthenticatedHTTPClientDecorator(decoratee: client, tokenService: tokenStub)
