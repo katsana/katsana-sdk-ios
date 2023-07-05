@@ -15,18 +15,18 @@ public class KatsanaAPI: ResourceStoreManagerDelegate{
     let credential: Credential
     var tokenService = KeychainTokenService()
     lazy var httpClient: HTTPClient = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-    lazy var loginService: HTTPLoginService = {
+    lazy var loginService: LoginService = {
         let loginService = HTTPLoginService(baseURL: baseURL, credential: credential, httpClient: httpClient)
-        return loginService
+        return MainQueueDispatchDecorator(loginService)
     }()
-    lazy var publisherFactory: APIPublisherFactory = {
+    public lazy var publisherFactory: APIPublisherFactory = {
         let authClient = AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService)
         let storeManager = ResourceStoreManager(delegate: self)
         let factory = APIPublisherFactory(baseURL: baseURL, baseStoreURL: localStoreURL, client: authClient, storeManager: storeManager)
         return factory
     }()
     
-    var isAuthenticated = false
+    public var isAuthenticated = false
         
     public init(baseURL: URL, baseStoreURL: URL, credential: Credential) {
         self.baseURL = baseURL

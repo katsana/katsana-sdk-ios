@@ -21,10 +21,10 @@ public struct Credential{
         self.grantType = grantType
     }
     
-    public func data() throws -> Data{
+    public func data() -> [String: String]{
         let dicto = ["client_id": clientId, "client_secret": clientSecret, "scope": scope, "grant_type": grantType]
-        let jsonData = try JSONSerialization.data(withJSONObject: dicto, options: .prettyPrinted)
-        return jsonData
+//        let jsonData = try! JSONSerialization.data(withJSONObject: dicto, options: [])
+        return dicto
     }
     
 }

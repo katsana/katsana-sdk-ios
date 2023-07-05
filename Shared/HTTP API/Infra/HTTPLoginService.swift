@@ -20,7 +20,7 @@ public class HTTPLoginService: LoginService{
     }
     
     public func login(email: String, password: String, completion: @escaping (Result<AccessToken, Swift.Error>) -> Void) {
-        httpClient.send(loginRequest()) {result in
+        httpClient.send(loginRequest(email: email, password: password)) {result in
             switch result{
             case .success((let data, let response)):
                 do{
@@ -36,11 +36,17 @@ public class HTTPLoginService: LoginService{
         }
     }
     
-    public func loginRequest() -> URLRequest{
+    public func loginRequest(email: String, password: String) -> URLRequest{
+        var dicto = credential.data()
+        dicto["username"] = email
+        dicto["password"] = password
+        let jsonData = try! JSONSerialization.data(withJSONObject: dicto, options: [])
+        
         let url = LoginEndpoint.get.url(baseURL: baseURL)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.httpBody = try? credential.data()
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
         return request
     }
     

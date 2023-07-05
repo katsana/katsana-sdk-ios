@@ -28,6 +28,7 @@ public final class URLSessionHTTPClient: HTTPClient {
         let task = session.dataTask(with: urlRequest) { data, response, error in
             completion(Result {
                 if let error = error {
+                    print(error)
                     throw error
                 } else if let data = data, let response = response as? HTTPURLResponse {
                     return (data, response)
