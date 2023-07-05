@@ -521,6 +521,8 @@
 		C11FECB229CAE200003914DC /* HTTP API */ = {
 			isa = PBXGroup;
 			children = (
+				C1751B1529BFEC91009C8795 /* HTTPClient.swift */,
+				C1FAE72F29C198E7001D3D86 /* TokenService.swift */,
 				C11FECB329CAE20B003914DC /* Helpers */,
 				C1751B1329BFEC70009C8795 /* Infra */,
 			);
@@ -653,11 +655,9 @@
 		C1751B1329BFEC70009C8795 /* Infra */ = {
 			isa = PBXGroup;
 			children = (
-				C1751B1529BFEC91009C8795 /* HTTPClient.swift */,
 				C1751B1429BFEC91009C8795 /* URLSessionHTTPClient.swift */,
 				C1751B4E29C02120009C8795 /* RemoteLoader.swift */,
 				C1FAE72C29C197A7001D3D86 /* AuthenticatedHTTPClientDecorator.swift */,
-				C1FAE72F29C198E7001D3D86 /* TokenService.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
