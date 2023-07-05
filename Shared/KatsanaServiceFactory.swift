@@ -10,12 +10,11 @@ import Foundation
 import Combine
 
 open class KatsanaServiceFactory{
-    let baseURL: URL
+    public let baseURL: URL
     public let baseStoreURL: URL
-    let client: HTTPClient
+    public let client: HTTPClient
     let reverseGeocodingClient: ReverseGeocodingClient = AppleReverseGeocodingClient()
     let storeManager: ResourceStoreManager
-    
     
     private lazy var scheduler: AnyDispatchQueueScheduler = DispatchQueue(
         label: "com.essentialdeveloper.infra.queue",

@@ -12,20 +12,23 @@ import Combine
 
 class KatsanaAPI{
     let baseURL: URL
+    let serviceFactory: KatsanaServiceFactory
+    
     let credential: Credential
     let httpClient: HTTPClient
+    
     let tokenService: KeychainTokenService
     var loginService: HTTPLoginService
     
     var isAuthenticated = false
-    
-    private var cancellable: Cancellable?
-    
-    init(baseURL: URL, credential: Credential, httpClient: HTTPClient) {
+        
+    init(baseURL: URL, baseStoreURL: URL, credential: Credential, httpClient: HTTPClient, storeManager: ResourceStoreManager) {
         self.baseURL = baseURL
         self.credential = credential
         self.httpClient = httpClient
         self.tokenService = KeychainTokenService()
+        
+        serviceFactory = KatsanaServiceFactory(baseURL: baseURL, baseStoreURL: baseStoreURL, client: AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService), storeManager: storeManager)
         loginService = HTTPLoginService(baseURL: baseURL, credential: credential, httpClient: httpClient)
     }
     
@@ -43,7 +46,7 @@ class KatsanaAPI{
     }
 }
 
-final class KatsanaAPITests: XCTestCase {
+final class KatsanaAPITests: XCTestCase, ResourceStoreManagerDelegate {
     
     func test_init_isNotAuthenticated() {
         let (sut, _) = makeSUT()
@@ -90,7 +93,7 @@ final class KatsanaAPITests: XCTestCase {
         let credential = Credential(clientId: "", clientSecret: "", scope: "", grantType: "")
         let client = HTTPClientSpy()
 
-        let sut = KatsanaAPI(baseURL: anyURL(), credential: credential, httpClient: client)
+        let sut = KatsanaAPI(baseURL: anyURL(), baseStoreURL: anyURL(), credential: credential, httpClient: client, storeManager: ResourceStoreManager(delegate: self))
         return (sut, client)
     }
     
@@ -100,5 +103,19 @@ final class KatsanaAPITests: XCTestCase {
 """
         return Data(text.utf8)
     }
+    
+    func makeStore<Resource, S>(_ type: Resource.Type) -> KatsanaSDK.AnyResourceStore<Resource> where Resource : Decodable, Resource : Encodable, Resource : Equatable, S : KatsanaSDK.AnyResourceStore<Resource> {
+        let classname = String(describing: Resource.self)
+        let url = localStoreURL.appendingPathComponent("tests_" + classname + ".store")
+        let store = CodableResourceStore<Resource>(storeURL: url)
+        let anyStore = AnyResourceStore(store)
+        return anyStore
+    }
+
+    private lazy var localStoreURL: URL = {
+        let arrayPaths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+        let cacheDirectoryPath = arrayPaths[0]
+        return cacheDirectoryPath
+    }()
     
 }
