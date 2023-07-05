@@ -21,3 +21,10 @@ public protocol TokenService{
     
     func getToken(completion: @escaping (Result) -> Void)
 }
+
+public protocol TokenCache {
+    typealias Result = Swift.Result<Void, Error>
+
+    func save(_ token: AccessToken, completion: @escaping (Result) -> Void)
+}
+
