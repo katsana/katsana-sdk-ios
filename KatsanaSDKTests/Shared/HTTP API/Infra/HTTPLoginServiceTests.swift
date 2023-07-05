@@ -24,7 +24,7 @@ class HTTPLoginService: LoginService{
         self.httpClient = httpClient
     }
     
-    func login(email: String, password: String, completion: @escaping (Result<AccessToken, Error>) -> Void) {
+    func login(email: String, password: String, completion: @escaping (Result<AccessToken, Swift.Error>) -> Void) {
         httpClient.send(loginRequest()) {result in
             switch result{
             case .success((let data, let response)):
@@ -74,13 +74,47 @@ final class HTTPLoginServiceTests: XCTestCase {
         XCTAssertEqual(client.requests, [request, request])
     }
     
-    func test_load_deliversErrorOnClientError() {
+    func test_login_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
-//        expect(sut, toCompleteWith: .fail) {
-//            let clientError = NSError(domain: "Test", code: 0)
-//            client.complete(with: clientError)
-//        }
+        let error = anyNSError()
+        expect(sut, toCompleteWith: .failure(error)) {
+            client.complete(with: error)
+        }
     }
+    
+    func test_load_deliversErrorOnResponseWithInvalidJSON() {
+        let (sut, client) = makeSUT()
+
+        expect(sut, toCompleteWith: .failure(LoginMapper.Error.invalidData)) {
+            let invalidJSON = Data("invalid json".utf8)
+            client.complete(withStatusCode: 200, data: invalidJSON)
+        }
+    }
+
+    func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
+        let (sut, client) = makeSUT()
+
+        let json = makeLoginData()
+        let token = try! LoginMapper.map(json, from: .init(statusCode: 200))
+        
+        expect(sut, toCompleteWith: .success(token), when: {
+            client.complete(withStatusCode: 200, data: json)
+        })
+    }
+
+//    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+//        let client = HTTPClientSpy()
+//        let acredential = anyCredential()
+//        var sut: HTTPLoginService? = HTTPLoginService(baseURL: anyURL(), credential: acredential, httpClient: client)
+//
+//        var capturedResults = [AccessTokenResult]()
+//        sut?.login(email: "any", password: "any") { capturedResults.append($0) }
+//
+//        sut = nil
+//        client.complete(withStatusCode: 200, data: makeLoginData())
+//
+//        XCTAssertTrue(capturedResults.isEmpty)
+//    }
     
     // MARK: Helper
     
@@ -88,6 +122,10 @@ final class HTTPLoginServiceTests: XCTestCase {
         let client = HTTPClientSpy()
         let acredential = credential ?? anyCredential()
         let sut = HTTPLoginService(baseURL: anyURL(), credential: acredential, httpClient: client)
+        
+        trackForMemoryLeaks(client)
+        trackForMemoryLeaks(sut)
+        
         return (sut, client)
     }
     
@@ -115,5 +153,19 @@ final class HTTPLoginServiceTests: XCTestCase {
     
     func anyCredential() -> Credential{
         return Credential(clientId: "", clientSecret: "", scope: "", grantType: "")
+    }
+    
+    func makeInvalidLoginData() -> Data{
+        let text = """
+{"invalid":"aTokenString","invalid2":"aRefreshTokenString"}
+"""
+        return Data(text.utf8)
+    }
+    
+    func makeLoginData() -> Data{
+        let text = """
+{"token_type":"Bearer","expires_in":31622400,"access_token":"aTokenString","refresh_token":"aRefreshTokenString"}
+"""
+        return Data(text.utf8)
     }
 }
