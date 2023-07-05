@@ -8,26 +8,30 @@
 
 import Foundation
 
-public class KatsanaAPI{
+public class KatsanaAPI: ResourceStoreManagerDelegate{
     let baseURL: URL
-    let publisherFactory: APIPublisherFactory
+    let localStoreURL: URL
     
     let credential: Credential
-    let httpClient: HTTPClient
-    
-    let tokenService: KeychainTokenService
-    var loginService: HTTPLoginService
+    var tokenService = KeychainTokenService()
+    lazy var httpClient: HTTPClient = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+    lazy var loginService: HTTPLoginService = {
+        let loginService = HTTPLoginService(baseURL: baseURL, credential: credential, httpClient: httpClient)
+        return loginService
+    }()
+    lazy var publisherFactory: APIPublisherFactory = {
+        let authClient = AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService)
+        let storeManager = ResourceStoreManager(delegate: self)
+        let factory = APIPublisherFactory(baseURL: baseURL, baseStoreURL: localStoreURL, client: authClient, storeManager: storeManager)
+        return factory
+    }()
     
     var isAuthenticated = false
         
-    public init(baseURL: URL, baseStoreURL: URL, credential: Credential, httpClient: HTTPClient, storeManager: ResourceStoreManager) {
+    public init(baseURL: URL, baseStoreURL: URL, credential: Credential) {
         self.baseURL = baseURL
+        self.localStoreURL = baseStoreURL
         self.credential = credential
-        self.httpClient = httpClient
-        self.tokenService = KeychainTokenService()
-        
-        publisherFactory = APIPublisherFactory(baseURL: baseURL, baseStoreURL: baseStoreURL, client: AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService), storeManager: storeManager)
-        loginService = HTTPLoginService(baseURL: baseURL, credential: credential, httpClient: httpClient)
     }
     
     public func login(email: String, password: String, completion: @escaping (AccessTokenResult) -> Void){
@@ -41,5 +45,15 @@ public class KatsanaAPI{
             }
             completion(result)
         }
+    }
+    
+    // MARK:
+    
+    public func makeStore<Resource, S>(_ type: Resource.Type) -> KatsanaSDK.AnyResourceStore<Resource> where Resource : Decodable, Resource : Encodable, Resource : Equatable, S : KatsanaSDK.AnyResourceStore<Resource> {
+        let classname = String(describing: Resource.self)
+        let url = publisherFactory.baseStoreURL.appendingPathComponent(classname + ".store")
+        let store = CodableResourceStore<Resource>(storeURL: url)
+        let anyStore = AnyResourceStore(store)
+        return anyStore
     }
 }

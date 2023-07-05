@@ -155,7 +155,6 @@ extension APIPublisherFactory{
     }
     
     public func makeImagePublisher(client: HTTPClient, url: URL, defaultImageData: Data?) -> AnyPublisher<Data, Error>{
-        
         let name = url.pathComponents[url.pathComponents.count-2] + "_" + url.lastPathComponent
         let storeURL = baseStoreURL.appendingPathComponent(name)
         
