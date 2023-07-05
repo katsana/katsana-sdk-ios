@@ -9,48 +9,6 @@
 import XCTest
 import KatsanaSDK
 
-public protocol LoginService{
-    func login(email: String, password: String, completion: @escaping (AccessTokenResult) -> Void)
-}
-
-class HTTPLoginService: LoginService{
-    let baseURL: URL
-    let credential: Credential
-    let httpClient: HTTPClient
-    
-    init(baseURL: URL, credential: Credential, httpClient: HTTPClient) {
-        self.credential = credential
-        self.baseURL = baseURL
-        self.httpClient = httpClient
-    }
-    
-    func login(email: String, password: String, completion: @escaping (Result<AccessToken, Swift.Error>) -> Void) {
-        httpClient.send(loginRequest()) {result in
-            switch result{
-            case .success((let data, let response)):
-                do{
-                    let token = try LoginMapper.map(data, from: response)
-                    completion(.success(token))
-                }
-                catch{
-                    completion(.failure(error))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    func loginRequest() -> URLRequest{
-        let url = LoginEndpoint.get.url(baseURL: baseURL)
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = try? credential.data()
-        return request
-    }
-    
-}
-
 final class HTTPLoginServiceTests: XCTestCase {
     func test_init_doesNotSendRequest() {
         let (_, client) = makeSUT()
