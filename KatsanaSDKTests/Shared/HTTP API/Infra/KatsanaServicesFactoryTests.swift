@@ -51,12 +51,12 @@ final class KatsanaServicesFactoryTests: XCTestCase, ResourceStoreManagerDelegat
     
     // MARK: Helper
     
-    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: KatsanaServiceFactory, client: HTTPClientSpy){
+    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: APIPublisherFactory, client: HTTPClientSpy){
         let url = URL(string: "https://anyurl.com/")!
         let client = HTTPClientSpy()
         
         let storeManager = ResourceStoreManager(delegate: self)
-        let factory = KatsanaServiceFactory(baseURL: url, baseStoreURL: url, client: client, storeManager: storeManager)
+        let factory = APIPublisherFactory(baseURL: url, baseStoreURL: url, client: client, storeManager: storeManager)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(factory, file: file, line: line)

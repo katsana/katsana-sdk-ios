@@ -12,7 +12,7 @@ import Combine
 
 class KatsanaAPI{
     let baseURL: URL
-    let serviceFactory: KatsanaServiceFactory
+    let publisherFactory: APIPublisherFactory
     
     let credential: Credential
     let httpClient: HTTPClient
@@ -28,7 +28,7 @@ class KatsanaAPI{
         self.httpClient = httpClient
         self.tokenService = KeychainTokenService()
         
-        serviceFactory = KatsanaServiceFactory(baseURL: baseURL, baseStoreURL: baseStoreURL, client: AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService), storeManager: storeManager)
+        publisherFactory = APIPublisherFactory(baseURL: baseURL, baseStoreURL: baseStoreURL, client: AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService), storeManager: storeManager)
         loginService = HTTPLoginService(baseURL: baseURL, credential: credential, httpClient: httpClient)
     }
     

@@ -114,7 +114,7 @@
 		C1FAE71529C1779C001D3D86 /* UserEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE71329C17798001D3D86 /* UserEndpointTests.swift */; };
 		C1FAE71D29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE71C29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift */; };
 		C1FAE71E29C17A30001D3D86 /* KatsanaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75104FD1D7422BF00F4C341 /* KatsanaSDK.framework */; };
-		C1FAE72529C17B99001D3D86 /* KatsanaServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */; };
+		C1FAE72529C17B99001D3D86 /* APIPublisherFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72429C17B99001D3D86 /* APIPublisherFactory.swift */; };
 		C1FAE72829C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72729C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift */; };
 		C1FAE72B29C17FE1001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72929C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift */; };
 		C1FAE72E29C197AB001D3D86 /* AuthenticatedHTTPClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FAE72C29C197A7001D3D86 /* AuthenticatedHTTPClientDecorator.swift */; };
@@ -298,7 +298,7 @@
 		C1FAE71329C17798001D3D86 /* UserEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpointTests.swift; sourceTree = "<group>"; };
 		C1FAE71A29C17A30001D3D86 /* KatsanaSDKEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatsanaSDKEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FAE71C29C17A30001D3D86 /* KatsanaSDKEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaSDKEndToEndTests.swift; sourceTree = "<group>"; };
-		C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaServiceFactory.swift; sourceTree = "<group>"; };
+		C1FAE72429C17B99001D3D86 /* APIPublisherFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPublisherFactory.swift; sourceTree = "<group>"; };
 		C1FAE72729C17BF7001D3D86 /* XCTestCase+MemoryLeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeak.swift"; sourceTree = "<group>"; };
 		C1FAE72929C17F38001D3D86 /* AuthenticatedHTTPClientDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedHTTPClientDecorator.swift; sourceTree = "<group>"; };
 		C1FAE72C29C197A7001D3D86 /* AuthenticatedHTTPClientDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedHTTPClientDecorator.swift; sourceTree = "<group>"; };
@@ -773,7 +773,7 @@
 				C11FECAE29CADE9B003914DC /* Cache */,
 				C11FECB229CAE200003914DC /* HTTP API */,
 				C145A5BC29D9149900E3FC6E /* Address API */,
-				C1FAE72429C17B99001D3D86 /* KatsanaServiceFactory.swift */,
+				C1FAE72429C17B99001D3D86 /* APIPublisherFactory.swift */,
 				C186A1BF2A54DDED00EE2AF2 /* KatsanaAPI.swift */,
 			);
 			path = Shared;
@@ -1216,7 +1216,7 @@
 				C71917921E48703B0041BC18 /* KatsanaFormatter.swift in Sources */,
 				C71917781E48703B0041BC18 /* AddressRequest.swift in Sources */,
 				C186A1C82A5504F300EE2AF2 /* LoginMapper.swift in Sources */,
-				C1FAE72529C17B99001D3D86 /* KatsanaServiceFactory.swift in Sources */,
+				C1FAE72529C17B99001D3D86 /* APIPublisherFactory.swift in Sources */,
 				C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */,
 				C71917A61E48703B0041BC18 /* VehicleLocation.swift in Sources */,
 				C186127629E6813400171A3F /* VehicleLocationMapper.swift in Sources */,

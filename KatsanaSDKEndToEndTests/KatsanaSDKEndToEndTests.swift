@@ -65,11 +65,11 @@ final class KatsanaSDKEndToEndTests: XCTestCase, ResourceStoreManagerDelegate {
     
     // MARK: - Helpers
     
-    func makeSUT() -> KatsanaServiceFactory{
+    func makeSUT() -> APIPublisherFactory{
         let storeManager = ResourceStoreManager(delegate: self)
         let tokenService = TokenServiceStub(stub: .success(AccessToken(token: Secret.token)))
         let client = AuthenticatedHTTPClientDecorator(decoratee: ephemeralClient(), tokenService: tokenService)
-        let factory = KatsanaServiceFactory(baseURL: Secret.baseURL, baseStoreURL: localStoreURL, client: client, storeManager: storeManager)
+        let factory = APIPublisherFactory(baseURL: Secret.baseURL, baseStoreURL: localStoreURL, client: client, storeManager: storeManager)
         
         trackForMemoryLeaks(client)
         trackForMemoryLeaks(factory)

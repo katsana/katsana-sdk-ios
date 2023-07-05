@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-open class KatsanaServiceFactory{
+open class APIPublisherFactory{
     public let baseURL: URL
     public let baseStoreURL: URL
     public let client: HTTPClient
@@ -61,7 +61,7 @@ open class KatsanaServiceFactory{
     
 }
 
-extension KatsanaServiceFactory{
+extension APIPublisherFactory{
     public func makePublisher<Resource>(
         request:URLRequest,
         includes params: [String]? = nil,
