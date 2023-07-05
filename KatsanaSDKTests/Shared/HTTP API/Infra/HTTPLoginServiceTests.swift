@@ -25,12 +25,7 @@ class HTTPLoginService: LoginService{
     }
     
     func login(email: String, password: String, completion: @escaping (Result<AccessToken, Error>) -> Void) {
-        let url = LoginEndpoint.get.url(baseURL: baseURL)
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = try? credential.data()
-        
-        httpClient.send(request) {result in
+        httpClient.send(loginRequest()) {result in
             switch result{
             case .success((let data, let response)):
                 do{
@@ -46,6 +41,14 @@ class HTTPLoginService: LoginService{
         }
     }
     
+    func loginRequest() -> URLRequest{
+        let url = LoginEndpoint.get.url(baseURL: baseURL)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = try? credential.data()
+        return request
+    }
+    
 }
 
 final class HTTPLoginServiceTests: XCTestCase {
@@ -56,9 +59,10 @@ final class HTTPLoginServiceTests: XCTestCase {
     
     func test_login_sendLoginRequest() {
         let (sut, client) = makeSUT()
+        let request = sut.loginRequest()
         sut.login(email: "any", password: "any"){_ in}
         
-        XCTAssertEqual(client.requests.count, 1)
+        XCTAssertEqual(client.requests, [request])
     }
     
     // MARK: Helper
