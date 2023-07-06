@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class KatsanaAPI: ResourceStoreManagerDelegate{
+public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
     let baseURL: URL
     let localStoreURL: URL
     
