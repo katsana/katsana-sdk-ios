@@ -50,6 +50,29 @@ final class KatsanaAPITests: XCTestCase, ResourceStoreManagerDelegate {
         XCTAssertFalse(sut.isAuthenticated)
     }
     
+    func test_login_cacheTokenWhenSuccess() {
+        let (sut, client) = makeSUT()
+        
+        let email = "test"
+        var tokenResult: AccessToken?
+        
+        let exp = expectation(description: "Wait for load completion")
+        sut.login(email: email, password: "1212") { result in
+            if let theToken = try? result.get(){
+                tokenResult = theToken
+            }else{
+                XCTFail("Expected to success")
+            }
+            exp.fulfill()
+        }
+        client.complete(withStatusCode: 200, data: loginData())
+        wait(for: [exp], timeout: 1.0)
+
+        let token = sut.tokenService.getToken(user: email)
+        XCTAssertNotNil(token)
+        XCTAssertEqual(token, tokenResult)
+    }
+    
     
     
     // MARK: Helper
@@ -61,6 +84,7 @@ final class KatsanaAPITests: XCTestCase, ResourceStoreManagerDelegate {
 
         let sut = KatsanaAPI(baseURL: anyURL(), baseStoreURL: anyURL(), credential: credential)
         sut.httpClient = client
+        sut.tokenService = InMemoryTokenService()
         return (sut, client)
     }
     
@@ -84,5 +108,22 @@ final class KatsanaAPITests: XCTestCase, ResourceStoreManagerDelegate {
         let cacheDirectoryPath = arrayPaths[0]
         return cacheDirectoryPath
     }()
+    
+}
+
+class InMemoryTokenService: TokenService, TokenCache{
+    var token = [String: String]()
+    
+    func getToken(user: String) -> KatsanaSDK.AccessToken? {
+        if let aToken = token[user]{
+            return AccessToken(token: aToken)
+        }
+        return nil
+    }
+    
+    func save(user: String, token: KatsanaSDK.AccessToken) {
+        self.token[user] = token.token
+    }
+    
     
 }
