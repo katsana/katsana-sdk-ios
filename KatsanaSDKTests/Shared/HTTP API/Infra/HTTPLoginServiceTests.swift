@@ -17,7 +17,7 @@ final class HTTPLoginServiceTests: XCTestCase {
     
     func test_login_sendLoginRequest() {
         let (sut, client) = makeSUT()
-        let request = sut.loginRequest()
+        let request = sut.loginRequest(email: "any", password: "any")
         sut.login(email: "any", password: "any"){_ in}
         
         XCTAssertEqual(client.requests, [request])
@@ -25,7 +25,7 @@ final class HTTPLoginServiceTests: XCTestCase {
     
     func test_loginTwice_sendLoginRequestTwice() {
         let (sut, client) = makeSUT()
-        let request = sut.loginRequest()
+        let request = sut.loginRequest(email: "any", password: "any")
         sut.login(email: "any", password: "any"){_ in}
         sut.login(email: "any", password: "any"){_ in}
         

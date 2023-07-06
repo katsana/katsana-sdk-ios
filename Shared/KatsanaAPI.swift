@@ -13,14 +13,17 @@ public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
     let localStoreURL: URL
     
     let credential: Credential
-    var tokenService = KeychainTokenService()
+    var tokenService: TokenService & TokenCache
+    var username: String?
+    
     lazy var httpClient: HTTPClient = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
     lazy var loginService: LoginService = {
         let loginService = HTTPLoginService(baseURL: baseURL, credential: credential, httpClient: httpClient)
         return MainQueueDispatchDecorator(loginService)
     }()
     public lazy var publisherFactory: APIPublisherFactory = {
-        let authClient = AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService)
+        let authClient = AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService, username: {[weak self] in self?.username
+        })
         let storeManager = ResourceStoreManager(delegate: self)
         let factory = APIPublisherFactory(baseURL: baseURL, baseStoreURL: localStoreURL, client: authClient, storeManager: storeManager)
         return factory
@@ -32,13 +35,15 @@ public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
         self.baseURL = baseURL
         self.localStoreURL = baseStoreURL
         self.credential = credential
+        self.tokenService = KeychainTokenService()
     }
     
     public func login(email: String, password: String, completion: @escaping (AccessTokenResult) -> Void){
+        username = email
         loginService.login(email: email, password: password) {[weak self] result in
             switch result{
             case .success(let token):
-                self?.tokenService.token = token
+                self?.tokenService.save(user: email, token: token)
                 self?.isAuthenticated = true
             case .failure:
                 self?.isAuthenticated = false

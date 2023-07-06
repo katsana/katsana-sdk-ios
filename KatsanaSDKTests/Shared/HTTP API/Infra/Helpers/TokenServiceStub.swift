@@ -16,7 +16,7 @@ class TokenServiceStub: TokenService{
         self.stub = stub
     }
     
-    func getToken(completion: @escaping (AccessTokenResult) -> Void) {
-        completion(stub)
+    func getToken(user: String) -> AccessToken?{
+        return try? stub.get()
     }
 }

@@ -10,7 +10,6 @@ import Foundation
 
 public typealias AccessTokenResult = Swift.Result<AccessToken, Error>
 
-
 public struct AccessToken: Equatable, Codable{
     public let token: String
     
@@ -20,12 +19,10 @@ public struct AccessToken: Equatable, Codable{
 }
 
 public protocol TokenService{
-    func getToken(completion: @escaping (AccessTokenResult) -> Void)
+    func getToken(user: String) -> AccessToken?
 }
 
 public protocol TokenCache {
-    typealias Result = Swift.Result<Void, Error>
-
-    func save(user: String, token: AccessToken, completion: @escaping (Result) -> Void)
+    func save(user: String, token: AccessToken)
 }
 

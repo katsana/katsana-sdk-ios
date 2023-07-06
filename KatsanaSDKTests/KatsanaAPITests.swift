@@ -50,6 +50,8 @@ final class KatsanaAPITests: XCTestCase, ResourceStoreManagerDelegate {
         XCTAssertFalse(sut.isAuthenticated)
     }
     
+    
+    
     // MARK: Helper
     
     func makeSUT(tokenService: TokenService? = nil) -> (KatsanaAPI, HTTPClientSpy){
@@ -57,7 +59,8 @@ final class KatsanaAPITests: XCTestCase, ResourceStoreManagerDelegate {
         let credential = Credential(clientId: "", clientSecret: "", scope: "", grantType: "")
         let client = HTTPClientSpy()
 
-        let sut = KatsanaAPI(baseURL: anyURL(), baseStoreURL: anyURL(), credential: credential, httpClient: client, storeManager: ResourceStoreManager(delegate: self))
+        let sut = KatsanaAPI(baseURL: anyURL(), baseStoreURL: anyURL(), credential: credential)
+        sut.httpClient = client
         return (sut, client)
     }
     

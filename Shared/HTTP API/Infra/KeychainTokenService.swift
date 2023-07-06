@@ -8,18 +8,20 @@
 
 import Foundation
 
-public class KeychainTokenService: TokenService{
-    public var token: AccessToken?
-    
+public class KeychainTokenService: TokenService, TokenCache{
+
     public enum Error: Swift.Error {
         case notFound
     }
     
-    public func getToken(completion: @escaping (AccessTokenResult) -> Void) {
-        if let token{
-            completion(.success(token))
-        }else{
-            completion(.failure(Error.notFound))
+    public func getToken(user: String) -> AccessToken? {
+        if let token = UserDefaults.standard.value(forKey: user+"Token") as? String{
+            return AccessToken(token: token)
         }
+        return nil
+    }
+    
+    public func save(user: String, token: AccessToken) {
+        UserDefaults.standard.set(token.token, forKey: user+"Token")
     }
 }

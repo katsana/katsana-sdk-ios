@@ -11,6 +11,7 @@ import Foundation
 public class AuthenticatedHTTPClientDecorator: HTTPClient{
     private let decoratee: HTTPClient
     private let tokenService: TokenService
+    private let username: () -> String?
     
     public enum Error: Swift.Error {
         case unauthorized
@@ -43,26 +44,26 @@ public class AuthenticatedHTTPClientDecorator: HTTPClient{
         }
     }
     
-    public init(decoratee: HTTPClient, tokenService: TokenService) {
+    public init(decoratee: HTTPClient, tokenService: TokenService, username: @escaping () -> String?) {
         self.decoratee = decoratee
         self.tokenService = tokenService
+        self.username = username
     }
     
     public func send(_ urlRequest: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
         let task = HTTPClientTaskWrapper(completion)
+        guard let username = self.username() else{
+            task.complete(with: .failure(Error.unauthorized))
+            return task
+        }
         
-        tokenService.getToken {[weak self] result in
-            guard let self else {return}
-            
-            switch result{
-            case let .success(token):
-                let signedRequest = self.signedRequest(for: urlRequest, token: token)
-                task.wrapped = self.decoratee.send(signedRequest, completion: {theResult in
-                    task.complete(with: theResult)
-                })
-            case let .failure(error):
-                task.complete(with: .failure(error))
-            }
+        if let token = tokenService.getToken(user: username){
+            let signedRequest = self.signedRequest(for: urlRequest, token: token)
+            task.wrapped = self.decoratee.send(signedRequest, completion: {theResult in
+                task.complete(with: theResult)
+            })
+        }else{
+            task.complete(with: .failure(Error.unauthorized))
         }
         return task
     }
