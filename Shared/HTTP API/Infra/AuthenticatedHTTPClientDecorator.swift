@@ -11,7 +11,6 @@ import Foundation
 public class AuthenticatedHTTPClientDecorator: HTTPClient{
     private let decoratee: HTTPClient
     private let tokenService: TokenService
-    private let username: () -> String?
     
     public enum Error: Swift.Error {
         case unauthorized
@@ -44,10 +43,9 @@ public class AuthenticatedHTTPClientDecorator: HTTPClient{
         }
     }
     
-    public init(decoratee: HTTPClient, tokenService: TokenService, username: @escaping () -> String?) {
+    public init(decoratee: HTTPClient, tokenService: TokenService) {
         self.decoratee = decoratee
         self.tokenService = tokenService
-        self.username = username
     }
     
     public func send(_ urlRequest: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {

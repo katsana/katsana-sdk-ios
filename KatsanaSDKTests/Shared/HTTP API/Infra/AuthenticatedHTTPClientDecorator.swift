@@ -54,7 +54,7 @@ final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
     func makeSUT(tokenResult: AccessTokenResult, file: StaticString = #filePath, line: UInt = #line) -> (sut: AuthenticatedHTTPClientDecorator, client: HTTPClientSpy){
         let client = HTTPClientSpy()
         let tokenStub = TokenServiceStub(stub: tokenResult)
-        let sut = AuthenticatedHTTPClientDecorator(decoratee: client, tokenService: tokenStub, username: {"any"})
+        let sut = AuthenticatedHTTPClientDecorator(decoratee: client, tokenService: tokenStub)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(tokenStub, file: file, line: line)

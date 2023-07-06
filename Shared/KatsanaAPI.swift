@@ -22,15 +22,13 @@ public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
         return MainQueueDispatchDecorator(loginService)
     }()
     public lazy var publisherFactory: APIPublisherFactory = {
-        let authClient = AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService, username: {[weak self] in self?.username
-        })
+        let authClient = AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService)
         let storeManager = ResourceStoreManager(delegate: self)
         let factory = APIPublisherFactory(baseURL: baseURL, baseStoreURL: localStoreURL, client: authClient, storeManager: storeManager)
         return factory
     }()
     
     public var isAuthenticated: Bool{
-        guard let username else {return false}
         return tokenService.getToken() != nil
     }
         
