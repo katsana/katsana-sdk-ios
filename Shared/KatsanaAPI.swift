@@ -29,7 +29,10 @@ public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
         return factory
     }()
     
-    public var isAuthenticated = false
+    public var isAuthenticated: Bool{
+        guard let username else {return false}
+        return tokenService.getToken() != nil
+    }
         
     public init(baseURL: URL, baseStoreURL: URL, credential: Credential) {
         self.baseURL = baseURL
@@ -43,10 +46,9 @@ public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
         loginService.login(email: email, password: password) {[weak self] result in
             switch result{
             case .success(let token):
-                self?.tokenService.save(user: email, token: token)
-                self?.isAuthenticated = true
+                self?.tokenService.save(token: token)
             case .failure:
-                self?.isAuthenticated = false
+                ()
             }
             completion(result)
         }

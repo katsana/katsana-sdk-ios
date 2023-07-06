@@ -16,7 +16,7 @@ class TokenServiceStub: TokenService{
         self.stub = stub
     }
     
-    func getToken(user: String) -> AccessToken?{
+    func getToken() -> AccessToken?{
         return try? stub.get()
     }
 }

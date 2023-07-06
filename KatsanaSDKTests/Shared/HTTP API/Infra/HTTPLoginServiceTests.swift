@@ -53,7 +53,8 @@ final class HTTPLoginServiceTests: XCTestCase {
         let (sut, client) = makeSUT()
 
         let json = makeLoginData()
-        let token = try! LoginMapper.map(json, from: .init(statusCode: 200))
+        let mapper = LoginMapper(name: "any")
+        let token = try! mapper.map(json, from: .init(statusCode: 200))
         
         expect(sut, toCompleteWith: .success(token), when: {
             client.complete(withStatusCode: 200, data: json)

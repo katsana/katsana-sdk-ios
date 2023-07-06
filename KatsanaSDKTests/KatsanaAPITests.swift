@@ -68,7 +68,7 @@ final class KatsanaAPITests: XCTestCase, ResourceStoreManagerDelegate {
         client.complete(withStatusCode: 200, data: loginData())
         wait(for: [exp], timeout: 1.0)
 
-        let token = sut.tokenService.getToken(user: email)
+        let token = sut.tokenService.getToken()
         XCTAssertNotNil(token)
         XCTAssertEqual(token, tokenResult)
     }
@@ -78,7 +78,6 @@ final class KatsanaAPITests: XCTestCase, ResourceStoreManagerDelegate {
     // MARK: Helper
     
     func makeSUT(tokenService: TokenService? = nil) -> (KatsanaAPI, HTTPClientSpy){
-        let theTokenService = tokenService ?? TokenServiceStub(stub: .success(AccessToken(token: "any")))
         let credential = Credential(clientId: "", clientSecret: "", scope: "", grantType: "")
         let client = HTTPClientSpy()
 
@@ -114,15 +113,17 @@ final class KatsanaAPITests: XCTestCase, ResourceStoreManagerDelegate {
 class InMemoryTokenService: TokenService, TokenCache{
     var token = [String: String]()
     
-    func getToken(user: String) -> KatsanaSDK.AccessToken? {
-        if let aToken = token[user]{
-            return AccessToken(token: aToken)
+    func getToken() -> KatsanaSDK.AccessToken? {
+        if let aToken = token["token"], let name = token["name"]{
+            return AccessToken(name: name, token: aToken)
         }
         return nil
     }
     
-    func save(user: String, token: KatsanaSDK.AccessToken) {
-        self.token[user] = token.token
+    func save(token: KatsanaSDK.AccessToken) {
+        self.token["token"] = token.token
+        self.token["name"] = token.name
+
     }
     
     

@@ -14,14 +14,16 @@ public class KeychainTokenService: TokenService, TokenCache{
         case notFound
     }
     
-    public func getToken(user: String) -> AccessToken? {
-        if let token = UserDefaults.standard.value(forKey: user+"Token") as? String{
-            return AccessToken(token: token)
+    public func getToken() -> AccessToken? {
+        if let token = UserDefaults.standard.value(forKey: "Token") as? String, let tokenName = UserDefaults.standard.value(forKey: "TokenName") as? String{
+            return AccessToken(name: tokenName, token: token)
         }
         return nil
     }
     
-    public func save(user: String, token: AccessToken) {
-        UserDefaults.standard.set(token.token, forKey: user+"Token")
+    public func save(token: AccessToken) {
+        UserDefaults.standard.set(token.token, forKey: "Token")
+        UserDefaults.standard.set(token.name, forKey: "TokenName")
+
     }
 }

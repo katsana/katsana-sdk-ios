@@ -52,12 +52,7 @@ public class AuthenticatedHTTPClientDecorator: HTTPClient{
     
     public func send(_ urlRequest: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
         let task = HTTPClientTaskWrapper(completion)
-        guard let username = self.username() else{
-            task.complete(with: .failure(Error.unauthorized))
-            return task
-        }
-        
-        if let token = tokenService.getToken(user: username){
+        if let token = tokenService.getToken(){
             let signedRequest = self.signedRequest(for: urlRequest, token: token)
             task.wrapped = self.decoratee.send(signedRequest, completion: {theResult in
                 task.complete(with: theResult)

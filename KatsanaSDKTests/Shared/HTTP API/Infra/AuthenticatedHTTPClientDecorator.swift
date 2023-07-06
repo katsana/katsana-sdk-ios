@@ -23,7 +23,7 @@ final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
     func test_sendRequest_withSuccessTokenSuccess_signRequestWithToken(){
         
         let request = testRequest()
-        let token = AccessToken(token: "anyToken")
+        let token = anyToken()
         let (sut, client) = makeSUT(tokenResult: .success(token))
         
         let signedRequest = sut.signedRequest(for: request, token: token)
@@ -36,7 +36,7 @@ final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
         let request = testRequest()
         let values = (Data("anyData".utf8), HTTPURLResponse(statusCode: 200))
         
-        let token = AccessToken(token: "anyToken")
+        let token = anyToken()
         let (sut, client) = makeSUT(tokenResult: .success(token))
         
         var receivedResult: HTTPClient.Result?
@@ -65,6 +65,10 @@ final class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
     
     func testRequest() -> URLRequest{
         return URLRequest(url: URL(string: "/test")!)
+    }
+    
+    func anyToken() -> AccessToken{
+        return AccessToken(name: "any", token: "any")
     }
 
 }

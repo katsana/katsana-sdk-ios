@@ -12,13 +12,13 @@ import KatsanaSDK
 final class TokenServiceTests: XCTestCase {
     func test_get_failsOnFailure() {
         let sut = TokenServiceStub(stub: .failure(anyNSError()))
-        XCTAssertEqual(sut.getToken(user: "any"), nil)
+        XCTAssertEqual(sut.getToken(), nil)
     }
     
     func test_get_successOnSuccess() {
-        let token = AccessToken(token: "anytoken")
+        let token = AccessToken(name: "any", token: "anytoken")
         
         let sut = TokenServiceStub(stub: .success(token))
-        XCTAssertEqual(sut.getToken(user: "any"), token)
+        XCTAssertEqual(sut.getToken(), token)
     }
 }

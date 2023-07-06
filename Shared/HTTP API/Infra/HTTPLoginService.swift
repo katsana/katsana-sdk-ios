@@ -24,7 +24,8 @@ public class HTTPLoginService: LoginService{
             switch result{
             case .success((let data, let response)):
                 do{
-                    let token = try LoginMapper.map(data, from: response)
+                    let mapper = LoginMapper(name: email)
+                    let token = try mapper.map(data, from: response)
                     completion(.success(token))
                 }
                 catch{

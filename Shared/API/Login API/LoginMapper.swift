@@ -9,12 +9,18 @@
 import Foundation
 
 public class LoginMapper{
+    public let name: String
+    
+    public init(name: String) {
+        self.name = name
+    }
+    
     
     public enum Error: Swift.Error {
         case invalidData
     }
     
-    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> AccessToken {
+    public func map(_ data: Data, from response: HTTPURLResponse) throws -> AccessToken {
         do{
             let json = try JSON(data: data)
             return try mapJSON(json)
@@ -24,13 +30,13 @@ public class LoginMapper{
         }
     }
     
-    public static func mapJSON(_ json: JSON) throws -> AccessToken {
+    public func mapJSON(_ json: JSON) throws -> AccessToken {
         let token = json["access_token"].string
         let refreshToken = json["refresh_token"].string
         
         guard let token, let refreshToken else{
             throw Error.invalidData
         }
-        return AccessToken(token: token)
+        return AccessToken(name: name, token: token)
     }
 }
