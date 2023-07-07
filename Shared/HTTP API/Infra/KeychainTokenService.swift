@@ -10,6 +10,8 @@ import Foundation
 
 public class KeychainTokenService: TokenService, TokenCache{
 
+    
+
     public enum Error: Swift.Error {
         case notFound
     }
@@ -24,6 +26,12 @@ public class KeychainTokenService: TokenService, TokenCache{
     public func save(token: AccessToken) {
         UserDefaults.standard.set(token.token, forKey: "Token")
         UserDefaults.standard.set(token.name, forKey: "TokenName")
+
+    }
+    
+    public func delete() {
+        UserDefaults.standard.removeObject(forKey: "Token")
+        UserDefaults.standard.removeObject(forKey: "TokenName")
 
     }
 }

@@ -52,6 +52,11 @@ public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
         }
     }
     
+    public func logout(){
+        username = nil
+        tokenService.delete()
+    }
+    
     // MARK:
     
     public func makeStore<Resource, S>(_ type: Resource.Type) -> KatsanaSDK.AnyResourceStore<Resource> where Resource : Decodable, Resource : Encodable, Resource : Equatable, S : KatsanaSDK.AnyResourceStore<Resource> {

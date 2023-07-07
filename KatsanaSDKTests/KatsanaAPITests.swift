@@ -73,6 +73,28 @@ final class KatsanaAPITests: XCTestCase, ResourceStoreManagerDelegate {
         XCTAssertEqual(token, tokenResult)
     }
     
+    func test_logout_deleteCachedToken() {
+        let (sut, client) = makeSUT()
+        
+        let email = "test"
+        var tokenResult: AccessToken?
+        
+        let exp = expectation(description: "Wait for load completion")
+        sut.login(email: email, password: "1212") { result in
+            if let theToken = try? result.get(){
+                tokenResult = theToken
+            }else{
+                XCTFail("Expected to success")
+            }
+            exp.fulfill()
+        }
+        client.complete(withStatusCode: 200, data: loginData())
+        wait(for: [exp], timeout: 1.0)
+        sut.logout()
+
+        let token = sut.tokenService.getToken()
+        XCTAssertNil(token)
+    }
     
     
     // MARK: Helper
@@ -126,5 +148,8 @@ class InMemoryTokenService: TokenService, TokenCache{
 
     }
     
+    func delete(){
+        token.removeAll()
+    }
     
 }

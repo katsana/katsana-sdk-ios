@@ -26,5 +26,6 @@ public protocol TokenService{
 
 public protocol TokenCache {
     func save(token: AccessToken)
+    func delete()
 }
 
