@@ -67,7 +67,7 @@ final class KatsanaSDKEndToEndTests: XCTestCase, ResourceStoreManagerDelegate {
     
     func makeSUT() -> APIPublisherFactory{
         let storeManager = ResourceStoreManager(delegate: self)
-        let tokenService = TokenServiceStub(stub: .success(AccessToken(token: Secret.token)))
+        let tokenService = TokenServiceStub(stub: .success(AccessToken(name: "any", token: Secret.token)))
         let client = AuthenticatedHTTPClientDecorator(decoratee: ephemeralClient(), tokenService: tokenService)
         let factory = APIPublisherFactory(baseURL: Secret.baseURL, baseStoreURL: localStoreURL, client: client, storeManager: storeManager)
         
