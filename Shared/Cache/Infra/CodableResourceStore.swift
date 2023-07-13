@@ -50,41 +50,41 @@ public class CodableResourceStore<R>: ResourceStore where R: Equatable, R: Codab
         return (cache.resource, cache.timestamp)
     }
     
-    public func deleteCachedResource(completion: @escaping DeletionCompletion){
-        let storeURL = self.storeURL
-        queue.async(flags: .barrier) { [weak self] in
-            do {
-                try self?.deleteCachedResource()
-                completion(.success(()))
-            } catch {
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    public func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion){
-        let storeURL = self.storeURL
-        queue.async(flags: .barrier) { [weak self] in
-            do {
-                try self?.insert(resource, timestamp: timestamp)
-                completion(.success(()))
-            } catch {
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    public func retrieve(completion: @escaping RetrievalCompletion){
-        let storeURL = self.storeURL
-        queue.async { [weak self] in
-            do {
-                let resource = try self?.retrieve()
-                completion(.success(resource))
-            } catch {
-                completion(.failure(error))
-            }
-        }
-    }
+//    public func deleteCachedResource(completion: @escaping DeletionCompletion){
+//        let storeURL = self.storeURL
+//        queue.async(flags: .barrier) { [weak self] in
+//            do {
+//                try self?.deleteCachedResource()
+//                completion(.success(()))
+//            } catch {
+//                completion(.failure(error))
+//            }
+//        }
+//    }
+//    
+//    public func insert(_ resource: Resource, timestamp: Date, completion: @escaping InsertionCompletion){
+//        let storeURL = self.storeURL
+//        queue.async(flags: .barrier) { [weak self] in
+//            do {
+//                try self?.insert(resource, timestamp: timestamp)
+//                completion(.success(()))
+//            } catch {
+//                completion(.failure(error))
+//            }
+//        }
+//    }
+//    
+//    public func retrieve(completion: @escaping RetrievalCompletion){
+//        let storeURL = self.storeURL
+//        queue.async { [weak self] in
+//            do {
+//                let resource = try self?.retrieve()
+//                completion(.success(resource))
+//            } catch {
+//                completion(.failure(error))
+//            }
+//        }
+//    }
 }
 
 extension CodableResourceStore: ResourceWithKeyStore{

@@ -68,6 +68,8 @@
 		C1751B4A29BFEE79009C8795 /* UserProfileEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B4929BFEE79009C8795 /* UserProfileEndpoint.swift */; };
 		C1751B4D29C018C8009C8795 /* KatsanaServicesFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B4C29C018C8009C8795 /* KatsanaServicesFactoryTests.swift */; };
 		C1751B4F29C02120009C8795 /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1751B4E29C02120009C8795 /* RemoteLoader.swift */; };
+		C17B1DF92A5FD0390002FD54 /* InMemoryResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B1DF82A5FD0390002FD54 /* InMemoryResourceStore.swift */; };
+		C17B1DFC2A5FD0780002FD54 /* InMemoryResourceStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B1DFA2A5FD0690002FD54 /* InMemoryResourceStoreTests.swift */; };
 		C186126A29E67D2400171A3F /* TripSummaryEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186126929E67D2400171A3F /* TripSummaryEndpoint.swift */; };
 		C186126F29E67F5500171A3F /* TripSummaryEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186126D29E67F0000171A3F /* TripSummaryEndpointTests.swift */; };
 		C186127229E6807400171A3F /* TripSummaryMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186127029E6807100171A3F /* TripSummaryMapperTests.swift */; };
@@ -252,6 +254,8 @@
 		C1751B4929BFEE79009C8795 /* UserProfileEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileEndpoint.swift; sourceTree = "<group>"; };
 		C1751B4C29C018C8009C8795 /* KatsanaServicesFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsanaServicesFactoryTests.swift; sourceTree = "<group>"; };
 		C1751B4E29C02120009C8795 /* RemoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoader.swift; sourceTree = "<group>"; };
+		C17B1DF82A5FD0390002FD54 /* InMemoryResourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryResourceStore.swift; sourceTree = "<group>"; };
+		C17B1DFA2A5FD0690002FD54 /* InMemoryResourceStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryResourceStoreTests.swift; sourceTree = "<group>"; };
 		C186126929E67D2400171A3F /* TripSummaryEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryEndpoint.swift; sourceTree = "<group>"; };
 		C186126D29E67F0000171A3F /* TripSummaryEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryEndpointTests.swift; sourceTree = "<group>"; };
 		C186127029E6807100171A3F /* TripSummaryMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryMapperTests.swift; sourceTree = "<group>"; };
@@ -497,6 +501,7 @@
 				C11FECE529CC107E003914DC /* ValidateResourceCacheUseCaseTests.swift */,
 				C11FECCB29CBC478003914DC /* CodableResourceStoreTests.swift */,
 				C1DF2B6129DD604B00596E70 /* CodableResourceWithKeyStoreTests.swift */,
+				C17B1DFA2A5FD0690002FD54 /* InMemoryResourceStoreTests.swift */,
 				C1DF2B5829DD460D00596E70 /* LoadResourceWithKeyFromCacheUseCaseTests.swift */,
 			);
 			path = Cache;
@@ -603,6 +608,7 @@
 			isa = PBXGroup;
 			children = (
 				C11FECE029CC0AFA003914DC /* CodableResourceStore.swift */,
+				C17B1DF82A5FD0390002FD54 /* InMemoryResourceStore.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -1132,6 +1138,7 @@
 				C118BA2D2A0206200068D7D2 /* TripMapperTests.swift in Sources */,
 				C1751B4229BFEDEC009C8795 /* TripTest.swift in Sources */,
 				C186A1C32A54DE1400EE2AF2 /* KatsanaAPITests.swift in Sources */,
+				C17B1DFC2A5FD0780002FD54 /* InMemoryResourceStoreTests.swift in Sources */,
 				C1DF2B4629D92B5C00596E70 /* CLPlaceMarkAddressMapperTests.swift in Sources */,
 				C145A5C329D9196700E3FC6E /* AddressAPI+TestHelpers.swift in Sources */,
 				C11FECDE29CC0A52003914DC /* XCTestCase+FailableDeleteResourceStoreSpecs.swift in Sources */,
@@ -1276,6 +1283,7 @@
 				C1EE7C4D2A55B3E900BBCE77 /* HTTPLoginService.swift in Sources */,
 				C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */,
 				C1DF2B5C29DD47D200596E70 /* ResourceWithKeyCache.swift in Sources */,
+				C17B1DF92A5FD0390002FD54 /* InMemoryResourceStore.swift in Sources */,
 				C71917741E48703B0041BC18 /* String+Date.swift in Sources */,
 				C11FECC529CBC0B4003914DC /* ResourceCachePolicy.swift in Sources */,
 				C1F540B625256AB700525603 /* KTUser.swift in Sources */,

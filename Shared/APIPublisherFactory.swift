@@ -107,6 +107,16 @@ extension APIPublisherFactory{
             .eraseToAnyPublisher()
     }
     
+    public func makeLocalVehiclesPublisher(includes params: [String]? = nil) -> AnyPublisher<[KTVehicle], Error>{
+        let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
+        let localLoader = makeLocalLoader([KTVehicle].self, maxCacheAgeInSeconds: 60*60)
+
+        return localLoader
+            .loadPublisher()
+            .subscribe(on: scheduler)
+            .eraseToAnyPublisher()
+    }
+    
     public func makeVehiclesPublisher(includes params: [String]? = nil) -> AnyPublisher<[KTVehicle], Error>{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
         return makePublisher(request: URLRequest(url: url), mapper: VehiclesMapper.map)
