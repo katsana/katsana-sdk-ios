@@ -100,7 +100,7 @@ class InMemoryResourceStoreTests: XCTestCase, ResourceStoreSpecs {
     }
     
     private func deleteStoreArtifacts() {
-//        try? FileManager.default.removeItem(at: testSpecificStoreURL())
+        try? InMemoryResourceStore<String>().deleteCachedResource()
     }
     
     private func anyResource() -> String{

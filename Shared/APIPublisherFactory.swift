@@ -50,6 +50,11 @@ open class APIPublisherFactory{
         return makeLocalLoader(type, maxCacheAgeInSeconds: maxCacheAgeInSeconds, store: {store})
     }
     
+    public func makeInMemoryLoader<Resource>(_ type: Resource.Type) -> AnyLocalLoader<Resource> where Resource: Equatable, Resource: Codable{
+        let store = InMemoryResourceStore<Resource>()
+        return makeLocalLoader(type, maxCacheAgeInSeconds: Int.max, store: {store})
+    }
+    
     private func makeLocalLoader<Resource, S: ResourceStore>(_ type: Resource.Type, maxCacheAgeInSeconds: Int, store: ()->S) -> AnyLocalLoader<Resource> where S.Resource == Resource{
 
         let theStore = store()
