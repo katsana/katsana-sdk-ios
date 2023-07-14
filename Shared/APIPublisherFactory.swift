@@ -9,14 +9,53 @@
 import Foundation
 import Combine
 
+class InMemoryVehicleUpdaterAdapter{
+    let loader: AnyLocalLoader<[KTVehicle]>
+    var updater: VehicleUpdater
+    var subject = PassthroughSubject<[KTVehicle],Error>()
+
+    
+    init(loader: AnyLocalLoader<[KTVehicle]>, updater: VehicleUpdater) {
+        self.loader = loader
+        self.updater = updater
+    }
+    
+    func startUpdaterPublisher() -> AnyPublisher<[KTVehicle], Error> {
+        load()
+        return subject.eraseToAnyPublisher()
+    }
+    
+    func load() -> Void{
+        updater.didUpdateVehicle = { vehicle in
+            self.loader.load { result in
+                if var vehicles = try? result.get(){
+                    let idx = vehicles.firstIndex { aVehicle in
+                        return aVehicle.imei == vehicle.imei
+                    }
+                    if let idx{
+                        vehicles.remove(at: idx)
+                        vehicles.insert(vehicle, at: idx)
+                        self.subject.send(vehicles)
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+public protocol VehicleUpdater{
+    var didUpdateVehicle: ((KTVehicle) -> Void)? { get set }
+}
+
 open class APIPublisherFactory{
     public let baseURL: URL
     public let baseStoreURL: URL
     public let client: HTTPClient
     let reverseGeocodingClient: ReverseGeocodingClient = AppleReverseGeocodingClient()
     let storeManager: ResourceStoreManager
-    
-    private lazy var scheduler: AnyDispatchQueueScheduler = DispatchQueue(
+        
+    public lazy var scheduler: AnyDispatchQueueScheduler = DispatchQueue(
         label: "com.essentialdeveloper.infra.queue",
         qos: .userInitiated,
         attributes: .concurrent
@@ -112,17 +151,37 @@ extension APIPublisherFactory{
             .eraseToAnyPublisher()
     }
     
-    public func makeLocalVehiclesPublisher(includes params: [String]? = nil) -> AnyPublisher<[KTVehicle], Error>{
+    public func makeLocalVehiclesPublisher(includes params: [String]? = nil, updater: VehicleUpdater? = nil) -> AnyPublisher<[KTVehicle], Error>{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
+        let inMemoryLoader = makeInMemoryLoader([KTVehicle].self)
         let localLoader = makeLocalLoader([KTVehicle].self, maxCacheAgeInSeconds: 60*60)
-
-        return localLoader
+        let client = self.client
+                
+        let publisher = inMemoryLoader
             .loadPublisher()
-            .subscribe(on: scheduler)
-            .eraseToAnyPublisher()
+            .fallback(to: localLoader.loadPublisher)
+            .fallback(to: {
+                return client
+                    .getPublisher(urlRequest: URLRequest(url: url))
+                    .tryMap(VehiclesMapper.map)
+                    .caching(to: localLoader)
+                    .caching(to: inMemoryLoader)
+            })
+        if let updater{
+            let adapter = InMemoryVehicleUpdaterAdapter(loader: localLoader, updater: updater)
+            
+            return publisher
+                .merge(with: adapter.startUpdaterPublisher())
+                .subscribe(on: scheduler)
+                .eraseToAnyPublisher()
+        }else{
+            return publisher
+                .subscribe(on: scheduler)
+                .eraseToAnyPublisher()
+        }
     }
     
-    public func makeVehiclesPublisher(includes params: [String]? = nil) -> AnyPublisher<[KTVehicle], Error>{
+    public func makeVehiclesPublisher(includes params: [String]? = nil, updater: VehicleUpdater? = nil) -> AnyPublisher<[KTVehicle], Error>{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
         return makePublisher(request: URLRequest(url: url), mapper: VehiclesMapper.map)
     }
