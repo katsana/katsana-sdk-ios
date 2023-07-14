@@ -11,12 +11,11 @@ import Combine
 @testable import KatsanaSDK
 
 final class APIPublisherFactoryTests: XCTestCase, ResourceStoreManagerDelegate {
-    var cancellable: Cancellable?
     
     func test_makeVehiclesPublisher_updaterWorksCorrectly(){
         let (sut, stub) = makeSUT()
         let updater = VehicleUpdaterStub()
-        let publisher = sut.makeLocalVehiclesPublisher(updater: updater)
+        let publisher = sut.makeLocalVehiclesPublisher(updater: updater as any VehicleUpdater)
         
         stub.addStubForAnyURL(data: self.makeVehiclesData())
         
@@ -24,7 +23,7 @@ final class APIPublisherFactoryTests: XCTestCase, ResourceStoreManagerDelegate {
         exp.expectedFulfillmentCount = 4
         
         var count = 0
-        cancellable = publisher.sink { completion in
+        let cancellable = publisher.sink { completion in
         } receiveValue: { vehicles in
             XCTAssertEqual(vehicles.count, 2)
             let firstVehicle = vehicles.first

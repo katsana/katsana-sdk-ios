@@ -44,7 +44,7 @@ class InMemoryVehicleUpdaterAdapter{
     
 }
 
-public protocol VehicleUpdater{
+public protocol VehicleUpdater: AnyObject{
     var didUpdateVehicle: ((KTVehicle) -> Void)? { get set }
 }
 
@@ -151,12 +151,13 @@ extension APIPublisherFactory{
             .eraseToAnyPublisher()
     }
     
-    public func makeLocalVehiclesPublisher(includes params: [String]? = nil, updater: VehicleUpdater? = nil) -> AnyPublisher<[KTVehicle], Error>{
+    public func makeLocalVehiclesPublisher(includes params: [String]? = nil, updater: VehicleUpdater? = nil,
+                                           vehicleUpdater: (() -> (() -> KTVehicle))? = nil) -> AnyPublisher<[KTVehicle], Error>{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
         let inMemoryLoader = makeInMemoryLoader([KTVehicle].self)
         let localLoader = makeLocalLoader([KTVehicle].self, maxCacheAgeInSeconds: 60*60)
         let client = self.client
-                
+        
         let publisher = inMemoryLoader
             .loadPublisher()
             .fallback(to: localLoader.loadPublisher)
@@ -167,6 +168,7 @@ extension APIPublisherFactory{
                     .caching(to: localLoader)
                     .caching(to: inMemoryLoader)
             })
+        
         if let updater{
             let adapter = InMemoryVehicleUpdaterAdapter(loader: localLoader, updater: updater)
             
