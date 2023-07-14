@@ -151,8 +151,7 @@ extension APIPublisherFactory{
             .eraseToAnyPublisher()
     }
     
-    public func makeLocalVehiclesPublisher(includes params: [String]? = nil, updater: VehicleUpdater? = nil,
-                                           vehicleUpdater: (() -> (() -> KTVehicle))? = nil) -> AnyPublisher<[KTVehicle], Error>{
+    public func makeLocalVehiclesPublisher(includes params: [String]? = nil, updater: VehicleUpdater? = nil) -> AnyPublisher<[KTVehicle], Error>{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
         let inMemoryLoader = makeInMemoryLoader([KTVehicle].self)
         let localLoader = makeLocalLoader([KTVehicle].self, maxCacheAgeInSeconds: 60*60)
@@ -169,18 +168,10 @@ extension APIPublisherFactory{
                     .caching(to: inMemoryLoader)
             })
         
-        if let updater{
-            let adapter = InMemoryVehicleUpdaterAdapter(loader: localLoader, updater: updater)
-            
-            return publisher
-                .merge(with: adapter.startUpdaterPublisher())
-                .subscribe(on: scheduler)
-                .eraseToAnyPublisher()
-        }else{
-            return publisher
-                .subscribe(on: scheduler)
-                .eraseToAnyPublisher()
-        }
+        return publisher
+            .mergeWithVehicleUpdaterPublisher(to: updater, loader: localLoader.loadPublisher())
+            .subscribe(on: scheduler)
+            .eraseToAnyPublisher()
     }
     
     public func makeVehiclesPublisher(includes params: [String]? = nil, updater: VehicleUpdater? = nil) -> AnyPublisher<[KTVehicle], Error>{
@@ -264,5 +255,30 @@ extension APIPublisherFactory{
             .eraseToAnyPublisher()
     }
     
+}
+
+extension AnyPublisher<[KTVehicle], Error> {
+    func mergeWithVehicleUpdaterPublisher(to updater: VehicleUpdater?, loader: AnyPublisher<[KTVehicle], Error>) -> AnyPublisher<[KTVehicle], Error>{
+        guard let updater else{
+            return self
+        }
+        
+        let subject = PassthroughSubject<[KTVehicle],Error>()
+        updater.didUpdateVehicle = {vehicle in
+            let _ = loader.sink { completion in
+            } receiveValue: { vehicles in
+                var theVehicles = vehicles
+                let idx = theVehicles.firstIndex { aVehicle in
+                    return aVehicle.imei == vehicle.imei
+                }
+                if let idx{
+                    theVehicles.remove(at: idx)
+                    theVehicles.insert(vehicle, at: idx)
+                    subject.send(theVehicles)
+                }
+            }
+        }
+        return merge(with: subject).eraseToAnyPublisher()
+    }
 }
 
