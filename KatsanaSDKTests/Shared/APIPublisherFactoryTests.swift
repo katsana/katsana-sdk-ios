@@ -11,11 +11,25 @@ import Combine
 @testable import KatsanaSDK
 
 final class APIPublisherFactoryTests: XCTestCase, ResourceStoreManagerDelegate {
+    override func setUpWithError() throws {
+        try? InMemoryResourceStore<[KTVehicle]>().deleteCachedResource()
+        let classname = String(describing: [KTVehicle].self)
+        let url = localStoreURL.appendingPathComponent("sdk_tests_" + classname + ".store")
+        try? FileManager().removeItem(at: url)
+    }
+
+    override func tearDownWithError() throws {
+        try? InMemoryResourceStore<[KTVehicle]>().deleteCachedResource()
+        let classname = String(describing: [KTVehicle].self)
+        let url = localStoreURL.appendingPathComponent("sdk_tests_" + classname + ".store")
+        try? FileManager().removeItem(at: url)
+    }
+    
     
     func test_makeVehiclesPublisher_updaterWorksCorrectly(){
         let (sut, stub) = makeSUT()
         let updater = VehicleUpdaterStub()
-        let publisher = sut.makeLocalVehiclesPublisher(updater: updater as any VehicleUpdater)
+        let publisher = sut.makeVehiclesPublisher(updater: updater)
         
         stub.addStubForAnyURL(data: self.makeVehiclesData())
         

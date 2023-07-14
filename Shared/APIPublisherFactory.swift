@@ -91,7 +91,7 @@ open class APIPublisherFactory{
     
     public func makeInMemoryLoader<Resource>(_ type: Resource.Type) -> AnyLocalLoader<Resource> where Resource: Equatable, Resource: Codable{
         let store = InMemoryResourceStore<Resource>()
-        return makeLocalLoader(type, maxCacheAgeInSeconds: Int.max, store: {store})
+        return makeLocalLoader(type, maxCacheAgeInSeconds: 24*60*60*7, store: {store})
     }
     
     private func makeLocalLoader<Resource, S: ResourceStore>(_ type: Resource.Type, maxCacheAgeInSeconds: Int, store: ()->S) -> AnyLocalLoader<Resource> where S.Resource == Resource{
@@ -151,15 +151,16 @@ extension APIPublisherFactory{
             .eraseToAnyPublisher()
     }
     
-    public func makeLocalVehiclesPublisher(includes params: [String]? = nil, updater: VehicleUpdater? = nil) -> AnyPublisher<[KTVehicle], Error>{
+    public func makeVehiclesPublisher(includes params: [String]? = nil, updater: VehicleUpdater? = nil) -> AnyPublisher<[KTVehicle], Error>{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
         let inMemoryLoader = makeInMemoryLoader([KTVehicle].self)
-        let localLoader = makeLocalLoader([KTVehicle].self, maxCacheAgeInSeconds: 60*60)
+        let localLoader = makeLocalLoader([KTVehicle].self, maxCacheAgeInSeconds: 60*60*24)
         let client = self.client
         
         let publisher = inMemoryLoader
             .loadPublisher()
             .fallback(to: localLoader.loadPublisher)
+            .caching(to: inMemoryLoader)
             .fallback(to: {
                 return client
                     .getPublisher(urlRequest: URLRequest(url: url))
@@ -169,14 +170,12 @@ extension APIPublisherFactory{
             })
         
         return publisher
-            .mergeWithVehicleUpdaterPublisher(to: updater, loader: localLoader.loadPublisher())
+            .mergePublisher(updater?
+                .loadPublisher(loader: inMemoryLoader.loadPublisher())
+                .caching(to: localLoader)
+            )
             .subscribe(on: scheduler)
             .eraseToAnyPublisher()
-    }
-    
-    public func makeVehiclesPublisher(includes params: [String]? = nil, updater: VehicleUpdater? = nil) -> AnyPublisher<[KTVehicle], Error>{
-        let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
-        return makePublisher(request: URLRequest(url: url), mapper: VehiclesMapper.map)
     }
     
     public func makeUserPublisher(includes params: [String]? = nil) -> AnyPublisher<KTUser, Error>{
@@ -257,15 +256,16 @@ extension APIPublisherFactory{
     
 }
 
-extension AnyPublisher<[KTVehicle], Error> {
-    func mergeWithVehicleUpdaterPublisher(to updater: VehicleUpdater?, loader: AnyPublisher<[KTVehicle], Error>) -> AnyPublisher<[KTVehicle], Error>{
-        guard let updater else{
-            return self
-        }
-        
+var test: Cancellable?
+
+
+extension VehicleUpdater{
+    func loadPublisher(loader: AnyPublisher<[KTVehicle], Error>) -> AnyPublisher<[KTVehicle], Error>{
         let subject = PassthroughSubject<[KTVehicle],Error>()
-        updater.didUpdateVehicle = {vehicle in
-            let _ = loader.sink { completion in
+        var cancellable: Cancellable?
+        didUpdateVehicle = { vehicle in
+            print(vehicle)
+            test = loader.sink { completion in
             } receiveValue: { vehicles in
                 var theVehicles = vehicles
                 let idx = theVehicles.firstIndex { aVehicle in
@@ -278,7 +278,16 @@ extension AnyPublisher<[KTVehicle], Error> {
                 }
             }
         }
-        return merge(with: subject).eraseToAnyPublisher()
+        return subject.eraseToAnyPublisher()
+    }
+}
+
+extension AnyPublisher<[KTVehicle], Error> {
+    func mergePublisher(_ publisher: AnyPublisher<[KTVehicle], Error>?) -> AnyPublisher<[KTVehicle], Error>{
+        guard let publisher else{
+            return self
+        }
+        return merge(with: publisher).eraseToAnyPublisher()
     }
 }
 
