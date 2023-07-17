@@ -9,41 +9,6 @@
 import Foundation
 import Combine
 
-class InMemoryVehicleUpdaterAdapter{
-    let loader: AnyLocalLoader<[KTVehicle]>
-    var updater: VehicleEmitter
-    var subject = PassthroughSubject<[KTVehicle],Error>()
-
-    
-    init(loader: AnyLocalLoader<[KTVehicle]>, updater: VehicleEmitter) {
-        self.loader = loader
-        self.updater = updater
-    }
-    
-    func startUpdaterPublisher() -> AnyPublisher<[KTVehicle], Error> {
-        load()
-        return subject.eraseToAnyPublisher()
-    }
-    
-    func load() -> Void{
-        updater.didEmitVehicle = { vehicle in
-            self.loader.load { result in
-                if var vehicles = try? result.get(){
-                    let idx = vehicles.firstIndex { aVehicle in
-                        return aVehicle.imei == vehicle.imei
-                    }
-                    if let idx{
-                        vehicles.remove(at: idx)
-                        vehicles.insert(vehicle, at: idx)
-                        self.subject.send(vehicles)
-                    }
-                }
-            }
-        }
-    }
-    
-}
-
 public protocol VehicleEmitter: AnyObject{
     var didEmitVehicle: ((KTVehicle) -> Void)? { get set }
 }
