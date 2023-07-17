@@ -11,11 +11,11 @@ import Combine
 
 class InMemoryVehicleUpdaterAdapter{
     let loader: AnyLocalLoader<[KTVehicle]>
-    var updater: VehicleUpdater
+    var updater: VehicleEmitter
     var subject = PassthroughSubject<[KTVehicle],Error>()
 
     
-    init(loader: AnyLocalLoader<[KTVehicle]>, updater: VehicleUpdater) {
+    init(loader: AnyLocalLoader<[KTVehicle]>, updater: VehicleEmitter) {
         self.loader = loader
         self.updater = updater
     }
@@ -26,7 +26,7 @@ class InMemoryVehicleUpdaterAdapter{
     }
     
     func load() -> Void{
-        updater.didUpdateVehicle = { vehicle in
+        updater.didEmitVehicle = { vehicle in
             self.loader.load { result in
                 if var vehicles = try? result.get(){
                     let idx = vehicles.firstIndex { aVehicle in
@@ -44,8 +44,8 @@ class InMemoryVehicleUpdaterAdapter{
     
 }
 
-public protocol VehicleUpdater: AnyObject{
-    var didUpdateVehicle: ((KTVehicle) -> Void)? { get set }
+public protocol VehicleEmitter: AnyObject{
+    var didEmitVehicle: ((KTVehicle) -> Void)? { get set }
 }
 
 open class APIPublisherFactory{
@@ -151,7 +151,7 @@ extension APIPublisherFactory{
             .eraseToAnyPublisher()
     }
     
-    public func makeVehiclesPublisher(includes params: [String]? = nil, updater: VehicleUpdater? = nil) -> AnyPublisher<[KTVehicle], Error>{
+    public func makeVehiclesPublisher(includes params: [String]? = nil, updater: VehicleEmitter? = nil) -> AnyPublisher<[KTVehicle], Error>{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
         let inMemoryLoader = makeInMemoryLoader([KTVehicle].self)
         let localLoader = makeLocalLoader([KTVehicle].self, maxCacheAgeInSeconds: 60*60*24)
@@ -256,24 +256,18 @@ extension APIPublisherFactory{
     
 }
 
-var test: Cancellable?
-
-
-extension VehicleUpdater{
+extension VehicleEmitter{
     func loadPublisher(loader: AnyPublisher<[KTVehicle], Error>) -> AnyPublisher<[KTVehicle], Error>{
         let subject = PassthroughSubject<[KTVehicle],Error>()
-        var cancellable: Cancellable?
-        didUpdateVehicle = { vehicle in
-            print(vehicle)
-            test = loader.sink { completion in
+        didEmitVehicle = { vehicle in
+            let _ = loader.sink { completion in
             } receiveValue: { vehicles in
                 var theVehicles = vehicles
                 let idx = theVehicles.firstIndex { aVehicle in
                     return aVehicle.imei == vehicle.imei
                 }
                 if let idx{
-                    theVehicles.remove(at: idx)
-                    theVehicles.insert(vehicle, at: idx)
+                    theVehicles[idx] = vehicle
                     subject.send(theVehicles)
                 }
             }

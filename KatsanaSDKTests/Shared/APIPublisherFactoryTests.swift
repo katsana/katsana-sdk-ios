@@ -182,7 +182,7 @@ class HTTPClientStub: HTTPClient{
     }
 }
 
-class VehicleUpdaterStub: VehicleUpdater{
+class VehicleUpdaterStub: VehicleEmitter{
     var didUpdateVehicle: ((KTVehicle) -> Void)?
     
     func send(_ vehicle: KTVehicle){
