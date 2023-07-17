@@ -21,7 +21,7 @@ open class APIPublisherFactory{
     let storeManager: ResourceStoreManager
         
     public lazy var scheduler: AnyDispatchQueueScheduler = DispatchQueue(
-        label: "com.essentialdeveloper.infra.queue",
+        label: "com.katsana.infra.queue",
         qos: .userInitiated,
         attributes: .concurrent
     ).eraseToAnyScheduler()
