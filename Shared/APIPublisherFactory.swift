@@ -137,6 +137,7 @@ extension APIPublisherFactory{
         return publisher
             .mergePublisher(updater?
                 .loadPublisher(loader: inMemoryLoader.loadPublisher())
+                .caching(to: inMemoryLoader)
                 .caching(to: localLoader)
             )
             .subscribe(on: scheduler)

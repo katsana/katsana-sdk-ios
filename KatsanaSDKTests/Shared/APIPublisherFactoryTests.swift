@@ -183,10 +183,10 @@ class HTTPClientStub: HTTPClient{
 }
 
 class VehicleUpdaterStub: VehicleEmitter{
-    var didUpdateVehicle: ((KTVehicle) -> Void)?
-    
+    var didEmitVehicle: ((KTVehicle) -> Void)?
+        
     func send(_ vehicle: KTVehicle){
-        didUpdateVehicle?(vehicle)
+        didEmitVehicle?(vehicle)
     }
     
 }
