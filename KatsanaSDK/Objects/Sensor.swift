@@ -7,7 +7,7 @@
 //
 
 
-public enum SensorType: Codable, Equatable{
+public enum SensorType: String, Codable, Equatable{
     case arm
     case door
     case other
