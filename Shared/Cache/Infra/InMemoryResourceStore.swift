@@ -8,6 +8,9 @@
 
 import Foundation
 
+fileprivate let globalBackgroundSyncronizeDataQueue = DispatchQueue(
+    label: "globalSyncQueue")
+
 private var InMemoryResourceStoreCaches = [String: Any]()
 
 public class InMemoryResourceStore<R>: ResourceStore where R: Equatable, R: Codable{
@@ -23,12 +26,16 @@ public class InMemoryResourceStore<R>: ResourceStore where R: Equatable, R: Coda
     
     public func deleteCachedResource() throws {
         let key = String(describing: R.self)
-        InMemoryResourceStoreCaches[key] = nil
+        globalBackgroundSyncronizeDataQueue.sync(){
+            InMemoryResourceStoreCaches[key] = nil
+        }
     }
     
     public func insert(_ resource: R, timestamp: Date) throws {
         let key = String(describing: R.self)
-        InMemoryResourceStoreCaches[key] = Cache(resource: resource, timestamp: timestamp)
+        globalBackgroundSyncronizeDataQueue.sync(){
+            InMemoryResourceStoreCaches[key] = Cache(resource: resource, timestamp: timestamp)
+        }
     }
     
     public func retrieve() throws -> KatsanaSDK.CachedResource<R>? {
