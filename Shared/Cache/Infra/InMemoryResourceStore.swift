@@ -12,6 +12,8 @@ fileprivate let globalBackgroundSyncronizeDataQueue = DispatchQueue(
     label: "globalSyncQueue")
 
 private var InMemoryResourceStoreCaches = [String: Any]()
+private let inMemoryResourceStoreLock = NSLock()
+
 
 public class InMemoryResourceStore<R>: ResourceStore where R: Equatable, R: Codable{
     public typealias Resource = R
@@ -41,8 +43,12 @@ public class InMemoryResourceStore<R>: ResourceStore where R: Equatable, R: Coda
     public func retrieve() throws -> KatsanaSDK.CachedResource<R>? {
         let key = String(describing: R.self)
 
+        inMemoryResourceStoreLock.lock()
         if let cache = InMemoryResourceStoreCaches[key] as? Cache<R>{
+            inMemoryResourceStoreLock.unlock()
             return (cache.resource, cache.timestamp)
+        }else{
+            inMemoryResourceStoreLock.unlock()
         }
         return .none
     }
