@@ -28,16 +28,16 @@ public class InMemoryResourceStore<R>: ResourceStore where R: Equatable, R: Coda
     
     public func deleteCachedResource() throws {
         let key = String(describing: R.self)
-        globalBackgroundSyncronizeDataQueue.sync(){
-            InMemoryResourceStoreCaches[key] = nil
-        }
+        inMemoryResourceStoreLock.lock()
+        InMemoryResourceStoreCaches[key] = nil
+        inMemoryResourceStoreLock.unlock()
     }
     
     public func insert(_ resource: R, timestamp: Date) throws {
         let key = String(describing: R.self)
-        globalBackgroundSyncronizeDataQueue.sync(){
-            InMemoryResourceStoreCaches[key] = Cache(resource: resource, timestamp: timestamp)
-        }
+        inMemoryResourceStoreLock.lock()
+        InMemoryResourceStoreCaches[key] = Cache(resource: resource, timestamp: timestamp)
+        inMemoryResourceStoreLock.unlock()
     }
     
     public func retrieve() throws -> KatsanaSDK.CachedResource<R>? {
