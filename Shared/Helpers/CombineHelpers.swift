@@ -173,7 +173,7 @@ extension DispatchQueue {
 public typealias AnyDispatchQueueScheduler = AnyScheduler<DispatchQueue.SchedulerTimeType, DispatchQueue.SchedulerOptions>
 
 extension AnyDispatchQueueScheduler {
-    static var immediateOnMainQueue: Self {
+    public static var immediateOnMainQueue: Self {
         DispatchQueue.immediateWhenOnMainQueueScheduler.eraseToAnyScheduler()
     }
 }
