@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension URL{
+public extension URL{
     static func make(url: URL, queryItems: [URLQueryItem]? = nil) -> URL?{
         var components = URLComponents()
         components.scheme = url.scheme

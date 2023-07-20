@@ -16,15 +16,16 @@ public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
     var tokenService: TokenService & TokenCache
     var username: String?
     
+    public var onAuthenticated: ((Bool) -> ())?
+    
     lazy var httpClient: HTTPClient = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
     lazy var loginService: LoginService = {
         let loginService = HTTPLoginService(baseURL: baseURL, credential: credential, httpClient: httpClient)
         return MainQueueDispatchDecorator(loginService)
     }()
     public lazy var publisherFactory: APIPublisherFactory = {
-        let authClient = AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService)
         let storeManager = ResourceStoreManager(delegate: self)
-        let factory = APIPublisherFactory(baseURL: baseURL, baseStoreURL: localStoreURL, client: authClient, storeManager: storeManager)
+        let factory = APIPublisherFactory(baseURL: baseURL, baseStoreURL: localStoreURL, client: authenticatedClient(), storeManager: storeManager)
         return factory
     }()
     
@@ -45,6 +46,7 @@ public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
             switch result{
             case .success(let token):
                 self?.tokenService.save(token: token)
+                self?.onAuthenticated?(true)
             case .failure:
                 ()
             }
@@ -55,6 +57,8 @@ public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
     public func logout(){
         username = nil
         tokenService.delete()
+        onAuthenticated?(false)
+
     }
     
     // MARK:
@@ -65,5 +69,11 @@ public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
         let store = CodableResourceStore<Resource>(storeURL: url)
         let anyStore = AnyResourceStore(store)
         return anyStore
+    }
+    
+    // MARK: Helper
+    
+    public func authenticatedClient() -> HTTPClient{
+        return AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService)
     }
 }
