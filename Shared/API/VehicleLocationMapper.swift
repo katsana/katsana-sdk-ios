@@ -27,8 +27,8 @@ public class VehicleLocationMapper{
 //        pos.fuelPercentage = json["mode"].string
         pos.speed = json["speed"].floatValue
         pos.state = json["state"].stringValue
-        pos.voltage = json["voltage"].stringValue
-        pos.gsm = json["gsm"].stringValue
+        pos.voltage = json["voltage"].intValue
+        pos.gsm = json["gsm"].intValue
         pos.ignitionState = json["ignition"].boolValue
         
         
