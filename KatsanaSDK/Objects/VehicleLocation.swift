@@ -45,8 +45,8 @@ open class VehicleLocation: Codable, Equatable{
     open var distance: Float = 0
     
     open var state: String!
-    open var voltage: String!
-    open var gsm: String!
+    open var voltage: Int?
+    open var gsm: Int?
     open var ignitionState: Bool = false
     open var verticalAccuracy: Float = 0
     open var horizontalAccuracy: Float = 0
