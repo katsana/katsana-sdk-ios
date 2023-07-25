@@ -13,13 +13,13 @@ public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
     let localStoreURL: URL
     
     let credential: Credential
-    var tokenService: TokenService & TokenCache
+    public var tokenService: TokenService & TokenCache
     var username: String?
     
     public var onAuthenticated: ((Bool) -> ())?
     
-    lazy var httpClient: HTTPClient = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-    lazy var loginService: LoginService = {
+    public lazy var httpClient: HTTPClient = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+    public lazy var loginService: LoginService = {
         let loginService = HTTPLoginService(baseURL: baseURL, credential: credential, httpClient: httpClient)
         return MainQueueDispatchDecorator(loginService)
     }()
@@ -77,3 +77,5 @@ public class KatsanaAPI: ResourceStoreManagerDelegate, LoginService{
         return AuthenticatedHTTPClientDecorator(decoratee: httpClient, tokenService: tokenService)
     }
 }
+
+
