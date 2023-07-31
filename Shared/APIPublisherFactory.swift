@@ -134,9 +134,11 @@ extension APIPublisherFactory{
                     .caching(to: inMemoryLoader)
             })
         
+        
+        
         return publisher
             .mergePublisher(updater?
-                .loadPublisher(loader: inMemoryLoader.loadPublisher())
+                .loadPublisher(loader: inMemoryLoader.loadPublisher(), scheduler: scheduler)
                 .caching(to: inMemoryLoader)
                 .caching(to: localLoader)
             )
@@ -187,7 +189,7 @@ extension APIPublisherFactory{
     }
     
     public func makeImagePublisher(client: HTTPClient, url: URL, defaultImageData: Data?) -> AnyPublisher<Data, Error>{
-        let name = url.pathComponents[url.pathComponents.count-2] + "_" + url.lastPathComponent
+        let name = url.pathComponents.count > 2 ? (url.pathComponents[url.pathComponents.count-2] + "_" + url.lastPathComponent) : url.absoluteString
         let storeURL = baseStoreURL.appendingPathComponent(name)
         
         let store = CodableResourceStore<Data>(storeURL: storeURL)
@@ -222,9 +224,10 @@ extension APIPublisherFactory{
     
 }
 
+private let vehicleEmitterSubject = PassthroughSubject<[KTVehicle],Error>()
+
 extension VehicleEmitter{
-    func loadPublisher(loader: AnyPublisher<[KTVehicle], Error>) -> AnyPublisher<[KTVehicle], Error>{
-        let subject = PassthroughSubject<[KTVehicle],Error>()
+    func loadPublisher(loader: AnyPublisher<[KTVehicle], Error>, scheduler: AnyDispatchQueueScheduler) -> AnyPublisher<[KTVehicle], Error>{
         didEmitVehicle = { vehicle in
             let _ = loader.sink { completion in
             } receiveValue: { vehicles in
@@ -234,11 +237,11 @@ extension VehicleEmitter{
                 }
                 if let idx{
                     theVehicles[idx] = vehicle
-                    subject.send(theVehicles)
+                    vehicleEmitterSubject.send(theVehicles)
                 }
             }
         }
-        return subject.eraseToAnyPublisher()
+        return vehicleEmitterSubject.subscribe(on: scheduler).eraseToAnyPublisher()
     }
 }
 
