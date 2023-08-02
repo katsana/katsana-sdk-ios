@@ -32,4 +32,8 @@ public final class ResourceCachePolicy {
     public static var defaultPolicy: ResourceCachePolicy{
         ResourceCachePolicy(maxCacheAgeInSeconds: {maxCacheAgeInDays*24*60*60})
     }
+    
+    public static var infinity: ResourceCachePolicy{
+        ResourceCachePolicy(maxCacheAgeInSeconds: {100000*24*60*60})
+    }
 }

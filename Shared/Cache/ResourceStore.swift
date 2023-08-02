@@ -27,4 +27,10 @@ public protocol ResourceStore{
     func retrieve() throws -> CachedResource<Resource>?
 }
 
+extension ResourceStore{
+    public func eraseToAnyStore() -> AnyResourceStore<Resource>{
+        return AnyResourceStore(self)
+    }
+}
+
 
