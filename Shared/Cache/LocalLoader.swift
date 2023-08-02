@@ -37,6 +37,14 @@ public final class LocalLoader<Resource, S: ResourceStore>: ResourceLoader where
             completion(.failure(error))
         }
     }
+    
+    public func load() throws -> LoadResource{
+        if let cache = try store.retrieve(), self.cachePolicy.validate(cache.timestamp, against: currentDate()) {
+            return cache.resource
+        }else{
+            throw LocalLoaderError.notFound
+        }
+    }
 }
 
 extension LocalLoader: ResourceCache {
@@ -51,6 +59,11 @@ extension LocalLoader: ResourceCache {
         catch{
             completion(.failure(error))
         }
+    }
+    
+    public func save(_ resource: Resource) throws {
+        try store.deleteCachedResource()
+        try store.insert(resource, timestamp: currentDate())
     }
 }
 
