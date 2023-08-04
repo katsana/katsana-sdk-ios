@@ -44,6 +44,7 @@ open class APIPublisherFactory{
         return RemoteLoader(url: url, client: client, mapper: VehicleMapper.map)
     }
     
+    
     public func makeVehiclesLoader(includes params: [String]? = nil) -> RemoteLoader<[KTVehicle]>{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
         return RemoteLoader(url: url, client: client, mapper: VehiclesMapper.map)
@@ -149,6 +150,12 @@ extension APIPublisherFactory{
     public func makeUserPublisher(includes params: [String]? = nil) -> AnyPublisher<KTUser, Error>{
         let url = UserProfileEndpoint.get(includes: params).url(baseURL: baseURL)
         return makePublisher(request: URLRequest(url: url), mapper: UserMapper.map)
+    }
+    
+    public func makeTodayTravelSummaryPublisher(vehicleId: Int) -> AnyPublisher<KTDayTravelSummary, Error>{
+        let url = TodayTravelSummaryEndpoint.get(vehicleId: vehicleId).url(baseURL: baseURL)
+        let key = "\(vehicleId)"
+        return makePublisherWithCachedKey(request:  URLRequest(url: url), maxCacheAgeInSeconds: 60*5, cacheKey: key, mapper: DayTravelSummaryMapper.map)
     }
     
     public func makeDayTravelPublisher(vehicleId: Int, date: Date) -> AnyPublisher<KTDayTravel, Error>{

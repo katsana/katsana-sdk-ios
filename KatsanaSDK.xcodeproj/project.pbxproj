@@ -17,7 +17,7 @@
 		C118BA312A020F730068D7D2 /* Trip+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C118BA302A020F730068D7D2 /* Trip+Helpers.swift */; };
 		C118BA382A0219C30068D7D2 /* TodayTravelSummaryEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C118BA342A02194B0068D7D2 /* TodayTravelSummaryEndpoint.swift */; };
 		C118BA3B2A021BB50068D7D2 /* TodayTravelSummaryEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C118BA3A2A021BB50068D7D2 /* TodayTravelSummaryEndpointTests.swift */; };
-		C118BA3F2A021E780068D7D2 /* TodayTravelSummaryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C118BA362A0219550068D7D2 /* TodayTravelSummaryMapper.swift */; };
+		C118BA3F2A021E780068D7D2 /* DayTravelSummaryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C118BA362A0219550068D7D2 /* DayTravelSummaryMapper.swift */; };
 		C118BA412A021F100068D7D2 /* DayTravelSummaryMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C118BA402A021F100068D7D2 /* DayTravelSummaryMapperTests.swift */; };
 		C11FECB829CAE371003914DC /* LoadFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECB629CAE361003914DC /* LoadFromCacheUseCaseTests.swift */; };
 		C11FECC029CBBD91003914DC /* CacheTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FECBA29CBBD3E003914DC /* CacheTestHelpers.swift */; };
@@ -212,7 +212,7 @@
 		C118BA2E2A020F3C0068D7D2 /* DayTravelMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTravelMapperTests.swift; sourceTree = "<group>"; };
 		C118BA302A020F730068D7D2 /* Trip+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+Helpers.swift"; sourceTree = "<group>"; };
 		C118BA342A02194B0068D7D2 /* TodayTravelSummaryEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTravelSummaryEndpoint.swift; sourceTree = "<group>"; };
-		C118BA362A0219550068D7D2 /* TodayTravelSummaryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTravelSummaryMapper.swift; sourceTree = "<group>"; };
+		C118BA362A0219550068D7D2 /* DayTravelSummaryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTravelSummaryMapper.swift; sourceTree = "<group>"; };
 		C118BA3A2A021BB50068D7D2 /* TodayTravelSummaryEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTravelSummaryEndpointTests.swift; sourceTree = "<group>"; };
 		C118BA402A021F100068D7D2 /* DayTravelSummaryMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTravelSummaryMapperTests.swift; sourceTree = "<group>"; };
 		C11FECB629CAE361003914DC /* LoadFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
@@ -463,7 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				C118BA342A02194B0068D7D2 /* TodayTravelSummaryEndpoint.swift */,
-				C118BA362A0219550068D7D2 /* TodayTravelSummaryMapper.swift */,
+				C118BA362A0219550068D7D2 /* DayTravelSummaryMapper.swift */,
 			);
 			path = "DayTravelSummary API";
 			sourceTree = "<group>";
@@ -1241,7 +1241,7 @@
 				C1FAE6FB29C0592E001D3D86 /* UserMapper.swift in Sources */,
 				C186A1C62A5501C200EE2AF2 /* LoginEndpoint.swift in Sources */,
 				C71917821E48703B0041BC18 /* KatsanaAPI+Login.swift in Sources */,
-				C118BA3F2A021E780068D7D2 /* TodayTravelSummaryMapper.swift in Sources */,
+				C118BA3F2A021E780068D7D2 /* DayTravelSummaryMapper.swift in Sources */,
 				C71917CB1E4884410041BC18 /* DateHelper.swift in Sources */,
 				C118BA262A0201320068D7D2 /* DayTravelMapper.swift in Sources */,
 				C118BA222A0200BF0068D7D2 /* TripMapper.swift in Sources */,
