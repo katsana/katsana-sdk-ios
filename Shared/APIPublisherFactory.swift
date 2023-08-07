@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-public protocol VehicleEmitter: AnyObject{
+public protocol ResourceEmitter: AnyObject{
     var didEmitVehicle: ((KTVehicle) -> Void)? { get set }
 }
 
@@ -117,7 +117,7 @@ extension APIPublisherFactory{
             .eraseToAnyPublisher()
     }
     
-    public func makeVehiclesPublisher(includes params: [String]? = nil, updater: VehicleEmitter? = nil) -> AnyPublisher<[KTVehicle], Error>{
+    public func makeVehiclesPublisher(includes params: [String]? = nil, updater: ResourceEmitter? = nil) -> AnyPublisher<[KTVehicle], Error>{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
         let inMemoryLoader = makeInMemoryLoader([KTVehicle].self)
         let localLoader = makeLocalLoader([KTVehicle].self, maxCacheAgeInSeconds: 60*60*24)
@@ -233,7 +233,7 @@ extension APIPublisherFactory{
 
 private let vehicleEmitterSubject = PassthroughSubject<[KTVehicle],Error>()
 
-extension VehicleEmitter{
+extension ResourceEmitter{
     func loadPublisher(loader: AnyPublisher<[KTVehicle], Error>, scheduler: AnyDispatchQueueScheduler) -> AnyPublisher<[KTVehicle], Error>{
         didEmitVehicle = { vehicle in
             let _ = loader.sink { completion in
