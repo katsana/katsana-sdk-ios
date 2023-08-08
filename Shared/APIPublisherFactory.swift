@@ -231,7 +231,7 @@ private let vehicleEmitterSubject = PassthroughSubject<[KTVehicle],Error>()
 
 extension AnyResourceEmitter where Resource == KTVehicle{
     func loadPublisher(loader: AnyPublisher<[KTVehicle], Error>, scheduler: AnyDispatchQueueScheduler) -> AnyPublisher<[KTVehicle], Error>{
-        didEmitVehicle = { vehicle in
+        didEmitResource = { vehicle in
             let _ = loader.sink { completion in
             } receiveValue: { vehicles in
                 var theVehicles = vehicles

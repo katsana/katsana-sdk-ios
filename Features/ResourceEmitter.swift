@@ -10,7 +10,7 @@ import Foundation
 
 public protocol ResourceEmitter: AnyObject{
     associatedtype Resource
-    var didEmitVehicle: ((Resource) -> Void)? { get set }
+    var didEmitResource: ((Resource) -> Void)? { get set }
 }
 
 extension ResourceEmitter{
@@ -23,15 +23,15 @@ public class AnyResourceEmitter<R>: NSObject, ResourceEmitter {
     public typealias Resource = R
     private let wrapped: Any
 
-    public var didEmitVehicle: ((R) -> Void)?
+    public var didEmitResource: ((R) -> Void)?
     
     public init<L: ResourceEmitter>(wrappedLoader: L) where L.Resource == Resource {
         self.wrapped = wrappedLoader
         super.init()
-        wrappedLoader.didEmitVehicle = vehicleEmitted
+        wrappedLoader.didEmitResource = vehicleEmitted
     }
     
     func vehicleEmitted(_ resource: R){
-        didEmitVehicle?(resource)
+        didEmitResource?(resource)
     }
 }
