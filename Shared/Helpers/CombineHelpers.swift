@@ -41,7 +41,7 @@ public extension ReverseGeocodingClient {
 }
 
 extension Publisher {
-    func caching<R: ResourceCache>(to cache: R) -> AnyPublisher<Output, Failure> where Output == R.SaveResource{
+    public func caching<R: ResourceCache>(to cache: R) -> AnyPublisher<Output, Failure> where Output == R.SaveResource{
         handleEvents(receiveOutput: cache.saveIgnoringResult).eraseToAnyPublisher()
     }
 }
@@ -105,6 +105,24 @@ public extension LocalResourceWithKeyLoader {
             }
         }
         .eraseToAnyPublisher()
+    }
+}
+
+private var resourceEmitterSubjects = [String: Any]()
+public extension ResourceEmitter{
+    public func loadPublisher() -> AnyPublisher<Resource, Error> {
+        let title = "\(Resource.self)"
+        
+        var emitterSubject = resourceEmitterSubjects[title] as? PassthroughSubject<Resource,Error>
+        if emitterSubject == nil{
+            emitterSubject = PassthroughSubject<Resource,Error>()
+            resourceEmitterSubjects[title] = emitterSubject
+        }
+        
+        self.didEmitResource = { resource in
+            emitterSubject?.send(resource)
+        }
+        return emitterSubject!.eraseToAnyPublisher()
     }
 }
 
