@@ -28,6 +28,5 @@ public class AnyResourceLoader<Resource>: ResourceLoader {
     public func load(completion: @escaping (LoadResult) -> Void) {
         loaderObject(completion)
     }
-
 }
 
