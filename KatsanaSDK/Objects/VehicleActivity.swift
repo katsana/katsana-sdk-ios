@@ -29,7 +29,7 @@ public enum ActivityType : Int {
     //More can be added
 }
 
-open class VehicleActivity: Codable {
+open class OldVehicleActivity: Codable {
     enum CodingKeys: CodingKey {
         case vehicleId
         case message

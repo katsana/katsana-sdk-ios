@@ -48,7 +48,7 @@ public class KTCacheManager: NSObject {
         }
     }
     
-    public var activities = [String: [VehicleActivity]]()
+    public var activities = [String: [OldVehicleActivity]]()
     private var liveShares = [LiveShare]()
     
     private var codableData = [String: [String: Codable]]()
@@ -139,13 +139,13 @@ public class KTCacheManager: NSObject {
         return nil
     }
     
-    func loadCachedActivities() -> [String: [VehicleActivity]]!{
+    func loadCachedActivities() -> [String: [OldVehicleActivity]]!{
         let activitiesPath = cacheDirectory().appending("/" + cacheActivitiesDataFilename())
         let url = URL(fileURLWithPath: activitiesPath)
         if let data = try? Data(contentsOf: url){
-            if let unarchive = try? JSONDecoder().decode([String: [VehicleActivity]].self, from: data){
+            if let unarchive = try? JSONDecoder().decode([String: [OldVehicleActivity]].self, from: data){
                 //Sort activities date
-                var newDicto = [String: [VehicleActivity]]()
+                var newDicto = [String: [OldVehicleActivity]]()
                 for (key, value) in unarchive {
                     let sort = value.sorted { (a, b) -> Bool in
                         return a.startTime.timeIntervalSince(b.startTime) > 0
@@ -184,7 +184,7 @@ public class KTCacheManager: NSObject {
         return nil
     }
     
-    public func latestVehicleActivity(userId: String) -> VehicleActivity! {
+    public func latestVehicleActivity(userId: String) -> OldVehicleActivity! {
         if let activities = activities[userId]{
             return activities.first //Assume first is latest activity
         }
@@ -343,7 +343,7 @@ public class KTCacheManager: NSObject {
         return nil
     }
     
-    public func vehicleActivities(userId: String) -> [VehicleActivity]! {
+    public func vehicleActivities(userId: String) -> [OldVehicleActivity]! {
         if let activities = activities[userId]{
             return activities
         }
@@ -352,7 +352,7 @@ public class KTCacheManager: NSObject {
     
     public func validateVehicleActivities(userId: String, vehicleIds: [String]) {
         if let theActivities = activities[userId]{
-            var newActivities = [VehicleActivity]()
+            var newActivities = [OldVehicleActivity]()
             for act in theActivities {
                 if let vehicleId = act.vehicleId {
                     if vehicleIds.contains(vehicleId) {
@@ -590,19 +590,19 @@ public class KTCacheManager: NSObject {
         }
     }
     
-    public func cache(activities: [VehicleActivity], userId: String) {
+    public func cache(activities: [OldVehicleActivity], userId: String) {
         for act in activities {
             cache(activity: act, userId: userId)
         }
     }
     
-    public func cache(activity: VehicleActivity, userId:String) {
+    public func cache(activity: OldVehicleActivity, userId:String) {
         var needAdd = true
-        var activities: [VehicleActivity]!
+        var activities: [OldVehicleActivity]!
         if self.activities[userId] != nil{
             activities = self.activities[userId]
         }else{
-            activities = [VehicleActivity]()
+            activities = [OldVehicleActivity]()
             self.activities[userId] = activities
         }
         
@@ -868,9 +868,9 @@ public class KTCacheManager: NSObject {
             
             if Date().timeIntervalSince(lastPurgeDate) > purgeInterval {
                 let oldActivityDate = Date().addingTimeInterval(-purgeInterval)
-                var activitiesDicto = [String : [VehicleActivity]]()
+                var activitiesDicto = [String : [OldVehicleActivity]]()
                 for (key, vehicleActivities) in activities {
-                    var newActivites = [VehicleActivity]()
+                    var newActivites = [OldVehicleActivity]()
                     for act in vehicleActivities {
                         newActivites.append(act)
                         if act.startTime.timeIntervalSince(oldActivityDate) < 0{

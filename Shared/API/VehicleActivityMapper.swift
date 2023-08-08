@@ -11,8 +11,8 @@ import Foundation
 public class VehicleActivityMapper{
     private init() {}
     
-    public static func mapJSON(_ json: JSON) -> VehicleActivity {
-        let violation = VehicleActivity()
+    public static func mapJSON(_ json: JSON) -> OldVehicleActivity {
+        let violation = OldVehicleActivity()
         violation.violationId = json["id"].intValue
         violation.policyId = json["policy_id"].intValue
         violation.policyKey = json["policy_type"].stringValue

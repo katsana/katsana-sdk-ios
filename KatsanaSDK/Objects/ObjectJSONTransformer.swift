@@ -222,8 +222,8 @@ class ObjectJSONTransformer {
         return address
     }
     
-    class func VehicleActivityObject(json : JSON) -> VehicleActivity {
-        let violation = VehicleActivity()
+    class func VehicleActivityObject(json : JSON) -> OldVehicleActivity {
+        let violation = OldVehicleActivity()
         violation.violationId = json["id"].intValue
         violation.policyId = json["policy_id"].intValue
         violation.policyKey = json["policy_type"].stringValue

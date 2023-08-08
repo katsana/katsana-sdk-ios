@@ -38,7 +38,7 @@ public class KTTrip: NSCopying, Codable {
     
     public var idles = [VehicleLocation]()
     public var locations: [VehicleLocation]
-    public var violations = [VehicleActivity]()
+    public var violations = [OldVehicleActivity]()
     
     ///Next trip and prev trip automatically set when trips are set in Travel class
 //    weak public var nextTrip: KTTrip?
