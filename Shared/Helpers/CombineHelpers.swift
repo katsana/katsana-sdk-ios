@@ -110,7 +110,7 @@ public extension LocalResourceWithKeyLoader {
 
 private var resourceEmitterSubjects = [String: Any]()
 public extension ResourceEmitter{
-    public func loadPublisher() -> AnyPublisher<Resource, Error> {
+    func loadPublisher() -> AnyPublisher<Resource, Error> {
         let title = "\(Resource.self)"
         
         var emitterSubject = resourceEmitterSubjects[title] as? PassthroughSubject<Resource,Error>
