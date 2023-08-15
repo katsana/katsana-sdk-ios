@@ -54,3 +54,30 @@ public class InMemoryResourceStore<R>: ResourceStore where R: Equatable, R: Coda
     }
     
 }
+
+extension InMemoryResourceStore: ResourceWithKeyStore{
+    enum LoadError: Error {
+        case failed
+        case notFound
+    }
+    
+    func identifier(_ key: String) -> String{
+        return key + String(describing: R.self)
+    }
+    
+    public func insert(_ resource: R, for key: String) throws {
+        inMemoryResourceStoreLock.lock()
+        InMemoryResourceStoreCaches[identifier(key)] = resource
+        inMemoryResourceStoreLock.unlock()
+    }
+    
+    public func retrieve(resourceForKey key: String) throws -> R? {
+        inMemoryResourceStoreLock.lock()
+        let resource = InMemoryResourceStoreCaches[identifier(key)] as? R
+        inMemoryResourceStoreLock.unlock()
+        return resource
+    }
+    
+}
+
+

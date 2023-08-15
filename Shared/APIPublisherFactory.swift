@@ -173,15 +173,22 @@ extension APIPublisherFactory{
         let classname = String(describing: KTAddress.self)
         let url = baseStoreURL.appendingPathComponent(classname + ".store")
         
+        let inMemoryStore = InMemoryResourceStore<KTAddress>()
         let store = CodableResourceStore<KTAddress>(storeURL: url)
+        
+        let inMemoryLoader = LocalResourceWithKeyLoader(store: inMemoryStore)
         let localLoader = LocalResourceWithKeyLoader(store: store)
 
         let client = reverseGeocodingClient
         
         let key = Coordinate(coordinate.latitude, coordinate.longitude).stringRepresentation()
         
-        return localLoader
-            .loadPublisher(key: key)
+        return inMemoryLoader.loadPublisher(key: key)
+            .fallback(to: {
+                localLoader
+                    .loadPublisher(key: key)
+                    .caching(to: inMemoryLoader, using: key)
+            })
             .fallback(to: {
                 return client
                     .getPublisher(coordinate: coordinate)
