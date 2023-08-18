@@ -64,23 +64,23 @@ class ObjectJSONTransformer {
     }
     
     class func VideoRecordingObject(json : JSON) -> VehicleLiveStream {
-        var theChannels = [VideoRecordingChannel]()
-        let channels = json["dvr"]["channels"].dictionaryValue
-        for (key, value) in channels {
-            let theChannel = VideoRecordingChannel()
-            theChannel.name = value["name"].string
-            if let status = value["status"].string, status == "On"{
-                theChannel.isOn = true
-            }
-            theChannel.identifier = key
-            theChannels.append(theChannel)
-        }
-        theChannels.sort { a, b in
-            if let id1 = a.identifier, let id2 = b.identifier{
-                return id1 < id2
-            }
-            return false
-        }
+//        var theChannels = [VideoRecordingChannel]()
+//        let channels = json["dvr"]["channels"].dictionaryValue
+//        for (key, value) in channels {
+//            let theChannel = VideoRecordingChannel()
+//            theChannel.name = value["name"].string
+//            if let status = value["status"].string, status == "On"{
+//                theChannel.isOn = true
+//            }
+//            theChannel.identifier = key
+//            theChannels.append(theChannel)
+//        }
+//        theChannels.sort { a, b in
+//            if let id1 = a.identifier, let id2 = b.identifier{
+//                return id1 < id2
+//            }
+//            return false
+//        }
         
         let vehicleId = json["id"].int
         let url = json["dvr"]["liveStreamURL"].string
@@ -92,7 +92,7 @@ class ObjectJSONTransformer {
             verticalRatio = ratio[1]
         }
         
-        let video = VehicleLiveStream(vehicleId: vehicleId!, url: url!, horizontalRatio: horizontalRatio, verticalRatio: verticalRatio, channels: theChannels)
+        let video = VehicleLiveStream(vehicleId: vehicleId!, url: url!, horizontalRatio: horizontalRatio, verticalRatio: verticalRatio, channels: [])
         
         return video
     }

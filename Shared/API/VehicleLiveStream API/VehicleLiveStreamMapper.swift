@@ -36,23 +36,18 @@ private class VehicleLiveStreamMapper{
     }
     
     fileprivate static func mapJSON(_ json: JSON) throws -> VehicleLiveStream {
-        var theChannels = [VideoRecordingChannel]()
+        var theChannels = [VehicleLiveStreamChannel]()
         let channels = json["dvr"]["channels"].dictionaryValue
         for (key, value) in channels {
-            let theChannel = VideoRecordingChannel()
-            theChannel.name = value["name"].string
-            if let status = value["status"].string, status == "On"{
-                theChannel.isOn = true
+            if let name = value["name"].string{
+                var isON = false
+                if let status = value["status"].string, status == "On"{
+                    isON = true
+                }
+                theChannels.append(VehicleLiveStreamChannel(id: key, name: name, status: isON))
             }
-            theChannel.identifier = key
-            theChannels.append(theChannel)
         }
-        theChannels.sort { a, b in
-            if let id1 = a.identifier, let id2 = b.identifier{
-                return id1 < id2
-            }
-            return false
-        }
+        theChannels.sort(by: {$0.id < $1.id})
         
         let vehicleId = json["id"].int
         let url = json["dvr"]["liveStreamURL"].string

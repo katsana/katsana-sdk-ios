@@ -21,9 +21,9 @@ public class VehicleLiveStream: Codable {
 
     public let horizontalRatio: Int?
     public let verticalRatio: Int?
-    public let channels: [VideoRecordingChannel]
+    public let channels: [VehicleLiveStreamChannel]
     
-    public init(vehicleId: Int, url: String, horizontalRatio: Int? = nil, verticalRatio: Int? = nil, channels: [VideoRecordingChannel]) {
+    public init(vehicleId: Int, url: String, horizontalRatio: Int? = nil, verticalRatio: Int? = nil, channels: [VehicleLiveStreamChannel]) {
         self.vehicleId = vehicleId
         self.url = url
         self.horizontalRatio = horizontalRatio
@@ -40,12 +40,18 @@ public class VehicleLiveStream: Codable {
         }
     }
     
-    open func channelName(identifier: String) -> String!{
-        for channel in channels {
-            if let id = channel.identifier, identifier == id{
-                return channel.name
-            }
-        }
-        return nil
-    }
+//    open func channelName(identifier: String) -> String!{
+//        for channel in channels {
+//            if let id = channel.identifier, identifier == id{
+//                return channel.name
+//            }
+//        }
+//        return nil
+//    }
+}
+
+public struct VehicleLiveStreamChannel: Codable{
+    public let id: String
+    public let name: String
+    public let status: Bool
 }
