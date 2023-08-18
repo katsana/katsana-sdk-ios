@@ -22,6 +22,10 @@ class VehicleLiveStreamMapperTests: XCTestCase {
         XCTAssertEqual(first.url, "https://live.anystream.com")
         XCTAssertEqual(first.horizontalRatio, 16)
         XCTAssertEqual(first.verticalRatio, 9)
+        XCTAssertEqual(first.channels.count, 2)
+        XCTAssertEqual(first.channels.first?.id, "1")
+        XCTAssertEqual(first.channels.first?.name, "Road View")
+        XCTAssertEqual(first.channels.first?.status, true)
     }
     
     // MARK:  Helper
