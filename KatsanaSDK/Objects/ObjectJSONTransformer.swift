@@ -64,7 +64,6 @@ class ObjectJSONTransformer {
     }
     
     class func VideoRecordingObject(json : JSON) -> VideoRecording {
-        let video = VideoRecording()
         var theChannels = [VideoRecordingChannel]()
         let channels = json["dvr"]["channels"].dictionaryValue
         for (key, value) in channels {
@@ -82,15 +81,19 @@ class ObjectJSONTransformer {
             }
             return false
         }
-        video.channels = theChannels
-        video.liveStreamURL = json["dvr"]["liveStreamURL"].string
-        if let id = json["id"].int{
-            video.id = String(id)
-        }
+        
+        let vehicleId = json["id"].int
+        let url = json["dvr"]["liveStreamURL"].string
+        
+        var horizontalRatio: Int?
+        var verticalRatio: Int?
         if let ratio = json["dvr"]["ratio"].arrayObject as? [Int], ratio.count > 1{
-            video.horizontalRatio = ratio[0]
-            video.verticalRatio = ratio[1]
+            horizontalRatio = ratio[0]
+            verticalRatio = ratio[1]
         }
+        
+        let video = VideoRecording(vehicleId: vehicleId!, url: url!, horizontalRatio: horizontalRatio, verticalRatio: verticalRatio, channels: theChannels)
+        
         return video
     }
     

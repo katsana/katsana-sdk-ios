@@ -7,31 +7,37 @@
 //
 
 
-open class VideoRecording: Codable {
+public class VideoRecording: Codable {
     enum CodingKeys: CodingKey {
-        case id
+        case vehicleId
         case horizontalRatio
         case verticalRatio
         case channels
-        case liveStreamURL
+        case url
     }
     
-    open var id: String?
-    open var horizontalRatio: Int?
-    open var verticalRatio: Int?
-    open var channels = [VideoRecordingChannel]()
-    open var liveStreamURL: String?
+    public let vehicleId: Int
+    public let url: String
+
+    public let horizontalRatio: Int?
+    public let verticalRatio: Int?
+    public let channels: [VideoRecordingChannel]
+    
+    public init(vehicleId: Int, url: String, horizontalRatio: Int? = nil, verticalRatio: Int? = nil, channels: [VideoRecordingChannel]) {
+        self.vehicleId = vehicleId
+        self.url = url
+        self.horizontalRatio = horizontalRatio
+        self.verticalRatio = verticalRatio
+        self.channels = channels
+    }
     
     open func liveStreamURLTruncated() -> String!{
-        if let url = liveStreamURL{
-            if url.count > 15{
-                let prefixURL = url.prefix(upTo: url.index(url.startIndex, offsetBy: 15)) + "..."
-                return String(prefixURL)
-            }else{
-                return url
-            }
+        if url.count > 15{
+            let prefixURL = url.prefix(upTo: url.index(url.startIndex, offsetBy: 15)) + "..."
+            return String(prefixURL)
+        }else{
+            return url
         }
-        return nil
     }
     
     open func channelName(identifier: String) -> String!{

@@ -23,7 +23,7 @@ extension KatsanaAPI_Old{
                 }
                 
                 for summary in summaries {
-                    if let id = summary.id, let theId = Int(id), let vehicle = self.vehicleWith(vehicleId: theId){
+                    if let vehicle = self.vehicleWith(vehicleId: summary.vehicleId){
                         vehicle.videoRecording = summary
                     }
                 }
@@ -56,18 +56,14 @@ extension KatsanaAPI_Old{
         func handleResource() -> Void {
             if let videoRecording : VideoRecording = resource.typedContent(){
                 vehicle.requestVideoRecordingDate = Date()
-                if videoRecording.liveStreamURL == nil{
-                    completion(nil)
-                }else{
-                    vehicle.videoRecording = videoRecording
-                    if let idx = self.vehicles.firstIndex(of: vehicle){
-                        self.vehicles[idx] = vehicle
-                    }
-                    if let currentVehicle = self.currentVehicle, currentVehicle.vehicleId == vehicle.vehicleId{
-                        self.currentVehicle = vehicle
-                    }
-                    completion(videoRecording)
+                vehicle.videoRecording = videoRecording
+                if let idx = self.vehicles.firstIndex(of: vehicle){
+                    self.vehicles[idx] = vehicle
                 }
+                if let currentVehicle = self.currentVehicle, currentVehicle.vehicleId == vehicle.vehicleId{
+                    self.currentVehicle = vehicle
+                }
+                completion(videoRecording)
             }else{
                 failure(nil)
             }
