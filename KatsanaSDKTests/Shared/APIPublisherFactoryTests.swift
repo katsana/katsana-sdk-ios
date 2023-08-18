@@ -29,7 +29,7 @@ final class APIPublisherFactoryTests: XCTestCase, ResourceStoreManagerDelegate {
     func test_makeVehiclesPublisher_updaterWorksCorrectly(){
         let (sut, stub) = makeSUT()
         let updater = VehicleUpdaterStub()
-        let publisher = sut.makeVehiclesPublisher(updater: updater)
+        let publisher = sut.makeVehiclesPublisher(updater: AnyResourceEmitter(wrappedLoader: updater))
         
         stub.addStubForAnyURL(data: self.makeVehiclesData())
         
@@ -183,10 +183,10 @@ class HTTPClientStub: HTTPClient{
 }
 
 class VehicleUpdaterStub: ResourceEmitter{
-    var didEmitVehicle: ((KTVehicle) -> Void)?
+    var didEmitResource: ((KTVehicle) -> Void)?
         
     func send(_ vehicle: KTVehicle){
-        didEmitVehicle?(vehicle)
+        didEmitResource?(vehicle)
     }
     
 }

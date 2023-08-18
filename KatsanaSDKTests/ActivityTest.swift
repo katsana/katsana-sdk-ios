@@ -13,7 +13,7 @@ import CoreLocation
 final class ActivityTest: XCTestCase {
     func test_createActivities_setProperly() throws {
         let sut = makeSUT()
-        let activity = VehicleActivity()
+        let activity = OldVehicleActivity()
         activity.type = .batteryCutoff
         activity.message = "test message"
         
@@ -27,7 +27,7 @@ final class ActivityTest: XCTestCase {
     
     func test_createActivities_cachedProperly() throws {
         let sut = makeSUT()
-        let activity = VehicleActivity()
+        let activity = OldVehicleActivity()
         activity.type = .batteryCutoff
         activity.message = "test message"
         
