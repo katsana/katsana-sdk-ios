@@ -9,6 +9,8 @@
 import Foundation
 
 public class VehicleLiveStreamsMapper{
+    private init(){}
+    
     public enum Error: Swift.Error {
         case invalidData
     }

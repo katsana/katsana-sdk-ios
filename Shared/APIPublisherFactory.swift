@@ -169,6 +169,11 @@ extension APIPublisherFactory{
             .eraseToAnyPublisher()
     }
     
+    public func makeVehicleLiveStreamPublisher() -> AnyPublisher<[VehicleLiveStream], Error>{
+        let url = VehicleLiveStreamsEndpoint.get.url(baseURL: baseURL)
+        return makePublisher(request: URLRequest(url: url), mapper: VehicleLiveStreamsMapper.map)
+    }
+    
     public func makeAddressPublisher(coordinate: (latitude: Double, longitude: Double)) -> AnyPublisher<KTAddress, Error>{
         let classname = String(describing: KTAddress.self)
         let url = baseStoreURL.appendingPathComponent(classname + ".store")

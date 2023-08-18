@@ -7,7 +7,7 @@
 //
 
 
-public class VehicleLiveStream: Codable {
+public class VehicleLiveStream: Codable, Equatable {
     enum CodingKeys: CodingKey {
         case vehicleId
         case horizontalRatio
@@ -48,9 +48,16 @@ public class VehicleLiveStream: Codable {
 //        }
 //        return nil
 //    }
+    
+    public static func == (lhs: VehicleLiveStream, rhs: VehicleLiveStream) -> Bool {
+        if lhs.vehicleId == rhs.vehicleId, lhs.url == rhs.url, lhs.channels == rhs.channels{
+            return true
+        }
+        return false
+    }
 }
 
-public struct VehicleLiveStreamChannel: Codable{
+public struct VehicleLiveStreamChannel: Codable, Equatable{
     public let id: String
     public let name: String
     public let status: Bool
