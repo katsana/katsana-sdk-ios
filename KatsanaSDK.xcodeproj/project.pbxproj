@@ -85,7 +85,7 @@
 		C186A1CA2A55089400EE2AF2 /* Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186A1C92A55089400EE2AF2 /* Credential.swift */; };
 		C186A2012A55984100EE2AF2 /* HTTPLoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186A1FF2A55983F00EE2AF2 /* HTTPLoginServiceTests.swift */; };
 		C18869862A80D0E70032B3A9 /* ResourceEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18869852A80D0E70032B3A9 /* ResourceEmitter.swift */; };
-		C18A824128FCEF6000C3FF7D /* VideoRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824028FCEF6000C3FF7D /* VideoRecording.swift */; };
+		C18A824128FCEF6000C3FF7D /* VehicleLiveStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824028FCEF6000C3FF7D /* VehicleLiveStream.swift */; };
 		C18A824328FCEFD500C3FF7D /* VideoRecordingChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */; };
 		C18A824528FD050A00C3FF7D /* KatsanaAPI+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */; };
 		C1A3E40B298A356100931529 /* Siesta in Frameworks */ = {isa = PBXBuildFile; productRef = C1A3E40A298A356100931529 /* Siesta */; };
@@ -273,7 +273,7 @@
 		C186A1C92A55089400EE2AF2 /* Credential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
 		C186A1FF2A55983F00EE2AF2 /* HTTPLoginServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPLoginServiceTests.swift; sourceTree = "<group>"; };
 		C18869852A80D0E70032B3A9 /* ResourceEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceEmitter.swift; sourceTree = "<group>"; };
-		C18A824028FCEF6000C3FF7D /* VideoRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecording.swift; sourceTree = "<group>"; };
+		C18A824028FCEF6000C3FF7D /* VehicleLiveStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleLiveStream.swift; sourceTree = "<group>"; };
 		C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingChannel.swift; sourceTree = "<group>"; };
 		C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Stream.swift"; sourceTree = "<group>"; };
 		C1A3E404298A1A8F00931529 /* AddressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTest.swift; sourceTree = "<group>"; };
@@ -910,7 +910,7 @@
 				C7331297207B1EC800541BE8 /* VehicleSubscription.swift */,
 				C79CA23D1FE220F100A9F8E1 /* Insurer.swift */,
 				C17220C224628CA700A128B7 /* Fleet.swift */,
-				C18A824028FCEF6000C3FF7D /* VideoRecording.swift */,
+				C18A824028FCEF6000C3FF7D /* VehicleLiveStream.swift */,
 				C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */,
 				C164EAF129236BD600C3A6E7 /* VideoPlayback.swift */,
 			);
@@ -1283,7 +1283,7 @@
 				C71917A41E48703B0041BC18 /* VehicleActivity.swift in Sources */,
 				C719179A1E48703B0041BC18 /* ObjectJSONTransformer.swift in Sources */,
 				C1DF2B5329DD278E00596E70 /* ResourceWithKeyStore.swift in Sources */,
-				C18A824128FCEF6000C3FF7D /* VideoRecording.swift in Sources */,
+				C18A824128FCEF6000C3FF7D /* VehicleLiveStream.swift in Sources */,
 				C11FECC729CBC0DE003914DC /* LocalLoader.swift in Sources */,
 				C1FAE6FE29C059D4001D3D86 /* HTTPURLResponse+StatusCode.swift in Sources */,
 				C71917761E48703B0041BC18 /* UIImage+Extension.swift in Sources */,

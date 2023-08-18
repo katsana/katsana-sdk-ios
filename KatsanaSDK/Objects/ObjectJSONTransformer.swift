@@ -57,13 +57,13 @@ class ObjectJSONTransformer {
         return pos
     }
     
-    class func VideoRecordingObjects(json : JSON) -> [VideoRecording]{
+    class func VideoRecordingObjects(json : JSON) -> [VehicleLiveStream]{
         let arr = json["vehicles"].arrayValue
         let vehicles = arr.map{VideoRecordingObject(json: $0)}
         return vehicles
     }
     
-    class func VideoRecordingObject(json : JSON) -> VideoRecording {
+    class func VideoRecordingObject(json : JSON) -> VehicleLiveStream {
         var theChannels = [VideoRecordingChannel]()
         let channels = json["dvr"]["channels"].dictionaryValue
         for (key, value) in channels {
@@ -92,7 +92,7 @@ class ObjectJSONTransformer {
             verticalRatio = ratio[1]
         }
         
-        let video = VideoRecording(vehicleId: vehicleId!, url: url!, horizontalRatio: horizontalRatio, verticalRatio: verticalRatio, channels: theChannels)
+        let video = VehicleLiveStream(vehicleId: vehicleId!, url: url!, horizontalRatio: horizontalRatio, verticalRatio: verticalRatio, channels: theChannels)
         
         return video
     }

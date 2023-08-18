@@ -7,7 +7,7 @@
 //
 
 
-public class VideoRecording: Codable {
+public class VehicleLiveStream: Codable {
     enum CodingKeys: CodingKey {
         case vehicleId
         case horizontalRatio

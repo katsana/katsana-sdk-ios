@@ -71,7 +71,7 @@ public class KTVehicle: Codable {
     
     public var driver: String?
 
-    public var videoRecording: VideoRecording?
+    public var videoRecording: VehicleLiveStream?
     ///State that shows if the vehicle supports MDVR.
     public var requestVideoRecordingDate: Date?
     

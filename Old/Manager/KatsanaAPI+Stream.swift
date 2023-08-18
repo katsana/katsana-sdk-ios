@@ -10,14 +10,14 @@ import Siesta
 
 extension KatsanaAPI_Old{
     ///Request live stream devices for supported vehicles
-    public func requestLiveStreamDevices(completion: @escaping (_ summaries:[VideoRecording]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestLiveStreamDevices(completion: @escaping (_ summaries:[VehicleLiveStream]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let path = "operations/stream"
         
         let resource = API.resource(path)
         let request = resource.loadIfNeeded()
         
         func handleResource() -> Void {
-            if let summaries : [VideoRecording] = resource.typedContent(){
+            if let summaries : [VehicleLiveStream] = resource.typedContent(){
                 if let vehicles = self.vehicles{
                     _ = vehicles.map({$0.requestVideoRecordingDate = Date()})
                 }
@@ -43,7 +43,7 @@ extension KatsanaAPI_Old{
         }
     }
     
-    public func requestLiveStream(vehicle:KTVehicle, channel: String! = nil, completion: @escaping (_ videoRecording:VideoRecording?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestLiveStream(vehicle:KTVehicle, channel: String! = nil, completion: @escaping (_ videoRecording:VehicleLiveStream?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
         let path = "operations/stream/show"
         
         var resource = API.resource(path).withParam("vehicleID", "\(vehicle.vehicleId)")
@@ -54,7 +54,7 @@ extension KatsanaAPI_Old{
         let request = resource.loadIfNeeded()
         
         func handleResource() -> Void {
-            if let videoRecording : VideoRecording = resource.typedContent(){
+            if let videoRecording : VehicleLiveStream = resource.typedContent(){
                 vehicle.requestVideoRecordingDate = Date()
                 vehicle.videoRecording = videoRecording
                 if let idx = self.vehicles.firstIndex(of: vehicle){
