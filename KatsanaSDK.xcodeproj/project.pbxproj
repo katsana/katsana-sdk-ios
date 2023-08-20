@@ -107,6 +107,9 @@
 		C1EFD5AE2A8F2DAA0016D5E7 /* VehicleLiveStreamMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFD5AD2A8F2DAA0016D5E7 /* VehicleLiveStreamMapper.swift */; };
 		C1EFD5B02A8F2E8C0016D5E7 /* VehicleLiveStreamEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFD5AF2A8F2E8C0016D5E7 /* VehicleLiveStreamEndpoint.swift */; };
 		C1EFD5B42A8F31270016D5E7 /* VehicleLiveStreamMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFD5B22A8F2FF70016D5E7 /* VehicleLiveStreamMapperTests.swift */; };
+		C1EFD5BC2A9039410016D5E7 /* VideoPlaybackEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFD5BB2A9039410016D5E7 /* VideoPlaybackEndpoint.swift */; };
+		C1EFD5BE2A90394A0016D5E7 /* VideoPlaybackMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFD5BD2A90394A0016D5E7 /* VideoPlaybackMapper.swift */; };
+		C1EFD5C22A91A6AE0016D5E7 /* VideoPlaybackMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFD5C02A91A6AC0016D5E7 /* VideoPlaybackMapperTests.swift */; };
 		C1F540A225256AA800525603 /* KTCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540A125256AA800525603 /* KTCacheManager.swift */; };
 		C1F540B025256AB700525603 /* KTAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AC25256AB600525603 /* KTAddress.swift */; };
 		C1F540B225256AB700525603 /* KTVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F540AD25256AB600525603 /* KTVehicle.swift */; };
@@ -299,6 +302,9 @@
 		C1EFD5AD2A8F2DAA0016D5E7 /* VehicleLiveStreamMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleLiveStreamMapper.swift; sourceTree = "<group>"; };
 		C1EFD5AF2A8F2E8C0016D5E7 /* VehicleLiveStreamEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleLiveStreamEndpoint.swift; sourceTree = "<group>"; };
 		C1EFD5B22A8F2FF70016D5E7 /* VehicleLiveStreamMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleLiveStreamMapperTests.swift; sourceTree = "<group>"; };
+		C1EFD5BB2A9039410016D5E7 /* VideoPlaybackEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackEndpoint.swift; sourceTree = "<group>"; };
+		C1EFD5BD2A90394A0016D5E7 /* VideoPlaybackMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackMapper.swift; sourceTree = "<group>"; };
+		C1EFD5C02A91A6AC0016D5E7 /* VideoPlaybackMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackMapperTests.swift; sourceTree = "<group>"; };
 		C1F540A125256AA800525603 /* KTCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTCacheManager.swift; sourceTree = "<group>"; };
 		C1F540AC25256AB600525603 /* KTAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTAddress.swift; sourceTree = "<group>"; };
 		C1F540AD25256AB600525603 /* KTVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KTVehicle.swift; sourceTree = "<group>"; };
@@ -529,6 +535,7 @@
 				C1751B4829BFEE6D009C8795 /* User API */,
 				C1FAE73E29C2A9F0001D3D86 /* Vehicle API */,
 				C1EFD5AC2A8F2D8B0016D5E7 /* VehicleLiveStream API */,
+				C1EFD5BA2A90392C0016D5E7 /* VideoPlayback API */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -728,6 +735,7 @@
 				C186126C29E67EF000171A3F /* Trip Summary API */,
 				C1FAE74129C2AB1A001D3D86 /* Vehicle API */,
 				C1EFD5B12A8F2FDE0016D5E7 /* VehicleLiveStream API */,
+				C1EFD5BF2A91A68C0016D5E7 /* VideoPlayback API */,
 				C1FAE71229C1778A001D3D86 /* User API */,
 			);
 			path = API;
@@ -784,6 +792,23 @@
 				C1EFD5B22A8F2FF70016D5E7 /* VehicleLiveStreamMapperTests.swift */,
 			);
 			path = "VehicleLiveStream API";
+			sourceTree = "<group>";
+		};
+		C1EFD5BA2A90392C0016D5E7 /* VideoPlayback API */ = {
+			isa = PBXGroup;
+			children = (
+				C1EFD5BD2A90394A0016D5E7 /* VideoPlaybackMapper.swift */,
+				C1EFD5BB2A9039410016D5E7 /* VideoPlaybackEndpoint.swift */,
+			);
+			path = "VideoPlayback API";
+			sourceTree = "<group>";
+		};
+		C1EFD5BF2A91A68C0016D5E7 /* VideoPlayback API */ = {
+			isa = PBXGroup;
+			children = (
+				C1EFD5C02A91A6AC0016D5E7 /* VideoPlaybackMapperTests.swift */,
+			);
+			path = "VideoPlayback API";
 			sourceTree = "<group>";
 		};
 		C1FAE70329C158DA001D3D86 /* Infra */ = {
@@ -1190,6 +1215,7 @@
 				C1EFD5B42A8F31270016D5E7 /* VehicleLiveStreamMapperTests.swift in Sources */,
 				C11FECC129CBBD95003914DC /* SharedTestHelpers.swift in Sources */,
 				C11FECDC29CC0525003914DC /* XCTestCase+FailableInsertResourceStoreSpecs.swift in Sources */,
+				C1EFD5C22A91A6AE0016D5E7 /* VideoPlaybackMapperTests.swift in Sources */,
 				C186127229E6807400171A3F /* TripSummaryMapperTests.swift in Sources */,
 				C1751B3F29BFEDEC009C8795 /* CacheManagerSpy.swift in Sources */,
 				C1751B3D29BFEDEC009C8795 /* MockService.swift in Sources */,
@@ -1302,10 +1328,12 @@
 				C71917881E48703B0041BC18 /* KatsanaAPI+Share.swift in Sources */,
 				C1751B4A29BFEE79009C8795 /* UserProfileEndpoint.swift in Sources */,
 				C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */,
+				C1EFD5BC2A9039410016D5E7 /* VideoPlaybackEndpoint.swift in Sources */,
 				C719178E1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift in Sources */,
 				C1F540B425256AB700525603 /* KTTrip.swift in Sources */,
 				C186126A29E67D2400171A3F /* TripSummaryEndpoint.swift in Sources */,
 				C719177C1E48703B0041BC18 /* ImageRequest.swift in Sources */,
+				C1EFD5BE2A90394A0016D5E7 /* VideoPlaybackMapper.swift in Sources */,
 				C71917A41E48703B0041BC18 /* VehicleActivity.swift in Sources */,
 				C719179A1E48703B0041BC18 /* ObjectJSONTransformer.swift in Sources */,
 				C1DF2B5329DD278E00596E70 /* ResourceWithKeyStore.swift in Sources */,

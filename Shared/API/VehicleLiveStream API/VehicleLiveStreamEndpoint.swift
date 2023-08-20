@@ -18,3 +18,14 @@ public enum VehicleLiveStreamsEndpoint {
         }
     }
 }
+
+public enum VehicleLiveStreamEndpoint {
+    case get
+
+    public func url(baseURL: URL) -> URL {
+        switch self {
+        case .get:
+            return URL.make(url: baseURL.appendingPathComponent("/operations/stream/show"), queryItems: nil)!
+        }
+    }
+}

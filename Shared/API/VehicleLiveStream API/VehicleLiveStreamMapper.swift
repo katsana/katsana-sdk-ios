@@ -32,9 +32,19 @@ public class VehicleLiveStreamsMapper{
     }
 }
 
-private class VehicleLiveStreamMapper{
+public class VehicleLiveStreamMapper{
     public enum Error: Swift.Error {
         case invalidData
+    }
+    
+    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> VehicleLiveStream {
+        do{
+            let json = try JSON(data: data)
+            return try mapJSON(json)
+        }
+        catch{
+            throw Error.invalidData
+        }
     }
     
     fileprivate static func mapJSON(_ json: JSON) throws -> VehicleLiveStream {

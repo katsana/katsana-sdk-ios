@@ -79,26 +79,26 @@ extension KatsanaAPI_Old{
         }
     }
     
-    public func requestVideoPlaybacks(vehicleId: String, completion: @escaping (_ playbacks:[VideoPlayback]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
+    public func requestVideoPlaybacks(vehicleId: Int, completion: @escaping (_ playbacks:[VideoPlayback]?) -> Void, failure: @escaping (_ error: RequestError?) -> Void = {_ in }) -> Void {
        
         requestVideoPlaybacks { playbacks in
             if let playbacks{
                 var channels = [VideoRecordingChannel]()
-                func getOrCreateChannel(_ id: String) -> VideoRecordingChannel{
-                    for channel in channels {
-                        if channel.identifier == id{
-                            return channel
-                        }
-                    }
+                func getOrCreateChannel(_ id: Int) -> VideoRecordingChannel{
+//                    for channel in channels {
+//                        if channel.identifier == id{
+//                            return channel
+//                        }
+//                    }
                     let newChannel = VideoRecordingChannel()
-                    newChannel.identifier = id
+//                    newChannel.identifier = id
                     channels.append(newChannel)
                     return newChannel
                 }
                 var thePlaybacks = [VideoPlayback]()
                 for playback in playbacks{
-                    if vehicleId == playback.deviceId, let id = playback.channelIdentifier{
-                        let channel = getOrCreateChannel(id)
+                    if vehicleId == playback.deviceId{
+                        let channel = getOrCreateChannel(playback.channelId)
                         channel.addPlayback(playback)
                         thePlaybacks.append(playback)
                     }

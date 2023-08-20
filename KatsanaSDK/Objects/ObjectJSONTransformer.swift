@@ -109,31 +109,32 @@ class ObjectJSONTransformer {
     }
     
     class func VideoPlaybackObject(json : JSON) -> VideoPlayback {
-        let video = VideoPlayback()
-        video.channelIdentifier = json["channel"].string
-        if let id = json["channel"].int{
-            video.channelIdentifier = String(id)
-        }else{
-            video.channelIdentifier = json["channel"].string
-        }
-        if let id = json["id"].int{
-            video.id = String(id)
-        }else{
-            video.id = json["id"].string
-        }
-        if let deviceId = json["device_id"].int{
-            video.deviceId = String(deviceId)
-        }else{
-            video.deviceId = json["device_id"].string
-        }
-        
-        video.filename = json["filename"].string
-        
-        let date = json["date"].stringValue
-        let startTime = date + " " + json["start_time"].stringValue
-        video.startTime = Formatter.jsonDateFormatter2.date(from: startTime)
-        video.duration = CGFloat(json["duration"].floatValue)
-        video.endTime = video.startTime?.addingTimeInterval(video.duration)
+        fatalError()
+        var video: VideoPlayback!
+//        video.channelIdentifier = json["channel"].string
+//        if let id = json["channel"].int{
+//            video.channelIdentifier = String(id)
+//        }else{
+//            video.channelIdentifier = json["channel"].string
+//        }
+//        if let id = json["id"].int{
+//            video.id = String(id)
+//        }else{
+//            video.id = json["id"].string
+//        }
+//        if let deviceId = json["device_id"].int{
+//            video.deviceId = String(deviceId)
+//        }else{
+//            video.deviceId = json["device_id"].string
+//        }
+//        
+//        video.filename = json["filename"].string
+//        
+//        let date = json["date"].stringValue
+//        let startTime = date + " " + json["start_time"].stringValue
+//        video.startTime = Formatter.jsonDateFormatter2.date(from: startTime)
+//        video.duration = CGFloat(json["duration"].floatValue)
+//        video.endTime = video.startTime?.addingTimeInterval(video.duration)
         return video
     }
     
