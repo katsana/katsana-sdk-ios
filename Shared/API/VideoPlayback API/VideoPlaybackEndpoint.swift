@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum VideoPlaybackEndpoint {
+public enum VideoPlaybacksEndpoint {
     case get
 
     public func url(baseURL: URL) -> URL {

@@ -7,7 +7,7 @@
 //
 import Foundation
 
-public class VideoPlayback: Codable {
+public class VideoPlayback: Codable, Equatable {
     public let id: Int
     public let channelId: Int
     public let userId: Int
@@ -28,6 +28,13 @@ public class VideoPlayback: Codable {
         self.startTime = startTime
         self.endTime = endTime
         self.duration = duration
+    }
+    
+    public static func == (lhs: VideoPlayback, rhs: VideoPlayback) -> Bool {
+        if lhs.id == rhs.id, lhs.channelId == rhs.channelId, lhs.deviceId == rhs.deviceId, lhs.filename == rhs.filename, lhs.startTime == rhs.startTime, lhs.endTime == rhs.endTime{
+            return true
+        }
+        return false
     }
 }
 
