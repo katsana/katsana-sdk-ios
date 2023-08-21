@@ -181,9 +181,9 @@ extension APIPublisherFactory{
     
     public func makeVehicleVideoPlaybacksPublisher(vehicleId: Int) -> AnyPublisher<[VideoPlayback], Error>{
         let url = VideoPlaybacksEndpoint.get.url(baseURL: baseURL)
-        return makePublisher(request: URLRequest(url: url), mapper:{data, response in
+        return makePublisherWithCachedKey(request: URLRequest(url: url), cacheKey: String(vehicleId)) { data, response in
             return try VideoPlaybacksMapper.map(data, from: response, vehicleId: vehicleId)
-        })
+        }
     }
     
     public func makeAddressPublisher(coordinate: (latitude: Double, longitude: Double)) -> AnyPublisher<KTAddress, Error>{
