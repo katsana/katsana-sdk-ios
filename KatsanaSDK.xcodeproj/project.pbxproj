@@ -43,6 +43,7 @@
 		C11FED0929D0295F003914DC /* AnyLocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0829D0295F003914DC /* AnyLocalLoader.swift */; };
 		C11FED0B29D032C4003914DC /* AnyResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0A29D032C4003914DC /* AnyResourceStore.swift */; };
 		C11FED0D29D0FAAA003914DC /* ResourceStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FED0C29D0FAAA003914DC /* ResourceStoreManager.swift */; };
+		C124A2022A946F2E000F7B13 /* VideoPlaybackDataEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C124A2012A946F2E000F7B13 /* VideoPlaybackDataEndpoint.swift */; };
 		C145A5BB29D8F25700E3FC6E /* ReverseGeocodingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C145A5BA29D8F25700E3FC6E /* ReverseGeocodingClient.swift */; };
 		C145A5C029D9155400E3FC6E /* AppleReverseGeocodingClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C145A5BF29D9155400E3FC6E /* AppleReverseGeocodingClientTests.swift */; };
 		C145A5C329D9196700E3FC6E /* AddressAPI+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C145A5C229D9196700E3FC6E /* AddressAPI+TestHelpers.swift */; };
@@ -245,6 +246,7 @@
 		C11FED0829D0295F003914DC /* AnyLocalLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyLocalLoader.swift; sourceTree = "<group>"; };
 		C11FED0A29D032C4003914DC /* AnyResourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyResourceStore.swift; sourceTree = "<group>"; };
 		C11FED0C29D0FAAA003914DC /* ResourceStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceStoreManager.swift; sourceTree = "<group>"; };
+		C124A2012A946F2E000F7B13 /* VideoPlaybackDataEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackDataEndpoint.swift; sourceTree = "<group>"; };
 		C145A5BA29D8F25700E3FC6E /* ReverseGeocodingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseGeocodingClient.swift; sourceTree = "<group>"; };
 		C145A5BF29D9155400E3FC6E /* AppleReverseGeocodingClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleReverseGeocodingClientTests.swift; sourceTree = "<group>"; };
 		C145A5C229D9196700E3FC6E /* AddressAPI+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddressAPI+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -799,6 +801,7 @@
 			children = (
 				C1EFD5BD2A90394A0016D5E7 /* VideoPlaybackMapper.swift */,
 				C1EFD5BB2A9039410016D5E7 /* VideoPlaybackEndpoint.swift */,
+				C124A2012A946F2E000F7B13 /* VideoPlaybackDataEndpoint.swift */,
 			);
 			path = "VideoPlayback API";
 			sourceTree = "<group>";
@@ -1295,6 +1298,7 @@
 				C186A1C82A5504F300EE2AF2 /* LoginMapper.swift in Sources */,
 				C1FAE72529C17B99001D3D86 /* APIPublisherFactory.swift in Sources */,
 				C71917A81E48703B0041BC18 /* TimeTransformer.swift in Sources */,
+				C124A2022A946F2E000F7B13 /* VideoPlaybackDataEndpoint.swift in Sources */,
 				C71917A61E48703B0041BC18 /* VehicleLocation.swift in Sources */,
 				C186127629E6813400171A3F /* VehicleLocationMapper.swift in Sources */,
 				C1EE7C4F2A55B79300BBCE77 /* KeychainTokenService.swift in Sources */,

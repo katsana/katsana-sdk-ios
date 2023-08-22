@@ -186,6 +186,13 @@ extension APIPublisherFactory{
         }
     }
     
+    public func makeVideoPlaybackDataPublisher(playbackId: Int) -> AnyPublisher<Data, Error>{
+        let url = VideoPlaybackDataEndpoint.get(playbackId: playbackId).url(baseURL: baseURL)
+        return makePublisherWithCachedKey(request: URLRequest(url: url), cacheKey: String(playbackId)) { data, response in
+            return data
+        }
+    }
+    
     public func makeAddressPublisher(coordinate: (latitude: Double, longitude: Double)) -> AnyPublisher<KTAddress, Error>{
         let classname = String(describing: KTAddress.self)
         let url = baseStoreURL.appendingPathComponent(classname + ".store")
