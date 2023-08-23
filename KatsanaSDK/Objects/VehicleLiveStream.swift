@@ -6,6 +6,7 @@
 //  Copyright © 2022 pixelated. All rights reserved.
 //
 
+import Foundation
 
 public class VehicleLiveStream: Codable, Equatable {
     enum CodingKeys: CodingKey {
@@ -61,4 +62,13 @@ public struct VehicleLiveStreamChannel: Codable, Equatable{
     public let id: String
     public let name: String
     public let status: Bool
+}
+
+public class VehicleLiveStreamChannelURLTransformer{
+    private init(){}
+    
+    public static func transformURL(from livestream: VehicleLiveStream, channel: VehicleLiveStreamChannel) -> URL{
+        let url = livestream.url + "&channel=" + channel.id
+        return URL(string: url)!
+    }
 }
