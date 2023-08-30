@@ -30,3 +30,9 @@ public class AnyResourceLoader<Resource>: ResourceLoader {
     }
 }
 
+public extension ResourceLoader{
+    func eraseToAnyResourceLoader() -> AnyResourceLoader<LoadResource>{
+        return AnyResourceLoader(wrappedLoader: self)
+    }
+}
+
