@@ -15,6 +15,7 @@ public protocol ResourceCache {
     func save(_ resource: SaveResource, completion: @escaping (SaveResult) -> Void)
 }
 
+
 public class AnyResourceCache<Resource>: ResourceCache {
     private let saverObject:  (Resource, @escaping (Result<Void, Error>) -> Void) -> ()
 
@@ -32,5 +33,3 @@ public extension ResourceCache{
         return AnyResourceCache(wrappedLoader: self)
     }
 }
-
-

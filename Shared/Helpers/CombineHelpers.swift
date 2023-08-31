@@ -79,7 +79,7 @@ extension Publisher where Output: Collection{
 }
 
 extension ResourceCache {
-    func saveIgnoringResult(_ resource: SaveResource) {
+    public func saveIgnoringResult(_ resource: SaveResource) {
         save(resource) { _ in}
     }
 }
