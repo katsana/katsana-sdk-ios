@@ -92,6 +92,12 @@ public extension AnyLocalLoader {
         }
         .eraseToAnyPublisher()
     }
+    
+    func loadPublisherWithoutFailure() -> AnyPublisher<AnyLocalLoader.LoadResource, Error> {
+        return loadPublisher().catch ({ error in
+            return PassthroughSubject()
+        }).eraseToAnyPublisher()
+    }
 }
 
 public extension LocalResourceWithKeyLoader {
