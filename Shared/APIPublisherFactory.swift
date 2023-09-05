@@ -45,6 +45,7 @@ open class APIPublisherFactory{
         let url = VehicleEndpoint.get(includes: params).url(baseURL: baseURL)
         return RemoteLoader(url: url, client: client, mapper: VehiclesMapper.map)
     }
+
     
     public func makeLocalLoader<Resource>(_ type: Resource.Type, maxCacheAgeInSeconds: Int) -> AnyLocalLoader<Resource> where Resource: Equatable, Resource: Codable{
         let store = storeManager.getStore(type: type)
@@ -62,6 +63,13 @@ open class APIPublisherFactory{
         
         let policy = ResourceCachePolicy { maxCacheAgeInSeconds }
         let loader = LocalLoader(store: theStore, cachePolicy: policy, currentDate: Date.init)
+        return AnyLocalLoader(wrappedLoader: loader)
+    }
+    
+    public func makeLocalLoader<Resource>(_ type: Resource.Type, cachePolicy: ResourceCachePolicy) -> AnyLocalLoader<Resource> where Resource: Equatable, Resource: Codable{
+        let store = storeManager.getStore(type: type)
+        let loader = LocalLoader(store: store, cachePolicy: cachePolicy, currentDate: Date.init)
+        
         return AnyLocalLoader(wrappedLoader: loader)
     }
     
