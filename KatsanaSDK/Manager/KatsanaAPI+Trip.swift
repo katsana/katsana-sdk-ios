@@ -162,9 +162,7 @@ extension KatsanaAPI {
                     if let date =  trip.start?.trackedAt{
                         trip.date = date
                     }
-                    if trip.duration > 60, trip.distance > 10{
-                        newTrips.append(trip)
-                    }
+                    newTrips.append(trip)
                 }
                 travel.trips = newTrips
                 KTCacheManager.shared.cache(travel: travel, vehicleId: vehicleId) //Cache history

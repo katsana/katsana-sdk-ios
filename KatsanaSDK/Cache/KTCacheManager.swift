@@ -341,10 +341,11 @@ public class KTCacheManager: NSObject {
         return nil
     }
     
+    @available(*, deprecated)
     public func vehicleActivities(userId: String) -> [VehicleActivity]! {
-        if let activities = activities[userId]{
-            return activities
-        }
+//        if let activities = activities[userId]{
+//            return activities
+//        }
         return nil
     }
     
@@ -631,34 +632,36 @@ public class KTCacheManager: NSObject {
         }
     }
     
+    @available(*, deprecated)
     public func cache(activities: [VehicleActivity], userId: String) {
-        for act in activities {
-            cache(activity: act, userId: userId)
-        }
+//        for act in activities {
+//            cache(activity: act, userId: userId)
+//        }
     }
     
+    @available(*, deprecated)
     public func cache(activity: VehicleActivity, userId:String) {
-        var needAdd = true
-        var activities: [VehicleActivity]!
-        if self.activities[userId] != nil{
-           activities = self.activities[userId]
-        }else{
-            activities = [VehicleActivity]()
-            self.activities[userId] = activities
-        }
-        
-        for act in activities {
-            if act.startTime == activity.startTime, act.type == activity.type{
-                needAdd = false
-                break
-            }
-        }
-        
-        if needAdd{
-            activities.append(activity)
-            self.activities[userId] = activities
-            autoSaveActivities()
-        }
+//        var needAdd = true
+//        var activities: [VehicleActivity]!
+//        if self.activities[userId] != nil{
+//           activities = self.activities[userId]
+//        }else{
+//            activities = [VehicleActivity]()
+//            self.activities[userId] = activities
+//        }
+//        
+//        for act in activities {
+//            if act.startTime == activity.startTime, act.type == activity.type{
+//                needAdd = false
+//                break
+//            }
+//        }
+//        
+//        if needAdd{
+//            activities.append(activity)
+//            self.activities[userId] = activities
+//            autoSaveActivities()
+//        }
     }
     
     public func cache(liveShare: LiveShare) {

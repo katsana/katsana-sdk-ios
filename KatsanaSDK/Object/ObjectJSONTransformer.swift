@@ -13,6 +13,7 @@ class ObjectJSONTransformer: NSObject {
         let email = json["email"].stringValue
         let user = KTUser(email: email)
         user.userId = json["id"].stringValue
+        user.tenant = json["tenant"].stringValue
         user.address = json["address"].stringValue
         user.phoneHome = json["phone_home"].stringValue
         user.phoneMobile = json["phone_mobile"].stringValue
@@ -349,6 +350,31 @@ class ObjectJSONTransformer: NSObject {
         address.country = json["country"].stringValue
         address.address = json["address"].stringValue
         return address
+    }
+    
+    class func VehicleActivityNotificationsObject(json : JSON) -> [VehicleActivity] {
+        var activities = [VehicleActivity]()
+        let array = json["data"].arrayValue
+        for jsonObj in array {
+            activities.append(VehicleActivityNotificationObject(json: jsonObj))
+        }
+        return activities
+    }
+    
+    class func VehicleActivityNotificationObject(json : JSON) -> VehicleActivity {
+        let violation = VehicleActivity()
+        violation.identifier = json["id"].stringValue
+        violation.policyKey = json["type"].stringValue
+        violation.vehicleId = json["data"]["device_id"].stringValue
+        violation.message = json["data"]["message"].stringValue
+        violation.timeString = json["data"]["time"].stringValue
+        if let date = violation.timeString?.date(gmt: 0){
+            violation.startTime = date
+        }
+        violation.latitude = json["data"]["ping"]["latitude"].doubleValue
+        violation.longitude = json["data"]["ping"]["longitude"].doubleValue
+        
+        return violation
     }
     
     class func VehicleActivityObject(json : JSON) -> VehicleActivity {

@@ -14,7 +14,7 @@ import CoreLocation
 open class KatsanaAPI: NSObject {
     //Notifications
     public static let userSuccessLoginNotification = Notification.Name(rawValue: "KMUserLogonSuccessNotification")
-    public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
+//    public static let userWillLogoutNotification = Notification.Name(rawValue: "KMUserWillLogoutNotification")
     public static let userDidLogoutNotification = Notification.Name(rawValue: "KMUserDidLogoutNotification")
     public static let profileUpdatedNotification = Notification.Name(rawValue: "KMProfileUpdatedNotification")
     public static let subscriptionRequestedNotification = Notification.Name(rawValue: "subscriptionRequestedNotification")
@@ -48,6 +48,8 @@ open class KatsanaAPI: NSObject {
     
     internal(set) public var logPath: String!
     internal var identifierDicts = [String: Date]()
+    
+    public var onWillLogout: (() async -> Void)?
     
     ///Vehicle ids with empty images. Due to some bugs, we put vehicle with empty image here, so can skip loading those images again on current session.
     var vehicleIdWithEmptyImages = [String]()
@@ -293,6 +295,9 @@ open class KatsanaAPI: NSObject {
             ObjectJSONTransformer.VideoPlaybackObjects(json: $0.content)
             
         }
+        API.configureTransformer("notifications") {
+            ObjectJSONTransformer.VehicleActivityNotificationsObject(json: $0.content)
+        }
     }
     
     func baseURL() -> URL {
@@ -345,7 +350,7 @@ open class KatsanaAPI: NSObject {
     // MARK: Error handling
     
     private var lastUnauthorizedErrorDate: Date!
-    func handleError(error: Error!, details: String) {
+    public func handleError(error: Error!, details: String) {
         let handled = false
         if let error = error as? RequestError {
             if let code = error.httpStatusCode, code == 401 {

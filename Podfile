@@ -1,6 +1,6 @@
 use_frameworks!
 target "KatsanaSDK" do
-    platform :ios, '8.0'
+    platform :ios, '9.0'
     pod 'Siesta'
     pod 'XCGLogger'
     pod 'FastCoding'
@@ -13,3 +13,12 @@ platform :osx, '10.11'
     pod 'FastCoding'
 end
 
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      if Gem::Version.new('9.0') > Gem::Version.new(config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'])
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
+      end
+    end
+  end
+end

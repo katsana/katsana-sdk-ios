@@ -14,6 +14,8 @@
 		C16C8290245A99F9008B0B1E /* KatsanaAPI+Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */; };
 		C16C8292245AB6FA008B0B1E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C8291245AB6FA008B0B1E /* Sensor.swift */; };
 		C17220C324628CA700A128B7 /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17220C224628CA700A128B7 /* Fleet.swift */; };
+		C18544722AEF80A9000FFE78 /* KatsanaAPI+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18544712AEF80A9000FFE78 /* KatsanaAPI+Activity.swift */; };
+		C18544732AEF80A9000FFE78 /* KatsanaAPI+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18544712AEF80A9000FFE78 /* KatsanaAPI+Activity.swift */; };
 		C18A824128FCEF6000C3FF7D /* VideoRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824028FCEF6000C3FF7D /* VideoRecording.swift */; };
 		C18A824328FCEFD500C3FF7D /* VideoRecordingChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */; };
 		C18A824528FD050A00C3FF7D /* KatsanaAPI+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */; };
@@ -142,6 +144,7 @@
 		C16C828F245A99F9008B0B1E /* KatsanaAPI+Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Fleet.swift"; sourceTree = "<group>"; };
 		C16C8291245AB6FA008B0B1E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C17220C224628CA700A128B7 /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
+		C18544712AEF80A9000FFE78 /* KatsanaAPI+Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Activity.swift"; sourceTree = "<group>"; };
 		C18A824028FCEF6000C3FF7D /* VideoRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecording.swift; sourceTree = "<group>"; };
 		C18A824228FCEFD500C3FF7D /* VideoRecordingChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingChannel.swift; sourceTree = "<group>"; };
 		C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatsanaAPI+Stream.swift"; sourceTree = "<group>"; };
@@ -316,6 +319,7 @@
 				C719175C1E48703B0041BC18 /* KatsanaAPI+VehicleProfile.swift */,
 				C7729D651FCBA869002497DD /* KatsanaAPI+objc.swift */,
 				C18A824428FD050A00C3FF7D /* KatsanaAPI+Stream.swift */,
+				C18544712AEF80A9000FFE78 /* KatsanaAPI+Activity.swift */,
 				C719175D1E48703B0041BC18 /* KatsanaAPI.swift */,
 				C719175E1E48703B0041BC18 /* KatsanaFormatter.swift */,
 			);
@@ -648,6 +652,7 @@
 				C71917871E48703B0041BC18 /* KatsanaAPI+Profile.swift in Sources */,
 				C719176F1E48703B0041BC18 /* CLLocationCoordinate+Extension.swift in Sources */,
 				C1F540B125256AB700525603 /* KTAddress.swift in Sources */,
+				C18544732AEF80A9000FFE78 /* KatsanaAPI+Activity.swift in Sources */,
 				C71917991E48703B0041BC18 /* LiveShare.swift in Sources */,
 				C719177F1E48703B0041BC18 /* KatsanaAPI+Address.swift in Sources */,
 				C719177B1E48703B0041BC18 /* APIError.swift in Sources */,
@@ -701,6 +706,7 @@
 				C719177A1E48703B0041BC18 /* APIError.swift in Sources */,
 				C719178C1E48703B0041BC18 /* KatsanaAPI+Vehicle.swift in Sources */,
 				C71917701E48703B0041BC18 /* Date+Extension.swift in Sources */,
+				C18544722AEF80A9000FFE78 /* KatsanaAPI+Activity.swift in Sources */,
 				C71917841E48703B0041BC18 /* KatsanaAPI+Other.swift in Sources */,
 				C71917881E48703B0041BC18 /* KatsanaAPI+Share.swift in Sources */,
 				C71917721E48703B0041BC18 /* JSON+Date.swift in Sources */,
@@ -768,7 +774,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -797,7 +803,7 @@
 				PRODUCT_NAME = KatsanaSDK;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -935,14 +941,14 @@
 				GCC_PREFIX_HEADER = KatsanaSDK/iOS/PrefixHeader.pch;
 				INFOPLIST_FILE = KatsanaSDK/iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDK;
 				PRODUCT_NAME = KatsanaSDK;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
@@ -968,13 +974,13 @@
 				GCC_PREFIX_HEADER = KatsanaSDK/iOS/PrefixHeader.pch;
 				INFOPLIST_FILE = KatsanaSDK/iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelated.KatsanaSDK;
 				PRODUCT_NAME = KatsanaSDK;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;

@@ -20,6 +20,7 @@ open class KTUser: NSObject {
         return formatter
     }()
     
+    open var tenant: String?
     open var email: String
     open var userId: String!
     open var address: String!
@@ -125,7 +126,7 @@ open class KTUser: NSObject {
     }
     
     override open class func fastCodingKeys() -> [Any]? {
-        return ["userId", "email", "address", "phoneHome", "phoneMobile", "fullname", "status", "createdAt", "imageURL", "thumbImageURL", "postcode", "phoneMobileCountryCode", "state", "country", "birthdayText", "genderText", "fleets"]
+        return ["userId", "tenant", "email", "address", "phoneHome", "phoneMobile", "fullname", "status", "createdAt", "imageURL", "thumbImageURL", "postcode", "phoneMobileCountryCode", "state", "country", "birthdayText", "genderText", "fleets"]
     }
     
     open func jsonPatch() -> [String: Any] {

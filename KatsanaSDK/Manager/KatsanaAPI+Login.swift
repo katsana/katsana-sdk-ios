@@ -40,6 +40,7 @@ extension KatsanaAPI {
         
         data = ["username" : email, "password" : password, "client_id" : self.clientId, "client_secret" : self.clientSecret, "scope" : "*", "grant_type": self.grantType]
         
+        
         let resource = self.API.resource(authPath)
         resource.request(.post, json: NSDictionary(dictionary: data)).onSuccess({ (entity) in
             if let json = entity.content as? JSON{
@@ -123,16 +124,22 @@ extension KatsanaAPI {
     }
         
     public func logout() -> Void {
-        NotificationCenter.default.post(name: KatsanaAPI.userWillLogoutNotification, object: nil)
-        currentVehicle = nil
-        if vehicles != nil {
-            vehicles = nil
+//        NotificationCenter.default.post(name: KatsanaAPI.userWillLogoutNotification, object: nil)
+        Task {@MainActor [weak self] in
+            guard let self else {return}
+            
+            await onWillLogout?()
+            
+            currentVehicle = nil
+            if vehicles != nil {
+                vehicles = nil
+            }
+            currentUser = nil
+            authToken = nil
+            NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
+            log.info("Logged out user \(self.currentUser?.userId ?? "??"), \(self.currentUser?.email ?? "")")
+            KTCacheManager.shared.clearTravelCache(vehicleId: "-1")
         }
-        currentUser = nil
-        authToken = nil
-        NotificationCenter.default.post(name: KatsanaAPI.userDidLogoutNotification, object: nil)
-        log.info("Logged out user \(self.currentUser?.userId ?? "??"), \(self.currentUser?.email ?? "")")
-        KTCacheManager.shared.clearTravelCache(vehicleId: "-1")
     }
     
     public func verify(password:String, completion: @escaping (_ success: Bool) -> Void) -> Void {
