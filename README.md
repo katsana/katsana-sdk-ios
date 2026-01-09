@@ -1,3 +1,7 @@
+# Notes
+ 
+[KatsanaSDK v3](https://github.com/katsana/katsana-sdk-ios/tree/v3) is in development. v3 has been rewritten with better architecture and without using any 3rd party dependencies.
+
 # KatsanaSDK
 KatsanaSDK is a framework for accessing data from Katsana platform using iOS/macOS app.
 
