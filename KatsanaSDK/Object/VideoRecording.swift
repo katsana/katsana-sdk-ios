@@ -14,6 +14,7 @@ open class VideoRecording: NSObject {
     open var verticalRatio: Int!
     open var channels = [VideoRecordingChannel]()
     open var liveStreamURL: String!
+    open var provider: String?
     
     open func liveStreamURLTruncated() -> String!{
         if let url = liveStreamURL{

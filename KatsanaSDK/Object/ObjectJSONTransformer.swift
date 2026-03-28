@@ -211,6 +211,7 @@ class ObjectJSONTransformer: NSObject {
         }
         video.channels = theChannels
         video.liveStreamURL = json["dvr"]["liveStreamURL"].string
+        video.provider = json["dvr"]["provider"].string
         if let id = json["id"].int{
             video.id = String(id)
         }
